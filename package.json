@@ -1,0 +1,23 @@
+{
+  "name": "js-visualize-plugins",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plugins for Visualize.JS",
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaspersoft/js-visualize-plugins.git"
+  },
+  "keywords": [
+    "plugin",
+    "visualize.js"
+  ],
+  "author": "Jaspersoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jaspersoft/js-visualize-plugins/issues"
+  },
+  "homepage": "https://github.com/Jaspersoft/js-visualize-plugins#readme"
+}
