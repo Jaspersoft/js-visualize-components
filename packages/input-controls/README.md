@@ -1,15 +1,10 @@
-Input Controls
-======
+# Input Controls
 
-About
------
-
-A collection of React-based components to represent input controls used to manipulate reports from JasperReports Server
+## About
+A collection of React-based components to represent input controls used to interact with reports embedded from JasperReports Server
 
 
-Usage
-------
+## Usage
+**Install**: run `yarn install` in root directory, and yarn workspaces will handle installations for this package
 
-Installing: run `yarn install` in root directory, and yarn workspaces will handle installations for this package
-Testing: run `yarn test` to run all test suites
-
+**Test**: run `yarn test` to run all test suites
