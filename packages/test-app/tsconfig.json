@@ -9,6 +9,7 @@
         "skipLibCheck": true,
         "outDir": "dist",
         "moduleResolution": "NodeNext",
+        "module": "NodeNext"
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules", "dist"],
