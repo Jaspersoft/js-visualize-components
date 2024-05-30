@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "build": "esbuild index.ts --bundle --format=esm --outfile=dist/index.js",
-    "build-prod": "esbuild index.ts --bundle --format=esm --minify --sourcemap --outfile=dist/index.js",
+    "build": "node esbuild.js",
+    "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf ./dist"
   },
   "repository": "git@github.com:Jaspersoft/js-visualize-plugins.git",

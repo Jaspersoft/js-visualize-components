@@ -6,8 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --sourcemap --servedir=public",
-    "build": "esbuild ./src/entrypoint.tsx --outfile=dist/bundle.js --bundle --minify",
+    "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --minify --sourcemap --servedir=public",
+    "build": "node esbuild.js",
+    "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
