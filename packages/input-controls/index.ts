@@ -21,7 +21,7 @@ const defaultInputControlConfig: InputControlConfig = {
     boolean: { style: 'switch' },
 };
 
-export default class ICPlugin {
+export class ICPlugin {
     private viz: any;
     private config: InputControlConfig;
     protected controlStructure: object = {};

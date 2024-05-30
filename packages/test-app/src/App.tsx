@@ -1,4 +1,4 @@
-import ICPlugin from 'input-controls-plugin'
+import { ICPlugin } from 'input-controls-plugin';
 import { useEffect, useState } from 'react';
 
 export interface AppConfig {
@@ -8,7 +8,7 @@ export interface AppConfig {
 export default function App(props: AppConfig) {
 
     const [controlStruct, setControlStruct] = useState({});
-    const plugin = new ICPlugin(visualize);
+    const plugin = new ICPlugin((window as any).visualize);
     
     useEffect(() => {
         plugin.fillControlStructure('/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report', (controls: object) => {
