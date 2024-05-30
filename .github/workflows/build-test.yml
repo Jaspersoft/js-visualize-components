@@ -26,6 +26,7 @@ jobs:
       - name: Build
         run: |
           yarn install
+          yarn workspaces run build
         
       - name: Run All Tests
         run: |
