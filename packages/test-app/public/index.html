@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Testing Application</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <link
+      rel="stylesheet"
+      href="index.css"
+    />
+
+    <script src="https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js"></script>
+
+    <!--
+    <script src="https://www.unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+    <script src="https://www.unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    -->
+
+  </head>
+  <body>
+    <!-- Where we are plugging the core React App -->
+    <div id="root"></div>
+
+    <!-- render the controls for the report here -->
+    <div id="control-panel"></div>
+
+    <!-- Visualize Debug Container -->
+    <pre id="container" style="display: none;"></pre>
+
+
+    <script src="bundle.js"></script> <!-- load app -->
+  </body>
+</html>

@@ -1,6 +1,10 @@
 import { FC } from 'react';
 
-interface ICPluginConfig {
+interface BooleanICConfig {
+    style?: string | FC,
+}
+
+export interface InputControlConfig {
     hostname?: string,
     username: string,
     password: string,
@@ -9,12 +13,7 @@ interface ICPluginConfig {
     boolean?: BooleanICConfig,
 };
 
-interface BooleanICConfig {
-    style?: string | FC,
-}
-
-const defaultConfig: ICPluginConfig = {
-    //hostname: 'mobiledemo.jaspersoft.com',
+const defaultInputControlConfig: InputControlConfig = {
     username: 'joeuser',
     password: 'joeuser',
     tenant: 'organization_1',
@@ -23,17 +22,16 @@ const defaultConfig: ICPluginConfig = {
 };
 
 export default class ICPlugin {
-
     private viz: any;
-    private config: ICPluginConfig;
+    private config: InputControlConfig;
     protected controlStructure: object = {};
 
-    constructor(vizjs: any, config: ICPluginConfig = defaultConfig) {
+    constructor(vizjs: any, config?: InputControlConfig) {
         this.viz = vizjs;
-        this.config = config;
+        this.config = config || defaultInputControlConfig;
     }
 
-    public fillControlStructure = (uri: string) => {
+    public fillControlStructure = (uri: string, callbackFn?: Function) => {
         this.viz({
             auth: {
                 name: this.config.username || "joeuser",
@@ -45,6 +43,9 @@ export default class ICPlugin {
                 resource: uri,
                 success: (data: string) => {
                     this.controlStructure = {...this.controlStructure, data};
+                    if (callbackFn) {
+                        callbackFn(this.controlStructure);
+                    }
                 },
                 error: (e: object) => {
                     console.log(e);
@@ -59,6 +60,6 @@ export default class ICPlugin {
 
     public makeControlsForReport = (resourceUri: string, container: any) => {
         this.fillControlStructure(resourceUri);
-        container.innerHTML = JSON.stringify(this.controlStructure);
+        container = JSON.stringify(this.controlStructure);
     };
 }
