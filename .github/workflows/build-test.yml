@@ -23,17 +23,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Build
+      - name: Build All
         run: |
           yarn install
           yarn workspaces run build
         
-      - name: input-controls Test
+      - name: Test All
         run: |
-          yarn test
-        working-directory: packages/input-controls
-
-      - name: test-app Test
-        run: |
-          yarn test
-        working-directory: packages/test-app
+          yarn workspaces run test
