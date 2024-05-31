@@ -13,6 +13,6 @@ const sharedConfig = {
 
 build({
   ...sharedConfig,
-  platform: 'node',
+  platform: 'browser',
   outfile: "dist/bundle.js",
 });

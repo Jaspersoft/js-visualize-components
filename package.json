@@ -9,7 +9,9 @@
     ]
   },
   "scripts": {
-    "test": "jest"
+    "test": "yarn workspaces run test",
+    "build": "yarn workspaces run build",
+    "start": "cd packages/test-app && yarn start" 
   },
   "repository": {
     "type": "git",
