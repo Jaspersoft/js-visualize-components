@@ -1,4 +1,4 @@
-import { InputControls } from "../../src/InputControls"
+import InputControls from "input-controls-plugin"
 
 describe("InputControls plugin", () => {
 

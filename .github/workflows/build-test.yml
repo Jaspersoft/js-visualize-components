@@ -28,6 +28,12 @@ jobs:
           yarn install
           yarn workspaces run build
         
-      - name: Run All Tests
+      - name: input-controls Test
         run: |
           yarn test
+        working-directory: packages/input-controls
+
+      - name: test-app Test
+        run: |
+          yarn test
+        working-directory: packages/test-app
