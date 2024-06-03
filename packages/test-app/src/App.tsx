@@ -1,5 +1,6 @@
 import InputControls from 'input-controls-plugin';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import MuiTest from './Mui-test';
 
 export interface AppConfig {
     title: string,
@@ -22,6 +23,7 @@ export default function App(props: AppConfig) {
         <div id="controlBox">
             {JSON.stringify(controlStruct)}
         </div>
+        <MuiTest/>
     </div>
     );
 };
