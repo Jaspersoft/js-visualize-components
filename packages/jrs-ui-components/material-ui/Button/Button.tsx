@@ -12,8 +12,6 @@ export type ButtonProps = MuiButtonProps & {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     labelProps = {}, className = '', size = 'medium', color = 'secondary', children, ...rest
 }, ref) => {
-    console.log('color => ', color);
-    console.log('ColorToClass[color] => ', ColorToClass[color]);
 
     const { labelClasses = '' } = labelProps;
     return (
