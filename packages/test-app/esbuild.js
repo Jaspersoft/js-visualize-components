@@ -1,5 +1,4 @@
-const { build } = require("esbuild");
-const { dependencies } = require('./package.json');
+import { build } from "esbuild";
 
 const isProd = process.env.NODE_ENV === 'production';
 

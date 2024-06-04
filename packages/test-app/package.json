@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Demo application",
   "main": "dist/index.js",
+  "type": "module",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --minify --sourcemap --servedir=public",
+    "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --sourcemap --servedir=public",
     "build": "node esbuild.js",
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist",
