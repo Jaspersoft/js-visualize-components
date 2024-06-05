@@ -11,7 +11,7 @@
     "build": "node esbuild.js",
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist",
-    "test": "jest"
+    "test": "NODE_OPTIONS='$NODE_OPTIONS --experimental-vm-modules' npx jest"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

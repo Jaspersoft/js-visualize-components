@@ -11,6 +11,6 @@
         "moduleResolution": "NodeNext",
         "module": "NodeNext"
     },
-    "include": ["**/*.ts", "**/*.tsx"],
+    "include": ["**/*.ts", "**/*.tsx", "test/visualize/VisualizejsProvider.test.js"],
     "exclude": ["node_modules", "dist"],
 }

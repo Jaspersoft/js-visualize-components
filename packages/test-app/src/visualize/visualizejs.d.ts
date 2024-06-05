@@ -79,6 +79,6 @@ export interface VisualizeType {
     report: (config: VisualizationConfig) => void,
     adhocView: (config: VisualizationConfig) => void,
     dashboard: (config: VisualizationConfig) => void,
-    InputControls: (config: VisualizationConfig) => void,
+    inputControls: (config: VisualizationConfig) => void,
 }
 
