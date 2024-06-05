@@ -1,7 +1,8 @@
 import InputControls from 'input-controls-plugin';
 import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import { visualizejsLoader, Authentication, VisualizeFactory, VisualizeType } from 'jrs-viz';
-import MuiTest from './Mui-test';
+import MuiTest from './Mui-test.js';
 
 export interface AppConfig {
     title: string,
