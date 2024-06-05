@@ -6,9 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --minify --sourcemap --servedir=public",
-    "build": "node esbuild.js",
-    "build-prod": "NODE_ENV=production node esbuild.js",
+    "start": "node esbuild_styles.js && esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --minify --sourcemap --servedir=public",
+    "build": "node esbuild_styles.js && node esbuild.js",
+    "build-prod": "NODE_ENV=production node esbuild_styles.js && NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist",
     "test": "jest"
   },
@@ -16,6 +16,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "esbuild": "^0.21.4",
+    "esbuild-plugin-sass": "^1.0.1",
     "typescript": "^5.4.5"
   },
   "dependencies": {

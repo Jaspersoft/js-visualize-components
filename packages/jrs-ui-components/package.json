@@ -12,7 +12,14 @@
     "jsdoc:env": "jsdoc --destination ${JSDOC_REPORT} --configure jsdoc.conf.json",
     "clean": "rm -rf dist",
     "jsdoc": "dotenv -c -- run-s jsdoc:env",
-    "default": "run-p lint jsdoc test"
+    "default": "run-p lint jsdoc test",
+    "webfont:clean": "del-cli ${WEBFONT_CACHE_DIR}",
+    "webfont:exec": "grunt webfont",
+    "webfont": "dotenv -c -- run-s webfont:clean webfont:exec",
+    "sass:jasperui": "sass --no-source-map --style=expanded scss/jasper-ui.scss ${BUILD_THEMES_DIR}/default/jasper-ui/jasper-ui.css",
+    "styles": "dotenv -c -- run-p sass:jasperui",
+    "styles:watch:sass": "onchange -i \"scss/**/*.*\" -- run-s styles",
+    "styles:watch": "run-p styles:watch:sass"
   },
   "dependencies": {
     "@babel/runtime": "7.12.13",
