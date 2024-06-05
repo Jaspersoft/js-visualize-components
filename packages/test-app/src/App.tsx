@@ -1,7 +1,7 @@
 import InputControls from 'input-controls-plugin';
 import { useEffect, useState } from 'react';
-import { visualizejsLoader } from './visualize/VisualizejsProvider.js';
-import { Authentication, VisualizeFactory, VisualizeType } from './visualize/visualizejs.js';
+import { visualizejsLoader } from 'jrs-viz';
+import { Authentication, VisualizeFactory, VisualizeType } from '../../jrs-viz/src/visualize/visualizejs.js';
 
 export interface AppConfig {
     title: string,
