@@ -4,6 +4,13 @@
   "private": true,
   "license": "AGPLv3",
   "scripts": {
+    "sass:jasperui": "sass --no-source-map --style=expanded scss/jasper-ui.scss ${BUILD_THEMES_DIR}/jasper-ui.css",
+    "styles": "dotenv -c -- run-p sass:jasperui",
+    "styles:watch:sass": "onchange -i \"scss/**/*.*\" -- run-s styles",
+    "styles:watch": "run-p styles:watch:sass",
+    "copyFolder": "mkdir dist && node scripts/copy-styles-context.js",
+    "build": "dotenv -c -- run-s copyFolder styles",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@babel/runtime": "7.12.13",
@@ -137,6 +144,7 @@
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "5.0.0",
     "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
     "raw-loader": "^4.0.2",
     "sinon": "9.2.4",
     "style-loader": "^2.0.0",
