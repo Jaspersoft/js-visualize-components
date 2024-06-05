@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { VisualizejsProvider } from '../../test-app/src/visualize/VisualizejsProvider.js';
+import { VisualizejsProvider } from '../../jrs-viz/src/visualize/VisualizejsProvider.js';
 
 
 interface BooleanICConfig {

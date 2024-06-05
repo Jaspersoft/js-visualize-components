@@ -1,13 +1,13 @@
 {
-  "name": "test-app",
+  "name": "jrs-viz",
   "version": "1.0.0",
-  "description": "Demo application",
-  "main": "dist/index.js",
+  "description": "Utility for working with JasperReports Server's Visualize.js",
+  "main": "dist/bundle.js",
+  "types": "src/index.d.js",
   "type": "module",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --sourcemap --servedir=public",
     "build": "node esbuild.js",
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist",
@@ -20,10 +20,6 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "input-controls-plugin": "0.0.1",
-    "jrs-viz": "1.0.0",
-    
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+   
   }
 }

@@ -1,58 +1,53 @@
 import InputControls from 'input-controls-plugin';
 import { useEffect, useState } from 'react';
-import { visualizejsLoader } from './visualize/VisualizejsProvider.js';
-import { VisualizeFactory, VisualizeType } from './visualize/visualizejs.js';
+import { visualizejsLoader, Authentication, VisualizeFactory, VisualizeType } from 'jrs-viz';
 
 export interface AppConfig {
     title: string,
 };
 
+const credentials: Authentication = {
+    name: 'joeuser',
+    password: 'joeuser',
+    organization: 'organization_1',
+};
+
+const visualizeUrl = 'https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js';
+
 export default function App(props: AppConfig) {
-
     const [controlStruct, setControlStruct] = useState({});
-
     const [visualizeFactoryContainer, setVisualizeFactoryContainer] = useState(null as { viz: VisualizeFactory } | null);
     const [vContainer, setVContainer] = useState(null as { v: VisualizeType } | null);
     const [plugin, setPlugin] = useState<InputControls>();
-    
-    const credentials = {
-        name: 'joeuser',
-        password: 'joeuser',
-        organization: 'organization_1',
-    };
 
     useEffect(() => {
-        const loadVisualize = visualizejsLoader('https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js');
+        const loadVisualize = visualizejsLoader(visualizeUrl);
         loadVisualize().then((visualizeFactory: VisualizeFactory) => {
             setVisualizeFactoryContainer({viz: visualizeFactory});
         });
     }, []);
 
-
     useEffect(() => {
-        if (credentials) {
-            if (visualizeFactoryContainer) {
-                new Promise<VisualizeType>((resolve, reject) => {
-                    visualizeFactoryContainer.viz({
-                        auth: {
-                            name: credentials.name,
-                            password: credentials.password,
-                            organization: credentials.organization || null,
-                            locale: "en_US"
-                        }
-                    }, resolve, reject)
-                }).then((v: VisualizeType) => {
-                    setVContainer({v});
-                }).catch((e: any) => {
-                    console.log(String(e));
-                });
-            }
+        if (credentials && visualizeFactoryContainer) {
+            new Promise<VisualizeType>((resolve, reject) => {
+                visualizeFactoryContainer.viz({
+                    auth: {
+                        name: credentials.name,
+                        password: credentials.password,
+                        organization: credentials.organization || null,
+                        locale: "en_US"
+                    }
+                }, resolve, reject)
+            }).then((v: VisualizeType) => {
+                setVContainer({v});
+            }).catch((e: any) => {
+                console.log(String(e));
+            });
         }
     }, [visualizeFactoryContainer]);
 
     useEffect(() => {
-        if (vContainer === undefined) return;
-        vContainer !== null && setPlugin(new InputControls(vContainer.v));
+        vContainer && vContainer !== null && setPlugin(new InputControls(vContainer.v));
     }, [vContainer]);
 
     useEffect(() => {

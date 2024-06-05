@@ -1,4 +1,4 @@
-import {VisualizeFactory} from "./visualizejs.js";
+import {VisualizeFactory} from "../index.d.js";
 
 export type VisualizejsProvider = () => Promise<VisualizeFactory>;
 
