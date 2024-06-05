@@ -6,11 +6,18 @@
   "scripts": {
     "sass:jasperui": "sass --no-source-map --style=expanded scss/jasper-ui.scss ${BUILD_THEMES_DIR}/jasper-ui.css",
     "styles": "dotenv -c -- run-p sass:jasperui",
-    "styles:watch:sass": "onchange -i \"scss/**/*.*\" -- run-s styles",
-    "styles:watch": "run-p styles:watch:sass",
-    "copyFolder": "mkdir dist && node scripts/copy-styles-context.js",
-    "build": "dotenv -c -- run-s copyFolder styles",
+    "start": "onchange -i \"scss/**/*.*\" -- run-s styles",
+    "copy:styles": "node scripts/copy-styles-context.js",
+    "build": "dotenv -c -- run-s copy:styles styles",
     "clean": "rm -rf dist"
+  },
+  "resolutions": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "18.2.19",
+    "es-abstract": "1.18.0-next.2",
+    "path-parse": "1.0.7",
+    "react-color/**/lodash": "4.17.21",
+    "underscore": "1.13.1"
   },
   "dependencies": {
     "@babel/runtime": "7.12.13",
@@ -79,13 +86,5 @@
     "util": "^0.12.3",
     "webpack": "^5.21.2",
     "yargs": "^16.2.0"
-  },
-  "resolutions": {
-    "es-abstract": "1.18.0-next.2",
-    "react-color/**/lodash": "4.17.21",
-    "underscore": "1.13.1",
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "18.2.19",
-    "path-parse": "1.0.7"
   }
 }
