@@ -7,17 +7,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const prepareContainingFolder = (src = 'dist') => {
-  if (!fs.existsSync(src)) {
-    fs.mkdirSync(src);
-  } else {
-    fs.rmdirSync(src, { recursive: true });
-  }
-};
-
 const copyFolder = (source, target) => {
   if (!fs.existsSync(target)) {
-    fs.mkdirSync(target);
+    fs.mkdirSync(target, { recursive: true });
   }
 
   fs.readdirSync(source)
@@ -33,7 +25,9 @@ const copyFolder = (source, target) => {
     });
 };
 
-prepareContainingFolder('dist');
+// These are the following paths to use:
+// src = js-visualize-plugins/packages/jrs-ui-components/styles
+// target = js-visualize-plugins/packages/jrs-ui-components/dist/styles
 copyFolder(
   path.resolve(__dirname, '../styles'),
   path.resolve(__dirname, '../dist/styles')
