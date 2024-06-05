@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Utility for working with JasperReports Server's Visualize.js",
   "main": "dist/bundle.js",
+  "types": "src/index.d.js",
   "type": "module",
   "license": "MIT",
   "private": true,
@@ -19,6 +20,6 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "input-controls-plugin": "0.0.1"
+   
   }
 }
