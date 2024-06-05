@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { VisualizejsProvider } from '../../jrs-viz/src/visualize/VisualizejsProvider.js';
+
 
 interface BooleanICConfig {
     style?: string | FC,
@@ -9,6 +11,7 @@ export interface InputControlConfig {
     username: string,
     password: string,
     tenant: string,
+    
     // customize control look & feel
     boolean?: BooleanICConfig,
 };
@@ -32,25 +35,17 @@ export class InputControls {
     }
 
     public fillControlStructure = (uri: string, callbackFn?: Function) => {
-        this.viz({
-            auth: {
-                name: this.config.username || "joeuser",
-                password: this.config.password || "joeuser",
-                organization: this.config.tenant || "organization_1",
+        this.viz.inputControls({
+            resource: uri,
+            success: (data: string) => {
+                this.controlStructure = {...this.controlStructure, data};
+                if (callbackFn) {
+                    callbackFn(this.controlStructure);
+                }
             },
-        }, (v: any) => {
-            v.inputControls({
-                resource: uri,
-                success: (data: string) => {
-                    this.controlStructure = {...this.controlStructure, data};
-                    if (callbackFn) {
-                        callbackFn(this.controlStructure);
-                    }
-                },
-                error: (e: object) => {
-                    console.log(e);
-                },
-            });
+            error: (e: object) => {
+                console.log(e);
+            },
         });
     }
 

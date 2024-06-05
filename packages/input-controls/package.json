@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Input Controls Plugin",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "node esbuild.js",

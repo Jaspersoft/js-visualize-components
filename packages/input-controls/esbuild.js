@@ -1,4 +1,4 @@
-const { build } = require("esbuild");
+import { build } from "esbuild";
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -12,6 +12,6 @@ const sharedConfig = {
 
 build({
   ...sharedConfig,
-  platform: 'node',
+  platform: 'browser',
   outfile: "dist/index.js",
 });

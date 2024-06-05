@@ -3,7 +3,7 @@ import { build } from "esbuild";
 const isProd = process.env.NODE_ENV === 'production';
 
 const sharedConfig = {
-  entryPoints: ["src/entrypoint.tsx"],
+  entryPoints: ["src/index.js"],
   bundle: true,
   minify: isProd,
   sourcemap: !isProd,
