@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --minify --sourcemap --servedir=public",
-    "build": "&& node esbuild.js",
+    "build": "node esbuild.js",
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist",
     "test": "jest"
