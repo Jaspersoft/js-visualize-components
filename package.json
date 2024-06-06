@@ -11,7 +11,8 @@
   "scripts": {
     "test": "yarn workspaces run test",
     "build": "yarn workspaces run build",
-    "start": "cd packages/test-app && yarn start" 
+    "clean": "yarn workspaces run clean",
+    "start": "yarn workspace test-app run start"
   },
   "repository": {
     "type": "git",
@@ -26,8 +27,5 @@
   "bugs": {
     "url": "https://github.com/Jaspersoft/js-visualize-plugins/issues"
   },
-  "homepage": "https://github.com/Jaspersoft/js-visualize-plugins#readme",
-  "dependencies": {
-    "sass": "^1.77.4"
-  }
+  "homepage": "https://github.com/Jaspersoft/js-visualize-plugins#readme"
 }
