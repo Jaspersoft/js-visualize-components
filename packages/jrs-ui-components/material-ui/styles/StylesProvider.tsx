@@ -38,4 +38,6 @@ export function createStylesProvider<Theme = DefaultTheme>(
     );
 }
 
-export const StylesProvider = createStylesProvider(muiTheme);
+const StylesProvider = createStylesProvider(muiTheme);
+
+export { StylesProvider };
