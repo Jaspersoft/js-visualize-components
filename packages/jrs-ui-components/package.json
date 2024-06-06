@@ -10,15 +10,7 @@
     "copy:styles": "node scripts/copy-styles-context.js",
     "build": "dotenv -c -- run-s copy:styles styles",
     "clean": "rm -rf dist",
-    "test": "jest"
-  },
-  "resolutions": {
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "18.2.19",
-    "es-abstract": "1.18.0-next.2",
-    "path-parse": "1.0.7",
-    "react-color/**/lodash": "4.17.21",
-    "underscore": "1.13.1"
+    "test": "NODE_OPTIONS='$NODE_OPTIONS --experimental-vm-modules' npx jest"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "1.2.2",
@@ -56,6 +48,12 @@
     "underscore.string": "3.3.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
+    "@babel/preset-typescript": "^7.24.6",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
     "@types/jquery": "^3.5.5",
     "@types/react": "^18.3.1",
