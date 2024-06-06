@@ -1,0 +1,417 @@
+/*!
+ * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* ======================================
+    GRID RULES
+    Last changed date:    June 2, 2020
+    Last changed by:      Anna Leeg
+ * ====================================== */
+
+// -----------------------------------------------
+//   TABLE OF CONTENTS
+//
+//   1. BASIC MODULE
+//
+//   2. MODULE VARIATIONS
+//      2a. jv-mGridFill - fills height
+//      2b. jv-mGridFlex - equal height columns
+//      2c. jv-mGridVertical - vertical layouts
+//      2d. jv-mGridTight - no gutters
+//      2e. jv-mGridLoose - wide gutters
+//
+//   3. COLUMN MEASUREMENTS
+// -----------------------------------------------
+
+//  ---------------------
+//  1. BASIC GRID MODULE
+//  ---------------------
+.jv-mGrid.jr {
+  font-size: $font-primary---size;
+  font-weight: normal;
+  overflow: hidden;
+  width: 100%;
+}
+
+.jv-mGrid-column.jr {
+  float: left;
+}
+
+.jv-mGrid-column.jr + .jv-mGrid-column.jr {
+  margin-left: 1%;
+}
+
+
+//  ---------------------------------
+//  2. MODULE VARIATIONS
+//  ---------------------------------
+//  2a. jv-mGridFill
+//      Fills height
+//  ---------------------------------
+.jv-mGridFill.jr,
+.jv-mGridFill.jr .jv-mGrid-column.jr {
+  height: 100%;
+}
+
+// -------------------------------------
+//  2b. jv-mGridFlex
+//      All columns in a row are equal
+//      height regardless of content
+// -------------------------------------
+.jv-mGridFlex.jr {
+  display: table;
+}
+
+.jr.jv-mGridFlex.jv-mGridLoose.jr  {}
+
+.jv-mGridFlex.jr .jv-mGrid-row.jr {
+  display: table-row;
+}
+
+.jv-mGridFlex.jr .jv-mGrid-column.jr {
+  display: table-cell;
+  float: none;
+  vertical-align: top;
+}
+
+.jv-mGridFlex.jv-mGridLoose.jr .jv-mGrid-column.jr {
+  border-right: em(28px) solid rgba(255, 255, 255, 0);
+  background-clip: padding-box;
+} // border and background-clip provide appearance of gutter, while allowing background color to show through
+
+.jv-mGridFlex.jv-mGridLoose.jr .jv-mGrid-column.jr:last-of-type {
+  border-right: none;
+}
+
+// ------------------------------------------
+//  2c. jv-mGridVertical
+//      manage heights for vertical layouts
+// ------------------------------------------
+.jv-mGridVertical.jr {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+.jv-mGridVertical.jr .jv-mGrid-row.jr {
+  display: block;
+  flex-basis: auto;
+  flex-shrink: 1;
+}
+
+.jv-mGridVertical.jr .jv-mGrid-rowFit.jr { // fits its content
+  flex-grow: 0;
+}
+
+.jv-mGridVertical.jr .jv-mGrid-rowFill.jr { // fills available height
+  flex-grow: 1;
+}
+
+// ---------------------------
+//  2c. jv-mGridTight
+//      no gutters
+// ---------------------------
+.jv-mGridTight.jr {}
+
+.jv-mGridTight.jr .jv-mGrid-column.jr {
+  margin-left: 0;
+}
+
+// ---------------------------
+//  2d. jv-mGridLoose
+//      wide gutters
+// ---------------------------
+.jv-mGridLoose.jr {}
+
+.jv-mGridLoose.jr .jv-mGrid-column.jr + .jv-mGrid-column.jr {
+  margin-left: 3%;
+}
+
+
+//  -----------------------
+//  3. COLUMN MEASUREMENTS
+//  -----------------------
+/* ============================================================================
+   Multi-column/multi-row grids in which all columns are equal in width do not
+   need need a jv-mGrid element for each row. E.g. a 3-column, 4-row grid needs
+   only one jv-mGrid parent.
+
+   Multi-column/multi-row grids with varied column widths will need a jv-mGrid
+   element for each row. E.g. a 5-column, 2-row grid with the following layout
+   will require two jv-mGrid elements:
+
+  |   column 1   |   column 2   |   column 3   |   column 4   |   column 5   |
+
+  |   column 1  and  column 2   |   column 3   |   column 4   |   column 5   |
+
+ * ============================================================================ */
+
+
+// 2-Column Grid
+.jv-mGrid2.jr {}
+
+.jv-mGrid2.jr .jv-mGrid-column.jr {
+  width: 49.5%;
+}
+
+.jv-mGrid2.jr .jv-mGrid-column.jr:nth-child(2n) + .jv-mGrid-column.jr {
+  margin-left: 0;
+}
+
+// 2-Column Grid Tight
+.jv-mGrid2.jv-mGridTight.jr .jv-mGrid-column.jr {
+  width: 50%;
+}
+
+// 2-Column Grid Loose
+.jv-mGrid2.jv-mGridLoose.jr .jv-mGrid-column.jr {
+  width: 48.5%;
+}
+
+
+// 3-Column Grid
+.jv-mGrid3.jr {}
+
+.jv-mGrid3.jr .jv-mGrid-column.jr {
+  width: 32.667%;
+}
+
+.jv-mGrid3.jr .jv-mGrid-column2.jr {
+  width: 66.333%;
+}
+
+.jv-mGrid3.jr .jv-mGrid-column.jr:nth-child(3n) + .jv-mGrid-column.jr {
+  margin-left: 0;
+}
+
+// 3-Column Grid Tight
+.jv-mGrid3.jv-mGridTight.jr .jv-mGrid-column.jr {
+  width: 33.333%;
+}
+
+.jv-mGrid3.jv-mGridTight.jr .jv-mGrid-column2.jr {
+  width: 66.666%;
+}
+
+// 3-Column Grid Loose
+.jv-mGrid3.jv-mGridLoose.jr .jv-mGrid-column.jr {
+  width: 31.333%;
+}
+
+.jv-mGrid3.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+  width: 65.666%;
+}
+
+
+// 4-Column Grid
+.jv-mGrid4.jr {}
+
+.jv-mGrid4.jr .jv-mGrid-column.jr {
+  width: 24.25%;
+}
+
+.jv-mGrid4.jr .jv-mGrid-column2.jr {
+  width: 49.5%;
+}
+
+.jv-mGrid4.jr .jv-mGrid-column3.jr {
+  width: 74.75%;
+}
+
+.jv-mGrid4.jr .jv-mGrid-column.jr:nth-child(4n) + .jv-mGrid-column.jr {
+  margin-left: 0;
+}
+
+// 4-Column Grid Tight
+.jv-mGrid4.jv-mGridTight.jr .jv-mGrid-column.jr {
+  width: 25%;
+}
+
+.jv-mGrid4.jv-mGridTight.jr .jv-mGrid-column2.jr {
+  width: 50%;
+}
+
+.jv-mGrid4.jv-mGridTight.jr .jv-mGrid-column3.jr {
+  width: 75%;
+}
+
+// 4-Column Grid Loose
+.jv-mGrid4.jv-mGridLoose.jr .jv-mGrid-column.jr {
+  width: 22.75%;
+}
+
+.jv-mGrid4.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+  width: 48.5%;
+}
+
+.jv-mGrid4.jv-mGridLoose.jr .jv-mGrid-column3.jr {
+  width: 74.25%;
+}
+
+
+// 5-Column Grid
+.jv-mGrid5.jr {}
+
+.jv-mGrid5.jr .jv-mGrid-column.jr {
+  width: 19.2%;
+}
+
+.jv-mGrid5.jr .jv-mGrid-column2.jr {
+  width: 39.4%;
+}
+
+.jv-mGrid5.jr .jv-mGrid-column3.jr {
+  width: 59.6%;
+}
+
+.jv-mGrid5.jr .jv-mGrid-column4.jr {
+  width: 79.8%;
+}
+
+.jv-mGrid5.jr .jv-mGrid-column.jr:nth-child(5n) + .jv-mGrid-column.jr {
+  margin-left: 0;
+}
+
+// 5-Column Grid Tight
+.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column.jr {
+  width: 20%;
+}
+
+.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column2.jr {
+  width: 40%;
+}
+
+.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column3.jr {
+  width: 60%;
+}
+
+.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column4.jr {
+  width: 80%;
+}
+
+// 5-Column Grid Loose
+.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column.jr {
+  width: 17.6%;
+}
+
+.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+  width: 38.2%;
+}
+
+.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column3.jr {
+  width: 58.8%;
+}
+
+.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column4.jr {
+  width: 79.4%;
+}
+
+
+
+// 6-Column Grid
+.jv-mGrid6.jr {}
+
+.jv-mGrid6.jr .jv-mGrid-column.jr {
+  width: 15.75%;
+}
+
+.jv-mGrid6.jr .jv-mGrid-column2.jr {
+  width: 32.6%;
+}
+
+.jv-mGrid6.jr .jv-mGrid-column3.jr {
+  width: 49.45%;
+}
+
+.jv-mGrid6.jr .jv-mGrid-column4.jr {
+  width: 66.3%;
+}
+
+.jv-mGrid6.jr .jv-mGrid-column5.jr {
+  width: 83.15%;
+}
+
+.jv-mGrid6.jr .jv-mGrid-column.jr:nth-child(6n) + .jv-mGrid-column.jr {
+  margin-left: 0;
+}
+
+// 6-Column Grid Tight
+.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column.jr {
+  width: 16.666%;
+}
+
+.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column2.jr {
+  width: 33.3333%;
+}
+
+.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column3.jr {
+  width: 49.998%;
+}
+
+.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column4.jr {
+  width: 66.666%;
+}
+
+.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column5.jr {
+  width: 83.333%;
+}
+
+// 6-Column Grid Loose
+.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column.jr {
+  width: 14.166%;
+}
+
+.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+  width: 31.333%;
+}
+
+.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column3.jr {
+  width: 48.499%;
+}
+
+.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column4.jr {
+  width: 65.665%;
+}
+
+.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column5.jr {
+  width: 82.831%;
+}
+
+
+// 10-Column Grid
+.jv-mGrid10.jr {}
+
+.jv-mGrid10.jr .jv-mGrid-column.jr {
+  width: 9.1%;
+}
+
+.jv-mGrid10.jr .jv-mGrid-column.jr:nth-child(10n) + .jv-mGrid-column.jr {
+  margin-left: 0;
+}
+
+// 10-Column Grid Tight
+.jv-mGrid10.jv-mGridTight.jr .jv-mGrid-column.jr {
+  width: 10%;
+}
+
+// 10-Column Grid Loose
+.jv-mGrid10.jv-mGridLoose.jr .jv-mGrid-column.jr {
+  width: 7.3%;
+}

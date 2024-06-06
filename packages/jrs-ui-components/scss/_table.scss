@@ -1,0 +1,936 @@
+/*!
+ * Copyright (C) 2005 - 2023 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* ====================================
+   TABLE MODULE STYLESHEET
+   Last modified date:    Feb 1, 2023
+   Last modified by:      Anna Leeg
+* ==================================== */
+
+// -----------------------------------------------
+//   TABLE OF CONTENTS
+//
+//   1. SEMANTIC BASE TABLE
+//      1a. Base elements
+//      1b. Cell contents
+//      1c. States
+//
+//   2. DIV-BASED TABLE
+//      2a. Width, percent
+//      2b. Width, pixels
+//
+//   3. PLAIN TABLE (no outer border)
+//
+//   4. SHADED (grey background color)
+//
+//   5. TIGHT (less vertical space within cells)
+//
+//   6. JOINS
+//
+//   7. PRE-FILTERS
+//
+//   8. PRESENTATION
+// -----------------------------------------------
+
+
+// ------------------------------------
+//  1. SEMANTIC BASE TABLE
+// ------------------------------------
+//  1a. Base elements
+// ------------------------------------
+.jv-mTable.jr {
+  background-color: #fff;
+  border-top: 1px solid #e4e4e4;
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
+  font-weight: normal;
+  table-layout: fixed; // needed for text truncation to work
+  width: 100%;
+}
+
+// .jv-mTable-head.jr {}
+// .jv-mTable-body.jr {}
+// .jv-mTable-footer.jr {}
+
+.jv-mTable-row.jr {
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.jv-mTable-rowPlain.jr {
+  border-bottom: none;
+}
+
+.jv-mTable-rowHeader.jr {
+  background-color: #f7f7f7;
+}
+
+.jv-mTable-cell.jr {
+  border-collapse: separate;
+  @include border-box;
+  color: $color-textMedium;
+  height: auto;
+  min-height: em(32px, 12px);
+  padding: 0 em(6px, 12px);
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  /*
+  these cause problems with drop-up select lists:
+  overflow: hidden;
+  white-space: normal;
+  word-wrap: break-word;
+  */
+}
+
+// wrapper - always the first child of jv-mTable-cell
+.jv-mTable-cell-wrapper.jr {
+  height: 100%;
+  min-height: inherit;
+}
+
+.jv-mTable-cellPlain.jr {
+  padding: 0;
+}
+
+.jv-mTable-rowHeader.jr > .jv-mTable-cell.jr {
+  font-weight: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+// ------------------------------------
+//  1b. Cell contents
+// ------------------------------------
+// cell content types - always a direct child of jv-mTable-cell-wrapper
+// all text-based cell content types except date are set to wrap their contents
+.jv-mTable-cell-textbox.jr,
+.jv-mTable-cell-texteditable.jr,
+.jv-mTable-cell-datepicker.jr {
+  padding: em(2px, 12px) 0;
+}
+
+.jv-mTable-cell-form.jr {
+  padding: em(6px, 12px) 0;
+}
+
+.jv-mTable-cell-form-item.jr {
+  padding-bottom: em(11px, 12px);
+}
+
+.jv-mTable-head.jr .jv-mTable-cell-selectlist.jr,
+.jv-mTable-cell-actions.jr,
+.jv-mTable-cell-checkbox.jr,
+.jv-mTable-cell-currency.jr,
+.jv-mTable-cell-date.jr,
+.jv-mTable-cell-datetime.jr,
+.jv-mTable-cell-text.jr,
+.jv-mTable-cell-textwrap.jr,
+.jv-mTable-cell-titletext.jr,
+.jv-mTable-cell-titletextwrap.jr {
+  font-size: em(13px, 12px);
+  padding-top: em(9px, 13px);
+  padding-bottom: em(6px, 13px);
+}
+
+.jv-mTable-cell-titletext.jr ~ .jv-mTable-cell-text.jr,
+.jv-mTable-cell-titletext.jr ~ .jv-mTable-cell-textwrap.jr,
+.jv-mTable-cell-titletextwrap.jr ~ .jv-mTable-cell-textwrap.jr,
+.jv-mTable-cell-titletextwrap.jr ~ .jv-mTable-cell-text.jr {
+  //padding-top: em(2px);
+  padding-top: 0;
+}
+
+.jv-mTable-body.jr .jv-mTable-cell-selectlist.jr {
+  padding-top: em(2px, 12px);
+  padding-bottom: 0;
+}
+
+.jv-mTable-cell-actions.jr,
+.jv-mTable-cell-checkbox.jr {
+  text-align: center;
+}
+
+.jv-mTable-cell-currency.jr {
+  text-align: right;
+}
+
+// the only cell types with truncation rules
+.jv-mTable-cell-date.jr,
+.jv-mTable-cell-text.jr,
+.jv-mTable-cell-titletext.jr {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jv-mTable-cell-expander.jr {
+  cursor: pointer;
+  height: em(32px, 12px);
+  padding-top: em(5px, 12px);
+}
+
+.jv-mTable-cell-expander.jr .jv-mIcon.jr {
+  height: em(18px, 12px);
+  width: em(18px, 12px);
+}
+
+.jv-mTable-cell-titletext.jr,
+.jv-mTable-cell-titletextwrap.jr,
+.jv-mTable-cell-titletext.jr .jr,
+.jv-mTable-cell-titletextwrap.jr .jr {
+  font-weight: bold;
+}
+
+.jv-mTable-cell-actionbutton.jr,
+.jv-mTable-cell-actionbuttons.jr {
+  padding-top: em(2px, 12px);
+  padding-right: em(6px, 12px);
+  text-align: right;
+  white-space: nowrap;
+}
+
+
+// most header cells use padding from cell content type styles above; these are exceptions
+.jv-mTable-rowHeader.jr .jv-mTable-cell-actionbuttons.jr,
+.jv-mTable-rowHeader.jr .jv-mTable-cell-textbox.jr,
+.jv-mTable-rowHeader.jr .jv-mTable-cell-datepicker.jr {
+  padding-top: em(9px, 12px);
+  padding-bottom: em(6px, 12px);
+}
+
+.jv-mTable-rowHeader.jr .jv-mTable-cell-actionbutton.jr {
+  padding-right:0;
+}
+
+// contains an actual Action button
+.jv-mTable-rowHeader.jr .jv-mTable-cell-button.jr {
+  padding-top: em(3px, 12px);
+}
+
+
+// ------------------------------------
+//  1c. States
+// ------------------------------------
+.jv-isClosed.jr > .jv-mTable-cell-expander-icon.jr {
+  border-bottom: em(4px, 12px) solid transparent;
+  border-left: em(5px, 12px) solid $grey-textLighter; /* text variable is ok, this is icon inline with text */
+  border-top: em(4px, 12px) solid transparent;
+  display: inline-block;
+  margin-left: em(10px, 12px);
+  margin-top: em(9px, 12px);
+}
+
+.jv-isOpen.jr > .jv-mTable-cell-expander-icon.jr {
+  border-left: em(4px, 12px) solid transparent;
+  border-right: em(4px, 12px) solid transparent;
+  border-top: em(5px, 12px) solid $grey-textLighter; /* text variable is ok, this is icon inline with text */
+  display: inline-block;
+  margin-left: em(8px, 12px);
+  margin-top: em(11px, 12px);
+}
+
+.jv-mTable.jv-isInvalid.jr,
+.jv-mTable-body.jv-isInvalid.jr {
+  border: 1px solid $color-errorMedium !important;
+}
+
+
+// ------------------------------------
+//  2. DIV-BASED TABLE
+// ------------------------------------
+.jv-mTableGrid.jr {}
+
+.jv-mTableGrid.jr .jv-mTable-cell.jr {
+  float: left;
+  position: relative;
+}
+
+.jv-mTableGrid.jr .jv-mTable-rowHeader.jr::after,
+.jv-mTableGrid.jr .jv-mTable-row.jr::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+
+// ------------------------------------
+//  3. PLAIN, no outer border
+// ------------------------------------
+// plain table WITH header has no top border
+.jv-mTablePlain.jr {
+  border-top: none;
+}
+
+// plain table WITHOUT header has a top border
+.jv-mTablePlain.jr .jv-mTable-body:first-child.jr {
+  border-top: 1px solid #e4e4e4;
+}
+
+.jv-mTablePlain.jr .jv-mTable-rowHeader.jr {
+  background-color: transparent;
+}
+
+.jv-mTablePlain.jr .jv-mTable-rowHeader.jr .jv-mTable-cell-titletext.jr {
+  padding-top: em(13px, 12px);
+}
+
+
+// ------------------------------------
+//  4. SHADED, grey background color
+// ------------------------------------
+
+.jv-mTableShaded.jr {}
+
+.jv-mTableShaded.jr .jv-mTable-body.jr {
+  background-color: #f7f7f7;
+}
+
+.jv-mTableShaded.jv-mTablePlain.jr  .jv-mTable-cell:first-child.jr {
+  padding-left: em(6px, 12px);
+}
+
+
+// -----------------------------------------------
+//  5. TIGHT, less vertical space within cells
+// -----------------------------------------------
+
+.jv-mTableTight.jr {
+  border-top: none;
+}
+
+.jv-mTableTight.jr .jv-mTable-cell.jr {
+  min-height: em(23px, 12px);
+}
+
+.jv-mTableTight.jr .jv-mTable-cell-titletext.jr,
+.jv-mTableTight.jr .jv-mTable-cell-text.jr,
+.jv-mTableTight.jr .jv-mTable-cell-textwrap.jr {
+  padding-top: em(4px, 12px);
+  padding-bottom: em(3px, 12px);
+}
+
+
+// ------------------------------------
+//  6. JOINS TABLE
+// ------------------------------------
+.jv-mTableJoins.jr {
+  min-width: 875px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowHeader.jr {
+  border-bottom: 1px solid #fff;
+}
+
+.jv-mTableJoins.jr .jv-mTable-body.jr {
+  overflow-y: auto;
+  position: absolute;
+  top: 33px;
+  bottom: 0;
+  width: 100%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-footer.jr {
+  bottom: 0;
+  height: 36px;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+// ROWS
+// dropstarter, Instructions
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr,
+.jv-mTableJoins.jr .jv-mTable-rowInstructions.jr {
+  height: 100%
+}
+
+// data island
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr {
+  background-color: #ebebeb;
+  border-bottom: 1px solid #fff;
+  height: 36px;
+}
+
+// dropzone
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #fff;
+  height: 38px;
+}
+
+// tables names
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr {
+  background-color: #f6f8fa;
+}
+
+
+// CELLS
+// general
+.jv-mTableJoins.jr .jv-mTable-cellValidation.jr {
+  width: 7%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellFieldleft.jr {
+  width: 28%
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellOperator.jr {
+  text-align: center;
+  width: 10%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellFieldright.jr {
+  width: 28%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellType.jr {
+  width: 12%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellWeight.jr {
+  width: 7%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellActions.jr {
+  width: 4%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellLong.jr {// I wasn't sure what to call this, so feel free to rename
+  width: 66%;
+}
+
+// row-specific cells
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cellDropstarter.jr,
+.jv-mTableJoins.jr .jv-mTable-rowInstructions.jr .jv-mTable-cellInstructions.jr {
+  height: 100%;
+  padding: 0.545em;
+  width: 100%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cellValidation.jr {
+  width: 3%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellIsland.jr {
+  width: 89%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr .jv-mTable-cellFieldright.jr,
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr .jv-mTable-cellFieldleft.jr {
+  padding-left: 0;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellTablenames.jr {
+  width: 66%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowExpression.jr .jv-mTable-cellFieldleft.jr,
+.jv-mTableJoins.jr .jv-mTable-rowExpression.jr .jv-mTable-cellLong.jr{
+  padding-left: em(21px);
+}
+
+
+// CELL CONTENT
+// row-specific
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cell-dropzone.jr,
+.jv-mTableJoins.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
+  height: 100%;
+  width: 100%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-cellValidation.jr .jv-mTable-cell-badge.jr {
+  height: auto;
+  min-height: em(16px);
+  width: auto;
+  top: em(8px);
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell-titletext.jr {
+  color: $color-textDark;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell.jr {
+  padding-top: em(2px);
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr .jv-mTable-cell-dropzone.jr {
+  padding-top: em(4px);
+  width: 95%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr .jv-mTable-cell-titletext.jr {
+  color: $color-textLight;
+  cursor: pointer;
+  display: inline-block;
+}
+
+
+// STATES
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell-titletext.jv-isOpen.jr::before {
+  border-left: em(4px) solid rgba(0, 0, 0, 0);
+  border-right: em(4px) solid rgba(0, 0, 0, 0);
+  border-top: em(5px) solid $color-textDark; /* text variable is ok, this is icon inline with text */
+  content: "";
+  float: left;
+  margin-top: em(7px);
+  margin-right: em(6px);
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell-titletext.jv-isClosed.jr::before {
+  border-left: em(5px) solid $color-textDark; /* text variable is ok, this is icon inline with text */
+  border-bottom: em(4px) solid rgba(0, 0, 0, 0);
+  border-top: em(4px) solid  rgba(0, 0, 0, 0);
+  content: "";
+  float: left;
+  margin-top: em(5px);
+  margin-right: em(7px);
+  margin-left: em(2px);
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr .jv-mTable-cell-titletext.jv-isOpen.jr::before {
+  border-left: em(4px) solid rgba(0, 0, 0, 0);
+  border-right: em(4px) solid rgba(0, 0, 0, 0);
+  border-top: em(5px) solid $color-textLight; /* text variable is ok, this is icon inline with text */
+  content: "";
+  float: left;
+  margin-top: em(7px);
+  margin-right: em(6px);
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr .jv-mTable-cell-titletext.jv-isClosed.jr::before {
+  border-left: em(5px) solid $color-textLight; /* text variable is ok, this is icon inline with text */
+  border-bottom: em(4px) solid rgba(0, 0, 0, 0);
+  border-top: em(4px) solid  rgba(0, 0, 0, 0);
+  content: "";
+  float: left;
+  margin-top: em(5px);
+  margin-right: em(7px);
+  margin-left: em(2px);
+}
+
+
+// ------------------------------------
+//  7. PRE-FILTERS
+// ------------------------------------
+.jv-mTablePrefilters.jr {
+  border-radius: 5px 5px 0 0;
+  border: 1px solid #e4e4e4;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-body.jr {}
+
+
+.jv-mTablePrefilters.jr .jv-mTable-body.jr {
+  overflow-y: auto;
+  position: absolute;
+  top: em(35px, 12px);
+  bottom: 0;
+  width: 100%;
+}
+
+// ROWS
+.jv-mTablePrefilters.jr .jv-mTable-rowHeader.jr {
+  background-color: #ebebeb;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 5px 5px 0 0;
+  height: em(35px, 12px);
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-rowDropstarter.jr,
+.jv-mTablePrefilters.jr .jv-mTable-rowInstructions.jr {
+  height: 100%;
+}
+
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cell-dropzone.jr {
+  height: 100%;
+  width: 100%;
+}
+
+// CELLS
+.jv-mTablePrefilters.jr .jv-mTable-cellDropstarter.jr,
+.jv-mTablePrefilters.jr .jv-mTable-cellInstructions.jr {
+  height: 100%;
+  padding: em(6px, 12px);
+  width: 100%;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-cellField.jr {
+  padding-left: 1em;
+  width: 38%;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-cellValue.jr {
+  width: 38%;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-cellExpression.jr {
+  padding-left: 1em;
+  width: 92%;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-cellOperator.jr {
+  width: 16%;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-cellActions.jr {
+  white-space: nowrap;
+  width: 8%;
+}
+
+// CELL CONTENT
+// row-specific
+.jv-mTablePrefilters.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cell-dropzone.jr,
+.jv-mTablePrefilters.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
+  height: 100%;
+  width: 100%;
+}
+
+// header-specific
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellActions.jr {
+  margin-right: em(14px, 12px);
+}
+
+
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellField.jr {
+  //width: calc(26% - #{em(6px)}); won't resolve in IE11 or Edge
+  width: calc(38% - .5em);
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellValue.jr {
+  //width: calc(50% - #{em(6px)}); won't resolve in IE11 or Edge
+  width: calc(38% - .5em);
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellOperator.jr {
+  //width: calc(16% - #{em(2px)}); won't resolve in IE11 or Edge
+  width: calc(16% - .167em);
+}
+
+
+// STATES
+.jv-mTable-row.jv-isInvalid.jr {
+  background-color: $color-errorMedium;
+}
+
+.jv-mTable-row.jv-isInvalid.jr .jv-mTable-cell.jr,
+.jv-mTable-row.jv-isInvalid.jr .jv-mIcon.jr {
+  color: #fff;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-row.jv-isExpanded.jr {
+  height: auto;
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cell-selectlist.jr {
+  padding-bottom: em(3px, 12px);
+  padding-top: em(9px, 12px);
+}
+
+.jv-mTablePrefilters.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cell-actionbuttons.jr {
+  padding-top: em(10px, 12px);
+  margin-right: em(-8px, 12px);
+}
+
+
+// ------------------------------------
+//  8. PRESENTATION
+// ------------------------------------
+.jv-mTablePresentation.jr {
+  border-radius: 5px 5px 0 0;
+  border: 1px solid #e4e4e4;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-head.jr {
+  background-color: #ebebeb;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-body.jr {
+  overflow-y: auto;
+  height: calc(100% - 2.917em); // need to deduct height of jv-mTable-rowLast to prevent scroll bar overflowing
+  width: 100%;
+}
+
+
+// ROWS
+.jv-mTablePresentation.jr .jv-mTable-rowHeader.jr {
+  background-color: #ebebeb;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 5px 5px 0 0;
+  height: em(35px, 12px);
+}
+
+.jv-mTablePresentation.jr .jv-mTable-rowHeader.jr .jv-mTable-cellSetitem.jr .jv-mTable-cell-text.jr {
+  color: $color-textDarker;
+  font-weight: bold;
+  padding-left: 1em;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-rowHeader.jr .jv-mTable-cellActions.jr {
+  right: 6px;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-rowDropzone.jr {
+  display: none;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-rowInstructions.jr {
+  height: 100%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
+  height: 100%;
+  width: 100%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-row.jv-mTable-rowLast.jr {
+  border-bottom: none;
+  width: 100%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-rowLast.jr .jv-mTable-cellProperties.jr {
+  height: 100%;
+  padding-top: em(1px, 12px);
+}
+
+
+// CELLS
+.jv-mTablePresentation.jr .jv-mTable-cellSetitem.jr {
+  width: 25%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cell-dropactivator.jr {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  left: 0;
+  z-index: 2;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cell-dropactivator.jr:first-of-type {
+  top: 0;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cell-dropactivator.jr:last-of-type {
+  bottom: 0;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellInstructions.jr {
+  height: 100%;
+  padding: em(6px, 12px);
+  width: 100%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellResizer.jr {
+  border-right: em(10px, 12px) solid transparent;
+  box-sizing: content-box;
+  background-clip: padding-box;
+  border-left: 1px solid #e4e4e4;
+  background-color: transparent;
+  cursor: ew-resize;
+  height: 100%;
+  padding: 0;
+  position: absolute;
+  width: em(1px, 12px);
+  z-index: $zindex-element-lvl-0;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-body.jr .jv-mTable-cellSetitem.jr {
+  // gives the appearance of no bottom border
+  border-bottom: em(1px) solid #fff;
+  height: 100%;
+  padding: 0;
+  top: em(1px, 12px);
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellDropstarter.jr {
+  height: 100%;
+  padding: em(6px, 12px);
+  width: 25%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellProperties.jr {
+  padding: 0;
+  width: 75%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellToggle.jr {
+  min-width: em(22px, 12px);
+  padding: 0;
+  text-align: center;
+  width: 3%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellAll.jr {
+  height: 100%;
+  width: 92%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellDropstarter.jr .jv-mTable-cell-dropzone.jr {
+  height: 100%;
+  width: 100%;
+}
+
+// mode: default
+.jv-mTablePresentation.jr .jv-mTable-cellLabel.jr {
+  width: 26%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellFieldtype.jr {
+  // column label has been changed from Field Type to Content Type
+  width: 15%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellCalculation.jr {
+  //width: 19%;
+  width: 18%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellDescription.jr {
+  width: 31%;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-cellActions.jr {
+  float: none;
+  min-width: em(48px, 12px);
+  position: absolute;
+  right: 0;
+  width: 5%;
+}
+
+// mode: identification
+.jv-mTablePresentationIdentification.jr {}
+
+.jv-mTablePresentationIdentification.jr .jv-mTable-cellLabel.jr {
+  width: 30%;
+}
+
+.jv-mTablePresentationIdentification.jr .jv-mTable-cellId.jr {
+  width: 30%;
+}
+
+.jv-mTablePresentationIdentification.jr .jv-mTable-cellDescription.jr {
+  //width: 31%;
+  width: 30%;
+}
+
+// mode: bundles
+.jv-mTablePresentationBundles {}
+
+.jv-mTablePresentationBundles.jr .jv-mTable-cellLabelkey.jr {
+  //width: 46%;
+  width: 45%;
+}
+
+.jv-mTablePresentationBundles.jr .jv-mTable-cellDescriptionkey.jr {
+  width: 45%;
+}
+
+// mode: data
+.jv-mTablePresentationData {}
+
+.jv-mTablePresentationData.jr .jv-mTable-cellSource.jr {
+  width: 35%;
+}
+
+.jv-mTablePresentationData.jr .jv-mTable-cellDataformat.jr {
+  width: 22%;
+}
+
+
+// CONTENT
+// row-specific
+.jv-mTablePresentation.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
+  height: 100%;
+  width: 100%;
+}
+
+
+// STATES
+.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr {
+  height: auto;
+  background-color: #fafafa;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSets.jr {
+  border-top: 1px solid #e4e4e4;
+  top: -1px;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSetitem.jr {
+  border-bottom-color: transparent;
+}
+
+.jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSets.jr .jv-mTree.jr {
+  margin-top: 1px;
+}
+
+.jv-mTablePresentation.jr .jv-mTable-rowDropzone.jv-isHovered.jr {
+  background-color: #0081cb;
+  height: em(32px, 12px);
+}
+
+
+// HACKS to get correct borders and highlighting
+// Provides correct borders for expanded Sets and Items cells.
+//.jv-mTablePresentation.jr .jv-mTable-row-helper.jr {
+//  background-color: transparent;
+//  position: absolute;
+//  top: 0;
+//  bottom: 0;
+//  width: 25%;
+//}
+//
+//.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-row-helper.jr {
+//  background-color: #fafafa;
+//  border-top: 1px solid #e4e4e4;
+//  border-right: 1px solid #e4e4e4;
+//  border-bottom: 1px solid #e4e4e4;
+//  position: absolute;
+//  top: -1px;
+//  bottom: -1px;
+//}
+//
+//.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSetitem.jr {
+//  border-bottom-color: transparent;
+//}
+
+// When a node or leaf is selected, Also add 'jv-isSelected' the the helper row to make
+// sure an expanded, selected item's highlighting fills the height of the cell.
+
+// .jv-mTablePresentation.jr .jv-mTable-row.jr .jv-mTable-row-helper.jv-isSelected.jr {
+//  background-color: #1388d8;
+// } NOT USING

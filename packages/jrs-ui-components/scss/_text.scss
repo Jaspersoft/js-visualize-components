@@ -1,0 +1,159 @@
+/*!
+ * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* =======================================
+	TEXT STYLES
+	Last modified date:   May 15, 2019
+	Last modified by:     Anna Leeg
+ * ======================================= */
+
+// NOTES:
+// Text and Title need the child jv-mText-wrapper
+// container so they are scalable when embedded.
+//
+// Base font size is applied to jv-mText. Text and
+// Title sizes in wrapper are relative to the base size.
+
+
+// --------------
+//  BASE MODULE
+// --------------
+@use "sass:math";
+
+.jv-mText.jr {
+  font-family: $font-family-primary;
+  font-size: 13px;
+  white-space: normal;
+}
+
+.jv-mTextTitle.jr {}
+
+
+// size, standard text
+.jv-mTextSmall.jr .jv-mText-wrapper.jr {
+  font-size: em(12px, 13px);
+  line-height: math.div(16px, 12px);
+}
+
+.jv-mTextMedium.jr .jv-mText-wrapper.jr {
+  font-size: em(13px, 13px);
+  line-height: math.div(17px, 13px);
+}
+
+.jv-mTextLarge.jr .jv-mText-wrapper.jr {
+  font-size: em(14px, 13px);
+  line-height: math.div(18px, 14px);
+}
+
+.jv-mTextXLarge.jr .jv-mText-wrapper.jr {
+  font-size: em(16px, 13px);
+  line-height: math.div(22px, 16px);
+}
+
+// size, titles
+.jv-mTextTitle.jv-mTextXSmall.jr .jv-mText-wrapper.jr {
+  font-size: em(14px, 13px);
+  line-height: math.div(20px, 14px);
+}
+
+.jv-mTextTitle.jv-mTextSmall.jr .jv-mText-wrapper.jr {
+  font-size: em(16px, 13px);
+  line-height: math.div(22px, 16px);
+}
+
+.jv-mTextTitle.jv-mTextMedium.jr .jv-mText-wrapper.jr {
+  font-size: em(18px, 13px);
+  line-height: math.div(24px, 18px);
+}
+
+.jv-mTextTitle.jv-mTextLarge.jr .jv-mText-wrapper.jr {
+  font-size: em(20px, 13px);
+  line-height: math.div(26px, 20px);
+}
+
+.jv-mTextTitle.jv-mTextXLarge.jr .jv-mText-wrapper.jr {
+  font-size: em(24px, 13px);
+  line-height: math.div(28px, 24px);
+}
+
+
+// -------------
+//  TEXT COLORS
+// -------------
+
+//theme colors
+.jv-mTextThemeDark.jr {
+  color: $color-tciDark;
+}
+
+.jv-mTextThemePrimary.jr {
+  color: $color-tciLight;
+}
+
+.jv-mTextThemeAltPrimary.jr {
+  color: $color-tciMedium;
+}
+
+//alert colors
+.jv-mTextError.jr {
+  color: $color-errorMedium;
+}
+
+.jv-mTextWarning.jr {
+  color: $color-warningMedium;
+}
+
+.jv-mTextSuccess.jr {
+  color: $color-successDark;
+}
+
+.jv-mTextInfo.jr {
+  color: $color-infoMedium;
+}
+
+//greyscale
+.jv-mTextGreyDarkest.jr {
+  color: $grey-textDarkest;
+}
+
+.jv-mTextGreyDarker.jr {
+  color: $grey-textDarker;
+}
+
+.jv-mTextGreyDark.jr {
+  color: $grey-textDark;
+}
+
+.jv-mTextGreyPrimary.jr {
+  color: $grey-textMedium;
+}
+
+.jv-mTextGreyLight.jr {
+  color: $grey-textLight;
+}
+
+.jv-mTextGreyLighter.jr {
+  color: $grey-textLighter;
+}
+
+.jv-mTextGreyLightest.jr {
+  color: $grey-textLightest;
+}

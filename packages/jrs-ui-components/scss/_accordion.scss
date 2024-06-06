@@ -1,0 +1,178 @@
+/*!
+ * Copyright (C) 2005 - 2024 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* =========================================
+   ACCORDION MODULE
+   Last modified date:    May 22, 2020
+   Last modified by:      Anna Leeg
+ * ======================================== */
+
+// --------------------------------
+//   GROUPING MECHANISM FOR INPUTS
+// --------------------------------
+// Can be used to contain multiple accordions stacked on top of each other
+// If a label or search is needed for an accordion stack, use the Listbox component instead
+.jv-mAccordiongroup.jr {
+  font-size: $font-size-primary;
+}
+
+.jv-mAccordiongroupBorder.jr {
+  border: 1px solid #e4e4e4;
+  border-top: none;
+}
+
+
+// -------------------------
+//   BASE ACCORDION MODULE
+// -------------------------
+.jv-mAccordion.jr {
+  color: #666;
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
+  font-weight: normal;
+}
+
+.jv-mAccordion-header.jr {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #e4e4e4;
+  border-top: 1px solid #e4e4e4;
+  height: auto;
+}
+
+.jv-mAccordion-header-expander.jr {
+  float: left;
+}
+
+.jv-mAccordion-header-expander.jr > .jv-mIcon.jr {
+  vertical-align: top;
+}
+
+.jv-mAccordion-header-title.jr {
+  color: $grey-textDark;
+  font-size: em(13px, 12px);
+  font-weight: normal;
+  line-height: em(24px, 12px);
+  padding-right: em(12px, 12px);
+}
+
+.jv-mAccordion-body.jr {
+  background-color: #fff;
+}
+
+.jv-mAccordion-body-wrapper.jr {
+  height: auto;
+}
+
+// ---------------------------------------------
+// MODULE VARIATION, ACCORDION HAS OUTER BORDER
+// ---------------------------------------------
+.jv-mAccordionBorder.jr {
+  border-right: 1px solid #e4e4e4;
+  border-left: 1px solid #e4e4e4;
+}
+
+.jv-mAccordionBorder.jr:last-of-type {
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.jv-mAccordionBorder.jr .jv-mAccordion-body.jr {
+  height: calc(100% - 28px);
+}
+
+// --------------------------------------------
+// MODULE VARIATION, BODY WITH VERTICAL SCROLL
+// --------------------------------------------
+.jv-mAccordion-bodyScroll.jr {
+  height: calc(100% - 26px);
+}
+
+.jv-mAccordion-bodyScroll.jr .jv-mAccordion-body-wrapper.jr {
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// ------------------------------------
+// MODULE VARIATION, BODY WITH PADDING
+// ------------------------------------
+.jv-mAccordion-bodyPadded.jr {}
+.jv-mAccordion-bodyPaddedHalf.jr {}
+.jv-mAccordion-bodyPaddedTiny.jr {}
+
+.jv-mAccordion-bodyPadded.jr .jv-mAccordion-body-wrapper.jr {
+  padding: 1em;
+}
+
+.jv-mAccordion-bodyPaddedHalf.jr .jv-mAccordion-body-wrapper.jr {
+  padding: em(6px, 12px);
+}
+
+.jv-mAccordion-bodyPaddedTiny.jr .jv-mAccordion-body-wrapper.jr {
+  padding: em(3px, 12px);
+}
+
+// ----------------------------------------
+// MODULE VARIATION, BODY WITH LEFT INDENT
+// ----------------------------------------
+// aligns content vertically with the left edge of the header text
+.jv-mAccordion-bodyIndent.jr {}
+.jv-mAccordion-bodyIndentTree.jr {}
+
+.jv-mAccordion-bodyIndent.jr .jv-mAccordion-body-wrapper.jr {
+  padding: em(2px, 12px) em(2px, 12px) em(2px, 12px) em(24px, 12px);
+}
+
+.jv-mAccordion-bodyIndentTree.jr .jv-mAccordion-body-wrapper.jr {
+  padding-left: em(15px, 12px);
+} //for use with tree module, which already has built-in padding
+
+
+// STATES
+.jv-mAccordion.jv-isCollapsed.jr .jv-mAccordion-header.jr,
+.jv-mAccordion.jv-isExpanded.jr .jv-mAccordion-header.jr {
+  cursor: pointer;
+}
+
+.jv-mAccordion.jv-isCollapsed.jr .jv-mAccordion-header-expander.jr {
+  margin-left: em(1px, 12px);
+  margin-right:  em(1px, 12px);
+}
+
+.jv-mAccordion.jv-isExpanded.jr .jv-mAccordion-header-expander.jr {
+  margin-left: em(1px, 12px);
+  margin-right: em(1px, 12px);
+}
+
+.jv-mAccordion.jv-isCollapsed.jr .jv-mAccordion-body-wrapper.jr {
+  display: none;
+}
+
+.jv-mAccordion.jv-isCollapsed.jr .jv-mAccordion-body {
+  //if modules are ever stacked and collapsed, this creates visible space between them
+  height: em(4px)
+}
+.jv-mAccordion:last-of-type.jv-isCollapsed.jr .jv-mAccordion-body.jr {
+  //if modules are ever stacked and collapsed, the last module has no space below it
+  height: 0;
+}

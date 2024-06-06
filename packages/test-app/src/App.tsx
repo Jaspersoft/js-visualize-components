@@ -1,6 +1,8 @@
 import InputControls from 'input-controls-plugin';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import { visualizejsLoader, Authentication, VisualizeFactory, VisualizeType } from 'jrs-viz';
+import MuiTest from './Mui-test.js';
 
 export interface AppConfig {
     title: string,
@@ -63,6 +65,7 @@ export default function App(props: AppConfig) {
         <div id="controlBox">
             {JSON.stringify(controlStruct)}
         </div>
+        <MuiTest/>
     </div>
     );
 };

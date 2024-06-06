@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "esbuild ./src/entrypoint.tsx --outfile=public/bundle.js --bundle --watch --sourcemap --servedir=public",
+    "start": "esbuild ./src/entrypoint.tsx --outfile=dist/bundle.js --bundle --watch --sourcemap --servedir=dist",
     "build": "node esbuild.js",
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist",
@@ -22,7 +22,7 @@
   "dependencies": {
     "input-controls-plugin": "0.0.1",
     "jrs-viz": "1.0.0",
-    
+    "jrs-ui-components": "0.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }

@@ -1,0 +1,176 @@
+/*!
+ * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* ============================================
+    ADHOC RULES
+    Last modified date:     Dec 22, 2017
+    Last modified by:       Anna Leeg
+ * ============================================ */
+
+@use "sass:math";
+
+.jv-mAdhoc.jr {
+  font-family: $font-primary---family;
+  font-size: $font-primary---size;
+  font-weight: normal;
+}
+
+.jv-mAdhocViewer.jr {}
+
+.jv-mAdhocDesigner.jr {
+  overflow: hidden;
+  //position: absolute;
+  //top: 0;
+  //bottom: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.jv-mAdhoc-header.jr {
+  border-bottom: 2px solid #3e8ddd;
+  display: flex;
+  min-height: em(40px);
+  //justify-content: space-between;
+}
+
+.jv-mAdhoc-header-title.jr {
+  height: auto;
+  max-width: em(430px);
+  min-height: em(36px);
+  min-width: em(230px);
+  margin-right: 3em;
+}
+
+.jv-mAdhoc-header-title-text.jr {
+  @include page-title;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jv-mAdhoc-toolbar.jr {
+  border-bottom: 1px solid #fff;
+  flex: 0 1 auto;
+}
+
+.jv-mAdhoc-content.jr {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+// Visualization
+.jv-mAdhoc-visualization.jr {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.jv-mAdhoc-visualization.jv-isHidden.jr {
+  visibility: hidden;
+}
+
+.jv-mAdhoc-visualization-title.jr {
+  margin: em(11px) em(55px);
+  display: flex;
+  justify-content: center;
+}
+
+.jv-mAdhoc-visualization-title-text.jr {
+  font-size: em(16px);
+  min-height: em(28px, 16px);
+  height: auto;
+  line-height: math.div(28px, 16px);
+}
+
+.jv-mAdhoc-visualization-title-text.editable {
+  cursor: pointer;
+}
+
+.jv-mAdhoc-visualization-title-text.editable {
+  cursor: pointer;
+}
+
+.jv-mAdhoc-visualization-title-text.editable {
+  cursor: pointer;
+}
+
+.jv-mAdhoc-visualization-title-input.jr {
+}
+
+.jv-mAdhoc-visualization-launcher.jr {
+  position: absolute;
+  top: em(11px);
+  left: em(11px);
+  z-index: $zindex-element-lvl-0;
+}
+
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $zindex-element-lvl-0;
+}
+
+.jv-mAdhoc-visualization-launcher.jv-isHidden.jr {
+  display:none;
+}
+
+.jv-mAdhoc-visualization-message.jr {
+  margin: 15% auto;
+  text-align: center;
+  width: 500px;
+}
+
+// VARIATION, scrolling visual
+.jv-mAdhoc-visualizationScroll.jr {
+  overflow: auto;
+}
+
+
+// STATES
+// chart type selector button
+.jv-mAdhoc-visualization-launcher.jr .jv-mButton.jr .jv-mIcon.jv-meatball.jr {
+  display: none;
+}
+
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr .jv-mButton.jr {
+  @include opacity(0.5);
+  height: em(28px * 0.5);
+}
+
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr .jv-mButton.jr .jv-mIcon.jv-chartColumn.jr {
+  display: none;
+}
+
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr .jv-mButton.jr .jv-mIcon.jv-meatball.jr {
+  display: block;
+  line-height: em(8px);
+}
+
+.jv-mAdhoc-visualization-title.jv-isHidden.jr {
+  display: none;
+}

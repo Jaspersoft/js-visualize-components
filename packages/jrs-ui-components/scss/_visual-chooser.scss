@@ -1,0 +1,652 @@
+/*!
+ * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* ========================================
+    VISUALIZATION CHOOSER MODULE
+    Last modified date:     June 17, 2022
+    Last modified by:       Anna Leeg
+ * ======================================= */
+
+// -----------------------------------------------
+//   TABLE OF CONTENTS
+//
+//   1. BASIC MODULE
+//
+//   2. ICONS
+//      2a. Full-Size Chart Icons
+//      2b. Chart Category Icons
+//      2c. Tiny Chart Icons
+//
+//   3. STATES
+// -----------------------------------------------
+
+
+//  ---------------------
+//  1. BASIC MODULE
+//  ---------------------
+
+@use "sass:math";
+
+.jv-mVisualChooserDialog.jr {
+  user-select: none;
+  z-index: 4000;
+}
+
+.jv-mVisualchooser.jr {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.jv-mVisualchooserNarrow.jr {}
+
+.jv-mVisualchooser-panel.jr {
+  background-color: $color-tciMedium;
+  flex: 0 1 auto;
+  height: 100%;
+  min-width: em(232px);
+  padding: em(28px) 0 em(14px) em(14px);
+  width: em(232px);
+}
+
+.jv-Visualchooser-panel-minimize.jr {
+  background-color: $color-tciMedium;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  cursor: pointer;
+  height: em(28px);
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: em(12px);
+  z-index: 99;
+}
+
+.jv-Visualchooser-panel-minimize-icon.jr {
+  color: #fff;
+  font-size: 22px;
+  height: em(28px, 22px);
+  left: -9px;
+  line-height: math.div(30px, 22px);
+}
+
+.jv-mVisualchooser-body.jr {
+  flex: 1 1 auto;
+  overflow: hidden;
+  width: 470px;
+}
+
+.jv-mVisualchooser-menu.jr:only-child {
+  bottom: 0;
+}
+
+.jv-mVisualchooser-menu.jr {
+  overflow-y: auto;
+  padding: em(20px) 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 175px;
+  left: em(20px);
+}
+
+.jv-mVisualchooserNarrow.jr .jv-mVisualchooser-menu.jr {
+  bottom: 220px;
+}
+
+.jv-mVisualchooser-menu-item.jr {
+  float: left;
+  height: em(99px);
+  margin-right: em(8px);
+  margin-bottom: em(4px);
+  margin-left: em(8px);
+  text-align: center;
+  width: em(90px);
+}
+
+.jv-mVisualchooser-menu-item-wrapper.jr {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.jv-mVisualchooser-menu-item-icon.jr {
+  background-image: image-url("chart-type-icon-sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 40px;      // needs to be in pixels for Chrome
+  display: inline-block;
+  height: em(48px);
+  width: em(48px);
+  margin: 0 auto;
+}
+
+.jv-mVisualchooser-menu-item-label.jr {
+  color: $grey-textMedium;
+  display: block;
+  font-size: em(11px);
+  line-height: math.div(13px, 11px);
+  margin: 0 auto;
+  word-wrap: break-word;
+  margin-top: 3px;
+}
+
+.jv-mVisualchooser-rules.jr {
+  background-color: #fff;
+  box-shadow: 0 -2px 4px 0 rgba(0,0,0,.2);
+  height: 175px;
+  overflow-y: auto;
+  padding: 16px;
+  padding-bottom: 8px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.jv-mVisualchooserNarrow.jr .jv-mVisualchooser-rules.jr {
+  height: 220px;
+}
+
+.jv-mVisualchooser-rule.jr {
+  display: flex;
+  width: 100%;
+  user-select: text;
+}
+
+.jv-mVisualchooser-rule-icon.jr {
+  background-image: image-url("chart-type-icon-sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 18px;    // needs to be in pixels for Chrome
+  height: 20px;
+  width: 20px;
+  margin: 0 auto;
+  min-width: 20px;          // needed to prevent truncation when dialog is resized to a narrow width
+}
+
+.jv-mVisualchooser-rule-text.jr {
+  flex: 1 1 auto;
+  padding-top: .2em;
+  padding-left: 1.2em;
+}
+
+.jv-mVisualchooser-rule-text-label.jr {
+  color: $color-tciMedium;
+  display: inline;
+  font-family: source_sans_prosemibold, Franklin Gothic Medium, Verdana, Arial, sans-serif;
+}
+
+
+
+//  ---------------------
+//  2. CHART TYPE ICONS
+//  ---------------------
+//  2a. Full-Size Chart Icons
+.jv-mVisualchooser-menu-item-iconColumn.jr {
+  background-position: 4px 4px;
+}
+
+.jv-mVisualchooser-menu-item-iconStackedColumn.jr {
+  background-position: 4px -65px;
+}
+
+.jv-mVisualchooser-menu-item-iconPercentColumn.jr {
+  background-position: 4px -134px;
+}
+
+.jv-mVisualchooser-menu-item-iconBar.jr {
+  background-position: 4px -203px;
+}
+
+.jv-mVisualchooser-menu-item-iconStackedBar.jr {
+  background-position: 4px -271px;
+}
+
+.jv-mVisualchooser-menu-item-iconPercentBar.jr {
+  background-position: 4px -340px;
+}
+
+.jv-mVisualchooser-menu-item-iconSpiderColumn.jr {
+  background-position: 4px -408px;
+}
+
+.jv-mVisualchooser-menu-item-iconLine.jr {
+  background-position: 4px -477px;
+}
+
+.jv-mVisualchooser-menu-item-iconSpline.jr {
+  background-position: 4px -545px;
+}
+
+.jv-mVisualchooser-menu-item-iconArea.jr {
+  background-position: 4px -614px;
+}
+
+.jv-mVisualchooser-menu-item-iconStackedArea.jr {
+  background-position: 4px -682px;
+}
+
+.jv-mVisualchooser-menu-item-iconPercentArea.jr {
+  background-position: 4px -751px;
+}
+
+.jv-mVisualchooser-menu-item-iconAreaSpline.jr {
+  background-position: 4px -820px;
+}
+
+.jv-mVisualchooser-menu-item-iconSpiderLine.jr {
+  background-position: 4px -888px;
+}
+
+.jv-mVisualchooser-menu-item-iconSpiderArea.jr {
+  background-position: 4px -957px;
+}
+
+.jv-mVisualchooser-menu-item-iconColumnLine.jr {
+  background-position: 4px -1026px;
+}
+
+.jv-mVisualchooser-menu-item-iconColumnSpline.jr {
+  background-position: 4px -1094px;
+}
+
+.jv-mVisualchooser-menu-item-iconStackedColumnLine.jr {
+  background-position: 4px -1163px;
+}
+
+.jv-mVisualchooser-menu-item-iconStackedColumnSpline.jr {
+  background-position: 4px -1231px;
+}
+
+.jv-mVisualchooser-menu-item-iconMultiAxisLine.jr {
+  background-position: 4px -1300px;
+}
+
+.jv-mVisualchooser-menu-item-iconMultiAxisSpine.jr {
+  background-position: 4px -1368px;
+}
+
+.jv-mVisualchooser-menu-item-iconMultiAxisColumn.jr {
+  background-position: 4px -1437px;
+}
+
+.jv-mVisualchooser-menu-item-iconScatter.jr {
+  background-position: 4px -1506px;
+}
+
+.jv-mVisualchooser-menu-item-iconBubble.jr {
+  background-position: 4px -1574px;
+}
+
+.jv-mVisualchooser-menu-item-iconPie.jr {
+  background-position: 4px -1642px;
+}
+
+.jv-mVisualchooser-menu-item-iconDualLevelPie.jr {
+  background-position: 4px -1710px;
+}
+
+.jv-mVisualchooser-menu-item-iconSemiPie.jr {
+  background-position: 4px -1782px;
+}
+
+.jv-mVisualchooser-menu-item-iconHeatMap.jr {
+  background-position: 2px -1847px;
+}
+
+.jv-mVisualchooser-menu-item-iconTimeSeriesHeatMap.jr {
+  background-position: 2px -1915px;
+}
+
+.jv-mVisualchooser-menu-item-iconDualMeasureTreeMap.jr {
+  background-position: 2px -1984px;
+}
+
+.jv-mVisualchooser-menu-item-iconTreeMap.jr {
+  background-position: 2px -2052px;
+}
+
+.jv-mVisualchooser-menu-item-iconParentTreeMap.jr {
+  background-position: 2px -2120px;
+}
+
+.jv-mVisualchooser-menu-item-iconTileMap.jr {
+  background-position: 3px -2508px;
+}
+
+.jv-mVisualchooser-menu-item-iconCrosstab.jr {
+  background-position: 3px -2191px;
+}
+
+.jv-mVisualchooser-menu-item-iconTable.jr {
+  background-position: 4px -2259px;
+}
+
+.jv-mVisualchooser-menu-item-iconArcGauge.jr {
+  background-position: 4px -2317px;
+}
+
+.jv-mVisualchooser-menu-item-iconGauge.jr {
+  background-position: 4px -2376px;
+}
+
+.jv-mVisualchooser-menu-item-iconMultiLevelGauge.jr {
+  background-position: 4px -2441px;
+}
+// IE11
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .jv-mVisualchooser-menu-item-iconMultiLevelGauge.jr {
+    background-position: 4px -2442px;
+  }
+}
+
+
+//  2b. Chart Category Icons
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-mTab-item-icon.jr {
+  background-image: image-url("chart-type-icon-mono-sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 20px;      // needs to be in pixels for Chrome
+  display: block;
+  height: em(32px, 14px);
+  width: em(32px, 14px);
+  margin: 0 auto;
+}
+
+.jv-mTab-item-iconAll.jr {
+  background-position: 4px 7px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconAll.jr {
+  background-position: 4px -25px;
+}
+
+.jv-mTab-item-iconGrid.jr {
+  background-position: 4px -58px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconGrid.jr {
+  background-position: 4px -92px;
+}
+
+.jv-mTab-item-iconBar.jr {
+  background-position: 4px -124px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconBar.jr {
+  background-position: 4px -154px;
+}
+
+.jv-mTab-item-iconLine.jr {
+  background-position: 4px -185px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconLine.jr {
+  background-position: 4px -216px;
+}
+
+.jv-mTab-item-iconMultiAxis.jr {
+  background-position: 4px -248px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconMultiAxis.jr {
+  background-position: 4px -279px;
+}
+
+.jv-mTab-item-iconTime.jr {
+  background-position: 4px -309px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconTime.jr {
+  background-position: 4px -340px;
+}
+
+.jv-mTab-item-iconScatter.jr {
+  background-position: 4px -369px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconScatter.jr {
+  background-position: 4px -397px;
+}
+
+.jv-mTab-item-iconPie.jr {
+  background-position: 4px -428px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconPie.jr {
+  background-position: 4px -461px;
+}
+
+.jv-mTab-item-iconRange.jr {
+  background-position: 4px -493px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconRange.jr {
+  background-position: 4px -525px;
+}
+
+.jv-mTab-item-iconGauge.jr {
+  background-position: 4px -555px;
+}
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconGauge.jr {
+  background-position: 4px -581px;
+}
+
+
+//  2c. Tiny Chart Icons
+.jv-mVisualchooser-rule-iconColumn.jr {
+  background-position: 0 0;
+}
+
+.jv-mVisualchooser-rule-iconStackedColumn.jr {
+  background-position: 0 -30px;
+}
+
+.jv-mVisualchooser-rule-iconPercentColumn.jr {
+  background-position: 0 -61px;
+}
+
+.jv-mVisualchooser-rule-iconBar.jr {
+  background-position: 0 -92px;
+}
+
+.jv-mVisualchooser-rule-iconStackedBar.jr {
+  background-position: 0 -123px;
+}
+
+.jv-mVisualchooser-rule-iconPercentBar.jr {
+  background-position: 0 -154px;
+}
+
+.jv-mVisualchooser-rule-iconSpiderColumn.jr {
+  background-position: 0 -184px;
+}
+
+.jv-mVisualchooser-rule-iconLine.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesLine.jr {
+  background-position: 0 -216px;
+}
+
+.jv-mVisualchooser-rule-iconSpline.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesSpline.jr {
+  background-position: 0 -247px;
+}
+
+.jv-mVisualchooser-rule-iconArea.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesArea.jr {
+  background-position: 0 -277px;
+}
+
+.jv-mVisualchooser-rule-iconStackedArea.jr {
+  background-position: 0 -308px;
+}
+
+.jv-mVisualchooser-rule-iconPercentArea.jr {
+  background-position: 0 -339px;
+}
+
+.jv-mVisualchooser-rule-iconAreaSpline.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesAreaSpline.jr {
+  background-position: 0 -370px;
+}
+
+.jv-mVisualchooser-rule-iconSpiderLine.jr {
+  background-position: 0 -400px;
+}
+
+.jv-mVisualchooser-rule-iconSpiderArea.jr {
+  background-position: 0 -431px;
+}
+
+.jv-mVisualchooser-rule-iconColumnLine.jr {
+  background-position: 0 -463px;
+}
+
+.jv-mVisualchooser-rule-iconColumnSpline.jr {
+  background-position: 0 -494px;
+}
+
+.jv-mVisualchooser-rule-iconStackedColumnLine.jr {
+  background-position: 0 -525px;
+}
+
+.jv-mVisualchooser-rule-iconStackedColumnSpline.jr {
+  background-position: 0 -555px;
+}
+
+.jv-mVisualchooser-rule-iconMultiAxisLine.jr {
+  background-position: 0 -586px;
+}
+
+.jv-mVisualchooser-rule-iconMultiAxisSpline.jr {
+  background-position: 0 -617px;
+}
+
+.jv-mVisualchooser-rule-iconMultiAxisColumn.jr {
+  background-position: 0 -648px;
+}
+
+.jv-mVisualchooser-rule-iconScatter.jr {
+  background-position: 0 -678px;
+}
+
+.jv-mVisualchooser-rule-iconBubble.jr {
+  background-position: 0 -710px;
+}
+
+.jv-mVisualchooser-rule-iconPie.jr {
+  background-position: 0 -740px;
+}
+
+.jv-mVisualchooser-rule-iconDualLevelPie.jr {
+  background-position: 0 -771px;
+}
+
+.jv-mVisualchooser-rule-iconSemiPie.jr {
+  background-position: 0 -803px;
+}
+
+.jv-mVisualchooser-rule-iconHeatMap.jr {
+  background-position: 0 -832px;
+}
+
+.jv-mVisualchooser-rule-iconTimeSeriesHeatMap.jr {
+  background-position: 0 -863px;
+}
+
+.jv-mVisualchooser-rule-iconDualMeasureTreeMap.jr {
+  background-position: 0 -894px;
+}
+
+.jv-mVisualchooser-rule-iconTreeMap.jr {
+  background-position: 0 -925px;
+}
+
+.jv-mVisualchooser-rule-iconParentTreeMap.jr {
+  background-position: 0 -956px;
+}
+
+.jv-mVisualchooser-rule-iconTileMap.jr  {
+  background-position: 0 -1130px;
+}
+
+.jv-mVisualchooser-rule-iconCrosstab.jr {
+  background-position: 0 -988px;
+}
+
+.jv-mVisualchooser-rule-iconTable.jr {
+  background-position: 0 -1018px;
+}
+
+.jv-mVisualchooser-rule-iconArcGauge.jr {
+  background-position: 0 -1044px;
+}
+
+.jv-mVisualchooser-rule-iconGauge.jr {
+  background-position: 0 -1071px;
+}
+
+.jv-mVisualchooser-rule-iconMultiLevelGauge.jr {
+  background-position: 0 -1100px;
+}
+
+
+
+//  ---------------
+//  3. STATES
+//  ---------------
+// hovered
+.jv-mVisualchooser-menu-item.jr:hover .jv-mVisualchooser-menu-item-label.jr {
+  color: $color-tciMedium;
+}
+
+// selected
+.jv-mVisualchooser-menu-item.jv-isSelected.jr .jv-mVisualchooser-menu-item-icon.jr {
+  outline: em(2px) solid $color-tciMedium;
+}
+
+.jv-mVisualchooser-menu-item.jv-isSelected.jr .jv-mVisualchooser-menu-item-label.jr {
+  color: $color-tciMedium;
+  font-family: source_sans_prosemibold, Franklin Gothic Medium, Verdana, Arial, sans-serif;
+  font-weight: normal;
+}
+
+// disabled
+.jv-mVisualchooser-menu-item.jv-isDisabled.jr {
+  opacity: .4;
+}
+// hidden
+.jv-mVisualchooser-menu-item.jv-isHidden.jr {
+  display: none;
+}
+
+.jv-mVisualchooser-menu-item.jv-isDisabled.jr .jv-mVisualchooser-menu-item-wrapper.jr {
+  cursor: default;
+}
+
+// panel minimized
+.jv-mVisualchooser-panel.jv-isMinimized.jr {
+  min-width: 42px;
+  padding-left: 6px;
+  width: 42px;
+}
+
+.jv-mVisualchooser-panel.jv-isMinimized.jr + .jv-mVisualchooser-body.jr {}
+
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-mTab.jr {
+  visibility: visible;
+}
+
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-mTab-item-label.jr {
+  display: none;
+}
+
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-Visualchooser-panel-minimize-icon.jr {
+  left: -10px;
+}

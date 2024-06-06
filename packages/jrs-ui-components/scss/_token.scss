@@ -1,0 +1,125 @@
+/*!
+ * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* =============================================
+    TOKEN MODULE
+    Last modified date:     December 12, 2017
+    Last modified by:       Anna Leeg
+ * ============================================= */
+
+.jv-mToken.jr {
+  align-items: center;
+  border-radius: 3px;
+  color: $color-textDark;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-family: $font-primary---family;
+  font-size: $font-primary---size;
+  font-weight: bold;
+  height: em(28px);
+}
+
+.jv-mTokenField.jr {
+  //background-color: #67cfcb; TIBCO teal color at 65% lighter tint
+  background-color: #4dc3e3; // TIBCO cyan color at 30% lighter tint
+}
+
+.jv-mTokenMeasure.jr {
+  background-color: #b6d978; // TIBCO leaf color at 65% lighter tint
+  // background-color: #dbecbb; TIBCO leaf color at 30% lighter tint
+}
+
+.jv-mToken-mover.jr {
+  align-self: center;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  cursor: move;
+  width: 24px;
+  flex: 0 1 auto;
+}
+
+//.jv-mToken-mover-icon.jr {}
+//.jv-mToken-options-icon.jr {}
+
+.jv-mToken-label.jr {
+  align-self: center;
+  flex: 0 1 auto;
+  font-size: 10px;
+  padding-right: em(6px);
+  padding-left: em(6px);
+}
+
+.jv-mToken-options.jr {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  cursor: pointer;
+  visibility: hidden;
+  flex: 0 1 auto;
+}
+
+
+
+
+.jv-mTokengroup.jr {
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  cursor: default;
+  display: inline-flex;
+  flex-direction: row;
+  height: 28px;
+  padding-right: 3px;
+  width: auto;
+}
+
+.jv-mTokengroupMeasure.jr {
+  background-color: #dbecbb; // TIBCO leaf color at 30% lighter tint
+}
+
+.jv-mTokengroup-mover.jr {
+  align-self: center;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  cursor: move;
+  width: 24px;
+  flex: 0 1 auto;
+}
+
+.jv-mTokengroup.jr .jv-mToken.jr {
+  height: 24px;
+}
+
+
+.jv-mTokengroup-options.jr {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  cursor: pointer;
+  visibility: hidden;
+  flex: 0 1 auto;
+}
+
+
+//STATES
+.jv-mToken-options.jv-isHovered.jr,
+.jv-mTokengroup-options.jv-isHovered.jr {
+  visibility: visible;
+}

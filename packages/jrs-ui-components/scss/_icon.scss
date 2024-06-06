@@ -1,0 +1,191 @@
+/*!
+ * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
+ * http://www.jaspersoft.com.
+ *
+ * Unless you have purchased a commercial license agreement from Jaspersoft,
+ * the following license terms apply:
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* =============================================
+    ICON MODULE STYLESHEET
+    Last change date:    October 29, 2021
+    Last changed by:     Anna Leeg
+ * ============================================= */
+
+// -------------------
+// ICON MODULE
+// -------------------
+
+//Include icons classes generated from image files
+@use "sass:math";
+
+@import "icons";
+
+// override generated paths with our configuration
+@include font-face("icons", "normal", "normal");
+
+.jv-mIcon.jr {
+    color: $color-textMedium;
+    font-size: 18px;          // new base font size
+    height: em(26px, 18px);
+    line-height: math.div(26px, 18px);
+    position: relative;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+/*  NOT YET IN USE
+.jv-mIconXXsmall.jr {
+    font-size: 8px;
+    height: em(12px, 8px);
+    line-height: (12px / 8px);
+  }
+
+  .jv-mIconXSmall.jr {
+    font-size: 11px;
+    height: em(16px, 11px);
+    line-height: (16px / 11px);
+  }
+*/
+
+.jv-mIconTiny.jr {
+  font-size: 11px;           // new base font size
+  height: em(20px, 11px);
+  line-height: math.div(20px, 11px);
+}
+
+.jv-mIconSmall.jr {
+    font-size: 14px;           // new base font size
+    height: em(20px, 14px);
+    line-height: math.div(20px, 14px);
+}
+
+.jv-mIconLarge.jr {
+    font-size: 24px;          // new base font size
+    height: em(34px, 24px);
+    line-height: math.div(34px, 24px);
+}
+
+.jv-mIconXLarge.jr {
+  font-size: 30px;          // new base font size
+  height: em(40px, 30px);
+  line-height: math.div(40px, 30px);
+}
+
+.jv-mIconXXLarge.jr {
+  font-size: 36px;          // new base font size
+  height: em(44px, 36px);
+  line-height: math.div(44px, 36px);
+}
+
+.jv-mIconJumbo.jr {
+  font-size: 42px;          // new base font size
+  height: em(50px, 42px);
+  line-height: math.div(50px, 42px);
+}
+
+.jv-mIcon.jv-isHidden.jr {
+    display: none;
+}
+
+
+// STATES and COLORED ICONS
+.jv-mIconInverted.jr {
+  color:#fff !important;
+}
+
+.jv-mIconTheme.jr {
+  color: $color-textThemePrimary;
+}
+
+
+// ------------------------
+// ICONS | specific styles
+// ------------------------
+
+// JOIN: background line loop
+.jv-joinFull:after,
+.jv-joinInner:after,
+.jv-joinLeft:after,
+.jv-joinRight:after {
+  content: "\f127";
+  position: absolute;
+  left: 0;
+}
+
+// JOIN: fill color
+.jv-joinFull:before,
+.jv-joinInner:before,
+.jv-joinLeft:before,
+.jv-joinRight:before {
+  color:#c5c3c3;
+}
+
+.jv-mIconInverted.jv-joinFull:before,
+.jv-mIconInverted.jv-joinInner:before,
+.jv-mIconInverted.jv-joinLeft:before,
+.jv-mIconInverted.jv-joinRight:before {
+  color: #c5c3c3;
+  color: rgba(255,255,255,0.3);
+}
+
+
+// ANIMATED LOADING ICON
+.jv-mIcon.jv-loading.jr {
+    //border: solid #ddd;
+    //border-top-color: #888;
+
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #1388d8;
+    border-width: 4px;
+    height: 1em;
+    width: 1em;
+    @include anim_String(spin 1s infinite linear);
+
+    //IE animated .gif fallback, since css animation is not supported in IE
+    border:none\9 !important;
+    background:image-url("jv-loading_animation.gif") no-repeat -2px 0px\9;
+    background-size:120%;
+}
+
+@include anim_Keyframes(spin){
+    100% {transform: rotate(360deg);}
+}
+
+// colors
+.jv-mIconInverted.jv-loading.jr {
+    border: #80bbe4 solid 4px;
+    border-top-color: white;
+}
+
+.jv-mIconTheme.jv-loading.jr {
+  border: #80bbe4 solid 4px;
+  border-top-color: white;
+}
+
+// sizes
+.jv-mIcon.jv-mIconSmall.jv-loading.jr {
+  font-size: 14px !important;
+}
+
+.jv-mIcon.jv-mIconMedium.jv-loading.jr {
+  font-size: 18px !important;
+}
+
+.jv-mIcon.jv-mIconLarge.jv-loading.jr {
+  font-size: 24px !important;
+}
