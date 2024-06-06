@@ -46,7 +46,7 @@ export const TabsListFlush: FC<TabsListFlushProps> = ({
                         >
 
                             <Typography
-                                className="jr-mText jr-mPanel-header-title mui"
+                                className="jv-mText jv-mPanel-header-title mui"
                             >
                                 {subPanelDefinition.label}
                             </Typography>

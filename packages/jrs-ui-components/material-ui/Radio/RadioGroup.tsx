@@ -32,8 +32,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, PropsWithChildren<RadioButt
     const { className: formLabelPropsClassName = '', component: formLabelComponent = 'legend', ...restFormLabelProps } = FormLabelProps;
 
     return (
-        <MuiFormControl ref={ref} component={formControlComponent} className={`jr-mInput ${SizeToClass[size]} ${formControlClassName} jr-mInputRadio mui`} {...restFormControlProps}>
-            { title && <MuiFormLabel component={formLabelComponent} className={`jr-mInput-label ${formLabelPropsClassName} mui`} {...restFormLabelProps}>{title}</MuiFormLabel>}
+        <MuiFormControl ref={ref} component={formControlComponent} className={`jv-mInput ${SizeToClass[size]} ${formControlClassName} jv-mInputRadio mui`} {...restFormControlProps}>
+            { title && <MuiFormLabel component={formLabelComponent} className={`jv-mInput-label ${formLabelPropsClassName} mui`} {...restFormLabelProps}>{title}</MuiFormLabel>}
             <MuiRadioGroup {...RadioGroupProps}>
                 {children}
             </MuiRadioGroup>

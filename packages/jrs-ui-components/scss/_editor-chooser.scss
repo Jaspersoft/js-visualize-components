@@ -37,7 +37,7 @@
 //  1. BASIC MODULE
 //  ---------------------
 
-.jr-mReportUnitResourceChooserDialog {
+.jv-mReportUnitResourceChooserDialog {
   user-select: none;
 
   & .content {
@@ -64,7 +64,7 @@
     }
   }
 
-  & .jr-mDialog-footer.jr {
+  & .jv-mDialog-footer.jr {
     padding-left: em(20px);
     border-top: unset;
   }

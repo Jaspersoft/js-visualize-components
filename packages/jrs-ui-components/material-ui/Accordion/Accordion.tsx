@@ -4,7 +4,7 @@ import { Accordion as MuiAccordion, AccordionProps as MuiAccordionProps } from '
 export type AccordionSize = 'normal' | 'small';
 
 const AccordionSizeToClass: {[key in AccordionSize]: string} = {
-    small: 'jr-mAccordionSmall',
+    small: 'jv-mAccordionSmall',
     normal: ''
 }
 
@@ -19,7 +19,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(({
     const sizeClass = AccordionSizeToClass[size];
 
     return (
-        <MuiAccordion ref={ref} className={`jr-mAccordion mui ${sizeClass} ${className}`} elevation={0} square {...rest}>
+        <MuiAccordion ref={ref} className={`jv-mAccordion mui ${sizeClass} ${className}`} elevation={0} square {...rest}>
             {children}
         </MuiAccordion>
     )

@@ -25,7 +25,7 @@
    Last modified by:       Anna Leeg
  * ============================================ */
 
-.jr-mBadge.jr {
+.jv-mBadge.jr {
   background-color: #fff;
   border-radius: 16px;
   color: $color-textMedium;
@@ -41,60 +41,60 @@
   vertical-align: middle;
 }
 
-.jr-mBadge-label.jr {
+.jv-mBadge-label.jr {
   font-size: 10px;
   font-weight: bold;
   height: 16px;
   line-height: 16px;
 }
 
-.jr-mBadge-label.jr {
+.jv-mBadge-label.jr {
   display: block;
 }
 
-.jr-mBadge-icon.jr {
+.jv-mBadge-icon.jr {
   color: inherit;
   font-size: 11px;
   vertical-align: middle;
 }
 
 // firefox only:
-body:last-child .jr-mBadge-icon.jr {
+body:last-child .jv-mBadge-icon.jr {
   vertical-align: baseline;
 }
 
 // SHAPE VARIATION
-.jr-mBadgeRound.jr {
+.jv-mBadgeRound.jr {
   padding: 0;
   width: 16px;
 }
 
 
 // COLOR VARIATIONS
-.jr-mBadgeInfo.jr,
-.jr-mBadgeAttention.jr,
-.jr-mBadgeError.jr,
-.jr-mBadgeWarning.jr,
-.jr-mBadgeSuccess.jr {
+.jv-mBadgeInfo.jr,
+.jv-mBadgeAttention.jr,
+.jv-mBadgeError.jr,
+.jv-mBadgeWarning.jr,
+.jv-mBadgeSuccess.jr {
   color: #fff;
 }
 
-.jr-mBadgeInfo.jr {
+.jv-mBadgeInfo.jr {
   background-color: $color-infoMedium;
 }
 
-.jr-mBadgeAttention.jr {
+.jv-mBadgeAttention.jr {
   background-color: $color-attentionMedium;
 }
 
-.jr-mBadgeError.jr {
+.jv-mBadgeError.jr {
   background-color: $color-errorMedium;
 }
 
-.jr-mBadgeWarning.jr {
+.jv-mBadgeWarning.jr {
   background-color: $color-warningMedium;
 }
 
-.jr-mBadgeSuccess.jr {
+.jv-mBadgeSuccess.jr {
   background-color: $color-successDark;
 }

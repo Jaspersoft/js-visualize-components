@@ -8,7 +8,7 @@ export type ListProps = MuiListProps & {
 export const List = forwardRef<HTMLUListElement, ListProps>(({
     className, component = 'ul', isBulleted = false, ...rest
 }, ref) => {
-    const bulletClass = isBulleted ? 'jr-mListBulleted' : '';
+    const bulletClass = isBulleted ? 'jv-mListBulleted' : '';
     return (
         <MuiList
             ref={ref}

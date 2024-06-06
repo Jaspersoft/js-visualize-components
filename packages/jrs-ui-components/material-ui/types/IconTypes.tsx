@@ -1,7 +1,7 @@
 export type IconSize = 'small' | 'medium' | 'large';
 
 export const SizeToClass: {[key in IconSize]: string} = {
-    small: 'jr-mIconSmall',
+    small: 'jv-mIconSmall',
     medium: '',
-    large: 'jr-mIconLarge'
+    large: 'jv-mIconLarge'
 }

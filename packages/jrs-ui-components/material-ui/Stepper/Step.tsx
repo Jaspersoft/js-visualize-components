@@ -26,9 +26,9 @@ export const Step = forwardRef<HTMLDivElement, PropsWithChildren<StepComponentPr
     const { className: stepClassName = '', ...restStepProps } = rest;
 
     return (
-        <MuiStep ref={ref} className={`jr-mStepper-step ${stepClassName} mui`} {...restStepProps}>
+        <MuiStep ref={ref} className={`jv-mStepper-step ${stepClassName} mui`} {...restStepProps}>
             <MuiStepLabel {...StepLabelProps}>
-                <MuiTypography data-name={dataName} className={`jr-mText jr-mTextTitle jr-mTextSmall ${typographyClassName} mui`} {...restTypographyProps}>{title}</MuiTypography>
+                <MuiTypography data-name={dataName} className={`jv-mText jv-mTextTitle jv-mTextSmall ${typographyClassName} mui`} {...restTypographyProps}>{title}</MuiTypography>
                 {children}
             </MuiStepLabel>
         </MuiStep>

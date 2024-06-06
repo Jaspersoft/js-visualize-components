@@ -25,13 +25,13 @@
     Last modified by:       Anna Leeg
  * ============================================ */
 
-.jr-mHome.jr {
+.jv-mHome.jr {
   font-family: $font-primary---family;
   font-size: $font-primary---size;
   font-weight: normal;
 }
 
-.jr-mHome.jr {
+.jv-mHome.jr {
   overflow: hidden;
   //position: absolute;
   //top: 0;
@@ -42,13 +42,13 @@
   height: 100%;
 }
 
-.jr-mHome-header.jr {
+.jv-mHome-header.jr {
   display: flex;
   min-height: em(40px);
   //justify-content: space-between;
 }
 
-.jr-mHome-header-title.jr {
+.jv-mHome-header-title.jr {
   height: auto;
   max-width: em(430px);
   min-height: em(36px);
@@ -56,7 +56,7 @@
   margin-right: 3em;
 }
 
-.jr-mHome-header-title-text.jr {
+.jv-mHome-header-title-text.jr {
   @include page-title;
   overflow: hidden;
   text-overflow: ellipsis;

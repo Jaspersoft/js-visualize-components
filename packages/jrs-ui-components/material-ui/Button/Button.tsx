@@ -17,12 +17,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     return (
         <MuiButton
             ref={ref}
-            className={`jr-mButton ${SizeToClass[size]} ${ColorToClass[color]} mui ${className}`}
+            className={`jv-mButton ${SizeToClass[size]} ${ColorToClass[color]} mui ${className}`}
             disableElevation
             size={size}
             {...rest}
         >
-            <span className={`jr-MuiButton-label jr-mButton-label mui ${labelClasses}`}>{children}</span>
+            <span className={`jv-MuiButton-label jv-mButton-label mui ${labelClasses}`}>{children}</span>
         </MuiButton>
     )
 })

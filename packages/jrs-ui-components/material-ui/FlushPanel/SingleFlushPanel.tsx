@@ -32,25 +32,25 @@ export const SingleFlushPanel: FC<SingleFlushPanelProps> = (
             anchor={anchor}
             open
             style={{ width: '100%', height: '100%' }}
-            className={`jr-mPanel jr-mPanelFlush mui ${className}`}
+            className={`jv-mPanel jv-mPanelFlush mui ${className}`}
             data-name={id}
         >
-            <div className="jr-mPanel-header mui">
+            <div className="jv-mPanel-header mui">
 
-                {anchor === 'right' && <p className="jr-MuiTypography-root jr-mText jr-mPanel-header-title mui jr-MuiTypography-body1">{label}</p>}
-                <div className="jr-mPanel-header-action mui">
+                {anchor === 'right' && <p className="jv-MuiTypography-root jv-mText jv-mPanel-header-title mui jv-MuiTypography-body1">{label}</p>}
+                <div className="jv-mPanel-header-action mui">
                     <IconButton
                         icon={iconDirection}
                         onClick={onCollapse}
                         aria-label={closePanelLabel}
-                        className="jr-mPanel-action-button jr-mButtonSmall"
+                        className="jv-mPanel-action-button jv-mButtonSmall"
                         size="large"
                     />
                 </div>
-                {anchor === 'left' && <p className="jr-MuiTypography-root jr-mText jr-mPanel-header-title mui jr-MuiTypography-body1">{label}</p>}
+                {anchor === 'left' && <p className="jv-MuiTypography-root jv-mText jv-mPanel-header-title mui jv-MuiTypography-body1">{label}</p>}
 
             </div>
-            <div className="jr-mPanel-body mui">
+            <div className="jv-mPanel-body mui">
                 {content}
             </div>
 

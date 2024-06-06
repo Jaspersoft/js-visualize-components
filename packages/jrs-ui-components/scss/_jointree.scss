@@ -30,28 +30,28 @@
 // --------------------------------------------------
 //  Join trees are draggable objects. To show where
 //  a dragged join tree will be placed, use this
-//  placeholder container with a jr-mDropzoneBar.
+//  placeholder container with a jv-mDropzoneBar.
 // --------------------------------------------------
-.jr-mJointreePlaceholder.jr {
+.jv-mJointreePlaceholder.jr {
   align-items: flex-start;
   display: flex;
   height: 16px;
   padding: 6px 0;
 }
 
-.jr-mJointreePlaceholder.jr:first-of-type {
+.jv-mJointreePlaceholder.jr:first-of-type {
   height: 8px;
   padding-top: 0;
 }
 
-.jr-mJointreePlaceholder.jr *:only-child {
+.jv-mJointreePlaceholder.jr *:only-child {
   display: none;
 }
 
 // ------------------
 //  JOIN TREE MODULE
 // ------------------
-.jr-mJointree.jr {
+.jv-mJointree.jr {
   background-color: #fff;
   border: 1px solid #e4e4e4;
   border-radius: 5px;
@@ -61,7 +61,7 @@
   width: 100%;
 }
 
-.jr-mJointree-header.jr {
+.jv-mJointree-header.jr {
   background-color: #ebebeb;
   border-radius: 3px 3px 0 0;
   border-bottom: none;
@@ -72,7 +72,7 @@
   padding-right: 12px;
 }
 
-.jr-mJointree-header-mover.jr {
+.jv-mJointree-header-mover.jr {
   // position is absolute so jointree title and table names "columns" have same width
   background-color: #e4e4e4;
   border-top-left-radius: 3px;
@@ -84,20 +84,20 @@
   width: 22px;
 }
 
-.jr-mJointree-header-mover-icon.jr {
+.jv-mJointree-header-mover-icon.jr {
   line-height: 32px;
 }
 
-.jr-mJointree-header-title-wrapper.jr {
+.jv-mJointree-header-title-wrapper.jr {
   cursor: pointer;
   display: inline-block;
 }
 
-.jr-mJointree-header-title-toggle.jr {
+.jv-mJointree-header-title-toggle.jr {
   float: left;
 }
 
-.jr-mJointree-header-validation.jr {
+.jv-mJointree-header-validation.jr {
   align-items: center;
   display: none;
   float: left;
@@ -108,7 +108,7 @@
   width: 33px;
 }
 
-.jr-mJointree-header-title.jr {
+.jv-mJointree-header-title.jr {
   align-self: center;
   flex: 1 1 50%;
   height: auto;
@@ -117,7 +117,7 @@
   white-space: nowrap;
 }
 
-.jr-mJointree-header-title-text.jr {
+.jv-mJointree-header-title-text.jr {
   color: $grey-textDarker;
   font-size: 14px;
   font-weight: bold;
@@ -127,8 +127,8 @@
   white-space: nowrap;
 }
 
-.jr-mJointree-header-type.jr,
-.jr-mJointree-header-weight.jr {
+.jv-mJointree-header-type.jr,
+.jv-mJointree-header-weight.jr {
   align-self: center;
   font-size: 13px;
   color: $grey-textMedium;
@@ -136,25 +136,25 @@
   padding-right: 8px;
 }
 
-.jr-mJointree-header-type.jr {
+.jv-mJointree-header-type.jr {
   min-width: 168px;
 }
 
-.jr-mJointree-header-weight.jr {
+.jv-mJointree-header-weight.jr {
   min-width: 100px;
 }
 
-.jr-mJointree-header-action.jr {
+.jv-mJointree-header-action.jr {
   align-self: center;
   flex: 0 1 auto;
   //margin-left: 8px;
 }
 
-.jr-mJointree-header-actionDropdown.jr {
+.jv-mJointree-header-actionDropdown.jr {
   width: 40px;
 }
 
-.jr-mJointree-join.jr {
+.jv-mJointree-join.jr {
   background-color: #f7f7f7;
   border-top: 1px solid #e4e4e4;
   border-bottom: 1px solid #f0f0f0;
@@ -165,7 +165,7 @@
   padding-right: 12px;
 }
 
-.jr-mJointree-join-table.jr {
+.jv-mJointree-join-table.jr {
   align-self: center;
   color: $grey-textMedium;
   font-family: $font-family-semibold;
@@ -180,34 +180,34 @@
   text-overflow: ellipsis;
 }
 
-.jr-mJointree-join-tableLeft.jr {
+.jv-mJointree-join-tableLeft.jr {
   cursor: pointer;
   flex: 0 1 auto;
   padding-left: 22px;
 }
 
-.jr-mJointree-join-tableRight.jr {
+.jv-mJointree-join-tableRight.jr {
   flex: 1 1 auto;
 }
 
-.jr-mJointree-join-table-toggle.jr {
+.jv-mJointree-join-table-toggle.jr {
   float: left;
 }
 
-.jr-mJointree-join-table-text.jr {
+.jv-mJointree-join-table-text.jr {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
 }
 
-.jr-mJointree-join-joiner.jr {
+.jv-mJointree-join-joiner.jr {
   align-self: center;
   flex: 0 1 auto;
   padding-left: 6px;
   padding-right: 6px;
 }
 
-.jr-mJointree-join-tables-table.jr {
+.jv-mJointree-join-tables-table.jr {
   color: $grey-textMedium;
   display: inline-block;
   font-weight: bold;
@@ -218,11 +218,11 @@
   white-space: nowrap;
 }
 
-.jr-mJointree-join-tables-joiner.jr {
+.jv-mJointree-join-tables-joiner.jr {
   display: inline-block;
 }
 
-.jr-mJointree-join-type.jr {
+.jv-mJointree-join-type.jr {
   align-self: center;
   flex: 0 1 auto;
   padding-right: 8px;
@@ -230,24 +230,24 @@
   white-space: nowrap;
 }
 
-.jr-mJointree-join-weight.jr {
+.jv-mJointree-join-weight.jr {
   align-self: center;
   flex: 0 1 auto;
   min-width: 100px;
   white-space: nowrap;
 }
 
-.jr-mJointree-join-action.jr {
+.jv-mJointree-join-action.jr {
   align-self: center;
   flex: 0 1 auto;
   //margin-left: 8px;
 }
 
-.jr-mJointree-join-actionDropdown.jr {
+.jv-mJointree-join-actionDropdown.jr {
   width: 44px;
 }
 
-.jr-mJointree-expression.jr {
+.jv-mJointree-expression.jr {
   align-content: space-between;
   display: flex;
   flex-direction: row;
@@ -257,12 +257,12 @@
   padding-right: 12px;
 }
 
-.jr-mJointree-expression.jr:last-child {
+.jv-mJointree-expression.jr:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.jr-mJointree-expression-field.jr {
+.jv-mJointree-expression-field.jr {
   align-self: center;
   font-size: 13px;
   line-height: 1.5;
@@ -274,31 +274,31 @@
   white-space: nowrap;
 }
 
-.jr-mJointree-expression-fieldLeft.jr {
+.jv-mJointree-expression-fieldLeft.jr {
   flex: 1 1 20%;
   min-width: 200px;
 }
 
-.jr-mJointree-expression-field-table.jr {
+.jv-mJointree-expression-field-table.jr {
   color: $grey-textLight;
 }
 
-.jr-mJointree-expression-operator.jr {
+.jv-mJointree-expression-operator.jr {
   align-self: center;
   flex: 1 1 10%;
   padding-left: 6px;
   padding-right: 6px;
 }
 
-.jr-mJointree-expression-fieldRight.jr {
+.jv-mJointree-expression-fieldRight.jr {
   flex: 2 2 40%;
 }
 
-.jr-mJointree-expression-fieldCustom.jr {
+.jv-mJointree-expression-fieldCustom.jr {
   flex: 2 2 calc(40% - 32px); //accounts for width of Options button
 }
 
-.jr-mJointree-expression-fieldComplex.jr {
+.jv-mJointree-expression-fieldComplex.jr {
   align-self: flex-start;
   flex: 1 1 20%;
   min-width: 200px;
@@ -307,16 +307,16 @@
   white-space: normal;
 }
 
-.jr-mJointree-expression-action.jr {
+.jv-mJointree-expression-action.jr {
   align-self: center;
   //margin-left: 8px;
 }
 
-.jr-mJointree-expression-actionDropdown.jr {
+.jv-mJointree-expression-actionDropdown.jr {
   width: 44px;
 }
 
-.jr-mJointree-dropzones.jr {
+.jv-mJointree-dropzones.jr {
   align-content: space-between;
   border-bottom: none;
   border-bottom-left-radius: 5px;
@@ -328,18 +328,18 @@
   padding: 6px;
 }
 
-.jr-mJointree-dropzones-dropzone.jr {
+.jv-mJointree-dropzones-dropzone.jr {
   flex: 0 1 58%;
 }
 
-.jr-mJointree-dropzones-joiner.jr {
+.jv-mJointree-dropzones-joiner.jr {
   align-self: center;
   flex: 0 0 auto;
   margin: 0 12px;
   opacity: .75;
 }
 
-.jr-mJointree-footer.jr {
+.jv-mJointree-footer.jr {
   background-color: #fff;
   border-radius: 0 0 5px 5px;
   border-top:none;
@@ -347,11 +347,11 @@
 }
 
 // STATES
-.jr-mJointree.jr-isHovered.jr {
+.jv-mJointree.jv-isHovered.jr {
   border: 1px dashed $color-tciLight;
 }
 
-.jr-mJointree.jr-isCollapsed.jr .jr-mJointree-header-title-toggle.jr {
+.jv-mJointree.jv-isCollapsed.jr .jv-mJointree-header-title-toggle.jr {
   border-left: 5px solid $grey-textDark; /* text variable is ok, this is icon inline with text */
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
@@ -360,7 +360,7 @@
   margin-right: 9px;
 }
 
-.jr-mJointree.jr-isExpanded.jr .jr-mJointree-header-title-toggle.jr {
+.jv-mJointree.jv-isExpanded.jr .jv-mJointree-header-title-toggle.jr {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 5px solid $grey-textDark; /* text variable is ok, this is icon inline with text */
@@ -368,11 +368,11 @@
   margin-right: 8px;
 }
 
-.jr-mJointree-header-validation.jr-isInvalid.jr {
+.jv-mJointree-header-validation.jv-isInvalid.jr {
   display: flex;
 }
 
-.jr-mJointree-join.jr-isCollapsed.jr .jr-mJointree-join-table-toggle.jr {
+.jv-mJointree-join.jv-isCollapsed.jr .jv-mJointree-join-table-toggle.jr {
   border-left: 5px solid $grey-textMedium; /* text variable is ok, this is icon inline with text */
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
@@ -380,7 +380,7 @@
   margin-right: 8px;
 }
 
-.jr-mJointree-join.jr-isExpanded.jr .jr-mJointree-join-table-toggle.jr {
+.jv-mJointree-join.jv-isExpanded.jr .jv-mJointree-join-table-toggle.jr {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 5px solid $grey-textMedium; /* text variable is ok, this is icon inline with text */
@@ -389,20 +389,20 @@
   margin-left: -2px;
 }
 
-.jr-mJointree.jr-isCollapsed.jr .jr-mJointree-header.jr  {
+.jv-mJointree.jv-isCollapsed.jr .jv-mJointree-header.jr  {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.jr-mJointree.jr-isCollapsed.jr .jr-mJointree-header-mover.jr  {
+.jv-mJointree.jv-isCollapsed.jr .jv-mJointree-header-mover.jr  {
   border-bottom-left-radius: 4px;
 }
 
-.jr-mJointreePlaceholder.jr-isHovered.jr *:only-child {
+.jv-mJointreePlaceholder.jv-isHovered.jr *:only-child {
   display: block;
 }
 
-.jr-mJointree-join.jr-isCollapsed.jr:last-of-type {
+.jv-mJointree-join.jv-isCollapsed.jr:last-of-type {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom: none;

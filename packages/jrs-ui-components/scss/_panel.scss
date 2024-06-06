@@ -27,7 +27,7 @@
 
 @use "sass:math";
 
-.jr-mPanel.jr {
+.jv-mPanel.jr {
   align-content: stretch;
   background-color: #f7f7f7;
   display: flex;
@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-.jr-mPanel-header.jr {
+.jv-mPanel-header.jr {
   background-color: #d6d6d6;
   display: flex;
   flex: 0 1 em(32px, 12px);
@@ -50,7 +50,7 @@
   white-space: nowrap;
 }
 
-.jr-mPanel-header-title.jr {
+.jv-mPanel-header-title.jr {
   color: $grey-textDarker;
   display: inline-block;
   font-size: em(15px, 12px);  // new base font size
@@ -62,14 +62,14 @@
   white-space: nowrap;
 }
 
-.jr-mPanel-header-toolset.jr {
+.jv-mPanel-header-toolset.jr {
   display: inline-block;
   height: 100%;
   vertical-align: top;
 }
 
-.jr-mPanel-search.jr,
-.jr-mPanel-section-search.jr {
+.jv-mPanel-search.jr,
+.jv-mPanel-section-search.jr {
   align-items: center;
   display: flex;
   flex: 0 1 em(38px);
@@ -78,20 +78,20 @@
   padding: 0 em(4px, 12px);
 }
 
-.jr-mPanel-search.jr {
+.jv-mPanel-search.jr {
   background-color: transparent;
   border-top: em(2px, 12px) solid #fff;
 }
 
-.jr-mPanel-section-search.jr {}
+.jv-mPanel-section-search.jr {}
 
-.jr-mPanel-search.jr > .jr,
-.jr-mPanel-section-search.jr > .jr {
-  //targets jr-mInput
+.jv-mPanel-search.jr > .jr,
+.jv-mPanel-section-search.jr > .jr {
+  //targets jv-mInput
   flex: 1 1 auto;
 }
 
-.jr-mPanel-body.jr {
+.jv-mPanel-body.jr {
   //TODO: review in JRS-10728,
   flex: 0 1 auto;
   overflow: hidden;
@@ -99,19 +99,19 @@
   width: 100%;
 }
 
-.jr-mPanel-footer.jr {
+.jv-mPanel-footer.jr {
   border-top: 1px solid #e4e4e4;
   flex: none;
   height: em(32px, 12px);
   width: 100%;
 }
 
-.jr-mPanel-search.jr + .jr-mPanel-section.jr {
+.jv-mPanel-search.jr + .jv-mPanel-section.jr {
   border-top: none;
 }
 
 // a panel can contain multiple sections
-.jr-mPanel-section.jr {
+.jv-mPanel-section.jr {
   align-content: stretch;
   display: flex;
   flex-flow: column nowrap;
@@ -121,16 +121,16 @@
   width: 100%;
 }
 
-.jr-mPanel-section-header.jr {
+.jv-mPanel-section-header.jr {
   background-color: #ebebeb;
   height: em(32px, 12px);
 }
 
-.jr-mPanel-header.jr + .jr-mPanel-section.jr {
+.jv-mPanel-header.jr + .jv-mPanel-section.jr {
   border-top: em(2px, 12px) solid #fff;
 }
 
-.jr-mPanel-section-header-title.jr {
+.jv-mPanel-section-header-title.jr {
   color: $grey-textDarker;
   display: inline-block;
   font-size: em(13px, 12px);
@@ -139,28 +139,28 @@
   vertical-align: top;
 }
 
-.jr-mPanel-section-body.jr {
+.jv-mPanel-section-body.jr {
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
 }
 
-.jr-mPanel-section-divider.jr {
+.jv-mPanel-section-divider.jr {
   background-color: #fff;
   border-bottom: 1px solid #dedede;
   border-top: 1px solid #dedede;
   height: em(4px);
 }
 
-.jr-mPanel-section-footer.jr { //not used yet
+.jv-mPanel-section-footer.jr { //not used yet
   border-top: 1px solid #e4e4e4;
   flex: none;
   height: em(32px);
   width: 100%;
 }
 
-.jr-mPanel-footer-wrapper.jr,
-.jr-mPanel-section-footer-wrapper.jr {
+.jv-mPanel-footer-wrapper.jr,
+.jv-mPanel-section-footer-wrapper.jr {
   align-items: center;
   display: flex;
   height: 100%;

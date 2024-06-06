@@ -10,7 +10,7 @@ export const FormHelper = forwardRef<HTMLDivElement, FormHelperTextProps>((props
             {text && (
                 <FormHelperText
                     ref={ref}
-                    className={`jr-mInput-helper mui ${className}`}
+                    className={`jv-mInput-helper mui ${className}`}
                     {...rest}
                 >
                     {text}

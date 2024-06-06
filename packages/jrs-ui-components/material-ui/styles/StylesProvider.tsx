@@ -21,7 +21,7 @@ export const GenerateClassNameOptions = {
 export const CreateMuiThemeOptions = {};
 
 ClassNameGenerator.configure((componentName: string) => {
-    return `jr-${componentName}`
+    return `jv-${componentName}`
 });
 const muiTheme = createTheme(CreateMuiThemeOptions);
 

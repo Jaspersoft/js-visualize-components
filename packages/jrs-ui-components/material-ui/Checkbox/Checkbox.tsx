@@ -19,9 +19,9 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(({
     return (
         <FormControlLabel
             ref={ref}
-            control={control ?? <MuiCheckbox color="primary" classes={{ root: `jr-mInput-checkbox-check mui ${checkBoxClasses.root ?? ''}` }} {...restCheckboxProps} />}
-            className={`jr-mInput-checkbox ${className} mui`}
-            classes={{ label: `jr-mInput-checkbox-label mui ${classes?.root ?? ''}`, ...classes }}
+            control={control ?? <MuiCheckbox color="primary" classes={{ root: `jv-mInput-checkbox-check mui ${checkBoxClasses.root ?? ''}` }} {...restCheckboxProps} />}
+            className={`jv-mInput-checkbox ${className} mui`}
+            classes={{ label: `jv-mInput-checkbox-label mui ${classes?.root ?? ''}`, ...classes }}
             {...rest}
         />
     )

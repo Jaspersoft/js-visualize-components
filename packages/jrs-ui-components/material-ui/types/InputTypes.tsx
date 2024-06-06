@@ -1,17 +1,17 @@
-export const INLINE_CLASS = 'jr-mInputInline';
+export const INLINE_CLASS = 'jv-mInputInline';
 
-export const NO_LABEL_CLASS = 'jr-mInputNolabel';
+export const NO_LABEL_CLASS = 'jv-mInputNolabel';
 
-export const LABEL_CONTAINED = 'jr-mInputContained';
+export const LABEL_CONTAINED = 'jv-mInputContained';
 
 export enum SizeToClass {
-    large = 'jr-mInputLarge',
-    small = 'jr-mInputSmall',
+    large = 'jv-mInputLarge',
+    small = 'jv-mInputSmall',
     medium = ''
 }
 
 export enum WidthToClass {
-    narrow = 'jr-mInputNarrow',
+    narrow = 'jv-mInputNarrow',
     normal = ''
 }
 

@@ -7,7 +7,7 @@ export const Table = forwardRef<HTMLTableElement, MuiTableProps>(({
     return (
         <MuiTable
             ref={ref}
-            className={`jr-mTable ${className} mui`}
+            className={`jv-mTable ${className} mui`}
             {...rest}
         />
     )

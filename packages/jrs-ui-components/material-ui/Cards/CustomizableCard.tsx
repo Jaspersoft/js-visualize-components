@@ -20,24 +20,24 @@ export const CustomizableCard = forwardRef<HTMLDivElement, CardProps>(({
         title = '', className: cardHeaderClassName = '', classes: cardHeaderClasses = '', ...restCardHeaderProps
     } = cardHeaderProps;
 
-    const overflowClass = cardOverflow ? 'jr-uOverflow-show' : '';
-    const marginClass = isLastOrSingleCard ? '' : 'jr-uMargin-b-08';
+    const overflowClass = cardOverflow ? 'jv-uOverflow-show' : '';
+    const marginClass = isLastOrSingleCard ? '' : 'jv-uMargin-b-08';
     return (
-        <MuiCard ref={ref} className={`jr-mCard ${marginClass} ${overflowClass} ${cardClassname} mui`} variant={variant} elevation={elevation} {...rest}>
+        <MuiCard ref={ref} className={`jv-mCard ${marginClass} ${overflowClass} ${cardClassname} mui`} variant={variant} elevation={elevation} {...rest}>
             <MuiCardContent {...cardContentProps}>
                 { isCardHeader && (
                     <MuiCardHeader
-                        className={`jr-mCard-header jr-mCard-headerLarge  ${cardHeaderClassName} mui`}
-                        classes={{ title: `jr-mCard-header-title ${cardHeaderClasses} mui` }}
+                        className={`jv-mCard-header jv-mCard-headerLarge  ${cardHeaderClassName} mui`}
+                        classes={{ title: `jv-mCard-header-title ${cardHeaderClasses} mui` }}
                         title={title}
                         {...restCardHeaderProps}
                     />
                 )}
                 { paddedCardBodyContent && (
-                    <div className="jr-mCard-bodyPadded jr-mCard-body mui"> {paddedCardBodyContent} </div>
+                    <div className="jv-mCard-bodyPadded jv-mCard-body mui"> {paddedCardBodyContent} </div>
                 )}
                 { children && (
-                    <div className="jr-mCard-body mui">
+                    <div className="jv-mCard-body mui">
                         {children}
                     </div>
                 ) }

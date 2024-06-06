@@ -1,8 +1,8 @@
 export enum DialogSizeToClass {
-    general = 'jr-mDialogConfirm',
-    warning = 'jr-mDialogWarning',
-    delete = 'jr-mDialogDelete',
-    error = 'jr-mDialogError',
+    general = 'jv-mDialogConfirm',
+    warning = 'jv-mDialogWarning',
+    delete = 'jv-mDialogDelete',
+    error = 'jv-mDialogError',
     default = ''
 }
 

@@ -37,7 +37,7 @@
 // override generated paths with our configuration
 @include font-face("icons", "normal", "normal");
 
-.jr-mIcon.jr {
+.jv-mIcon.jr {
     color: $color-textMedium;
     font-size: 18px;          // new base font size
     height: em(26px, 18px);
@@ -48,66 +48,66 @@
 }
 
 /*  NOT YET IN USE
-.jr-mIconXXsmall.jr {
+.jv-mIconXXsmall.jr {
     font-size: 8px;
     height: em(12px, 8px);
     line-height: (12px / 8px);
   }
 
-  .jr-mIconXSmall.jr {
+  .jv-mIconXSmall.jr {
     font-size: 11px;
     height: em(16px, 11px);
     line-height: (16px / 11px);
   }
 */
 
-.jr-mIconTiny.jr {
+.jv-mIconTiny.jr {
   font-size: 11px;           // new base font size
   height: em(20px, 11px);
   line-height: math.div(20px, 11px);
 }
 
-.jr-mIconSmall.jr {
+.jv-mIconSmall.jr {
     font-size: 14px;           // new base font size
     height: em(20px, 14px);
     line-height: math.div(20px, 14px);
 }
 
-.jr-mIconLarge.jr {
+.jv-mIconLarge.jr {
     font-size: 24px;          // new base font size
     height: em(34px, 24px);
     line-height: math.div(34px, 24px);
 }
 
-.jr-mIconXLarge.jr {
+.jv-mIconXLarge.jr {
   font-size: 30px;          // new base font size
   height: em(40px, 30px);
   line-height: math.div(40px, 30px);
 }
 
-.jr-mIconXXLarge.jr {
+.jv-mIconXXLarge.jr {
   font-size: 36px;          // new base font size
   height: em(44px, 36px);
   line-height: math.div(44px, 36px);
 }
 
-.jr-mIconJumbo.jr {
+.jv-mIconJumbo.jr {
   font-size: 42px;          // new base font size
   height: em(50px, 42px);
   line-height: math.div(50px, 42px);
 }
 
-.jr-mIcon.jr-isHidden.jr {
+.jv-mIcon.jv-isHidden.jr {
     display: none;
 }
 
 
 // STATES and COLORED ICONS
-.jr-mIconInverted.jr {
+.jv-mIconInverted.jr {
   color:#fff !important;
 }
 
-.jr-mIconTheme.jr {
+.jv-mIconTheme.jr {
   color: $color-textThemePrimary;
 }
 
@@ -117,34 +117,34 @@
 // ------------------------
 
 // JOIN: background line loop
-.jr-joinFull:after,
-.jr-joinInner:after,
-.jr-joinLeft:after,
-.jr-joinRight:after {
+.jv-joinFull:after,
+.jv-joinInner:after,
+.jv-joinLeft:after,
+.jv-joinRight:after {
   content: "\f127";
   position: absolute;
   left: 0;
 }
 
 // JOIN: fill color
-.jr-joinFull:before,
-.jr-joinInner:before,
-.jr-joinLeft:before,
-.jr-joinRight:before {
+.jv-joinFull:before,
+.jv-joinInner:before,
+.jv-joinLeft:before,
+.jv-joinRight:before {
   color:#c5c3c3;
 }
 
-.jr-mIconInverted.jr-joinFull:before,
-.jr-mIconInverted.jr-joinInner:before,
-.jr-mIconInverted.jr-joinLeft:before,
-.jr-mIconInverted.jr-joinRight:before {
+.jv-mIconInverted.jv-joinFull:before,
+.jv-mIconInverted.jv-joinInner:before,
+.jv-mIconInverted.jv-joinLeft:before,
+.jv-mIconInverted.jv-joinRight:before {
   color: #c5c3c3;
   color: rgba(255,255,255,0.3);
 }
 
 
 // ANIMATED LOADING ICON
-.jr-mIcon.jr-loading.jr {
+.jv-mIcon.jv-loading.jr {
     //border: solid #ddd;
     //border-top-color: #888;
 
@@ -158,7 +158,7 @@
 
     //IE animated .gif fallback, since css animation is not supported in IE
     border:none\9 !important;
-    background:image-url("jr-loading_animation.gif") no-repeat -2px 0px\9;
+    background:image-url("jv-loading_animation.gif") no-repeat -2px 0px\9;
     background-size:120%;
 }
 
@@ -167,25 +167,25 @@
 }
 
 // colors
-.jr-mIconInverted.jr-loading.jr {
+.jv-mIconInverted.jv-loading.jr {
     border: #80bbe4 solid 4px;
     border-top-color: white;
 }
 
-.jr-mIconTheme.jr-loading.jr {
+.jv-mIconTheme.jv-loading.jr {
   border: #80bbe4 solid 4px;
   border-top-color: white;
 }
 
 // sizes
-.jr-mIcon.jr-mIconSmall.jr-loading.jr {
+.jv-mIcon.jv-mIconSmall.jv-loading.jr {
   font-size: 14px !important;
 }
 
-.jr-mIcon.jr-mIconMedium.jr-loading.jr {
+.jv-mIcon.jv-mIconMedium.jv-loading.jr {
   font-size: 18px !important;
 }
 
-.jr-mIcon.jr-mIconLarge.jr-loading.jr {
+.jv-mIcon.jv-mIconLarge.jv-loading.jr {
   font-size: 24px !important;
 }

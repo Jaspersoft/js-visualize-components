@@ -26,10 +26,10 @@
  * ======================================= */
 
 // NOTES:
-// Text and Title need the child jr-mText-wrapper
+// Text and Title need the child jv-mText-wrapper
 // container so they are scalable when embedded.
 //
-// Base font size is applied to jr-mText. Text and
+// Base font size is applied to jv-mText. Text and
 // Title sizes in wrapper are relative to the base size.
 
 
@@ -38,58 +38,58 @@
 // --------------
 @use "sass:math";
 
-.jr-mText.jr {
+.jv-mText.jr {
   font-family: $font-family-primary;
   font-size: 13px;
   white-space: normal;
 }
 
-.jr-mTextTitle.jr {}
+.jv-mTextTitle.jr {}
 
 
 // size, standard text
-.jr-mTextSmall.jr .jr-mText-wrapper.jr {
+.jv-mTextSmall.jr .jv-mText-wrapper.jr {
   font-size: em(12px, 13px);
   line-height: math.div(16px, 12px);
 }
 
-.jr-mTextMedium.jr .jr-mText-wrapper.jr {
+.jv-mTextMedium.jr .jv-mText-wrapper.jr {
   font-size: em(13px, 13px);
   line-height: math.div(17px, 13px);
 }
 
-.jr-mTextLarge.jr .jr-mText-wrapper.jr {
+.jv-mTextLarge.jr .jv-mText-wrapper.jr {
   font-size: em(14px, 13px);
   line-height: math.div(18px, 14px);
 }
 
-.jr-mTextXLarge.jr .jr-mText-wrapper.jr {
+.jv-mTextXLarge.jr .jv-mText-wrapper.jr {
   font-size: em(16px, 13px);
   line-height: math.div(22px, 16px);
 }
 
 // size, titles
-.jr-mTextTitle.jr-mTextXSmall.jr .jr-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextXSmall.jr .jv-mText-wrapper.jr {
   font-size: em(14px, 13px);
   line-height: math.div(20px, 14px);
 }
 
-.jr-mTextTitle.jr-mTextSmall.jr .jr-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextSmall.jr .jv-mText-wrapper.jr {
   font-size: em(16px, 13px);
   line-height: math.div(22px, 16px);
 }
 
-.jr-mTextTitle.jr-mTextMedium.jr .jr-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextMedium.jr .jv-mText-wrapper.jr {
   font-size: em(18px, 13px);
   line-height: math.div(24px, 18px);
 }
 
-.jr-mTextTitle.jr-mTextLarge.jr .jr-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextLarge.jr .jv-mText-wrapper.jr {
   font-size: em(20px, 13px);
   line-height: math.div(26px, 20px);
 }
 
-.jr-mTextTitle.jr-mTextXLarge.jr .jr-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextXLarge.jr .jv-mText-wrapper.jr {
   font-size: em(24px, 13px);
   line-height: math.div(28px, 24px);
 }
@@ -100,60 +100,60 @@
 // -------------
 
 //theme colors
-.jr-mTextThemeDark.jr {
+.jv-mTextThemeDark.jr {
   color: $color-tciDark;
 }
 
-.jr-mTextThemePrimary.jr {
+.jv-mTextThemePrimary.jr {
   color: $color-tciLight;
 }
 
-.jr-mTextThemeAltPrimary.jr {
+.jv-mTextThemeAltPrimary.jr {
   color: $color-tciMedium;
 }
 
 //alert colors
-.jr-mTextError.jr {
+.jv-mTextError.jr {
   color: $color-errorMedium;
 }
 
-.jr-mTextWarning.jr {
+.jv-mTextWarning.jr {
   color: $color-warningMedium;
 }
 
-.jr-mTextSuccess.jr {
+.jv-mTextSuccess.jr {
   color: $color-successDark;
 }
 
-.jr-mTextInfo.jr {
+.jv-mTextInfo.jr {
   color: $color-infoMedium;
 }
 
 //greyscale
-.jr-mTextGreyDarkest.jr {
+.jv-mTextGreyDarkest.jr {
   color: $grey-textDarkest;
 }
 
-.jr-mTextGreyDarker.jr {
+.jv-mTextGreyDarker.jr {
   color: $grey-textDarker;
 }
 
-.jr-mTextGreyDark.jr {
+.jv-mTextGreyDark.jr {
   color: $grey-textDark;
 }
 
-.jr-mTextGreyPrimary.jr {
+.jv-mTextGreyPrimary.jr {
   color: $grey-textMedium;
 }
 
-.jr-mTextGreyLight.jr {
+.jv-mTextGreyLight.jr {
   color: $grey-textLight;
 }
 
-.jr-mTextGreyLighter.jr {
+.jv-mTextGreyLighter.jr {
   color: $grey-textLighter;
 }
 
-.jr-mTextGreyLightest.jr {
+.jv-mTextGreyLightest.jr {
   color: $grey-textLightest;
 }

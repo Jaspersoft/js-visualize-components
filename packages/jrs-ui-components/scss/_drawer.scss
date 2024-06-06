@@ -4,10 +4,10 @@
    Last modified by:       Anna Leeg
  * ======================================== */
 
-.jr-mDrawerContainer.jr {} /* not sure if we need this */
+.jv-mDrawerContainer.jr {} /* not sure if we need this */
 
 
-.jr-mDrawer.jr {
+.jv-mDrawer.jr {
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
   font-size: 13px;
 }
 
-.jr-mDrawer-header.jr {
+.jv-mDrawer-header.jr {
   align-items: center;
   background-color: #ebebeb;
   display: flex;
@@ -25,9 +25,9 @@
   padding: 0 1em;
 }
 
-.jr-mDrawer-headerShaded.jr {}
+.jv-mDrawer-headerShaded.jr {}
 
-.jr-mDrawer-header-title.jr {
+.jv-mDrawer-header-title.jr {
   color: $color-tciMedium;
   flex: 1 1 auto;
   font-family: source_sans_prosemibold, Franklin Gothic Medium, Verdana, Arial, sans-serif;
@@ -40,25 +40,25 @@
   white-space: nowrap;
 }
 
-.jr-mDrawer-header-actions.jr {
+.jv-mDrawer-header-actions.jr {
   flex: 0 1 auto;
 }
 
-.jr-mDrawer-body.jr {
+.jv-mDrawer-body.jr {
   background-color: #fff;
   flex-grow: 1;
   overflow-y: hidden;
 }
 
-.jr-mDrawer-bodyScroll.jr {
+.jv-mDrawer-bodyScroll.jr {
   overflow-y: auto;
 }
 
-.jr-mDrawer-bodyPadded.jr {
+.jv-mDrawer-bodyPadded.jr {
   padding: 30px;
 }
 
-.jr-mDrawer-footer.jr {
+.jv-mDrawer-footer.jr {
   align-items: center;
   background-color: #fff;
   border-top: 1px solid #ccc;

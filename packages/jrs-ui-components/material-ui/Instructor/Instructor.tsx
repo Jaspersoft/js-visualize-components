@@ -3,8 +3,8 @@ import { Icon } from '../Icon/Icon';
 import { Typography } from '../Typography/Typography';
 
 enum SizeToClass {
-    large = 'jr-mInstructorLarge',
-    small = 'jr-mInstructorSmall',
+    large = 'jv-mInstructorLarge',
+    small = 'jv-mInstructorSmall',
     medium = ''
 }
 
@@ -24,16 +24,16 @@ export const Instructor = ({
 } : InstructorProps) => {
     const { className: wrapperClassName = '', ...restWrapperProps } = wrapperProps;
     return (
-        <div className={`jr-mInstructor ${wrapperClassName} ${SizeToClass[size]} ${messageTitle ? '' : 'jr-mInstructorSimple'} mui`} {...restWrapperProps}>
-            <div className="jr-mInstructor-wrapper mui">
-                <Icon className="jr-mInstructor-icon" icon={icon} />
+        <div className={`jv-mInstructor ${wrapperClassName} ${SizeToClass[size]} ${messageTitle ? '' : 'jv-mInstructorSimple'} mui`} {...restWrapperProps}>
+            <div className="jv-mInstructor-wrapper mui">
+                <Icon className="jv-mInstructor-icon" icon={icon} />
                 { messageTitle && (
-                    <Typography className="jr-mInstructor-title mui">
+                    <Typography className="jv-mInstructor-title mui">
                         {messageTitle}
                     </Typography>
                 )}
 
-                <Typography className="jr-mInstructor-text mui">
+                <Typography className="jv-mInstructor-text mui">
                     {messageDescription}
                 </Typography>
 

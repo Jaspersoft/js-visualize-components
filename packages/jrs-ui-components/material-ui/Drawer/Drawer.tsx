@@ -8,7 +8,7 @@ export const Drawer = forwardRef<HTMLDivElement, MuiDrawerProps>(({
     return (
         <MuiDrawer
             ref={ref}
-            className={`jr-mDrawer ${className} mui`}
+            className={`jv-mDrawer ${className} mui`}
             open={open}
             elevation={elevation}
             classes={{ paper: `${paperClasses}`, ...restClasses }}

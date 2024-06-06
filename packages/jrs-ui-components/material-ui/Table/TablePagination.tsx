@@ -15,11 +15,11 @@ export const TablePagination = forwardRef<HTMLElement, TablePaginationProps>(({
         <MuiTablePagination
             ref={ref}
             backIconButtonProps={{
-                className: `jr-mButton ${backButtonClass} mui`,
+                className: `jv-mButton ${backButtonClass} mui`,
                 ...restBackIconButtonProps
             }}
             nextIconButtonProps={{
-                className: `jr-mButton ${nextButtonClass} mui`,
+                className: `jv-mButton ${nextButtonClass} mui`,
                 ...restNextIconButtonProps
             }}
             {...restProps}

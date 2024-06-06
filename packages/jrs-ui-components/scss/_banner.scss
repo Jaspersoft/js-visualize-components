@@ -33,7 +33,7 @@
 // -------------------
 
 // base module
-.jr-mBanner.jr {
+.jv-mBanner.jr {
     background-color: #3e8ddd;
     color: #fff;
     height: em(36px);           // 3.273em | 36px / 11px
@@ -41,22 +41,22 @@
 }
 
 // child element containers
-.jr-mBanner-wrapper {
+.jv-mBanner-wrapper {
     height:100%;
 }
 
-.jr-mBanner-wrapperLeft.jr {
+.jv-mBanner-wrapperLeft.jr {
     float: left;
     min-width: em(528px);       // 48em | 528px / 11px
 }
 
-.jr-mBanner-wrapperRight.jr {
+.jv-mBanner-wrapperRight.jr {
     float: right;
     min-width: em(418px);       // 38em | 418px / 11px
 }
 
 // child elements
-.jr-mBanner-logo.jr {
+.jv-mBanner-logo.jr {
     background-image: image-url('logo.png');
     background-position: 0 em(10px);    // .909em | 10px / 11px
     background-repeat: no-repeat;
@@ -68,12 +68,12 @@
     width: em(176px);                   // 16em | 176px / 11px
 }
 
-.jr-mBanner-nav.jr {
+.jv-mBanner-nav.jr {
     float: left;
     height: inherit;
 }
 
-.jr-mBanner-search.jr {
+.jv-mBanner-search.jr {
     float: left;
     height: 100%;
     margin-right: em(4px);       // .364em | 8px / 11px
@@ -82,11 +82,11 @@
     width: auto;
 }
 
-.jr-mBanner-search.jr .jr-mInput-search.jr {
+.jv-mBanner-search.jr .jv-mInput-search.jr {
     border: 1px solid #3e8ddd;
 }
 
-.jr-mBanner-meta.jr {
+.jv-mBanner-meta.jr {
     float: left;
     height: 100%;
 }
@@ -98,11 +98,11 @@
 
 // shrink logo
 @media only screen and (max-width:975px){
-    .jr-mBanner-wrapperLeft.jr {
+    .jv-mBanner-wrapperLeft.jr {
         min-width: em(374px);            // 34em | 374px / 11px 
     }
 
-    .jr-mBanner-logo.jr {
+    .jv-mBanner-logo.jr {
         //background-image: image-url('logo_square.png');
         background-position: 0 .364em;
         background-size: 32px;
@@ -112,38 +112,38 @@
 
 // hide logo, username, and help link
 @media only screen and (max-width:810px){
-    .jr-mBanner-logo.jr {
+    .jv-mBanner-logo.jr {
         display: none;
     }
 
-    .jr-mBanner-meta.jr .jr-mMenu-leaf.jr:first-of-type,
-    .jr-mBanner-meta.jr .jr-mMenu-leaf.jr:nth-of-type(2) {
+    .jv-mBanner-meta.jr .jv-mMenu-leaf.jr:first-of-type,
+    .jv-mBanner-meta.jr .jv-mMenu-leaf.jr:nth-of-type(2) {
         display: none;
     }
 
-    .jr-mBanner-wrapperLeft.jr {
+    .jv-mBanner-wrapperLeft.jr {
         min-width: em(330px);        // 30em | 330px / 11px
     }
 
-    .jr-mBanner-wrapperRight.jr {
+    .jv-mBanner-wrapperRight.jr {
         min-width: em(285px);        // 25.909em | 285px / 11px
     }
 }
 
 // hide search
 @media only screen and (max-width:616px){
-    .jr-mBanner-search.jr {
+    .jv-mBanner-search.jr {
         display: none;
     }
 
-    .jr-mBanner-wrapperRight.jr {
+    .jv-mBanner-wrapperRight.jr {
         min-width: em(77px);        // 7em | 77px / 11px
     }
 }
 
 // hide entire right side of banner
 @media only screen and (max-width:300px){
-    .jr-mBanner-wrapperRight.jr {
+    .jv-mBanner-wrapperRight.jr {
         display: none;
     }
 }

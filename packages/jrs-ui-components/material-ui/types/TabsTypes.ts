@@ -1,7 +1,7 @@
 export enum SizeToTabs {
-    small='jr-mTabsSmall',
-    medium='jr-mTabsMedium',
-    large='jr-mTabsLarge'
+    small='jv-mTabsSmall',
+    medium='jv-mTabsMedium',
+    large='jv-mTabsLarge'
 }
 
 export type TabSize = keyof typeof SizeToTabs;

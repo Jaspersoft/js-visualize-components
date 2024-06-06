@@ -1,5 +1,5 @@
 export enum ColorToClass {
-    theme = 'jr-mLinkTheme',
+    theme = 'jv-mLinkTheme',
     default = ''
 }
 

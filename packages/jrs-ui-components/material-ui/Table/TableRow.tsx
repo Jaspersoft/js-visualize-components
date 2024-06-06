@@ -8,12 +8,12 @@ export type TableRowProps = MuiTableRowProps & {
 export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(({
     className = '', border = true, headRow = false, ...rest
 }, ref) => {
-    const borderClass = !border ? 'jr-mTable-rowNoborder' : '';
-    const headRowClass = headRow ? 'jr-mTable-rowHeader' : '';
+    const borderClass = !border ? 'jv-mTable-rowNoborder' : '';
+    const headRowClass = headRow ? 'jv-mTable-rowHeader' : '';
     return (
         <MuiTableRow
             ref={ref}
-            className={`jr-mTable-row ${borderClass} ${headRowClass} ${className} mui`}
+            className={`jv-mTable-row ${borderClass} ${headRowClass} ${className} mui`}
             {...rest}
         />
     )

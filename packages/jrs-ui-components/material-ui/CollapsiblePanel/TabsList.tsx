@@ -27,7 +27,7 @@ export const TabsList: FC<TabsListProps> = ({
     return (
         <List
             disablePadding
-            className="jr-mPanel-sections mui"
+            className="jv-mPanel-sections mui"
             component="ul"
         >
             {
@@ -38,18 +38,18 @@ export const TabsList: FC<TabsListProps> = ({
                     return isTabVisible && (
                         <ListItem
                             disableGutters
-                            className="jr-mPanel-section mui"
+                            className="jv-mPanel-section mui"
                             component="li"
                             key={subPanelState.id}
                             data-name={`${subPanelState.id}-tab`}
                         >
                             <Button
                                 data-name={`${subPanelState.id}-tab-expand`}
-                                classes={{ root: 'jr-mPanel-section-action mui' }}
+                                classes={{ root: 'jv-mPanel-section-action mui' }}
                                 onClick={() => handleExpandClick(subPanelIndex, subPanelState.id)}
                                 aria-label={openSubPanelLabel}
                             >
-                                <span className="jr-MuiButton-label jr-mButton-label mui"> {subPanelDefinition.label}</span>
+                                <span className="jv-MuiButton-label jv-mButton-label mui"> {subPanelDefinition.label}</span>
                             </Button>
                         </ListItem>
                     )

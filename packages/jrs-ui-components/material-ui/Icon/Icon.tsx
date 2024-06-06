@@ -13,12 +13,12 @@ export const Icon = forwardRef<HTMLButtonElement, IconProps>(({
     className = '', icon, size = 'medium', ...rest
 }, ref) => {
 
-    const iconClassName = `jr-${icon}`;
+    const iconClassName = `jv-${icon}`;
 
     return (
         <MuiIcon
             ref={ref}
-            className={`jr-mIcon mui ${iconClassName} ${className} ${SizeToClass[size]}`}
+            className={`jv-mIcon mui ${iconClassName} ${className} ${SizeToClass[size]}`}
             {...rest}
         />
     )

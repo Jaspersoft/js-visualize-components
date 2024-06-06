@@ -11,7 +11,7 @@ export const Stepper = forwardRef<HTMLDivElement, PropsWithChildren<MuiStepperPr
     return (
         <MuiStepper
             ref={ref}
-            className={`jr-mStepper ${className} mui`}
+            className={`jv-mStepper ${className} mui`}
             {...rest}
         >
             {children}

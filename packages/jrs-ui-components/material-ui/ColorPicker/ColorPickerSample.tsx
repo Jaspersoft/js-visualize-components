@@ -8,8 +8,8 @@ import { createPortal } from 'react-dom';
 import { AttachableColorPicker } from '../../colorPicker/react/AttachableColorPicker';
 import colorConvertUtil from '../../colorPicker/util/colorConvertUtil';
 
-const SWATCH_LIGHT_CLASS = 'jr-mControl-launcher-swatchLight';
-const TRANSPARENT_CLASS = `${SWATCH_LIGHT_CLASS} jr-mControl-launcher-swatchTransparent`;
+const SWATCH_LIGHT_CLASS = 'jv-mControl-launcher-swatchLight';
+const TRANSPARENT_CLASS = `${SWATCH_LIGHT_CLASS} jv-mControl-launcher-swatchTransparent`;
 
 const getSwatchLightClass = (color : string): string => {
     if (colorConvertUtil.isRgbTransparent(color)) {
@@ -43,7 +43,7 @@ export const ColorPickerSample: FC<ColorSampleProps> = ({
     });
 
     useEffect(() => {
-        colorPickerContainer.className = 'jr-jColorPickerWrapper';
+        colorPickerContainer.className = 'jv-jColorPickerWrapper';
         document.body.appendChild(colorPickerContainer);
 
         return () => colorPickerContainer.remove();
@@ -82,13 +82,13 @@ export const ColorPickerSample: FC<ColorSampleProps> = ({
         <>
             <div
                 ref={attachToRef}
-                className="jr-mControl-launcher mui"
+                className="jv-mControl-launcher mui"
                 onClick={handleClick}
                 role="button"
                 tabIndex={-1}
                 aria-label="button"
             >
-                <div style={style} className={`jr-mControl-launcher-swatch mui ${getSwatchLightClass(color)}`} />
+                <div style={style} className={`jv-mControl-launcher-swatch mui ${getSwatchLightClass(color)}`} />
             </div>
             {createPortal(colorPicker, colorPickerContainer)}
         </>

@@ -7,6 +7,6 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(({
     className = '', children, ...rest
 }, ref) => {
     return (
-        <MenuItem ref={ref} className={`jr-mInput-select-item mui ${className}`} {...rest}>{children}</MenuItem>
+        <MenuItem ref={ref} className={`jv-mInput-select-item mui ${className}`} {...rest}>{children}</MenuItem>
     )
 })

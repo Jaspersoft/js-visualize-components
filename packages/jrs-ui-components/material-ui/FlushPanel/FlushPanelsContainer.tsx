@@ -38,7 +38,7 @@ const ResizableEnableByAnchor: { [key in Anchor]: Enable } = {
 };
 
 const ResizeDirectionClasses: { [key in Anchor]: HandleClassName } = {
-    right: { left: 'jr-mPanel-resizerHorizontal mui' },
+    right: { left: 'jv-mPanel-resizerHorizontal mui' },
     left: { right: '' }
 };
 
@@ -107,7 +107,7 @@ export const FlushPanelsContainer: FC<FlushPanelsContainerProps> = ({
 
     const panelMaxWidth = useMaxWidthState(maxWidth, tabsPanelWidth, panelsState);
     return (
-        <div className={`jr-mPanels  ${panelsDirectionClass} mui`}>
+        <div className={`jv-mPanels  ${panelsDirectionClass} mui`}>
             {
                 panels.map((panelItem, panelIndex) => {
                     const isOpen = isPanelExpanded(panelIndex, panelsState);

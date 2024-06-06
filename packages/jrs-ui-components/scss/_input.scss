@@ -30,20 +30,20 @@
 // --------------------------------
 @use "sass:math";
 
-.jr-mInputgroup.jr .jr-mInput-editable.jr,
-.jr-mInputgroup.jr .jr-mInput-selectt.jr  {
+.jv-mInputgroup.jr .jv-mInput-editable.jr,
+.jv-mInputgroup.jr .jv-mInput-selectt.jr  {
   margin-bottom: em(18px, 13px);
 }
 
-.jr-mInputgroup.jr .jr-mInput-select.jr {
+.jv-mInputgroup.jr .jv-mInput-select.jr {
   margin-bottom: em(20px, 13px);
 }
 
-.jr-mInputpair.jr {
+.jv-mInputpair.jr {
   // use to contain two of the same input types when the operator is "between" or "is not between"
 }
 
-.jr-mInputpair-text.jr {
+.jv-mInputpair-text.jr {
   height: em(28px);
   top: em(-4px);
   text-align: center;
@@ -53,29 +53,29 @@
 // ---------------------
 //   BASE INPUT MODULE
 // --------------------
-.jr-mInput.jr {
+.jv-mInput.jr {
   font-family: $font-family-primary;
   font-size: 13px;
   font-weight: normal;
 }
 
-.jr-mInput-label.jr {
+.jv-mInput-label.jr {
   @include input-label;
   font-family: $font-family-semibold;
   font-size: 1em;
 }
 
 // label variations
-.jr-mInput-labelLight.jr {
+.jv-mInput-labelLight.jr {
   color: $grey-textLightest;
 }
 
-.jr-mInput-labelRequired.jr::after {
+.jv-mInput-labelRequired.jr::after {
   color: $color-tciMedium;
   content: " *";
 }
 
-.jr-mInput-hint.jr {
+.jv-mInput-hint.jr {
   color: $grey-textLightest;
   display: inline-block;
   font-size: em(12px, 13px);
@@ -85,7 +85,7 @@
   // line-height and display are here so this element can be inline or block
 }
 
-.jr-mInput-alert.jr {
+.jv-mInput-alert.jr {
   // TODO remove this rule after resolving JRS-12101 AND after replacing in embeddable input controls
   // JRS-12101 has been resolved; embeddable input controls has not.
   color: $color-errorDark;
@@ -97,11 +97,11 @@
 }
 
 // validation done automatically on save
-.jr-mInput-validation.jr {
+.jv-mInput-validation.jr {
   line-height: math.div(14px, 11px);
 }
 
-.jr-mInput-validation.jr { // NEW
+.jv-mInput-validation.jr { // NEW
   align-items: flex-start;
   align-content: stretch;
   display: flex;
@@ -111,41 +111,41 @@
   margin-top: em(4px, 13px);
 }
 
-.jr-mInput-validation-message.jr { // NEW, holds validation component
+.jv-mInput-validation-message.jr { // NEW, holds validation component
   flex: 1 1 auto;
   margin-top: em(3px, 13px);
 }
 
-.jr-mInput-validation-button.jr { // NEW
+.jv-mInput-validation-button.jr { // NEW
   flex: 0 0 auto;
   margin-bottom: 2em;
   margin-top: em(3px, 13px);
 }
 
-.jr-mInput-validation-message.jr:first-child { // NEW
+.jv-mInput-validation-message.jr:first-child { // NEW
   //display: inline-flex; flex seems to work just fine
   display: flex;
   justify-content: flex-end;
   padding-right: em(8px, 13px);
 }
 
-.jr-mInput-validation-message.jr:only-child { // NEW
+.jv-mInput-validation-message.jr:only-child { // NEW
   // this rule must come after first-child rule (immediately above)
   justify-content: flex-start;
   margin-top: 0;
 }
 
-.jr-mInput-validation-button.jr:first-child { // NEW
+.jv-mInput-validation-button.jr:first-child { // NEW
   padding-right: em(8px, 13px);
 }
 
-.jr-mInput-validation-alert.jr { // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alert.jr { // TODO remove this rule after resolving JRS-12101
   display: table-row;
   min-height: em(20px, 13px);
   white-space: nowrap;
 }
 
-.jr-mInput-validation-alert-text.jr { // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alert-text.jr { // TODO remove this rule after resolving JRS-12101
   display: table-cell;
   font-family: $font-family-semibold;
   font-size: 12px; // new base font size
@@ -154,7 +154,7 @@
   white-space: normal;
 }
 
-.jr-mInput-validation-alert-icon.jr { // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alert-icon.jr { // TODO remove this rule after resolving JRS-12101
   color: inherit !important;
   display: table-cell;
   line-height: 1.2 !important;
@@ -163,33 +163,33 @@
 }
 
 // validation done manually with associated button
-.jr-mInput-validationManual.jr { // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validationManual.jr { // TODO remove this rule after resolving JRS-12101
   display: table;
   margin-bottom: 2em;
   margin-top: em(7px, 13px);
   width: 100%;
 }
 
-.jr-mInput-validationManual.jr .jr-mInput-validation-button.jr { // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validationManual.jr .jv-mInput-validation-button.jr { // TODO remove this rule after resolving JRS-12101
   display: table-cell;
   vertical-align: top;
 }
 
-.jr-mInput-validationManual.jr .jr-mInput-validation-alert.jr { // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validationManual.jr .jv-mInput-validation-alert.jr { // TODO remove this rule after resolving JRS-12101
   display: table-cell;
   vertical-align: middle;
   width: 100%;
 }
 
 // validation types
-.jr-mInput-validation-alertError.jr {color: $color-errorMedium;}      // TODO remove this rule after resolving JRS-12101
-.jr-mInput-validation-alertSuccess.jr {color: $color-successDark;}    // TODO remove this rule after resolving JRS-12101
-.jr-mInput-validation-alertWarning.jr {color: $color-warningMedium;}  // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alertError.jr {color: $color-errorMedium;}      // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alertSuccess.jr {color: $color-successDark;}    // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alertWarning.jr {color: $color-warningMedium;}  // TODO remove this rule after resolving JRS-12101
 
 
 // the following relate to which side the button is on (left or right)
-.jr-mInput-validationManual.jr .jr-mInput-validation-button.jr:first-child,
-.jr-mInput-validationManual.jr .jr-mInput-validation-alert.jr:first-child { // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validationManual.jr .jv-mInput-validation-button.jr:first-child,
+.jv-mInput-validationManual.jr .jv-mInput-validation-alert.jr:first-child { // TODO remove this rule after resolving JRS-12101
   padding-right: em(8px, 13px);
 }
 
@@ -198,16 +198,16 @@
 //  MODULE VARIATION - INLINE
 // ----------------------------
 /* INITIAL TEST
-.jr-mInputInline.jr {
+.jv-mInputInline.jr {
   display: table;
 }
 
-.jr-mInputInline.jr .jr-mInput-label.jr {
+.jv-mInputInline.jr .jv-mInput-label.jr {
   display: table-cell;
   padding-right: 1em;
 }
 
-.jr-mInputInline.jr .jr-mInput-text.jr {
+.jv-mInputInline.jr .jv-mInput-text.jr {
   display: table-cell;
 } */
 
@@ -216,16 +216,16 @@
 // -------------------------------------------
 //  MODULE VARIATION - COMPACT (auto width)
 // -------------------------------------------
-.jr-mInputCompact.jr {
+.jv-mInputCompact.jr {
   display: inline-block;
 }
 
 /* INITIAL TEST
-.jr-mInputCompact.jr .jr-mInput-text.jr,
-.jr-mInputCompact.jr .jr-mInput-number.jr,
-.jr-mInputCompact.jr .jr-mInput-email.jr,
-.jr-mInputCompact.jr .jr-mInput-password.jr,
-.jr-mInputCompact.jr .jr-mInput-search.jr {
+.jv-mInputCompact.jr .jv-mInput-text.jr,
+.jv-mInputCompact.jr .jv-mInput-number.jr,
+.jv-mInputCompact.jr .jv-mInput-email.jr,
+.jv-mInputCompact.jr .jv-mInput-password.jr,
+.jv-mInputCompact.jr .jv-mInput-search.jr {
   width: auto;
 } */
 
@@ -235,9 +235,9 @@
 // ---------------------
 
 // SEARCH
-.jr-mInput-searchContainer.jr {} //no rules, but container is needed for correct positioning of clear search icon
+.jv-mInput-searchContainer.jr {} //no rules, but container is needed for correct positioning of clear search icon
 
-.jr-mInput-search.jr {
+.jv-mInput-search.jr {
   background-color: #fff;
   // TODO remove following styles after JRS-14408 is fixed
   //background-image: image-url("icontrol_icons_sprite.png");
@@ -252,7 +252,7 @@
 }
 
 // TODO remove this rule after search input is fixed in multi- and single-select components
-.jr-mInput-search.jr:only-child {
+.jv-mInput-search.jr:only-child {
   background-image: image-url("icontrol_icons_sprite.svg");
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -260,14 +260,14 @@
   background-size: 20px;
 }
 
-.jr-mInput-searchPlaceholder.jr {
+.jv-mInput-searchPlaceholder.jr {
   // fixes issue (in multiselect) where placeholder text changes color after losing focus
   // add this class name dynamically once input loses focus
   // NOT IMPLEMENTED YET
   color: $grey-textLightest;
 }
 
-.jr-mInput-search-trigger.jr {
+.jv-mInput-search-trigger.jr {
   position: absolute;
   top: 0;
   right: 0;
@@ -275,7 +275,7 @@
   width: em(32px, 13px);
 }
 
-.jr-mInput-search-clear.jr {
+.jv-mInput-search-clear.jr {
   display: none;
   position: absolute;
   top: 0;
@@ -285,7 +285,7 @@
 }
 
 // TODO remove this rule after JRS-14408 is fixed
-.jr-mInput-search-clear-icon.jr {
+.jv-mInput-search-clear-icon.jr {
   background-color: #fff;
   background-image: image-url("icontrol_icons_sprite.png");
   background-repeat: no-repeat;
@@ -297,51 +297,51 @@
 }
 
 // TEXT-BASED
-.jr-mInput-date.jr,
-.jr-mInput-email.jr,
-.jr-mInput-number.jr,
-.jr-mInput-password.jr,
-.jr-mInput-text.jr,
-.jr-mInput-search.jr {
+.jv-mInput-date.jr,
+.jv-mInput-email.jr,
+.jv-mInput-number.jr,
+.jv-mInput-password.jr,
+.jv-mInput-text.jr,
+.jv-mInput-search.jr {
   height: em(28px, 13px);
   width: 100%;
 }
 
-.jr-mInput-date.jr:focus,
-.jr-mInput-email.jr:focus,
-.jr-mInput-number.jr:focus,
-.jr-mInput-password.jr:focus,
-.jr-mInput-text.jr:focus,
-.jr-mInput-textarea.jr:focus,
-.jr-mInput-search.jr:focus {
+.jv-mInput-date.jr:focus,
+.jv-mInput-email.jr:focus,
+.jv-mInput-number.jr:focus,
+.jv-mInput-password.jr:focus,
+.jv-mInput-text.jr:focus,
+.jv-mInput-textarea.jr:focus,
+.jv-mInput-search.jr:focus {
   outline-offset: -2px;
 }
 
 
 // text input with associated button
-.jr-mInput-action.jr {
+.jv-mInput-action.jr {
   display: table;
   width: 100%;
 }
 
-.jr-mInput-action-text.jr {
+.jv-mInput-action-text.jr {
   display: table-cell;
   padding-right: em(8px, 13px);
   width: 100%;
 }
 
-.jr-mInput-action-button.jr  {
+.jv-mInput-action-button.jr  {
   display: table-cell;
   vertical-align: top;
   white-space: nowrap;
 }
 
-.jr-mInput-action-button.jr ~ .jr-mInput-action-button.jr {
+.jv-mInput-action-button.jr ~ .jv-mInput-action-button.jr {
   margin-right: em(6px, 13px);
 }
 
 // TEXTAREA
-.jr-mInput-textarea.jr {
+.jv-mInput-textarea.jr {
   height: em(70px, 13px);
   resize: vertical;
   white-space: pre-wrap;
@@ -349,52 +349,52 @@
 }
 
 // DATE TIME
-.jr-mInput-date.jr {
+.jv-mInput-date.jr {
   width: calc(100% - 3em);
   white-space: normal;
 }
 
-.jr-mInput-datetrigger.jr {
+.jv-mInput-datetrigger.jr {
   height: em(28px, 13px); // same height as input
   width: em(28px, 13px);
 }
 
-.jr-mInput-datetrigger-icon.jr {
+.jv-mInput-datetrigger-icon.jr {
   height: 100%;
 }
 
 // SELECT (NATIVE)
-.jr-mInput-select.jr {
+.jv-mInput-select.jr {
   // top margin ensures that a select input and its label has the same height as other inputs
   // since the select input is shorter than other inputs, extra space is needed for this effect
   margin-top: em(4px, 13px);
   width: auto;
 }
 
-.jr-mInput-selectTight.jr {
+.jv-mInput-selectTight.jr {
   // reduces the amount of space between the label and input to match that of other inputs.
   // results in the input and its label not being the same height as other inputs+labels
   margin-top: 0;
 }
 
-.jr-mInput-select-item.jr {}
+.jv-mInput-select-item.jr {}
 
-.jr-mInput-select.jr +  .jr-mInput-alert.jr {
+.jv-mInput-select.jr +  .jv-mInput-alert.jr {
   margin-top: em(6px, 13px);
 }
 
-.jr-mInput-selectWide.jr {
+.jv-mInput-selectWide.jr {
   width: 100%;
 }
 
 // SELECTT (CUSTOM)
-.jr-mInput-selectt.jr {
+.jv-mInput-selectt.jr {
   background-color: #fff;
   display: inline-block;
   position: relative;
 }
 
-.jr-mInput-selectt-list.jr {
+.jv-mInput-selectt-list.jr {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -408,41 +408,41 @@
   padding-left: em(5px, 13px);
   position: relative;
   min-width: 50%;
-  z-index: $zindex-element-lvl-1; // must be above jr-mInput-selectt-list to show options on click
+  z-index: $zindex-element-lvl-1; // must be above jv-mInput-selectt-list to show options on click
 }
 
-.jr-mInput-selecttWide.jr,
-.jr-mInput-selecttWide.jr .jr-mInput-selectt-list.jr {
+.jv-mInput-selecttWide.jr,
+.jv-mInput-selecttWide.jr .jv-mInput-selectt-list.jr {
   width: 100%;
 }
 
-.jr-mInput-selectt-list.jr::-ms-expand {
+.jv-mInput-selectt-list.jr::-ms-expand {
   display: none;
 }
 
-.jr-mInput-selectt-list-item.jr {
+.jv-mInput-selectt-list-item.jr {
   padding: em(5px, 13px);
 }
 
-.jr-mInput-selectt-expander.jr {
+.jv-mInput-selectt-expander.jr {
   border: 1px solid #cccccc;
   padding-top: em(2px, 13px);
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: $zindex-element-lvl-0; // must be below jr-mInput-selectt-expander to show options on click
+  z-index: $zindex-element-lvl-0; // must be below jv-mInput-selectt-expander to show options on click
 }
 
 // FILE UPLOAD
-.jr-mInput-file.jr {
+.jv-mInput-file.jr {
   display: flex;
   position: relative;
   width: 100%;
   height: em(28px, 13px);
 }
 
-.jr-mInput-file-input.jr {
+.jv-mInput-file-input.jr {
   cursor: pointer;
   height: 100%;
   opacity: 0;
@@ -453,12 +453,12 @@
   z-index: 10;
 }
 
-.jr-mInput-file-trigger.jr {
+.jv-mInput-file-trigger.jr {
   cursor: pointer;
   height: inherit;
 }
 
-.jr-mInput-file-name.jr {
+.jv-mInput-file-name.jr {
   background: #fff;
   border: 1px solid #cccccc;
   height: inherit;
@@ -467,16 +467,16 @@
   width: 100%;
 }
 // placement options for trigger and file name
-.jr-mInput-file-trigger.jr ~ .jr-mInput-file-name.jr {
+.jv-mInput-file-trigger.jr ~ .jv-mInput-file-name.jr {
   margin-left: em(8px, 13px);
 }
 
-.jr-mInput-file-name.jr ~ .jr-mInput-file-trigger.jr {
+.jv-mInput-file-name.jr ~ .jv-mInput-file-trigger.jr {
   margin-left: em(8px, 13px);
 }
 
-.jr-mInput-file-name-label.jr,
-.jr-mInput-file-name-placeholder.jr {
+.jv-mInput-file-name-label.jr,
+.jv-mInput-file-name-placeholder.jr {
   line-height: em(28px, 13px);
   overflow: hidden;
   padding-left: em(6px, 13px);
@@ -484,30 +484,30 @@
   text-overflow: ellipsis;
 }
 
-.jr-mInput-file-name-label.jr {
+.jv-mInput-file-name-label.jr {
   display: block;
 }
 
-.jr-mInput-file-name-placeholder.jr {
+.jv-mInput-file-name-placeholder.jr {
   display: none;
 }
 
 // small variation
-.jr-mInput-fileSmall.jr {
+.jv-mInput-fileSmall.jr {
   height: em(22px, 13px);
 }
 
-.jr-mInput-fileSmall.jr .jr-mInput-file-name-label.jr,
-.jr-mInput-fileSmall.jr .jr-mInput-file-name-placeholder.jr {
+.jv-mInput-fileSmall.jr .jv-mInput-file-name-label.jr,
+.jv-mInput-fileSmall.jr .jv-mInput-file-name-placeholder.jr {
   font-size: em(12px, 13px);
   line-height: em(22px, 13px);
 }
 
 
 // TEXT, INLINE EDITABLE
-.jr-mInput-editable.jr {}
+.jv-mInput-editable.jr {}
 
-.jr-mInput-editable-text.jr {
+.jv-mInput-editable-text.jr {
   display: inline-block;
   height: em(26px, 13px);
   line-height: math.div(30px, 13px);
@@ -517,11 +517,11 @@
   max-width: 100%;
 }
 
-.jr-mInput-editable-textBlank.jr {
+.jv-mInput-editable-textBlank.jr {
   font-style: italic;
 }
 
-.jr-mInput-editable-textArea.jr {
+.jv-mInput-editable-textArea.jr {
   display: inline-block;
   height: auto;
   line-height: math.div(16px, 13px);
@@ -532,18 +532,18 @@
   white-space: normal;
 }
 
-.jr-mInput-editable.jr ~ .jr-mInput-text,
-.jr-mInput-editable.jr ~ .jr-mInput-textarea,
-.jr-mInput-editableEdit.jr {
+.jv-mInput-editable.jr ~ .jv-mInput-text,
+.jv-mInput-editable.jr ~ .jv-mInput-textarea,
+.jv-mInput-editableEdit.jr {
   display: none;
 }
 
-.jr-mInput-editable-textArea.jr ~ .jr-mInput-editable-indicator.jr {
+.jv-mInput-editable-textArea.jr ~ .jv-mInput-editable-indicator.jr {
   cursor: pointer;
   width: em(22px, 13px);
 }
 
-.jr-mInput-editable-indicator.jr {
+.jv-mInput-editable-indicator.jr {
   background-color: inherit;
   display: none;
   margin-top: em(5px, 13px);
@@ -551,14 +551,14 @@
   width: em(32px, 13px);
 }
 
-.jr-mInput-editable-indicator.jr .jr-mIcon.jr {
+.jv-mInput-editable-indicator.jr .jv-mIcon.jr {
   float: right;
   opacity: .5;
 }
 
 // RADIO AND CHECKBOXES
 // container for radio buttons and checkboxes when the number of items is more than three
-.jr-mInput-set.jr {
+.jv-mInput-set.jr {
   background-color: #fff;
   border: 1px solid #d6d6d6;
   height: em(72px, 13px);
@@ -566,8 +566,8 @@
   width: auto;
 }
 
-.jr-mInput-checkContainer.jr,
-.jr-mInput-radioContainer.jr {
+.jv-mInput-checkContainer.jr,
+.jv-mInput-radioContainer.jr {
   margin-left: em(5px, 13px);
   margin-top: em(4px, 13px);
   overflow-x: hidden;
@@ -575,17 +575,17 @@
   position: relative;
 }
 
-.jr-mInput-check.jr,
-.jr-mInput-radio.jr   {
+.jv-mInput-check.jr,
+.jv-mInput-radio.jr   {
   margin-left: em(1px, 13px);  // prevents clipping in Chrome
   padding-bottom: em(7px, 13px);
   position: relative;
   white-space: nowrap;
 }
 
-.jr-mInput-check-box.jr,
-.jr-mInput-radio-button.jr,
-.jr-mInput-boolean-box.jr {
+.jv-mInput-check-box.jr,
+.jv-mInput-radio-button.jr,
+.jv-mInput-boolean-box.jr {
   display: inline-block;
   //line-height: em(20px, 13px);
   margin-right: em(2px, 13px);
@@ -593,13 +593,13 @@
   width: em(14px, 13px);
 }
 
-.jr-mInput-boolean-box.jr {
+.jv-mInput-boolean-box.jr {
   //margin-top: em(3px, 13px);
 }
 
-.jr-mInput-check-label.jr,
-.jr-mInput-radio-label.jr,
-.jr-mInput-boolean-label.jr  {
+.jv-mInput-check-label.jr,
+.jv-mInput-radio-label.jr,
+.jv-mInput-boolean-label.jr  {
   color: $grey-textMedium;
   cursor: default;
   display: inline-block;
@@ -608,22 +608,22 @@
   width: calc(100% - 3em);
 }
 
-.jr-mInput-checklabel.jr,
-.jr-mInput-radiolabel.jr {
+.jv-mInput-checklabel.jr,
+.jv-mInput-radiolabel.jr {
   width: 100%;
 }
 
-.jr-mInput-boolean-label.jr {
+.jv-mInput-boolean-label.jr {
   font-family: $font-family-semibold;
   //margin-top: em(3px, 13px);
 }
 
 
-.jr-mInput.jr-isInvalid.jr {}
+.jv-mInput.jv-isInvalid.jr {}
 
 
 // START all/none/invert button bar
-.jr-mItemselector.jr {
+.jv-mItemselector.jr {
   display: table;
   font-size: em(12px, 13px);
   height: em(22px, 12px);
@@ -633,14 +633,14 @@
   width: 100%;
 }
 
-.jr-mInput-buttonContainer.jr {
+.jv-mInput-buttonContainer.jr {
   border: 1px solid #d6d6d6;
   border-top: none;
   position: relative;
   width: 100%;
 }
 
-.jr-mItemselector-button.jr {
+.jv-mItemselector-button.jr {
   background-color: #fff;
   border-right: 1px solid #d6d6d6;
   color: $grey-textMedium;
@@ -656,18 +656,18 @@
   white-space: nowrap;
 }
 
-.jr-mItemselector-button-icon.jr {
+.jv-mItemselector-button-icon.jr {
   width: em(16px, 12px);
 }
 
 // IE11
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .jr-mItemselector-button-icon.jr {
+  .jv-mItemselector-button-icon.jr {
     top: 1px;
   }
 }
 
-.jr-mItemselector-button-label.jr {
+.jv-mItemselector-button-label.jr {
   line-height: math.div(24px, 12px); // unitless value
   overflow: hidden;
   text-decoration: none;
@@ -676,7 +676,7 @@
   white-space: nowrap;
 }
 
-.jr-mItemselector-button.jr:last-of-type {
+.jv-mItemselector-button.jr:last-of-type {
   border-right: none;
 }
 
@@ -687,8 +687,8 @@
 // --------------
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  .jr-mInput-select.jr:focus,
-  .jr-mInput-selectt-list.jr:focus {
+  .jv-mInput-select.jr:focus,
+  .jv-mInput-selectt-list.jr:focus {
     outline-color: #90bffc;
     outline-style: auto;
     outline-width: 4px;
@@ -696,98 +696,98 @@
 }
 
 @-moz-document url-prefix() {
-  .jr-mInput-select.jr:focus {
+  .jv-mInput-select.jr:focus {
     outline: 0;
   }
 }
 
 // disable input controls
-.jr-mInput.jr-isDisabled.jr {
+.jv-mInput.jv-isDisabled.jr {
   @include opacity(0.4);
 }
 
-.jr-mInput.jr-isDisabled.jr .jr-mInput-datetrigger.jr {
+.jv-mInput.jv-isDisabled.jr .jv-mInput-datetrigger.jr {
   cursor: default;
 }
 
-.jr-mInput.jr-isDisabled.jr * {
+.jv-mInput.jv-isDisabled.jr * {
   cursor: default;
 }
 
-.jr-mInput-text.jr:disabled,
-.jr-mInput-textarea.jr:disabled,
-.jr-mInput-number.jr:disabled,
-.jr-mInput-email.jr:disabled,
-.jr-mInput-date.jr:disabled,
-.jr-mInput-password.jr:disabled,
-.jr-mInput-search.jr:disabled {
+.jv-mInput-text.jr:disabled,
+.jv-mInput-textarea.jr:disabled,
+.jv-mInput-number.jr:disabled,
+.jv-mInput-email.jr:disabled,
+.jv-mInput-date.jr:disabled,
+.jv-mInput-password.jr:disabled,
+.jv-mInput-search.jr:disabled {
   background-color: #f7f7f7;
 }
 
-.jr-mInput-text.jr-isDisabled.jr:disabled,
-.jr-mInput-textarea.jr-isDisabled.jr:disabled,
-.jr-mInput-number.jr-isDisabled.jr:disabled,
-.jr-mInput-email.jr-isDisabled.jr:disabled,
-.jr-mInput-date.jr-isDisabled.jr:disabled,
-.jr-mInput-password.jr-isDisabled.jr:disabled,
-.jr-mInput-search.jr-isDisabled.jr:disabled {
+.jv-mInput-text.jv-isDisabled.jr:disabled,
+.jv-mInput-textarea.jv-isDisabled.jr:disabled,
+.jv-mInput-number.jv-isDisabled.jr:disabled,
+.jv-mInput-email.jv-isDisabled.jr:disabled,
+.jv-mInput-date.jv-isDisabled.jr:disabled,
+.jv-mInput-password.jv-isDisabled.jr:disabled,
+.jv-mInput-search.jv-isDisabled.jr:disabled {
   color: #bbbbbb;
 }
 
 
 // editable text hover + click
-.jr-mInput-editableStatic.jr-isHovered.jr .jr-mInput-editable-text {
+.jv-mInput-editableStatic.jv-isHovered.jr .jv-mInput-editable-text {
   max-width: calc(100% - 38px) !important;
   text-overflow: clip;
 }
 
-.jr-mInput-editableStatic.jr-isHovered.jr .jr-mInput-editable-indicator.jr {
+.jv-mInput-editableStatic.jv-isHovered.jr .jv-mInput-editable-indicator.jr {
   display: inline-block;
 }
 
-.jr-mInput-editableStatic.jr-isClicked.jr {
+.jv-mInput-editableStatic.jv-isClicked.jr {
   display: none;
 }
 
-.jr-mInput-editableStatic.jr-isClicked.jr ~ .jr-mInput-editableEdit {
+.jv-mInput-editableStatic.jv-isClicked.jr ~ .jv-mInput-editableEdit {
   display: block;
 }
 
 // hide file input placeholder text
-.jr-mInput-file-name-placeholder.jr-isHidden.jr {
+.jv-mInput-file-name-placeholder.jv-isHidden.jr {
   display: none;
 }
 
 // error validation for editable text and textarea
-.jr-mInput-editableEdit.jr-isInvalid.jr .jr-mInput-text.jr,
-.jr-mInput-editableEdit.jr-isInvalid.jr .jr-mInput-textarea.jr {
+.jv-mInput-editableEdit.jv-isInvalid.jr .jv-mInput-text.jr,
+.jv-mInput-editableEdit.jv-isInvalid.jr .jv-mInput-textarea.jr {
   border: 1px solid $color-errorMedium;
   padding-right: em(30px);
 }
 
 // hide validation error message
-.jr-mInput-alert.jr-isInvisible.jr {
+.jv-mInput-alert.jv-isInvisible.jr {
   visibility: hidden;
 }
 
 // hide validation error message
-.jr-mInput-search-clear.jr-isVisible.jr {
+.jv-mInput-search-clear.jv-isVisible.jr {
   display: block;
 }
 
 
 // file browse placeholder text
-.jr-mInput-file.jr-isEmpty.jr .jr-mInput-file-name-label.jr {
+.jv-mInput-file.jv-isEmpty.jr .jv-mInput-file-name-label.jr {
   display: none;
 }
 
-.jr-mInput-file.jr-isEmpty.jr .jr-mInput-file-name-placeholder.jr {
+.jv-mInput-file.jv-isEmpty.jr .jv-mInput-file-name-placeholder.jr {
   display: block;
   opacity: .3;
 }
 
 
 //:TODO: SMACC violation, fix it
-.jr-mSingleselect-input-placeholder.jr-isHidden.jr {
+.jv-mSingleselect-input-placeholder.jv-isHidden.jr {
   display: none;
 }

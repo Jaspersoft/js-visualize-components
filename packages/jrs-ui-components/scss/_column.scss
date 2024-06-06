@@ -25,7 +25,7 @@
     Last modified by:       Anna Leeg
  * ============================================= */
 
-.jr-mColumns.jr {
+.jv-mColumns.jr {
   //position: absolute;
   //top: 3.636em;
   //bottom: 0;
@@ -35,40 +35,40 @@
   width: 100%;
 }
 
-.jr-mColumn.jr {
+.jv-mColumn.jr {
   //display: table-cell;
   //height: 100%;
   //vertical-align: top;
 }
 
-.jr-mColumnMinor.jr {
+.jv-mColumnMinor.jr {
   flex: 0 1 auto;
   width: 250px;
 }
 
-.jr-mColumnMajor.jr {
+.jv-mColumnMajor.jr {
   flex: 1 1 auto;
 }
 
-.jr-mColumnPadded.jr {
+.jv-mColumnPadded.jr {
   padding: em(15px) em(11px);
 } // inner padding is split between columns
 
-.jr-mColumnPadded.jr:first-of-type {
+.jv-mColumnPadded.jr:first-of-type {
   padding-left: em(22px);
 }
 
-.jr-mColumnPadded.jr:last-of-type {
+.jv-mColumnPadded.jr:last-of-type {
   padding-right: em(22px);
 }
 
 
-.jr-mColumnPaddedEqual.jr {
+.jv-mColumnPaddedEqual.jr {
   padding-left: em(22px);
   padding-right: em(22px);
 } // inner padding is equal among all columns
 
-.jr-mColumn-wrapper.jr {
+.jv-mColumn-wrapper.jr {
   // use this when column contents need a surrounding margin
   margin: em(15px) em(18px);
 }

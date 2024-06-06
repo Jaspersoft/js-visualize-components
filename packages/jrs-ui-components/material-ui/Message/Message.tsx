@@ -13,8 +13,8 @@ type CardProps = MuiCardProps & {
 }
 
 export enum TypeToClass {
-    error = 'jr-mMessageError',
-    warning = 'jr-mMessageWarning'
+    error = 'jv-mMessageError',
+    warning = 'jv-mMessageWarning'
 }
 
 export const Message = forwardRef<HTMLDivElement, CardProps>(({
@@ -27,26 +27,26 @@ export const Message = forwardRef<HTMLDivElement, CardProps>(({
     const {
         avatar: avatarClass = '', content: contentClass = '', action: actionClass = '', ...restHeaderClasses
     } = headerClasses;
-    const paddedHeaderClass = isHeaderPadded ? 'jr-mMessage-headerPadded' : '';
+    const paddedHeaderClass = isHeaderPadded ? 'jv-mMessage-headerPadded' : '';
 
     const { className: contentClassName = '', isPadded = true, ...restCardContentProps } = cardContentProps;
-    const paddedClass = isPadded ? 'jr-mMessage-bodyPadded' : '';
+    const paddedClass = isPadded ? 'jv-mMessage-bodyPadded' : '';
 
     return (
-        <MuiCard ref={ref} className={`jr-mMessage ${TypeToClass[type]} ${className} mui`} elevation={elevation} {...rest}>
+        <MuiCard ref={ref} className={`jv-mMessage ${TypeToClass[type]} ${className} mui`} elevation={elevation} {...rest}>
             { isCardHeader && (
                 <MuiCardHeader
-                    className={`jr-mMessage-header ${headerClassName} ${paddedHeaderClass} mui`}
+                    className={`jv-mMessage-header ${headerClassName} ${paddedHeaderClass} mui`}
                     classes={{
-                        avatar: `jr-mMessage-header-icon ${avatarClass} mui`,
-                        content: `jr-mMessage-header-title ${contentClass} mui`,
-                        action: `jr-mMessage-header-action ${actionClass}  mui`,
+                        avatar: `jv-mMessage-header-icon ${avatarClass} mui`,
+                        content: `jv-mMessage-header-title ${contentClass} mui`,
+                        action: `jv-mMessage-header-action ${actionClass}  mui`,
                         ...restHeaderClasses
                     }}
                     {...restCardHeaderProps}
                 />
             )}
-            <MuiCardContent className={`jr-mMessage-body ${paddedClass} ${contentClassName} mui`} {...restCardContentProps}>
+            <MuiCardContent className={`jv-mMessage-body ${paddedClass} ${contentClassName} mui`} {...restCardContentProps}>
                 {children}
             </MuiCardContent>
         </MuiCard>

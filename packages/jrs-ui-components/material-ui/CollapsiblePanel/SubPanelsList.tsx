@@ -90,7 +90,7 @@ export const SubPanelsList: FC<SubPanelsListProps> = ({
     const lastOpenSubPanelIndex = getLastOpenSubPanelIndex(panelState);
 
     return (
-        <List disablePadding className="jr-mPanel-sections mui" component="div" style={{ overflow: 'hidden' }}>
+        <List disablePadding className="jv-mPanel-sections mui" component="div" style={{ overflow: 'hidden' }}>
             {
                 panel.subPanels.map((subPanelItem, subPanelIndex) => {
                     const subPanelState = panelState.subPanels[subPanelIndex];
@@ -106,7 +106,7 @@ export const SubPanelsList: FC<SubPanelsListProps> = ({
                             key={subPanelState.id}
                             data-name={subPanelItem.id}
                             disableGutters
-                            className="jr-mPanel-section mui"
+                            className="jv-mPanel-section mui"
                             style={listItemStyle}
                             component="div"
                         >
@@ -131,7 +131,7 @@ export const SubPanelsList: FC<SubPanelsListProps> = ({
                             enable={{
                                 bottom: true
                             }}
-                            handleClasses={{ bottom: 'jr-mPanel-resizerVertical mui' }}
+                            handleClasses={{ bottom: 'jv-mPanel-resizerVertical mui' }}
                             size={{
                                 width: '100%',
                                 height: subPanelState.height,

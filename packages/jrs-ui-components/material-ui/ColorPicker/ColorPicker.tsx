@@ -20,7 +20,7 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(({
     return (
         <TextField
             ref={ref}
-            className={`jr-mControl jr-mControlColor mui ${className}`}
+            className={`jv-mControl jv-mControlColor mui ${className}`}
             value={value}
             type="string"
             InputProps={{

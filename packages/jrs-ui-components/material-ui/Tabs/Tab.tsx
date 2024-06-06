@@ -9,7 +9,7 @@ export const Tab = forwardRef<HTMLDivElement, MuiTabProps>(({
     return (
         <MuiTab
             ref={ref}
-            className={`jr-mTab ${className} mui`}
+            className={`jv-mTab ${className} mui`}
             {...rest}
         />
     )

@@ -1,8 +1,8 @@
 import { ButtonProps, PropTypes } from '@mui/material';
 
 export const SizeToClass: {[key in Required<ButtonProps>['size']]: string} = {
-    large: 'jr-mButtonLarge',
-    small: 'jr-mButtonSmall',
+    large: 'jv-mButtonLarge',
+    small: 'jv-mButtonSmall',
     medium: ''
 }
 
@@ -13,14 +13,14 @@ export const ColorToClass: {[key in ButtonColor]: string} = {
     default: '',
     success: '',
     info: '',
-    secondary: 'jr-mButtonSecondary',
-    primary: 'jr-mButtonPrimary',
-    error: 'jr-mButtonError',
-    warning: 'jr-mButtonWarning'
+    secondary: 'jv-mButtonSecondary',
+    primary: 'jv-mButtonPrimary',
+    error: 'jv-mButtonError',
+    warning: 'jv-mButtonWarning'
 }
 
 export const VariantToClassName: {[key in Required<ButtonProps>['variant']]: string} = {
-    contained: 'jr-MuiButton-contained',
-    text: 'jr-MuiButton-text',
-    outlined: 'jr-MuiButton-outlined'
+    contained: 'jv-MuiButton-contained',
+    text: 'jv-MuiButton-text',
+    outlined: 'jv-MuiButton-outlined'
 }

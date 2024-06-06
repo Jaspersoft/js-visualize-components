@@ -20,16 +20,16 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
     labelProps = {}, color = 'secondary', className = '', size = 'medium', icon, variant = 'text', selected = false, ...rest
 }, ref) => {
     const { labelClasses } = labelProps;
-    const iconClassName = `jr-${icon}`;
-    const selectedClassName = selected ? 'jr-Mui-selected' : '';
+    const iconClassName = `jv-${icon}`;
+    const selectedClassName = selected ? 'jv-Mui-selected' : '';
 
     return (
         <MuiIconButton
             ref={ref}
-            className={`jr-mButton ${ColorToClass[color]} ${SizeToClass[size]} mui ${VariantToClassName[variant]} ${selectedClassName} ${className}`}
+            className={`jv-mButton ${ColorToClass[color]} ${SizeToClass[size]} mui ${VariantToClassName[variant]} ${selectedClassName} ${className}`}
             {...rest}
         >
-            <span className={`jr-mButton-icon jr-mIcon mui ${iconClassName} ${labelClasses}`} />
+            <span className={`jv-mButton-icon jv-mIcon mui ${iconClassName} ${labelClasses}`} />
         </MuiIconButton>
     )
 })

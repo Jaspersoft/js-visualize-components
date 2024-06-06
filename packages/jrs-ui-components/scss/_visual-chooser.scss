@@ -45,20 +45,20 @@
 
 @use "sass:math";
 
-.jr-mVisualChooserDialog.jr {
+.jv-mVisualChooserDialog.jr {
   user-select: none;
   z-index: 4000;
 }
 
-.jr-mVisualchooser.jr {
+.jv-mVisualchooser.jr {
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-.jr-mVisualchooserNarrow.jr {}
+.jv-mVisualchooserNarrow.jr {}
 
-.jr-mVisualchooser-panel.jr {
+.jv-mVisualchooser-panel.jr {
   background-color: $color-tciMedium;
   flex: 0 1 auto;
   height: 100%;
@@ -67,7 +67,7 @@
   width: em(232px);
 }
 
-.jr-Visualchooser-panel-minimize.jr {
+.jv-Visualchooser-panel-minimize.jr {
   background-color: $color-tciMedium;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -80,7 +80,7 @@
   z-index: 99;
 }
 
-.jr-Visualchooser-panel-minimize-icon.jr {
+.jv-Visualchooser-panel-minimize-icon.jr {
   color: #fff;
   font-size: 22px;
   height: em(28px, 22px);
@@ -88,17 +88,17 @@
   line-height: math.div(30px, 22px);
 }
 
-.jr-mVisualchooser-body.jr {
+.jv-mVisualchooser-body.jr {
   flex: 1 1 auto;
   overflow: hidden;
   width: 470px;
 }
 
-.jr-mVisualchooser-menu.jr:only-child {
+.jv-mVisualchooser-menu.jr:only-child {
   bottom: 0;
 }
 
-.jr-mVisualchooser-menu.jr {
+.jv-mVisualchooser-menu.jr {
   overflow-y: auto;
   padding: em(20px) 0 0;
   position: absolute;
@@ -108,11 +108,11 @@
   left: em(20px);
 }
 
-.jr-mVisualchooserNarrow.jr .jr-mVisualchooser-menu.jr {
+.jv-mVisualchooserNarrow.jr .jv-mVisualchooser-menu.jr {
   bottom: 220px;
 }
 
-.jr-mVisualchooser-menu-item.jr {
+.jv-mVisualchooser-menu-item.jr {
   float: left;
   height: em(99px);
   margin-right: em(8px);
@@ -122,12 +122,12 @@
   width: em(90px);
 }
 
-.jr-mVisualchooser-menu-item-wrapper.jr {
+.jv-mVisualchooser-menu-item-wrapper.jr {
   cursor: pointer;
   display: inline-block;
 }
 
-.jr-mVisualchooser-menu-item-icon.jr {
+.jv-mVisualchooser-menu-item-icon.jr {
   background-image: image-url("chart-type-icon-sprite.svg");
   background-repeat: no-repeat;
   background-size: 40px;      // needs to be in pixels for Chrome
@@ -137,7 +137,7 @@
   margin: 0 auto;
 }
 
-.jr-mVisualchooser-menu-item-label.jr {
+.jv-mVisualchooser-menu-item-label.jr {
   color: $grey-textMedium;
   display: block;
   font-size: em(11px);
@@ -147,7 +147,7 @@
   margin-top: 3px;
 }
 
-.jr-mVisualchooser-rules.jr {
+.jv-mVisualchooser-rules.jr {
   background-color: #fff;
   box-shadow: 0 -2px 4px 0 rgba(0,0,0,.2);
   height: 175px;
@@ -160,17 +160,17 @@
   z-index: 999;
 }
 
-.jr-mVisualchooserNarrow.jr .jr-mVisualchooser-rules.jr {
+.jv-mVisualchooserNarrow.jr .jv-mVisualchooser-rules.jr {
   height: 220px;
 }
 
-.jr-mVisualchooser-rule.jr {
+.jv-mVisualchooser-rule.jr {
   display: flex;
   width: 100%;
   user-select: text;
 }
 
-.jr-mVisualchooser-rule-icon.jr {
+.jv-mVisualchooser-rule-icon.jr {
   background-image: image-url("chart-type-icon-sprite.svg");
   background-repeat: no-repeat;
   background-size: 18px;    // needs to be in pixels for Chrome
@@ -180,13 +180,13 @@
   min-width: 20px;          // needed to prevent truncation when dialog is resized to a narrow width
 }
 
-.jr-mVisualchooser-rule-text.jr {
+.jv-mVisualchooser-rule-text.jr {
   flex: 1 1 auto;
   padding-top: .2em;
   padding-left: 1.2em;
 }
 
-.jr-mVisualchooser-rule-text-label.jr {
+.jv-mVisualchooser-rule-text-label.jr {
   color: $color-tciMedium;
   display: inline;
   font-family: source_sans_prosemibold, Franklin Gothic Medium, Verdana, Arial, sans-serif;
@@ -198,167 +198,167 @@
 //  2. CHART TYPE ICONS
 //  ---------------------
 //  2a. Full-Size Chart Icons
-.jr-mVisualchooser-menu-item-iconColumn.jr {
+.jv-mVisualchooser-menu-item-iconColumn.jr {
   background-position: 4px 4px;
 }
 
-.jr-mVisualchooser-menu-item-iconStackedColumn.jr {
+.jv-mVisualchooser-menu-item-iconStackedColumn.jr {
   background-position: 4px -65px;
 }
 
-.jr-mVisualchooser-menu-item-iconPercentColumn.jr {
+.jv-mVisualchooser-menu-item-iconPercentColumn.jr {
   background-position: 4px -134px;
 }
 
-.jr-mVisualchooser-menu-item-iconBar.jr {
+.jv-mVisualchooser-menu-item-iconBar.jr {
   background-position: 4px -203px;
 }
 
-.jr-mVisualchooser-menu-item-iconStackedBar.jr {
+.jv-mVisualchooser-menu-item-iconStackedBar.jr {
   background-position: 4px -271px;
 }
 
-.jr-mVisualchooser-menu-item-iconPercentBar.jr {
+.jv-mVisualchooser-menu-item-iconPercentBar.jr {
   background-position: 4px -340px;
 }
 
-.jr-mVisualchooser-menu-item-iconSpiderColumn.jr {
+.jv-mVisualchooser-menu-item-iconSpiderColumn.jr {
   background-position: 4px -408px;
 }
 
-.jr-mVisualchooser-menu-item-iconLine.jr {
+.jv-mVisualchooser-menu-item-iconLine.jr {
   background-position: 4px -477px;
 }
 
-.jr-mVisualchooser-menu-item-iconSpline.jr {
+.jv-mVisualchooser-menu-item-iconSpline.jr {
   background-position: 4px -545px;
 }
 
-.jr-mVisualchooser-menu-item-iconArea.jr {
+.jv-mVisualchooser-menu-item-iconArea.jr {
   background-position: 4px -614px;
 }
 
-.jr-mVisualchooser-menu-item-iconStackedArea.jr {
+.jv-mVisualchooser-menu-item-iconStackedArea.jr {
   background-position: 4px -682px;
 }
 
-.jr-mVisualchooser-menu-item-iconPercentArea.jr {
+.jv-mVisualchooser-menu-item-iconPercentArea.jr {
   background-position: 4px -751px;
 }
 
-.jr-mVisualchooser-menu-item-iconAreaSpline.jr {
+.jv-mVisualchooser-menu-item-iconAreaSpline.jr {
   background-position: 4px -820px;
 }
 
-.jr-mVisualchooser-menu-item-iconSpiderLine.jr {
+.jv-mVisualchooser-menu-item-iconSpiderLine.jr {
   background-position: 4px -888px;
 }
 
-.jr-mVisualchooser-menu-item-iconSpiderArea.jr {
+.jv-mVisualchooser-menu-item-iconSpiderArea.jr {
   background-position: 4px -957px;
 }
 
-.jr-mVisualchooser-menu-item-iconColumnLine.jr {
+.jv-mVisualchooser-menu-item-iconColumnLine.jr {
   background-position: 4px -1026px;
 }
 
-.jr-mVisualchooser-menu-item-iconColumnSpline.jr {
+.jv-mVisualchooser-menu-item-iconColumnSpline.jr {
   background-position: 4px -1094px;
 }
 
-.jr-mVisualchooser-menu-item-iconStackedColumnLine.jr {
+.jv-mVisualchooser-menu-item-iconStackedColumnLine.jr {
   background-position: 4px -1163px;
 }
 
-.jr-mVisualchooser-menu-item-iconStackedColumnSpline.jr {
+.jv-mVisualchooser-menu-item-iconStackedColumnSpline.jr {
   background-position: 4px -1231px;
 }
 
-.jr-mVisualchooser-menu-item-iconMultiAxisLine.jr {
+.jv-mVisualchooser-menu-item-iconMultiAxisLine.jr {
   background-position: 4px -1300px;
 }
 
-.jr-mVisualchooser-menu-item-iconMultiAxisSpine.jr {
+.jv-mVisualchooser-menu-item-iconMultiAxisSpine.jr {
   background-position: 4px -1368px;
 }
 
-.jr-mVisualchooser-menu-item-iconMultiAxisColumn.jr {
+.jv-mVisualchooser-menu-item-iconMultiAxisColumn.jr {
   background-position: 4px -1437px;
 }
 
-.jr-mVisualchooser-menu-item-iconScatter.jr {
+.jv-mVisualchooser-menu-item-iconScatter.jr {
   background-position: 4px -1506px;
 }
 
-.jr-mVisualchooser-menu-item-iconBubble.jr {
+.jv-mVisualchooser-menu-item-iconBubble.jr {
   background-position: 4px -1574px;
 }
 
-.jr-mVisualchooser-menu-item-iconPie.jr {
+.jv-mVisualchooser-menu-item-iconPie.jr {
   background-position: 4px -1642px;
 }
 
-.jr-mVisualchooser-menu-item-iconDualLevelPie.jr {
+.jv-mVisualchooser-menu-item-iconDualLevelPie.jr {
   background-position: 4px -1710px;
 }
 
-.jr-mVisualchooser-menu-item-iconSemiPie.jr {
+.jv-mVisualchooser-menu-item-iconSemiPie.jr {
   background-position: 4px -1782px;
 }
 
-.jr-mVisualchooser-menu-item-iconHeatMap.jr {
+.jv-mVisualchooser-menu-item-iconHeatMap.jr {
   background-position: 2px -1847px;
 }
 
-.jr-mVisualchooser-menu-item-iconTimeSeriesHeatMap.jr {
+.jv-mVisualchooser-menu-item-iconTimeSeriesHeatMap.jr {
   background-position: 2px -1915px;
 }
 
-.jr-mVisualchooser-menu-item-iconDualMeasureTreeMap.jr {
+.jv-mVisualchooser-menu-item-iconDualMeasureTreeMap.jr {
   background-position: 2px -1984px;
 }
 
-.jr-mVisualchooser-menu-item-iconTreeMap.jr {
+.jv-mVisualchooser-menu-item-iconTreeMap.jr {
   background-position: 2px -2052px;
 }
 
-.jr-mVisualchooser-menu-item-iconParentTreeMap.jr {
+.jv-mVisualchooser-menu-item-iconParentTreeMap.jr {
   background-position: 2px -2120px;
 }
 
-.jr-mVisualchooser-menu-item-iconTileMap.jr {
+.jv-mVisualchooser-menu-item-iconTileMap.jr {
   background-position: 3px -2508px;
 }
 
-.jr-mVisualchooser-menu-item-iconCrosstab.jr {
+.jv-mVisualchooser-menu-item-iconCrosstab.jr {
   background-position: 3px -2191px;
 }
 
-.jr-mVisualchooser-menu-item-iconTable.jr {
+.jv-mVisualchooser-menu-item-iconTable.jr {
   background-position: 4px -2259px;
 }
 
-.jr-mVisualchooser-menu-item-iconArcGauge.jr {
+.jv-mVisualchooser-menu-item-iconArcGauge.jr {
   background-position: 4px -2317px;
 }
 
-.jr-mVisualchooser-menu-item-iconGauge.jr {
+.jv-mVisualchooser-menu-item-iconGauge.jr {
   background-position: 4px -2376px;
 }
 
-.jr-mVisualchooser-menu-item-iconMultiLevelGauge.jr {
+.jv-mVisualchooser-menu-item-iconMultiLevelGauge.jr {
   background-position: 4px -2441px;
 }
 // IE11
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .jr-mVisualchooser-menu-item-iconMultiLevelGauge.jr {
+  .jv-mVisualchooser-menu-item-iconMultiLevelGauge.jr {
     background-position: 4px -2442px;
   }
 }
 
 
 //  2b. Chart Category Icons
-.jr-mVisualchooser-panel.jr-isMinimized.jr .jr-mTab-item-icon.jr {
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-mTab-item-icon.jr {
   background-image: image-url("chart-type-icon-mono-sprite.svg");
   background-repeat: no-repeat;
   background-size: 20px;      // needs to be in pixels for Chrome
@@ -368,231 +368,231 @@
   margin: 0 auto;
 }
 
-.jr-mTab-item-iconAll.jr {
+.jv-mTab-item-iconAll.jr {
   background-position: 4px 7px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconAll.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconAll.jr {
   background-position: 4px -25px;
 }
 
-.jr-mTab-item-iconGrid.jr {
+.jv-mTab-item-iconGrid.jr {
   background-position: 4px -58px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconGrid.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconGrid.jr {
   background-position: 4px -92px;
 }
 
-.jr-mTab-item-iconBar.jr {
+.jv-mTab-item-iconBar.jr {
   background-position: 4px -124px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconBar.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconBar.jr {
   background-position: 4px -154px;
 }
 
-.jr-mTab-item-iconLine.jr {
+.jv-mTab-item-iconLine.jr {
   background-position: 4px -185px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconLine.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconLine.jr {
   background-position: 4px -216px;
 }
 
-.jr-mTab-item-iconMultiAxis.jr {
+.jv-mTab-item-iconMultiAxis.jr {
   background-position: 4px -248px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconMultiAxis.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconMultiAxis.jr {
   background-position: 4px -279px;
 }
 
-.jr-mTab-item-iconTime.jr {
+.jv-mTab-item-iconTime.jr {
   background-position: 4px -309px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconTime.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconTime.jr {
   background-position: 4px -340px;
 }
 
-.jr-mTab-item-iconScatter.jr {
+.jv-mTab-item-iconScatter.jr {
   background-position: 4px -369px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconScatter.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconScatter.jr {
   background-position: 4px -397px;
 }
 
-.jr-mTab-item-iconPie.jr {
+.jv-mTab-item-iconPie.jr {
   background-position: 4px -428px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconPie.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconPie.jr {
   background-position: 4px -461px;
 }
 
-.jr-mTab-item-iconRange.jr {
+.jv-mTab-item-iconRange.jr {
   background-position: 4px -493px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconRange.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconRange.jr {
   background-position: 4px -525px;
 }
 
-.jr-mTab-item-iconGauge.jr {
+.jv-mTab-item-iconGauge.jr {
   background-position: 4px -555px;
 }
-.jr-mTab-item.jr-isActive.jr .jr-mTab-item-iconGauge.jr {
+.jv-mTab-item.jv-isActive.jr .jv-mTab-item-iconGauge.jr {
   background-position: 4px -581px;
 }
 
 
 //  2c. Tiny Chart Icons
-.jr-mVisualchooser-rule-iconColumn.jr {
+.jv-mVisualchooser-rule-iconColumn.jr {
   background-position: 0 0;
 }
 
-.jr-mVisualchooser-rule-iconStackedColumn.jr {
+.jv-mVisualchooser-rule-iconStackedColumn.jr {
   background-position: 0 -30px;
 }
 
-.jr-mVisualchooser-rule-iconPercentColumn.jr {
+.jv-mVisualchooser-rule-iconPercentColumn.jr {
   background-position: 0 -61px;
 }
 
-.jr-mVisualchooser-rule-iconBar.jr {
+.jv-mVisualchooser-rule-iconBar.jr {
   background-position: 0 -92px;
 }
 
-.jr-mVisualchooser-rule-iconStackedBar.jr {
+.jv-mVisualchooser-rule-iconStackedBar.jr {
   background-position: 0 -123px;
 }
 
-.jr-mVisualchooser-rule-iconPercentBar.jr {
+.jv-mVisualchooser-rule-iconPercentBar.jr {
   background-position: 0 -154px;
 }
 
-.jr-mVisualchooser-rule-iconSpiderColumn.jr {
+.jv-mVisualchooser-rule-iconSpiderColumn.jr {
   background-position: 0 -184px;
 }
 
-.jr-mVisualchooser-rule-iconLine.jr,
-.jr-mVisualchooser-rule-iconTimeSeriesLine.jr {
+.jv-mVisualchooser-rule-iconLine.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesLine.jr {
   background-position: 0 -216px;
 }
 
-.jr-mVisualchooser-rule-iconSpline.jr,
-.jr-mVisualchooser-rule-iconTimeSeriesSpline.jr {
+.jv-mVisualchooser-rule-iconSpline.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesSpline.jr {
   background-position: 0 -247px;
 }
 
-.jr-mVisualchooser-rule-iconArea.jr,
-.jr-mVisualchooser-rule-iconTimeSeriesArea.jr {
+.jv-mVisualchooser-rule-iconArea.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesArea.jr {
   background-position: 0 -277px;
 }
 
-.jr-mVisualchooser-rule-iconStackedArea.jr {
+.jv-mVisualchooser-rule-iconStackedArea.jr {
   background-position: 0 -308px;
 }
 
-.jr-mVisualchooser-rule-iconPercentArea.jr {
+.jv-mVisualchooser-rule-iconPercentArea.jr {
   background-position: 0 -339px;
 }
 
-.jr-mVisualchooser-rule-iconAreaSpline.jr,
-.jr-mVisualchooser-rule-iconTimeSeriesAreaSpline.jr {
+.jv-mVisualchooser-rule-iconAreaSpline.jr,
+.jv-mVisualchooser-rule-iconTimeSeriesAreaSpline.jr {
   background-position: 0 -370px;
 }
 
-.jr-mVisualchooser-rule-iconSpiderLine.jr {
+.jv-mVisualchooser-rule-iconSpiderLine.jr {
   background-position: 0 -400px;
 }
 
-.jr-mVisualchooser-rule-iconSpiderArea.jr {
+.jv-mVisualchooser-rule-iconSpiderArea.jr {
   background-position: 0 -431px;
 }
 
-.jr-mVisualchooser-rule-iconColumnLine.jr {
+.jv-mVisualchooser-rule-iconColumnLine.jr {
   background-position: 0 -463px;
 }
 
-.jr-mVisualchooser-rule-iconColumnSpline.jr {
+.jv-mVisualchooser-rule-iconColumnSpline.jr {
   background-position: 0 -494px;
 }
 
-.jr-mVisualchooser-rule-iconStackedColumnLine.jr {
+.jv-mVisualchooser-rule-iconStackedColumnLine.jr {
   background-position: 0 -525px;
 }
 
-.jr-mVisualchooser-rule-iconStackedColumnSpline.jr {
+.jv-mVisualchooser-rule-iconStackedColumnSpline.jr {
   background-position: 0 -555px;
 }
 
-.jr-mVisualchooser-rule-iconMultiAxisLine.jr {
+.jv-mVisualchooser-rule-iconMultiAxisLine.jr {
   background-position: 0 -586px;
 }
 
-.jr-mVisualchooser-rule-iconMultiAxisSpline.jr {
+.jv-mVisualchooser-rule-iconMultiAxisSpline.jr {
   background-position: 0 -617px;
 }
 
-.jr-mVisualchooser-rule-iconMultiAxisColumn.jr {
+.jv-mVisualchooser-rule-iconMultiAxisColumn.jr {
   background-position: 0 -648px;
 }
 
-.jr-mVisualchooser-rule-iconScatter.jr {
+.jv-mVisualchooser-rule-iconScatter.jr {
   background-position: 0 -678px;
 }
 
-.jr-mVisualchooser-rule-iconBubble.jr {
+.jv-mVisualchooser-rule-iconBubble.jr {
   background-position: 0 -710px;
 }
 
-.jr-mVisualchooser-rule-iconPie.jr {
+.jv-mVisualchooser-rule-iconPie.jr {
   background-position: 0 -740px;
 }
 
-.jr-mVisualchooser-rule-iconDualLevelPie.jr {
+.jv-mVisualchooser-rule-iconDualLevelPie.jr {
   background-position: 0 -771px;
 }
 
-.jr-mVisualchooser-rule-iconSemiPie.jr {
+.jv-mVisualchooser-rule-iconSemiPie.jr {
   background-position: 0 -803px;
 }
 
-.jr-mVisualchooser-rule-iconHeatMap.jr {
+.jv-mVisualchooser-rule-iconHeatMap.jr {
   background-position: 0 -832px;
 }
 
-.jr-mVisualchooser-rule-iconTimeSeriesHeatMap.jr {
+.jv-mVisualchooser-rule-iconTimeSeriesHeatMap.jr {
   background-position: 0 -863px;
 }
 
-.jr-mVisualchooser-rule-iconDualMeasureTreeMap.jr {
+.jv-mVisualchooser-rule-iconDualMeasureTreeMap.jr {
   background-position: 0 -894px;
 }
 
-.jr-mVisualchooser-rule-iconTreeMap.jr {
+.jv-mVisualchooser-rule-iconTreeMap.jr {
   background-position: 0 -925px;
 }
 
-.jr-mVisualchooser-rule-iconParentTreeMap.jr {
+.jv-mVisualchooser-rule-iconParentTreeMap.jr {
   background-position: 0 -956px;
 }
 
-.jr-mVisualchooser-rule-iconTileMap.jr  {
+.jv-mVisualchooser-rule-iconTileMap.jr  {
   background-position: 0 -1130px;
 }
 
-.jr-mVisualchooser-rule-iconCrosstab.jr {
+.jv-mVisualchooser-rule-iconCrosstab.jr {
   background-position: 0 -988px;
 }
 
-.jr-mVisualchooser-rule-iconTable.jr {
+.jv-mVisualchooser-rule-iconTable.jr {
   background-position: 0 -1018px;
 }
 
-.jr-mVisualchooser-rule-iconArcGauge.jr {
+.jv-mVisualchooser-rule-iconArcGauge.jr {
   background-position: 0 -1044px;
 }
 
-.jr-mVisualchooser-rule-iconGauge.jr {
+.jv-mVisualchooser-rule-iconGauge.jr {
   background-position: 0 -1071px;
 }
 
-.jr-mVisualchooser-rule-iconMultiLevelGauge.jr {
+.jv-mVisualchooser-rule-iconMultiLevelGauge.jr {
   background-position: 0 -1100px;
 }
 
@@ -602,51 +602,51 @@
 //  3. STATES
 //  ---------------
 // hovered
-.jr-mVisualchooser-menu-item.jr:hover .jr-mVisualchooser-menu-item-label.jr {
+.jv-mVisualchooser-menu-item.jr:hover .jv-mVisualchooser-menu-item-label.jr {
   color: $color-tciMedium;
 }
 
 // selected
-.jr-mVisualchooser-menu-item.jr-isSelected.jr .jr-mVisualchooser-menu-item-icon.jr {
+.jv-mVisualchooser-menu-item.jv-isSelected.jr .jv-mVisualchooser-menu-item-icon.jr {
   outline: em(2px) solid $color-tciMedium;
 }
 
-.jr-mVisualchooser-menu-item.jr-isSelected.jr .jr-mVisualchooser-menu-item-label.jr {
+.jv-mVisualchooser-menu-item.jv-isSelected.jr .jv-mVisualchooser-menu-item-label.jr {
   color: $color-tciMedium;
   font-family: source_sans_prosemibold, Franklin Gothic Medium, Verdana, Arial, sans-serif;
   font-weight: normal;
 }
 
 // disabled
-.jr-mVisualchooser-menu-item.jr-isDisabled.jr {
+.jv-mVisualchooser-menu-item.jv-isDisabled.jr {
   opacity: .4;
 }
 // hidden
-.jr-mVisualchooser-menu-item.jr-isHidden.jr {
+.jv-mVisualchooser-menu-item.jv-isHidden.jr {
   display: none;
 }
 
-.jr-mVisualchooser-menu-item.jr-isDisabled.jr .jr-mVisualchooser-menu-item-wrapper.jr {
+.jv-mVisualchooser-menu-item.jv-isDisabled.jr .jv-mVisualchooser-menu-item-wrapper.jr {
   cursor: default;
 }
 
 // panel minimized
-.jr-mVisualchooser-panel.jr-isMinimized.jr {
+.jv-mVisualchooser-panel.jv-isMinimized.jr {
   min-width: 42px;
   padding-left: 6px;
   width: 42px;
 }
 
-.jr-mVisualchooser-panel.jr-isMinimized.jr + .jr-mVisualchooser-body.jr {}
+.jv-mVisualchooser-panel.jv-isMinimized.jr + .jv-mVisualchooser-body.jr {}
 
-.jr-mVisualchooser-panel.jr-isMinimized.jr .jr-mTab.jr {
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-mTab.jr {
   visibility: visible;
 }
 
-.jr-mVisualchooser-panel.jr-isMinimized.jr .jr-mTab-item-label.jr {
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-mTab-item-label.jr {
   display: none;
 }
 
-.jr-mVisualchooser-panel.jr-isMinimized.jr .jr-Visualchooser-panel-minimize-icon.jr {
+.jv-mVisualchooser-panel.jv-isMinimized.jr .jv-Visualchooser-panel-minimize-icon.jr {
   left: -10px;
 }

@@ -31,7 +31,7 @@
 // NOTE - BASE FONT SIZE WAS NOT CHANGED DURING UI IMPROVEMENTS IN 2019
 @use "sass:math";
 
-.jr-mDialog.jr {
+.jv-mDialog.jr {
   background-color: #fff;
   border: 0.091em solid #ccc;
   //border-radius: em(4px);
@@ -46,7 +46,7 @@
 }
 
 //header
-.jr-mDialog-header.jr {
+.jv-mDialog-header.jr {
   background-color: #e4e4e4;
   cursor: move;
   height: em(32px);
@@ -54,11 +54,11 @@
   padding-right: em(12px);
   position: relative;
 }
-.jr-mDialog-header.jr-jDialogDraggable.jr {
+.jv-mDialog-header.jv-jDialogDraggable.jr {
   cursor: move;
 }
 
-.jr-mDialog-header-title.jr {
+.jv-mDialog-header-title.jr {
   color: $color-tciMedium;
   display: inline-block;
   font-family: $font-family-semibold;
@@ -72,7 +72,7 @@
   white-space: nowrap;
 }
 
-.jr-mDialog-header-close.jr {
+.jv-mDialog-header-close.jr {
   position: absolute;
   top: em(3px);
   right: em(3px);
@@ -80,20 +80,20 @@
 }
 
 //tabs
-.jr-mDialog-tabs.jr {
+.jv-mDialog-tabs.jr {
   border-bottom: 1px solid  #e4e4e4;
   height: em(44px);
   padding: 0 em(11px);
   position: relative;
 }
 
-.jr-mDialog-tabs-wrapper.jr {
+.jv-mDialog-tabs-wrapper.jr {
   position: absolute;
   bottom: em(-1px);
 }
 
 //body
-.jr-mDialog-body.jr {
+.jv-mDialog-body.jr {
   background-color: #fff;
   height: calc(100% - #{em(72px)});
   overflow-y: auto;
@@ -101,30 +101,30 @@
   min-height: em(77px);
 }
 
-.jr-mDialog-tabs.jr + .jr-mDialog-body.jr {
+.jv-mDialog-tabs.jr + .jv-mDialog-body.jr {
   height: calc(100% - #{em(116px)});
 }
 
-.jr-mDialog-bodyPadded.jr {
+.jv-mDialog-bodyPadded.jr {
   // use this when dialog body requires padding
   padding: em(22px) em(22px);
 }
 
-.jr-mDialog-body.jr:last-child {
+.jv-mDialog-body.jr:last-child {
   // smaller min-height when there is no footer
   // min-height: em(75px);
   // border-bottom-right-radius: em(4px);
   // border-bottom-left-radius: em(4px);
 }
 
-.jr-mDialog-body-wrapper.jr {
+.jv-mDialog-body-wrapper.jr {
   // use this when dialog contents need a surrounding margin
   // use margin to better handle absolute positioned children, such as columns
   margin: em(22px) em(22px);
   width: calc(100% - #{em(44px)});
 }
 
-.jr-mDialog-body-wrapperFit.jr {
+.jv-mDialog-body-wrapperFit.jr {
   // use this when the container needs to fit the dialog body height with no overflow
   // use in resizable dialogs when contents need to resize in height along with the dialog
   display: table;
@@ -132,11 +132,11 @@
   height: calc(100% - #{em(44px)}); // 100% - (22px top margin + 22px bottom margin)
 }
 
-.jr-mDialog-body-instructions.jr {
+.jv-mDialog-body-instructions.jr {
   margin-bottom: em(20px);
 }
 
-.jr-mDialog-body-instructions-text.jr {
+.jv-mDialog-body-instructions-text.jr {
   color: $grey-textMedium;
   font-size: em(13px);
   margin-bottom: em(11px);
@@ -145,18 +145,18 @@
 
 // table layout on the following three items are required for all elements to work in the wrapperFit
 // when an element has a flexible height that depends on the dialog height. E.g. Missing Data dialog.
-.jr-mDialog-body-wrapperFit.jr .jr-mDialog-body-instructions.jr {
+.jv-mDialog-body-wrapperFit.jr .jv-mDialog-body-instructions.jr {
   //display: table-row;
 }
 
-.jr-mDialog-body-flexitem.jr {
+.jv-mDialog-body-flexitem.jr {
   display: table-row;
   height: 100%;
-} //DEPRECATE and replace with jr-uFlexfit-row-item
+} //DEPRECATE and replace with jv-uFlexfit-row-item
 
 
 //footer
-.jr-mDialog-footer.jr {
+.jv-mDialog-footer.jr {
   background-color: #fff;
   // border-bottom-right-radius: em(4px);
   // border-bottom-left-radius: em(4px);
@@ -169,7 +169,7 @@
   white-space: nowrap;
 }
 
-.jr-mDialog-footer-sizer.jr {
+.jv-mDialog-footer-sizer.jr {
   background: image-url("sizer_icons_sprite.png") no-repeat 0 0;
   cursor: nwse-resize;
   height: em(16px);
@@ -182,10 +182,10 @@
 //  -----------------------------
 //  DIALOG VARIATION - ERROR
 //  -----------------------------
-.jr-mDialogError.jr {}
+.jv-mDialogError.jr {}
 
 //header
-.jr-mDialogError.jr .jr-mDialog-header.jr {
+.jv-mDialogError.jr .jv-mDialog-header.jr {
   background-color: $color-errorMedium;
   border-top: 1px solid $color-errorMedium;
   border-right: 1px solid $color-errorMedium;
@@ -195,17 +195,17 @@
   width: calc(100% + 2px);
 }
 
-.jr-mDialogError.jr .jr-mDialog-header-title.jr {
+.jv-mDialogError.jr .jv-mDialog-header-title.jr {
   color: #fff;
 }
 
 //  -----------------------------
 //  DIALOG VARIATION - WARNING
 //  -----------------------------
-.jr-mDialogWarning.jr {}
+.jv-mDialogWarning.jr {}
 
 //header
-.jr-mDialogWarning.jr .jr-mDialog-header.jr {
+.jv-mDialogWarning.jr .jv-mDialog-header.jr {
   background-color: $color-warningMedium;
   border-top: 1px solid $color-warningMedium;
   border-right: 1px solid $color-warningMedium;
@@ -215,7 +215,7 @@
   width: calc(100% + 2px);
 }
 
-.jr-mDialogWarning.jr .jr-mDialog-header-title.jr {
+.jv-mDialogWarning.jr .jv-mDialog-header-title.jr {
   color: #fff;
 
 }
@@ -223,10 +223,10 @@
 //  -----------------------------
 //  DIALOG VARIATION - ATTENTION
 //  -----------------------------
-.jr-mDialogAttention.jr {}
+.jv-mDialogAttention.jr {}
 
 //header
-.jr-mDialogAttention.jr .jr-mDialog-header.jr {
+.jv-mDialogAttention.jr .jv-mDialog-header.jr {
   background-color: $color-attentionMedium;
   border-top: 1px solid $color-attentionMedium;
   border-right: 1px solid $color-attentionMedium;
@@ -236,7 +236,7 @@
   width: calc(100% + 2px);
 }
 
-.jr-mDialogAttention.jr .jr-mDialog-header-title.jr {
+.jv-mDialogAttention.jr .jv-mDialog-header-title.jr {
   color: #fff;
 
 }
@@ -244,35 +244,35 @@
 //  -----------------------------
 //  DIALOG VARIATION - MODAL
 //  -----------------------------
-.jr-mDialogModal.jr {
+.jv-mDialogModal.jr {
   z-index: $zindex-modal;
 }
 
 //  -----------------------------
 //  DIALOG VARIATION - NO FOOTER
 //  -----------------------------
-.jr-mDialogFootless.jr {
+.jv-mDialogFootless.jr {
   // min-height: em(120px); 88px body min-height + 32px header height
 } // Can we remove this? Not sure why we need this!
 
 
 // STATES
-.jr-mDialog.jr-isVisible.jr {
+.jv-mDialog.jv-isVisible.jr {
   display: block;
 }
 
-.jr-mDialog.jr-isHidden.jr {
+.jv-mDialog.jv-isHidden.jr {
   display: none;
 }
 
 //  ------------------------------------------------------------
 //  SPECIAL RULE - PREVENTS FOCUS STYLES FROM GETTING CUT OFF
 //  ------------------------------------------------------------
-.jr-mDialog.jr .jr-mGrid.jr {
+.jv-mDialog.jr .jv-mGrid.jr {
   overflow: visible;
 }
 
-[data-name="joinsDesignerConstantJoinExpressionEditorDialog"] .jr-mGridLoose::after {
+[data-name="joinsDesignerConstantJoinExpressionEditorDialog"] .jv-mGridLoose::after {
   content: "";
   clear: both;
   display: table;

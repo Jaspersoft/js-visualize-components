@@ -8,6 +8,6 @@ export const AccordionDetails = forwardRef<unknown, MuiAccordionDetailsProps>(({
 }, ref) => {
 
     return (
-        <MuiAccordionDetails ref={ref} className={`jr-mAccordion-body mui ${className}`} {...rest}>{children}</MuiAccordionDetails>
+        <MuiAccordionDetails ref={ref} className={`jv-mAccordion-body mui ${className}`} {...rest}>{children}</MuiAccordionDetails>
     )
 })

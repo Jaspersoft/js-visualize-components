@@ -27,7 +27,7 @@
 
 /* DROP ZONE */
 // base drop zone, same height as standard inputs at 28px
-.jr-mDropzone.jr {
+.jv-mDropzone.jr {
   background-color: #fafafa;
   border-color: #cccccc;
   border-width: 1px;
@@ -42,7 +42,7 @@
   width: 100%;
 }
 
-.jr-mDropzone-label.jr {
+.jv-mDropzone-label.jr {
   color: #b2b4b5;
   font-size: em(13px, 12px);
   display: inline-block;
@@ -55,7 +55,7 @@
   width: 100%;
 }
 
-.jr-mDropzone-remover.jr {
+.jv-mDropzone-remover.jr {
   color: $color-tciLight;
   cursor: pointer;
   display: none;
@@ -66,17 +66,17 @@
 
 // MODULE VARIATION, drop zone that fills container
 // min height of this drop zone is 34px
-.jr-mDropzoneFull.jr {
+.jv-mDropzoneFull.jr {
   display: flex;
   height: 100%;
 }
 
-.jr-mDropzoneFull.jr .jr-mDropzone-label.jr {
+.jv-mDropzoneFull.jr .jv-mDropzone-label.jr {
   align-self: center;
 }
 
 // MODULE VARIATION, drop zone indicated by a solid bar
-.jr-mDropzoneBar.jr {
+.jv-mDropzoneBar.jr {
   background-color: $color-tciLight;
   border: none;
   height: em(4px, 12px);
@@ -86,37 +86,37 @@
 
 /* STATES */
 // active
-.jr-mDropzone.jr-isActive.jr {
+.jv-mDropzone.jv-isActive.jr {
   background-color: #ebebeb;
   border: 1px dashed $grey-textMedium;
 }
 
-.jr-mDropzone.jr-isActive.jr .jr-mDropzone-label.jr {
+.jv-mDropzone.jv-isActive.jr .jv-mDropzone-label.jr {
   color: $grey-textMedium;
 }
 
 // drag token is over dropzone
-.jr-mDropzone.jr-isOver.jr {
+.jv-mDropzone.jv-isOver.jr {
   background-color: $color-tciLight;
   border-color: transparent;
 }
 
-.jr-mDropzone.jr-isOver.jr .jr-mDropzone-label.jr {
+.jv-mDropzone.jv-isOver.jr .jv-mDropzone-label.jr {
   color: #ffffff;
 }
 
 // drag token has been dropped onto dropzone
-.jr-mDropzone.jr-isDropped.jr {
+.jv-mDropzone.jv-isDropped.jr {
   border-color: $color-tciLight;
   border-style: solid;
 }
 
-.jr-mDropzone.jr-isDropped.jr .jr-mDropzone-label.jr {
+.jv-mDropzone.jv-isDropped.jr .jv-mDropzone-label.jr {
   color: $color-tciLight;
   padding-right: em(22px, 12px);
 }
 
-.jr-mDropzone.jr-isDropped.jr .jr-mDropzone-remover.jr {
+.jv-mDropzone.jv-isDropped.jr .jv-mDropzone-remover.jr {
   background-color: #fafafa;
   display: block;
   margin-left: em(24px, 12px);

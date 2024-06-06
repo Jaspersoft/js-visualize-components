@@ -23,10 +23,10 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(({
     const inlineClass = inline ? INLINE_CLASS : '';
     const noLabelClass = noLabel ? NO_LABEL_CLASS : '';
     return (
-        <div ref={ref} className={`jr-mInput jr-mInputSwitch ${inlineClass} ${noLabelClass} ${SizeToClass[size]} mui`} {...WrapperProps}>
+        <div ref={ref} className={`jv-mInput jv-mInputSwitch ${inlineClass} ${noLabelClass} ${SizeToClass[size]} mui`} {...WrapperProps}>
             <FormControlLabel
-                classes={{ label: `jr-mInput-label mui ${classes?.root ?? ''}`, ...classes }}
-                control={control ?? <MuiSwitch size={size} color="primary" className={`jr-mInput-switch mui ${switchPropsClassName}`} {...restSwitchProps} />}
+                classes={{ label: `jv-mInput-label mui ${classes?.root ?? ''}`, ...classes }}
+                control={control ?? <MuiSwitch size={size} color="primary" className={`jv-mInput-switch mui ${switchPropsClassName}`} {...restSwitchProps} />}
                 labelPlacement="start"
                 {...rest}
             />

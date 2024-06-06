@@ -10,6 +10,6 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(({ className = '', 
     const colorClassName = ColorToClass[color];
 
     return (
-        <MuiLink ref={ref} className={`jr-mLink mui ${colorClassName} ${className}`} {...rest} />
+        <MuiLink ref={ref} className={`jv-mLink mui ${colorClassName} ${className}`} {...rest} />
     )
 })

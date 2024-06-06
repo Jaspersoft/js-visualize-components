@@ -17,9 +17,9 @@ export const RadioButton = forwardRef<HTMLDivElement, RadioProps>(({
     return (
         <FormControlLabel
             ref={ref}
-            control={control ?? <MuiRadio color="primary" classes={{ root: `jr-mInput-radio-button mui ${radioClasses.root ?? ''}` }} {...restRadioProps} />}
-            className={`jr-mInput-radio ${className} mui`}
-            classes={{ label: `jr-mInput-radio-label mui ${classes?.root ?? ''}`, ...classes }}
+            control={control ?? <MuiRadio color="primary" classes={{ root: `jv-mInput-radio-button mui ${radioClasses.root ?? ''}` }} {...restRadioProps} />}
+            className={`jv-mInput-radio ${className} mui`}
+            classes={{ label: `jv-mInput-radio-label mui ${classes?.root ?? ''}`, ...classes }}
             {...rest}
         />
     )

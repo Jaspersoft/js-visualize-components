@@ -43,8 +43,8 @@ export const SubPanel: FC<SubPanelProps> = ({
     return (
         <Card elevation={0}>
             <CardHeader
-                className="jr-mPanel-section-header mui"
-                classes={{ content: 'jr-mPanel-section-header-title mui' }}
+                className="jv-mPanel-section-header mui"
+                classes={{ content: 'jv-mPanel-section-header-title mui' }}
                 title={label}
                 action={(
                     <>

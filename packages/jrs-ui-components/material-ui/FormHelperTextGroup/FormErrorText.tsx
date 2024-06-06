@@ -10,7 +10,7 @@ export const FormError = forwardRef<HTMLDivElement, FormErrorTextProps>((props, 
             {text && (
                 <FormHelperText
                     ref={ref}
-                    className={`jr-mInput-error mui ${className}`}
+                    className={`jv-mInput-error mui ${className}`}
                     {...rest}
                 >
                     {text}

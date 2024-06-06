@@ -77,11 +77,11 @@ export type MaxWidth = number | (() => number)
 
 export const DIRECTION_CLASS: {[key in Anchor]: {panelDirectionClass: string, panelsDirectionClass: string}} = {
     right: {
-        panelDirectionClass: 'jr-mPanelRight',
-        panelsDirectionClass: 'jr-mPanelsRight'
+        panelDirectionClass: 'jv-mPanelRight',
+        panelsDirectionClass: 'jv-mPanelsRight'
     },
     left: {
-        panelDirectionClass: 'jr-mPanelLeft',
-        panelsDirectionClass: 'jr-mPanelsLeft'
+        panelDirectionClass: 'jv-mPanelLeft',
+        panelsDirectionClass: 'jv-mPanelsLeft'
     }
 }

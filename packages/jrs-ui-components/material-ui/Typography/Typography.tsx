@@ -8,13 +8,13 @@ export type TypographyProps = Omit<MuiTypographyProps, 'variant'> & {
 const getVariantAndClassName = (variant: TypographyProps['variant']): [MuiTypographyProps['variant'], string] => {
     switch (variant) {
     case 'body1':
-        return ['body1', 'jr-mText mui']
+        return ['body1', 'jv-mText mui']
     case 'body2':
-        return ['body2', 'jr-mText jr-mTextSmall mui']
+        return ['body2', 'jv-mText jv-mTextSmall mui']
     case 'body3':
-        return [undefined, 'jr-mText jr-mTextLarge mui']
+        return [undefined, 'jv-mText jv-mTextLarge mui']
     case 'body4':
-        return [undefined, 'jr-mText jr-mTextXLarge mui']
+        return [undefined, 'jv-mText jv-mTextXLarge mui']
     default:
         return [variant, 'mui']
     }

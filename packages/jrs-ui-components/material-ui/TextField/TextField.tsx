@@ -48,7 +48,7 @@ export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
 }, ref) => {
     const inlineClass = inline ? INLINE_CLASS : '';
     const labelContainedClass = labelContained ? LABEL_CONTAINED : '';
-    const inputSelectClass = select ? 'jr-mInputSelect' : '';
+    const inputSelectClass = select ? 'jv-mInputSelect' : '';
     const { classes: inputLabelPropsClasses = {}, ...InputLabelPropsRest } = InputLabelProps;
     const { classes: inputPropsClasses = {}, ...InputPropsRest } = InputProps;
     const { classes: selectPropsClasses = {}, ...SelectPropsRest } = SelectProps;
@@ -61,7 +61,7 @@ export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
     const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
 
     const inputLabelProps = {
-        classes: { root: `jr-mInput-label mui ${inputLabelPropsClasses?.root ?? ''}`, ...inputLabelPropsClasses },
+        classes: { root: `jv-mInput-label mui ${inputLabelPropsClasses?.root ?? ''}`, ...inputLabelPropsClasses },
         disableAnimation: true,
         ...InputLabelPropsRest
     };
@@ -72,20 +72,20 @@ export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
     }, '');
 
     const inputProps = select ? {} : {
-        classes: { input: `jr-mInput-text mui ${inputPropsClasses?.input ?? ''}`, ...inputPropsClasses },
+        classes: { input: `jv-mInput-text mui ${inputPropsClasses?.input ?? ''}`, ...inputPropsClasses },
         ...(inputAriaDescribedBy ? { 'aria-describedby': inputAriaDescribedBy } : {}),
         'aria-invalid': hasError,
         ...InputPropsRest
     };
 
     const selectProps = {
-        classes: { select: `jr-mInput-select mui ${selectPropsClasses?.select ?? ''}`, ...selectPropsClasses },
+        classes: { select: `jv-mInput-select mui ${selectPropsClasses?.select ?? ''}`, ...selectPropsClasses },
         ...(inputAriaDescribedBy ? { 'aria-describedby': inputAriaDescribedBy } : {}),
         ...SelectPropsRest
     };
 
     const helperTextProps = {
-        classes: { root: `jr-mInput-helper mui ${helperTextPropsClasses?.root ?? ''}`, ...helperTextPropsClasses },
+        classes: { root: `jv-mInput-helper mui ${helperTextPropsClasses?.root ?? ''}`, ...helperTextPropsClasses },
         ...HelperTextPropsRest
     };
 
@@ -98,7 +98,7 @@ export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
                 error={hasError}
                 helperText={helperText}
                 variant="outlined"
-                className={`jr-mInput jr-mInputText mui ${inputSelectClass} ${SizeToClass[size]} ${inlineClass} ${WidthToClass[width]} ${labelContainedClass} ${textFieldClassName}`}
+                className={`jv-mInput jv-mInputText mui ${inputSelectClass} ${SizeToClass[size]} ${inlineClass} ${WidthToClass[width]} ${labelContainedClass} ${textFieldClassName}`}
                 InputLabelProps={inputLabelProps}
                 InputProps={inputProps}
                 SelectProps={selectProps}
@@ -107,7 +107,7 @@ export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
             />
             {TextFieldSuffix}
             {hasErrorText && (
-                <FormHelperText className={`jr-mInput-error mui ${errorTextPropsClassName}`} id={errorTextId} {...ErrorTextPropsRest}>
+                <FormHelperText className={`jv-mInput-error mui ${errorTextPropsClassName}`} id={errorTextId} {...ErrorTextPropsRest}>
                     {error}
                 </FormHelperText>
             )}

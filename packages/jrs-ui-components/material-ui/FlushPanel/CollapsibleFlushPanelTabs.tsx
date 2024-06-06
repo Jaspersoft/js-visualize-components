@@ -44,7 +44,7 @@ export const CollapsibleFlushPanelTabs = forwardRef<HTMLDivElement, CollapsibleF
     }
 
     return (
-        <div className={`jr-mPanels ${panelsDirectionClass} jr-mPanelsMinimized jr-mPanelsStacked mui`} ref={ref}>
+        <div className={`jv-mPanels ${panelsDirectionClass} jv-mPanelsMinimized jv-mPanelsStacked mui`} ref={ref}>
             {
                 panels.map((panelDefinition, panelIndex) => {
                     const isVisible = !isPanelFullyExpanded(panelIndex, panelsState);
@@ -53,16 +53,16 @@ export const CollapsibleFlushPanelTabs = forwardRef<HTMLDivElement, CollapsibleF
 
                     return isVisible && (
                         <div
-                            className={`jr-mPanel ${panelDirectionClass} jr-mPanelMinimized mui`}
+                            className={`jv-mPanel ${panelDirectionClass} jv-mPanelMinimized mui`}
                             key={id}
                             data-name={`${id}-tabs`}
                         >
-                            <div className="jr-mPanel-header mui">
-                                <div className="jr-mPanel-header-action mui">
+                            <div className="jv-mPanel-header mui">
+                                <div className="jv-mPanel-header-action mui">
                                     <IconButton
                                         onClick={() => handleExpandClick(panelIndex, id)}
                                         aria-label={closePanelLabel}
-                                        className="jr-mPanel-action-button jr-mButton jr-mButtonSmall mui"
+                                        className="jv-mPanel-action-button jv-mButton jv-mButtonSmall mui"
                                         size="large"
                                         icon={iconDirection}
                                     />

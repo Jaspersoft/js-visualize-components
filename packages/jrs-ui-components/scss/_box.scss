@@ -9,26 +9,26 @@
 //
 //  Usage:
 //
-//  1. Apply borders to jr-mBox
-//  2. Apply shading and overflow rules fo jr-mBox-content
+//  1. Apply borders to jv-mBox
+//  2. Apply shading and overflow rules fo jv-mBox-content
 // -----------------------------------------------
 
-.jr-mBox.jr {
+.jv-mBox.jr {
   display: block;
 }
 
-.jr-mBoxBorder.jr {
+.jv-mBoxBorder.jr {
   // add border color with utility style
   border-style: solid;
   border-width: 1px;
 }
 
-.jr-mBoxFill.jr {
+.jv-mBoxFill.jr {
   height: 100%;
   width: 100%;
 }
 
-.jr-mBox-body.jr {
+.jv-mBox-body.jr {
   height: 100%;
   width: 100%;
 }

@@ -31,7 +31,7 @@
 
 //Container for Input Controls
 
-.jr-mInputControlContainer.jr {
+.jv-mInputControlContainer.jr {
     color: #333333;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-weight: normal;
@@ -39,58 +39,58 @@
 }
 
 /* to prevent source sans from being inherited
-.jr-mInputControlBoolean.jr *,
-.jr-mInputControlSingleValueText.jr *,
-.jr-mInputControlSingleValueNumber.jr *,
-.jr-mInputControlSingleValueDate.jr *,
-.jr-mInputControlSingleValueDatetime.jr *,
-.jr-mInputControlSingleValueTime.jr *,
-.jr-mInputControlSingleSelectRadio.jr *,
-.jr-mInputControlMultiSelectCheckbox.jr *,
-.jr-mInputControlSingleSelect.jr *,
-.jr-mInputControlMultiSelect.jr * {
+.jv-mInputControlBoolean.jr *,
+.jv-mInputControlSingleValueText.jr *,
+.jv-mInputControlSingleValueNumber.jr *,
+.jv-mInputControlSingleValueDate.jr *,
+.jv-mInputControlSingleValueDatetime.jr *,
+.jv-mInputControlSingleValueTime.jr *,
+.jv-mInputControlSingleSelectRadio.jr *,
+.jv-mInputControlMultiSelectCheckbox.jr *,
+.jv-mInputControlSingleSelect.jr *,
+.jv-mInputControlMultiSelect.jr * {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11px;
 } */
 
 //Input Control types we support
 
-.jr-mInputControlBoolean.jr {
+.jv-mInputControlBoolean.jr {
     /**/
 }
 
-.jr-mInputControlSingleValueText.jr {
+.jv-mInputControlSingleValueText.jr {
     /**/
 }
 
-.jr-mInputControlSingleValueNumber.jr {
+.jv-mInputControlSingleValueNumber.jr {
     /**/
 }
 
-.jr-mInputControlSingleValueDate.jr {
+.jv-mInputControlSingleValueDate.jr {
     /**/
 }
 
-.jr-mInputControlSingleValueDatetime.jr {
+.jv-mInputControlSingleValueDatetime.jr {
     /**/
 }
 
-.jr-mInputControlSingleValueTime.jr {
+.jv-mInputControlSingleValueTime.jr {
     /**/
 }
 
-.jr-mInputControlSingleSelect.jr {
+.jv-mInputControlSingleSelect.jr {
     /**/
 }
 
-.jr-mInputControlMultiSelect.jr {
+.jv-mInputControlMultiSelect.jr {
     /**/
 }
 
-.jr-mInputControlSingleSelectRadio.jr {
+.jv-mInputControlSingleSelectRadio.jr {
     /**/
 }
 
-.jr-mInputControlMultiSelectCheckbox.jr {
+.jv-mInputControlMultiSelectCheckbox.jr {
     /**/
 }

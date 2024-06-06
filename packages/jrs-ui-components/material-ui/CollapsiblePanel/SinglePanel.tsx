@@ -28,15 +28,15 @@ export const SinglePanel: FC<SinglePanelProps> = (
             anchor={anchor}
             open
             style={{ width: '100%', height: '100%' }}
-            className={`mui jr-mPanel ${className}`}
+            className={`mui jv-mPanel ${className}`}
             data-name={id}
         >
-            <div className="jr-mPanel-action mui">
+            <div className="jv-mPanel-action mui">
                 <IconButton
                     data-name={`${id}-collapse`}
                     icon={(anchor === 'right') ? 'caretRightLarge' : 'caretLeftLarge'}
                     size="small"
-                    className="jr-mPanel-action-button"
+                    className="jv-mPanel-action-button"
                     aria-label={closePanelLabel}
                     onClick={() => onCollapse()}
                 />

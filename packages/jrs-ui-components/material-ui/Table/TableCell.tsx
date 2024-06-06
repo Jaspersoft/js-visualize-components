@@ -9,14 +9,14 @@ export type TableCellProps = MuiTableCellProps & {
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(({
     className = '', isActionCell = false, isCellAttribute = false, isCellValue = false, ...rest
 }, ref) => {
-    const actionClass = isActionCell ? 'jr-mTable-cellAction' : '';
-    const attributeClass = isCellAttribute ? 'jr-mTable-cellAttribute' : '';
-    const valueclass = isCellValue ? 'jr-mTable-cellValue' : '';
+    const actionClass = isActionCell ? 'jv-mTable-cellAction' : '';
+    const attributeClass = isCellAttribute ? 'jv-mTable-cellAttribute' : '';
+    const valueclass = isCellValue ? 'jv-mTable-cellValue' : '';
 
     return (
         <MuiTableCell
             ref={ref}
-            className={`jr-mTable-cell ${actionClass} ${attributeClass} ${valueclass} ${className} mui`}
+            className={`jv-mTable-cell ${actionClass} ${attributeClass} ${valueclass} ${className} mui`}
             {...rest}
         />
     )

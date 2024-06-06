@@ -25,7 +25,7 @@
     Last modified by:       Anna Leeg
  * ============================================= */
 
-.jr-mToolbar.jr {
+.jv-mToolbar.jr {
   background-color: #ebebeb;
   font-family: $font-family-primary;
   font-size: $font-size-primary;
@@ -34,7 +34,7 @@
   padding: 0 em(6px, 12px);
 }
 
-.jr-mToolbar-divider.jr {
+.jv-mToolbar-divider.jr {
   border-right: 1px solid #ccc;
   display: inline-block;
   height: em(24px, 12px);
@@ -44,7 +44,7 @@
   width: 1px;
 }
 
-.jr-mToolbar-toolset.jr {
+.jv-mToolbar-toolset.jr {
   display: inline-block;
   height: 100%;
   padding: 0;

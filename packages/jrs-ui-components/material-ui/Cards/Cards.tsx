@@ -10,6 +10,6 @@ export const Cards = forwardRef<HTMLDivElement, CardProps>(({
 }, ref) => {
 
     return (
-        <MuiCard ref={ref} className={`jr-mCard  ${cardClassname} mui`} variant={variant} elevation={elevation} {...rest} />
+        <MuiCard ref={ref} className={`jv-mCard  ${cardClassname} mui`} variant={variant} elevation={elevation} {...rest} />
     )
 })

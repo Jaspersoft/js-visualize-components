@@ -56,7 +56,7 @@
 // ------------------------------------
 //  1a. Base elements
 // ------------------------------------
-.jr-mTable.jr {
+.jv-mTable.jr {
   background-color: #fff;
   border-top: 1px solid #e4e4e4;
   font-family: $font-family-primary;
@@ -66,23 +66,23 @@
   width: 100%;
 }
 
-// .jr-mTable-head.jr {}
-// .jr-mTable-body.jr {}
-// .jr-mTable-footer.jr {}
+// .jv-mTable-head.jr {}
+// .jv-mTable-body.jr {}
+// .jv-mTable-footer.jr {}
 
-.jr-mTable-row.jr {
+.jv-mTable-row.jr {
   border-bottom: 1px solid #e4e4e4;
 }
 
-.jr-mTable-rowPlain.jr {
+.jv-mTable-rowPlain.jr {
   border-bottom: none;
 }
 
-.jr-mTable-rowHeader.jr {
+.jv-mTable-rowHeader.jr {
   background-color: #f7f7f7;
 }
 
-.jr-mTable-cell.jr {
+.jv-mTable-cell.jr {
   border-collapse: separate;
   @include border-box;
   color: $color-textMedium;
@@ -100,17 +100,17 @@
   */
 }
 
-// wrapper - always the first child of jr-mTable-cell
-.jr-mTable-cell-wrapper.jr {
+// wrapper - always the first child of jv-mTable-cell
+.jv-mTable-cell-wrapper.jr {
   height: 100%;
   min-height: inherit;
 }
 
-.jr-mTable-cellPlain.jr {
+.jv-mTable-cellPlain.jr {
   padding: 0;
 }
 
-.jr-mTable-rowHeader.jr > .jr-mTable-cell.jr {
+.jv-mTable-rowHeader.jr > .jv-mTable-cell.jr {
   font-weight: normal;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -120,88 +120,88 @@
 // ------------------------------------
 //  1b. Cell contents
 // ------------------------------------
-// cell content types - always a direct child of jr-mTable-cell-wrapper
+// cell content types - always a direct child of jv-mTable-cell-wrapper
 // all text-based cell content types except date are set to wrap their contents
-.jr-mTable-cell-textbox.jr,
-.jr-mTable-cell-texteditable.jr,
-.jr-mTable-cell-datepicker.jr {
+.jv-mTable-cell-textbox.jr,
+.jv-mTable-cell-texteditable.jr,
+.jv-mTable-cell-datepicker.jr {
   padding: em(2px, 12px) 0;
 }
 
-.jr-mTable-cell-form.jr {
+.jv-mTable-cell-form.jr {
   padding: em(6px, 12px) 0;
 }
 
-.jr-mTable-cell-form-item.jr {
+.jv-mTable-cell-form-item.jr {
   padding-bottom: em(11px, 12px);
 }
 
-.jr-mTable-head.jr .jr-mTable-cell-selectlist.jr,
-.jr-mTable-cell-actions.jr,
-.jr-mTable-cell-checkbox.jr,
-.jr-mTable-cell-currency.jr,
-.jr-mTable-cell-date.jr,
-.jr-mTable-cell-datetime.jr,
-.jr-mTable-cell-text.jr,
-.jr-mTable-cell-textwrap.jr,
-.jr-mTable-cell-titletext.jr,
-.jr-mTable-cell-titletextwrap.jr {
+.jv-mTable-head.jr .jv-mTable-cell-selectlist.jr,
+.jv-mTable-cell-actions.jr,
+.jv-mTable-cell-checkbox.jr,
+.jv-mTable-cell-currency.jr,
+.jv-mTable-cell-date.jr,
+.jv-mTable-cell-datetime.jr,
+.jv-mTable-cell-text.jr,
+.jv-mTable-cell-textwrap.jr,
+.jv-mTable-cell-titletext.jr,
+.jv-mTable-cell-titletextwrap.jr {
   font-size: em(13px, 12px);
   padding-top: em(9px, 13px);
   padding-bottom: em(6px, 13px);
 }
 
-.jr-mTable-cell-titletext.jr ~ .jr-mTable-cell-text.jr,
-.jr-mTable-cell-titletext.jr ~ .jr-mTable-cell-textwrap.jr,
-.jr-mTable-cell-titletextwrap.jr ~ .jr-mTable-cell-textwrap.jr,
-.jr-mTable-cell-titletextwrap.jr ~ .jr-mTable-cell-text.jr {
+.jv-mTable-cell-titletext.jr ~ .jv-mTable-cell-text.jr,
+.jv-mTable-cell-titletext.jr ~ .jv-mTable-cell-textwrap.jr,
+.jv-mTable-cell-titletextwrap.jr ~ .jv-mTable-cell-textwrap.jr,
+.jv-mTable-cell-titletextwrap.jr ~ .jv-mTable-cell-text.jr {
   //padding-top: em(2px);
   padding-top: 0;
 }
 
-.jr-mTable-body.jr .jr-mTable-cell-selectlist.jr {
+.jv-mTable-body.jr .jv-mTable-cell-selectlist.jr {
   padding-top: em(2px, 12px);
   padding-bottom: 0;
 }
 
-.jr-mTable-cell-actions.jr,
-.jr-mTable-cell-checkbox.jr {
+.jv-mTable-cell-actions.jr,
+.jv-mTable-cell-checkbox.jr {
   text-align: center;
 }
 
-.jr-mTable-cell-currency.jr {
+.jv-mTable-cell-currency.jr {
   text-align: right;
 }
 
 // the only cell types with truncation rules
-.jr-mTable-cell-date.jr,
-.jr-mTable-cell-text.jr,
-.jr-mTable-cell-titletext.jr {
+.jv-mTable-cell-date.jr,
+.jv-mTable-cell-text.jr,
+.jv-mTable-cell-titletext.jr {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.jr-mTable-cell-expander.jr {
+.jv-mTable-cell-expander.jr {
   cursor: pointer;
   height: em(32px, 12px);
   padding-top: em(5px, 12px);
 }
 
-.jr-mTable-cell-expander.jr .jr-mIcon.jr {
+.jv-mTable-cell-expander.jr .jv-mIcon.jr {
   height: em(18px, 12px);
   width: em(18px, 12px);
 }
 
-.jr-mTable-cell-titletext.jr,
-.jr-mTable-cell-titletextwrap.jr,
-.jr-mTable-cell-titletext.jr .jr,
-.jr-mTable-cell-titletextwrap.jr .jr {
+.jv-mTable-cell-titletext.jr,
+.jv-mTable-cell-titletextwrap.jr,
+.jv-mTable-cell-titletext.jr .jr,
+.jv-mTable-cell-titletextwrap.jr .jr {
   font-weight: bold;
 }
 
-.jr-mTable-cell-actionbutton.jr,
-.jr-mTable-cell-actionbuttons.jr {
+.jv-mTable-cell-actionbutton.jr,
+.jv-mTable-cell-actionbuttons.jr {
   padding-top: em(2px, 12px);
   padding-right: em(6px, 12px);
   text-align: right;
@@ -210,19 +210,19 @@
 
 
 // most header cells use padding from cell content type styles above; these are exceptions
-.jr-mTable-rowHeader.jr .jr-mTable-cell-actionbuttons.jr,
-.jr-mTable-rowHeader.jr .jr-mTable-cell-textbox.jr,
-.jr-mTable-rowHeader.jr .jr-mTable-cell-datepicker.jr {
+.jv-mTable-rowHeader.jr .jv-mTable-cell-actionbuttons.jr,
+.jv-mTable-rowHeader.jr .jv-mTable-cell-textbox.jr,
+.jv-mTable-rowHeader.jr .jv-mTable-cell-datepicker.jr {
   padding-top: em(9px, 12px);
   padding-bottom: em(6px, 12px);
 }
 
-.jr-mTable-rowHeader.jr .jr-mTable-cell-actionbutton.jr {
+.jv-mTable-rowHeader.jr .jv-mTable-cell-actionbutton.jr {
   padding-right:0;
 }
 
 // contains an actual Action button
-.jr-mTable-rowHeader.jr .jr-mTable-cell-button.jr {
+.jv-mTable-rowHeader.jr .jv-mTable-cell-button.jr {
   padding-top: em(3px, 12px);
 }
 
@@ -230,7 +230,7 @@
 // ------------------------------------
 //  1c. States
 // ------------------------------------
-.jr-isClosed.jr > .jr-mTable-cell-expander-icon.jr {
+.jv-isClosed.jr > .jv-mTable-cell-expander-icon.jr {
   border-bottom: em(4px, 12px) solid transparent;
   border-left: em(5px, 12px) solid $grey-textLighter; /* text variable is ok, this is icon inline with text */
   border-top: em(4px, 12px) solid transparent;
@@ -239,7 +239,7 @@
   margin-top: em(9px, 12px);
 }
 
-.jr-isOpen.jr > .jr-mTable-cell-expander-icon.jr {
+.jv-isOpen.jr > .jv-mTable-cell-expander-icon.jr {
   border-left: em(4px, 12px) solid transparent;
   border-right: em(4px, 12px) solid transparent;
   border-top: em(5px, 12px) solid $grey-textLighter; /* text variable is ok, this is icon inline with text */
@@ -248,8 +248,8 @@
   margin-top: em(11px, 12px);
 }
 
-.jr-mTable.jr-isInvalid.jr,
-.jr-mTable-body.jr-isInvalid.jr {
+.jv-mTable.jv-isInvalid.jr,
+.jv-mTable-body.jv-isInvalid.jr {
   border: 1px solid $color-errorMedium !important;
 }
 
@@ -257,15 +257,15 @@
 // ------------------------------------
 //  2. DIV-BASED TABLE
 // ------------------------------------
-.jr-mTableGrid.jr {}
+.jv-mTableGrid.jr {}
 
-.jr-mTableGrid.jr .jr-mTable-cell.jr {
+.jv-mTableGrid.jr .jv-mTable-cell.jr {
   float: left;
   position: relative;
 }
 
-.jr-mTableGrid.jr .jr-mTable-rowHeader.jr::after,
-.jr-mTableGrid.jr .jr-mTable-row.jr::after {
+.jv-mTableGrid.jr .jv-mTable-rowHeader.jr::after,
+.jv-mTableGrid.jr .jv-mTable-row.jr::after {
   clear: both;
   content: "";
   display: table;
@@ -276,20 +276,20 @@
 //  3. PLAIN, no outer border
 // ------------------------------------
 // plain table WITH header has no top border
-.jr-mTablePlain.jr {
+.jv-mTablePlain.jr {
   border-top: none;
 }
 
 // plain table WITHOUT header has a top border
-.jr-mTablePlain.jr .jr-mTable-body:first-child.jr {
+.jv-mTablePlain.jr .jv-mTable-body:first-child.jr {
   border-top: 1px solid #e4e4e4;
 }
 
-.jr-mTablePlain.jr .jr-mTable-rowHeader.jr {
+.jv-mTablePlain.jr .jv-mTable-rowHeader.jr {
   background-color: transparent;
 }
 
-.jr-mTablePlain.jr .jr-mTable-rowHeader.jr .jr-mTable-cell-titletext.jr {
+.jv-mTablePlain.jr .jv-mTable-rowHeader.jr .jv-mTable-cell-titletext.jr {
   padding-top: em(13px, 12px);
 }
 
@@ -298,13 +298,13 @@
 //  4. SHADED, grey background color
 // ------------------------------------
 
-.jr-mTableShaded.jr {}
+.jv-mTableShaded.jr {}
 
-.jr-mTableShaded.jr .jr-mTable-body.jr {
+.jv-mTableShaded.jr .jv-mTable-body.jr {
   background-color: #f7f7f7;
 }
 
-.jr-mTableShaded.jr-mTablePlain.jr  .jr-mTable-cell:first-child.jr {
+.jv-mTableShaded.jv-mTablePlain.jr  .jv-mTable-cell:first-child.jr {
   padding-left: em(6px, 12px);
 }
 
@@ -313,17 +313,17 @@
 //  5. TIGHT, less vertical space within cells
 // -----------------------------------------------
 
-.jr-mTableTight.jr {
+.jv-mTableTight.jr {
   border-top: none;
 }
 
-.jr-mTableTight.jr .jr-mTable-cell.jr {
+.jv-mTableTight.jr .jv-mTable-cell.jr {
   min-height: em(23px, 12px);
 }
 
-.jr-mTableTight.jr .jr-mTable-cell-titletext.jr,
-.jr-mTableTight.jr .jr-mTable-cell-text.jr,
-.jr-mTableTight.jr .jr-mTable-cell-textwrap.jr {
+.jv-mTableTight.jr .jv-mTable-cell-titletext.jr,
+.jv-mTableTight.jr .jv-mTable-cell-text.jr,
+.jv-mTableTight.jr .jv-mTable-cell-textwrap.jr {
   padding-top: em(4px, 12px);
   padding-bottom: em(3px, 12px);
 }
@@ -332,7 +332,7 @@
 // ------------------------------------
 //  6. JOINS TABLE
 // ------------------------------------
-.jr-mTableJoins.jr {
+.jv-mTableJoins.jr {
   min-width: 875px;
   overflow: hidden;
   position: absolute;
@@ -341,11 +341,11 @@
   width: 100%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowHeader.jr {
+.jv-mTableJoins.jr .jv-mTable-rowHeader.jr {
   border-bottom: 1px solid #fff;
 }
 
-.jr-mTableJoins.jr .jr-mTable-body.jr {
+.jv-mTableJoins.jr .jv-mTable-body.jr {
   overflow-y: auto;
   position: absolute;
   top: 33px;
@@ -353,7 +353,7 @@
   width: 100%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-footer.jr {
+.jv-mTableJoins.jr .jv-mTable-footer.jr {
   bottom: 0;
   height: 36px;
   overflow: hidden;
@@ -363,130 +363,130 @@
 
 // ROWS
 // dropstarter, Instructions
-.jr-mTableJoins.jr .jr-mTable-rowDropstarter.jr,
-.jr-mTableJoins.jr .jr-mTable-rowInstructions.jr {
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr,
+.jv-mTableJoins.jr .jv-mTable-rowInstructions.jr {
   height: 100%
 }
 
 // data island
-.jr-mTableJoins.jr .jr-mTable-rowIsland.jr {
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr {
   background-color: #ebebeb;
   border-bottom: 1px solid #fff;
   height: 36px;
 }
 
 // dropzone
-.jr-mTableJoins.jr .jr-mTable-rowDropzone.jr {
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr {
   background-color: #f5f5f5;
   border-bottom: 1px solid #fff;
   height: 38px;
 }
 
 // tables names
-.jr-mTableJoins.jr .jr-mTable-rowTablenames.jr {
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr {
   background-color: #f6f8fa;
 }
 
 
 // CELLS
 // general
-.jr-mTableJoins.jr .jr-mTable-cellValidation.jr {
+.jv-mTableJoins.jr .jv-mTable-cellValidation.jr {
   width: 7%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellFieldleft.jr {
+.jv-mTableJoins.jr .jv-mTable-cellFieldleft.jr {
   width: 28%
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellOperator.jr {
+.jv-mTableJoins.jr .jv-mTable-cellOperator.jr {
   text-align: center;
   width: 10%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellFieldright.jr {
+.jv-mTableJoins.jr .jv-mTable-cellFieldright.jr {
   width: 28%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellType.jr {
+.jv-mTableJoins.jr .jv-mTable-cellType.jr {
   width: 12%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellWeight.jr {
+.jv-mTableJoins.jr .jv-mTable-cellWeight.jr {
   width: 7%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellActions.jr {
+.jv-mTableJoins.jr .jv-mTable-cellActions.jr {
   width: 4%;
   padding-left: 0;
   padding-right: 0;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellLong.jr {// I wasn't sure what to call this, so feel free to rename
+.jv-mTableJoins.jr .jv-mTable-cellLong.jr {// I wasn't sure what to call this, so feel free to rename
   width: 66%;
 }
 
 // row-specific cells
-.jr-mTableJoins.jr .jr-mTable-rowDropstarter.jr .jr-mTable-cellDropstarter.jr,
-.jr-mTableJoins.jr .jr-mTable-rowInstructions.jr .jr-mTable-cellInstructions.jr {
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cellDropstarter.jr,
+.jv-mTableJoins.jr .jv-mTable-rowInstructions.jr .jv-mTable-cellInstructions.jr {
   height: 100%;
   padding: 0.545em;
   width: 100%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowIsland.jr .jr-mTable-cellValidation.jr {
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cellValidation.jr {
   width: 3%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellIsland.jr {
+.jv-mTableJoins.jr .jv-mTable-cellIsland.jr {
   width: 89%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowDropzone.jr .jr-mTable-cellFieldright.jr,
-.jr-mTableJoins.jr .jr-mTable-rowDropzone.jr .jr-mTable-cellFieldleft.jr {
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr .jv-mTable-cellFieldright.jr,
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr .jv-mTable-cellFieldleft.jr {
   padding-left: 0;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellTablenames.jr {
+.jv-mTableJoins.jr .jv-mTable-cellTablenames.jr {
   width: 66%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowExpression.jr .jr-mTable-cellFieldleft.jr,
-.jr-mTableJoins.jr .jr-mTable-rowExpression.jr .jr-mTable-cellLong.jr{
+.jv-mTableJoins.jr .jv-mTable-rowExpression.jr .jv-mTable-cellFieldleft.jr,
+.jv-mTableJoins.jr .jv-mTable-rowExpression.jr .jv-mTable-cellLong.jr{
   padding-left: em(21px);
 }
 
 
 // CELL CONTENT
 // row-specific
-.jr-mTableJoins.jr .jr-mTable-rowDropstarter.jr .jr-mTable-cell-dropzone.jr,
-.jr-mTableJoins.jr .jr-mTable-rowInstructions.jr .jr-mTable-cell-instructor.jr {
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cell-dropzone.jr,
+.jv-mTableJoins.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
   height: 100%;
   width: 100%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-cellValidation.jr .jr-mTable-cell-badge.jr {
+.jv-mTableJoins.jr .jv-mTable-cellValidation.jr .jv-mTable-cell-badge.jr {
   height: auto;
   min-height: em(16px);
   width: auto;
   top: em(8px);
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowIsland.jr .jr-mTable-cell-titletext.jr {
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell-titletext.jr {
   color: $color-textDark;
   cursor: pointer;
   display: inline-block;
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowIsland.jr .jr-mTable-cell.jr {
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell.jr {
   padding-top: em(2px);
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowDropzone.jr .jr-mTable-cell-dropzone.jr {
+.jv-mTableJoins.jr .jv-mTable-rowDropzone.jr .jv-mTable-cell-dropzone.jr {
   padding-top: em(4px);
   width: 95%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowTablenames.jr .jr-mTable-cell-titletext.jr {
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr .jv-mTable-cell-titletext.jr {
   color: $color-textLight;
   cursor: pointer;
   display: inline-block;
@@ -494,7 +494,7 @@
 
 
 // STATES
-.jr-mTableJoins.jr .jr-mTable-rowIsland.jr .jr-mTable-cell-titletext.jr-isOpen.jr::before {
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell-titletext.jv-isOpen.jr::before {
   border-left: em(4px) solid rgba(0, 0, 0, 0);
   border-right: em(4px) solid rgba(0, 0, 0, 0);
   border-top: em(5px) solid $color-textDark; /* text variable is ok, this is icon inline with text */
@@ -504,7 +504,7 @@
   margin-right: em(6px);
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowIsland.jr .jr-mTable-cell-titletext.jr-isClosed.jr::before {
+.jv-mTableJoins.jr .jv-mTable-rowIsland.jr .jv-mTable-cell-titletext.jv-isClosed.jr::before {
   border-left: em(5px) solid $color-textDark; /* text variable is ok, this is icon inline with text */
   border-bottom: em(4px) solid rgba(0, 0, 0, 0);
   border-top: em(4px) solid  rgba(0, 0, 0, 0);
@@ -515,7 +515,7 @@
   margin-left: em(2px);
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowTablenames.jr .jr-mTable-cell-titletext.jr-isOpen.jr::before {
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr .jv-mTable-cell-titletext.jv-isOpen.jr::before {
   border-left: em(4px) solid rgba(0, 0, 0, 0);
   border-right: em(4px) solid rgba(0, 0, 0, 0);
   border-top: em(5px) solid $color-textLight; /* text variable is ok, this is icon inline with text */
@@ -525,7 +525,7 @@
   margin-right: em(6px);
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowTablenames.jr .jr-mTable-cell-titletext.jr-isClosed.jr::before {
+.jv-mTableJoins.jr .jv-mTable-rowTablenames.jr .jv-mTable-cell-titletext.jv-isClosed.jr::before {
   border-left: em(5px) solid $color-textLight; /* text variable is ok, this is icon inline with text */
   border-bottom: em(4px) solid rgba(0, 0, 0, 0);
   border-top: em(4px) solid  rgba(0, 0, 0, 0);
@@ -540,7 +540,7 @@
 // ------------------------------------
 //  7. PRE-FILTERS
 // ------------------------------------
-.jr-mTablePrefilters.jr {
+.jv-mTablePrefilters.jr {
   border-radius: 5px 5px 0 0;
   border: 1px solid #e4e4e4;
   height: 100%;
@@ -548,10 +548,10 @@
   width: 100%;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-body.jr {}
+.jv-mTablePrefilters.jr .jv-mTable-body.jr {}
 
 
-.jr-mTablePrefilters.jr .jr-mTable-body.jr {
+.jv-mTablePrefilters.jr .jv-mTable-body.jr {
   overflow-y: auto;
   position: absolute;
   top: em(35px, 12px);
@@ -560,104 +560,104 @@
 }
 
 // ROWS
-.jr-mTablePrefilters.jr .jr-mTable-rowHeader.jr {
+.jv-mTablePrefilters.jr .jv-mTable-rowHeader.jr {
   background-color: #ebebeb;
   border-bottom: 1px solid #e4e4e4;
   border-radius: 5px 5px 0 0;
   height: em(35px, 12px);
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-rowDropstarter.jr,
-.jr-mTablePrefilters.jr .jr-mTable-rowInstructions.jr {
+.jv-mTablePrefilters.jr .jv-mTable-rowDropstarter.jr,
+.jv-mTablePrefilters.jr .jv-mTable-rowInstructions.jr {
   height: 100%;
 }
 
-.jr-mTableJoins.jr .jr-mTable-rowDropstarter.jr .jr-mTable-cell-dropzone.jr {
+.jv-mTableJoins.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cell-dropzone.jr {
   height: 100%;
   width: 100%;
 }
 
 // CELLS
-.jr-mTablePrefilters.jr .jr-mTable-cellDropstarter.jr,
-.jr-mTablePrefilters.jr .jr-mTable-cellInstructions.jr {
+.jv-mTablePrefilters.jr .jv-mTable-cellDropstarter.jr,
+.jv-mTablePrefilters.jr .jv-mTable-cellInstructions.jr {
   height: 100%;
   padding: em(6px, 12px);
   width: 100%;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-cellField.jr {
+.jv-mTablePrefilters.jr .jv-mTable-cellField.jr {
   padding-left: 1em;
   width: 38%;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-cellValue.jr {
+.jv-mTablePrefilters.jr .jv-mTable-cellValue.jr {
   width: 38%;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-cellExpression.jr {
+.jv-mTablePrefilters.jr .jv-mTable-cellExpression.jr {
   padding-left: 1em;
   width: 92%;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-cellOperator.jr {
+.jv-mTablePrefilters.jr .jv-mTable-cellOperator.jr {
   width: 16%;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-cellActions.jr {
+.jv-mTablePrefilters.jr .jv-mTable-cellActions.jr {
   white-space: nowrap;
   width: 8%;
 }
 
 // CELL CONTENT
 // row-specific
-.jr-mTablePrefilters.jr .jr-mTable-rowDropstarter.jr .jr-mTable-cell-dropzone.jr,
-.jr-mTablePrefilters.jr .jr-mTable-rowInstructions.jr .jr-mTable-cell-instructor.jr {
+.jv-mTablePrefilters.jr .jv-mTable-rowDropstarter.jr .jv-mTable-cell-dropzone.jr,
+.jv-mTablePrefilters.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
   height: 100%;
   width: 100%;
 }
 
 // header-specific
-.jr-mTablePrefilters.jr .jr-mTable-head.jr .jr-mTable-cellActions.jr {
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellActions.jr {
   margin-right: em(14px, 12px);
 }
 
 
-.jr-mTablePrefilters.jr .jr-mTable-head.jr .jr-mTable-cellField.jr {
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellField.jr {
   //width: calc(26% - #{em(6px)}); won't resolve in IE11 or Edge
   width: calc(38% - .5em);
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-head.jr .jr-mTable-cellValue.jr {
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellValue.jr {
   //width: calc(50% - #{em(6px)}); won't resolve in IE11 or Edge
   width: calc(38% - .5em);
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-head.jr .jr-mTable-cellOperator.jr {
+.jv-mTablePrefilters.jr .jv-mTable-head.jr .jv-mTable-cellOperator.jr {
   //width: calc(16% - #{em(2px)}); won't resolve in IE11 or Edge
   width: calc(16% - .167em);
 }
 
 
 // STATES
-.jr-mTable-row.jr-isInvalid.jr {
+.jv-mTable-row.jv-isInvalid.jr {
   background-color: $color-errorMedium;
 }
 
-.jr-mTable-row.jr-isInvalid.jr .jr-mTable-cell.jr,
-.jr-mTable-row.jr-isInvalid.jr .jr-mIcon.jr {
+.jv-mTable-row.jv-isInvalid.jr .jv-mTable-cell.jr,
+.jv-mTable-row.jv-isInvalid.jr .jv-mIcon.jr {
   color: #fff;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-row.jr-isExpanded.jr {
+.jv-mTablePrefilters.jr .jv-mTable-row.jv-isExpanded.jr {
   height: auto;
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-row.jr-isExpanded.jr .jr-mTable-cell-selectlist.jr {
+.jv-mTablePrefilters.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cell-selectlist.jr {
   padding-bottom: em(3px, 12px);
   padding-top: em(9px, 12px);
 }
 
-.jr-mTablePrefilters.jr .jr-mTable-row.jr-isExpanded.jr .jr-mTable-cell-actionbuttons.jr {
+.jv-mTablePrefilters.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cell-actionbuttons.jr {
   padding-top: em(10px, 12px);
   margin-right: em(-8px, 12px);
 }
@@ -666,7 +666,7 @@
 // ------------------------------------
 //  8. PRESENTATION
 // ------------------------------------
-.jr-mTablePresentation.jr {
+.jv-mTablePresentation.jr {
   border-radius: 5px 5px 0 0;
   border: 1px solid #e4e4e4;
   height: 100%;
@@ -674,65 +674,65 @@
   width: 100%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-head.jr {
+.jv-mTablePresentation.jr .jv-mTable-head.jr {
   background-color: #ebebeb;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-body.jr {
+.jv-mTablePresentation.jr .jv-mTable-body.jr {
   overflow-y: auto;
-  height: calc(100% - 2.917em); // need to deduct height of jr-mTable-rowLast to prevent scroll bar overflowing
+  height: calc(100% - 2.917em); // need to deduct height of jv-mTable-rowLast to prevent scroll bar overflowing
   width: 100%;
 }
 
 
 // ROWS
-.jr-mTablePresentation.jr .jr-mTable-rowHeader.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowHeader.jr {
   background-color: #ebebeb;
   border-bottom: 1px solid #e4e4e4;
   border-radius: 5px 5px 0 0;
   height: em(35px, 12px);
 }
 
-.jr-mTablePresentation.jr .jr-mTable-rowHeader.jr .jr-mTable-cellSetitem.jr .jr-mTable-cell-text.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowHeader.jr .jv-mTable-cellSetitem.jr .jv-mTable-cell-text.jr {
   color: $color-textDarker;
   font-weight: bold;
   padding-left: 1em;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-rowHeader.jr .jr-mTable-cellActions.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowHeader.jr .jv-mTable-cellActions.jr {
   right: 6px;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-rowDropzone.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowDropzone.jr {
   display: none;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-rowInstructions.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowInstructions.jr {
   height: 100%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-rowInstructions.jr .jr-mTable-cell-instructor.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
   height: 100%;
   width: 100%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-row.jr-mTable-rowLast.jr {
+.jv-mTablePresentation.jr .jv-mTable-row.jv-mTable-rowLast.jr {
   border-bottom: none;
   width: 100%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-rowLast.jr .jr-mTable-cellProperties.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowLast.jr .jv-mTable-cellProperties.jr {
   height: 100%;
   padding-top: em(1px, 12px);
 }
 
 
 // CELLS
-.jr-mTablePresentation.jr .jr-mTable-cellSetitem.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellSetitem.jr {
   width: 25%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cell-dropactivator.jr {
+.jv-mTablePresentation.jr .jv-mTable-cell-dropactivator.jr {
   position: absolute;
   width: 100%;
   height: 10px;
@@ -740,21 +740,21 @@
   z-index: 2;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cell-dropactivator.jr:first-of-type {
+.jv-mTablePresentation.jr .jv-mTable-cell-dropactivator.jr:first-of-type {
   top: 0;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cell-dropactivator.jr:last-of-type {
+.jv-mTablePresentation.jr .jv-mTable-cell-dropactivator.jr:last-of-type {
   bottom: 0;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellInstructions.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellInstructions.jr {
   height: 100%;
   padding: em(6px, 12px);
   width: 100%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellResizer.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellResizer.jr {
   border-right: em(10px, 12px) solid transparent;
   box-sizing: content-box;
   background-clip: padding-box;
@@ -768,7 +768,7 @@
   z-index: $zindex-element-lvl-0;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-body.jr .jr-mTable-cellSetitem.jr {
+.jv-mTablePresentation.jr .jv-mTable-body.jr .jv-mTable-cellSetitem.jr {
   // gives the appearance of no bottom border
   border-bottom: em(1px) solid #fff;
   height: 100%;
@@ -776,54 +776,54 @@
   top: em(1px, 12px);
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellDropstarter.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellDropstarter.jr {
   height: 100%;
   padding: em(6px, 12px);
   width: 25%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellProperties.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellProperties.jr {
   padding: 0;
   width: 75%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellToggle.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellToggle.jr {
   min-width: em(22px, 12px);
   padding: 0;
   text-align: center;
   width: 3%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellAll.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellAll.jr {
   height: 100%;
   width: 92%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellDropstarter.jr .jr-mTable-cell-dropzone.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellDropstarter.jr .jv-mTable-cell-dropzone.jr {
   height: 100%;
   width: 100%;
 }
 
 // mode: default
-.jr-mTablePresentation.jr .jr-mTable-cellLabel.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellLabel.jr {
   width: 26%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellFieldtype.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellFieldtype.jr {
   // column label has been changed from Field Type to Content Type
   width: 15%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellCalculation.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellCalculation.jr {
   //width: 19%;
   width: 18%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellDescription.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellDescription.jr {
   width: 31%;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-cellActions.jr {
+.jv-mTablePresentation.jr .jv-mTable-cellActions.jr {
   float: none;
   min-width: em(48px, 12px);
   position: absolute;
@@ -832,73 +832,73 @@
 }
 
 // mode: identification
-.jr-mTablePresentationIdentification.jr {}
+.jv-mTablePresentationIdentification.jr {}
 
-.jr-mTablePresentationIdentification.jr .jr-mTable-cellLabel.jr {
+.jv-mTablePresentationIdentification.jr .jv-mTable-cellLabel.jr {
   width: 30%;
 }
 
-.jr-mTablePresentationIdentification.jr .jr-mTable-cellId.jr {
+.jv-mTablePresentationIdentification.jr .jv-mTable-cellId.jr {
   width: 30%;
 }
 
-.jr-mTablePresentationIdentification.jr .jr-mTable-cellDescription.jr {
+.jv-mTablePresentationIdentification.jr .jv-mTable-cellDescription.jr {
   //width: 31%;
   width: 30%;
 }
 
 // mode: bundles
-.jr-mTablePresentationBundles {}
+.jv-mTablePresentationBundles {}
 
-.jr-mTablePresentationBundles.jr .jr-mTable-cellLabelkey.jr {
+.jv-mTablePresentationBundles.jr .jv-mTable-cellLabelkey.jr {
   //width: 46%;
   width: 45%;
 }
 
-.jr-mTablePresentationBundles.jr .jr-mTable-cellDescriptionkey.jr {
+.jv-mTablePresentationBundles.jr .jv-mTable-cellDescriptionkey.jr {
   width: 45%;
 }
 
 // mode: data
-.jr-mTablePresentationData {}
+.jv-mTablePresentationData {}
 
-.jr-mTablePresentationData.jr .jr-mTable-cellSource.jr {
+.jv-mTablePresentationData.jr .jv-mTable-cellSource.jr {
   width: 35%;
 }
 
-.jr-mTablePresentationData.jr .jr-mTable-cellDataformat.jr {
+.jv-mTablePresentationData.jr .jv-mTable-cellDataformat.jr {
   width: 22%;
 }
 
 
 // CONTENT
 // row-specific
-.jr-mTablePresentation.jr .jr-mTable-rowInstructions.jr .jr-mTable-cell-instructor.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowInstructions.jr .jv-mTable-cell-instructor.jr {
   height: 100%;
   width: 100%;
 }
 
 
 // STATES
-.jr-mTablePresentation.jr .jr-mTable-row.jr-isExpanded.jr {
+.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr {
   height: auto;
   background-color: #fafafa;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-row.jr-isExpanded.jr .jr-mTable-cellSets.jr {
+.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSets.jr {
   border-top: 1px solid #e4e4e4;
   top: -1px;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-row.jr-isExpanded.jr .jr-mTable-cellSetitem.jr {
+.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSetitem.jr {
   border-bottom-color: transparent;
 }
 
-.jr-mTable-row.jr-isExpanded.jr .jr-mTable-cellSets.jr .jr-mTree.jr {
+.jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSets.jr .jv-mTree.jr {
   margin-top: 1px;
 }
 
-.jr-mTablePresentation.jr .jr-mTable-rowDropzone.jr-isHovered.jr {
+.jv-mTablePresentation.jr .jv-mTable-rowDropzone.jv-isHovered.jr {
   background-color: #0081cb;
   height: em(32px, 12px);
 }
@@ -906,7 +906,7 @@
 
 // HACKS to get correct borders and highlighting
 // Provides correct borders for expanded Sets and Items cells.
-//.jr-mTablePresentation.jr .jr-mTable-row-helper.jr {
+//.jv-mTablePresentation.jr .jv-mTable-row-helper.jr {
 //  background-color: transparent;
 //  position: absolute;
 //  top: 0;
@@ -914,7 +914,7 @@
 //  width: 25%;
 //}
 //
-//.jr-mTablePresentation.jr .jr-mTable-row.jr-isExpanded.jr .jr-mTable-row-helper.jr {
+//.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-row-helper.jr {
 //  background-color: #fafafa;
 //  border-top: 1px solid #e4e4e4;
 //  border-right: 1px solid #e4e4e4;
@@ -924,13 +924,13 @@
 //  bottom: -1px;
 //}
 //
-//.jr-mTablePresentation.jr .jr-mTable-row.jr-isExpanded.jr .jr-mTable-cellSetitem.jr {
+//.jv-mTablePresentation.jr .jv-mTable-row.jv-isExpanded.jr .jv-mTable-cellSetitem.jr {
 //  border-bottom-color: transparent;
 //}
 
-// When a node or leaf is selected, Also add 'jr-isSelected' the the helper row to make
+// When a node or leaf is selected, Also add 'jv-isSelected' the the helper row to make
 // sure an expanded, selected item's highlighting fills the height of the cell.
 
-// .jr-mTablePresentation.jr .jr-mTable-row.jr .jr-mTable-row-helper.jr-isSelected.jr {
+// .jv-mTablePresentation.jr .jv-mTable-row.jr .jv-mTable-row-helper.jv-isSelected.jr {
 //  background-color: #1388d8;
 // } NOT USING

@@ -27,45 +27,45 @@
 
 @use "sass:math";
 
-.jr-mMenu.jr {
+.jv-mMenu.jr {
     font-family: $font-primary---family;
     font-size: $font-primary---size;
 }
 
-.jr-mMenu-node.jr,
-.jr-mMenu-leaf.jr {
+.jv-mMenu-node.jr,
+.jv-mMenu-leaf.jr {
     cursor: pointer;
     position: relative;
     }
 
 
-   // MODULE VARIATION .jr-mMenuHorizontal
-    .jr-mMenuHorizontal.jr {
+   // MODULE VARIATION .jv-mMenuHorizontal
+    .jv-mMenuHorizontal.jr {
         // font-weight: bold; Reinstate if we are using Open Sans
         display: inline-block;
         height: inherit;
     }
 
-    .jr-mMenuHorizontal.jr .jr-mMenu-leaf-icon.jr {
+    .jv-mMenuHorizontal.jr .jv-mMenu-leaf-icon.jr {
         margin-top: em(8px, 14px);
         margin-right: em(-6px, 14px);
         margin-left: em(-6px, 14px);
     }
 
-    .jr-mMenuHorizontal.jr > .jr-mMenu-node.jr,
-    .jr-mMenuHorizontal.jr > .jr-mMenu-leaf.jr {
+    .jv-mMenuHorizontal.jr > .jv-mMenu-node.jr,
+    .jv-mMenuHorizontal.jr > .jv-mMenu-leaf.jr {
         float: left;
         height: inherit;
         padding-left: em(12px);
         padding-right: em(12px);
     }
 
-    .jr-mMenuHorizontal.jr > .jr-mMenu-node.jr {
+    .jv-mMenuHorizontal.jr > .jv-mMenu-node.jr {
         padding-right: em(22px, 13px);      // 1.692em | 22px / 13px
     }
 
-    .jr-mMenuHorizontal.jr .jr-mMenu-node-label.jr,
-    .jr-mMenuHorizontal.jr .jr-mMenu-leaf-label.jr {
+    .jv-mMenuHorizontal.jr .jv-mMenu-node-label.jr,
+    .jv-mMenuHorizontal.jr .jv-mMenu-leaf-label.jr {
         display: inline-block;
         font-size: em(13px);            // 1.182em | 13px / 11px
         line-height: math.div(36px, 13px);     // 2.769 | 36px / 13px unitless value
@@ -73,13 +73,13 @@
 
         @media screen and (-webkit-min-device-pixel-ratio:0)
         {
-            .jr-mMenuHorizontal.jr .jr-mMenu-node-label.jr,
-            .jr-mMenuHorizontal.jr .jr-mMenu-leaf-label.jr  {
+            .jv-mMenuHorizontal.jr .jv-mMenu-node-label.jr,
+            .jv-mMenuHorizontal.jr .jv-mMenu-leaf-label.jr  {
                 line-height: math.div(38px, 13px);         // 2.923 | 38px / 13px unitless value
             }
         }
 
-    .jr-mMenuHorizontal.jr .jr-mMenu-node-label.jr:after {
+    .jv-mMenuHorizontal.jr .jv-mMenu-node-label.jr:after {
         border-top: .308em solid #fff;                      // .308em | 5px / 13px
         border-right: em(3px, 13px) solid transparent;      // .231em | 4px / 13px - prewritten as 4px, but should have been 3px
         border-left: em(3px, 13px) solid transparent;       // .231em | 4px / 13px - prewritten as 4px, but should have been 3px
@@ -89,16 +89,16 @@
             top: 50%;
     }
 
-    .jr-mMenu-leaf-label-link.jr,
-    .jr-mMenu-node-label-link.jr {
+    .jv-mMenu-leaf-label-link.jr,
+    .jv-mMenu-node-label-link.jr {
         color: #fff;
         outline: none;
         text-decoration: none;
     }
 
 
-    // MODULE VARIATION .jr-mMenuVertical
-    .jr-mMenuVertical.jr {
+    // MODULE VARIATION .jv-mMenuVertical
+    .jv-mMenuVertical.jr {
         background-color: #ffffff;
         //border: 1px solid #e4e4e4;
         //border-radius: em(6px);
@@ -113,18 +113,18 @@
         font-family: Arial;
     }
 
-    .jr-mMenuVertical.jr .jr-mMenu-separator.jr {
+    .jv-mMenuVertical.jr .jv-mMenu-separator.jr {
         border-top: em(1px) solid #e4e4e4;   // .091em | 1px / 11px
         margin-top: em(5px);                 // .455em | 5px / 11px
         margin-bottom: em(5px);              // .455em | 5px / 11px
         }
 
-    .jr-mMenuVertical.jr > .jr-mMenu-node.jr,
-    .jr-mMenuVertical.jr > .jr-mMenu-leaf.jr {
+    .jv-mMenuVertical.jr > .jv-mMenu-node.jr,
+    .jv-mMenuVertical.jr > .jv-mMenu-leaf.jr {
         height: auto;
     }
 
-    .jr-mMenuVertical.jr > .jr-mMenu-node.jr:after {
+    .jv-mMenuVertical.jr > .jv-mMenu-node.jr:after {
         border-left: em(8px) solid #333;            // .727em | 8px / 11px
         border-top: em(5px) solid transparent;      // .455em | 5px / 11px
         border-bottom: em(5px) solid transparent;   // .455em | 5px / 11px
@@ -134,8 +134,8 @@
             right: 1em;
     }
 
-    .jr-mMenuVertical.jr .jr-mMenu-node-label.jr,
-    .jr-mMenuVertical.jr .jr-mMenu-leaf-label.jr {
+    .jv-mMenuVertical.jr .jv-mMenu-node-label.jr,
+    .jv-mMenuVertical.jr .jv-mMenu-leaf-label.jr {
         background-repeat: no-repeat;
         font-size: em(13px);            // 1.182em | 13px / 11px
         line-height: em(28px, 13px);    // 2.154em | 28px / 13px
@@ -144,11 +144,11 @@
         white-space: nowrap;
     }
 
-    .jr-mMenuVertical.jr .jr-mMenu-node-label.jr {
+    .jv-mMenuVertical.jr .jv-mMenu-node-label.jr {
         margin-left: em(26px, 13px);       // 2em | 26px / 13px
     }
 
-    .jr-mMenuVertical.jr .jr-mMenu-leaf-toggle.jr {
+    .jv-mMenuVertical.jr .jv-mMenu-leaf-toggle.jr {
         display: inline-block;
         height: em(6px, 13px);             // .462em | 6px / 13px
         margin-right: em(6px, 13px);       // .462em | 6px / 13px
@@ -162,24 +162,24 @@
 //  MENU STATES
 // -----------------
 // hover pseudo-classes are temporary until proper implementation can be done.
-.jr-mMenuHorizontal.jr > .jr-mMenu-node.jr-isHovered.jr,
-.jr-mMenuHorizontal.jr > .jr-mMenu-leaf.jr-isHovered.jr,
-.jr-mMenuHorizontal.jr > .jr-mMenu-node:hover.jr,
-.jr-mMenuHorizontal.jr > .jr-mMenu-leaf:hover.jr {
+.jv-mMenuHorizontal.jr > .jv-mMenu-node.jv-isHovered.jr,
+.jv-mMenuHorizontal.jr > .jv-mMenu-leaf.jv-isHovered.jr,
+.jv-mMenuHorizontal.jr > .jv-mMenu-node:hover.jr,
+.jv-mMenuHorizontal.jr > .jv-mMenu-leaf:hover.jr {
     background: #195b8a;
 }
 
-.jr-mMenuVertical.jr > .jr-mMenu-node.jr-isHovered.jr,
-.jr-mMenuVertical.jr > .jr-mMenu-leaf.jr-isHovered.jr,
+.jv-mMenuVertical.jr > .jv-mMenu-node.jv-isHovered.jr,
+.jv-mMenuVertical.jr > .jv-mMenu-leaf.jv-isHovered.jr,
     //TODO: remove `:hover` when designing new JS component
     // required fix for JRS-10104
-.jr-mMenuVertical.jr > .jr-mMenu-leaf:hover.jr {
+.jv-mMenuVertical.jr > .jv-mMenu-leaf:hover.jr {
     background: #195b8a;
     color: #fff;
 }
 
 // vertical menu toggle
-.jr-mMenu-leaf-toggle.jr-isOn.jr {
+.jv-mMenu-leaf-toggle.jv-isOn.jr {
     background-color: #3e8ddd;
     border-radius: 3px;
     display: inline-block;
@@ -190,17 +190,17 @@
     vertical-align: middle;
     width: em(6px, 13px);              // .462em | 6px / 13px
 }
-.jr-mMenu-leaf.jr-isHovered.jr .jr-mMenu-leaf-toggle.jr-isOn.jr{
+.jv-mMenu-leaf.jv-isHovered.jr .jv-mMenu-leaf-toggle.jv-isOn.jr{
     background-color: #fff;
 }
 
-.jr-mMenuVertical.jr > .jr-mMenu-node.jr-isHovered.jr:after,
-.jr-mMenuVertical.jr > .jr-mMenu-node:hover.jr:after {
+.jv-mMenuVertical.jr > .jv-mMenu-node.jv-isHovered.jr:after,
+.jv-mMenuVertical.jr > .jv-mMenu-node:hover.jr:after {
     border-left: .615em solid #fff;
 }
 
 // hover styles for label links
-.jr-mMenu-leaf.jr-isHovered.jr .jr-mMenu-leaf-label-link.jr,
-.jr-mMenu-node.jr-isHovered.jr .jr-mMenu-node-label-link.jr {
+.jv-mMenu-leaf.jv-isHovered.jr .jv-mMenu-leaf-label-link.jr,
+.jv-mMenu-node.jv-isHovered.jr .jv-mMenu-node-label-link.jr {
     text-decoration: underline;
 }

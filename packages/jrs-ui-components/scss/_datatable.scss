@@ -44,53 +44,53 @@
 /* ------------------ */
 /*  1a. General       */
 /*  ----------------  */
-.jr-mDatatable.jr {
+.jv-mDatatable.jr {
   background-color: #fff;
   font-family: $font-primary---family;
   font-size: $font-primary---size;
 }
 
-.jr-mDatatable-header.jr {}
+.jv-mDatatable-header.jr {}
 
-.jr-mDatatable-header.jr .jr-mDatatable-row.jr {
+.jv-mDatatable-header.jr .jv-mDatatable-row.jr {
   background-color: #d9e4f1;
 }
 
-.jr-mDatatable-header.jr .jr-mDatatable-cell.jr {
+.jv-mDatatable-header.jr .jv-mDatatable-cell.jr {
   font-weight: bold;
 }
 
-.jr-mDatatable-body.jr {}
-.jr-mDatatable-row.jr {}
+.jv-mDatatable-body.jr {}
+.jv-mDatatable-row.jr {}
 
-.jr-mDatatable-rowOdd.jr {
+.jv-mDatatable-rowOdd.jr {
   background-color: #fff;
 }
 
-.jr-mDatatable-rowEven.jr {
+.jv-mDatatable-rowEven.jr {
   background-color: #f4f4f4;
 }
 
-.jr-mDatatable-rowGroup.jr,
-.jr-mDatatable-rowTotal.jr {
+.jv-mDatatable-rowGroup.jr,
+.jv-mDatatable-rowTotal.jr {
   background-color: #d9e4f1;
 }
 
-.jr-mDatatable-rowGroup.jr .jr-mDatatable-cell.jr {
+.jv-mDatatable-rowGroup.jr .jv-mDatatable-cell.jr {
   color: #333;
 }
 
-.jr-mDatatable-rowGrouptotal.jr {
+.jv-mDatatable-rowGrouptotal.jr {
   background-color: #edf2f8;
 }
 
-.jr-mDatatable.jr:not(.jr-mDatatableCrosstab) .jr-mDatatable-rowGroup.jr .jr-mDatatable-cell.jr,
-.jr-mDatatable.jr:not(.jr-mDatatableCrosstab) .jr-mDatatable-rowTotal.jr .jr-mDatatable-cell.jr,
-.jr-mDatatable.jr:not(.jr-mDatatableCrosstab) .jr-mDatatable-rowGrouptotal.jr .jr-mDatatable-cell.jr {
+.jv-mDatatable.jr:not(.jv-mDatatableCrosstab) .jv-mDatatable-rowGroup.jr .jv-mDatatable-cell.jr,
+.jv-mDatatable.jr:not(.jv-mDatatableCrosstab) .jv-mDatatable-rowTotal.jr .jv-mDatatable-cell.jr,
+.jv-mDatatable.jr:not(.jv-mDatatableCrosstab) .jv-mDatatable-rowGrouptotal.jr .jv-mDatatable-cell.jr {
   font-weight: bold;
 }
 
-.jr-mDatatable-cell.jr {
+.jv-mDatatable-cell.jr {
   border: 1px solid #fff;
   color: #555555;
   font-weight: normal;
@@ -101,7 +101,7 @@
   word-wrap: break-word;
 }
 
-.jr-mDatatable-cell-expander.jr {
+.jv-mDatatable-cell-expander.jr {
   cursor: pointer;
   display: none;
   font-size: em(11px);
@@ -115,40 +115,40 @@
 /*   1a. Table cell content types    */
 /*  -------------------------------  */
 // wrapper - always the first child in a table cell
-.jr-mDatatable-cell-wrapper.jr {
+.jv-mDatatable-cell-wrapper.jr {
   height: auto;
   min-height: em(22px);
 }
 
 // cell content types - always a direct child of cell-wrapper
-.jr-mDatatable-cell-currency.jr,
-.jr-mDatatable-cell-date.jr,
-.jr-mDatatable-cell-number.jr,
-.jr-mDatatable-cell-text.jr {
+.jv-mDatatable-cell-currency.jr,
+.jv-mDatatable-cell-date.jr,
+.jv-mDatatable-cell-number.jr,
+.jv-mDatatable-cell-text.jr {
   // smaller line height looks better when cell text wraps
   line-height: 1.273em;
   padding-top: em(5px);
 }
 // Firefox-specific
 @-moz-document url-prefix() {
-  .jr-mDatatable-cell-currency.jr,
-  .jr-mDatatable-cell-date.jr,
-  .jr-mDatatable-cell-number.jr,
-  .jr-mDatatable-cell-text.jr {
+  .jv-mDatatable-cell-currency.jr,
+  .jv-mDatatable-cell-date.jr,
+  .jv-mDatatable-cell-number.jr,
+  .jv-mDatatable-cell-text.jr {
     padding-top: .364em;
   }
 }
 
-.jr-mDatatable-cell-currency.jr,
-.jr-mDatatable-cell-number.jr {
+.jv-mDatatable-cell-currency.jr,
+.jv-mDatatable-cell-number.jr {
   text-align: right;
 }
 
-.jr-mDatatable-cell-hyperlink.jr {
+.jv-mDatatable-cell-hyperlink.jr {
   cursor: pointer;
 }
 
-.jr-mDatatable-cell-hyperlink.jr:hover {
+.jv-mDatatable-cell-hyperlink.jr:hover {
   text-decoration: underline;
 }
 
@@ -159,7 +159,7 @@
 //  (header and body). This structure allows
 //  vertical fixed header scrolling.
 // ------------------------------------------
-.jr-mDatatableContainer.jr {
+.jv-mDatatableContainer.jr {
   // height rule keeps crosstab in bounds of embedded container
   // while still accommodating collapsed viz chooser button
   display: inline-block;
@@ -167,17 +167,17 @@
   outline: .091em solid #d4d4d4;
 }
 
-.jr-mDatatable-headerContainer.jr {}
+.jv-mDatatable-headerContainer.jr {}
 
-.jr-mDatatable-bodyContainer.jr {
+.jv-mDatatable-bodyContainer.jr {
   outline: .091em solid #d4d4d4;
   overflow: hidden;
   position: relative;
 }
 
-.jr-mDatatableContainer.jr .jr-mDatatable-cell.jr:last-of-type {
+.jv-mDatatableContainer.jr .jv-mDatatable-cell.jr:last-of-type {
   // prevents scrollbar from overlapping text in last cell.
-  // needs jr-mDatatableContainer context to prevent affecting crosstab module.
+  // needs jv-mDatatableContainer context to prevent affecting crosstab module.
   padding-right: em(16px);
 }
 
@@ -187,73 +187,73 @@
 /* ------------------- */
 /*  2a. General        */
 /*  -----------------  */
-.jr-mDatatableCrosstab.jr {}
+.jv-mDatatableCrosstab.jr {}
 
 // class names below are used contextually in body and/or header
-.jr-mDatatable-cellRowlabel.jr {}
-.jr-mDatatable-cellField.jr {}
-.jr-mDatatable-cellMeasure.jr {}
-.jr-mDatatable-cellValue.jr {}
+.jv-mDatatable-cellRowlabel.jr {}
+.jv-mDatatable-cellField.jr {}
+.jv-mDatatable-cellMeasure.jr {}
+.jv-mDatatable-cellValue.jr {}
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-cell.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-cell.jr {
   border: 1px solid #d4d4d4;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-cellTotal.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-cellTotal.jr {
   font-weight: bold !important;
 }
 
 /* ------------------------ */
 /*  2b. Crosstab header     */
 /*  ----------------------  */
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cellRowlabel.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cellRowlabel.jr {
   text-align: right;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cellColumnlabel.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cellColumnlabel.jr {
   text-align: center;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cellRowlabel.jr-mDatatable-cellField.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cellRowlabel.jr-mDatatable-cellMeasure.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cellRowlabel.jv-mDatatable-cellField.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cellRowlabel.jv-mDatatable-cellMeasure.jr {
   background-color: #fff;
   border-top-color: #fff;
   border-bottom-color: #fff;
   border-left-color: #fff
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-row.jr:nth-last-child(2) .jr-mDatatable-cellRowlabel.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-row.jr:nth-last-child(2) .jv-mDatatable-cellRowlabel.jr {
   border-bottom: 1px double #d4d4d4;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cellColumnlabel.jr-mDatatable-cellField.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cellColumnlabel.jr-mDatatable-cellMeasure.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cellColumnlabel.jv-mDatatable-cellField.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cellColumnlabel.jv-mDatatable-cellMeasure.jr {
   font-weight: normal;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-rowGrouplabels.jr .jr-mDatatable-cellColumnlabel.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-rowGrouplabels.jr .jv-mDatatable-cellColumnlabel.jr {
   background-color: #d9e4f1;
   text-align: left;
   font-weight: bold;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cellSpacer.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cellSpacer.jr {
   background-color: #f4f4f4;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cell-text.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cell-text.jr {
   display: inline-block;
 } /* text and sort icon (below) both need inline-block to display correctly */
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-header.jr .jr-mDatatable-cell-sort.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-header.jr .jv-mDatatable-cell-sort.jr {
   display: inline-block;
   vertical-align: unset;
 }
 
-.jr-mDatatable-cell-filter {
+.jv-mDatatable-cell-filter {
   background-image: image-url("sort_filter_icons_sprite.png");
   background-repeat: no-repeat;
   display: inline-block;
@@ -264,86 +264,86 @@
   margin: 0 5px;
 }
 
-.jr-mDatatable-cell-filter.top {
+.jv-mDatatable-cell-filter.top {
   background-position: 0 -420px;
 }
 
-.jr-mDatatable-cell-filter.bottom {
+.jv-mDatatable-cell-filter.bottom {
   background-position: 0 -440px;
 }
 
 /* ------------------------ */
 /*  2c. Crosstab body       */
 /*  ----------------------  */
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowGroup.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowGroup.jr {
   background-color: #fff;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowGroupSinglemember.jr .jr-mDatatable-cellField.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowGroupSinglemember.jr .jr-mDatatable-cellMeasure.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowGroupSinglemember.jr .jv-mDatatable-cellField.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowGroupSinglemember.jr .jv-mDatatable-cellMeasure.jr {
   border-bottom: 1px solid #d4d4d4;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowGroup.jr .jr-mDatatable-cell.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowGroup.jr .jv-mDatatable-cell.jr {
   /* background-color: #ffffff;
   font-weight: normal; Sept 2023 */
   color: #555;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowGroup.jr-mDatatable-rowEven.jr .jr-mDatatable-cell.jr:last-of-type {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowGroup.jv-mDatatable-rowEven.jr .jv-mDatatable-cell.jr:last-of-type {
   background-color: #f4f4f4;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowGroup.jr-mDatatable-rowEven.jr .jr-mDatatable-cellRowlabel.jr:not([rowspan]),
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowGroup.jr-mDatatable-rowEven.jr .jr-mDatatable-cellValue.jr:not([rowspan]){
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowGroup.jv-mDatatable-rowEven.jr .jv-mDatatable-cellRowlabel.jr:not([rowspan]),
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowGroup.jv-mDatatable-rowEven.jr .jv-mDatatable-cellValue.jr:not([rowspan]){
   background-color: #f4f4f4;
 } /* NEW Sept 2023 */
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowMember.jr {}
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowMember.jr {}
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowValue.jr {}
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowValue.jr {}
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowMemberLast.jr .jr-mDatatable-cellField.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowMemberLast.jr .jr-mDatatable-cellMeasure.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowGroup.jr .jr-mDatatable-cellTotal.jr:last-of-type,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowGroup.jr .jr-mDatatable-cellTotal.jr, /* New Sept 2023, for collapsed crosstab */
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowMember.jr .jr-mDatatable-cellTotal.jr, //for nested crosstabs
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowValueLast.jr .jr-mDatatable-cellValue.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowMemberLast.jr .jv-mDatatable-cellField.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowMemberLast.jr .jv-mDatatable-cellMeasure.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowGroup.jr .jv-mDatatable-cellTotal.jr:last-of-type,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowGroup.jr .jv-mDatatable-cellTotal.jr, /* New Sept 2023, for collapsed crosstab */
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowMember.jr .jv-mDatatable-cellTotal.jr, //for nested crosstabs
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowValueLast.jr .jv-mDatatable-cellValue.jr {
   border-bottom: 1px solid #d4d4d4;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowGroup.jr-mDatatable-rowValue:not(.jr-mDatatable-rowValueLast).jr .jr-mDatatable-cellTotal.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-rowMember.jr-mDatatable-rowValue:not(.jr-mDatatable-rowValueLast).jr .jr-mDatatable-cellTotal.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowGroup.jv-mDatatable-rowValue:not(.jv-mDatatable-rowValueLast).jr .jv-mDatatable-cellTotal.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-rowMember.jv-mDatatable-rowValue:not(.jv-mDatatable-rowValueLast).jr .jv-mDatatable-cellTotal.jr {
   border-bottom: 1px solid transparent;
 } /* NEW Sept 2023 */
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-cellField.jr:last-of-type,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-body.jr .jr-mDatatable-cellMeasure.jr:last-of-type, //no border on inner-most cells
-.jr-mDatatableCrosstab.jr .jr-mDatatable-cellValue.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-cellField.jr:last-of-type,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-body.jr .jv-mDatatable-cellMeasure.jr:last-of-type, //no border on inner-most cells
+.jv-mDatatableCrosstab.jr .jv-mDatatable-cellValue.jr {
   border-bottom: 1px solid transparent;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-cellValue.jr .jr-mDatatable-cell-date.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-cellValue.jr .jr-mDatatable-cell-text.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-cellValue.jr .jv-mDatatable-cell-date.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-cellValue.jr .jv-mDatatable-cell-text.jr {
   text-align: right;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowTotal.jr-mDatatable-rowOdd.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowTotal.jv-mDatatable-rowOdd.jr {
   background-color: #fff;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowTotal.jr-mDatatable-rowEven.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowTotal.jv-mDatatable-rowEven.jr {
   background-color: #f4f4f4;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowMember.jr-mDatatable-rowTotal.jr .jr-mDatatable-cellField.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowMember.jr-mDatatable-rowTotal.jr .jr-mDatatable-cellMeasure.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowMember.jv-mDatatable-rowTotal.jr .jv-mDatatable-cellField.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowMember.jv-mDatatable-rowTotal.jr .jv-mDatatable-cellMeasure.jr {
   font-weight: normal;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-cellValue.jr-mDatatable-cellTotal.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowTotal.jr .jr-mDatatable-cellRowlabel.jr,
-.jr-mDatatableCrosstab.jr .jr-mDatatable-rowTotal.jr .jr-mDatatable-cellValue.jr {}
+.jv-mDatatableCrosstab.jr .jv-mDatatable-cellValue.jv-mDatatable-cellTotal.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowTotal.jr .jv-mDatatable-cellRowlabel.jr,
+.jv-mDatatableCrosstab.jr .jv-mDatatable-rowTotal.jr .jv-mDatatable-cellValue.jr {}
 
 /* ---------------------------------------- */
 /*   2d. Crosstab containers                */
@@ -353,80 +353,80 @@
 //   vertical and horizontal fixed header
 //   scrolling.
 // ----------------------------------------
-.jr-mDatatableCrosstabContainer.jr {
+.jv-mDatatableCrosstabContainer.jr {
   height: calc(100% - #{em(5px)}) !important;
   overflow: hidden;
   position: relative;
 }
 
-.jr-mDatatableCrosstab-header-rowlabelsContainer.jr,
-.jr-mDatatableCrosstab-body-dataContainer.jr,
-.jr-mDatatableCrosstab-header-columnlabelsContainer.jr,
-.jr-mDatatableCrosstab-body-rowlabelsContainer.jr {
+.jv-mDatatableCrosstab-header-rowlabelsContainer.jr,
+.jv-mDatatableCrosstab-body-dataContainer.jr,
+.jv-mDatatableCrosstab-header-columnlabelsContainer.jr,
+.jv-mDatatableCrosstab-body-rowlabelsContainer.jr {
   overflow: hidden;
   position: absolute;
 }
 
-.jr-mDatatableCrosstab-header-columnlabelsContainer.jr,
-.jr-mDatatableCrosstab-body-dataContainer.jr {
+.jv-mDatatableCrosstab-header-columnlabelsContainer.jr,
+.jv-mDatatableCrosstab-body-dataContainer.jr {
   border-right: 1px solid #d4d4d4;
 }
 
-.jr-mDatatableCrosstab-body-rowlabelsContainer.jr,
-.jr-mDatatableCrosstab-body-dataContainer.jr {
+.jv-mDatatableCrosstab-body-rowlabelsContainer.jr,
+.jv-mDatatableCrosstab-body-dataContainer.jr {
   border-bottom: 1px solid #d4d4d4;
 }
 
 /* container-specific */
-.jr-mDatatableCrosstab-body-rowlabelsContainer.jr .jr-mDatatable-row.jr:last-of-type .jr-mDatatable-cell.jr,
-.jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatable-row.jr:last-of-type .jr-mDatatable-cell.jr {
+.jv-mDatatableCrosstab-body-rowlabelsContainer.jr .jv-mDatatable-row.jr:last-of-type .jv-mDatatable-cell.jr,
+.jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatable-row.jr:last-of-type .jv-mDatatable-cell.jr {
   //border-bottom-color: transparent;
   border-bottom: none !important; // MUST TEST THIS
 }
 
-.jr-mDatatableCrosstab-body-rowlabelsContainer.jr .jr-mDatatableCrosstab.jr:not(.jr-isUnmerged) .jr-mDatatable-cell.jr:not(:last-of-type) {
+.jv-mDatatableCrosstab-body-rowlabelsContainer.jr .jv-mDatatableCrosstab.jr:not(.jv-isUnmerged) .jv-mDatatable-cell.jr:not(:last-of-type) {
   background-color: #fff; // NEW
 }
 
-.jr-mDatatableCrosstab-header-columnlabelsContainer.jr .jr-mDatatable-cell.jr:first-of-type,
-.jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatable-cell.jr:first-of-type {
+.jv-mDatatableCrosstab-header-columnlabelsContainer.jr .jv-mDatatable-cell.jr:first-of-type,
+.jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatable-cell.jr:first-of-type {
   border-left: none;
 }
 
-.jr-mDatatableCrosstab-header-columnlabelsContainer.jr .jr-mDatatable-cell.jr:last-of-type {
+.jv-mDatatableCrosstab-header-columnlabelsContainer.jr .jv-mDatatable-cell.jr:last-of-type {
   border-right: none;
 }
 
-.jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatable-cell.jr:last-of-type {
+.jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatable-cell.jr:last-of-type {
   border-right: none;
   padding-right: em(16px); // prevents text being overlapped by scrollbar
 }
 
-.jr-mDatatableCrosstab-body-rowlabelsContainer.jr .jr-mDatatable-row.jr:first-of-type .jr-mDatatable-cell.jr,
-.jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatable-row.jr:first-of-type .jr-mDatatable-cell.jr {
+.jv-mDatatableCrosstab-body-rowlabelsContainer.jr .jv-mDatatable-row.jr:first-of-type .jv-mDatatable-cell.jr,
+.jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatable-row.jr:first-of-type .jv-mDatatable-cell.jr {
   border-top: none;
 }
 
-.jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatable-rowTotal.jr .jr-mDatatable-cellTotal.jr {
+.jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatable-rowTotal.jr .jv-mDatatable-cellTotal.jr {
   border-bottom: 1px solid #d4d4d4;
 }
 
-.jr-mDatatableCrosstab-header-rowlabelsContainer.jr .jr-mDatatableCrosstab.jr {
+.jv-mDatatableCrosstab-header-rowlabelsContainer.jr .jv-mDatatableCrosstab.jr {
   position: relative;
   width: 100%
 }
 
-.jr-mDatatableCrosstab-header-columnlabelsContainer.jr .jr-mDatatableCrosstab.jr,
-.jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatableCrosstab.jr {
+.jv-mDatatableCrosstab-header-columnlabelsContainer.jr .jv-mDatatableCrosstab.jr,
+.jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatableCrosstab.jr {
   top: 0;
 }
 
-.jr-mDatatableCrosstab-body-rowlabelsContainer.jr .jr-mDatatableCrosstab.jr {
+.jv-mDatatableCrosstab-body-rowlabelsContainer.jr .jv-mDatatableCrosstab.jr {
   position: relative;
   top: 0;
 }
 
-//.jr-mDatatableCrosstab-body-rowlabelsContainer.jr .jr-mDatatable-rowGroup.jr .jr-mDatatable-cell.jr:not([rowspan])  {
+//.jv-mDatatableCrosstab-body-rowlabelsContainer.jr .jv-mDatatable-rowGroup.jr .jv-mDatatable-cell.jr:not([rowspan])  {
 //  background-color: yellow;
 //}
 
@@ -434,96 +434,96 @@
 /* -------------- */
 /*  3. STATES     */
 /* -------------- */
-.jr-mDatatableCrosstabContainer.jr-isStretched.jr .jr-mDatatableCrosstab-header-columnlabelsContainer .jr-mDatatableCrosstab,
-.jr-mDatatableCrosstabContainer.jr-isStretched.jr .jr-mDatatableCrosstab-body-dataContainer .jr-mDatatableCrosstab {
+.jv-mDatatableCrosstabContainer.jv-isStretched.jr .jv-mDatatableCrosstab-header-columnlabelsContainer .jv-mDatatableCrosstab,
+.jv-mDatatableCrosstabContainer.jv-isStretched.jr .jv-mDatatableCrosstab-body-dataContainer .jv-mDatatableCrosstab {
   width: 100%;
 }
 
 // expand/collapse
-.jr-mDatatableCrosstab .jr-mDatatable-cell-expander.jr-isExpanded.jr,
-.jr-mDatatableCrosstab .jr-mDatatable-cell-expander.jr-isCollapsed.jr {
+.jv-mDatatableCrosstab .jv-mDatatable-cell-expander.jv-isExpanded.jr,
+.jv-mDatatableCrosstab .jv-mDatatable-cell-expander.jv-isCollapsed.jr {
   display: inline-block;
   position: relative;
   z-index: 1;
 }
 
-.jr-mDatatableCrosstab .jr-mDatatable-cell-expander.jr-isExpanded.jr::before {
-  content: "\f135"; // must match the jr-minusSquare icon in _icons.scss
+.jv-mDatatableCrosstab .jv-mDatatable-cell-expander.jv-isExpanded.jr::before {
+  content: "\f135"; // must match the jv-minusSquare icon in _icons.scss
   position: relative;
   z-index: 1;
 }
 
-.jr-mDatatableCrosstab .jr-mDatatable-cell-expander.jr-isCollapsed.jr::before {
-  content: "\f149"; // must match the jr-plusSquare icon in _icons.scss
+.jv-mDatatableCrosstab .jv-mDatatable-cell-expander.jv-isCollapsed.jr::before {
+  content: "\f149"; // must match the jv-plusSquare icon in _icons.scss
   position: relative;
   z-index: 1;
 }
 
-.jr-mDatatableCrosstab .jr-mDatatable-cell-expander.jr-isExpanded.jr::after,
-.jr-mDatatableCrosstab .jr-mDatatable-cell-expander.jr-isCollapsed.jr::after{
-  content: "\f151"; // must match the jr-squareBackground icon in _icons.scss
+.jv-mDatatableCrosstab .jv-mDatatable-cell-expander.jv-isExpanded.jr::after,
+.jv-mDatatableCrosstab .jv-mDatatable-cell-expander.jv-isCollapsed.jr::after{
+  content: "\f151"; // must match the jv-squareBackground icon in _icons.scss
   color: #fff;
   position: absolute;
   left: 0;
 }
 
 // unmerged NEW
-.jr-mDatatableCrosstab.jr-isUnmerged.jr .jr-mDatatable-rowTotal.jr .jr-mDatatable-cellField.jr,
-.jr-mDatatableCrosstab.jr-isUnmerged.jr .jr-mDatatable-rowTotal.jr .jr-mDatatable-cellMeasure.jr {
+.jv-mDatatableCrosstab.jv-isUnmerged.jr .jv-mDatatable-rowTotal.jr .jv-mDatatable-cellField.jr,
+.jv-mDatatableCrosstab.jv-isUnmerged.jr .jv-mDatatable-rowTotal.jr .jv-mDatatable-cellMeasure.jr {
   font-weight: normal;
 }
 
-.jr-mDatatableCrosstab.jr-isUnmerged.jr .jr-mDatatable-body.jr .jr-mDatatable-cellField.jr:last-of-type {
+.jv-mDatatableCrosstab.jv-isUnmerged.jr .jv-mDatatable-body.jr .jv-mDatatable-cellField.jr:last-of-type {
   //border-bottom-color: #d4d4d4; adds bottom border on inner-most column
 }
 
-.jr-mDatatableCrosstab.jr-isUnmerged.jr .jr-mDatatable-rowMember.jr .jr-mDatatable-cellField.jr {
+.jv-mDatatableCrosstab.jv-isUnmerged.jr .jv-mDatatable-rowMember.jr .jv-mDatatable-cellField.jr {
   //border-bottom-color: transparent;
 }
 
-.jr-mDatatableCrosstab.jr-isUnmerged.jr .jr-mDatatable-rowMember.jr-mDatatable-rowTotal.jr .jr-mDatatable-cellField.jr {
+.jv-mDatatableCrosstab.jv-isUnmerged.jr .jv-mDatatable-rowMember.jv-mDatatable-rowTotal.jr .jv-mDatatable-cellField.jr {
   //border-bottom-color: #d4d4d4;
 }
 
 // CROSSTAB
-.jr-mDatatable-cell-wrapper.jr-isHidden.jr,
-.jr-mDatatable-cell-text.jr-isHidden.jr {
+.jv-mDatatable-cell-wrapper.jv-isHidden.jr,
+.jv-mDatatable-cell-text.jv-isHidden.jr {
   min-height: 0;
   height: 0;
   overflow: hidden;
 }
 
-.jr-mDatatable-emptyMessage.jr {
+.jv-mDatatable-emptyMessage.jr {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
 }
 
-.jr-mDatatable-emptyMessage.jr-isHidden.jr {
+.jv-mDatatable-emptyMessage.jv-isHidden.jr {
   display: none;
 }
 
 // empty — no rows added yet
 // JRS-13926 UI: Browser Chrome: vertical scroll appears when embed crosstab with columns only
-.jr-mDatatableCrosstab-bodyContainer.jr-isEmpty.jr .jr-mDatatableCrosstab-body-rowlabelsContainer.jr .jr-mDatatableCrosstab.jr,
-.jr-mDatatableCrosstab-bodyContainer.jr-isEmpty.jr .jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatableCrosstab.jr {
+.jv-mDatatableCrosstab-bodyContainer.jv-isEmpty.jr .jv-mDatatableCrosstab-body-rowlabelsContainer.jr .jv-mDatatableCrosstab.jr,
+.jv-mDatatableCrosstab-bodyContainer.jv-isEmpty.jr .jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatableCrosstab.jr {
   // apply empty state to body container when crosstab contains no rows or if data won't display
   height: 100%; // NEW
   width: 100%;
 }
 
-.jr-mDatatableCrosstab-bodyContainer.jr-isEmpty.jr .jr-mDatatableCrosstab-body-rowlabelsContainer.jr,
-.jr-mDatatableCrosstab-bodyContainer.jr-isEmpty.jr .jr-mDatatableCrosstab-body-dataContainer.jr {
+.jv-mDatatableCrosstab-bodyContainer.jv-isEmpty.jr .jv-mDatatableCrosstab-body-rowlabelsContainer.jr,
+.jv-mDatatableCrosstab-bodyContainer.jv-isEmpty.jr .jv-mDatatableCrosstab-body-dataContainer.jr {
   min-height: 94px !important;
 }
 
-.jr-mDatatableCrosstab-bodyContainer.jr-isEmpty.jr .jr-mDatatableCrosstab-body-rowlabelsContainer.jr .jr-mDatatable-row.jr:last-of-type .jr-mDatatable-cell.jr,
-.jr-mDatatableCrosstab-bodyContainer.jr-isEmpty.jr .jr-mDatatableCrosstab-body-dataContainer.jr .jr-mDatatable-row.jr:last-of-type .jr-mDatatable-cell.jr {
+.jv-mDatatableCrosstab-bodyContainer.jv-isEmpty.jr .jv-mDatatableCrosstab-body-rowlabelsContainer.jr .jv-mDatatable-row.jr:last-of-type .jv-mDatatable-cell.jr,
+.jv-mDatatableCrosstab-bodyContainer.jv-isEmpty.jr .jv-mDatatableCrosstab-body-dataContainer.jr .jv-mDatatable-row.jr:last-of-type .jv-mDatatable-cell.jr {
   border-bottom: none;
 }
 
-.jr-mDatatableCrosstab-bodyContainer.jr-isEmpty.jr .jr-mDatatable-rowMember.jr:only-child .jr-mDatatable-cellField.jr:only-child {
+.jv-mDatatableCrosstab-bodyContainer.jv-isEmpty.jr .jv-mDatatable-rowMember.jr:only-child .jv-mDatatable-cellField.jr:only-child {
   //when nothing is yet added to crosstab rows
   background-color: #cccccc;
   color: #fff;
@@ -532,7 +532,7 @@
 }
 
 //TODO: fix for http://jira.jaspersoft.com/browse/JRS-13899
-.jr-mDatatableContainer:hover .jr-mDatatable-bottomContainer .ps-scrollbar-x-rail {
+.jv-mDatatableContainer:hover .jv-mDatatable-bottomContainer .ps-scrollbar-x-rail {
   opacity: 0.6;
 }
 
@@ -546,17 +546,17 @@
   }
 }
 
-.jr-mDatatable-cell-loading {
+.jv-mDatatable-cell-loading {
   background-image: linear-gradient(90deg, #999 0px, #eee 50px, #aaa 110px);
   background-size: 400px;
   //animation: shine-lines 3s infinite;
 }
 
-.jr-mDatatable-skeleton-body-cell-wrapper.jr {
+.jv-mDatatable-skeleton-body-cell-wrapper.jr {
     text-align: right;
 }
 
-.jr-mDatatable-skeleton-cell-text.jr {
+.jv-mDatatable-skeleton-cell-text.jr {
     //animation: pulse 1.5s linear infinite;
     background-color: #e6e6e6;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.12) 8%, rgba(0, 0, 0, 0.04) 16%);
@@ -567,7 +567,7 @@
     height: 8px;
 }
 
-.jr-mDatatable-skeleton-cell-header.jr {
+.jv-mDatatable-skeleton-cell-header.jr {
     //animation: pulse 1.5s linear infinite;
     background-color: #cecece;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.12) 8%, rgba(0, 0, 0, 0.04) 16%);
@@ -578,6 +578,6 @@
     height: 8px;
 }
 
-.jr-mDatatableCrosstab.jr .jr-mDatatable-skeleton-cell.jr {
+.jv-mDatatableCrosstab.jr .jv-mDatatable-skeleton-cell.jr {
     border: 1px solid #d4d4d4 !important;
 }

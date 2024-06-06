@@ -15,7 +15,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(({
     return (
         <MuiTabs
             ref={ref}
-            className={`jr-mTabs ${className} ${SizeToTabs[size]} mui`}
+            className={`jv-mTabs ${className} ${SizeToTabs[size]} mui`}
             indicatorColor={indicatorColor}
             {...rest}
         >

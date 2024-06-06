@@ -9,7 +9,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, MuiButtonGroupProps>(({
     return (
         <MuiButtonGroup
             ref={ref}
-            className={`jr-mButtongroup mui ${className}`}
+            className={`jv-mButtongroup mui ${className}`}
             variant="contained"
             color="secondary"
             disableElevation

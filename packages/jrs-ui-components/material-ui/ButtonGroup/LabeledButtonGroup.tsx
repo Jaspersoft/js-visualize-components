@@ -22,8 +22,8 @@ export const LabeledButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>((
     const { className: inputLabelClassName = '', ...restInputLabelProps } = InputLabelProps;
 
     return (
-        <div id={id} ref={ref} className={`jr-mInput jr-mInputInline jr-mInputButtons mui ${SizeToClass[size ?? 'medium']} ${className}`}>
-            <InputLabel id={inputLabelId} className={`jr-mInput-label mui ${inputLabelClassName}`} {...restInputLabelProps}>{label}</InputLabel>
+        <div id={id} ref={ref} className={`jv-mInput jv-mInputInline jv-mInputButtons mui ${SizeToClass[size ?? 'medium']} ${className}`}>
+            <InputLabel id={inputLabelId} className={`jv-mInput-label mui ${inputLabelClassName}`} {...restInputLabelProps}>{label}</InputLabel>
             <ButtonGroup id={buttonGroupId} className={buttonGroupClassName} size={size} aria-labelledby={ariaLabeledBy} {...rest}>
                 {children}
             </ButtonGroup>

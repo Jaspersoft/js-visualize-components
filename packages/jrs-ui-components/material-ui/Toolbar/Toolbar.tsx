@@ -6,7 +6,7 @@ export const Toolbar = forwardRef<HTMLDivElement, MuiToolbarProps>(({
 }, ref) => {
     return (
         <MuiToolbar
-            className={`jr-mToolbar ${className} mui`}
+            className={`jv-mToolbar ${className} mui`}
             ref={ref}
             {...rest}
         />

@@ -47,8 +47,8 @@ export const ConfirmationDialog = forwardRef<HTMLDivElement, ConfirmationDialogP
     return (
         <MuiDialog
             ref={ref}
-            classes={{ paper: `jr-mDialog-wrapper ${paper} mui`, ...restClasses }}
-            className={`jr-mDialog ${DialogSizeToClass[type]} ${className} mui`}
+            classes={{ paper: `jv-mDialog-wrapper ${paper} mui`, ...restClasses }}
+            className={`jv-mDialog ${DialogSizeToClass[type]} ${className} mui`}
             disableEscapeKeyDown={disableEscapeKeyDown}
             PaperProps={{
                 elevation,
@@ -59,23 +59,23 @@ export const ConfirmationDialog = forwardRef<HTMLDivElement, ConfirmationDialogP
         >
             {dialogTitle && (
                 <MuiDialogTitle
-                    className={`jr-mDialog-header ${dialogTitleClassname} mui`}
+                    className={`jv-mDialog-header ${dialogTitleClassname} mui`}
                     {...restDialogTitleProps}
                 >
-                    <Typography className={`jr-mDialog-header-title ${dialogTitleTypographyClassname} mui`} {...restDialogTitleTypographyProps}>
+                    <Typography className={`jv-mDialog-header-title ${dialogTitleTypographyClassname} mui`} {...restDialogTitleTypographyProps}>
                         {dialogTitle}
                     </Typography>
                 </MuiDialogTitle>
             )}
-            <MuiDialogContent className={`jr-mDialog-body jr-mDialog-bodyPadded ${dialogContentClassName} mui`} dividers={dividers} {...restDialogContentProps}>
+            <MuiDialogContent className={`jv-mDialog-body jv-mDialog-bodyPadded ${dialogContentClassName} mui`} dividers={dividers} {...restDialogContentProps}>
                 {DialogSubTitleComponent && (
-                    <div className={`jr-mDialog-subtitle ${dialogSubTitleClassName} mui`} {...restDialogSubTitleProps}>
+                    <div className={`jv-mDialog-subtitle ${dialogSubTitleClassName} mui`} {...restDialogSubTitleProps}>
                         {DialogSubTitleComponent}
                     </div>
                 )}
                 {DialogContentComponent}
             </MuiDialogContent>
-            <MuiDialogActions className={`jr-mDialog-footer ${dialogActionClassname} mui`} {...restDialogActionsProps}>
+            <MuiDialogActions className={`jv-mDialog-footer ${dialogActionClassname} mui`} {...restDialogActionsProps}>
                 {DialogActionsComponent}
             </MuiDialogActions>
         </MuiDialog>

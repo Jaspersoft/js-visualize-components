@@ -4,7 +4,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { AccordionSize } from '../Accordion/Accordion';
 
 const AccordionSummarySizeToClass: {[key in AccordionSize]: string} = {
-    small: 'jr-mAccordion-titleShaded',
+    small: 'jv-mAccordion-titleShaded',
     normal: ''
 }
 
@@ -22,10 +22,10 @@ export const AccordionSummary = forwardRef<HTMLDivElement, AccordionSummaryProps
     return (
         <MuiAccordionSummary
             ref={ref}
-            className={`jr-mAccordion-title mui ${sizeClass} ${className}`}
+            className={`jv-mAccordion-title mui ${sizeClass} ${className}`}
             classes={{
-                content: `jr-mAccordion-title-text mui ${content}`,
-                expandIconWrapper: `jr-mAccordion-title-icon mui ${expandIconWrapper}`,
+                content: `jv-mAccordion-title-text mui ${content}`,
+                expandIconWrapper: `jv-mAccordion-title-icon mui ${expandIconWrapper}`,
                 ...restClasses
             }}
             expandIcon={<ChevronRightIcon />}
