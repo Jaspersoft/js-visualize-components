@@ -20,9 +20,12 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.15.19",
+    "@mui/x-date-pickers": "^7.6.2",
+    "dayjs": "^1.11.11",
     "input-controls-plugin": "0.0.1",
-    "jrs-viz": "1.0.0",
     "jrs-ui-components": "0.0.1",
+    "jrs-viz": "1.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }

@@ -33,5 +33,9 @@
     <div id="root"></div> <!-- react DOM root -->
 
     <script src="bundle.js"></script> <!-- load app -->
+
+    <script type="text/javascript">
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
   </body>
 </html>
