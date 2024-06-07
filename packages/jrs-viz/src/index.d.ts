@@ -1,3 +1,5 @@
+declare module 'jrs-viz';
+
 export type Authentication = {
     url?: string,
     name? : string,

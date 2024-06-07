@@ -5,9 +5,7 @@ import { StylesProvider } from 'jrs-ui-components';
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-//   <React.StrictMode>
   <StylesProvider>
-      <App title="My Testing Application!"/>
+      <App title="Visualize Plugins Sandbox"/>
   </StylesProvider>
-//   </React.StrictMode>
 );

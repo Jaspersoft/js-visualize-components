@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "license": "AGPLv3",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "sass:jasperui": "sass --no-source-map --style=expanded scss/jasper-ui.scss ${BUILD_THEMES_DIR}/jasper-ui.css",
     "styles": "dotenv -c -- run-p sass:jasperui",
@@ -56,6 +58,7 @@
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
     "@types/jquery": "^3.5.5",
+    "@types/material-ui": "^0.21.17",
     "@types/react": "^18.3.1",
     "@types/react-color": "3.0.10",
     "@types/react-dom": "18.2.19",

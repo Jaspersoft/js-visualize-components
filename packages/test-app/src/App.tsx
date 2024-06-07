@@ -1,8 +1,9 @@
 import InputControls from 'input-controls-plugin';
 import React, { useEffect, useState } from 'react';
-// @ts-ignore
+
 import { visualizejsLoader, Authentication, VisualizeFactory, VisualizeType } from 'jrs-viz';
 import MuiTest from './Mui-test.js';
+import ControlPanel from './controls/ControlPanel.js';
 
 export interface AppConfig {
     title: string,
@@ -13,6 +14,8 @@ const credentials: Authentication = {
     password: 'joeuser',
     organization: 'organization_1',
 };
+
+const reportUri = '/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report';
 
 const visualizeUrl = 'https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js';
 
@@ -54,7 +57,7 @@ export default function App(props: AppConfig) {
 
     useEffect(() => {
         if (plugin === undefined) return;
-        plugin.fillControlStructure('/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report', (controls: object) => {
+        plugin.fillControlStructure(reportUri, (controls: object) => {
             setControlStruct(controls);
         });
     }, [plugin]);
@@ -63,9 +66,8 @@ export default function App(props: AppConfig) {
     <div className="appBox">
         <h1> {props.title || 'Title Goes Here'}</h1>
         <div id="controlBox">
-            {JSON.stringify(controlStruct)}
+            <ControlPanel title={reportUri} controlData={controlStruct} />
         </div>
-        <MuiTest/>
     </div>
     );
 };
