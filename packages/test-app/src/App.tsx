@@ -68,7 +68,6 @@ export default function App(props: AppConfig) {
         <div id="controlBox">
             <ControlPanel title={reportUri} controlData={controlStruct} />
         </div>
-        <MuiTest/>
     </div>
     );
 };
