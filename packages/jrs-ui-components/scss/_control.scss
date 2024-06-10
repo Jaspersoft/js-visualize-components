@@ -20,12 +20,12 @@
 //      3a. Switch
 // -----------------------------------------------
 
-.jv-mControl.jr {
+.jv-mControl.jv {
   font-family: source_sans_proregular, Franklin Gothic, Verdana, Arial, sans-serif;
   font-size: 13px;
 }
 
-.jv-mControl-label.jr {}
+.jv-mControl-label.jv {}
 
 
 // -----------------------
@@ -33,17 +33,17 @@
 // -----------------------
 //  1a. Base Control
 
-.jv-mControlColor.jr {
+.jv-mControlColor.jv {
   margin-bottom: 6px
 }
 
-.jv-mControlColor.jr .jv-mControl-label.jr {
+.jv-mControlColor.jv .jv-mControl-label.jv {
   color: #666666;
   display: block;
   line-height: 2em;
 }
 
-.jv-mControlColor.jr .jv-mControl-launcher.jr {
+.jv-mControlColor.jv .jv-mControl-launcher.jv {
   border: 1px solid #dedede;
   border-radius: 1px;
   cursor: pointer;
@@ -52,17 +52,17 @@
   width: auto;
 }
 
-.jv-mControlColor.jr .jv-mControl-launcher-swatch.jr {
+.jv-mControlColor.jv .jv-mControl-launcher-swatch.jv {
   display: inline-block;
   margin: 2px;
   width: 40px;
 }
 
-.jv-mControlColor.jr .jv-mControl-launcher-swatchLight.jr {
+.jv-mControlColor.jv .jv-mControl-launcher-swatchLight.jv {
   border: 1px solid #dedede;
 }
 
-.jv-mControlColor.jr .jv-mControl-launcher-swatchTransparent.jr {
+.jv-mControlColor.jv .jv-mControl-launcher-swatchTransparent.jv {
   background-color: #ffffff;
   background-size: 8px 8px;
   background-position: 0 0, 4px 4px;
@@ -70,7 +70,7 @@
   linear-gradient(45deg, #dedede 25%, transparent 25%, transparent 75%, #dedede 75%, #dedede)
 }
 
-.jv-mControlColor.jr .jv-mControl-launcher-hex.jr {
+.jv-mControlColor.jv .jv-mControl-launcher-hex.jv {
   color: #666;
   font-family: Monaco, monospace;
   font-size: 12px;
@@ -80,20 +80,20 @@
   width: 60px;
 }
 
-.jv-mControlColor.jr .jv-mControl-actions.jr {}
+.jv-mControlColor.jv .jv-mControl-actions.jv {}
 
 
 //  1b. Colorset
-.jv-mControlColorset.jr {
+.jv-mControlColorset.jv {
   display: table;
 }
 
-.jv-mControlColorset.jr .jv-mControlColor.jr,
-.jv-mControlColorset.jr .jv-mControlColor-add.jr {
+.jv-mControlColorset.jv .jv-mControlColor.jv,
+.jv-mControlColorset.jv .jv-mControlColor-add.jv {
   display: table-row;
 }
 
-.jv-mControlColorset.jr .jv-mControl-label.jr {
+.jv-mControlColorset.jv .jv-mControl-label.jv {
   display: table-cell;
   padding-right: 6px;
   text-align: right;
@@ -102,40 +102,40 @@
   min-width: 50px;
 }
 
-.jv-mControlColorset.jr .jv-mControl-actions.jr {
+.jv-mControlColorset.jv .jv-mControl-actions.jv {
   display: table-cell;
   vertical-align: top;
 }
 
-.jv-mControlColorset.jr .jv-mControl-spacer.jr {
+.jv-mControlColorset.jv .jv-mControl-spacer.jv {
   height: 6px;
 }
 
-.jv-mControlColorset.jr .jv-mControl-add.jr {
+.jv-mControlColorset.jv .jv-mControl-add.jv {
   display: table-row;
   height: 28px;
 }
 
-.jv-mControlColorset.jr .jv-mControl-add-color.jr {
+.jv-mControlColorset.jv .jv-mControl-add-color.jv {
   display: table-cell;
   height: 28px;
   position: static;
 }
 
-.jv-mControlColorset.jr .jv-mControl-add-color.jr .jv-mButton.jr {
+.jv-mControlColorset.jv .jv-mControl-add-color.jv .jv-mButton.jv {
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
 //  1c. Inline
-.jv-mControlColor.jv-mControlInline.jr {
+.jv-mControlColor.jv-mControlInline.jv {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
 }
 
-.jv-mControlColor.jv-mControlInline.jr .jv-mControl-label.jr {
+.jv-mControlColor.jv-mControlInline.jv .jv-mControl-label.jv {
   padding-right: 6px;
   text-align: right;
   vertical-align: middle;
@@ -150,18 +150,18 @@
 // -----------------------
 //  2a. Base Control
 
-.jv-mControlSwitch.jr {
+.jv-mControlSwitch.jv {
   margin-bottom: 6px;
 }
 
-.jv-mControlSwitch.jr .jv-mControl-button.jr {
+.jv-mControlSwitch.jv .jv-mControl-button.jv {
   border-radius: 12px;
   height: 24px;
   min-width: 46px;
   width: auto;
 }
 
-.jv-mControlSwitch.jr .jv-mControl-button-label.jr {
+.jv-mControlSwitch.jv .jv-mControl-button-label.jv {
   font-family: $font-family-semibold;
   font-size: 12px;
   display: inline-block;
@@ -169,29 +169,29 @@
   text-align: center;
 }
 
-.jv-mControlSwitch.jr {
+.jv-mControlSwitch.jv {
   display: flex;
 }
 
-.jv-mControlSwitch.jr .jv-mControl-label.jr {
+.jv-mControlSwitch.jv .jv-mControl-label.jv {
   align-self: center;
   color: #464646;
 }
 
-.jv-mControlSwitch.jr .jv-mControl-label.jr:last-child {
+.jv-mControlSwitch.jv .jv-mControl-label.jv:last-child {
   margin-left: 10px;
 }
 
 //  2b. Sizes
-.jv-mControlSwitch.jv-mControlSmall.jr {}
+.jv-mControlSwitch.jv-mControlSmall.jv {}
 
-.jv-mControlSwitch.jv-mControlSmall.jr .jv-mControl-button.jr {
+.jv-mControlSwitch.jv-mControlSmall.jv .jv-mControl-button.jv {
   border-radius: 10px;
   height: 20px;
   min-width: 38px;
 }
 
-.jv-mControlSwitch.jv-mControlSmall.jr .jv-mControl-button-label.jr {
+.jv-mControlSwitch.jv-mControlSmall.jv .jv-mControl-button-label.jv {
   font-family: $font-family-semibold;
   font-size: 10px;
   display: inline-block;
@@ -204,15 +204,15 @@
 //  3. STATES
 // -----------------------
 //  3a. Switch
-.jv-mControlSwitch .jv-isOff.jr {
+.jv-mControlSwitch .jv-isOff.jv {
   background-color: #b6b6b6;
 }
 
-.jv-mControlSwitch .jv-isOn.jr {
+.jv-mControlSwitch .jv-isOn.jv {
   background-color: #055dab;
 }
 
-.jv-mControlSwitch.jr .jv-isOff.jr .jv-mControl-button-label.jr:first-child {
+.jv-mControlSwitch.jv .jv-isOff.jv .jv-mControl-button-label.jv:first-child {
   background-color: #fff;
   border-radius: 50%;
   color: transparent;
@@ -222,20 +222,20 @@
   left: 2px;
   width: 20px;
 }
-.jv-mControlSwitch.jr .jv-isOff.jr .jv-mControl-button-label.jr:last-child {
+.jv-mControlSwitch.jv .jv-isOff.jv .jv-mControl-button-label.jv:last-child {
   color: #fff;
   margin-left: 24px;
   padding-right: 5px;
   width: calc(100% - 24px);
 }
 
-.jv-mControlSwitch.jr .jv-isOn.jr .jv-mControl-button-label.jr:first-child {
+.jv-mControlSwitch.jv .jv-isOn.jv .jv-mControl-button-label.jv:first-child {
   color: #fff;
   margin-right: 24px;
   padding-left: 4px;
   width: calc(100% - 24px)
 }
-.jv-mControlSwitch.jr .jv-isOn.jr .jv-mControl-button-label.jr:last-child {
+.jv-mControlSwitch.jv .jv-isOn.jv .jv-mControl-button-label.jv:last-child {
   background-color: #fff;
   border-radius: 50%;
   color: transparent;
@@ -247,18 +247,18 @@
 }
 
 //  3b. switch sizes
-.jv-mControlSwitch.jv-mControlSmall.jr .jv-isOff.jr .jv-mControl-button-label.jr:first-child,
-.jv-mControlSwitch.jv-mControlSmall.jr .jv-isOn.jr .jv-mControl-button-label.jr:last-child {
+.jv-mControlSwitch.jv-mControlSmall.jv .jv-isOff.jv .jv-mControl-button-label.jv:first-child,
+.jv-mControlSwitch.jv-mControlSmall.jv .jv-isOn.jv .jv-mControl-button-label.jv:last-child {
   height: 16px;
   width: 16px;
 }
 
-.jv-mControlSwitch.jv-mControlSmall.jr .jv-isOn.jr .jv-mControl-button-label.jr:first-child {
+.jv-mControlSwitch.jv-mControlSmall.jv .jv-isOn.jv .jv-mControl-button-label.jv:first-child {
   margin-right: 20px;
   width: calc(100% - 20px);
 }
 
-.jv-mControlSwitch.jv-mControlSmall.jr .jv-isOff.jr .jv-mControl-button-label.jr:last-child {
+.jv-mControlSwitch.jv-mControlSmall.jv .jv-isOff.jv .jv-mControl-button-label.jv:last-child {
   margin-left: 20px;
   width: calc(100% - 20px);
 }

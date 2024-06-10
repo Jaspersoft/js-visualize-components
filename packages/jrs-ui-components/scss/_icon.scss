@@ -37,7 +37,7 @@
 // override generated paths with our configuration
 @include font-face("icons", "normal", "normal");
 
-.jv-mIcon.jr {
+.jv-mIcon.jv {
     color: $color-textMedium;
     font-size: 18px;          // new base font size
     height: em(26px, 18px);
@@ -48,66 +48,66 @@
 }
 
 /*  NOT YET IN USE
-.jv-mIconXXsmall.jr {
+.jv-mIconXXsmall.jv {
     font-size: 8px;
     height: em(12px, 8px);
     line-height: (12px / 8px);
   }
 
-  .jv-mIconXSmall.jr {
+  .jv-mIconXSmall.jv {
     font-size: 11px;
     height: em(16px, 11px);
     line-height: (16px / 11px);
   }
 */
 
-.jv-mIconTiny.jr {
+.jv-mIconTiny.jv {
   font-size: 11px;           // new base font size
   height: em(20px, 11px);
   line-height: math.div(20px, 11px);
 }
 
-.jv-mIconSmall.jr {
+.jv-mIconSmall.jv {
     font-size: 14px;           // new base font size
     height: em(20px, 14px);
     line-height: math.div(20px, 14px);
 }
 
-.jv-mIconLarge.jr {
+.jv-mIconLarge.jv {
     font-size: 24px;          // new base font size
     height: em(34px, 24px);
     line-height: math.div(34px, 24px);
 }
 
-.jv-mIconXLarge.jr {
+.jv-mIconXLarge.jv {
   font-size: 30px;          // new base font size
   height: em(40px, 30px);
   line-height: math.div(40px, 30px);
 }
 
-.jv-mIconXXLarge.jr {
+.jv-mIconXXLarge.jv {
   font-size: 36px;          // new base font size
   height: em(44px, 36px);
   line-height: math.div(44px, 36px);
 }
 
-.jv-mIconJumbo.jr {
+.jv-mIconJumbo.jv {
   font-size: 42px;          // new base font size
   height: em(50px, 42px);
   line-height: math.div(50px, 42px);
 }
 
-.jv-mIcon.jv-isHidden.jr {
+.jv-mIcon.jv-isHidden.jv {
     display: none;
 }
 
 
 // STATES and COLORED ICONS
-.jv-mIconInverted.jr {
+.jv-mIconInverted.jv {
   color:#fff !important;
 }
 
-.jv-mIconTheme.jr {
+.jv-mIconTheme.jv {
   color: $color-textThemePrimary;
 }
 
@@ -144,7 +144,7 @@
 
 
 // ANIMATED LOADING ICON
-.jv-mIcon.jv-loading.jr {
+.jv-mIcon.jv-loading.jv {
     //border: solid #ddd;
     //border-top-color: #888;
 
@@ -167,25 +167,25 @@
 }
 
 // colors
-.jv-mIconInverted.jv-loading.jr {
+.jv-mIconInverted.jv-loading.jv {
     border: #80bbe4 solid 4px;
     border-top-color: white;
 }
 
-.jv-mIconTheme.jv-loading.jr {
+.jv-mIconTheme.jv-loading.jv {
   border: #80bbe4 solid 4px;
   border-top-color: white;
 }
 
 // sizes
-.jv-mIcon.jv-mIconSmall.jv-loading.jr {
+.jv-mIcon.jv-mIconSmall.jv-loading.jv {
   font-size: 14px !important;
 }
 
-.jv-mIcon.jv-mIconMedium.jv-loading.jr {
+.jv-mIcon.jv-mIconMedium.jv-loading.jv {
   font-size: 18px !important;
 }
 
-.jv-mIcon.jv-mIconLarge.jv-loading.jr {
+.jv-mIcon.jv-mIconLarge.jv-loading.jv {
   font-size: 24px !important;
 }

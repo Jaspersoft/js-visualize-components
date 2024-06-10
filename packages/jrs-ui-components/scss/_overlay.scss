@@ -28,7 +28,7 @@
 // ------------------
 //	OVERLAY MODULE
 // ------------------
-.jv-mOverlay.jr {
+.jv-mOverlay.jv {
   background-color: rgba(51, 51, 51, 0.6);
   height: 100%;
   position: absolute;
@@ -38,28 +38,28 @@
   z-index: $zindex-overlay;
 }
 
-.jv-mOverlayLight.jr {
+.jv-mOverlayLight.jv {
   background-color: rgba(190, 190, 190, 0.6);
 }
 
-.jv-mOverlay-wrapper.jr {
+.jv-mOverlay-wrapper.jv {
   height: 100%;
   text-align: center;
 }
 
-.jv-mOverlay-wrapperCenter.jr {
+.jv-mOverlay-wrapperCenter.jv {
   height: auto;
   text-align: center;
   top: 50%;
   transform: perspective(1px) translateY(-50%)
 }
 
-.jv-mOverlay-wrapperCenter.jr:before {
+.jv-mOverlay-wrapperCenter.jv:before {
   vertical-align: middle;
 }
 
 
-.jv-mOverlay-centroid.jr {
+.jv-mOverlay-centroid.jv {
   height: 100%;
   text-align: center;
 
@@ -75,13 +75,13 @@
 // ---------------------------------
 // MODULE VARIATION, TRANSPARENT
 // ---------------------------------
-.jv-mOverlayClear.jr {
+.jv-mOverlayClear.jv {
   background-color: transparent;
 }
 
 
 
 // STATE
-.jv-mOverlay.jv-isHidden.jr {
+.jv-mOverlay.jv-isHidden.jv {
     display: none;
 }

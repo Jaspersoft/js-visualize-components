@@ -29,64 +29,64 @@
 //  LINK TEXT
 // ------------
 // standard link - no effects
-.jv-mLink.jr {
+.jv-mLink.jv {
   display: inline-block;
   font-family: $font-family-primary;
   font-size: 13px;
   font-weight: normal;
 }
 
-.jv-mLink.jr:link,
-.jv-mLink.jr:visited,
-.jv-mLink.jr:hover,
-.jv-mLink.jr:active  {
+.jv-mLink.jv:link,
+.jv-mLink.jv:visited,
+.jv-mLink.jv:hover,
+.jv-mLink.jv:active  {
   text-decoration: none;
 }
 
 // themed link - colored according to theme
-.jv-mLinkTheme.jr {color: $color-textThemePrimary;}
-.jv-mLinkTheme.jr:link,
-.jv-mLinkTheme.jr:visited,
-.jv-mLinkTheme.jr:hover,
-.jv-mLinkTheme.jr:active  {
+.jv-mLinkTheme.jv {color: $color-textThemePrimary;}
+.jv-mLinkTheme.jv:link,
+.jv-mLinkTheme.jv:visited,
+.jv-mLinkTheme.jv:hover,
+.jv-mLinkTheme.jv:active  {
   color: $color-textThemePrimary;
 }
 
 // decorated link - always underlined
-.jv-mLinkDecorated.jr {}
-.jv-mLinkDecorated.jr:link,
-.jv-mLinkDecorated.jr:visited,
-.jv-mLinkDecorated.jr:hover,
-.jv-mLinkDecorated.jr:active,
-.jv-mLinkDecorated.jr:focus {
+.jv-mLinkDecorated.jv {}
+.jv-mLinkDecorated.jv:link,
+.jv-mLinkDecorated.jv:visited,
+.jv-mLinkDecorated.jv:hover,
+.jv-mLinkDecorated.jv:active,
+.jv-mLinkDecorated.jv:focus {
   text-decoration: underline;
 }
 
 // dynamic link - underline on hover
-.jv-mLinkDynamic.jr {}
+.jv-mLinkDynamic.jv {}
 
-.jv-mLinkDynamic.jr:link,
-.jv-mLinkDynamic.jr:visited {
+.jv-mLinkDynamic.jv:link,
+.jv-mLinkDynamic.jv:visited {
   text-decoration: none
 }
 
-.jv-mLinkDynamic.jr:hover,
-.jv-mLinkDynamic.jr:active,
-.jv-mLinkDynamic.jr:focus {
+.jv-mLinkDynamic.jv:hover,
+.jv-mLinkDynamic.jv:active,
+.jv-mLinkDynamic.jv:focus {
   text-decoration: underline
 }
 
 // link with icon
-.jv-mLink.jr .jv-mIcon.jr,
-.jv-mLink-icon.jr,
-.jv-mLink-icon.jr:link,
-.jv-mLink-icon.jr:visited,
-.jv-mLink-icon.jr:hover,
-.jv-mLink-icon.jr:active  {
+.jv-mLink.jv .jv-mIcon.jv,
+.jv-mLink-icon.jv,
+.jv-mLink-icon.jv:link,
+.jv-mLink-icon.jv:visited,
+.jv-mLink-icon.jv:hover,
+.jv-mLink-icon.jv:active  {
   text-decoration: none;
 }
 
-.jv-mLink-icon.jr {
+.jv-mLink-icon.jv {
   color: inherit;
   font-size: 16px;
   line-height: 1.2;

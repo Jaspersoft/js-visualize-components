@@ -27,15 +27,15 @@
 
 @use "sass:math";
 
-.jv-mAdhoc.jr {
+.jv-mAdhoc.jv {
   font-family: $font-primary---family;
   font-size: $font-primary---size;
   font-weight: normal;
 }
 
-.jv-mAdhocViewer.jr {}
+.jv-mAdhocViewer.jv {}
 
-.jv-mAdhocDesigner.jr {
+.jv-mAdhocDesigner.jv {
   overflow: hidden;
   //position: absolute;
   //top: 0;
@@ -47,14 +47,14 @@
   height: 100%;
 }
 
-.jv-mAdhoc-header.jr {
+.jv-mAdhoc-header.jv {
   border-bottom: 2px solid #3e8ddd;
   display: flex;
   min-height: em(40px);
   //justify-content: space-between;
 }
 
-.jv-mAdhoc-header-title.jr {
+.jv-mAdhoc-header-title.jv {
   height: auto;
   max-width: em(430px);
   min-height: em(36px);
@@ -62,19 +62,19 @@
   margin-right: 3em;
 }
 
-.jv-mAdhoc-header-title-text.jr {
+.jv-mAdhoc-header-title-text.jv {
   @include page-title;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.jv-mAdhoc-toolbar.jr {
+.jv-mAdhoc-toolbar.jv {
   border-bottom: 1px solid #fff;
   flex: 0 1 auto;
 }
 
-.jv-mAdhoc-content.jr {
+.jv-mAdhoc-content.jv {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -82,24 +82,24 @@
 
 
 // Visualization
-.jv-mAdhoc-visualization.jr {
+.jv-mAdhoc-visualization.jv {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 }
-.jv-mAdhoc-visualization.jv-isHidden.jr {
+.jv-mAdhoc-visualization.jv-isHidden.jv {
   visibility: hidden;
 }
 
-.jv-mAdhoc-visualization-title.jr {
+.jv-mAdhoc-visualization-title.jv {
   margin: em(11px) em(55px);
   display: flex;
   justify-content: center;
 }
 
-.jv-mAdhoc-visualization-title-text.jr {
+.jv-mAdhoc-visualization-title-text.jv {
   font-size: em(16px);
   min-height: em(28px, 16px);
   height: auto;
@@ -118,59 +118,59 @@
   cursor: pointer;
 }
 
-.jv-mAdhoc-visualization-title-input.jr {
+.jv-mAdhoc-visualization-title-input.jv {
 }
 
-.jv-mAdhoc-visualization-launcher.jr {
+.jv-mAdhoc-visualization-launcher.jv {
   position: absolute;
   top: em(11px);
   left: em(11px);
   z-index: $zindex-element-lvl-0;
 }
 
-.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr {
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jv {
   position: absolute;
   top: 0;
   left: 0;
   z-index: $zindex-element-lvl-0;
 }
 
-.jv-mAdhoc-visualization-launcher.jv-isHidden.jr {
+.jv-mAdhoc-visualization-launcher.jv-isHidden.jv {
   display:none;
 }
 
-.jv-mAdhoc-visualization-message.jr {
+.jv-mAdhoc-visualization-message.jv {
   margin: 15% auto;
   text-align: center;
   width: 500px;
 }
 
 // VARIATION, scrolling visual
-.jv-mAdhoc-visualizationScroll.jr {
+.jv-mAdhoc-visualizationScroll.jv {
   overflow: auto;
 }
 
 
 // STATES
 // chart type selector button
-.jv-mAdhoc-visualization-launcher.jr .jv-mButton.jr .jv-mIcon.jv-meatball.jr {
+.jv-mAdhoc-visualization-launcher.jv .jv-mButton.jv .jv-mIcon.jv-meatball.jv {
   display: none;
 }
 
-.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr .jv-mButton.jr {
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jv .jv-mButton.jv {
   @include opacity(0.5);
   height: em(28px * 0.5);
 }
 
-.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr .jv-mButton.jr .jv-mIcon.jv-chartColumn.jr {
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jv .jv-mButton.jv .jv-mIcon.jv-chartColumn.jv {
   display: none;
 }
 
-.jv-mAdhoc-visualization-launcher.jv-isMinimized.jr .jv-mButton.jr .jv-mIcon.jv-meatball.jr {
+.jv-mAdhoc-visualization-launcher.jv-isMinimized.jv .jv-mButton.jv .jv-mIcon.jv-meatball.jv {
   display: block;
   line-height: em(8px);
 }
 
-.jv-mAdhoc-visualization-title.jv-isHidden.jr {
+.jv-mAdhoc-visualization-title.jv-isHidden.jv {
   display: none;
 }

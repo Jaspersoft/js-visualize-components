@@ -26,12 +26,12 @@
  * ======================================== */
 
 /* not implemented, these are placeholders only
-.jv-lPage.jr {}
-.jv-lPage-header.jr {}
+.jv-lPage.jv {}
+.jv-lPage-header.jv {}
 .jv-lPage-footer {}
 */
 
-.jv-lPage-body.jr {
+.jv-lPage-body.jv {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -42,18 +42,18 @@
   left: 0;
 }
 
-.jv-lPage-body-title.jr {
+.jv-lPage-body-title.jv {
   display: flex;
   flex-direction: column;
   min-height: 40px;
   position: relative;
 }
 
-.jv-lPage-body-content.jr {
+.jv-lPage-body-content.jv {
   height: 100%;
   overflow-y: auto;
 }
 
-.jv-lPage-body-contentPadded.jr {
+.jv-lPage-body-contentPadded.jv {
   padding: 24px;
 }

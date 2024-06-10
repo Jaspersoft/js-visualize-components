@@ -15,7 +15,7 @@ export type CreateStylesProviderType = {
     children: React.ReactNode
 }
 export const GenerateClassNameOptions = {
-    seed: 'jr'
+    seed: 'jv'
 };
 
 export const CreateMuiThemeOptions = {};

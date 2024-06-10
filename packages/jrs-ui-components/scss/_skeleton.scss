@@ -4,33 +4,33 @@
     Last modified by:       Anna Leeg
  * ============================================ */
 
-.jv-mSkeletonContainer.jr {}
+.jv-mSkeletonContainer.jv {}
 
 
 // -------------------------
 //  BASE SKELETON MODULE
 // -------------------------
-.jv-mSkeleton.jr {}
-.jv-mSkeleton-header.jr {}
-.jv-mSkeleton-body.jr {}
-.jv-mSkeleton-row.jr {}
+.jv-mSkeleton.jv {}
+.jv-mSkeleton-header.jv {}
+.jv-mSkeleton-body.jv {}
+.jv-mSkeleton-row.jv {}
 
-.jv-mSkeleton-header-row.jr {
+.jv-mSkeleton-header-row.jv {
   background-color: #e4e4e4; /* TODO change to #e4e4e4 in a project branch */
 }
 
-.jv-mSkeleton-header-cell.jr,
-.jv-mSkeleton-body-cell.jr {
+.jv-mSkeleton-header-cell.jv,
+.jv-mSkeleton-body-cell.jv {
   border: 1px solid #d6d6d6; /* TODO change to #d6d6d6 in a project branch */
   height: 24px;
   padding: 0 10px;
   vertical-align: middle;
 }
 
-.jv-mSkeleton-header-cell-label.jr,
-.jv-mSkeleton-header-cell-content.jr,
-.jv-mSkeleton-body-cell-label.jr,
-.jv-mSkeleton-body-cell-content.jr {
+.jv-mSkeleton-header-cell-label.jv,
+.jv-mSkeleton-header-cell-content.jv,
+.jv-mSkeleton-body-cell-label.jv,
+.jv-mSkeleton-body-cell-content.jv {
   animation: pulse 1.5s linear infinite;
   background-color: #e4e4e4; /* TODO change to #e4e4e4 in a project branch */
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.12) 8%, rgba(0, 0, 0, 0.04) 16%);
@@ -41,8 +41,8 @@
   height: 8px;
 }
 
-.jv-mSkeleton-header-cell-label.jr,
-.jv-mSkeleton-header-cell-content.jr {
+.jv-mSkeleton-header-cell-label.jv,
+.jv-mSkeleton-header-cell-content.jv {
   background-color: #cccccc; /* TODO change to #cccccc in a project branch */
 }
 
@@ -62,140 +62,140 @@
 
 
 // MODULE VARIATION, Table
-.jv-mSkeletonTable.jr {
+.jv-mSkeletonTable.jv {
   width: 100%
 }
 
 // columns
-.jv-mSkeletonTable.jr .jv-mSkeleton-column.jr:nth-of-type(1) {width:34%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-column.jr:nth-of-type(2) {width:24%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-column.jr:nth-of-type(3) {width:15%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-column.jr:nth-of-type(4) {width:15%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-column.jr:nth-of-type(5) {width:12%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-column.jv:nth-of-type(1) {width:34%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-column.jv:nth-of-type(2) {width:24%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-column.jv:nth-of-type(3) {width:15%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-column.jv:nth-of-type(4) {width:15%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-column.jv:nth-of-type(5) {width:12%}
 
 // rows
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-row.jr:nth-child(odd) {
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-row.jv:nth-child(odd) {
   background-color: #ffffff;
 }
 
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-row.jr:nth-child(even) {
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-row.jv:nth-child(even) {
   background-color: #f4f4f4;
 }
 
 // cells
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(1),
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(2),
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(3),
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(1),
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(2),
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(3) {
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(1),
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(2),
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(3),
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(1),
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(2),
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(3) {
   text-align: left;
 }
 
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(4),
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(5),
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(4),
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(5) {
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(4),
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(5),
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(4),
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(5) {
   text-align: right;
 }
 
 // cell content
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(1) .jv-mSkeleton-header-cell-content.jr {width: 85%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(2) .jv-mSkeleton-header-cell-content.jr {width: 40%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(3) .jv-mSkeleton-header-cell-content.jr {width: 60%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(4) .jv-mSkeleton-header-cell-content.jr {width: 60%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-header-cell.jr:nth-child(5) .jv-mSkeleton-header-cell-content.jr {width: 70%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(1) .jv-mSkeleton-header-cell-content.jv {width: 85%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(2) .jv-mSkeleton-header-cell-content.jv {width: 40%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(3) .jv-mSkeleton-header-cell-content.jv {width: 60%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(4) .jv-mSkeleton-header-cell-content.jv {width: 60%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-header-cell.jv:nth-child(5) .jv-mSkeleton-header-cell-content.jv {width: 70%}
 
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(1) .jv-mSkeleton-body-cell-content.jr {width: 52%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(2) .jv-mSkeleton-body-cell-content.jr {width: 70%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(3) .jv-mSkeleton-body-cell-content.jr {width: 40%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(4) .jv-mSkeleton-body-cell-content.jr {width: 86%}
-.jv-mSkeletonTable.jr .jv-mSkeleton-body-cell.jr:nth-child(5) .jv-mSkeleton-body-cell-content.jr {width: 30%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(1) .jv-mSkeleton-body-cell-content.jv {width: 52%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(2) .jv-mSkeleton-body-cell-content.jv {width: 70%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(3) .jv-mSkeleton-body-cell-content.jv {width: 40%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(4) .jv-mSkeleton-body-cell-content.jv {width: 86%}
+.jv-mSkeletonTable.jv .jv-mSkeleton-body-cell.jv:nth-child(5) .jv-mSkeleton-body-cell-content.jv {width: 30%}
 
 
 
 // MODULE VARIATION, Crosstab
-.jv-mSkeletonCrosstab.jr {
+.jv-mSkeletonCrosstab.jv {
   width: 100%
 }
 
 // header
-.jv-mSkeletonCrosstab.jr .jv-mSkeleton-header-spacer.jr {
+.jv-mSkeletonCrosstab.jv .jv-mSkeleton-header-spacer.jv {
   background-color: #ffffff;
   border: none;
 }
 
-.jv-mSkeleton-header-rowColumnlabels.jr .jv-mSkeleton-header-cellLabel.jr  {text-align: center;}
-.jv-mSkeleton-header-rowGrouplabels.jr .jv-mSkeleton-header-cellLabel.jr   {text-align: left;}
+.jv-mSkeleton-header-rowColumnlabels.jv .jv-mSkeleton-header-cellLabel.jv  {text-align: center;}
+.jv-mSkeleton-header-rowGrouplabels.jv .jv-mSkeleton-header-cellLabel.jv   {text-align: left;}
 
-.jv-mSkeleton-header-row.jr:nth-child(1) .jv-mSkeleton-header-cell-content.jr  {width: 40%}
-.jv-mSkeleton-header-row.jr:nth-child(2) .jv-mSkeleton-header-cell-content.jr  {width: 60%}
-.jv-mSkeleton-header-rowGrouplabels.jr .jv-mSkeleton-header-cell-content.jr    {width: 90%}
+.jv-mSkeleton-header-row.jv:nth-child(1) .jv-mSkeleton-header-cell-content.jv  {width: 40%}
+.jv-mSkeleton-header-row.jv:nth-child(2) .jv-mSkeleton-header-cell-content.jv  {width: 60%}
+.jv-mSkeleton-header-rowGrouplabels.jv .jv-mSkeleton-header-cell-content.jv    {width: 90%}
 
 // body
-.jv-mSkeletonCrosstab.jr .jv-mSkeleton-body-cellValue.jr {
+.jv-mSkeletonCrosstab.jv .jv-mSkeleton-body-cellValue.jv {
   text-align: right;
 }
 
-.jv-mSkeleton-body-rowGroup.jr .jv-mSkeleton-body-cellLabel.jr:nth-child(1) {
+.jv-mSkeleton-body-rowGroup.jv .jv-mSkeleton-body-cellLabel.jv:nth-child(1) {
   padding-top: 2px;
   vertical-align: top
 }
 
-.jv-mSkeleton-body-rowGroup.jr .jv-mSkeleton-body-cellLabel.jr,
-.jv-mSkeleton-body-rowMember.jr .jv-mSkeleton-body-cellLabel.jr {
+.jv-mSkeleton-body-rowGroup.jv .jv-mSkeleton-body-cellLabel.jv,
+.jv-mSkeleton-body-rowMember.jv .jv-mSkeleton-body-cellLabel.jv {
   text-align: left;
 }
 
-.jv-mSkeleton-body-rowGroup.jr .jv-mSkeleton-body-cellLabel.jr .jv-mSkeleton-body-cell-content.jr,
-.jv-mSkeleton-body-rowMember.jr .jv-mSkeleton-body-cellLabel.jr .jv-mSkeleton-body-cell-content.jr {
+.jv-mSkeleton-body-rowGroup.jv .jv-mSkeleton-body-cellLabel.jv .jv-mSkeleton-body-cell-content.jv,
+.jv-mSkeleton-body-rowMember.jv .jv-mSkeleton-body-cellLabel.jv .jv-mSkeleton-body-cell-content.jv {
   width: 70%;
 }
 
-.jv-mSkeletonCrosstab.jr .jv-mSkeleton-body-cell-content.jr {
+.jv-mSkeletonCrosstab.jv .jv-mSkeleton-body-cell-content.jv {
   width: 50%;
 }
 
 // rows
-.jv-mSkeletonCrosstab.jr .jv-mSkeleton-body-row.jr:nth-child(odd) {
+.jv-mSkeletonCrosstab.jv .jv-mSkeleton-body-row.jv:nth-child(odd) {
   background-color: #ffffff;
 }
 
-.jv-mSkeletonCrosstab.jr .jv-mSkeleton-body-row.jr:nth-child(even) {
+.jv-mSkeletonCrosstab.jv .jv-mSkeleton-body-row.jv:nth-child(even) {
   background-color: #f4f4f4;
 }
 
 
 
 // MODULE VARIATION, Chart
-.jv-mSkeletonChart.jr {
+.jv-mSkeletonChart.jv {
   width: 100%;
   height: 100%;
 }
 
-.jv-mSkeleton-grid.jr {
+.jv-mSkeleton-grid.jv {
   width: 100%;
   height: 100%;
 }
 
-.jv-mSkeleton-grid-line.jr {
+.jv-mSkeleton-grid-line.jv {
   width: 100%;
   height: 20%;
   border-bottom: 1px solid #d6d6d6; /* TODO change to #d6d6d6 in a project branch */
 }
 
-.jv-mSkeleton-grid-line.jr:nth-of-type(1) {
+.jv-mSkeleton-grid-line.jv:nth-of-type(1) {
   border-top: 1px solid #d6d6d6; /* TODO change to #d6d6d6 in a project branch */
 }
 
-.jv-mSkeleton-bars.jr {
+.jv-mSkeleton-bars.jv {
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: 99;
 }
 
-.jv-mSkeleton-bars-bar.jr {
+.jv-mSkeleton-bars-bar.jv {
   animation: pulse 1.5s linear infinite;
   bottom: 1px;
   background-color: #e4e4e4; /* TODO change to #e4e4e4 in a project branch */
@@ -206,8 +206,8 @@
   width: 10%;
 }
 
-.jv-mSkeleton-bars-bar.jr:nth-of-type(1) {height: 28%; left: 5%;}
-.jv-mSkeleton-bars-bar.jr:nth-of-type(2) {height: 55%; left: 25%;}
-.jv-mSkeleton-bars-bar.jr:nth-of-type(3) {height: 45%; left: 45%;}
-.jv-mSkeleton-bars-bar.jr:nth-of-type(4) {height: 70%; left: 65%;}
-.jv-mSkeleton-bars-bar.jr:nth-of-type(5) {height: 88%; left: 85%;}
+.jv-mSkeleton-bars-bar.jv:nth-of-type(1) {height: 28%; left: 5%;}
+.jv-mSkeleton-bars-bar.jv:nth-of-type(2) {height: 55%; left: 25%;}
+.jv-mSkeleton-bars-bar.jv:nth-of-type(3) {height: 45%; left: 45%;}
+.jv-mSkeleton-bars-bar.jv:nth-of-type(4) {height: 70%; left: 65%;}
+.jv-mSkeleton-bars-bar.jv:nth-of-type(5) {height: 88%; left: 85%;}

@@ -25,13 +25,13 @@
     Last modified by:       Anna Leeg
  * ============================================= */
 
-.jv-mTooltipContainer.jr {
+.jv-mTooltipContainer.jv {
   z-index: $zindex-tooltip;
   display: inline-block;
   //pointer-events: none;
 }
 
-.jv-mTooltip.jr {
+.jv-mTooltip.jv {
   background-color: $color-infoMedium;
   border-radius: em(4px, 12px);
   border-style: solid;
@@ -47,8 +47,8 @@
   // position: absolute;
 }
 
-.jv-mTooltipBottom.jr {}
-.jv-mTooltipBottom.jr:before,
+.jv-mTooltipBottom.jv {}
+.jv-mTooltipBottom.jv:before,
 .jv-mTooltipBottomRight:before,
 .jv-mTooltipBottomLeft:before {
   border-right: em(6px, 12px) solid transparent;
@@ -63,7 +63,7 @@
   left: 50%;
 }
 
-.jv-mTooltipTop.jr {}
+.jv-mTooltipTop.jv {}
 .jv-mTooltipTop:after,
 .jv-mTooltipTopRight:after,
 .jv-mTooltipTopLeft:after {
@@ -90,8 +90,8 @@
   left: em(18px, 12px);
 }
 
-.jv-mTooltipRight.jr {}
-.jv-mTooltipRight.jr:before {
+.jv-mTooltipRight.jv {}
+.jv-mTooltipRight.jv:before {
   border-top: em(6px, 12px) solid transparent;
   border-bottom: em(6px, 12px) solid transparent;
   border-right: em(7px, 12px) solid $color-infoMedium;
@@ -104,8 +104,8 @@
   top: .909em; // keep ems so it's scalable
 }
 
-.jv-mTooltipLeft.jr {}
-.jv-mTooltipLeft.jr:before {
+.jv-mTooltipLeft.jv {}
+.jv-mTooltipLeft.jv:before {
   border-top: em(6px, 12px) solid transparent;
   border-bottom: em(6px, 12px) solid transparent;
   border-left: em(7px, 12px) solid $color-infoMedium;
@@ -118,36 +118,36 @@
   top: .909em; // keep ems so it's scalable
 }
 
-.jv-mTooltip-label.jr {
+.jv-mTooltip-label.jv {
   font-size: 11px;
   font-weight: bold;
 }
 
-.jv-mTooltip-text.jr {
+.jv-mTooltip-text.jv {
   font-size: 12px; // new base font size
   white-space: normal;
   word-wrap: break-word;
   word-break: break-all;
 }
 
-.jv-mTooltip.jr > .jv-mTooltip-text.jr:first-child {
+.jv-mTooltip.jv > .jv-mTooltip-text.jv:first-child {
   font-family: $font-family-semibold;
 }
 
-.jv-mTooltip-label.jr + .jv-mTooltip-text.jr {}
+.jv-mTooltip-label.jv + .jv-mTooltip-text.jv {}
 
-.jv-mTooltip-text.jr + .jv-mTooltip-label.jr {
+.jv-mTooltip-text.jv + .jv-mTooltip-label.jv {
   margin-top: em(14px);
 }
 
-.jv-mTooltip.jv-isInvisible.jr {
+.jv-mTooltip.jv-isInvisible.jv {
   visibility: hidden;  // to be able to calculate dimensions
 }
 
 // ----------------------------
 //  MODULE VARIATION - OUTLINE
 // ----------------------------
-.jv-mTooltipOutline.jr {
+.jv-mTooltipOutline.jv {
   background-color: #fff;
   border-color: $color-infoMedium;
   border-width: em(1px);
@@ -155,25 +155,25 @@
   color: $color-infoMedium;
 }
 
-.jv-mTooltipOutline.jr > .jv-mTooltip-text.jr:first-child {
+.jv-mTooltipOutline.jv > .jv-mTooltip-text.jv:first-child {
   font-family: $font-family-primary;
   font-weight: normal;
 }
 
-.jv-mTooltipOutline.jr .jv-mTooltip-label.jr {}
+.jv-mTooltipOutline.jv .jv-mTooltip-label.jv {}
 
 
 // ------------------------------
 //  MODULE VARIATION - ATTENTION
 // ------------------------------
-.jv-mTooltipAttention.jr {
+.jv-mTooltipAttention.jv {
   // !important is needed for alt styles
   background-color: $color-attentionMedium !important;
   border-color: $color-attentionMedium;
 }
 
 .jv-mTooltipAttention.jv-mTooltipBottom {}
-.jv-mTooltipAttention.jv-mTooltipBottom.jr:before,
+.jv-mTooltipAttention.jv-mTooltipBottom.jv:before,
 .jv-mTooltipAttention.jv-mTooltipBottomRight:before,
 .jv-mTooltipAttention.jv-mTooltipBottomLeft:before {
   border-bottom-color: $color-attentionMedium;
@@ -187,19 +187,19 @@
 }
 
 .jv-mTooltipAttention.jv-mTooltipRight {}
-.jv-mTooltipAttention.jv-mTooltipRight.jr:before {
+.jv-mTooltipAttention.jv-mTooltipRight.jv:before {
   border-right-color: $color-attentionMedium;
 }
 
 .jv-mTooltipAttention.jv-mTooltipLeft {}
-.jv-mTooltipAttention.jv-mTooltipLeft.jr:before {
+.jv-mTooltipAttention.jv-mTooltipLeft.jv:before {
   border-left-color: $color-attentionMedium;
 }
 
 // ----------------------------------------
 //  MODULE VARIATION - ATTENTION + OUTLINE
 // ----------------------------------------
-.jv-mTooltipAttention.jv-mTooltipOutline.jr {
+.jv-mTooltipAttention.jv-mTooltipOutline.jv {
   background-color: #fff;
   border-color: $color-attentionMedium;
   color: $color-attentionDark;
@@ -209,16 +209,16 @@
 // ----------------------------
 //  MODULE VARIATION - WARNING
 // ----------------------------
-.jv-mTooltipWarning.jr {
+.jv-mTooltipWarning.jv {
   // !important is needed for alt styles
   background-color: $color-warningMedium !important;
   border-color: $color-warningMedium;
 }
 
 .jv-mTooltipWarning.jv-mTooltipBottom {}
-.jv-mTooltipWarning.jv-mTooltipBottom.jr:before,
-.jv-mTooltipWarning.jv-mTooltipBottomRight.jr:before,
-.jv-mTooltipWarning.jv-mTooltipBottomLeft.jr:before {
+.jv-mTooltipWarning.jv-mTooltipBottom.jv:before,
+.jv-mTooltipWarning.jv-mTooltipBottomRight.jv:before,
+.jv-mTooltipWarning.jv-mTooltipBottomLeft.jv:before {
   border-bottom-color: $color-warningMedium;
 }
 
@@ -230,19 +230,19 @@
 }
 
 .jv-mTooltipWarning.jv-mTooltipRight {}
-.jv-mTooltipWarning.jv-mTooltipRight.jr:before {
+.jv-mTooltipWarning.jv-mTooltipRight.jv:before {
   border-right-color: $color-warningMedium;
 }
 
 .jv-mTooltipWarning.jv-mTooltipLeft {}
-.jv-mTooltipWarning.jv-mTooltipLeft.jr:before {
+.jv-mTooltipWarning.jv-mTooltipLeft.jv:before {
   border-left-color: $color-warningMedium;
 }
 
 // --------------------------------------
 //  MODULE VARIATION - WARNING + OUTLINE
 // --------------------------------------
-.jv-mTooltipWarning.jv-mTooltipOutline.jr {
+.jv-mTooltipWarning.jv-mTooltipOutline.jv {
   background-color: #fff !important;
   border-color: $color-warningMedium;
   color: $color-warningDark;
@@ -252,14 +252,14 @@
 // --------------------------
 //  MODULE VARIATION - ERROR
 // --------------------------
-.jv-mTooltipError.jr {
+.jv-mTooltipError.jv {
   // !important is needed for alt styles
   background-color: $color-errorMedium !important;
   border-color: $color-errorMedium;
 }
 
 .jv-mTooltipError.jv-mTooltipBottom {}
-.jv-mTooltipError.jv-mTooltipBottom.jr:before,
+.jv-mTooltipError.jv-mTooltipBottom.jv:before,
 .jv-mTooltipError.jv-mTooltipBottomRight:before,
 .jv-mTooltipError.jv-mTooltipBottomLeft:before {
   border-bottom-color: $color-errorMedium;
@@ -273,19 +273,19 @@
 }
 
 .jv-mTooltipError.jv-mTooltipRight {}
-.jv-mTooltipError.jv-mTooltipRight.jr:before {
+.jv-mTooltipError.jv-mTooltipRight.jv:before {
   border-right-color: $color-errorMedium;
 }
 
 .jv-mTooltipError.jv-mTooltipLeft {}
-.jv-mTooltipError.jv-mTooltipLeft.jr:before {
+.jv-mTooltipError.jv-mTooltipLeft.jv:before {
   border-left-color: $color-errorMedium;
 }
 
 // ------------------------------------
 //  MODULE VARIATION - ERROR + OUTLINE
 // ------------------------------------
-.jv-mTooltipError.jv-mTooltipOutline.jr {
+.jv-mTooltipError.jv-mTooltipOutline.jv {
   background-color: #fff !important;
   border-color: $color-errorMedium;
   color: $color-errorDark;

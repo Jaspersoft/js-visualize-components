@@ -31,15 +31,15 @@
 // -------------
 //  TREE MODULE
 // -------------
-.jv-mTree.jr {}
+.jv-mTree.jv {}
 
-.jv-mTree-node.jr,
-.jv-mTree-leaf.jr {
+.jv-mTree-node.jv,
+.jv-mTree-leaf.jv {
     overflow: hidden;
     cursor: pointer;
 }
 
-.jv-mTree-label.jr {
+.jv-mTree-label.jv {
     height: em(22px);            // 2em | 22px / 11px
     line-height: em(22px);       // 2.182em | 22px / 11px
     overflow: hidden;
@@ -49,7 +49,7 @@
     white-space: nowrap;
 }
 
-.jv-mTree-icon.jr {
+.jv-mTree-icon.jv {
     background-image: image-url("tree_icons_sprite.png");
     background-repeat: no-repeat;
     float: left;
@@ -58,11 +58,11 @@
     margin: em(3px) em(4px) 0 em(4px);	// .273em .364em 0 .454em | 3px 4px 0 4px
 }
 
-.jv-mTree-node.jr > .jv-mTree.jr {
+.jv-mTree-node.jv > .jv-mTree.jv {
     margin-left: em(22px);              // 2em | 22px / 11px
 }
 
-.jv-mTree-nodeFolder.jr:not(.jv-mTree-hideRoot) .jv-mTree {
+.jv-mTree-nodeFolder.jv:not(.jv-mTree-hideRoot) .jv-mTree {
     margin-left: em(22px);              // 2em | 22px / 11px
 }
 
@@ -79,106 +79,106 @@
 
 // LEAF ICON POSITIONS
 // ad hoc view content
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.field {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.field {
     background-position: -1px -60px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.calcfield {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.calcfield {
     background-position: -1px -90px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.measure {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.measure {
     background-position: -1px -180px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.calcmeasure {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.calcmeasure {
     background-position: -1px -210px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.dimension {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.dimension {
     background-position: 2px -300px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.hierarchy {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.hierarchy {
     background-position: 0 -390px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.olaphierarchy {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.olaphierarchy {
     background-position: 0 -480px;
 }
 
 // dashboard content
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.chart {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.chart {
     background-position: -38px 0;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.crosstab {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.crosstab {
     background-position: -38px -29px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.table {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.table {
     background-position: -38px -59px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.text {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.text {
     background-position: -38px -89px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.webpage {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.webpage {
     background-position: -38px -117px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.image {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.image {
     background-position: -38px -150px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.adhocview {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.adhocview {
     background-position: -38px -269px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.report {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.report {
     background-position: -38px -300px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.filter {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.filter {
     background-position: -39px -448px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.invisiblefilter {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.invisiblefilter {
     background-position: -39px -448px;
     opacity: .4
 }
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.invisiblefilter + .jv-mTree-label.jr {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.invisiblefilter + .jv-mTree-label.jv {
     opacity: .4
 }
 
 // folders
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.domain {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.domain {
     background-position: -78px -120px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.topic {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.topic {
     background-position: -78px -149px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.domaintopic {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.domaintopic {
     background-position: -78px -179px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.olap {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.olap {
     background-position: -76px -210px;
 }
 
 /* domain items */
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.set {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.set {
     background-position: -120px -60px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.tablefield {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.tablefield {
     background-position: -120px -270px;
 }
 
-.jv-mTree-leaf.jr > .jv-mTree-icon.jr.tablecalcfield {
+.jv-mTree-leaf.jv > .jv-mTree-icon.jv.tablecalcfield {
     background-position: -120px -300px;
 }
 
@@ -189,93 +189,93 @@
 // --------------------
 
 // SELECTED NODES & LEAFS
-.jv-mTree-node.jv-isSelected.jr,
-.jv-mTree-leaf.jv-isSelected.jr {
+.jv-mTree-node.jv-isSelected.jv,
+.jv-mTree-leaf.jv-isSelected.jv {
     background-color: #1388d8
 }
 
-.jv-mTree-node.jv-isSelected.jr > .jv-mTree-label.jr,
-.jv-mTree-leaf.jv-isSelected.jr > .jv-mTree-label.jr {
+.jv-mTree-node.jv-isSelected.jv > .jv-mTree-label.jv,
+.jv-mTree-leaf.jv-isSelected.jv > .jv-mTree-label.jv {
     color: #fff;
 }
 
 // FOLDERS - OPEN & CLOSED
-.jv-mTree-node.jv-isOpen.jr .jv-mTree-icon.jr.folder {
+.jv-mTree-node.jv-isOpen.jv .jv-mTree-icon.jv.folder {
     background-position: -80px -30px;
 }
 
-.jv-mTree-node.jv-isClosed.jr .jv-mTree-icon.jr.folder {
+.jv-mTree-node.jv-isClosed.jv .jv-mTree-icon.jv.folder {
     background-position: -80px 0;
 }
 
-.jv-mTree-node.jv-isOpen.jr .jv-mTree-icon.jr.specialfolder {
+.jv-mTree-node.jv-isOpen.jv .jv-mTree-icon.jv.specialfolder {
     background-position: -80px -60px;
 }
 
-.jv-mTree-node.jv-isClosed.jr .jv-mTree-icon.jr.specialfolder {
+.jv-mTree-node.jv-isClosed.jv .jv-mTree-icon.jv.specialfolder {
     background-position: -80px -90px;
 }
 
-.jv-mTree-node.jv-isLoading.jr .jv-mTree-icon {
+.jv-mTree-node.jv-isLoading.jv .jv-mTree-icon {
     background-image: image-url("list_node_animation.gif");
     background-position: 0 2px;
     background-repeat: no-repeat;
 }
 
 // FIELDS, MEASURES, DIMENSIONS - OPEN & CLOSED
-.jv-mTree-node.jv-isClosed.jr > .jv-mTree-icon.field.jr {
+.jv-mTree-node.jv-isClosed.jv > .jv-mTree-icon.field.jv {
     background-position: 0 0;
 }
 
-.jv-mTree-node.jv-isOpen.jr > .jv-mTree-icon.field.jr {
+.jv-mTree-node.jv-isOpen.jv > .jv-mTree-icon.field.jv {
     background-position: 0 -30px;
 }
 
-.jv-mTree-node.jv-isClosed.jr > .jv-mTree-icon.measure.jr {
+.jv-mTree-node.jv-isClosed.jv > .jv-mTree-icon.measure.jv {
     background-position: 0 -120px;
 }
 
-.jv-mTree-node.jv-isOpen.jr > .jv-mTree-icon.measure.jr {
+.jv-mTree-node.jv-isOpen.jv > .jv-mTree-icon.measure.jv {
     background-position: 0 -150px;
 }
 
-.jv-mTree-node.jv-isClosed.jr > .jv-mTree-icon.dimension.jr {
+.jv-mTree-node.jv-isClosed.jv > .jv-mTree-icon.dimension.jv {
     background-position: 2px -240px;
 }
 
-.jv-mTree-node.jv-isOpen.jr > .jv-mTree-icon.dimension.jr {
+.jv-mTree-node.jv-isOpen.jv > .jv-mTree-icon.dimension.jv {
     background-position: 2px -270px;
 }
 
 // DASHBOARD DESIGNER CONTENT - OPEN & CLOSED
-.jv-mTree-node.jv-isClosed.jr > .jv-mTree-icon.jr.adhocview {
+.jv-mTree-node.jv-isClosed.jv > .jv-mTree-icon.jv.adhocview {
     background-position: -40px -330px;
 }
 
-.jv-mTree-node.jv-isOpen.jr > .jv-mTree-icon.jr.adhocview {
+.jv-mTree-node.jv-isOpen.jv > .jv-mTree-icon.jv.adhocview {
     background-position: -40px -360px;
 }
 
-.jv-mTree-node.jv-isClosed.jr > .jv-mTree-icon.jr.report {
+.jv-mTree-node.jv-isClosed.jv > .jv-mTree-icon.jv.report {
     background-position: -40px -390px;
 }
 
-.jv-mTree-node.jv-isOpen.jr > .jv-mTree-icon.jr.report {
+.jv-mTree-node.jv-isOpen.jv > .jv-mTree-icon.jv.report {
     background-position: -40px -420px;
 }
 
-.jv-mTree-node.jv-isClosed.jr > .jv-mTree-icon.jr.hierarchy {
+.jv-mTree-node.jv-isClosed.jv > .jv-mTree-icon.jv.hierarchy {
     background-position: 0 -330px;
 }
 
-.jv-mTree-node.jv-isOpen.jr > .jv-mTree-icon.jr.hierarchy {
+.jv-mTree-node.jv-isOpen.jv > .jv-mTree-icon.jv.hierarchy {
     background-position: 0 -360px;
 }
 
-.jv-mTree-node.jv-isClosed.jr > .jv-mTree-icon.jr.olaphierarchy {
+.jv-mTree-node.jv-isClosed.jv > .jv-mTree-icon.jv.olaphierarchy {
     background-position: 0 -420px;
 }
 
-.jv-mTree-node.jv-isOpen.jr > .jv-mTree-icon.jr.olaphierarchy {
+.jv-mTree-node.jv-isOpen.jv > .jv-mTree-icon.jv.olaphierarchy {
     background-position: 0 -450px;
 }

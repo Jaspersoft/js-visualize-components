@@ -28,7 +28,7 @@
 // -------------------
 //    BASE MODULE
 // -------------------
-.jv-mInstructor.jr {
+.jv-mInstructor.jv {
   color: $color-textMedium;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
   justify-content: center;
 }
 
-.jv-mInstructor-wrapper.jr {
+.jv-mInstructor-wrapper.jv {
   align-self: center;
   max-width: em(400px);
   padding: 2em 3em;
@@ -46,42 +46,42 @@
 }
 
 // icon
-.jv-mInstructor-icon.jr {}
+.jv-mInstructor-icon.jv {}
 
 // title text
-.jv-mInstructor-title.jr {
+.jv-mInstructor-title.jv {
   font-family: $font-family-semibold;
 }
 
-.jv-mInstructor-titleSmall.jr {
+.jv-mInstructor-titleSmall.jv {
   font-size: 16px;
   line-height: 20px;
 }
 
-.jv-mInstructor-titleMedium.jr {
+.jv-mInstructor-titleMedium.jv {
   font-size: 20px;
   line-height: 24px;
 }
 
-.jv-mInstructor-titleLarge.jr {
+.jv-mInstructor-titleLarge.jv {
   font-size: 24px;
   line-height: 28px;
 }
 
 // body text
-.jv-mInstructor-text.jr {}
+.jv-mInstructor-text.jv {}
 
-.jv-mInstructor-textSmall.jr {
+.jv-mInstructor-textSmall.jv {
   font-size: 12px;
   line-height: 16px;
 }
 
-.jv-mInstructor-textMedium.jr {
+.jv-mInstructor-textMedium.jv {
   font-size: 13px;
   line-height: 17px;
 }
 
-.jv-mInstructor-textLarge.jr {
+.jv-mInstructor-textLarge.jv {
   font-size: 14px;
   line-height: 18px;
 }
@@ -89,28 +89,28 @@
 
 // MODULE VARIATION, has border
 // TODO: default component now has no border, so change to Outline variation
-.jv-mInstructorOuterborder.jr {
+.jv-mInstructorOuterborder.jv {
   border: em(1px) solid #e4e4e4;
 }
 
-.jv-mInstructorInnerborder.jr .jv-mInstructor-wrapper.jr {
+.jv-mInstructorInnerborder.jv .jv-mInstructor-wrapper.jv {
   border: em(1px) solid #e4e4e4;
 }
 
 
 // MODULE VARIATION, shaded background
-.jv-mInstructorShaded.jr, // TODO: replace Shaded with Outershade
-.jv-mInstructorOutershade.jr {
+.jv-mInstructorShaded.jv, // TODO: replace Shaded with Outershade
+.jv-mInstructorOutershade.jv {
   background-color: #f7f7f7;
 }
 
-.jv-mInstructorInnershade.jr .jv-mInstructor-wrapper.jr {
+.jv-mInstructorInnershade.jv .jv-mInstructor-wrapper.jv {
   background-color: #f7f7f7;
 }
 
 
 // MODULE VARIATION, fills parent container
-.jv-mInstructorFull.jr {
+.jv-mInstructorFull.jv {
   // because of flexbox layout, width is already 100%
   height: 100%;
 }
@@ -121,8 +121,8 @@
 // ----------
 // When Instructor component is inside a dropzone component
 
-.jr.jv-isOver .jv-mInstructor-icon.jr,
-.jr.jv-isOver .jv-mInstructor-title.jr,
-.jr.jv-isOver .jv-mInstructor-text.jr {
+.jv.jv-isOver .jv-mInstructor-icon.jv,
+.jv.jv-isOver .jv-mInstructor-title.jv,
+.jv.jv-isOver .jv-mInstructor-text.jv {
   color: #ffffff;
 }

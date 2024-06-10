@@ -43,18 +43,18 @@
 //  ---------------------
 //  1. BASIC GRID MODULE
 //  ---------------------
-.jv-mGrid.jr {
+.jv-mGrid.jv {
   font-size: $font-primary---size;
   font-weight: normal;
   overflow: hidden;
   width: 100%;
 }
 
-.jv-mGrid-column.jr {
+.jv-mGrid-column.jv {
   float: left;
 }
 
-.jv-mGrid-column.jr + .jv-mGrid-column.jr {
+.jv-mGrid-column.jv + .jv-mGrid-column.jv {
   margin-left: 1%;
 }
 
@@ -65,8 +65,8 @@
 //  2a. jv-mGridFill
 //      Fills height
 //  ---------------------------------
-.jv-mGridFill.jr,
-.jv-mGridFill.jr .jv-mGrid-column.jr {
+.jv-mGridFill.jv,
+.jv-mGridFill.jv .jv-mGrid-column.jv {
   height: 100%;
 }
 
@@ -75,28 +75,28 @@
 //      All columns in a row are equal
 //      height regardless of content
 // -------------------------------------
-.jv-mGridFlex.jr {
+.jv-mGridFlex.jv {
   display: table;
 }
 
-.jr.jv-mGridFlex.jv-mGridLoose.jr  {}
+.jv.jv-mGridFlex.jv-mGridLoose.jv  {}
 
-.jv-mGridFlex.jr .jv-mGrid-row.jr {
+.jv-mGridFlex.jv .jv-mGrid-row.jv {
   display: table-row;
 }
 
-.jv-mGridFlex.jr .jv-mGrid-column.jr {
+.jv-mGridFlex.jv .jv-mGrid-column.jv {
   display: table-cell;
   float: none;
   vertical-align: top;
 }
 
-.jv-mGridFlex.jv-mGridLoose.jr .jv-mGrid-column.jr {
+.jv-mGridFlex.jv-mGridLoose.jv .jv-mGrid-column.jv {
   border-right: em(28px) solid rgba(255, 255, 255, 0);
   background-clip: padding-box;
 } // border and background-clip provide appearance of gutter, while allowing background color to show through
 
-.jv-mGridFlex.jv-mGridLoose.jr .jv-mGrid-column.jr:last-of-type {
+.jv-mGridFlex.jv-mGridLoose.jv .jv-mGrid-column.jv:last-of-type {
   border-right: none;
 }
 
@@ -104,23 +104,23 @@
 //  2c. jv-mGridVertical
 //      manage heights for vertical layouts
 // ------------------------------------------
-.jv-mGridVertical.jr {
+.jv-mGridVertical.jv {
   display: flex;
   flex-direction: column;
   max-height: 100%;
 }
 
-.jv-mGridVertical.jr .jv-mGrid-row.jr {
+.jv-mGridVertical.jv .jv-mGrid-row.jv {
   display: block;
   flex-basis: auto;
   flex-shrink: 1;
 }
 
-.jv-mGridVertical.jr .jv-mGrid-rowFit.jr { // fits its content
+.jv-mGridVertical.jv .jv-mGrid-rowFit.jv { // fits its content
   flex-grow: 0;
 }
 
-.jv-mGridVertical.jr .jv-mGrid-rowFill.jr { // fills available height
+.jv-mGridVertical.jv .jv-mGrid-rowFill.jv { // fills available height
   flex-grow: 1;
 }
 
@@ -128,9 +128,9 @@
 //  2c. jv-mGridTight
 //      no gutters
 // ---------------------------
-.jv-mGridTight.jr {}
+.jv-mGridTight.jv {}
 
-.jv-mGridTight.jr .jv-mGrid-column.jr {
+.jv-mGridTight.jv .jv-mGrid-column.jv {
   margin-left: 0;
 }
 
@@ -138,9 +138,9 @@
 //  2d. jv-mGridLoose
 //      wide gutters
 // ---------------------------
-.jv-mGridLoose.jr {}
+.jv-mGridLoose.jv {}
 
-.jv-mGridLoose.jr .jv-mGrid-column.jr + .jv-mGrid-column.jr {
+.jv-mGridLoose.jv .jv-mGrid-column.jv + .jv-mGrid-column.jv {
   margin-left: 3%;
 }
 
@@ -165,253 +165,253 @@
 
 
 // 2-Column Grid
-.jv-mGrid2.jr {}
+.jv-mGrid2.jv {}
 
-.jv-mGrid2.jr .jv-mGrid-column.jr {
+.jv-mGrid2.jv .jv-mGrid-column.jv {
   width: 49.5%;
 }
 
-.jv-mGrid2.jr .jv-mGrid-column.jr:nth-child(2n) + .jv-mGrid-column.jr {
+.jv-mGrid2.jv .jv-mGrid-column.jv:nth-child(2n) + .jv-mGrid-column.jv {
   margin-left: 0;
 }
 
 // 2-Column Grid Tight
-.jv-mGrid2.jv-mGridTight.jr .jv-mGrid-column.jr {
+.jv-mGrid2.jv-mGridTight.jv .jv-mGrid-column.jv {
   width: 50%;
 }
 
 // 2-Column Grid Loose
-.jv-mGrid2.jv-mGridLoose.jr .jv-mGrid-column.jr {
+.jv-mGrid2.jv-mGridLoose.jv .jv-mGrid-column.jv {
   width: 48.5%;
 }
 
 
 // 3-Column Grid
-.jv-mGrid3.jr {}
+.jv-mGrid3.jv {}
 
-.jv-mGrid3.jr .jv-mGrid-column.jr {
+.jv-mGrid3.jv .jv-mGrid-column.jv {
   width: 32.667%;
 }
 
-.jv-mGrid3.jr .jv-mGrid-column2.jr {
+.jv-mGrid3.jv .jv-mGrid-column2.jv {
   width: 66.333%;
 }
 
-.jv-mGrid3.jr .jv-mGrid-column.jr:nth-child(3n) + .jv-mGrid-column.jr {
+.jv-mGrid3.jv .jv-mGrid-column.jv:nth-child(3n) + .jv-mGrid-column.jv {
   margin-left: 0;
 }
 
 // 3-Column Grid Tight
-.jv-mGrid3.jv-mGridTight.jr .jv-mGrid-column.jr {
+.jv-mGrid3.jv-mGridTight.jv .jv-mGrid-column.jv {
   width: 33.333%;
 }
 
-.jv-mGrid3.jv-mGridTight.jr .jv-mGrid-column2.jr {
+.jv-mGrid3.jv-mGridTight.jv .jv-mGrid-column2.jv {
   width: 66.666%;
 }
 
 // 3-Column Grid Loose
-.jv-mGrid3.jv-mGridLoose.jr .jv-mGrid-column.jr {
+.jv-mGrid3.jv-mGridLoose.jv .jv-mGrid-column.jv {
   width: 31.333%;
 }
 
-.jv-mGrid3.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+.jv-mGrid3.jv-mGridLoose.jv .jv-mGrid-column2.jv {
   width: 65.666%;
 }
 
 
 // 4-Column Grid
-.jv-mGrid4.jr {}
+.jv-mGrid4.jv {}
 
-.jv-mGrid4.jr .jv-mGrid-column.jr {
+.jv-mGrid4.jv .jv-mGrid-column.jv {
   width: 24.25%;
 }
 
-.jv-mGrid4.jr .jv-mGrid-column2.jr {
+.jv-mGrid4.jv .jv-mGrid-column2.jv {
   width: 49.5%;
 }
 
-.jv-mGrid4.jr .jv-mGrid-column3.jr {
+.jv-mGrid4.jv .jv-mGrid-column3.jv {
   width: 74.75%;
 }
 
-.jv-mGrid4.jr .jv-mGrid-column.jr:nth-child(4n) + .jv-mGrid-column.jr {
+.jv-mGrid4.jv .jv-mGrid-column.jv:nth-child(4n) + .jv-mGrid-column.jv {
   margin-left: 0;
 }
 
 // 4-Column Grid Tight
-.jv-mGrid4.jv-mGridTight.jr .jv-mGrid-column.jr {
+.jv-mGrid4.jv-mGridTight.jv .jv-mGrid-column.jv {
   width: 25%;
 }
 
-.jv-mGrid4.jv-mGridTight.jr .jv-mGrid-column2.jr {
+.jv-mGrid4.jv-mGridTight.jv .jv-mGrid-column2.jv {
   width: 50%;
 }
 
-.jv-mGrid4.jv-mGridTight.jr .jv-mGrid-column3.jr {
+.jv-mGrid4.jv-mGridTight.jv .jv-mGrid-column3.jv {
   width: 75%;
 }
 
 // 4-Column Grid Loose
-.jv-mGrid4.jv-mGridLoose.jr .jv-mGrid-column.jr {
+.jv-mGrid4.jv-mGridLoose.jv .jv-mGrid-column.jv {
   width: 22.75%;
 }
 
-.jv-mGrid4.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+.jv-mGrid4.jv-mGridLoose.jv .jv-mGrid-column2.jv {
   width: 48.5%;
 }
 
-.jv-mGrid4.jv-mGridLoose.jr .jv-mGrid-column3.jr {
+.jv-mGrid4.jv-mGridLoose.jv .jv-mGrid-column3.jv {
   width: 74.25%;
 }
 
 
 // 5-Column Grid
-.jv-mGrid5.jr {}
+.jv-mGrid5.jv {}
 
-.jv-mGrid5.jr .jv-mGrid-column.jr {
+.jv-mGrid5.jv .jv-mGrid-column.jv {
   width: 19.2%;
 }
 
-.jv-mGrid5.jr .jv-mGrid-column2.jr {
+.jv-mGrid5.jv .jv-mGrid-column2.jv {
   width: 39.4%;
 }
 
-.jv-mGrid5.jr .jv-mGrid-column3.jr {
+.jv-mGrid5.jv .jv-mGrid-column3.jv {
   width: 59.6%;
 }
 
-.jv-mGrid5.jr .jv-mGrid-column4.jr {
+.jv-mGrid5.jv .jv-mGrid-column4.jv {
   width: 79.8%;
 }
 
-.jv-mGrid5.jr .jv-mGrid-column.jr:nth-child(5n) + .jv-mGrid-column.jr {
+.jv-mGrid5.jv .jv-mGrid-column.jv:nth-child(5n) + .jv-mGrid-column.jv {
   margin-left: 0;
 }
 
 // 5-Column Grid Tight
-.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column.jr {
+.jv-mGrid5.jv-mGridTight.jv .jv-mGrid-column.jv {
   width: 20%;
 }
 
-.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column2.jr {
+.jv-mGrid5.jv-mGridTight.jv .jv-mGrid-column2.jv {
   width: 40%;
 }
 
-.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column3.jr {
+.jv-mGrid5.jv-mGridTight.jv .jv-mGrid-column3.jv {
   width: 60%;
 }
 
-.jv-mGrid5.jv-mGridTight.jr .jv-mGrid-column4.jr {
+.jv-mGrid5.jv-mGridTight.jv .jv-mGrid-column4.jv {
   width: 80%;
 }
 
 // 5-Column Grid Loose
-.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column.jr {
+.jv-mGrid5.jv-mGridLoose.jv .jv-mGrid-column.jv {
   width: 17.6%;
 }
 
-.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+.jv-mGrid5.jv-mGridLoose.jv .jv-mGrid-column2.jv {
   width: 38.2%;
 }
 
-.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column3.jr {
+.jv-mGrid5.jv-mGridLoose.jv .jv-mGrid-column3.jv {
   width: 58.8%;
 }
 
-.jv-mGrid5.jv-mGridLoose.jr .jv-mGrid-column4.jr {
+.jv-mGrid5.jv-mGridLoose.jv .jv-mGrid-column4.jv {
   width: 79.4%;
 }
 
 
 
 // 6-Column Grid
-.jv-mGrid6.jr {}
+.jv-mGrid6.jv {}
 
-.jv-mGrid6.jr .jv-mGrid-column.jr {
+.jv-mGrid6.jv .jv-mGrid-column.jv {
   width: 15.75%;
 }
 
-.jv-mGrid6.jr .jv-mGrid-column2.jr {
+.jv-mGrid6.jv .jv-mGrid-column2.jv {
   width: 32.6%;
 }
 
-.jv-mGrid6.jr .jv-mGrid-column3.jr {
+.jv-mGrid6.jv .jv-mGrid-column3.jv {
   width: 49.45%;
 }
 
-.jv-mGrid6.jr .jv-mGrid-column4.jr {
+.jv-mGrid6.jv .jv-mGrid-column4.jv {
   width: 66.3%;
 }
 
-.jv-mGrid6.jr .jv-mGrid-column5.jr {
+.jv-mGrid6.jv .jv-mGrid-column5.jv {
   width: 83.15%;
 }
 
-.jv-mGrid6.jr .jv-mGrid-column.jr:nth-child(6n) + .jv-mGrid-column.jr {
+.jv-mGrid6.jv .jv-mGrid-column.jv:nth-child(6n) + .jv-mGrid-column.jv {
   margin-left: 0;
 }
 
 // 6-Column Grid Tight
-.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column.jr {
+.jv-mGrid6.jv-mGridTight.jv .jv-mGrid-column.jv {
   width: 16.666%;
 }
 
-.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column2.jr {
+.jv-mGrid6.jv-mGridTight.jv .jv-mGrid-column2.jv {
   width: 33.3333%;
 }
 
-.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column3.jr {
+.jv-mGrid6.jv-mGridTight.jv .jv-mGrid-column3.jv {
   width: 49.998%;
 }
 
-.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column4.jr {
+.jv-mGrid6.jv-mGridTight.jv .jv-mGrid-column4.jv {
   width: 66.666%;
 }
 
-.jv-mGrid6.jv-mGridTight.jr .jv-mGrid-column5.jr {
+.jv-mGrid6.jv-mGridTight.jv .jv-mGrid-column5.jv {
   width: 83.333%;
 }
 
 // 6-Column Grid Loose
-.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column.jr {
+.jv-mGrid6.jv-mGridLoose.jv .jv-mGrid-column.jv {
   width: 14.166%;
 }
 
-.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column2.jr {
+.jv-mGrid6.jv-mGridLoose.jv .jv-mGrid-column2.jv {
   width: 31.333%;
 }
 
-.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column3.jr {
+.jv-mGrid6.jv-mGridLoose.jv .jv-mGrid-column3.jv {
   width: 48.499%;
 }
 
-.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column4.jr {
+.jv-mGrid6.jv-mGridLoose.jv .jv-mGrid-column4.jv {
   width: 65.665%;
 }
 
-.jv-mGrid6.jv-mGridLoose.jr .jv-mGrid-column5.jr {
+.jv-mGrid6.jv-mGridLoose.jv .jv-mGrid-column5.jv {
   width: 82.831%;
 }
 
 
 // 10-Column Grid
-.jv-mGrid10.jr {}
+.jv-mGrid10.jv {}
 
-.jv-mGrid10.jr .jv-mGrid-column.jr {
+.jv-mGrid10.jv .jv-mGrid-column.jv {
   width: 9.1%;
 }
 
-.jv-mGrid10.jr .jv-mGrid-column.jr:nth-child(10n) + .jv-mGrid-column.jr {
+.jv-mGrid10.jv .jv-mGrid-column.jv:nth-child(10n) + .jv-mGrid-column.jv {
   margin-left: 0;
 }
 
 // 10-Column Grid Tight
-.jv-mGrid10.jv-mGridTight.jr .jv-mGrid-column.jr {
+.jv-mGrid10.jv-mGridTight.jv .jv-mGrid-column.jv {
   width: 10%;
 }
 
 // 10-Column Grid Loose
-.jv-mGrid10.jv-mGridLoose.jr .jv-mGrid-column.jr {
+.jv-mGrid10.jv-mGridLoose.jv .jv-mGrid-column.jv {
   width: 7.3%;
 }
