@@ -25,16 +25,16 @@
     Author:         Anna Leeg
  * ============================================ */
 
-.jv-isVisible.jr {
+.jv-isVisible.jv {
   display: block;
 }
 
 /* removes element from flow */
-.jv-isHidden.jr {
+.jv-isHidden.jv {
   display: none;
 }
 
 /* takes up space in flow, just invisible */
-.jv-isInvisible.jr {
+.jv-isInvisible.jv {
   visibility: hidden;
 }

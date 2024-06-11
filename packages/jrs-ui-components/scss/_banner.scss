@@ -33,7 +33,7 @@
 // -------------------
 
 // base module
-.jv-mBanner.jr {
+.jv-mBanner.jv {
     background-color: #3e8ddd;
     color: #fff;
     height: em(36px);           // 3.273em | 36px / 11px
@@ -45,18 +45,18 @@
     height:100%;
 }
 
-.jv-mBanner-wrapperLeft.jr {
+.jv-mBanner-wrapperLeft.jv {
     float: left;
     min-width: em(528px);       // 48em | 528px / 11px
 }
 
-.jv-mBanner-wrapperRight.jr {
+.jv-mBanner-wrapperRight.jv {
     float: right;
     min-width: em(418px);       // 38em | 418px / 11px
 }
 
 // child elements
-.jv-mBanner-logo.jr {
+.jv-mBanner-logo.jv {
     background-image: image-url('logo.png');
     background-position: 0 em(10px);    // .909em | 10px / 11px
     background-repeat: no-repeat;
@@ -68,12 +68,12 @@
     width: em(176px);                   // 16em | 176px / 11px
 }
 
-.jv-mBanner-nav.jr {
+.jv-mBanner-nav.jv {
     float: left;
     height: inherit;
 }
 
-.jv-mBanner-search.jr {
+.jv-mBanner-search.jv {
     float: left;
     height: 100%;
     margin-right: em(4px);       // .364em | 8px / 11px
@@ -82,11 +82,11 @@
     width: auto;
 }
 
-.jv-mBanner-search.jr .jv-mInput-search.jr {
+.jv-mBanner-search.jv .jv-mInput-search.jv {
     border: 1px solid #3e8ddd;
 }
 
-.jv-mBanner-meta.jr {
+.jv-mBanner-meta.jv {
     float: left;
     height: 100%;
 }
@@ -98,11 +98,11 @@
 
 // shrink logo
 @media only screen and (max-width:975px){
-    .jv-mBanner-wrapperLeft.jr {
+    .jv-mBanner-wrapperLeft.jv {
         min-width: em(374px);            // 34em | 374px / 11px 
     }
 
-    .jv-mBanner-logo.jr {
+    .jv-mBanner-logo.jv {
         //background-image: image-url('logo_square.png');
         background-position: 0 .364em;
         background-size: 32px;
@@ -112,38 +112,38 @@
 
 // hide logo, username, and help link
 @media only screen and (max-width:810px){
-    .jv-mBanner-logo.jr {
+    .jv-mBanner-logo.jv {
         display: none;
     }
 
-    .jv-mBanner-meta.jr .jv-mMenu-leaf.jr:first-of-type,
-    .jv-mBanner-meta.jr .jv-mMenu-leaf.jr:nth-of-type(2) {
+    .jv-mBanner-meta.jv .jv-mMenu-leaf.jv:first-of-type,
+    .jv-mBanner-meta.jv .jv-mMenu-leaf.jv:nth-of-type(2) {
         display: none;
     }
 
-    .jv-mBanner-wrapperLeft.jr {
+    .jv-mBanner-wrapperLeft.jv {
         min-width: em(330px);        // 30em | 330px / 11px
     }
 
-    .jv-mBanner-wrapperRight.jr {
+    .jv-mBanner-wrapperRight.jv {
         min-width: em(285px);        // 25.909em | 285px / 11px
     }
 }
 
 // hide search
 @media only screen and (max-width:616px){
-    .jv-mBanner-search.jr {
+    .jv-mBanner-search.jv {
         display: none;
     }
 
-    .jv-mBanner-wrapperRight.jr {
+    .jv-mBanner-wrapperRight.jv {
         min-width: em(77px);        // 7em | 77px / 11px
     }
 }
 
 // hide entire right side of banner
 @media only screen and (max-width:300px){
-    .jv-mBanner-wrapperRight.jr {
+    .jv-mBanner-wrapperRight.jv {
         display: none;
     }
 }

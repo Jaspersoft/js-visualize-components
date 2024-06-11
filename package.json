@@ -12,7 +12,8 @@
     "test": "yarn workspaces run test",
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
-    "start": "yarn workspace test-app run start"
+    "start": "yarn workspace test-app run start",
+    "start:styles:dev": "yarn workspace jrs-ui-components run start:dev"
   },
   "repository": {
     "type": "git",

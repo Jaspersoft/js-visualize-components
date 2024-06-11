@@ -23,3 +23,11 @@ yarn workspace jrs-ui-components run test
 ## Test Application
 A test application is included in `packages/test-app` it can be used to view samples of the packages.
 To run it as a web app, run `yarn start` and follow the instructions on the console to access the page in a browser.
+
+## Styles in Dev Mode
+In order to hot reload the styles in dev mode, you need to follow the steps from [Set up](#set-up) and [Test Application](#test-application) sections,
+after that, run the following command in the root of the project on a separate terminal window:
+```shell script
+yarn start:styles:dev
+``` 
+**Note**: keep both the `start` and `start:styles:dev` commands running in separate terminal windows.

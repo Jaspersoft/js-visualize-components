@@ -30,7 +30,7 @@
 
 @use "sass:math";
 
-.jv-mCanvasContainer.jr {
+.jv-mCanvasContainer.jv {
     position: absolute;
     top: 0;
     right: 0;
@@ -38,7 +38,7 @@
     left: 0;
 }
 
-.jv-mCanvas.jr {
+.jv-mCanvas.jv {
     position: absolute;
     top: 0;
     right: 0;
@@ -46,26 +46,26 @@
     left: 0;
 }
 
-.jv-mCanvas-title.jr {
+.jv-mCanvas-title.jv {
     height: em(28px);        // 2.545em | 28px / 11px
     margin: 1em 0;
 }
 
-.jv-mCanvas-title-text.jr {
+.jv-mCanvas-title-text.jv {
     font-size: em(16px);            // 1.455em | 16px / 11px
     height: em(28px, 16px);         // 1.75em | 28px / 16px
     line-height: math.div(28px, 16px);     // 1.75 | 28px / 16px, unitless value
     text-align: center;
 }
 
-// .jv-mCanvas-title-input.jr {}
+// .jv-mCanvas-title-input.jv {}
 
 // LAYOUT VARIATION, scrolling canvas
-.jv-mCanvasScroll.jr {
+.jv-mCanvasScroll.jv {
     overflow: auto;
 }
 
 // LAYOUT VARIATION, positioning according to location in JRS
-.jv-mCanvasContainerAdhoc.jr {
+.jv-mCanvasContainerAdhoc.jv {
     top: em(34px);       // 3.091em | 34px / 11px
 }

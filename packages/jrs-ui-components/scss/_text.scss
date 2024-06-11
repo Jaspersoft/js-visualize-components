@@ -38,58 +38,58 @@
 // --------------
 @use "sass:math";
 
-.jv-mText.jr {
+.jv-mText.jv {
   font-family: $font-family-primary;
   font-size: 13px;
   white-space: normal;
 }
 
-.jv-mTextTitle.jr {}
+.jv-mTextTitle.jv {}
 
 
 // size, standard text
-.jv-mTextSmall.jr .jv-mText-wrapper.jr {
+.jv-mTextSmall.jv .jv-mText-wrapper.jv {
   font-size: em(12px, 13px);
   line-height: math.div(16px, 12px);
 }
 
-.jv-mTextMedium.jr .jv-mText-wrapper.jr {
+.jv-mTextMedium.jv .jv-mText-wrapper.jv {
   font-size: em(13px, 13px);
   line-height: math.div(17px, 13px);
 }
 
-.jv-mTextLarge.jr .jv-mText-wrapper.jr {
+.jv-mTextLarge.jv .jv-mText-wrapper.jv {
   font-size: em(14px, 13px);
   line-height: math.div(18px, 14px);
 }
 
-.jv-mTextXLarge.jr .jv-mText-wrapper.jr {
+.jv-mTextXLarge.jv .jv-mText-wrapper.jv {
   font-size: em(16px, 13px);
   line-height: math.div(22px, 16px);
 }
 
 // size, titles
-.jv-mTextTitle.jv-mTextXSmall.jr .jv-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextXSmall.jv .jv-mText-wrapper.jv {
   font-size: em(14px, 13px);
   line-height: math.div(20px, 14px);
 }
 
-.jv-mTextTitle.jv-mTextSmall.jr .jv-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextSmall.jv .jv-mText-wrapper.jv {
   font-size: em(16px, 13px);
   line-height: math.div(22px, 16px);
 }
 
-.jv-mTextTitle.jv-mTextMedium.jr .jv-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextMedium.jv .jv-mText-wrapper.jv {
   font-size: em(18px, 13px);
   line-height: math.div(24px, 18px);
 }
 
-.jv-mTextTitle.jv-mTextLarge.jr .jv-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextLarge.jv .jv-mText-wrapper.jv {
   font-size: em(20px, 13px);
   line-height: math.div(26px, 20px);
 }
 
-.jv-mTextTitle.jv-mTextXLarge.jr .jv-mText-wrapper.jr {
+.jv-mTextTitle.jv-mTextXLarge.jv .jv-mText-wrapper.jv {
   font-size: em(24px, 13px);
   line-height: math.div(28px, 24px);
 }
@@ -100,60 +100,60 @@
 // -------------
 
 //theme colors
-.jv-mTextThemeDark.jr {
+.jv-mTextThemeDark.jv {
   color: $color-tciDark;
 }
 
-.jv-mTextThemePrimary.jr {
+.jv-mTextThemePrimary.jv {
   color: $color-tciLight;
 }
 
-.jv-mTextThemeAltPrimary.jr {
+.jv-mTextThemeAltPrimary.jv {
   color: $color-tciMedium;
 }
 
 //alert colors
-.jv-mTextError.jr {
+.jv-mTextError.jv {
   color: $color-errorMedium;
 }
 
-.jv-mTextWarning.jr {
+.jv-mTextWarning.jv {
   color: $color-warningMedium;
 }
 
-.jv-mTextSuccess.jr {
+.jv-mTextSuccess.jv {
   color: $color-successDark;
 }
 
-.jv-mTextInfo.jr {
+.jv-mTextInfo.jv {
   color: $color-infoMedium;
 }
 
 //greyscale
-.jv-mTextGreyDarkest.jr {
+.jv-mTextGreyDarkest.jv {
   color: $grey-textDarkest;
 }
 
-.jv-mTextGreyDarker.jr {
+.jv-mTextGreyDarker.jv {
   color: $grey-textDarker;
 }
 
-.jv-mTextGreyDark.jr {
+.jv-mTextGreyDark.jv {
   color: $grey-textDark;
 }
 
-.jv-mTextGreyPrimary.jr {
+.jv-mTextGreyPrimary.jv {
   color: $grey-textMedium;
 }
 
-.jv-mTextGreyLight.jr {
+.jv-mTextGreyLight.jv {
   color: $grey-textLight;
 }
 
-.jv-mTextGreyLighter.jr {
+.jv-mTextGreyLighter.jv {
   color: $grey-textLighter;
 }
 
-.jv-mTextGreyLightest.jr {
+.jv-mTextGreyLightest.jv {
   color: $grey-textLightest;
 }

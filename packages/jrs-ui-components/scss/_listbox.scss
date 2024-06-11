@@ -25,7 +25,7 @@
    Last modified by:       Anna Leeg
  * ============================================ */
 
-.jv-mListbox.jr {
+.jv-mListbox.jv {
   color: $grey-textMedium;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   height: 100%;
 }
 
-.jv-mListbox-label.jr {
+.jv-mListbox-label.jv {
   @include input-label;
   align-self: stretch;
   flex: 0 1 auto;
@@ -44,21 +44,21 @@
   font-weight: normal;
 }
 //label variations
-.jv-mListbox-labelLight.jr {
+.jv-mListbox-labelLight.jv {
   font-family: $font-family-primary;
 }
 
-.jv-mListbox-labelPale.jr {
+.jv-mListbox-labelPale.jv {
   color: $grey-textLightest;
 }
 
-.jv-mListbox-search.jr {
+.jv-mListbox-search.jv {
   align-self: stretch;
   flex: 0 1 auto;
   margin-bottom: em(6px, 13px);
 }
 
-.jv-mListbox-list.jr {
+.jv-mListbox-list.jv {
   // designed to resize in height along with the listbox's parent container;
   align-self: stretch;
   background-color: #fff;
@@ -71,49 +71,49 @@
   width: 100%;
 }
 
-.jv-mListbox-listStatic.jr {
+.jv-mListbox-listStatic.jv {
   // for list that should size according to its content
   position: static;
 }
 
-.jv-mListbox-listPadded.jr {
+.jv-mListbox-listPadded.jv {
   // for list that needs padding
   padding: 1em;
 }
 
-.jv-mListbox-button.jr {
+.jv-mListbox-button.jv {
   position: absolute;
     bottom: 0;
     left: 0;
 }
 
-.jv-mListbox-buttonRight.jr {
+.jv-mListbox-buttonRight.jv {
   right: 0;
   left: auto;
 }
 
-    .jv-mListbox-buttonSmall.jr {
+    .jv-mListbox-buttonSmall.jv {
       position: absolute;
       bottom: 0;
     }
 
 // listbox position when label and search are present
-.jv-mListbox-search.jr + .jv-mListbox-list.jr {
+.jv-mListbox-search.jv + .jv-mListbox-list.jv {
   top: em(56px, 13px);
 }
 
 // listbox position with search only
-.jv-mListbox-search.jr + .jv-mListbox-list.jr:nth-of-type(2) {
+.jv-mListbox-search.jv + .jv-mListbox-list.jv:nth-of-type(2) {
   top: em(34px, 13px);
 }
 
 // listbox position with label only
-.jv-mListbox-label.jr + .jv-mListbox-list.jr {
+.jv-mListbox-label.jv + .jv-mListbox-list.jv {
   top: em(22px, 13px);
 }
 
 
-.jv-mListbox-list.jr:nth-last-child(2) {
+.jv-mListbox-list.jv:nth-last-child(2) {
   bottom: em(28px, 13px);
 }
 
@@ -121,11 +121,11 @@
 // ----------
 //   STATES
 // ----------
-.jv-mListbox-list.jv-isInvalid.jr {
+.jv-mListbox-list.jv-isInvalid.jv {
   border-color: $color-errorMedium;
 }
 
-.jv-mListbox-list.jv-isEmpty.jr {
+.jv-mListbox-list.jv-isEmpty.jv {
   background-color: #f7f7f7;
 }
 
@@ -137,7 +137,7 @@
    Last modified by:       Anna Leeg
  * ======================================= */
 /*
-.jv-mListboxx.jr {
+.jv-mListboxx.jv {
   color: #666;
   display: table;
   font-family: $font-primary---family;
@@ -146,40 +146,40 @@
   height: 100%;
 }
 
-.jv-mListboxx-label.jr {
+.jv-mListboxx-label.jv {
   display: table-row;
   font-weight: bold;
   @include input-label;
 }
 
-.jv-mListboxx-label-text.jr {
+.jv-mListboxx-label-text.jv {
   display: table-cell;
   font-weight: bold;
 }
-    .jv-mListboxx-label-textLight.jr {
+    .jv-mListboxx-label-textLight.jv {
       font-weight: normal;
     }
 
-    .jv-mListboxx-label-textPale.jr {
+    .jv-mListboxx-label-textPale.jv {
       color: #999999;
     }
 
-.jv-mListboxx-search.jr {
+.jv-mListboxx-search.jv {
   display: table-row;
 }
 
-.jv-mListboxx-search-wrapper.jr {
+.jv-mListboxx-search-wrapper.jv {
   display: table-cell;
   padding-bottom: em(6px);
 }
 
-.jv-mListboxx-list.jr {
+.jv-mListboxx-list.jv {
   display: table-row;
   height: 100%;
   width: 100%;
 }
 
-.jv-mListboxx-list-wrapper.jr {
+.jv-mListboxx-list-wrapper.jv {
   background-color: #fff;
   border: em(1px) solid #dedede;
   display: table-cell;

@@ -28,43 +28,43 @@
 // -----------------
 //  SIZER MODULES
 // -----------------
-.jv-mSizer.jr {
+.jv-mSizer.jv {
   color: #333333;
   font-family: $font-primary---family;
   font-size: $font-primary---size;
   font-weight: normal;
 }
 
-.jv-mSizer-handle.jr {}
+.jv-mSizer-handle.jv {}
 
 
 
 // MODULE VARIATION, horizontal/column resizer
-.jv-mSizerHorizontal.jr {
+.jv-mSizerHorizontal.jv {
   cursor: col-resize !important;
   z-index: 1000;
 }
 
 
 // MODULE VARIATION, vertical/row resizer
-.jv-mSizerVertical.jr {
+.jv-mSizerVertical.jv {
   cursor: row-resize !important;
 }
 
-.jv-mSizerVertical.jr .jv-mSizer-handle.jr {
+.jv-mSizerVertical.jv .jv-mSizer-handle.jv {
   margin-bottom: em(10px);
   margin-top: em(10px);
 }
 
 // jquery-ui overrides
-.jv-mSizerVertical.jr.ui-resizable-s {
+.jv-mSizerVertical.jv.ui-resizable-s {
   bottom: 0;
   left: inherit;
   margin-bottom: em(10px);
   margin-top: em(10px);
 }
 
-.jv-mSizerVertical.jr .ui-icon {
+.jv-mSizerVertical.jv .ui-icon {
   background-image: none;
   border-top: 3px double #333;
   height: em(3px);
@@ -76,6 +76,6 @@
 // ----------
 //   STATES
 // ----------
-.jv-mSizer.jv-isInvisible.jr {
+.jv-mSizer.jv-isInvisible.jv {
   display: none;
 }

@@ -25,7 +25,7 @@
    Last modified by:       Anna Leeg
  * ============================================ */
 
-.jv-mDomain.jr {
+.jv-mDomain.jv {
   background-color: #fff;
   font-family: $font-family-primary;
   font-size: $font-size-primary;
@@ -34,7 +34,7 @@
   //overflow: hidden;        // it collapses layout when used in JRS
 }
 
-.jv-mDomainDesigner.jr {  // this class won't be needed when full layout architecture is implemented.
+.jv-mDomainDesigner.jv {  // this class won't be needed when full layout architecture is implemented.
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -42,14 +42,14 @@
   width: 100%;
 }
 
-.jv-mDomain-header.jr {
+.jv-mDomain-header.jv {
   border-bottom: 2px solid $color-tciDark;
   display: flex;
   height: 40px;
   justify-content: space-between; //use flex-start for left-aligned tabs
 }
 
-.jv-mDomain-header-title.jr {
+.jv-mDomain-header-title.jv {
   color: #333;
   display: flex;
   flex: 0 1 auto;
@@ -58,7 +58,7 @@
   margin-right: 3em;
 }
 
-.jv-mDomain-header-title-icon.jr  {
+.jv-mDomain-header-title-icon.jv  {
   align-self: center;
   background-image: image-url("workflow_icons_sprite.svg");
   background-position: 0 -152px;
@@ -71,7 +71,7 @@
   width: 27px;
 }
 
-.jv-mDomain-header-title-text.jr {
+.jv-mDomain-header-title-text.jv {
   align-self: center;
   font-size: 22px;
   margin-left: 7px;
@@ -80,26 +80,26 @@
   white-space: nowrap;
 }
 
-.jv-mDomain-header-tabs.jr {
+.jv-mDomain-header-tabs.jv {
   align-self: flex-end;
   flex: 0 1 auto;
 }
 
-.jv-mDomain-content.jr {
+.jv-mDomain-content.jv {
   position: absolute;
   top: 40px;
   bottom: 0;
   width: 100%;
 }
 
-.jv-mDomain-content-main.jr {
+.jv-mDomain-content-main.jv {
   right: 0;
   left: 0;
   overflow: hidden;
   @include column;
 }
 
-.jv-mDomain-content-datapanel.jr {
+.jv-mDomain-content-datapanel.jv {
   @include column;
   @include column-left;
   background-color: #f7f7f7;
@@ -108,13 +108,13 @@
   height: 100%;   // to fix layout issues with absolute positioned parent
 }
 
-.jv-mDomain-content-datapanel.jr + .jv-mDomain-content-main.jr {
+.jv-mDomain-content-datapanel.jv + .jv-mDomain-content-main.jv {
   // only indents main content when there is a side panel
   left: 250px;
 }
 
 // mode workspace
-.jv-mDomain-mode.jr {
+.jv-mDomain-mode.jv {
   position: absolute; // adding absolute positioning here results in more logical positioning values on child elements
   top: 32px;
   bottom: 0;
@@ -122,35 +122,35 @@
   overflow: hidden;
 }
 
-.jv-mDomain-modeManage.jr {}
-.jv-mDomain-modeJoins.jr {}
-.jv-mDomain-modePrefilters.jr {}
-.jv-mDomain-modePresentation.jr {}
-.jv-mDomain-modeOptions.jr {}
+.jv-mDomain-modeManage.jv {}
+.jv-mDomain-modeJoins.jv {}
+.jv-mDomain-modePrefilters.jv {}
+.jv-mDomain-modePresentation.jv {}
+.jv-mDomain-modeOptions.jv {}
 
-.jv-mDomain-mode-wrapper.jr {
+.jv-mDomain-mode-wrapper.jv {
   overflow: hidden;
   height: 100%;
 }
 
-.jv-mDomain-modeManage.jr .jv-mDomain-mode-wrapper.jr {
+.jv-mDomain-modeManage.jv .jv-mDomain-mode-wrapper.jv {
   padding: 2em 2em 0 2em;
 }
 
-.jv-mDomain-modeJoins.jr .jv-mDomain-mode-wrapper.jr,
-.jv-mDomain-modePrefilters.jr .jv-mDomain-mode-wrapper.jr,
-.jv-mDomain-modePresentation.jr .jv-mDomain-mode-wrapper.jr {
+.jv-mDomain-modeJoins.jv .jv-mDomain-mode-wrapper.jv,
+.jv-mDomain-modePrefilters.jv .jv-mDomain-mode-wrapper.jv,
+.jv-mDomain-modePresentation.jv .jv-mDomain-mode-wrapper.jv {
   display: flex;
   flex-direction: column;
 }
 
-.jv-mDomain-modeOptions.jr .jv-mDomain-mode-wrapper.jr,
-.jv-mDomain-modeSecurity.jr .jv-mDomain-mode-wrapper.jr {
+.jv-mDomain-modeOptions.jv .jv-mDomain-mode-wrapper.jv,
+.jv-mDomain-modeSecurity.jv .jv-mDomain-mode-wrapper.jv {
   overflow-y: auto;
   padding: 2em 2em 0 2em;
 }
 
-.jv-mDomain-mode-controls.jr {
+.jv-mDomain-mode-controls.jv {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -158,42 +158,42 @@
   padding: 0 1em;
 }
 
-.jv-mDomain-mode-controls-buttons.jr {
+.jv-mDomain-mode-controls-buttons.jv {
   white-space: nowrap;
 }
 
-.jv-mDomain-mode-controls-search.jr {}
+.jv-mDomain-mode-controls-search.jv {}
 
-.jv-mDomain-modeJoins.jr .jv-mDomain-mode-controls.jr,
-.jv-mDomain-modePrefilters.jr .jv-mDomain-mode-controls.jr {
+.jv-mDomain-modeJoins.jv .jv-mDomain-mode-controls.jv,
+.jv-mDomain-modePrefilters.jv .jv-mDomain-mode-controls.jv {
   border-bottom: 1px solid #e4e4e4;
   justify-content: flex-end;
 }
 
-.jv-mDomain-modePresentation.jr .jv-mDomain-mode-controls.jr {
+.jv-mDomain-modePresentation.jv .jv-mDomain-mode-controls.jv {
   border-bottom: 1px solid #e4e4e4;
 }
 
-.jv-mDomain-modeSecurity.jr .jv-mDomain-mode-editor.jr {
+.jv-mDomain-modeSecurity.jv .jv-mDomain-mode-editor.jv {
   border: 1px solid #e4e4e4;  // changed from #e5 to #e4 after color consolidation done before Embed code story
   height: calc(100% - 140px);
   width: 100%;
 }
 
-.jv-mDomain-mode-title.jr {}
+.jv-mDomain-mode-title.jv {}
 
-.jv-mDomain-mode-title-text.jr,
-.jv-mDomain-mode-title-object.jr {
+.jv-mDomain-mode-title-text.jv,
+.jv-mDomain-mode-title-object.jv {
   display: inline-block;
   font-size: 18px;              // new base font size
   line-height: 2;
 }
 
-.jv-mDomain-mode-title-text.jr {
+.jv-mDomain-mode-title-text.jv {
   color: $color-tciMedium;
 }
 
-.jv-mDomain-shuttle.jr {
+.jv-mDomain-shuttle.jv {
   //height: calc(100% - #{em(204px)});
   height: calc(100% - 204px);
   margin: 2em 0;
@@ -201,34 +201,34 @@
   width: 700px;
 }
 
-.jv-mDomain-shuttle.jr:last-child {
+.jv-mDomain-shuttle.jv:last-child {
   //height: calc(100% - #{em(80px)});
   height: calc(100% - 80px);
 }
 
-.jv-mDomain-attributeinput.jr {
+.jv-mDomain-attributeinput.jv {
   margin: 1.5em 0;
   width: 700px;
 }
 
-.jv-mDomain-mode-joinlist.jr {
+.jv-mDomain-mode-joinlist.jv {
   height: 100%;
   overflow: auto;
   padding: 1em;
   width: 100%;
 }
 
-.jv-mDomain-mode-dropbar.jr {}
+.jv-mDomain-mode-dropbar.jv {}
 
-.jv-mDomain-mode-prefiltertable.jr,
-.jv-mDomain-mode-presentationtable.jr {
+.jv-mDomain-mode-prefiltertable.jv,
+.jv-mDomain-mode-presentationtable.jv {
   height: 100%;
   overflow: hidden;
   padding: 1em 1em 0 1em;
   width: 100%;
 }
 
-.jv-mDomain-mode-resourcetable.jr {
+.jv-mDomain-mode-resourcetable.jv {
   // has clearfix rules because Add button floats right at bottom of container
   clear: both;
   content: "";
@@ -239,10 +239,10 @@
 
 // custom icon positions so arrows don't look funny lined up with "to top" and "to bottom" arrows
 // perhaps revisit and have them this way by default
-//.jv-mDomain.jr .jv-mIcon.jv-arrowUp.jr {
+//.jv-mDomain.jv .jv-mIcon.jv-arrowUp.jv {
 //  line-height: (29px / 17px)
 //}
-//.jv-mDomain.jr .jv-mIcon.jv-arrowDown.jr {
+//.jv-mDomain.jv .jv-mIcon.jv-arrowDown.jv {
 //  line-height: (27px / 17px)
 //}
 
@@ -250,6 +250,6 @@
 
 
 // this needs to be removed—NO javascript style in CSS
-.jv-jJoinsBody.jr {
+.jv-jJoinsBody.jv {
   overflow-y: auto;
 }

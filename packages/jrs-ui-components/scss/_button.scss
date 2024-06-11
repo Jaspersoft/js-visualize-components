@@ -59,13 +59,13 @@
 // ---------------------
 @use "sass:math";
 
-.jv-mButtongroup.jr {}
+.jv-mButtongroup.jv {}
 
-.jv-mButtongroup.jr + .jv-mButtongroup.jr {
+.jv-mButtongroup.jv + .jv-mButtongroup.jv {
   margin-top: em(8px);
 }
 
-.jv-mButtongroup-divider.jr {
+.jv-mButtongroup-divider.jv {
   border-right: 1px solid #ccc;
   display: inline-block;
   height: 2.182em;
@@ -77,29 +77,29 @@
 
 // group of buttons that need to be spread out evenly across a given width
 // required utility width styles on buttons within the group
-.jv-mButtongroupSpread.jr {
+.jv-mButtongroupSpread.jv {
   @include clearfix;
 }
 
-.jv-mButtongroupSpread.jr .jv-mButton.jr {
+.jv-mButtongroupSpread.jv .jv-mButton.jv {
   //float eliminates default space between buttons
   float: left;
   margin-right: 2%;
 }
 
-.jv-mButtongroupSpread.jr .jv-mButton.jr:last-of-type {
+.jv-mButtongroupSpread.jv .jv-mButton.jv:last-of-type {
   //removed right margin on last button in set
   margin-right: 0;
 }
 
-.jv-mButtonset.jr {}
+.jv-mButtonset.jv {}
 
 
 // -------------------
 //  2. BUTTON MODULE
 // ------------------
 //  2a. Base Button
-.jv-mButton.jr {
+.jv-mButton.jv {
   border: 1px solid transparent;
   //border-radius: em(4px);
   border-radius: 0; // needs to be explicitly set because Chrome forces a 4px value
@@ -111,21 +111,21 @@
   // vertical-align: top;
 }
 
-.jv-mButton-label.jr {
+.jv-mButton-label.jv {
   color: $grey-textMedium;
   font-family: $font-family-semibold;
   font-weight: normal;
 }
 
-.jv-mButton-labelTheme.jr {
+.jv-mButton-labelTheme.jv {
   color: $color-textThemePrimary;
 }
 
 
 // 2b. Link
-.jv-mButtonLink.jr {}
+.jv-mButtonLink.jv {}
 
-.jv-mButtonLink.jr .jv-mButton-label.jr {
+.jv-mButtonLink.jv .jv-mButton-label.jv {
   color: $color-textThemePrimary;
   font-family: $font-family-primary;
   font-weight: normal;
@@ -135,9 +135,9 @@
 
 
 // 2c. Text
-.jv-mButtonText.jr {}
+.jv-mButtonText.jv {}
 
-.jv-mButtonText.jr > .jv-mButton-label.jr {
+.jv-mButtonText.jv > .jv-mButton-label.jv {
   display: inline-block;
   font-size: em(14px, 12px);     	// new base font size
   line-height: math.div(28px, 14px);       // unitless value
@@ -151,65 +151,65 @@
 
 
 // 2e. Outline
-.jv-mButtonOutline.jr {
+.jv-mButtonOutline.jv {
   border: 1px solid #cccccc;
 }
 
-.jv-mButtonOutline.jr .jv-mButton-label.jr {
+.jv-mButtonOutline.jv .jv-mButton-label.jv {
   color: $grey-textMedium;
 }
 
 
 // 2f. Priority
-/* .jv-mButtonDefault.jr {
+/* .jv-mButtonDefault.jv {
   background-color: #8d8d8d;
   margin-right: em(6px);
 } same as secondary as of 2019 UI improvements */
 
-.jv-mButtonPrimary.jr {
+.jv-mButtonPrimary.jv {
   background-color: $color-tciLight;
   margin-right: .5em;
 }
 
-.jv-mButtonSecondary.jr,
-.jv-mButtonDefault.jr {
+.jv-mButtonSecondary.jv,
+.jv-mButtonDefault.jv {
   background-color: #e4e4e4;
   margin-right: .5em;
 }
 
-.jv-mButtonError.jr {
+.jv-mButtonError.jv {
   //!important is needed to prevent override from alternate styles
   // but it also overrides state styles
   background-color: $color-errorMedium !important;
   margin-right: .5em;
 }
 
-.jv-mButtonWarning.jr {
+.jv-mButtonWarning.jv {
   background-color: $color-warningMedium !important;
   margin-right: .5em;
 }
 
-.jv-mButtonAttention.jr {
+.jv-mButtonAttention.jv {
   background-color: $color-attentionMedium !important;
   margin-right: .5em;
 }
 
-.jv-mButtonDefault.jr:last-child,
-.jv-mButtonPrimary.jr:last-child,
-.jv-mButtonSecondary.jr:last-child {
+.jv-mButtonDefault.jv:last-child,
+.jv-mButtonPrimary.jv:last-child,
+.jv-mButtonSecondary.jv:last-child {
   margin-right: 0;
 }
 
-.jv-mButtonPrimary.jr .jv-mButton-label.jr,
-.jv-mButtonError.jr .jv-mButton-label.jr,
-.jv-mButtonWarning.jr .jv-mButton-label.jr,
-.jv-mButtonAttention.jr .jv-mButton-label.jr {
+.jv-mButtonPrimary.jv .jv-mButton-label.jv,
+.jv-mButtonError.jv .jv-mButton-label.jv,
+.jv-mButtonWarning.jv .jv-mButton-label.jv,
+.jv-mButtonAttention.jv .jv-mButton-label.jv {
   color: #fff;
 }
 
 /*
-.jv-mButtonDefault.jr .jv-mButton-label.jr,
-.jv-mButtonSecondary.jr .jv-mButton-label.jr {
+.jv-mButtonDefault.jv .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv .jv-mButton-label.jv {
   color: $grey-textMedium;
 }
 */
@@ -217,16 +217,16 @@
 
 // 2g. Action
 // In most instances, the action button contains an icon, but there are cases where it holds text——such as in the toolbar
-.jv-mButtonAction.jr {
+.jv-mButtonAction.jv {
   height: em(28px, 12px);
   min-width: em(32px, 12px);
 }
 
-.jv-mButtonAction.jr > .jv-mButton-icon.jr {
+.jv-mButtonAction.jv > .jv-mButton-icon.jv {
   margin: 0 em(2px, 12px);
 }
 
-.jv-mButtonAction.jr > .jv-mButton-label.jr {
+.jv-mButtonAction.jv > .jv-mButton-label.jv {
   color: $grey-textMedium;
   font-size: em(13px, 12px);     			// new base font size
   line-height: em(26px, 13px);
@@ -237,27 +237,27 @@
 
 // 2h. Action + Size
 // TODO: need to do something about height on these
-.jv-mButtonAction.jv-mButtonSmall.jr {
+.jv-mButtonAction.jv-mButtonSmall.jv {
   min-width: em(26px, 12px);
 }
 
-.jv-mButtonAction.jv-mButtonMedium.jr {
+.jv-mButtonAction.jv-mButtonMedium.jv {
   min-width: em(32px, 12px);
 }
 
-.jv-mButtonAction.jv-mButtonLarge.jr {
+.jv-mButtonAction.jv-mButtonLarge.jv {
   min-width: em(40px, 12px);
 }
 
 
 // 2i. Tool
-.jv-mButtonTool.jr {
+.jv-mButtonTool.jv {
   height: 100%;
 }
 
-.jv-mButtonToolPlain.jr {} // does not have state styling
+.jv-mButtonToolPlain.jv {} // does not have state styling
 
-.jv-mButtonTool.jr > .jv-mButton-icon.jr {
+.jv-mButtonTool.jv > .jv-mButton-icon.jv {
   font-size: 16px;          // new base font size
   height: em(26px, 16px);
   line-height: math.div(26px, 16px);
@@ -265,11 +265,11 @@
 
 
 // 2j. Drop-down
-.jv-mButtonDropdown.jr {
+.jv-mButtonDropdown.jv {
   padding-right: em(8px, 12px);
 }
 
-.jv-mButtonDropdown.jr::after {
+.jv-mButtonDropdown.jv::after {
   border-left: em(3px, 12px) solid rgba(0, 0, 0, 0);
   border-right: em(3px, 12px) solid rgba(0, 0, 0, 0);
   border-top: em(5px, 12px) solid $color-textMedium;
@@ -280,15 +280,15 @@
   right: 0;
 }
 
-.jv-mButtonText.jv-mButtonDropdown.jr {
+.jv-mButtonText.jv-mButtonDropdown.jv {
   display: inline-flex;
 }
 
-.jv-mButtonText.jv-mButtonDropdown.jr .jv-mButton-label.jr {
+.jv-mButtonText.jv-mButtonDropdown.jv .jv-mButton-label.jv {
   padding-right: .8em;
 }
 
-.jv-mButtonText.jv-mButtonDropdown.jr::after {
+.jv-mButtonText.jv-mButtonDropdown.jv::after {
   align-self: center;
   border-left: em(4px, 12px) solid rgba(0, 0, 0, 0);
   border-right: em(4px, 12px) solid rgba(0, 0, 0, 0);
@@ -299,7 +299,7 @@
 
 
 // 2k. Combo: Text + Icon
-.jv-mButtonCombo.jr {
+.jv-mButtonCombo.jv {
   align-items: flex-start;
   display: inline-flex;
   flex-direction: row;
@@ -308,46 +308,46 @@
   text-align: left;
 }
 
-.jv-mButtonCombo.jr .jv-mButton-icon.jr {
+.jv-mButtonCombo.jv .jv-mButton-icon.jv {
   align-self: center;
   margin-left: .5em;
 }
 
-.jv-mButtonCombo.jr .jv-mButton-icon.jr:first-child {
+.jv-mButtonCombo.jv .jv-mButton-icon.jv:first-child {
   margin-right: .5em;
 }
 
-.jv-mButtonCombo.jr .jv-mButton-icon.jr:last-child {
+.jv-mButtonCombo.jv .jv-mButton-icon.jv:last-child {
   margin-right: .5em;
 }
 
-.jv-mButtonCombo.jr .jv-mButton-label.jr {
+.jv-mButtonCombo.jv .jv-mButton-label.jv {
   align-self: center;
 }
 
-.jv-mButtonCombo.jr .jv-mButton-label.jr:first-child {
+.jv-mButtonCombo.jv .jv-mButton-label.jv:first-child {
   padding-left: 1em;
 }
 
-.jv-mButtonCombo.jr .jv-mButton-label.jr:last-child {
+.jv-mButtonCombo.jv .jv-mButton-label.jv:last-child {
   padding-right: 1em;
 }
 
-.jv-mButtonCombo.jv-mButtonPrimary.jr .jv-mButton-icon.jr {
+.jv-mButtonCombo.jv-mButtonPrimary.jv .jv-mButton-icon.jv {
   color: #fff;
 }
 
 
 // 2l. combo sizes
-.jv-mButtonCombo.jv-mButtonSmall.jr .jv-mButton-icon.jr {
+.jv-mButtonCombo.jv-mButtonSmall.jv .jv-mButton-icon.jv {
   font-size: 12px;
 }
 
-.jv-mButtonCombo.jv-mButtonMedium.jr .jv-mButton-icon.jr {
+.jv-mButtonCombo.jv-mButtonMedium.jv .jv-mButton-icon.jv {
   font-size: em(14px, 12px);
 }
 
-.jv-mButtonCombo.jv-mButtonLarge.jr .jv-mButton-icon.jr {
+.jv-mButtonCombo.jv-mButtonLarge.jv .jv-mButton-icon.jv {
   font-size: em(16px, 12px);
   line-height: math.div(26px, 16px);
 }
@@ -355,29 +355,29 @@
 
 // 2m. Size
 // size styles must be last in variation styles to prevent other variations from overriding height
-.jv-mButtonSmall.jr {
+.jv-mButtonSmall.jv {
   height: em(22px, 12px);
 }
 
-.jv-mButtonMedium.jr {
+.jv-mButtonMedium.jv {
   height: em(28px, 12px);
 }
 
-.jv-mButtonLarge.jr {
+.jv-mButtonLarge.jv {
   height: em(36px, 12px);
 }
 
-.jv-mButtonSmall.jr > .jv-mButton-label.jr {
+.jv-mButtonSmall.jv > .jv-mButton-label.jv {
   font-size: em(12px, 12px);
   line-height: math.div(20px, 12px);       // unitless value
 }
 
-.jv-mButtonMedium.jr > .jv-mButton-label.jr {
+.jv-mButtonMedium.jv > .jv-mButton-label.jv {
   font-size: em(14px, 12px);    // new base font size
   line-height: math.div(28px, 14px);   // unitless value
 }
 
-.jv-mButtonLarge.jr > .jv-mButton-label.jr {
+.jv-mButtonLarge.jv > .jv-mButton-label.jv {
   font-size: em(18px, 12px);        // new base font size
   line-height: math.div(36px, 18px);       // unitless value
 }
@@ -388,34 +388,34 @@
 // ------------
 
 // 3a. Link States
-.jv-mButtonLink.jr:hover .jv-mButton-label {
+.jv-mButtonLink.jv:hover .jv-mButton-label {
   text-decoration: underline;
 }
 
 
 // 3b. Action States
-.jv-mButtonAction.jr[disabled] {
+.jv-mButtonAction.jv[disabled] {
   opacity: .4;
 }
 
-.jv-mButton.jv-isDown.jr .jv-mButton-icon.jr {
+.jv-mButton.jv-isDown.jv .jv-mButton-icon.jv {
   color: #fff;
 }
 
 // 3c. Action + Outline States
-.jv-mButtonAction.jv-mButtonOutline.jv-isHovered.jr,
-.jv-mButtonAction.jv-mButtonOutline.jr:hover {
+.jv-mButtonAction.jv-mButtonOutline.jv-isHovered.jv,
+.jv-mButtonAction.jv-mButtonOutline.jv:hover {
   border-color: #666666;
 }
 
-.jv-mButtonAction.jv-mButtonOutline.jv-isPressed.jr,
-.jv-mButtonAction.jv-mButtonOutline.jr:focus,
-.jv-mButtonAction.jv-mButtonOutline.jr:active {
+.jv-mButtonAction.jv-mButtonOutline.jv-isPressed.jv,
+.jv-mButtonAction.jv-mButtonOutline.jv:focus,
+.jv-mButtonAction.jv-mButtonOutline.jv:active {
   //background-color: #f5f8fb;
   border-color: #cccccc;
 }
 
-.jv-mButtonAction.jv-mButtonOutline.jv-isDown.jr {
+.jv-mButtonAction.jv-mButtonOutline.jv-isDown.jv {
   background-color: #0081cb;
   border-color: transparent;
 }
@@ -424,84 +424,84 @@
 // 3d. Action + Tool States
 // can appear in standard toolbar OR in a panel header
 // delete pseudo class below after proper state implementation
-.jv-mButtonTool.jv-mButtonAction.jv-isHovered.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:focus,
-.jv-mButtonTool.jv-mButtonAction.jr:hover,
-.jv-mButtonTool.jv-mButtonAction.jv-mButtonDropdown.jv-isPressed.jr,
-.jv-mButtonTool.jv-mButtonAction.jv-mButtonDropdown.jr:active {
+.jv-mButtonTool.jv-mButtonAction.jv-isHovered.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:focus,
+.jv-mButtonTool.jv-mButtonAction.jv:hover,
+.jv-mButtonTool.jv-mButtonAction.jv-mButtonDropdown.jv-isPressed.jv,
+.jv-mButtonTool.jv-mButtonAction.jv-mButtonDropdown.jv:active {
   background-color: $color-tciMedium;
 }
 
 // delete pseudo class below after proper state implementation
-.jv-mButtonTool.jv-mButtonAction.jv-isPressed.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:active {
+.jv-mButtonTool.jv-mButtonAction.jv-isPressed.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:active {
   background-color: $color-tciLight;
 }
 
-.jv-mButtonTool.jv-mButtonAction.jv-isDown.jr {
+.jv-mButtonTool.jv-mButtonAction.jv-isDown.jv {
   background-color: $color-tciMedium;
 }
 
-.jv-mButtonTool.jv-mButtonAction.jr[disabled]:hover,
-.jv-mButtonTool.jv-mButtonAction.jv-isHovered[disabled].jr {
+.jv-mButtonTool.jv-mButtonAction.jv[disabled]:hover,
+.jv-mButtonTool.jv-mButtonAction.jv-isHovered[disabled].jv {
   background-color: transparent;
 }
 
-.jv-mButtonTool.jv-mButtonAction.jv-isHovered.jr > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:hover > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:focus > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jv-isPressed.jr > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:active > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:focus > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jv-isHovered.jr > .jv-mButton-label.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:hover > .jv-mButton-label.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:focus > .jv-mButton-label.jr,
-.jv-mButtonTool.jv-mButtonAction.jv-isPressed.jr > .jv-mButton-label.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:active > .jv-mButton-label.jr,
-.jv-mButtonTool.jv-mButtonAction.jr:focus > .jv-mButton-label.jr {
+.jv-mButtonTool.jv-mButtonAction.jv-isHovered.jv > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:hover > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:focus > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv-isPressed.jv > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:active > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:focus > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv-isHovered.jv > .jv-mButton-label.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:hover > .jv-mButton-label.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:focus > .jv-mButton-label.jv,
+.jv-mButtonTool.jv-mButtonAction.jv-isPressed.jv > .jv-mButton-label.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:active > .jv-mButton-label.jv,
+.jv-mButtonTool.jv-mButtonAction.jv:focus > .jv-mButton-label.jv {
   color: #fff;
 }
 
-.jv-mButtonTool.jv-mButtonAction.jr[disabled]:hover > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jv-isHovered[disabled].jr > .jv-mButton-icon.jr,
-.jv-mButtonTool.jv-mButtonAction.jr[disabled]:hover > .jv-mButton-label.jr,
-.jv-mButtonTool.jv-mButtonAction.jv-isHovered[disabled].jr > .jv-mButton-label.jr {
+.jv-mButtonTool.jv-mButtonAction.jv[disabled]:hover > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv-isHovered[disabled].jv > .jv-mButton-icon.jv,
+.jv-mButtonTool.jv-mButtonAction.jv[disabled]:hover > .jv-mButton-label.jv,
+.jv-mButtonTool.jv-mButtonAction.jv-isHovered[disabled].jv > .jv-mButton-label.jv {
   color: $grey-textMedium;
 }
 
-.jv-mButtonTool.jv-mButtonDropdown.jv-isHovered.jr::after,
-.jv-mButtonTool.jv-mButtonDropdown.jr:hover::after,
-.jv-mButtonTool.jv-mButtonDropdown.jr:focus::after,
-.jv-mButtonTool.jv-mButtonDropdown.jv-isPressed.jr::after,
-.jv-mButtonTool.jv-mButtonDropdown.jr:active::after,
-.jv-mButtonTool.jv-mButtonDropdown.jr:focus::after {
+.jv-mButtonTool.jv-mButtonDropdown.jv-isHovered.jv::after,
+.jv-mButtonTool.jv-mButtonDropdown.jv:hover::after,
+.jv-mButtonTool.jv-mButtonDropdown.jv:focus::after,
+.jv-mButtonTool.jv-mButtonDropdown.jv-isPressed.jv::after,
+.jv-mButtonTool.jv-mButtonDropdown.jv:active::after,
+.jv-mButtonTool.jv-mButtonDropdown.jv:focus::after {
   border-left: em(3px, 12px) solid rgba(0, 0, 0, 0);
   border-right: em(3px, 12px) solid rgba(0, 0, 0, 0);
   border-top: em(5px, 12px) solid #fff;
 }
 
-.jv-mButtonToolPlain.jv-mButtonAction.jv-isHovered.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:focus,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:hover,
-.jv-mButtonToolPlain.jv-mButtonAction.jv-mButtonDropdown.jv-isPressed.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jv-mButtonDropdown.jr:active,
-.jv-mButtonToolPlain.jv-mButtonAction.jv-isPressed.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:active{
+.jv-mButtonToolPlain.jv-mButtonAction.jv-isHovered.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:focus,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:hover,
+.jv-mButtonToolPlain.jv-mButtonAction.jv-mButtonDropdown.jv-isPressed.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv-mButtonDropdown.jv:active,
+.jv-mButtonToolPlain.jv-mButtonAction.jv-isPressed.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:active{
   background-color: transparent;
 }
 
-.jv-mButtonToolPlain.jv-mButtonAction.jv-isHovered.jr > .jv-mButton-icon.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:hover > .jv-mButton-icon.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:focus > .jv-mButton-icon.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jv-isPressed.jr > .jv-mButton-icon.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:active > .jv-mButton-icon.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:focus > .jv-mButton-icon.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jv-isHovered.jr > .jv-mButton-label.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:hover > .jv-mButton-label.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:focus > .jv-mButton-label.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jv-isPressed.jr > .jv-mButton-label.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:active > .jv-mButton-label.jr,
-.jv-mButtonToolPlain.jv-mButtonAction.jr:focus > .jv-mButton-label.jr {
+.jv-mButtonToolPlain.jv-mButtonAction.jv-isHovered.jv > .jv-mButton-icon.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:hover > .jv-mButton-icon.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:focus > .jv-mButton-icon.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv-isPressed.jv > .jv-mButton-icon.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:active > .jv-mButton-icon.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:focus > .jv-mButton-icon.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv-isHovered.jv > .jv-mButton-label.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:hover > .jv-mButton-label.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:focus > .jv-mButton-label.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv-isPressed.jv > .jv-mButton-label.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:active > .jv-mButton-label.jv,
+.jv-mButtonToolPlain.jv-mButtonAction.jv:focus > .jv-mButton-label.jv {
   color: $grey-textMedium;
 }
 
@@ -509,164 +509,164 @@
 // 3e. Priority States
 
 /*
-.jv-mButtonDefault.jv-isHovered.jr,
-.jv-mButtonDefault.jr:focus,
-.jv-mButtonDefault.jr:hover {
+.jv-mButtonDefault.jv-isHovered.jv,
+.jv-mButtonDefault.jv:focus,
+.jv-mButtonDefault.jv:hover {
   background-color: #7b7b7b;
   border-color: #707070;
 }
-.jv-mButtonDefault.jr[disabled]:hover,
-.jv-mButtonDefault.jv-isHovered[disabled].jr {
+.jv-mButtonDefault.jv[disabled]:hover,
+.jv-mButtonDefault.jv-isHovered[disabled].jv {
   background-color: #686868;
 }
 */
 
-.jv-mButtonPrimary.jv-isHovered.jr,
-.jv-mButtonPrimary.jr:hover,
-.jv-mButtonPrimary.jr:focus {
+.jv-mButtonPrimary.jv-isHovered.jv,
+.jv-mButtonPrimary.jv:hover,
+.jv-mButtonPrimary.jv:focus {
   background-color: $color-tciMedium;
 }
 
-.jv-mButtonPrimary.jv-isPressed.jr,
-.jv-mButtonPrimary:active.jr,
-.jv-mButtonPrimary.jr:focus:not(:hover) {
+.jv-mButtonPrimary.jv-isPressed.jv,
+.jv-mButtonPrimary:active.jv,
+.jv-mButtonPrimary.jv:focus:not(:hover) {
   background-color: $color-tciLight;
 }
 
-.jv-mButtonPrimary.jv-isHovered[disabled].jr,
-.jv-mButtonPrimary.jr[disabled]:hover {
+.jv-mButtonPrimary.jv-isHovered[disabled].jv,
+.jv-mButtonPrimary.jv[disabled]:hover {
   background-color: $color-tciLight;
 }
 
-.jv-mButtonSecondary.jv-isHovered.jr,
-.jv-mButtonSecondary.jr:hover,
-.jv-mButtonSecondary.jr:focus,
-.jv-mButtonDefault.jv-isHovered.jr,
-.jv-mButtonDefault.jr:hover,
-.jv-mButtonDefault.jr:focus {
+.jv-mButtonSecondary.jv-isHovered.jv,
+.jv-mButtonSecondary.jv:hover,
+.jv-mButtonSecondary.jv:focus,
+.jv-mButtonDefault.jv-isHovered.jv,
+.jv-mButtonDefault.jv:hover,
+.jv-mButtonDefault.jv:focus {
   background-color: #b5b5b5;
 }
 
-.jv-mButtonSecondary.jv-isHovered.jr .jv-mButton-label.jr,
-.jv-mButtonSecondary.jr:hover .jv-mButton-label.jr,
-.jv-mButtonSecondary.jr:focus .jv-mButton-label.jr,
-.jv-mButtonDefault.jv-isHovered.jr .jv-mButton-label.jr,
-.jv-mButtonDefault.jr:hover .jv-mButton-label.jr,
-.jv-mButtonDefault.jr:focus .jv-mButton-label.jr,
-.jv-mButtonSecondary.jv-isHovered.jr .jv-mButton-icon.jr,
-.jv-mButtonSecondary.jr:hover .jv-mButton-icon.jr,
-.jv-mButtonSecondary.jr:focus .jv-mButton-icon.jr,
-.jv-mButtonDefault.jv-isHovered.jr .jv-mButton-icon.jr,
-.jv-mButtonDefault.jr:hover .jv-mButton-icon.jr,
-.jv-mButtonDefault.jr:focus .jv-mButton-icon.jr {
+.jv-mButtonSecondary.jv-isHovered.jv .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv:hover .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv:focus .jv-mButton-label.jv,
+.jv-mButtonDefault.jv-isHovered.jv .jv-mButton-label.jv,
+.jv-mButtonDefault.jv:hover .jv-mButton-label.jv,
+.jv-mButtonDefault.jv:focus .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv-isHovered.jv .jv-mButton-icon.jv,
+.jv-mButtonSecondary.jv:hover .jv-mButton-icon.jv,
+.jv-mButtonSecondary.jv:focus .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv-isHovered.jv .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv:hover .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv:focus .jv-mButton-icon.jv {
   color: #fff;
 }
 
-.jv-mButtonSecondary.jv-isPressed.jr,
-.jv-mButtonSecondary:active.jr,
-.jv-mButtonSecondary.jr:focus:not(:hover),
-.jv-mButtonDefault.jv-isPressed.jr,
-.jv-mButtonDefault:active.jr,
-.jv-mButtonDefault.jr:focus:not(:hover) {
+.jv-mButtonSecondary.jv-isPressed.jv,
+.jv-mButtonSecondary:active.jv,
+.jv-mButtonSecondary.jv:focus:not(:hover),
+.jv-mButtonDefault.jv-isPressed.jv,
+.jv-mButtonDefault:active.jv,
+.jv-mButtonDefault.jv:focus:not(:hover) {
   background-color: #e4e4e4;
 }
 
-.jv-mButtonSecondary.jr[disabled]:hover .jv-mButton-icon.jr,
-.jv-mButtonSecondary.jv-isPressed.jr .jv-mButton-label.jr,
-.jv-mButtonSecondary.jr:active .jv-mButton-label.jr,
-.jv-mButtonSecondary.jr:focus:not(:hover) .jv-mButton-label.jr,
-.jv-mButtonDefault.jv-isPressed.jr .jv-mButton-label.jr,
-.jv-mButtonDefault.jr:active .jv-mButton-label.jr,
-.jv-mButtonDefault.jr:focus:not(:hover) .jv-mButton-label.jr,
-.jv-mButtonSecondary.jv-isPressed.jr .jv-mButton-icon.jr,
-.jv-mButtonSecondary.jr:active .jv-mButton-icon.jr,
-.jv-mButtonSecondary.jr:focus:not(:hover) .jv-mButton-icon.jr,
-.jv-mButtonDefault.jv-isPressed.jr .jv-mButton-icon.jr,
-.jv-mButtonDefault.jr:active .jv-mButton-icon.jr,
-.jv-mButtonDefault.jr:focus:not(:hover) .jv-mButton-icon.jr {
+.jv-mButtonSecondary.jv[disabled]:hover .jv-mButton-icon.jv,
+.jv-mButtonSecondary.jv-isPressed.jv .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv:active .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv:focus:not(:hover) .jv-mButton-label.jv,
+.jv-mButtonDefault.jv-isPressed.jv .jv-mButton-label.jv,
+.jv-mButtonDefault.jv:active .jv-mButton-label.jv,
+.jv-mButtonDefault.jv:focus:not(:hover) .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv-isPressed.jv .jv-mButton-icon.jv,
+.jv-mButtonSecondary.jv:active .jv-mButton-icon.jv,
+.jv-mButtonSecondary.jv:focus:not(:hover) .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv-isPressed.jv .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv:active .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv:focus:not(:hover) .jv-mButton-icon.jv {
   color: $grey-textMedium;
 }
 
-.jv-mButtonSecondary.jr[disabled]:hover,
-.jv-mButtonSecondary.jv-isHovered[disabled].jr,
-.jv-mButtonDefault.jr[disabled]:hover,
-.jv-mButtonDefault.jv-isHovered[disabled].jr {
+.jv-mButtonSecondary.jv[disabled]:hover,
+.jv-mButtonSecondary.jv-isHovered[disabled].jv,
+.jv-mButtonDefault.jv[disabled]:hover,
+.jv-mButtonDefault.jv-isHovered[disabled].jv {
   background-color: #e4e4e4;
 }
 
-.jv-mButtonSecondary.jr[disabled]:hover .jv-mButton-label.jr,
-.jv-mButtonSecondary.jr[disabled]:hover .jv-mButton-icon.jr,
-.jv-mButtonSecondary.jv-isHovered[disabled].jr .jv-mButton-label.jr,
-.jv-mButtonSecondary.jv-isHovered[disabled] .jv-mButton-icon.jr,
-.jv-mButtonDefault.jr[disabled]:hover .jv-mButton-label.jr,
-.jv-mButtonDefault.jr[disabled]:hover .jv-mButton-icon.jr,
-.jv-mButtonDefault.jv-isHovered[disabled].jr .jv-mButton-label.jr,
-.jv-mButtonDefault.jv-isHovered[disabled] .jv-mButton-icon.jr  {
+.jv-mButtonSecondary.jv[disabled]:hover .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv[disabled]:hover .jv-mButton-icon.jv,
+.jv-mButtonSecondary.jv-isHovered[disabled].jv .jv-mButton-label.jv,
+.jv-mButtonSecondary.jv-isHovered[disabled] .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv[disabled]:hover .jv-mButton-label.jv,
+.jv-mButtonDefault.jv[disabled]:hover .jv-mButton-icon.jv,
+.jv-mButtonDefault.jv-isHovered[disabled].jv .jv-mButton-label.jv,
+.jv-mButtonDefault.jv-isHovered[disabled] .jv-mButton-icon.jv  {
   color: $grey-textMedium;
 }
 
 
-.jv-mButtonWarning.jv-isHovered.jr,
-.jv-mButtonWarning.jr:focus,
-.jv-mButtonWarning.jr:hover {
+.jv-mButtonWarning.jv-isHovered.jv,
+.jv-mButtonWarning.jv:focus,
+.jv-mButtonWarning.jv:hover {
   background-color: $color-warningDark;
 }
 
-.jv-mButtonWarning.jr[disabled]:hover,
-.jv-mButtonWarning.jv-isHovered[disabled].jr {
+.jv-mButtonWarning.jv[disabled]:hover,
+.jv-mButtonWarning.jv-isHovered[disabled].jv {
   background-color: $color-warningMedium;
 }
 
 
-.jv-mButtonError.jv-isHovered.jr,
-.jv-mButtonError.jr:focus,
-.jv-mButtonError.jr:hover {
+.jv-mButtonError.jv-isHovered.jv,
+.jv-mButtonError.jv:focus,
+.jv-mButtonError.jv:hover {
   background-color: $color-errorDark;
 } //broken
 
-.jv-mButtonError.jr[disabled]:hover,
-.jv-mButtonError.jv-isHovered[disabled].jr {
+.jv-mButtonError.jv[disabled]:hover,
+.jv-mButtonError.jv-isHovered[disabled].jv {
   background-color: $color-errorMedium;
 } //broken
 
 
-.jv-mButtonAttention.jv-isHovered.jr,
-.jv-mButtonAttention.jr:focus,
-.jv-mButtonAttention.jr:hover {
+.jv-mButtonAttention.jv-isHovered.jv,
+.jv-mButtonAttention.jv:focus,
+.jv-mButtonAttention.jv:hover {
   background-color: $color-attentionDark;
 } //broken
 
-.jv-mButtonAttention.jr[disabled]:hover,
-.jv-mButtonAttention.jv-isHovered[disabled].jr {
+.jv-mButtonAttention.jv[disabled]:hover,
+.jv-mButtonAttention.jv-isHovered[disabled].jv {
   background-color: $color-attentionMedium;
 }
 
 
-.jv-mButtonDefault.jr[disabled],
-.jv-mButtonPrimary.jr[disabled],
-.jv-mButtonError.jr[disabled],
-.jv-mButtonWarning.jr[disabled] {
+.jv-mButtonDefault.jv[disabled],
+.jv-mButtonPrimary.jv[disabled],
+.jv-mButtonError.jv[disabled],
+.jv-mButtonWarning.jv[disabled] {
   opacity: .4;
 }
 
-.jv-mButtonSecondary.jr[disabled] {
+.jv-mButtonSecondary.jv[disabled] {
   opacity: .6;
 }
 
 
 // 3f. Toggle States
-.jv-mButtonToggle.jr:hover {
+.jv-mButtonToggle.jv:hover {
   background-color: #055dab !important;
 }
 
-.jv-mButtonToggle.jr:focus,
-.jv-mButtonToggle.jr:active,
-.jv-mButtonToggle.jv-isDown.jr {
+.jv-mButtonToggle.jv:focus,
+.jv-mButtonToggle.jv:active,
+.jv-mButtonToggle.jv-isDown.jv {
   background-color: #0081cb !important;
 }
 
-.jv-mButtonToggle.jr:focus .jv-mButton-icon.jr,
-.jv-mButtonToggle.jr:active .jv-mButton-icon.jr,
-.jv-mButtonToggle.jv-isDown.jr .jv-mButton-icon.jr {
+.jv-mButtonToggle.jv:focus .jv-mButton-icon.jv,
+.jv-mButtonToggle.jv:active .jv-mButton-icon.jv,
+.jv-mButtonToggle.jv-isDown.jv .jv-mButton-icon.jv {
   color: #fff !important;
 }

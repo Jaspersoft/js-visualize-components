@@ -13,22 +13,22 @@
 //  2. Apply shading and overflow rules fo jv-mBox-content
 // -----------------------------------------------
 
-.jv-mBox.jr {
+.jv-mBox.jv {
   display: block;
 }
 
-.jv-mBoxBorder.jr {
+.jv-mBoxBorder.jv {
   // add border color with utility style
   border-style: solid;
   border-width: 1px;
 }
 
-.jv-mBoxFill.jr {
+.jv-mBoxFill.jv {
   height: 100%;
   width: 100%;
 }
 
-.jv-mBox-body.jr {
+.jv-mBox-body.jv {
   height: 100%;
   width: 100%;
 }

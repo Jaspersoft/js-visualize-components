@@ -25,10 +25,21 @@ const copyFolder = (source, target) => {
     });
 };
 
-// These are the following paths to use:
-// src = js-visualize-plugins/packages/jrs-ui-components/styles
-// target = js-visualize-plugins/packages/jrs-ui-components/dist/styles
-copyFolder(
-  path.resolve(__dirname, '../styles'),
-  path.resolve(__dirname, '../dist/styles')
-);
+// check if param 'dev' is provided when running the script
+if (process.argv[2] === 'dev') {
+  // copy the styles folder to the dist folder of test-app
+  // source = js-visualize-plugins/packages/jrs-ui-components/dist/styles
+  // target = js-visualize-plugins/packages/test-app/dist/jasper-ui.css
+  copyFolder(
+    path.resolve(__dirname, '../dist'),
+    path.resolve(__dirname, '../../test-app/dist')
+  );
+} else {
+  // These are the following paths to use:
+  // src = js-visualize-plugins/packages/jrs-ui-components/styles
+  // target = js-visualize-plugins/packages/jrs-ui-components/dist/styles
+  copyFolder(
+    path.resolve(__dirname, '../styles'),
+    path.resolve(__dirname, '../dist/styles')
+  );
+}

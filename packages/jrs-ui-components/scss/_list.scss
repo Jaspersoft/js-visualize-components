@@ -27,21 +27,21 @@
 
 @use "sass:math";
 
-.jv-mList.jr {
+.jv-mList.jv {
   color: #464646;
   font-family: $font-family-primary;
   font-size: 13px;
   font-weight: normal;
 }
 
-.jv-mList-item.jr {
+.jv-mList-item.jv {
   line-height: math.div(18px, 13px);       // unitless value
   margin-bottom: em(10px, 13px);
   padding-left: 2em;
   position: relative;
 }
 
-.jv-mList-item-icon.jr {
+.jv-mList-item-icon.jv {
   color: inherit;
   position: absolute;
     top: 0;
@@ -49,43 +49,43 @@
   width: 2em;
 }
 
-.jv-mList-item-title.jr {
+.jv-mList-item-title.jv {
   display: block;
   font-family: $font-family-semibold;
   font-weight: normal;
 }
 
-.jv-mList-item-titleInline.jr {
+.jv-mList-item-titleInline.jv {
   display: inline;
 }
 
-.jv-mList-item-text.jr {
+.jv-mList-item-text.jv {
   white-space: normal;
   word-wrap: break-word;
 }
 
-.jv-mList-item-title.jr:first-child,
-.jv-mList-item-title.jr:first-child + .jv-mList-item-text.jr{
+.jv-mList-item-title.jv:first-child,
+.jv-mList-item-title.jv:first-child + .jv-mList-item-text.jv{
   position: relative;
   left: -2em;
 }
 
-.jv-mList-item-text.jr + .jv-mList-item-text.jr {
+.jv-mList-item-text.jv + .jv-mList-item-text.jv {
   display: block;
   margin-left: -2em;
 }
 
-.jv-mList-item-text.jr:first-child {
+.jv-mList-item-text.jv:first-child {
   position: relative;
   left: -2em;
 }
 
 
 // MODULE VARIATIONS, Text size
-.jv-mListSmall.jr .jv-mList-item.jr {
+.jv-mListSmall.jv .jv-mList-item.jv {
   font-size: em(12px, 13px);     	// new base font size
 }
 
-.jv-mListLarge.jr .jv-mList-item.jr {
+.jv-mListLarge.jv .jv-mList-item.jv {
   font-size: em(15px, 13px);     	// new base font size
 }

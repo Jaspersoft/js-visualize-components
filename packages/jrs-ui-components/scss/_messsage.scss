@@ -31,8 +31,8 @@
 
 @use "sass:math";
 
-.jv-mMesssage.jr,
-.jv-mInstructor.jr {
+.jv-mMesssage.jv,
+.jv-mInstructor.jv {
   border: em(1px) solid #e4e4e4;
   color: $color-textMedium;
   display: flex;
@@ -42,27 +42,27 @@
   justify-content: center;
 }
 
-.jv-mMesssage-wrapper.jr,
-.jv-mInstructor-wrapper.jr {
+.jv-mMesssage-wrapper.jv,
+.jv-mInstructor-wrapper.jv {
   align-self: center;
   max-width: 100%;
   padding: 2em 3em;
   text-align: center;
 }
 
-.jv-mMesssage-title.jr,
-.jv-mInstructor-title.jr {
+.jv-mMesssage-title.jv,
+.jv-mInstructor-title.jv {
   font-size: 14px;
   line-height: math.div(20px, 14px);
 }
 
 // MODULE VARIATION, no border
-.jv-mInstructorPlain.jr {
+.jv-mInstructorPlain.jv {
   border: none;
 }
 
 
 // MODULE VARIATION, shaded background
-.jv-mInstructorShaded.jr {
+.jv-mInstructorShaded.jv {
   background-color: #f7f7f7;
 }
