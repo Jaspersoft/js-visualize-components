@@ -4,12 +4,12 @@ import {
 } from '@mui/material';
 import { ColorToClass, SizeToClass } from '../types/ButtonTypes';
 
-export type ButtonProps = MuiButtonProps & {
+export type JVButtonProps = MuiButtonProps & {
     labelProps?: {
         labelClasses?: string;
     }
 };
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+export const JVButton = forwardRef<HTMLButtonElement, JVButtonProps>(({
     labelProps = {}, className = '', size = 'medium', color = 'secondary', children, ...rest
 }, ref) => {
 

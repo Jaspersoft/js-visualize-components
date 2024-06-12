@@ -3,7 +3,7 @@ import {
     Card as MuiCard, CardContent as MuiCardContent, CardHeader as MuiCardHeader, CardProps as MuiCardProps, CardContentProps as MuiCardContentProps, CardHeaderProps as MuiCardHeaderProps
 } from '@mui/material';
 
-type CardProps = MuiCardProps & {
+export type CardProps = MuiCardProps & {
     cardOverflow?: boolean
     isLastOrSingleCard?: boolean
     isCardHeader?: boolean

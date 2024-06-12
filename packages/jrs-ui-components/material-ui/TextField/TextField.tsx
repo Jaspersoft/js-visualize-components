@@ -24,7 +24,7 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'size' | 'error'> & {
     WrapperProps?: HTMLAttributes<HTMLDivElement> & {[key: string]: any}
 }
 
-export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
+export const JVTextField = forwardRef<HTMLDivElement, TextFieldProps>(({
     size = 'medium',
     width = 'normal',
     labelContained = false,

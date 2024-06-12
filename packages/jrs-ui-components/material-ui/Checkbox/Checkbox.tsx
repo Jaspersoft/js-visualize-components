@@ -10,7 +10,7 @@ export interface CheckboxProps extends Omit<FormControlLabelProps, 'control'> {
     }
 }
 
-export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(({
+export const JVCheckbox = forwardRef<HTMLDivElement, CheckboxProps>(({
     className = '', classes = {}, control, CheckboxProps = {}, ...rest
 }, ref) => {
 

@@ -5,8 +5,8 @@ import React, {
 
 import { ColorResult } from 'react-color';
 import { createPortal } from 'react-dom';
-import { AttachableColorPicker } from '../../colorPicker/react/AttachableColorPicker';
-import colorConvertUtil from '../../colorPicker/util/colorConvertUtil';
+import colorConvertUtil from '../utils/colorConvertUtil';
+import { AttachableColorPicker } from '../utils/AttachableColorPicker';
 
 const SWATCH_LIGHT_CLASS = 'jv-mControl-launcher-swatchLight';
 const TRANSPARENT_CLASS = `${SWATCH_LIGHT_CLASS} jv-mControl-launcher-swatchTransparent`;

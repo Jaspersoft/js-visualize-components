@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { Button as JRSButton } from 'jrs-ui-components/material-ui/Button/Button';
+import { JVButton as JRSButton } from 'jrs-ui-components/material-ui/Button/Button';
 import '@testing-library/jest-dom';
 
-describe("JRSButton tests", () => {
-    it("should render JRSButton", () => {
+describe("JVButton tests", () => {
+    it("should render JVButton", () => {
         render(<JRSButton />);
         const buttonElement = screen.getByRole('button');
         expect(buttonElement).toBeInTheDocument();
