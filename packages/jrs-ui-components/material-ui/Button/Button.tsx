@@ -1,7 +1,5 @@
-import React, { forwardRef } from 'react';
-import {
-    Button as MuiButton, ButtonProps as MuiButtonProps
-} from '@mui/material';
+import * as React from 'react';
+import { Button as MuiButton, ButtonProps as MuiButtonProps } from '@mui/material';
 import { ColorToClass, SizeToClass } from '../types/ButtonTypes';
 
 export type JVButtonProps = MuiButtonProps & {
@@ -9,7 +7,7 @@ export type JVButtonProps = MuiButtonProps & {
         labelClasses?: string;
     }
 };
-export const JVButton = forwardRef<HTMLButtonElement, JVButtonProps>(({
+export const JVButton = React.forwardRef<HTMLButtonElement, JVButtonProps>(({
     labelProps = {}, className = '', size = 'medium', color = 'secondary', children, ...rest
 }, ref) => {
 

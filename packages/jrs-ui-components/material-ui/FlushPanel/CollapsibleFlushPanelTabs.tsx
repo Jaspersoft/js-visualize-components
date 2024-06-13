@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import { IconButton } from '../IconButton/IconButton';
 import {
     Anchor, DIRECTION_CLASS,
@@ -23,7 +23,7 @@ export interface CollapsibleFlushPanelTabsProps {
     onExpandClick: OnExpandCollapseClick
 }
 
-export const CollapsibleFlushPanelTabs = forwardRef<HTMLDivElement, CollapsibleFlushPanelTabsProps>(({
+export const CollapsibleFlushPanelTabs = React.forwardRef<HTMLDivElement, CollapsibleFlushPanelTabsProps>(({
     anchor,
     setPanelState,
     setSubPanelState,

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import * as React from 'react';
 import { Resizable, Enable, HandleClassName } from 're-resizable';
 import {
     Anchor,
@@ -48,7 +48,7 @@ interface ResizableContainerProps {
     children: React.ReactNode
 }
 
-const ResizableContainer: FC<ResizableContainerProps> = ({
+const ResizableContainer: React.FC<ResizableContainerProps> = ({
     children, anchor, panelState, onResize, onResizeStart, setPanelState, panelIndex, maxWidth
 }) => {
     return (
@@ -80,7 +80,7 @@ const ResizableContainer: FC<ResizableContainerProps> = ({
     )
 }
 
-export const PanelsContainer: FC<PanelsContainerProps> = ({
+export const PanelsContainer: React.FC<PanelsContainerProps> = ({
     panels,
     panelsState,
     setPanelState,

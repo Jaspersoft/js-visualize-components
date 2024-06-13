@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import {
     Tabs as MuiTabs, TabsProps as MuiTabsProps
 } from '@mui/material';
@@ -8,7 +8,7 @@ type TabsProps = MuiTabsProps & {
     size?: TabSize
 }
 
-export const Tabs = forwardRef<HTMLDivElement, TabsProps>(({
+export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({
     className = '', size = 'medium', indicatorColor = 'primary', children, ...rest
 }, ref) => {
 

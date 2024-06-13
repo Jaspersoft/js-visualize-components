@@ -1,5 +1,6 @@
+
 import { JVBadge, JVButton } from 'jrs-ui-components';
-import React from 'react';
+import * as React from 'react';
 
 const MuiTest = () => {
     const onEmptyCall = () => {

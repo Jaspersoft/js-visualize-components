@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import * as React from 'react';
 import { Typography } from '@mui/material';
 import { OnExpandCollapseClick, SubPanelDefinition } from '../CollapsiblePanel/collapsiblePanelTypes';
 import { SetSubPanelState, SubPanelState } from '../CollapsiblePanel/useCollapsiblePanelState';
@@ -12,7 +12,7 @@ export interface TabsListFlushProps {
     onExpandClick: OnExpandCollapseClick
 }
 
-export const TabsListFlush: FC<TabsListFlushProps> = ({
+export const TabsListFlush: React.FC<TabsListFlushProps> = ({
     subPanelsState,
     panelIndex,
     subPanels,

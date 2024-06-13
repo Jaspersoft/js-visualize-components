@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import * as React from 'react';
 import { Drawer } from '@mui/material';
 import { IconButton } from '../IconButton/IconButton';
 import { Anchor } from './collapsiblePanelTypes';
-import i18nLabel from '../utils/i18nLabel';
 
 export interface SinglePanelProps {
     anchor: Anchor,
@@ -12,7 +11,7 @@ export interface SinglePanelProps {
     children: React.ReactNode
 }
 
-export const SinglePanel: FC<SinglePanelProps> = (
+export const SinglePanel: React.FC<SinglePanelProps> = (
     {
         onCollapse,
         anchor,
@@ -21,7 +20,7 @@ export const SinglePanel: FC<SinglePanelProps> = (
         children
     }
 ) => {
-    const closePanelLabel = i18nLabel('materialUi.component.collapsiblePanel.close');
+    const closePanelLabel = 'Close panel';
     return (
         <Drawer
             variant="persistent"

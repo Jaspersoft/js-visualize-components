@@ -1,4 +1,8 @@
-import i18nMessageUtil from './i18n/i18nMessage';
-import i18n from './i18n/CommonComponentsBundle.properties';
+const i18nLabel = (keyMsg: string): string => {
+    const i18nLabelArray: any = {
+        'materialUi.component.collapsiblePanel.close': 'Close panel'
+    };
+    return i18nLabelArray[keyMsg] || keyMsg;
+};
 
-export default i18nMessageUtil.create(i18n);
+export default i18nLabel;

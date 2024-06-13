@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import {
     FormControlLabel, FormControlLabelProps, Radio as MuiRadio, RadioProps as MuiRadioProps
 } from '@mui/material';
@@ -8,7 +8,7 @@ export interface RadioProps extends Omit<FormControlLabelProps, 'control'> {
     RadioProps?: MuiRadioProps
 }
 
-export const RadioButton = forwardRef<HTMLDivElement, RadioProps>(({
+export const RadioButton = React.forwardRef<HTMLDivElement, RadioProps>(({
     className = '', classes = {}, control, RadioProps = {}, ...rest
 }, ref) => {
 

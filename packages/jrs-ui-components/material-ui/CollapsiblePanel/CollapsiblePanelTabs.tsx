@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import {
     Anchor, DIRECTION_CLASS, OnExpandCollapseClick, PanelDefinition
 } from './collapsiblePanelTypes';
@@ -8,7 +8,6 @@ import {
     SetPanelState,
     SetSubPanelState
 } from './useCollapsiblePanelState';
-import i18nLabel from '../utils/i18nLabel';
 import { IconButton } from '../IconButton/IconButton';
 import { TabsList } from './TabsList';
 
@@ -21,7 +20,7 @@ export interface CollapsiblePanelTabsProps {
     onExpandClick: OnExpandCollapseClick
 }
 
-export const CollapsiblePanelTabs = forwardRef<HTMLDivElement, CollapsiblePanelTabsProps>(({
+export const CollapsiblePanelTabs = React.forwardRef<HTMLDivElement, CollapsiblePanelTabsProps>(({
     anchor,
     setPanelState,
     setSubPanelState,
@@ -31,7 +30,7 @@ export const CollapsiblePanelTabs = forwardRef<HTMLDivElement, CollapsiblePanelT
 }, ref) => {
 
     const { panelsDirectionClass, panelDirectionClass } = DIRECTION_CLASS[anchor];
-    const openPanelLabel = i18nLabel('materialUi.component.collapsiblePanel.open');
+    const openPanelLabel = 'Open panel';
 
     const handleExpandClick = (index: number, id: string) => {
         const result = onExpandClick({ type: 'panel', id })

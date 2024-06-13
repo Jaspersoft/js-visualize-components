@@ -3,7 +3,7 @@ import { build } from 'esbuild';
 const isProd = process.env.NODE_ENV === 'production';
 
 const sharedConfig = {
-  entryPoints: [ 'jrs-ui-components.ts' ],
+  entryPoints: [ 'material-ui/index.ts' ],
   bundle: true,
   minify: isProd,
   sourcemap: !isProd,
@@ -13,6 +13,7 @@ const sharedConfig = {
 await build({
   ...sharedConfig,
   platform: 'browser',
-  outfile: 'dist/index.js'
+  tsconfig: 'tsconfig.json',
+  outfile: 'dist/material-ui/index.js'
 })
   .catch((error) => console.error('Build failed: ', error));

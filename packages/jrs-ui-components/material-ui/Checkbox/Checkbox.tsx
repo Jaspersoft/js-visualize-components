@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import {
     FormControlLabel, FormControlLabelProps, Checkbox as MuiCheckbox, CheckboxProps as MuiCheckboxProps
 } from '@mui/material';
@@ -10,7 +10,7 @@ export interface CheckboxProps extends Omit<FormControlLabelProps, 'control'> {
     }
 }
 
-export const JVCheckbox = forwardRef<HTMLDivElement, CheckboxProps>(({
+export const JVCheckbox = React.forwardRef<HTMLDivElement, CheckboxProps>(({
     className = '', classes = {}, control, CheckboxProps = {}, ...rest
 }, ref) => {
 

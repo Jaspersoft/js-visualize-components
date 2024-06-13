@@ -1,7 +1,4 @@
-import React, {
-    FC, useEffect, useState,
-    useRef
-} from 'react';
+import * as React from 'react';
 
 import { ColorResult } from 'react-color';
 import { createPortal } from 'react-dom';
@@ -28,21 +25,21 @@ interface ColorSampleProps {
     disabled?: boolean
 }
 
-export const ColorPickerSample: FC<ColorSampleProps> = ({
+export const ColorPickerSample: React.FC<ColorSampleProps> = ({
     color = '', onChange = () => {}, allowTransparent = true, disabled = false
 }) => {
-    const [visible, setVisible] = useState(false);
-    const attachToRef = useRef<HTMLDivElement>(null);
+    const [visible, setVisible] = React.useState(false);
+    const attachToRef = React.useRef<HTMLDivElement>(null);
 
     const style = {
         backgroundColor: color
     }
 
-    const [colorPickerContainer] = useState(() => {
+    const [colorPickerContainer] = React.useState(() => {
         return document.createElement('div');
     });
 
-    useEffect(() => {
+    React.useEffect(() => {
         colorPickerContainer.className = 'jv-jColorPickerWrapper';
         document.body.appendChild(colorPickerContainer);
 

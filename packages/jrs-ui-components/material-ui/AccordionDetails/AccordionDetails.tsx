@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import { AccordionDetails as MuiAccordionDetails, AccordionDetailsProps as MuiAccordionDetailsProps } from '@mui/material';
 
 export type AccordionDetailsProps = MuiAccordionDetailsProps;
 
-export const AccordionDetails = forwardRef<unknown, MuiAccordionDetailsProps>(({
+export const AccordionDetails = React.forwardRef<unknown, MuiAccordionDetailsProps>(({
     className = '', children, ...rest
 }, ref) => {
 

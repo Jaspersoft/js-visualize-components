@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import {
     Card as MuiCard, CardContent as MuiCardContent, CardHeader as MuiCardHeader, CardProps as MuiCardProps, CardContentProps as MuiCardContentProps, CardHeaderProps as MuiCardHeaderProps
 } from '@mui/material';
@@ -17,7 +17,7 @@ export enum TypeToClass {
     warning = 'jv-mMessageWarning'
 }
 
-export const Message = forwardRef<HTMLDivElement, CardProps>(({
+export const Message = React.forwardRef<HTMLDivElement, CardProps>(({
     elevation = 0, type = 'error', cardHeaderProps = {}, isCardHeader = true, cardContentProps = {}, className = '', children, ...rest
 }, ref) => {
 

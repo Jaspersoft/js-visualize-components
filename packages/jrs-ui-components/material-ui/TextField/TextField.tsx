@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import * as React from 'react';
 import {
     TextField as MuiTextField,
     TextFieldProps as MuiTextFieldProps,
@@ -8,7 +8,7 @@ import {
 import {
     INLINE_CLASS,
     InputSize, InputWidth, SizeToClass, WidthToClass, LABEL_CONTAINED
-} from '../types/InputTypes';
+} from '../types/InputTypes.js';
 
 export type TextFieldProps = Omit<MuiTextFieldProps, 'size' | 'error'> & {
     size?: InputSize,
@@ -19,12 +19,12 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'size' | 'error'> & {
     errorId?: string,
     textFieldClassName?: string,
     FormErrorTextProps?: Partial<MuiFormHelperTextProps>,
-    TextFieldPrefix?: ReactNode,
-    TextFieldSuffix?: ReactNode,
-    WrapperProps?: HTMLAttributes<HTMLDivElement> & {[key: string]: any}
+    TextFieldPrefix?: React.ReactNode,
+    TextFieldSuffix?: React.ReactNode,
+    WrapperProps?: React.HTMLAttributes<HTMLDivElement> & {[key: string]: any}
 }
 
-export const JVTextField = forwardRef<HTMLDivElement, TextFieldProps>(({
+export const JVTextField = React.forwardRef<HTMLDivElement, TextFieldProps>(({
     size = 'medium',
     width = 'normal',
     labelContained = false,

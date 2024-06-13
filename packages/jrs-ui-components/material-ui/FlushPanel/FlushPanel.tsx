@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useRef, forwardRef } from 'react';
+import * as React from 'react';
 
 import {
     Anchor,
@@ -26,13 +26,13 @@ export interface FlushPanelProps {
     onExpansionStateChanged?: OnExpansionStateChangedCallback,
     onExpandClick?: OnExpandCollapseClick,
     onCollapseClick?: OnExpandCollapseClick,
-    wrapperProps?: HTMLAttributes<HTMLDivElement>
+    wrapperProps?: React.HTMLAttributes<HTMLDivElement>
 }
 
 const emptyFn = () => {};
 const getMaxWidth = () => { return window.innerWidth };
 
-export const FlushPanel = forwardRef<HTMLDivElement, FlushPanelProps>(
+export const FlushPanel = React.forwardRef<HTMLDivElement, FlushPanelProps>(
     ({
         anchor = 'right',
         panels = [],
@@ -52,7 +52,7 @@ export const FlushPanel = forwardRef<HTMLDivElement, FlushPanelProps>(
         useToggleExpansionStateLayoutEffect(onExpansionStateChanged, panelsState);
         useResizeStopLayoutEffect(onResizeStop, panelsState);
 
-        const panelTabsRef = useRef<HTMLDivElement>(null);
+        const panelTabsRef = React.useRef<HTMLDivElement>(null);
         const tabsPanelWidth = useTabsPanelWidth(panelTabsRef, panelsState);
         const flushPanelsContainer = (
             <FlushPanelsContainer

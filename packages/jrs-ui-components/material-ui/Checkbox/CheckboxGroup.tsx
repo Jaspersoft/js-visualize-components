@@ -1,4 +1,4 @@
-import React, { forwardRef, PropsWithChildren } from 'react';
+import * as React from 'react';
 import {
     FormGroup, FormGroupProps as MuiFormGroupProps, FormControl as MuiFormControl, FormLabel as MuiFormLabel,
     FormControlProps as MuiFormControlProps, FormLabelProps as MuiFormLabelProps
@@ -25,7 +25,7 @@ export type CheckboxGroupProps = {
     }
 }
 
-export const CheckboxGroup = forwardRef<HTMLDivElement, PropsWithChildren<CheckboxGroupProps>>(({
+export const CheckboxGroup = React.forwardRef<HTMLDivElement, React.PropsWithChildren<CheckboxGroupProps>>(({
     helperText, errorMessage, children, size = 'medium', title = '', FormLabelProps = {}, FormGroupProps = {}, FormControlProps = {},
 }, ref) => {
     const { component: formControlComponent = 'fieldset', className: formControlClassName = '', ...restFormControlProps } = FormControlProps
