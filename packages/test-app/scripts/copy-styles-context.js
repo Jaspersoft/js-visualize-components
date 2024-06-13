@@ -6,6 +6,14 @@
 import { existsSync, mkdirSync, readdirSync, lstatSync, copyFileSync } from 'fs';
 import { join } from 'path';
 
+export const copyFile = ({ target = '', source = '' }) => {
+  try {
+    copyFileSync(source, target);
+  } catch (e) {
+    console.error('Error copying file: ', e);
+  }
+};
+
 const copyFolder = (source, target) => {
   if (!existsSync(target)) {
     mkdirSync(target, { recursive: true });

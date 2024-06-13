@@ -1,13 +1,20 @@
 import { build } from 'esbuild';
 import { resolve } from 'path';
-import copyFolder from './scripts/copy-styles-context.js';
+import copyFolder, { copyFile } from './scripts/copy-styles-context.js';
 
 const isProd = process.env.NODE_ENV === 'production';
 
 const copyStylesFromJrsUiComponents = ({ target = '' }) => {
-  const source = resolve(process.cwd(), '..', 'jrs-ui-components', 'dist');
-  copyFolder(source, target);
+  const basePath = resolve(process.cwd(), '..', 'jrs-ui-components', 'dist');
+  const sourceStylesFolder = resolve(basePath, 'styles');
+  const targetStylesFolder = resolve(target, 'styles');
+  copyFolder(sourceStylesFolder, targetStylesFolder);
   console.info('styles folder has been copied.');
+
+  const CSS_FILE_NAME = 'jasper-ui.css';
+  const cssFile = resolve(basePath, CSS_FILE_NAME);
+  copyFile({ target: resolve(target, CSS_FILE_NAME), source: cssFile });
+  console.info('CSS file has been copied.');
 };
 
 const copyPublicToDist = ({ target = '' }) => {
