@@ -14,6 +14,6 @@ await build({
   ...sharedConfig,
   platform: 'browser',
   tsconfig: 'tsconfig.json',
-  outfile: 'dist/index.js'
+  outfile: 'dist/material-ui/index.js',
 })
   .catch((error) => console.error('Build failed: ', error));
