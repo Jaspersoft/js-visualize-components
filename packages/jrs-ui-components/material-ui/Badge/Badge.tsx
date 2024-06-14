@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Badge as MuiBadge, BadgeProps } from '@mui/material';
 
-export const JVBadge = React.forwardRef<HTMLDivElement, BadgeProps>(({ className, ...rest }, ref) => {
+export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(({ className, ...rest }, ref) => {
     return (
         <MuiBadge
             ref={ref}

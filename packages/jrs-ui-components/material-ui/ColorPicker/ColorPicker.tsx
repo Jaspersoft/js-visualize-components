@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { JVTextField, TextFieldProps } from '../TextField/TextField';
+import { TextField, TextFieldProps } from '../TextField/TextField';
 import { ColorPickerSample } from './ColorPickerSample';
 
 export type ColorPickerProps = Omit<TextFieldProps, 'value'> & {
@@ -16,7 +16,7 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(({
     const isColorPickerDisabled = rest.disabled ?? InputProps?.readOnly;
 
     return (
-        <JVTextField
+        <TextField
             ref={ref}
             className={`jv-mControl jv-mControlColor mui ${className}`}
             value={value}

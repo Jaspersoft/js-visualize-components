@@ -7,7 +7,7 @@ export type JVButtonProps = MuiButtonProps & {
         labelClasses?: string;
     }
 };
-export const JVButton = React.forwardRef<HTMLButtonElement, JVButtonProps>(({
+export const Button = React.forwardRef<HTMLButtonElement, JVButtonProps>(({
     labelProps = {}, className = '', size = 'medium', color = 'secondary', children, ...rest
 }, ref) => {
 

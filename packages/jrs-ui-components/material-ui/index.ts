@@ -3,106 +3,130 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-export { Accordion, AccordionProps, AccordionSize } from './Accordion/Accordion';
-export { AccordionFull, AccordionFullProps } from './Accordion/AccordionFull';
-export { AccordionDetails, AccordionDetailsProps } from './AccordionDetails/AccordionDetails';
-export { AccordionSummary, AccordionSummaryProps } from './AccordionSummary/AccordionSummary';
-export { Autocomplete, AutocompleteProps } from './Autocomplete/Autocomplete';
-export { JVBadge } from './Badge/Badge';
-export { JVButton } from './Button/Button';
-export { ButtonGroup } from './ButtonGroup/ButtonGroup';
-export { ButtonGroupProps, LabeledButtonGroup } from './ButtonGroup/LabeledButtonGroup';
-export { Cards } from './Cards/Cards';
-export { CardProps } from './Cards/CustomizableCard';
-export { CheckboxProps, JVCheckbox } from './Checkbox/Checkbox';
-export { CheckboxGroup, CheckboxGroupProps } from './Checkbox/CheckboxGroup';
-export { ClickAwayListener, ClickAwayListenerProps } from './ClickAwayListener/ClickAwayListener';
-export { Collapse } from './Collapse/Collapse';
-export { CollapsiblePanel, CollapsiblePanelProps } from './CollapsiblePanel/CollapsiblePanel';
-export { CollapsiblePanelTabs, CollapsiblePanelTabsProps } from './CollapsiblePanel/CollapsiblePanelTabs';
-export { PanelsContainer, PanelsContainerProps } from './CollapsiblePanel/PanelsContainer';
-export { SinglePanel, SinglePanelProps } from './CollapsiblePanel/SinglePanel';
-export { SubPanel, SubPanelProps } from './CollapsiblePanel/SubPanel';
-export { SubPanelsList, SubPanelsListProps } from './CollapsiblePanel/SubPanelsList';
-export { TabsList, TabsListProps } from './CollapsiblePanel/TabsList';
-export { useCollapsiblePanelExpansionLayoutEffect } from './CollapsiblePanel/useCollapsiblePanelExpansionLayoutEffect';
+export { Accordion as JVAccordion, AccordionProps as JVAccordionProps, AccordionSize as JVAccordionSize } from './Accordion/Accordion';
+export { AccordionFull as JVAccordionFull, AccordionFullProps as JVAccordionFullProps } from './Accordion/AccordionFull';
 export {
-    PanelsState,
-    SetPanelState,
-    isPanelExpanded,
-    SetSubPanelState,
-    getPanelSizeState,
-    PanelState,
-    SubPanelState,
-    isPanelFullyExpanded,
-    PANEL_MARGIN_RIGHT,
-    getLastOpenSubPanelIndex,
-    useCollapsiblePanelState
+    AccordionDetails as JVAccordionDetails, AccordionDetailsProps as JVAccordionDetailsProps
+} from './AccordionDetails/AccordionDetails';
+export {
+    AccordionSummary as JVAccordionSummary, AccordionSummaryProps as JVAccordionSummaryProps
+} from './AccordionSummary/AccordionSummary';
+export { Autocomplete as JVAutocomplete, AutocompleteProps as JVAutocompleteProps } from './Autocomplete/Autocomplete';
+export { Badge as JVBadge } from './Badge/Badge';
+export { Button as JVButton } from './Button/Button';
+export { ButtonGroup as JVButtonGroup } from './ButtonGroup/ButtonGroup';
+export { ButtonGroupProps as JVButtonGroupProps, LabeledButtonGroup as JVLabeledButtonGroup } from './ButtonGroup/LabeledButtonGroup';
+export { Cards as JVCards } from './Cards/Cards';
+export { CardProps as JVCardProps } from './Cards/CustomizableCard';
+export { CheckboxProps as JVCheckboxProps, Checkbox as JVCheckbox } from './Checkbox/Checkbox';
+export { CheckboxGroup as JVCheckboxGroup, CheckboxGroupProps as JVCheckboxGroupProps } from './Checkbox/CheckboxGroup';
+export {
+    ClickAwayListener as JVClickAwayListener, ClickAwayListenerProps as JVClickAwayListenerProps
+} from './ClickAwayListener/ClickAwayListener';
+export { Collapse as JVCollapse } from './Collapse/Collapse';
+export {
+    CollapsiblePanel as JVCollapsiblePanel, CollapsiblePanelProps as JVCollapsiblePanelProps
+} from './CollapsiblePanel/CollapsiblePanel';
+export {
+    CollapsiblePanelTabs as JVCollapsiblePanelTabs, CollapsiblePanelTabsProps as JVCollapsiblePanelTabsProps
+} from './CollapsiblePanel/CollapsiblePanelTabs';
+export { PanelsContainer as JVPanelsContainer, PanelsContainerProps as JVPanelsContainerProps } from './CollapsiblePanel/PanelsContainer';
+export { SinglePanel as JVSinglePanel, SinglePanelProps as JVSinglePanelProps } from './CollapsiblePanel/SinglePanel';
+export { SubPanel as JVSubPanel, SubPanelProps as JVSubPanelProps } from './CollapsiblePanel/SubPanel';
+export { SubPanelsList as JVSubPanelsList, SubPanelsListProps as JVSubPanelsListProps } from './CollapsiblePanel/SubPanelsList';
+export { TabsList as JVTabsList, TabsListProps as JVTabsListProps } from './CollapsiblePanel/TabsList';
+export {
+    useCollapsiblePanelExpansionLayoutEffect as JVUseCollapsiblePanelExpansionLayoutEffect
+} from './CollapsiblePanel/useCollapsiblePanelExpansionLayoutEffect';
+export {
+    PanelsState as JVPanelsState,
+    SetPanelState as JVSetPanelState,
+    isPanelExpanded as JVisPanelExpanded,
+    SetSubPanelState as JVSetSubPanelState,
+    getPanelSizeState as JVGetPanelSizeState,
+    PanelState as JVPanelState,
+    SubPanelState as JVSubPanelState,
+    isPanelFullyExpanded as JVisPanelFullyExpanded,
+    PANEL_MARGIN_RIGHT as JV_PANEL_MARGIN_RIGHT,
+    getLastOpenSubPanelIndex as JVGetLastOpenSubPanelIndex,
+    useCollapsiblePanelState as JVUseCollapsiblePanelState
 } from './CollapsiblePanel/useCollapsiblePanelState';
-export { generateInitialState, useMaxWidthState, WINDOW_RESIZE_MAX_WIDTH_CALC_DEBOUNCE } from './CollapsiblePanel/useMaxWidthState';
-export { useResizeStopLayoutEffect } from './CollapsiblePanel/useResizeStopLayoutEffect';
-export { useTabsPanelWidth } from './CollapsiblePanel/useTabsPanelWidth';
-export { useToggleExpansionStateLayoutEffect } from './CollapsiblePanel/useToggleExpansionStateLayoutEffect';
-export { ColorPicker, ColorPickerProps } from './ColorPicker/ColorPicker';
-export { ColorPickerSample } from './ColorPicker/ColorPickerSample';
-export { ConfirmationDialog, ConfirmationDialogProps } from './Dialog/ConfirmationDialog';
-export { Divider } from './Divider/Divider';
-export { Drawer } from './Drawer/Drawer';
-export { CollapsibleFlushPanelTabs, CollapsibleFlushPanelTabsProps } from './FlushPanel/CollapsibleFlushPanelTabs';
-export { FlushPanel, FlushPanelProps } from './FlushPanel/FlushPanel';
-export { FlushPanelsContainer, FlushPanelsContainerProps } from './FlushPanel/FlushPanelsContainer';
-export { SingleFlushPanel, SingleFlushPanelProps } from './FlushPanel/SingleFlushPanel';
-export { TabsListFlush, TabsListFlushProps } from './FlushPanel/TabsListFlush';
-export { FormError, FormErrorTextProps } from './FormHelperTextGroup/FormErrorText';
-export { FormHelper, FormHelperTextProps } from './FormHelperTextGroup/FormHelperText';
-export { Grid } from './Grid/Grid';
-export { Icon, IconProps } from './Icon/Icon';
-export { IconButton, IconButtonProps } from './IconButton/IconButton';
-export { InputAdornment } from './InputAdornment/InputAdornment';
-export { Instructor, InstructorProps } from './Instructor/Instructor';
-export { Link, LinkProps } from './Link/Link';
-export { List, ListProps } from './List/List';
-export { ListItem } from './List/ListItem';
-export { ListItemButton } from './List/ListItemButton';
-export { ListItemText } from './List/ListItemText';
-export { SelectItem, SelectItemProps } from './MenuItem/SelectItem';
-export { Message, TypeToClass } from './Message/Message';
-export { Paper, PaperProps } from './Paper/Paper';
-export { Popover, PopoverProps } from './Popover/Popover';
-export { Popper, PopperProps } from './Popper/Popper';
-export { CircularProgress } from './Progress/CircularProgress';
-export { LinearProgress } from './Progress/LinearProgress';
-export { RadioButton, RadioProps } from './Radio/RadioButton';
-export { RadioButtonGroupProps, RadioGroup } from './Radio/RadioGroup';
-export { Step, StepComponentProps } from './Stepper/Step';
-export { Stepper } from './Stepper/Stepper';
-export { StyleEngineProvider } from './StyleEngineProvider/StyleEngineProvider';
 export {
-    StylesProvider,
-    CreateStylesProviderType,
-    createStylesProvider,
-    CreateMuiThemeOptions,
-    ThemeProviderProps,
-    GenerateClassNameOptions
+    generateInitialState as JVGenerateInitialState,
+    useMaxWidthState as JVUseMaxWidthState,
+    WINDOW_RESIZE_MAX_WIDTH_CALC_DEBOUNCE as JV_WINDOW_RESIZE_MAX_WIDTH_CALC_DEBOUNCE
+} from './CollapsiblePanel/useMaxWidthState';
+export { useResizeStopLayoutEffect as JVUseResizeStopLayoutEffect } from './CollapsiblePanel/useResizeStopLayoutEffect';
+export { useTabsPanelWidth as JVUseTabsPanelWidth } from './CollapsiblePanel/useTabsPanelWidth';
+export {
+    useToggleExpansionStateLayoutEffect as JVUseToggleExpansionStateLayoutEffect
+} from './CollapsiblePanel/useToggleExpansionStateLayoutEffect';
+export { ColorPicker as JVColorPicker, ColorPickerProps as JVColorPickerProps } from './ColorPicker/ColorPicker';
+export { ColorPickerSample as JVColorPickerSample } from './ColorPicker/ColorPickerSample';
+export {
+    ConfirmationDialog as JVConfirmationDialog, ConfirmationDialogProps as JVConfirmationDialogProps
+} from './Dialog/ConfirmationDialog';
+export { Divider as JVDivider } from './Divider/Divider';
+export { Drawer as JVDrawer } from './Drawer/Drawer';
+export {
+    CollapsibleFlushPanelTabs as JVCollapsibleFlushPanelTabs, CollapsibleFlushPanelTabsProps as JVCollapsibleFlushPanelTabsProps
+} from './FlushPanel/CollapsibleFlushPanelTabs';
+export { FlushPanel as JVFlushPanel, FlushPanelProps as JVFlushPanelProps } from './FlushPanel/FlushPanel';
+export {
+    FlushPanelsContainer as JVFlushPanelsContainer, FlushPanelsContainerProps as JVFlushPanelsContainerProps
+} from './FlushPanel/FlushPanelsContainer';
+export { SingleFlushPanel as JVSingleFlushPanel, SingleFlushPanelProps as JVSingleFlushPanelProps } from './FlushPanel/SingleFlushPanel';
+export { TabsListFlush as JVTabsListFlush, TabsListFlushProps as JVTabsListFlushProps } from './FlushPanel/TabsListFlush';
+export { FormError as JVFormError, FormErrorTextProps as JVFormErrorTextProps } from './FormHelperTextGroup/FormErrorText';
+export { FormHelper as JVFormHelper, FormHelperTextProps as JVFormHelperTextProps } from './FormHelperTextGroup/FormHelperText';
+export { Grid as JVGrid } from './Grid/Grid';
+export { Icon as JVIcon, IconProps as JVIconProps } from './Icon/Icon';
+export { IconButton as JVIconButton, IconButtonProps as JVIconButtonProps } from './IconButton/IconButton';
+export { InputAdornment as JVInputAdornment } from './InputAdornment/InputAdornment';
+export { Instructor as JVInstructor, InstructorProps as JVInstructorProps } from './Instructor/Instructor';
+export { Link as JVLink, LinkProps as JVLinkProps } from './Link/Link';
+export { List as JVList, ListProps as JVListProps } from './List/List';
+export { ListItem as JVListItem } from './List/ListItem';
+export { ListItemButton as JVListItemButton } from './List/ListItemButton';
+export { ListItemText as JVListItemText } from './List/ListItemText';
+export { SelectItem as JVSelectItem, SelectItemProps as JVSelectItemProps } from './MenuItem/SelectItem';
+export { Message as JVMessage, TypeToClass as JVTypeToClass } from './Message/Message';
+export { Paper as JVPaper, PaperProps as JVPaperProps } from './Paper/Paper';
+export { Popover as JVPopover, PopoverProps as JVPopoverProps } from './Popover/Popover';
+export { Popper as JVPopper, PopperProps as JVPopperProps } from './Popper/Popper';
+export { CircularProgress as JVCircularProgress } from './Progress/CircularProgress';
+export { LinearProgress as JVLinearProgress } from './Progress/LinearProgress';
+export { RadioButton as JVRadioButton, RadioProps as JVRadioProps } from './Radio/RadioButton';
+export { RadioButtonGroupProps as JVRadioButtonGroupProps, RadioGroup as JVRadioGroup } from './Radio/RadioGroup';
+export { Step as JVStep, StepComponentProps as JVStepComponentProps } from './Stepper/Step';
+export { Stepper as JVStepper } from './Stepper/Stepper';
+export { StyleEngineProvider as JVStyleEngineProvider } from './StyleEngineProvider/StyleEngineProvider';
+export {
+    StylesProvider as JVStylesProvider,
+    CreateStylesProviderType as JVCreateStylesProviderType,
+    createStylesProvider as JVCreateStylesProvider,
+    CreateMuiThemeOptions as JVCreateMuiThemeOptions,
+    ThemeProviderProps as JVThemeProviderProps,
+    GenerateClassNameOptions as JVGenerateClassNameOptions
 } from './styles/StylesProvider';
 
-export { Switch, SwitchProps } from './Switch/Switch';
-export { Table } from './Table/Table';
-export { TableBody } from './Table/TableBody';
-export { TableCell, TableCellProps } from './Table/TableCell';
-export { TableContainer } from './Table/TableContainer';
-export { TableHead } from './Table/TableHead';
-export { TablePagination } from './Table/TablePagination';
-export { TableRow, TableRowProps } from './Table/TableRow';
-export { TableSortLabel } from './Table/TableSortLabel';
-export { Tab } from './Tabs/Tab';
-export { Tabs } from './Tabs/Tabs';
-export { JVTextField, TextFieldProps } from './TextField/TextField';
-export { Toolbar } from './Toolbar/Toolbar';
-export { Tooltip } from './Tooltip/Tooltip';
-export { ColorToClass, ButtonColor, SizeToClass, VariantToClassName } from './types/ButtonTypes';
-export { DialogSize, DialogSizeToClass } from './types/DialogTypes';
-export { SizeToClass as IconSizeToClass, IconSize } from './types/IconTypes';
+export { Switch as JVSwitch, SwitchProps as JVSwitchProps } from './Switch/Switch';
+export { Table as JVTable } from './Table/Table';
+export { TableBody as JVTableBody } from './Table/TableBody';
+export { TableCell as JVTableCell, TableCellProps as JVTableCellProps } from './Table/TableCell';
+export { TableContainer as JVTableContainer } from './Table/TableContainer';
+export { TableHead as JVTableHead } from './Table/TableHead';
+export { TablePagination as JVTablePagination } from './Table/TablePagination';
+export { TableRow as JVTableRow, TableRowProps as JVTableRowProps } from './Table/TableRow';
+export { TableSortLabel as JVTableSortLabel } from './Table/TableSortLabel';
+export { Tab as JVTab } from './Tabs/Tab';
+export { Tabs as JVTabs } from './Tabs/Tabs';
+export { TextField as JVTextField, TextFieldProps } from './TextField/TextField';
+export { Toolbar as JVToolbar } from './Toolbar/Toolbar';
+export { Tooltip as JVTooltip } from './Tooltip/Tooltip';
+export { ColorToClass as JVColorToClass, ButtonColor as JVButtonColor, SizeToClass as JVSizeToClass, VariantToClassName as JVVariantToClassName } from './types/ButtonTypes';
+export { DialogSize as JVDialogSize, DialogSizeToClass as JVDialogSizeToClass } from './types/DialogTypes';
+export { SizeToClass as IconSizeToClass, IconSize as JVIconSize } from './types/IconTypes';
 // export {} from './types/InputTypes';
-export { Typography, TypographyProps } from './Typography/Typography';
+export { Typography as JVTypography, TypographyProps as JVTypographyProps } from './Typography/Typography';
 
