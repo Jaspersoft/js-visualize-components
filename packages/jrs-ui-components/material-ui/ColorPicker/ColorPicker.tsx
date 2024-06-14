@@ -1,6 +1,4 @@
-import React, {
-    forwardRef
-} from 'react';
+import * as React from 'react';
 
 import { TextField, TextFieldProps } from '../TextField/TextField';
 import { ColorPickerSample } from './ColorPickerSample';
@@ -11,7 +9,7 @@ export type ColorPickerProps = Omit<TextFieldProps, 'value'> & {
     onColorChange?: (color: string) => void
 }
 
-export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(({
+export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(({
     InputProps = {}, value, allowTransparent, onColorChange = () => {}, className = '', ...rest
 }, ref) => {
 

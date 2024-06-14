@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import * as React from 'react';
 import { List, ListItem } from '@mui/material';
 import { Resizable } from 're-resizable';
 import {
@@ -84,7 +84,7 @@ const renderSubPanel = (props: RenderSubPanelProps) => {
     )
 }
 
-export const SubPanelsList: FC<SubPanelsListProps> = ({
+export const SubPanelsList: React.FC<SubPanelsListProps> = ({
     panelState, panel, panelIndex, setSubPanelState, onResize, onResizeStart, onScroll, onCollapseClick
 }) => {
     const lastOpenSubPanelIndex = getLastOpenSubPanelIndex(panelState);

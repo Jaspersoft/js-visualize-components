@@ -1,4 +1,4 @@
-import React, { FC, ComponentType } from 'react';
+import * as React from 'react';
 import {
     ThemeProvider as MuiThemeProvider,
     StyledEngineProvider,
@@ -27,8 +27,8 @@ const muiTheme = createTheme(CreateMuiThemeOptions);
 
 export function createStylesProvider<Theme = DefaultTheme>(
     theme: ThemeProviderProps<Theme>['theme'],
-    ThemeProvider: ComponentType<ThemeProviderProps<Theme>> = MuiThemeProvider
-): FC<CreateStylesProviderType> {
+    ThemeProvider: React.ComponentType<ThemeProviderProps<Theme>> = MuiThemeProvider
+): React.FC<CreateStylesProviderType> {
     return ({ children }) => (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>

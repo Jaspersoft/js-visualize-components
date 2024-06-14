@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import { MenuItem } from '@mui/material';
 
 export type SelectItemProps = Parameters<typeof MenuItem>[0];
 
-export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(({
+export const SelectItem = React.forwardRef<HTMLLIElement, SelectItemProps>(({
     className = '', children, ...rest
 }, ref) => {
     return (

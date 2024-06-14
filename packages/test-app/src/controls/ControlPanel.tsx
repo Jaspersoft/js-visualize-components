@@ -1,8 +1,7 @@
-import * as React from 'react'
-import { Checkbox as JRSCheckbox } from 'jrs-ui-components';
-import { TextField as JRSTextField } from 'jrs-ui-components';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { JVCheckbox, JVTextField } from 'jrs-ui-components';
+import * as React from 'react';
 
 export interface ControlPanelProps {
     title?: string,
@@ -10,11 +9,12 @@ export interface ControlPanelProps {
 }
 
 export default function ControlPanel(props: ControlPanelProps) {
-    const buildControl = (control) => {
+    const buildControl = (control: any) => {
 
         if (control.type === "bool") {
             return (
-                <JRSCheckbox 
+                <JVCheckbox
+                    key={control.id}
                     label={control.label} 
                     CheckboxProps={{checked: (control.state.value === 'true')}}
                     
@@ -23,7 +23,8 @@ export default function ControlPanel(props: ControlPanelProps) {
         }
         if (control.type === "singleValueText") {
             return (
-                <JRSTextField
+                <JVTextField
+                    key={control.id}
                     label={control.label}
                     value={control.state.value}
                 />
@@ -31,7 +32,8 @@ export default function ControlPanel(props: ControlPanelProps) {
         }
         if (control.type === "singleValueNumber") {
             return (
-                <JRSTextField
+                <JVTextField
+                  key={control.id}
                   label={control.label}
                   value={control.state.value}
                 />
@@ -40,7 +42,7 @@ export default function ControlPanel(props: ControlPanelProps) {
         
     }
 
-    const buildControls = (controlMap) => {
+    const buildControls = (controlMap: any) => {
         if (controlMap.data) return controlMap.data.map(buildControl);
         if (controlMap) return <span className='control-map-text'>{JSON.stringify(controlMap)}</span>;
         return <></>;

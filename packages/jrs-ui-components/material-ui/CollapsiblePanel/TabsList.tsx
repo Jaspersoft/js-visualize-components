@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import * as React from 'react';
 import { Button, List, ListItem } from '@mui/material';
 import { OnExpandCollapseClick, SubPanelDefinition } from './collapsiblePanelTypes';
 import { SetSubPanelState, SubPanelState } from './useCollapsiblePanelState';
-import i18nLabel from '../utils/i18nLabel';
 
 export interface TabsListProps {
     panelIndex: number,
@@ -12,10 +11,10 @@ export interface TabsListProps {
     onExpandClick: OnExpandCollapseClick
 }
 
-export const TabsList: FC<TabsListProps> = ({
+export const TabsList: React.FC<TabsListProps> = ({
     subPanelsState, panelIndex, subPanels, setSubPanelState, onExpandClick
 }) => {
-    const openSubPanelLabel = i18nLabel('materialUi.component.collapsiblePanel.open');
+    const openSubPanelLabel = 'Open sub panel';
 
     const handleExpandClick = (index: number, id: string) => {
         const result = onExpandClick({ type: 'subpanel', id })

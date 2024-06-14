@@ -1,7 +1,12 @@
 import InputControls from 'input-controls-plugin';
 import React, { useEffect, useState } from 'react';
 
-import { visualizejsLoader, Authentication, VisualizeFactory, VisualizeType } from 'jrs-viz';
+import {
+    visualizejsLoader,
+    Authentication,
+    VisualizeFactory,
+    VisualizeType
+} from 'jrs-viz';
 import MuiTest from './Mui-test.js';
 import ControlPanel from './controls/ControlPanel.js';
 

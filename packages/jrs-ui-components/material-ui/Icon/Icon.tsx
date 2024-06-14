@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import {
     Icon as MuiIcon, IconProps as MuiIconProps
 } from '@mui/material';
@@ -9,7 +9,7 @@ export type IconProps = MuiIconProps & {
     size?: IconSize
 };
 
-export const Icon = forwardRef<HTMLButtonElement, IconProps>(({
+export const Icon = React.forwardRef<HTMLButtonElement, IconProps>(({
     className = '', icon, size = 'medium', ...rest
 }, ref) => {
 

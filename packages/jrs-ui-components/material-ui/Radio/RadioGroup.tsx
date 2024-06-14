@@ -1,4 +1,4 @@
-import React, { forwardRef, PropsWithChildren } from 'react';
+import * as React from 'react';
 import {
     RadioGroupProps as MuiRadioGroupProps, FormControl as MuiFormControl, FormLabel as MuiFormLabel, RadioGroup as MuiRadioGroup,
     FormControlProps as MuiFormControlProps, FormLabelProps as MuiFormLabelProps
@@ -25,7 +25,7 @@ export type RadioButtonGroupProps = {
     }
 }
 
-export const RadioGroup = forwardRef<HTMLDivElement, PropsWithChildren<RadioButtonGroupProps>>(({
+export const RadioGroup = React.forwardRef<HTMLDivElement, React.PropsWithChildren<RadioButtonGroupProps>>(({
     helperText, children, size = 'medium', title = '', FormLabelProps = {}, RadioGroupProps = {}, FormControlProps = {}
 }, ref) => {
     const { component: formControlComponent = 'fieldset', className: formControlClassName = '', ...restFormControlProps } = FormControlProps

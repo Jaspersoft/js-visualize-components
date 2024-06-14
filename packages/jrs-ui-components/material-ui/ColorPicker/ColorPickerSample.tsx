@@ -1,12 +1,9 @@
-import React, {
-    FC, useEffect, useState,
-    useRef
-} from 'react';
+import * as React from 'react';
 
 import { ColorResult } from 'react-color';
 import { createPortal } from 'react-dom';
-import { AttachableColorPicker } from '../../colorPicker/react/AttachableColorPicker';
-import colorConvertUtil from '../../colorPicker/util/colorConvertUtil';
+import colorConvertUtil from '../utils/colorConvertUtil';
+import { AttachableColorPicker } from '../utils/AttachableColorPicker';
 
 const SWATCH_LIGHT_CLASS = 'jv-mControl-launcher-swatchLight';
 const TRANSPARENT_CLASS = `${SWATCH_LIGHT_CLASS} jv-mControl-launcher-swatchTransparent`;
@@ -28,21 +25,21 @@ interface ColorSampleProps {
     disabled?: boolean
 }
 
-export const ColorPickerSample: FC<ColorSampleProps> = ({
+export const ColorPickerSample: React.FC<ColorSampleProps> = ({
     color = '', onChange = () => {}, allowTransparent = true, disabled = false
 }) => {
-    const [visible, setVisible] = useState(false);
-    const attachToRef = useRef<HTMLDivElement>(null);
+    const [visible, setVisible] = React.useState(false);
+    const attachToRef = React.useRef<HTMLDivElement>(null);
 
     const style = {
         backgroundColor: color
     }
 
-    const [colorPickerContainer] = useState(() => {
+    const [colorPickerContainer] = React.useState(() => {
         return document.createElement('div');
     });
 
-    useEffect(() => {
+    React.useEffect(() => {
         colorPickerContainer.className = 'jv-jColorPickerWrapper';
         document.body.appendChild(colorPickerContainer);
 

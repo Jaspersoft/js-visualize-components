@@ -1,7 +1,7 @@
-import React, { forwardRef } from 'react';
+import * as React from 'react';
 import { InputAdornment as MuiInputAdornment, InputAdornmentProps as MuiInputAdornmentProps } from '@mui/material';
 
-export const InputAdornment = forwardRef<HTMLDivElement, MuiInputAdornmentProps>(({
+export const InputAdornment = React.forwardRef<HTMLDivElement, MuiInputAdornmentProps>(({
     className = '', ...rest
 }, ref) => {
     return (

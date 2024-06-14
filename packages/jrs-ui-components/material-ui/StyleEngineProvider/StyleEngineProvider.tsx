@@ -1,12 +1,10 @@
-import React, { ReactNode } from 'react'
-import {
-    StyledEngineProvider,
-} from '@mui/material/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
+import * as React from 'react';
 
-export const StyleEngineProvider = ({ children }: {children: ReactNode}) => {
+export const StyleEngineProvider = ({ children }: { children: React.ReactNode }) => {
     return (
-        <StyledEngineProvider injectFirst>
-            {children}
-        </StyledEngineProvider>
-    )
-}
+      <StyledEngineProvider injectFirst>
+          {children}
+      </StyledEngineProvider>
+    );
+};

@@ -2,9 +2,13 @@
   "name": "jrs-ui-components",
   "version": "0.0.1",
   "private": true,
-  "license": "AGPLv3",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "license": "MIT",
+  "main": "dist/material-ui/index.js",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "dist/material-ui/index.d.ts",
   "scripts": {
     "sass:jasperui": "sass --no-source-map --style=expanded scss/jasper-ui.scss ${BUILD_THEMES_DIR}/jasper-ui.css",
     "styles": "dotenv -c -- run-p sass:jasperui",
@@ -12,7 +16,8 @@
     "start:dev": "onchange -i \"scss/**/*.*\" -- run-s styles copy:styles:dev",
     "copy:styles": "node scripts/copy-styles-context.js",
     "copy:styles:dev": "node scripts/copy-styles-context.js dev",
-    "build": "dotenv -c -- run-s copy:styles styles",
+    "create:declarations": "tsc",
+    "build": "dotenv -c -- run-s copy:styles styles create:declarations",
     "clean": "rm -rf dist",
     "test": "NODE_OPTIONS='$NODE_OPTIONS --experimental-vm-modules' npx jest"
   },
@@ -75,6 +80,6 @@
     "jest-environment-jsdom": "^29.7.0",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
-    "typescript": "4.5.2"
+    "typescript": "^5.4.5"
   }
 }
