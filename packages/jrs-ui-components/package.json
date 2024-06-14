@@ -18,7 +18,6 @@
     "copy:styles:dev": "node scripts/copy-styles-context.js dev",
     "create:declarations": "tsc",
     "build": "dotenv -c -- run-s copy:styles styles create:declarations",
-    "build-prod": "dotenv -c -- run-s copy:styles styles create:declarations",
     "clean": "rm -rf dist",
     "test": "NODE_OPTIONS='$NODE_OPTIONS --experimental-vm-modules' npx jest"
   },
