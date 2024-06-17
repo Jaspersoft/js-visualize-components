@@ -29,8 +29,8 @@ const copyFolder = (source, target) => {
 // check if param 'dev' is provided when running the script
 if (process.argv[2] === 'dev') {
   // copy the styles folder to the dist folder of test-app
-  // source = js-visualize-plugins/packages/jrs-ui-components/dist/styles
-  // target = js-visualize-plugins/packages/test-app/dist/jasper-ui.css
+  // source = js-visualize-plugins/packages/jv-ui-components/dist/styles
+  // target = js-visualize-plugins/packages/test-app/dist/jv-ui.css
   const sourcePath = path.resolve(process.cwd(), 'dist');
   const targetPath = path.resolve(process.cwd(), '../test-app/dist');
   copyFolder(
@@ -38,13 +38,13 @@ if (process.argv[2] === 'dev') {
     targetPath
   );
   fs.copyFileSync(
-    path.resolve(sourcePath, 'jasper-ui.css'),
-    path.resolve(targetPath, 'jasper-ui.css')
+    path.resolve(sourcePath, 'jv-ui.css'),
+    path.resolve(targetPath, 'jv-ui.css')
   );
 } else {
   // These are the following paths to use:
-  // src = js-visualize-plugins/packages/jrs-ui-components/styles
-  // target = js-visualize-plugins/packages/jrs-ui-components/dist/styles
+  // src = js-visualize-plugins/packages/jv-ui-components/styles
+  // target = js-visualize-plugins/packages/jv-ui-components/dist/styles
   copyFolder(
     path.resolve(process.cwd(), 'styles'),
     path.resolve(process.cwd(), 'dist/styles')

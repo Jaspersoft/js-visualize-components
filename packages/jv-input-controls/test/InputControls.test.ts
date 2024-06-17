@@ -1,4 +1,4 @@
-import InputControls from "input-controls-plugin"
+import InputControls from "@jaspersoft/jv-input-controls"
 
 describe("InputControls plugin", () => {
 

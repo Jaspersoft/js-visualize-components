@@ -1,4 +1,4 @@
-import InputControls from 'input-controls-plugin';
+import InputControls from '@jaspersoft/jv-input-controls';
 import React, { useEffect, useState } from 'react';
 
 import {
@@ -6,7 +6,7 @@ import {
     Authentication,
     VisualizeFactory,
     VisualizeType
-} from 'jrs-viz';
+} from '@jaspersoft/jv-tools';
 import MuiTest from './Mui-test.js';
 import ControlPanel from './controls/ControlPanel.js';
 

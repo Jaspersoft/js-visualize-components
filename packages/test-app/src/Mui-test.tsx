@@ -1,5 +1,5 @@
 
-import { JVBadge, JVButton } from 'jrs-ui-components';
+import { JVBadge, JVButton } from '@jaspersoft/jv-ui-components';
 import * as React from 'react';
 
 const MuiTest = () => {

@@ -1,4 +1,4 @@
-declare module 'jrs-viz';
+declare module '@jaspersoft/jv-tools';
 
 export type Authentication = {
     url?: string,
