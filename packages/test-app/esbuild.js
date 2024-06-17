@@ -11,7 +11,7 @@ const copyStylesFromJrsUiComponents = ({ target = '' }) => {
   copyFolder(sourceStylesFolder, targetStylesFolder);
   console.info('styles folder has been copied.');
 
-  const CSS_FILE_NAME = 'jasper-ui.css';
+  const CSS_FILE_NAME = 'jv-ui.css';
   const cssFile = resolve(basePath, CSS_FILE_NAME);
   copyFile({ target: resolve(target, CSS_FILE_NAME), source: cssFile });
   console.info('CSS file has been copied.');
