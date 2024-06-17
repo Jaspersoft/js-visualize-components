@@ -1,7 +1,7 @@
 {
-  "name": "jrs-viz",
+  "name": "@jaspersoft/jv-tools",
   "version": "1.0.0",
-  "description": "Utility for working with JasperReports Server's Visualize.js",
+  "description": "Tools for working with JasperReports Server's Visualize.js",
   "main": "dist/bundle.js",
   "types": "src/index.d.js",
   "type": "module",
@@ -12,6 +12,11 @@
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf dist",
     "test": "NODE_OPTIONS='$NODE_OPTIONS --experimental-vm-modules' npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaspersoft/js-visualize-plugins.git",
+    "directory": "packages/jv-tools"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

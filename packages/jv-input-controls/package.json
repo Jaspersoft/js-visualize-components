@@ -1,7 +1,7 @@
 {
-  "name": "input-controls-plugin",
-  "version": "0.0.1",
-  "description": "Input Controls Plugin",
+  "name": "@jaspersoft/jv-input-controls",
+  "version": "1.0.0",
+  "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
@@ -10,7 +10,11 @@
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf ./dist"
   },
-  "repository": "git@github.com:Jaspersoft/js-visualize-plugins.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaspersoft/js-visualize-plugins.git",
+    "directory": "packages/jv-input-controls"
+  },
   "author": "Cloud Software Group",
   "license": "MIT",
   "devDependencies": {

@@ -17,7 +17,7 @@ Alternatively, you can run them from within the workspace of each package using 
 
 E.g.: 
 ```shell script
-yarn workspace jrs-ui-components run test
+yarn workspace jv-ui-components run test
 ``` 
 
 ## Test Application

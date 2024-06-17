@@ -29,7 +29,7 @@ const copyFolder = (source, target) => {
 // check if param 'dev' is provided when running the script
 if (process.argv[2] === 'dev') {
   // copy the styles folder to the dist folder of test-app
-  // source = js-visualize-plugins/packages/jrs-ui-components/dist/styles
+  // source = js-visualize-plugins/packages/jv-ui-components/dist/styles
   // target = js-visualize-plugins/packages/test-app/dist/jasper-ui.css
   const sourcePath = path.resolve(process.cwd(), 'dist');
   const targetPath = path.resolve(process.cwd(), '../test-app/dist');
@@ -43,8 +43,8 @@ if (process.argv[2] === 'dev') {
   );
 } else {
   // These are the following paths to use:
-  // src = js-visualize-plugins/packages/jrs-ui-components/styles
-  // target = js-visualize-plugins/packages/jrs-ui-components/dist/styles
+  // src = js-visualize-plugins/packages/jv-ui-components/styles
+  // target = js-visualize-plugins/packages/jv-ui-components/dist/styles
   copyFolder(
     path.resolve(process.cwd(), 'styles'),
     path.resolve(process.cwd(), 'dist/styles')

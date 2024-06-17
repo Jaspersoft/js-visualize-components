@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Button } from 'jrs-ui-components/material-ui/Button/Button';
+import { Button } from '@jaspersoft/jv-ui-components/material-ui/Button/Button';
 import '@testing-library/jest-dom';
 
 describe("Button tests", () => {

@@ -5,7 +5,7 @@ import copyFolder, { copyFile } from './scripts/copy-styles-context.js';
 const isProd = process.env.NODE_ENV === 'production';
 
 const copyStylesFromJrsUiComponents = ({ target = '' }) => {
-  const basePath = resolve(process.cwd(), '..', 'jrs-ui-components', 'dist');
+  const basePath = resolve(process.cwd(), '..', 'jv-ui-components', 'dist');
   const sourceStylesFolder = resolve(basePath, 'styles');
   const targetStylesFolder = resolve(target, 'styles');
   copyFolder(sourceStylesFolder, targetStylesFolder);
@@ -37,7 +37,7 @@ build({
   outfile: 'dist/bundle.js'
 })
   .then(() => {
-    console.info('Build succeeded. About to copy public folder and styles from jrs-ui-components.');
+    console.info('Build succeeded. About to copy public folder and styles from jv-ui-components.');
     const distFolder = resolve(process.cwd(), 'dist');
     copyPublicToDist({ target: distFolder });
     copyStylesFromJrsUiComponents({ target: distFolder });
