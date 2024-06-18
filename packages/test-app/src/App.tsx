@@ -8,7 +8,7 @@ import {
     VisualizeType
 } from '@jaspersoft/jv-tools';
 import MuiTest from './Mui-test.js';
-import ControlPanel from './controls/ControlPanel.js';
+import ControlPanel, { ConfigInputControl } from './controls/ControlPanel.js';
 
 export interface AppConfig {
     title: string,
@@ -17,12 +17,34 @@ export interface AppConfig {
 const credentials: Authentication = {
     name: 'joeuser',
     password: 'joeuser',
-    organization: 'organization_1',
+    organization: 'organization_1'
 };
 
 const reportUri = '/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report';
 
 const visualizeUrl = 'https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js';
+
+const DEFAULT_CONFIG: ConfigInputControl = {
+    container: '#containerID',
+    success: (success: { code: number; message: string }) => {
+        console.log('success => ', success);
+    },
+    error: (error: { code: number; message: string }) => {
+        console.log('error => ', error);
+    },
+    exclude: [],
+    config: {
+        bool: {
+            type: 'checkbox'
+        },
+        singleValueText: {
+            type: 'textField'
+        },
+        singleValueNumber: {
+            type: 'number'
+        }
+    }
+};
 
 export default function App(props: AppConfig) {
     const [controlStruct, setControlStruct] = useState({});
@@ -57,7 +79,7 @@ export default function App(props: AppConfig) {
     }, [visualizeFactoryContainer]);
 
     useEffect(() => {
-        vContainer && vContainer !== null && setPlugin(new InputControls(vContainer.v));
+        vContainer && setPlugin(new InputControls(vContainer.v));
     }, [vContainer]);
 
     useEffect(() => {
@@ -68,11 +90,13 @@ export default function App(props: AppConfig) {
     }, [plugin]);
 
     return (
-    <div className="appBox">
-        <h1> {props.title || 'Title Goes Here'}</h1>
-        <div id="controlBox">
-            <ControlPanel title={reportUri} controlData={controlStruct} />
-        </div>
-    </div>
+      <div className="appBox">
+          <h1> {props.title || 'Title Goes Here'}</h1>
+          <div id="controlBox">
+              <ControlPanel title={reportUri}
+                            controlData={controlStruct}
+                            icGeneralConfig={DEFAULT_CONFIG}/>
+          </div>
+      </div>
     );
 };
