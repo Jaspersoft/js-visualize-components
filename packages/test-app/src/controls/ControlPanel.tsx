@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { JVCheckbox, JVTextField } from '@jaspersoft/jv-ui-components';
-import { BooleanInputControl } from '@jaspersoft/jv-input-controls'
+import BooleanInputControl from '@jaspersoft/jv-input-controls/src/controls/BooleanInputControl.js'
 
 export interface ControlPanelProps {
   title?: string,
@@ -56,6 +56,7 @@ export default function ControlPanel(props: ControlPanelProps) {
           {buildControls(props.controlData)}
         </ul>
       </LocalizationProvider>
+      <BooleanInputControl label='test111' type='switch' />
     </div>
   );
 }
