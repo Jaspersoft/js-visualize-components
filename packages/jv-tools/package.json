@@ -2,16 +2,13 @@
   "name": "@jaspersoft/jv-tools",
   "version": "1.0.0",
   "description": "Tools for working with JasperReports Server's Visualize.js",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts",
+  "main": "dist/bundle.js",
+  "types": "src/index.d.js",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "tsc",
-    "build-prod": "NODE_ENV=production node esbuild.js",
+    "build": "node esbuild.mjs",
+    "build-prod": "NODE_ENV=production node esbuild.mjs",
     "clean": "rm -rf dist",
     "test": "jest"
   },

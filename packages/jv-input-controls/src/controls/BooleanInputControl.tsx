@@ -1,10 +1,11 @@
+import * as React from 'react'
 
 export interface BooleanInputControlProps {
-  label: string,
+  label?: string,
 }
 
 export default function BooleanInputControl(props: BooleanInputControlProps) {
-
-  return <>{props || ''}</>;
-
+  return (
+    <h1>test IC</h1>
+  );
 }

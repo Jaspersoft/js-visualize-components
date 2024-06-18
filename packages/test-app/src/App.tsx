@@ -1,4 +1,4 @@
-import { InputControls } from '@jaspersoft/jv-input-controls';
+import InputControls from '@jaspersoft/jv-input-controls';
 import { useEffect, useState } from 'react';
 
 import {

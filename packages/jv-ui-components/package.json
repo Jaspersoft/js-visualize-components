@@ -15,7 +15,7 @@
     "start:dev": "onchange -i \"scss/**/*.*\" -- run-s styles copy:styles:dev",
     "copy:styles": "node scripts/copy-styles-context.js",
     "copy:styles:dev": "node scripts/copy-styles-context.js dev",
-    "create:declarations": "tsc --emitDeclarationOnly",
+    "create:declarations": "tsc",
     "build": "dotenv -c -- run-s copy:styles styles create:declarations",
     "clean": "rm -rf dist",
     "test": "jest"
