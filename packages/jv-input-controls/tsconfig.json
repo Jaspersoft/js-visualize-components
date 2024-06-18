@@ -8,8 +8,8 @@
         "strict": true,
         "skipLibCheck": true,
         "outDir": "dist",
-        "moduleResolution": "node",
-        "module": "esnext"
+        "moduleResolution": "Bundler",
+        "module": "ES2022"
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules", "dist"]
