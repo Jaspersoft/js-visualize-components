@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "NODE_OPTIONS='$NODE_OPTIONS --experimental-vm-modules' npx jest",
     "build": "node esbuild.js",
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf ./dist"

@@ -84,3 +84,5 @@ export interface VisualizeType {
     inputControls: (config: VisualizationConfig) => void,
 }
 
+export { visualizejsLoader } from './visualize/VisualizejsProvider.ts';
+
