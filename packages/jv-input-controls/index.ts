@@ -1,5 +1,5 @@
-import { InputControls } from "./src/InputControls.js";
+import { InputControls, TextFieldInputControl } from './src/InputControls';
 
 export default InputControls;
 
-export { TextFieldInputControl } from './src/InputControls';
+export { TextFieldInputControl };
