@@ -7,7 +7,7 @@ export interface TextFieldICProps {
     value?: string;
     id?: string;
     type?: string;
-    variant?: string;
+    variant?: 'standard' | 'filled' | 'outlined' | undefined;
 }
 
 const defaultOnChangeHandler = () => {
@@ -22,7 +22,7 @@ const defaultOnChangeHandler = () => {
  * @returns {React.JSX.Element}
  * @constructor
  */
-export const TextFieldIC = (props: TextFieldICProps): React.JSX.Element => {
+export const TextFieldInputControl = (props: TextFieldICProps): React.JSX.Element => {
     return <JVTextField
       variant={props.variant || 'outlined'}
       onChange={defaultOnChangeHandler}

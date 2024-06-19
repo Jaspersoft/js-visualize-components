@@ -57,3 +57,5 @@ export class InputControls {
         container = JSON.stringify(this.controlStructure);
     };
 }
+
+export { TextFieldInputControl } from './controls/TextFieldInputControl';
