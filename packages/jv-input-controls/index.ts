@@ -1,5 +1,5 @@
-import { InputControls, TextFieldInputControl } from './src/InputControls';
+import { InputControls } from './src/InputControls';
 
 export default InputControls;
 
-export { TextFieldInputControl };
+export { TextFieldInputControl } from './src/controls/TextFieldInputControl';
