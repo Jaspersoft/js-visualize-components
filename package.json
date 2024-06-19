@@ -5,6 +5,7 @@
   "description": "Plugins for Visualize.JS",
   "workspaces": {
     "packages": [
+      "packages/jv-ui-components",
       "packages/*"
     ]
   },
