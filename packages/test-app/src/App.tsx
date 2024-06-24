@@ -27,7 +27,7 @@ export default function App(props: AppConfig) {
   const [controlStruct, setControlStruct] = useState({});
   const [visualizeFactoryContainer, setVisualizeFactoryContainer] = useState(null as { viz: VisualizeFactory } | null);
   const [vContainer, setVContainer] = useState(null as { v: VisualizeType } | null);
-  const [plugin, setPlugin] = useState<InputControls>();
+  const [plugin, setPlugin] = useState();
 
   useEffect(() => {
     const loadVisualize = visualizejsLoader(visualizeUrl);

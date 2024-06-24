@@ -1,20 +1,21 @@
 import * as React from 'react'
 import { JVSwitch, JVCheckbox } from '@jaspersoft/jv-ui-components'
 
+export type BoolICType = "switch" | "checkbox";
+
 export interface BooleanInputControlProps {
-  type: 'checkbox' | 'switch',
+  type: BoolICType,
   label?: string,
 }
 
 export default function BooleanInputControl(props: BooleanInputControlProps): React.JSX.Element {
-
-  if (props.type === 'checkbox') {
+  if (props.type === 'switch') {
     return (
-      <JVCheckbox label={props.label || 'UNDEF'} />
+      <JVSwitch label={props.label || 'UNDEF'} />
     );
   } else {
     return (
-      <JVSwitch label={props.label || 'UNDEF'} />
+      <JVCheckbox label={props.label || 'UNDEF'} />
     );
   }
 }

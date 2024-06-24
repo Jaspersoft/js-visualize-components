@@ -6,7 +6,7 @@ import BooleanInputControl from '@jaspersoft/jv-input-controls/src/controls/Bool
 
 export interface ControlPanelProps {
   title?: string,
-  controlData: object,
+  controlData: object
 }
 
 export default function ControlPanel(props: ControlPanelProps) {
@@ -18,7 +18,6 @@ export default function ControlPanel(props: ControlPanelProps) {
           key={control.id}
           label={control.label}
           CheckboxProps={{ checked: (control.state.value === 'true') }}
-
         />
       );
     }
@@ -40,7 +39,6 @@ export default function ControlPanel(props: ControlPanelProps) {
         />
       );
     }
-
   }
 
   const buildControls = (controlMap: any) => {
@@ -56,7 +54,6 @@ export default function ControlPanel(props: ControlPanelProps) {
           {buildControls(props.controlData)}
         </ul>
       </LocalizationProvider>
-      <BooleanInputControl label='test111' type='switch' />
     </div>
   );
 }

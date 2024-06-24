@@ -1,26 +1,22 @@
-import { FC } from 'react';
-
-
-interface BooleanICConfig {
-  style?: string | FC,
-}
+import { BoolICType } from "./controls/BooleanInputControl";
+import { createRoot } from 'react-dom'
+import BasePanel from './panels/BasePanel'
 
 export interface InputControlConfig {
   hostname?: string,
   username: string,
   password: string,
   tenant: string,
-
-  // customize control look & feel
-  boolean?: BooleanICConfig,
 };
+
+export interface InputControlPanelConfig {
+  boolean: BoolICType,
+}
 
 const defaultInputControlConfig: InputControlConfig = {
   username: 'joeuser',
   password: 'joeuser',
   tenant: 'organization_1',
-
-  boolean: { style: 'switch' },
 };
 
 export class InputControls {
@@ -34,7 +30,6 @@ export class InputControls {
   }
 
   public fillControlStructure = (uri: string, callbackFn?: Function) => {
-    if (this.config) { console.log('config exists') }
     this.viz.inputControls({
       resource: uri,
       success: (data: string) => {
@@ -53,8 +48,16 @@ export class InputControls {
     return this.controlStructure;
   }
 
+  public renderControlPanel = (uri: string, container: HTMLElement, config?: InputControlPanelConfig) => {
+    this.fillControlStructure(uri, (controls) => {
+      const icRoot = createRoot(container);
+      icRoot.render(<BasePanel />);
+    });
+  }
+
   public makeControlsForReport = (resourceUri: string, container: any) => {
     this.fillControlStructure(resourceUri);
     container = JSON.stringify(this.controlStructure);
-  };
+  }
+
 }
