@@ -1,17 +1,17 @@
-import { build } from "esbuild";
+const { build } = require('esbuild');
 
 const isProd = process.env.NODE_ENV === 'production';
 
 const sharedConfig = {
-  entryPoints: ["src/index.js"],
+  entryPoints: [ 'src/index.js' ],
   bundle: true,
   minify: isProd,
   sourcemap: !isProd,
-  format: 'esm',
+  format: 'iife'
 };
 
 build({
   ...sharedConfig,
   platform: 'browser',
-  outfile: "dist/bundle.js",
+  outfile: 'dist/bundle.js'
 });

@@ -4,7 +4,6 @@
   "description": "Tools for working with JasperReports Server's Visualize.js",
   "main": "dist/bundle.js",
   "types": "src/index.d.js",
-  "type": "module",
   "license": "MIT",
   "private": true,
   "scripts": {
