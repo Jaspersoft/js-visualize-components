@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
   "main": "dist/index.js",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "node esbuild.js",
