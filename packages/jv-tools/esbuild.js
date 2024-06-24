@@ -7,7 +7,7 @@ const sharedConfig = {
   bundle: true,
   minify: isProd,
   sourcemap: !isProd,
-  format: 'iife'
+  target: 'es2015',
 };
 
 build({
