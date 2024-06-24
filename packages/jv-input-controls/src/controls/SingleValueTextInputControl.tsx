@@ -8,6 +8,7 @@ export interface TextFieldICProps {
     id?: string;
     type?: string;
     variant?: 'standard' | 'filled' | 'outlined' | undefined;
+    size?: 'large'
 }
 
 /**
@@ -21,10 +22,12 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     const defaultOnChangeHandler = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setCurrentValue(event.target.value);
     };
-    const { value: theValue, ...remainingProps } = props;
+    const { value: theValue, size, ...remainingProps } = props;
+    const theSize = size !== 'large' ? 'large' : size;
     const [ currentValue, setCurrentValue ] = useState<string>(theValue || props.defaultValue || '');
     return <JVTextField variant={props.variant || 'outlined'}
                         value={currentValue}
+                        size={theSize}
                         onChange={defaultOnChangeHandler}
                         {...remainingProps}
     />;

@@ -7,6 +7,9 @@
     "packages": [
       "packages/jv-ui-components",
       "packages/*"
+    ],
+    "nohoist": [
+      "**/**"
     ]
   },
   "scripts": {
