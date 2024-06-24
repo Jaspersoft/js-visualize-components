@@ -21,7 +21,7 @@ const conf: Config = {
         "**/?(*.)+(spec|test).mjs"
     ],
     moduleNameMapper: {
-        '^@jaspersoft/jv-ui-components(.*)$': '<rootDir>/node_modules/@jaspersoft/jv-ui-components/dist/material-ui$1',
+        '^@jaspersoft/jv-ui-components(.*)$': '<rootDir>/../jv-ui-components/dist/material-ui$1',
         '^@mui/material/(.*)$': '<rootDir>/../jv-ui-components/node_modules/@mui/material/$1',
         '^@mui/icons-material/(.*)$': '<rootDir>/../jv-ui-components/node_modules/@mui/icons-material/$1',
     },
