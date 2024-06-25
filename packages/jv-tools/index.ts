@@ -1,5 +1,3 @@
-declare module '@jaspersoft/jv-tools';
-
 export type Authentication = {
     url?: string,
     name? : string,
@@ -84,5 +82,4 @@ export interface VisualizeType {
     inputControls: (config: VisualizationConfig) => void,
 }
 
-export { visualizejsLoader } from './visualize/VisualizejsProvider.ts';
-
+export { visualizejsLoader, VisualizejsProvider } from './src/visualize/VisualizejsProvider';

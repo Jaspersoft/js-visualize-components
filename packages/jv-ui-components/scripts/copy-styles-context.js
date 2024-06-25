@@ -4,9 +4,8 @@
  */
 
 // create a script that copies a folder to another location
-
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+const fs = require('fs');
+const path = require('path');
 
 const copyFolder = (source, target) => {
   if (!fs.existsSync(target)) {
