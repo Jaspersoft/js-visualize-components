@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import {
     IconButton as MuiIconButton, ButtonProps as MuiButtonProps, IconButtonProps as MuiIconButtonProps
 } from '@mui/material';
@@ -16,7 +16,7 @@ export type IconButtonProps = MuiIconButtonProps & {
     }
 }
 
-export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(({
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
     labelProps = {}, color = 'secondary', className = '', size = 'medium', icon, variant = 'text', selected = false, ...rest
 }, ref) => {
     const { labelClasses } = labelProps;

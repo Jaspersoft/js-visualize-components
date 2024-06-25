@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import MuiTableCell, { TableCellProps as MuiTableCellProps } from '@mui/material/TableCell';
 
 export type TableCellProps = MuiTableCellProps & {
@@ -6,7 +6,7 @@ export type TableCellProps = MuiTableCellProps & {
     isCellAttribute?: boolean,
     isCellValue?: boolean
 }
-export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(({
+export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(({
     className = '', isActionCell = false, isCellAttribute = false, isCellValue = false, ...rest
 }, ref) => {
     const actionClass = isActionCell ? 'jv-mTable-cellAction' : '';

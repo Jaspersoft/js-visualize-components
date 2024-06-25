@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC, ReactNode, useRef, UIEvent, useState, useLayoutEffect } from 'react';
 import { Card, CardContent, CardHeader } from '@mui/material';
 import { IconButton } from '../IconButton/IconButton';
 import { SubPanelSlots } from './collapsiblePanelTypes';
@@ -10,19 +10,19 @@ export interface SubPanelProps {
     onClose: () => void,
     onScroll: (scrollPos: number) => void,
     scrollPos: number,
-    children: React.ReactNode
+    children: ReactNode
 }
 
-export const SubPanel: React.FC<SubPanelProps> = ({
+export const SubPanel: FC<SubPanelProps> = ({
     id, label, children, slots = { }, onClose, onScroll, scrollPos
 }) => {
     const { headerAction } = slots;
     const closeSubPanelLabel = 'Close sub panel';
-    const contentRef = React.useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
-    const [internalScrollPos, setInternalScrollPos] = React.useState(0);
+    const [internalScrollPos, setInternalScrollPos] = useState(0);
 
-    const handleScroll = (ev: React.UIEvent<HTMLDivElement>) => {
+    const handleScroll = (ev: UIEvent<HTMLDivElement>) => {
         const newScrollPos = (ev.target as HTMLDivElement).scrollTop;
         setInternalScrollPos(newScrollPos);
         if (newScrollPos !== scrollPos) {
@@ -30,7 +30,7 @@ export const SubPanel: React.FC<SubPanelProps> = ({
         }
     }
 
-    React.useLayoutEffect(() => {
+    useLayoutEffect(() => {
         if (contentRef.current && scrollPos !== internalScrollPos) {
             contentRef.current.scrollTop = scrollPos;
             setInternalScrollPos(scrollPos);
