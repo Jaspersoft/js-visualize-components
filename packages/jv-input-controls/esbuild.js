@@ -1,6 +1,6 @@
 const { build } = require('esbuild');
 const npmDts = require('npm-dts');
-import packageJson from './package.json' assert { type: 'json' };
+const packageJson = require('./package.json');
 
 const { dependencies } = packageJson;
 const { Generator } = npmDts;
@@ -8,7 +8,9 @@ const { Generator } = npmDts;
 new Generator({
   entry: 'index.ts',
   output: 'dist/index.d.ts'
-}).generate();
+}).generate()
+  .catch(console.error);
+
 const isProd = process.env.NODE_ENV === 'production';
 
 const sharedConfig = {

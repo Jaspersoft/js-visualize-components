@@ -4,7 +4,6 @@
   "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "type": "module",
   "types": "dist/index.d.ts",
   "files": [
     "dist"

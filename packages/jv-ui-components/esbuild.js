@@ -1,6 +1,6 @@
-import { build } from 'esbuild';
-import npmDts from 'npm-dts';
-import packageJson from './package.json' assert { type: 'json' };
+const { build } = require('esbuild');
+const npmDts = require('npm-dts');
+const packageJson = require('./package.json');
 
 const { dependencies } = packageJson;
 const { Generator } = npmDts;
@@ -8,7 +8,8 @@ const { Generator } = npmDts;
 new Generator({
   entry: 'material-ui/index.ts',
   output: 'dist/material-ui/index.d.ts'
-}).generate();
+}).generate()
+  .catch(console.error);
 
 const isProd = process.env.NODE_ENV === 'production';
 
