@@ -8,7 +8,8 @@ const sharedConfig = {
   minify: isProd,
   sourcemap: !isProd,
   format: 'esm',
-  target: 'es2015',
+  tsconfig: 'tsconfig.json',
+  target: 'es6',
 };
 
 build({
