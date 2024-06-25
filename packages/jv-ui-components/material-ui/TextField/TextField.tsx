@@ -8,7 +8,7 @@ import {
 import {
     INLINE_CLASS,
     InputSize, InputWidth, SizeToClass, WidthToClass, LABEL_CONTAINED
-} from '../types/InputTypes.js';
+} from '../types/InputTypes';
 
 export type TextFieldProps = Omit<MuiTextFieldProps, 'size' | 'error'> & {
     size?: InputSize,

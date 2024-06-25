@@ -1,4 +1,4 @@
-import { JVTextField } from '@jaspersoft/jv-ui-components';
+import { TextField as JVTextField } from '@jaspersoft/jv-ui-components/material-ui/TextField/TextField';
 import { ChangeEvent, useState } from 'react';
 
 export interface TextFieldICProps {
