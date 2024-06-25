@@ -6,13 +6,11 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "node esbuild.mjs",
-    "build:types": "tsc -p tsconfig-types.json --emitDeclarationOnly",
-    "build-prod": "NODE_ENV=production node esbuild.mjs",
-    "clean": "rm -rf dist"
+    "build": "node esbuild.js",
+    "build-prod": "NODE_ENV=production node esbuild.js",
+    "clean": "rm -rf ./dist"
   },
   "repository": {
     "type": "git",

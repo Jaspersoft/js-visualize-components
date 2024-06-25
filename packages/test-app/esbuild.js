@@ -24,20 +24,12 @@ const copyPublicToDist = ({ target = '' }) => {
 };
 
 const sharedConfig = {
-  entryPoints: ['src/entrypoint.tsx'],
+  entryPoints: [ 'src/entrypoint.tsx' ],
   bundle: true,
   minify: isProd,
   sourcemap: !isProd,
   format: 'iife'
 };
-
-build({
-  ...sharedConfig,
-  entryPoints: ['src/entrypoint-outside.tsx'],
-  outfile: 'dist/bundle-outside.js',
-}).then(() => {
-  console.log("Built outside bundle");
-});
 
 build({
   ...sharedConfig,
@@ -51,4 +43,3 @@ build({
     copyStylesFromJrsUiComponents({ target: distFolder });
   })
   .catch((error) => console.error('Build failed: ', error));
-
