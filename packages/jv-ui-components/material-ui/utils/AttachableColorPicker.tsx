@@ -19,7 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import React from 'react';
+import { ComponentType, Component, createRef, RefObject, CSSProperties } from 'react';
 import { ColorResult, SketchPicker, SketchPickerProps } from 'react-color';
 // import positionUtil from '../../base/util/attachableComponentPositionUtil';
 
@@ -63,7 +63,7 @@ export interface ColorPickerProps {
 }
 
 interface ColorPickerPropsExtended extends ColorPickerProps {
-    ColorPicker: React.ComponentType<SketchPickerProps>,
+    ColorPicker: ComponentType<SketchPickerProps>,
     doc: Document
 }
 
@@ -73,7 +73,7 @@ interface ColorPickerState {
 }
 
 class ColorPickerWithAbilityToAttach extends
-    React.Component<ColorPickerPropsExtended, ColorPickerState> {
+    Component<ColorPickerPropsExtended, ColorPickerState> {
     constructor(props: ColorPickerPropsExtended) {
         super(props);
 
@@ -88,7 +88,7 @@ class ColorPickerWithAbilityToAttach extends
                 : showTransparentPreset,
         };
 
-        this.divRef = React.createRef<HTMLDivElement>();
+        this.divRef = createRef<HTMLDivElement>();
 
         this.boundOnDocumentMousedown = this.onDocumentMousedown.bind(this);
     }
@@ -125,7 +125,7 @@ class ColorPickerWithAbilityToAttach extends
         }
     }
 
-    private readonly divRef: React.RefObject<HTMLDivElement>;
+    private readonly divRef: RefObject<HTMLDivElement>;
 
     private readonly boundOnDocumentMousedown: (e: Event) => void;
 
@@ -149,7 +149,7 @@ class ColorPickerWithAbilityToAttach extends
         //         .getPosition(attachTo, padding, this.divRef.current);
         // }
 
-        const style: React.CSSProperties = {
+        const style: CSSProperties = {
             position: 'absolute',
             zIndex: 9000,
             top: `${position.top}px`,
@@ -170,7 +170,7 @@ class ColorPickerWithAbilityToAttach extends
     }
 }
 
-const withAbilityToAttach = (ColorPicker: React.ComponentType<SketchPickerProps>, doc: Document): React.ComponentType<ColorPickerProps> => {
+const withAbilityToAttach = (ColorPicker: ComponentType<SketchPickerProps>, doc: Document): ComponentType<ColorPickerProps> => {
     return (props: ColorPickerProps) => {
         const extendedProps = {
             ...props,
