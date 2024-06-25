@@ -4,13 +4,12 @@
   "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "type": "module",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest -- SingleValueTextInputControl.test.mjs",
+    "test": "jest",
     "build": "node esbuild.js",
     "build-prod": "NODE_ENV=production node esbuild.js",
     "clean": "rm -rf ./dist"

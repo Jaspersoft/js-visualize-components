@@ -8,8 +8,8 @@
         "strict": true,
         "skipLibCheck": true,
         "outDir": "dist",
-        "moduleResolution": "NodeNext",
-        "module": "NodeNext"
+        "moduleResolution": "node",
+        "module": "esnext"
     },
     "include": ["**/*.ts", "**/*.tsx", "test/visualize/VisualizejsProvider.test.js"],
     "exclude": ["node_modules", "dist"],

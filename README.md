@@ -1,4 +1,4 @@
-# JS Visualize Plugins
+# Jaspersoft Visualize Components
 
 ## Set up
 - install [NodeJS](https://nodejs.org). Build tested on version 20.13.1, but it might also work on version 16.x.x and up

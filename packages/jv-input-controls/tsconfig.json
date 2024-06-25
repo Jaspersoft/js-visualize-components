@@ -12,8 +12,8 @@
         "strict": true,
         "skipLibCheck": true,
         "outDir": "dist",
-        "moduleResolution": "Bundler",
-        "module": "ES2022"
+        "moduleResolution": "node",
+        "module": "esnext"
     },
     "include": ["index.ts"],
     "exclude": [
