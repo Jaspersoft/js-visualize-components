@@ -31,3 +31,7 @@ after that, run the following command in the root of the project on a separate t
 yarn start:styles:dev
 ``` 
 **Note**: keep both the `start` and `start:styles:dev` commands running in separate terminal windows.
+
+## Contributing
+It is recommended any new developer take a good look at [CONTRIBUTING.md](./readmes/CONTRIBUTING.md) for more information on how to
+work with new features for this project.
