@@ -3,10 +3,10 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { existsSync, mkdirSync, readdirSync, lstatSync, copyFileSync } from 'fs';
-import { join } from 'path';
+const { existsSync, mkdirSync, readdirSync, lstatSync, copyFileSync } = require('fs');
+const { join } = require('path');
 
-export const copyFile = ({ target = '', source = '' }) => {
+const copyFile = ({ target = '', source = '' }) => {
   try {
     copyFileSync(source, target);
   } catch (e) {
@@ -32,4 +32,7 @@ const copyFolder = (source, target) => {
     });
 };
 
-export default copyFolder;
+module.exports = {
+  copyFile,
+  copyFolder
+};

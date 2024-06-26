@@ -7,7 +7,6 @@
   "files": [
     "dist"
   ],
-  "type": "module",
   "types": "dist/material-ui/index.d.ts",
   "scripts": {
     "sass:jvui": "sass --no-source-map --style=expanded scss/jv-ui.scss ${BUILD_THEMES_DIR}/jv-ui.css",
@@ -19,7 +18,7 @@
     "create:declarations": "tsc",
     "build": "dotenv -c -- run-s copy:styles styles create:declarations",
     "clean": "rm -rf dist",
-    "test": "NODE_OPTIONS='$NODE_OPTIONS --experimental-vm-modules' npx jest"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

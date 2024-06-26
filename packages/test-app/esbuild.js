@@ -1,6 +1,6 @@
-import { build } from 'esbuild';
-import { resolve } from 'path';
-import copyFolder, { copyFile } from './scripts/copy-styles-context.js';
+const { build } = require('esbuild');
+const { resolve } = require('path');
+const { copyFolder, copyFile } = require('./scripts/copy-styles-context.js');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -28,7 +28,7 @@ const sharedConfig = {
   bundle: true,
   minify: isProd,
   sourcemap: !isProd,
-  format: 'esm'
+  format: 'iife'
 };
 
 build({
