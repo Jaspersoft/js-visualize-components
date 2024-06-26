@@ -1,4 +1,4 @@
-# Development Best Practices for js-visualize-components
+# Development Best Practices for Jaspersoft Visualize Components Repository
 
 ## Yarn/NPM Run Tasks
 * If there is a task with a command `yarn workspaces run <task>`, it should be implemented in all packages
