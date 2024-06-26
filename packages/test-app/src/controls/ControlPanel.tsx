@@ -42,12 +42,10 @@ export default function ControlPanel(props: ControlPanelProps) {
             );
         }
         if (control.type === "singleValueText") {
-            // console.log('control => ', control);
             let defaultType = props.icGeneralConfig.config?.singleValueText?.type || 'text';
             if (defaultType === 'textField') {
                 defaultType = 'text';
             }
-            // console.log('defaultType => ', defaultType);
             return (
                 <SingleValueTextInputControl
                     key={control.id}
