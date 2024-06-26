@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { Divider as MuiDivider, DividerProps } from '@mui/material';
 
-export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(({
+export const Divider = forwardRef<HTMLHRElement, DividerProps>(({
     className = '', ...rest
 }, ref) => {
     return (

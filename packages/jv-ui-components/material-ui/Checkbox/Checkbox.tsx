@@ -1,16 +1,16 @@
-import * as React from 'react';
+import { forwardRef, ReactElement } from 'react';
 import {
     FormControlLabel, FormControlLabelProps, Checkbox as MuiCheckbox, CheckboxProps as MuiCheckboxProps
 } from '@mui/material';
 
 export interface CheckboxProps extends Omit<FormControlLabelProps, 'control'> {
-    control?: React.ReactElement<any, any>,
+    control?: ReactElement<any, any>,
     CheckboxProps?: MuiCheckboxProps & {
         'data-name'?: string
     }
 }
 
-export const Checkbox = React.forwardRef<HTMLDivElement, CheckboxProps>(({
+export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(({
     className = '', classes = {}, control, CheckboxProps = {}, ...rest
 }, ref) => {
 

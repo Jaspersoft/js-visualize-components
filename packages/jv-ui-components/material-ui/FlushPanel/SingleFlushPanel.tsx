@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC, ReactNode } from 'react';
 import { Drawer } from '@mui/material';
 import { IconButton } from '../IconButton/IconButton'
 import { Anchor } from '../CollapsiblePanel/collapsiblePanelTypes';
@@ -10,10 +10,10 @@ export interface SingleFlushPanelProps {
     id: string,
     onCollapse: () => void,
     label: string
-    content?: React.ReactNode
+    content?: ReactNode
 }
 
-export const SingleFlushPanel: React.FC<SingleFlushPanelProps> = (
+export const SingleFlushPanel: FC<SingleFlushPanelProps> = (
     {
         onCollapse,
         anchor,

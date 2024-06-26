@@ -1,7 +1,7 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import { Toolbar as MuiToolbar, ToolbarProps as MuiToolbarProps } from '@mui/material';
 
-export const Toolbar = React.forwardRef<HTMLDivElement, MuiToolbarProps>(({
+export const Toolbar = forwardRef<HTMLDivElement, MuiToolbarProps>(({
     className = '', ...rest
 }, ref) => {
     return (

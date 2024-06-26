@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef, PropsWithChildren } from 'react';
 import {
     Step as MuiStep,
     StepLabel as MuiStepLabel,
@@ -16,7 +16,7 @@ export interface StepComponentProps extends MuiStepProps {
     }
 }
 
-export const Step = React.forwardRef<HTMLDivElement, React.PropsWithChildren<StepComponentProps>>(({
+export const Step = forwardRef<HTMLDivElement, PropsWithChildren<StepComponentProps>>(({
     StepLabelProps = {}, TypographyProps = {}, children, ...rest
 }, ref) => {
 

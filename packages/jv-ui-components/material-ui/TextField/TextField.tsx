@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef, HTMLAttributes, ReactNode } from 'react';
 import {
     TextField as MuiTextField,
     TextFieldProps as MuiTextFieldProps,
@@ -8,7 +8,7 @@ import {
 import {
     INLINE_CLASS,
     InputSize, InputWidth, SizeToClass, WidthToClass, LABEL_CONTAINED
-} from '../types/InputTypes.js';
+} from '../types/InputTypes';
 
 export type TextFieldProps = Omit<MuiTextFieldProps, 'size' | 'error'> & {
     size?: InputSize,
@@ -19,13 +19,13 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'size' | 'error'> & {
     errorId?: string,
     textFieldClassName?: string,
     FormErrorTextProps?: Partial<MuiFormHelperTextProps>,
-    TextFieldPrefix?: React.ReactNode,
-    TextFieldSuffix?: React.ReactNode,
-    WrapperProps?: React.HTMLAttributes<HTMLDivElement> & {[key: string]: any}
+    TextFieldPrefix?: ReactNode,
+    TextFieldSuffix?: ReactNode,
+    WrapperProps?: HTMLAttributes<HTMLDivElement> & {[key: string]: any}
 }
 
-export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(({
-    size = 'medium',
+export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
+    size = 'large',
     width = 'normal',
     labelContained = false,
     InputLabelProps = {},

@@ -2,6 +2,10 @@
     "compilerOptions": {
         "jsx": "react-jsx",
         "target": "es6",
+        "declaration": true,
+        "declarationDir": "dist",
+        "baseUrl": "./",
+        "sourceMap": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
@@ -11,6 +15,11 @@
         "moduleResolution": "node",
         "module": "esnext"
     },
-    "include": ["**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["index.ts"],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "jest.config.ts",
+        "babel.config.cjs"
+    ]
 }

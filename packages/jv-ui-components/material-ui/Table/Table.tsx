@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import MuiTable, { TableProps as MuiTableProps } from '@mui/material/Table';
 
-export const Table = React.forwardRef<HTMLTableElement, MuiTableProps>(({
+export const Table = forwardRef<HTMLTableElement, MuiTableProps>(({
     className = '', ...rest
 }, ref) => {
     return (

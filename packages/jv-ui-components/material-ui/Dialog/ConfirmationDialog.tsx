@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
 import {
     Dialog as MuiDialog,
     DialogTitle as MuiDialogTitle,
@@ -22,16 +22,16 @@ export type ConfirmationDialogProps = Omit<MuiDialogProps, 'PaperProps'> & {
     DialogContentProps?: MuiDialogContentProps,
     DialogActionsProps?: MuiDialogActionsProps,
     DialogTitleTypographyProps?: MuiTypographyProps,
-    DialogSubTitleProps?: React.ComponentPropsWithoutRef<'div'>,
-    DialogContentComponent: React.ReactNode,
-    DialogActionsComponent: React.ReactNode,
-    DialogSubTitleComponent?: React.ReactNode,
+    DialogSubTitleProps?: ComponentPropsWithoutRef<'div'>,
+    DialogContentComponent: ReactNode,
+    DialogActionsComponent: ReactNode,
+    DialogSubTitleComponent?: ReactNode,
     type?: DialogSize,
     dialogTitle?: string,
     PaperProps?: PaperPropsWithOptionalDataName
 }
 
-export const ConfirmationDialog = React.forwardRef<HTMLDivElement, ConfirmationDialogProps>(({
+export const ConfirmationDialog = forwardRef<HTMLDivElement, ConfirmationDialogProps>(({
     classes = {}, type = 'general', open, className = '', disableEscapeKeyDown = true, PaperProps = {}, DialogSubTitleComponent,
     DialogTitleProps = {}, dialogTitle, DialogContentProps = {}, DialogActionsProps = {}, DialogTitleTypographyProps = {}, DialogContentComponent, DialogActionsComponent, DialogSubTitleProps = {}, ...restDialogProps
 }, ref) => {

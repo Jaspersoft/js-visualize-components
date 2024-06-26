@@ -25,12 +25,20 @@ const defaultInputControlConfig: InputControlConfig = {
 
 export class InputControls {
     private viz: any;
-    private config: InputControlConfig;
+    private _config: InputControlConfig;
     protected controlStructure: object = {};
+
+    get config(): InputControlConfig {
+        return this._config;
+    }
+
+    set config(value: InputControlConfig) {
+        this._config = value;
+    }
 
     constructor(vizjs: any, config?: InputControlConfig) {
         this.viz = vizjs;
-        this.config = config || defaultInputControlConfig;
+        this._config = config || defaultInputControlConfig;
     }
 
     public fillControlStructure = (uri: string, callbackFn?: Function) => {

@@ -2,10 +2,30 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { JVCheckbox, JVTextField } from '@jaspersoft/jv-ui-components';
 import * as React from 'react';
+import { SingleValueTextInputControl } from '@jaspersoft/jv-input-controls';
 
 export interface ControlPanelProps {
     title?: string,
     controlData: object,
+    icGeneralConfig: ConfigInputControl
+}
+
+export interface ConfigInputControl {
+    container: string,
+    success?: (success: { code: number; message: string }) => void,
+    error?: (error: { code: number; message: string }) => void,
+    exclude?: string[],
+    config?: {
+        bool?: {
+            type: 'checkbox' | 'switch'
+        },
+        singleValueText?: {
+            type: 'textField'
+        },
+        singleValueNumber?: {
+            type: 'number'
+        }
+    }
 }
 
 export default function ControlPanel(props: ControlPanelProps) {
@@ -22,11 +42,20 @@ export default function ControlPanel(props: ControlPanelProps) {
             );
         }
         if (control.type === "singleValueText") {
+            let defaultType = props.icGeneralConfig.config?.singleValueText?.type || 'text';
+            if (defaultType === 'textField') {
+                defaultType = 'text';
+            }
             return (
-                <JVTextField
+                <SingleValueTextInputControl
                     key={control.id}
+                    id={control.id}
                     label={control.label}
                     value={control.state.value}
+                    type={defaultType || 'text' }
+                    readOnly={control.readOnly}
+                    visible={control.visible}
+                    mandatory={control.mandatory}
                 />
             );
         }
