@@ -3,7 +3,7 @@ import BooleanInputControl from '../controls/BooleanInputControl'
 
 export interface BasePanelProps {
   controls: any,
-  boolType: 'checkbox' | 'switch',
+  booleanStyle?: 'checkbox' | 'switch',
 }
 
 export default function BasePanel(props: BasePanelProps): React.JSX.Element {
@@ -11,8 +11,15 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
     if (control.type === 'bool') {
       return (
         <BooleanInputControl
-          type={props.boolType}
+          id={control.id}
+          readOnly={control.readOnly}
+          visible={control.visible}
+          mandatory={control.mandatory}
+          type={control.type}
+          uri={control.uri}
           label={control.label}
+
+          styleType={props.booleanStyle}
         />
       );
     }

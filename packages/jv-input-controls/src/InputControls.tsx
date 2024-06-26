@@ -1,4 +1,5 @@
-import { BoolICType } from "./controls/BooleanInputControl";
+import * as React from 'react'
+import { BoolICType } from './controls/BooleanInputControl'
 import { createRoot } from 'react-dom'
 import BasePanel from './panels/BasePanel'
 
@@ -10,7 +11,8 @@ export interface InputControlConfig {
 };
 
 export interface InputControlPanelConfig {
-  boolean: BoolICType,
+  booleanStyle?: BoolICType,
+  //text?: TextICType,
 }
 
 const defaultInputControlConfig: InputControlConfig = {
@@ -51,13 +53,13 @@ export class InputControls {
   public renderControlPanel = (uri: string, container: HTMLElement, config?: InputControlPanelConfig) => {
     this.fillControlStructure(uri, (controls) => {
       const icRoot = createRoot(container);
-      icRoot.render(<BasePanel />);
+      icRoot.render(<BasePanel controls={controls} booleanStyle={config?.booleanStyle} />);
     });
   }
 
-  public makeControlsForReport = (resourceUri: string, container: any) => {
+  public makeControlsForReport = (resourceUri: string, container: HTMLElement) => {
     this.fillControlStructure(resourceUri);
-    container = JSON.stringify(this.controlStructure);
+    container.innerText = JSON.stringify(this.controlStructure);
   }
 
 }
