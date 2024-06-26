@@ -23,11 +23,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Build All
+      - name: Yarn Install
         run: |
           yarn install
+
+      - name: Build All
+        run: |
           yarn workspaces run build
         
       - name: Test All
         run: |
           yarn workspaces run test
+
+      - name: Clean All
+	run: |
+	  yarn workspaces run clean
