@@ -36,5 +36,5 @@ jobs:
           yarn workspaces run test
 
       - name: Clean All
-	run: |
-	  yarn workspaces run clean
+      	run: |
+      	  yarn workspaces run clean
