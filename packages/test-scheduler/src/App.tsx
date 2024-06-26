@@ -3,12 +3,9 @@ import Scheduler from "@jaspersoft/jv-scheduler";
 
 function App() {
     debugger;
-    Scheduler.renderScheduler('root');
 
   return (
-    <div>
-Hello
-    </div>
+      <>{Scheduler.renderScheduler('root')}</>
   );
 }
 
