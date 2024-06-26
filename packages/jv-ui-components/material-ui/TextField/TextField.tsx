@@ -25,7 +25,7 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'size' | 'error'> & {
 }
 
 export const TextField = forwardRef<HTMLDivElement, TextFieldProps>(({
-    size = 'medium',
+    size = 'large',
     width = 'normal',
     labelContained = false,
     InputLabelProps = {},
