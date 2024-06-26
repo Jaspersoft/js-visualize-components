@@ -49,9 +49,13 @@ export default function ControlPanel(props: ControlPanelProps) {
             return (
                 <SingleValueTextInputControl
                     key={control.id}
+                    id={control.id}
                     label={control.label}
                     value={control.state.value}
                     type={defaultType || 'text' }
+                    readOnly={control.readOnly}
+                    visible={control.visible}
+                    mandatory={control.mandatory}
                 />
             );
         }
