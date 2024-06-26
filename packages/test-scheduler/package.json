@@ -19,6 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "clean": "echo \"Nothing to clean\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "echo \"Skipping tests\"",
