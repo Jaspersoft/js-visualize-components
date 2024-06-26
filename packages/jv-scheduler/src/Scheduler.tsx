@@ -1,8 +1,8 @@
-import { createRoot } from 'react-dom/client';
+import Tabs from './components/Tabs';
 import React from "react";
 const Scheduler = {
     renderScheduler: (container: string) => {
-        return <h1>Hello</h1>
+        return <Tabs/>
     }
 }
 
