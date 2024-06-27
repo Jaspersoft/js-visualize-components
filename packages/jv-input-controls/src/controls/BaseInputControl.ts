@@ -1,4 +1,4 @@
-export type ICType = "bool" | "singleValueText" | "singleValueNumber" | "singleValueDate" | "singleValueDatetime" | "singleValueTime" | "singleSelect" | "singleSelectRadio" | "multiSelect" | "multiSelectCheckbox" | undefined;
+export type ICType = string | 'bool' | 'singleValueText' | 'singleValueNumber' | 'singleValueDate' | 'singleValueDatetime' | 'singleValueTime' | 'singleSelect' | 'singleSelectRadio' | 'multiSelect' | 'multiSelectCheckbox' | undefined;
 
 export interface ICOption {
   selected?: boolean;
@@ -19,7 +19,7 @@ export interface ICValidationRule {
   errorMessage?: string;
 }
 
-export type ICDataTypeType = "date" | "datetime" | "time" | "text" | "number" | undefined;
+export type ICDataTypeType = string | 'date' | 'datetime' | 'time' | 'text' | 'number' | undefined;
 
 export interface ICDataType {
   type?: ICDataTypeType;

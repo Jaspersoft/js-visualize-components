@@ -6,7 +6,6 @@ import { BaseInputControlProps } from './BaseInputControl';
 export type BoolICType = "switch" | "checkbox";
 
 export interface BooleanInputControlProps extends BaseInputControlProps {
-  label: string;
   styleType?: BoolICType;
 }
 
