@@ -1,9 +1,9 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import {
     Tab as MuiTab, TabProps as MuiTabProps
 } from '@mui/material';
 
-export const Tab = React.forwardRef<HTMLDivElement, MuiTabProps>(({
+export const Tab = forwardRef<HTMLDivElement, MuiTabProps>(({
     className = '', ...rest
 }, ref) => {
     return (

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import MuiAutocomplete, { AutocompleteProps as MuiAutocompleteProps } from '@mui/material/Autocomplete';
 import { Paper, PaperProps } from '@mui/material';
+import MuiAutocomplete, { AutocompleteProps as MuiAutocompleteProps } from '@mui/material/Autocomplete';
+import { forwardRef, ReactElement, Ref, RefAttributes } from 'react';
 
 export type AutocompleteProps<
     T,
@@ -14,7 +14,7 @@ function AutoCompleteFunc<
     Multiple extends boolean | undefined = undefined,
     DisableClearable extends boolean | undefined = undefined,
     FreeSolo extends boolean | undefined = undefined
-    >({ paperComponentProps = {}, ...rest }: AutocompleteProps< T, Multiple, DisableClearable, FreeSolo>, ref: React.Ref<HTMLDivElement>) {
+    >({ paperComponentProps = {}, ...rest }: AutocompleteProps< T, Multiple, DisableClearable, FreeSolo>, ref: Ref<HTMLDivElement>) {
     const { elevation = 8, ...restPaperProps } = paperComponentProps
     return (
         <MuiAutocomplete
@@ -26,10 +26,10 @@ function AutoCompleteFunc<
         />
     )
 }
-export const Autocomplete = React.forwardRef(AutoCompleteFunc) as
+export const Autocomplete = forwardRef(AutoCompleteFunc) as
     <
         T,
         Multiple extends boolean | undefined = undefined,
         DisableClearable extends boolean | undefined = undefined,
         FreeSolo extends boolean | undefined = undefined
-        >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> & React.RefAttributes<HTMLDivElement>) => React.ReactElement;
+        >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> & RefAttributes<HTMLDivElement>) => ReactElement;

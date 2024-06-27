@@ -22,14 +22,22 @@ const defaultInputControlConfig: InputControlConfig = {
 };
 
 export class InputControls {
-  private viz: any;
-  private config: InputControlConfig;
-  protected controlStructure: object = {};
+    private viz: any;
+    private _config: InputControlConfig;
+    protected controlStructure: object = {};
 
-  constructor(vizjs: any, config?: InputControlConfig) {
-    this.viz = vizjs;
-    this.config = config || defaultInputControlConfig;
-  }
+    get config(): InputControlConfig {
+        return this._config;
+    }
+
+    set config(value: InputControlConfig) {
+        this._config = value;
+    }
+
+    constructor(vizjs: any, config?: InputControlConfig) {
+        this.viz = vizjs;
+        this._config = config || defaultInputControlConfig;
+    }
 
   public fillControlStructure = (uri: string, callbackFn?: Function) => {
     this.viz.inputControls({

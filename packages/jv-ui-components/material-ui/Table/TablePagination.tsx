@@ -1,11 +1,11 @@
-import React from 'react';
+import { ElementType, forwardRef } from 'react';
 import MuiTablePagination, { TablePaginationProps as MuiTablePaginationProps } from '@mui/material/TablePagination';
 import { TableCellBaseProps } from '@mui/material';
 
 type TablePaginationProps = MuiTablePaginationProps & {
-    component: string | React.ElementType<TableCellBaseProps>
+    component: string | ElementType<TableCellBaseProps>
 }
-export const TablePagination = React.forwardRef<HTMLElement, TablePaginationProps>(({
+export const TablePagination = forwardRef<HTMLElement, TablePaginationProps>(({
     ...rest
 }, ref) => {
     const { backIconButtonProps = {}, nextIconButtonProps = {}, ...restProps } = rest;

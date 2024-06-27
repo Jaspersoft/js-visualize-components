@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { forwardRef, PropsWithChildren } from 'react';
 import {
     Stepper as MuiStepper,
     StepperProps as MuiStepperProps
 } from '@mui/material';
 
-export const Stepper = React.forwardRef<HTMLDivElement, React.PropsWithChildren<MuiStepperProps>>(({
+export const Stepper = forwardRef<HTMLDivElement, PropsWithChildren<MuiStepperProps>>(({
     className, children, ...rest
 }, ref) => {
 

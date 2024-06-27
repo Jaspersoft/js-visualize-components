@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { Typography as MuiTypography, TypographyProps as MuiTypographyProps } from '@mui/material';
 
 export type TypographyProps = Omit<MuiTypographyProps, 'variant'> & {
@@ -20,7 +20,7 @@ const getVariantAndClassName = (variant: TypographyProps['variant']): [MuiTypogr
     }
 }
 
-export const Typography = React.forwardRef<HTMLElement, TypographyProps>(({ variant, className = '', ...rest }, ref) => {
+export const Typography = forwardRef<HTMLElement, TypographyProps>(({ variant, className = '', ...rest }, ref) => {
     const [effectiveVariant, variantClassName] = getVariantAndClassName(variant);
 
     return (

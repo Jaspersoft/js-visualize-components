@@ -1,11 +1,11 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import MuiTableRow, { TableRowProps as MuiTableRowProps } from '@mui/material/TableRow';
 
 export type TableRowProps = MuiTableRowProps & {
     border?: boolean,
     headRow?: boolean
 };
-export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(({
+export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(({
     className = '', border = true, headRow = false, ...rest
 }, ref) => {
     const borderClass = !border ? 'jv-mTable-rowNoborder' : '';

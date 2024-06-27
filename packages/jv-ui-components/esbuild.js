@@ -6,34 +6,31 @@ const { dependencies } = packageJson;
 const { Generator } = npmDts;
 
 new Generator({
-  entry: 'index.ts',
-  output: 'dist/index.d.ts'
+  entry: 'material-ui/index.ts',
+  output: 'dist/material-ui/index.d.ts'
 }).generate()
   .catch(console.error);
 
 const isProd = process.env.NODE_ENV === 'production';
 
 const sharedConfig = {
-  entryPoints: ["index.ts"],
+  entryPoints: [ 'material-ui/index.ts' ],
   bundle: true,
   minify: isProd,
-  sourcemap: !isProd,
-  format: 'esm',
   tsconfig: 'tsconfig.json',
-  target: 'es6',
+  sourcemap: !isProd,
   external: Object.keys(dependencies)
 };
 
 build({
   ...sharedConfig,
   platform: 'browser',
-  outfile: 'dist/index.js'
-}).catch(console.error);
+  outfile: 'dist/material-ui/index.js'
+});
 
 build({
   ...sharedConfig,
-  outfile: 'dist/index.esm.js',
+  outfile: 'dist/material-ui/index.esm.js',
   platform: 'browser',
   format: 'esm'// for ESM
-}).catch(console.error);
-
+});

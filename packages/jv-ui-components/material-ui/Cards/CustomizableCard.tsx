@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef, ReactNode } from 'react';
 import {
     Card as MuiCard, CardContent as MuiCardContent, CardHeader as MuiCardHeader, CardProps as MuiCardProps, CardContentProps as MuiCardContentProps, CardHeaderProps as MuiCardHeaderProps
 } from '@mui/material';
@@ -9,10 +9,10 @@ export type CardProps = MuiCardProps & {
     isCardHeader?: boolean
     cardHeaderProps?: MuiCardHeaderProps,
     cardContentProps?: MuiCardContentProps,
-    paddedCardBodyContent?: React.ReactNode
+    paddedCardBodyContent?: ReactNode
 }
 
-export const CustomizableCard = React.forwardRef<HTMLDivElement, CardProps>(({
+export const CustomizableCard = forwardRef<HTMLDivElement, CardProps>(({
     isCardHeader = false, isLastOrSingleCard = false, cardOverflow = false, paddedCardBodyContent, variant = 'elevation', className: cardClassname = '', elevation = 2, children, cardHeaderProps = {}, cardContentProps = {}, ...rest
 }, ref) => {
 

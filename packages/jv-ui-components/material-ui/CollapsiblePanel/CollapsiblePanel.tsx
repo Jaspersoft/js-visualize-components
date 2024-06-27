@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef, HTMLAttributes, useRef } from 'react';
 import {
     useCollapsiblePanelState
 } from './useCollapsiblePanelState';
@@ -30,13 +30,13 @@ export interface CollapsiblePanelProps {
     onExpansionStateChanged?: OnExpansionStateChangedCallback,
     onExpandClick?: OnExpandCollapseClick,
     onCollapseClick?: OnExpandCollapseClick,
-    wrapperProps?: React.HTMLAttributes<HTMLDivElement>
+    wrapperProps?: HTMLAttributes<HTMLDivElement>
 }
 
 const emptyFn = () => {};
 const getMaxWidth = () => { return window.innerWidth };
 
-export const CollapsiblePanel = React.forwardRef<HTMLDivElement, CollapsiblePanelProps>(
+export const CollapsiblePanel = forwardRef<HTMLDivElement, CollapsiblePanelProps>(
     ({
         panels,
         anchor = 'right',
@@ -56,7 +56,7 @@ export const CollapsiblePanel = React.forwardRef<HTMLDivElement, CollapsiblePane
         useToggleExpansionStateLayoutEffect(onExpansionStateChanged, panelsState);
         useResizeStopLayoutEffect(onResizeStop, panelsState);
 
-        const panelTabsRef = React.useRef<HTMLDivElement>(null);
+        const panelTabsRef = useRef<HTMLDivElement>(null);
         const tabsPanelWidth = useTabsPanelWidth(panelTabsRef, panelsState);
 
         const panelsContainer = (
