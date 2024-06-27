@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { JVSwitch, JVCheckbox } from '@jaspersoft/jv-ui-components'
+import { Switch as JVSwitch } from '@jaspersoft/jv-ui-components/material-ui/Switch/Switch'
+import { Checkbox as JVCheckbox } from '@jaspersoft/jv-ui-components/material-ui/Checkbox/Checkbox'
 import { BaseInputControlProps } from './BaseInputControl';
 
 export type BoolICType = "switch" | "checkbox";
 
 export interface BooleanInputControlProps extends BaseInputControlProps {
+  label: string;
   styleType?: BoolICType;
 }
 

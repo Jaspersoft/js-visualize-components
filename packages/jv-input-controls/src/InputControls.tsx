@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { BoolICType } from './controls/BooleanInputControl'
-import { createRoot } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import BasePanel from './panels/BasePanel'
+import { InputControlCollection } from './controls/BaseInputControl';
 
 export interface InputControlConfig {
   hostname?: string,
@@ -22,22 +23,22 @@ const defaultInputControlConfig: InputControlConfig = {
 };
 
 export class InputControls {
-    private viz: any;
-    private _config: InputControlConfig;
-    protected controlStructure: object = {};
+  private viz: any;
+  private _config: InputControlConfig;
+  protected controlStructure: object = {};
 
-    get config(): InputControlConfig {
-        return this._config;
-    }
+  get config(): InputControlConfig {
+    return this._config;
+  }
 
-    set config(value: InputControlConfig) {
-        this._config = value;
-    }
+  set config(value: InputControlConfig) {
+    this._config = value;
+  }
 
-    constructor(vizjs: any, config?: InputControlConfig) {
-        this.viz = vizjs;
-        this._config = config || defaultInputControlConfig;
-    }
+  constructor(vizjs: any, config?: InputControlConfig) {
+    this.viz = vizjs;
+    this._config = config || defaultInputControlConfig;
+  }
 
   public fillControlStructure = (uri: string, callbackFn?: Function) => {
     this.viz.inputControls({
@@ -59,7 +60,7 @@ export class InputControls {
   }
 
   public renderControlPanel = (uri: string, container: HTMLElement, config?: InputControlPanelConfig) => {
-    this.fillControlStructure(uri, (controls) => {
+    this.fillControlStructure(uri, (controls: InputControlCollection) => {
       const icRoot = createRoot(container);
       icRoot.render(<BasePanel controls={controls} booleanStyle={config?.booleanStyle} />);
     });
