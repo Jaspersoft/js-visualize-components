@@ -1,8 +1,13 @@
 import Tabs from './components/Tabs';
 import React from "react";
+import ReactDOM from "react-dom/client";
 const Scheduler = {
     renderScheduler: (container: string) => {
-        return <Tabs/>
+        const root = ReactDOM.createRoot(
+            document.getElementById('root') as HTMLElement
+        );
+// @ts-ignore
+        root.render(<Tabs />);
     }
 }
 
