@@ -32,6 +32,7 @@ export interface ICDataType {
 }
 
 export interface BaseInputControlProps {
+  children?: JSX.Element[];
   id: string;
   type: ICType;
   label: string;

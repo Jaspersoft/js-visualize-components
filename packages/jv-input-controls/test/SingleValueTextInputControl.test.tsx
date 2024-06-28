@@ -14,7 +14,7 @@ const requiredProps = {
   type: 'singleValueText',
 };
 
-const getTextIC = (options: object): JSX.Element => {
+const getTextIC = (options?: object): JSX.Element => {
   return (
     <SingleValueTextInputControl {...{ ...requiredProps, ...options }} />
   );
@@ -23,7 +23,7 @@ const getTextIC = (options: object): JSX.Element => {
 describe('SingleValueTextInputControls tests', () => {
 
   test('SingleValueTextInputControls is rendered correctly', () => {
-    render(getTextIC({}));
+    render(getTextIC());
     const buttonElement = screen.getByRole('textbox');
     expect(buttonElement).toBeInTheDocument();
   });
