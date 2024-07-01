@@ -6,10 +6,10 @@
 export { Accordion as JVAccordion, AccordionProps as JVAccordionProps, AccordionSize as JVAccordionSize } from './Accordion/Accordion';
 export { AccordionFull as JVAccordionFull, AccordionFullProps as JVAccordionFullProps } from './Accordion/AccordionFull';
 export {
-    AccordionDetails as JVAccordionDetails, AccordionDetailsProps as JVAccordionDetailsProps
+  AccordionDetails as JVAccordionDetails, AccordionDetailsProps as JVAccordionDetailsProps
 } from './AccordionDetails/AccordionDetails';
 export {
-    AccordionSummary as JVAccordionSummary, AccordionSummaryProps as JVAccordionSummaryProps
+  AccordionSummary as JVAccordionSummary, AccordionSummaryProps as JVAccordionSummaryProps
 } from './AccordionSummary/AccordionSummary';
 export { Autocomplete as JVAutocomplete, AutocompleteProps as JVAutocompleteProps } from './Autocomplete/Autocomplete';
 export { Badge as JVBadge } from './Badge/Badge';
@@ -21,14 +21,14 @@ export { CardProps as JVCardProps } from './Cards/CustomizableCard';
 export { CheckboxProps as JVCheckboxProps, Checkbox as JVCheckbox } from './Checkbox/Checkbox';
 export { CheckboxGroup as JVCheckboxGroup, CheckboxGroupProps as JVCheckboxGroupProps } from './Checkbox/CheckboxGroup';
 export {
-    ClickAwayListener as JVClickAwayListener, ClickAwayListenerProps as JVClickAwayListenerProps
+  ClickAwayListener as JVClickAwayListener, ClickAwayListenerProps as JVClickAwayListenerProps
 } from './ClickAwayListener/ClickAwayListener';
 export { Collapse as JVCollapse } from './Collapse/Collapse';
 export {
-    CollapsiblePanel as JVCollapsiblePanel, CollapsiblePanelProps as JVCollapsiblePanelProps
+  CollapsiblePanel as JVCollapsiblePanel, CollapsiblePanelProps as JVCollapsiblePanelProps
 } from './CollapsiblePanel/CollapsiblePanel';
 export {
-    CollapsiblePanelTabs as JVCollapsiblePanelTabs, CollapsiblePanelTabsProps as JVCollapsiblePanelTabsProps
+  CollapsiblePanelTabs as JVCollapsiblePanelTabs, CollapsiblePanelTabsProps as JVCollapsiblePanelTabsProps
 } from './CollapsiblePanel/CollapsiblePanelTabs';
 export { PanelsContainer as JVPanelsContainer, PanelsContainerProps as JVPanelsContainerProps } from './CollapsiblePanel/PanelsContainer';
 export { SinglePanel as JVSinglePanel, SinglePanelProps as JVSinglePanelProps } from './CollapsiblePanel/SinglePanel';
@@ -36,44 +36,44 @@ export { SubPanel as JVSubPanel, SubPanelProps as JVSubPanelProps } from './Coll
 export { SubPanelsList as JVSubPanelsList, SubPanelsListProps as JVSubPanelsListProps } from './CollapsiblePanel/SubPanelsList';
 export { TabsList as JVTabsList, TabsListProps as JVTabsListProps } from './CollapsiblePanel/TabsList';
 export {
-    useCollapsiblePanelExpansionLayoutEffect as JVUseCollapsiblePanelExpansionLayoutEffect
+  useCollapsiblePanelExpansionLayoutEffect as JVUseCollapsiblePanelExpansionLayoutEffect
 } from './CollapsiblePanel/useCollapsiblePanelExpansionLayoutEffect';
 export {
-    PanelsState as JVPanelsState,
-    SetPanelState as JVSetPanelState,
-    isPanelExpanded as JVisPanelExpanded,
-    SetSubPanelState as JVSetSubPanelState,
-    getPanelSizeState as JVGetPanelSizeState,
-    PanelState as JVPanelState,
-    SubPanelState as JVSubPanelState,
-    isPanelFullyExpanded as JVisPanelFullyExpanded,
-    PANEL_MARGIN_RIGHT as JV_PANEL_MARGIN_RIGHT,
-    getLastOpenSubPanelIndex as JVGetLastOpenSubPanelIndex,
-    useCollapsiblePanelState as JVUseCollapsiblePanelState
+  PanelsState as JVPanelsState,
+  SetPanelState as JVSetPanelState,
+  isPanelExpanded as JVisPanelExpanded,
+  SetSubPanelState as JVSetSubPanelState,
+  getPanelSizeState as JVGetPanelSizeState,
+  PanelState as JVPanelState,
+  SubPanelState as JVSubPanelState,
+  isPanelFullyExpanded as JVisPanelFullyExpanded,
+  PANEL_MARGIN_RIGHT as JV_PANEL_MARGIN_RIGHT,
+  getLastOpenSubPanelIndex as JVGetLastOpenSubPanelIndex,
+  useCollapsiblePanelState as JVUseCollapsiblePanelState
 } from './CollapsiblePanel/useCollapsiblePanelState';
 export {
-    generateInitialState as JVGenerateInitialState,
-    useMaxWidthState as JVUseMaxWidthState,
-    WINDOW_RESIZE_MAX_WIDTH_CALC_DEBOUNCE as JV_WINDOW_RESIZE_MAX_WIDTH_CALC_DEBOUNCE
+  generateInitialState as JVGenerateInitialState,
+  useMaxWidthState as JVUseMaxWidthState,
+  WINDOW_RESIZE_MAX_WIDTH_CALC_DEBOUNCE as JV_WINDOW_RESIZE_MAX_WIDTH_CALC_DEBOUNCE
 } from './CollapsiblePanel/useMaxWidthState';
 export { useResizeStopLayoutEffect as JVUseResizeStopLayoutEffect } from './CollapsiblePanel/useResizeStopLayoutEffect';
 export { useTabsPanelWidth as JVUseTabsPanelWidth } from './CollapsiblePanel/useTabsPanelWidth';
 export {
-    useToggleExpansionStateLayoutEffect as JVUseToggleExpansionStateLayoutEffect
+  useToggleExpansionStateLayoutEffect as JVUseToggleExpansionStateLayoutEffect
 } from './CollapsiblePanel/useToggleExpansionStateLayoutEffect';
 export { ColorPicker as JVColorPicker, ColorPickerProps as JVColorPickerProps } from './ColorPicker/ColorPicker';
 export { ColorPickerSample as JVColorPickerSample } from './ColorPicker/ColorPickerSample';
 export {
-    ConfirmationDialog as JVConfirmationDialog, ConfirmationDialogProps as JVConfirmationDialogProps
+  ConfirmationDialog as JVConfirmationDialog, ConfirmationDialogProps as JVConfirmationDialogProps
 } from './Dialog/ConfirmationDialog';
 export { Divider as JVDivider } from './Divider/Divider';
 export { Drawer as JVDrawer } from './Drawer/Drawer';
 export {
-    CollapsibleFlushPanelTabs as JVCollapsibleFlushPanelTabs, CollapsibleFlushPanelTabsProps as JVCollapsibleFlushPanelTabsProps
+  CollapsibleFlushPanelTabs as JVCollapsibleFlushPanelTabs, CollapsibleFlushPanelTabsProps as JVCollapsibleFlushPanelTabsProps
 } from './FlushPanel/CollapsibleFlushPanelTabs';
 export { FlushPanel as JVFlushPanel, FlushPanelProps as JVFlushPanelProps } from './FlushPanel/FlushPanel';
 export {
-    FlushPanelsContainer as JVFlushPanelsContainer, FlushPanelsContainerProps as JVFlushPanelsContainerProps
+  FlushPanelsContainer as JVFlushPanelsContainer, FlushPanelsContainerProps as JVFlushPanelsContainerProps
 } from './FlushPanel/FlushPanelsContainer';
 export { SingleFlushPanel as JVSingleFlushPanel, SingleFlushPanelProps as JVSingleFlushPanelProps } from './FlushPanel/SingleFlushPanel';
 export { TabsListFlush as JVTabsListFlush, TabsListFlushProps as JVTabsListFlushProps } from './FlushPanel/TabsListFlush';
@@ -102,12 +102,12 @@ export { Step as JVStep, StepComponentProps as JVStepComponentProps } from './St
 export { Stepper as JVStepper } from './Stepper/Stepper';
 export { StyleEngineProvider as JVStyleEngineProvider } from './StyleEngineProvider/StyleEngineProvider';
 export {
-    StylesProvider as JVStylesProvider,
-    CreateStylesProviderType as JVCreateStylesProviderType,
-    createStylesProvider as JVCreateStylesProvider,
-    CreateMuiThemeOptions as JVCreateMuiThemeOptions,
-    ThemeProviderProps as JVThemeProviderProps,
-    GenerateClassNameOptions as JVGenerateClassNameOptions
+  StylesProvider as JVStylesProvider,
+  CreateStylesProviderType as JVCreateStylesProviderType,
+  createStylesProvider as JVCreateStylesProvider,
+  CreateMuiThemeOptions as JVCreateMuiThemeOptions,
+  ThemeProviderProps as JVThemeProviderProps,
+  GenerateClassNameOptions as JVGenerateClassNameOptions
 } from './styles/StylesProvider';
 
 export { Switch as JVSwitch, SwitchProps as JVSwitchProps } from './Switch/Switch';

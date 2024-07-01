@@ -14,7 +14,7 @@ new Generator({
 const isProd = process.env.NODE_ENV === 'production';
 
 const sharedConfig = {
-  entryPoints: [ 'index.ts' ],
+  entryPoints: ["index.ts"],
   bundle: true,
   minify: isProd,
   sourcemap: !isProd,
