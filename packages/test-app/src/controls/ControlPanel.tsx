@@ -2,7 +2,6 @@ import * as React from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { JVCheckbox, JVTextField } from '@jaspersoft/jv-ui-components';
-import * as React from 'react';
 import { SingleValueTextInputControl } from '@jaspersoft/jv-input-controls';
 
 export interface ControlPanelProps {

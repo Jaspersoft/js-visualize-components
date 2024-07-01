@@ -14,7 +14,7 @@ const requiredProps = {
   type: 'singleValueText',
 };
 
-const getTextIC = (options?: object): JSX.Element => {
+const getTextIC = (options?: object): React.JSX.Element => {
   return (
     <SingleValueTextInputControl {...{ ...requiredProps, ...options }} />
   );
