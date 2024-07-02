@@ -1,6 +1,8 @@
 import { TextField as JVTextField } from '@jaspersoft/jv-ui-components/material-ui/TextField/TextField';
 import { ChangeEvent, useState } from 'react';
-import { BaseInputControlProps } from './BaseInputControl';
+import BaseInputControl, { BaseInputControlProps } from './BaseInputControl';
+
+export type TextFieldICType = 'textField';
 
 export interface TextFieldICProps extends BaseInputControlProps {
   defaultValue?: string;
@@ -36,15 +38,17 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     cssClasses += ' jv-uVisibility-hide';
   }
   const isRequiredError = mandatory && currentValue.trim().length === 0;
-  return <JVTextField variant={props.variant || 'outlined'}
-    value={currentValue}
-    size={theSize}
-    onChange={defaultOnChangeHandler}
-    className={cssClasses}
-    InputProps={inputProps}
-    required={mandatory}
-    error={isRequiredError}
-    {...remainingProps}
-  />;
+  return <BaseInputControl {...{ ...remainingProps, mandatory, readOnly, visible }}>
+    <JVTextField variant={props.variant || 'outlined'}
+                 value={currentValue}
+                 size={theSize}
+                 onChange={defaultOnChangeHandler}
+                 className={cssClasses}
+                 InputProps={inputProps}
+                 required={mandatory}
+                 error={isRequiredError}
+                 {...remainingProps}
+    />
+  </BaseInputControl>;
 };
 

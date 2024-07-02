@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { BoolICType } from './controls/BooleanInputControl'
 import { createRoot } from 'react-dom/client'
+import { TextFieldICType } from './controls/SingleValueTextInputControl';
 import BasePanel from './panels/BasePanel'
 import { InputControlCollection } from './controls/BaseInputControl';
 
@@ -11,9 +12,23 @@ export interface InputControlConfig {
   tenant: string,
 };
 
+export interface InputControlUserConfig {
+  bool?: {
+    type: BoolICType
+  },
+  singleValueText?: {
+    type: TextFieldICType
+  },
+  singleValueNumber?: {
+    type: 'number'
+  }
+}
+
 export interface InputControlPanelConfig {
-  booleanStyle?: BoolICType,
-  //text?: TextICType,
+  success?: (success: { code: number; message: string }) => void,
+  error?: (error: { code: number; message: string }) => void,
+  exclude?: string[],
+  config?: InputControlUserConfig
 }
 
 const defaultInputControlConfig: InputControlConfig = {
@@ -59,10 +74,18 @@ export class InputControls {
     return this.controlStructure;
   }
 
-  public renderControlPanel = (uri: string, container: HTMLElement, config?: InputControlPanelConfig) => {
+  public renderControlPanel = (uri: string, container: HTMLElement, icPanelDef?: InputControlPanelConfig) => {
     this.fillControlStructure(uri, (controls: InputControlCollection) => {
-      const icRoot = createRoot(container);
-      icRoot.render(<BasePanel controls={controls} booleanStyle={config?.booleanStyle} />);
+      try {
+        const icRoot = createRoot(container);
+        // TODO: we have to consider the exclude/include property from the icPanelDef before providing the controls prop
+        icRoot.render(<BasePanel controls={controls} config={icPanelDef?.config} />);
+        if (icPanelDef?.success) {
+          icPanelDef?.success.call(null, { code: 200, message: 'Controls rendered successfully' });
+        }
+      } catch (e) {
+        icPanelDef?.error && icPanelDef?.error.call(null, { code: 500, message: 'An error occurred when rendering the controls' });
+      }
     });
   }
 
