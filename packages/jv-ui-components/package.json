@@ -41,6 +41,8 @@
     "@mui/styled-engine": "5.15.11",
     "@mui/system": "5.15.12",
     "@mui/utils": "5.15.12",
+    "@mui/x-date-pickers": "^7.6.2",
+    "dayjs": "^1.11.11",
     "css-vendor": "2.0.8",
     "dom-helpers": "5.2.0",
     "focus-visible": "5.2.0",

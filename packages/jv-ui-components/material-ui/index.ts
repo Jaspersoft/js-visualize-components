@@ -66,6 +66,8 @@ export { ColorPickerSample as JVColorPickerSample } from './ColorPicker/ColorPic
 export {
   ConfirmationDialog as JVConfirmationDialog, ConfirmationDialogProps as JVConfirmationDialogProps
 } from './Dialog/ConfirmationDialog';
+export { DatePicker as JVDatePicker } from './Date/DatePicker';
+export { DateProvider as JVDateProvider } from './Date/DateProvider';
 export { Divider as JVDivider } from './Divider/Divider';
 export { Drawer as JVDrawer } from './Drawer/Drawer';
 export {
