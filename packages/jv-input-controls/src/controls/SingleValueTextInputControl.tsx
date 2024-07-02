@@ -2,6 +2,8 @@ import { TextField as JVTextField } from '@jaspersoft/jv-ui-components/material-
 import { ChangeEvent, useState } from 'react';
 import BaseInputControl, { BaseInputControlProps } from './BaseInputControl';
 
+export type TextFieldICType = 'textField';
+
 export interface TextFieldICProps extends BaseInputControlProps {
   defaultValue?: string;
   value?: string;

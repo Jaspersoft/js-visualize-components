@@ -1,14 +1,7 @@
 import InputControls from '@jaspersoft/jv-input-controls';
+import { Authentication, VisualizeFactory, visualizejsLoader, VisualizeType } from '@jaspersoft/jv-tools';
 import { useEffect, useState } from 'react';
-
-import {
-  visualizejsLoader,
-  Authentication,
-  VisualizeFactory,
-  VisualizeType
-} from '@jaspersoft/jv-tools';
-import MuiTest from './Mui-test.js';
-import ControlPanel, { ConfigInputControl } from './controls/ControlPanel.js';
+import ControlPanel from './controls/ControlPanel.js';
 
 export interface AppConfig {
   title: string,
@@ -24,33 +17,11 @@ const reportUri = '/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report';
 
 const visualizeUrl = 'https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js';
 
-const DEFAULT_CONFIG: ConfigInputControl = {
-    container: '#containerID',
-    success: (success: { code: number; message: string }) => {
-        console.log('success => ', success);
-    },
-    error: (error: { code: number; message: string }) => {
-        console.log('error => ', error);
-    },
-    exclude: [],
-    config: {
-        bool: {
-            type: 'checkbox'
-        },
-        singleValueText: {
-            type: 'textField'
-        },
-        singleValueNumber: {
-            type: 'number'
-        }
-    }
-};
-
 export default function App(props: AppConfig) {
   const [controlStruct, setControlStruct] = useState({});
   const [visualizeFactoryContainer, setVisualizeFactoryContainer] = useState(null as { viz: VisualizeFactory } | null);
   const [vContainer, setVContainer] = useState(null as { v: VisualizeType } | null);
-  const [plugin, setPlugin] = useState();
+  const [plugin, setPlugin] = useState<InputControls>();
 
   useEffect(() => {
     const loadVisualize = visualizejsLoader(visualizeUrl);
@@ -94,8 +65,7 @@ export default function App(props: AppConfig) {
           <h1> {props.title || 'Title Goes Here'}</h1>
           <div id="controlBox">
               <ControlPanel title={reportUri}
-                            controlData={controlStruct}
-                            icGeneralConfig={DEFAULT_CONFIG}/>
+                            controlData={controlStruct}/>
           </div>
       </div>
     );
