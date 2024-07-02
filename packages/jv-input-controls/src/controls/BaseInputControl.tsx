@@ -1,4 +1,6 @@
-//*********** STARTS THE TS FILE
+import * as React from 'react'
+import { useState, useEffect } from 'react';
+
 export type ICType = string | 'bool' | 'singleValueText' | 'singleValueNumber' | 'singleValueDate' | 'singleValueDatetime' | 'singleValueTime' | 'singleSelect' | 'singleSelectRadio' | 'multiSelect' | 'multiSelectCheckbox' | undefined;
 
 export interface ICOption {
@@ -52,10 +54,6 @@ export interface BaseInputControlProps {
 export interface InputControlCollection {
   inputControl: BaseInputControlProps[];
 }
-//*********** ENDS THE TS FILE
-
-import * as React from 'react'
-import { useState, useEffect } from 'react';
 
 const CONTAINER_CLASS = 'jv-uInputControl-container';
 const INVISIBLE_CLASS = 'jv-uVisibility-hide';
