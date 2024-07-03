@@ -1,10 +1,10 @@
 import React from 'react';
-import { Tabs } from "@jaspersoft/jv-scheduler";
+import { Scheduler } from "@jaspersoft/jv-scheduler";
 
 function App() {
 
   return (
-      <Tabs/>
+      <Scheduler/>
   );
 }
 
