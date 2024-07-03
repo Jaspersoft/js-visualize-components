@@ -55,11 +55,24 @@ export default function App(props: AppConfig) {
 
   useEffect(() => {
     if (plugin === undefined) return;
+    // plugin.renderControlPanel(
+    //   reportUri,
+    //   document.getElementById('controls-section') as HTMLElement,
+    //   {
+    //     success: ({ code, message }) => {
+    //       console.log('Success code: ', code,', message: ', message);
+    //     },
+    //     error: ({ code, message }) => {
+    //       console.log('Error: ', code, message);
+    //     }
+    //   }
+    // )
     plugin.fillControlStructure(reportUri, (controls: object) => {
       setControlStruct(controls);
     });
   }, [plugin]);
 
+  // return (<div id="controls-section"></div>);
     return (
       <div className="appBox">
           <h1> {props.title || 'Title Goes Here'}</h1>

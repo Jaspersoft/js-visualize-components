@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { JVCheckbox, JVTextField } from '@jaspersoft/jv-ui-components';
+import { JVCheckbox, JVTextField, JVDatePicker } from '@jaspersoft/jv-ui-components';
 import { SingleValueTextInputControl } from '@jaspersoft/jv-input-controls';
 
 export interface ControlPanelProps {
@@ -46,6 +44,18 @@ export default function ControlPanel(props: ControlPanelProps) {
         />
       );
     }
+
+    if (control.type === 'singleValueDate') {
+      const dateToProvide = '2022-04-17';
+      return (
+        <JVDatePicker key={control.id}
+                      label={control.label}
+                      value={dateToProvide}
+                      views={[ 'year', 'month', 'day' ]}
+                      readOnly={control.readOnly}
+        />
+      )
+    }
   }
 
   const buildControls = (controlMap: any) => {
@@ -56,11 +66,9 @@ export default function ControlPanel(props: ControlPanelProps) {
 
   return (
     <div className="controls">
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
         <ul className="control-list">
           {buildControls(props.controlData)}
         </ul>
-      </LocalizationProvider>
     </div>
   );
 }
