@@ -8,11 +8,11 @@ export interface ButtonProps {
 const Button = (props: ButtonProps) => {
     const [showtext, setShowtext] = useState(true);
     // @ts-ignore
-    return (showtext ? (<JVButton size="large"
+    return (showtext ? (<JVButton size="small"
                                   variant="contained"
                                   color='primary'>
         {props.label}
-    </JVButton>) : (<JVButton size="large"
+    </JVButton>) : (<JVButton size="small"
                               variant="contained"
                               color='primary'>
         Bye</JVButton>));
