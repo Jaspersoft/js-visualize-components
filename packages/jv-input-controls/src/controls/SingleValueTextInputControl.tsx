@@ -1,14 +1,16 @@
-import { TextField as JVTextField } from '@jaspersoft/jv-ui-components/material-ui/TextField/TextField';
-import { ChangeEvent, useState } from 'react';
-import BaseInputControl, { BaseInputControlProps } from './BaseInputControl';
+import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
+import { ChangeEvent, useState } from "react";
+import BaseInputControl, { BaseInputControlProps } from "./BaseInputControl";
+import { useLiveState } from "./hooks/useLiveState";
+import { useControlClasses } from "./hooks/useControlClasses";
 
-export type TextFieldICType = 'textField';
+export type TextFieldICType = "textField";
 
 export interface TextFieldICProps extends BaseInputControlProps {
   defaultValue?: string;
   value?: string;
-  variant?: 'standard' | 'filled' | 'outlined' | undefined;
-  size?: 'large';
+  variant?: "standard" | "filled" | "outlined" | undefined;
+  size?: "large";
   className?: string;
 }
 
@@ -20,35 +22,15 @@ export interface TextFieldICProps extends BaseInputControlProps {
  * @constructor
  */
 export const SingleValueTextInputControl = (props: TextFieldICProps) => {
-  const defaultOnChangeHandler = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setCurrentValue(event.target.value);
-  };
-  const {
-    value: theValue, size, className,
-    defaultValue, mandatory, readOnly, visible, ...remainingProps
-  } = props;
-  let cssClasses = className || '';
-  const theSize = size !== 'large' ? 'large' : size;
-  const [currentValue, setCurrentValue] = useState<string>(theValue || defaultValue || '');
-  const inputProps: any = {};
-  if (readOnly) {
-    inputProps.readOnly = true;
-  }
-  if (!visible) {
-    cssClasses += ' jv-uVisibility-hide';
-  }
-  const isRequiredError = mandatory && currentValue.trim().length === 0;
-  return <BaseInputControl {...{ ...remainingProps, mandatory, readOnly, visible }}>
-    <JVTextField variant={props.variant || 'outlined'}
-                 value={currentValue}
-                 size={theSize}
-                 onChange={defaultOnChangeHandler}
-                 className={cssClasses}
-                 InputProps={inputProps}
-                 required={mandatory}
-                 error={isRequiredError}
-                 {...remainingProps}
+  const liveState = useLiveState(props.state?.value || "");
+  const controlClasses = useControlClasses([], props);
+  return (
+    <JVTextField
+      id={props.id}
+      key={props.id}
+      InputProps={liveState}
+      className={controlClasses.join(" ")}
+      variant="outlined"
     />
-  </BaseInputControl>;
+  );
 };
-
