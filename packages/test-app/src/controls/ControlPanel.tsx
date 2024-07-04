@@ -1,23 +1,23 @@
-import * as React from 'react';
-import { JVCheckbox, JVTextField, JVDatePicker } from '@jaspersoft/jv-ui-components';
-import { SingleValueTextInputControl } from '@jaspersoft/jv-input-controls';
+import * as React from "react";
+import { JVCheckbox, JVTextField } from "@jaspersoft/jv-ui-components";
+import {
+  DatePickerInputControl,
+  SingleValueTextInputControl,
+} from "@jaspersoft/jv-input-controls";
 
 export interface ControlPanelProps {
-  title?: string,
-  controlData: object,
+  title?: string;
+  controlData: object;
 }
 
 export default function ControlPanel(props: ControlPanelProps) {
-
   const buildControl = (control: any) => {
-
     if (control.type === "bool") {
       return (
         <JVCheckbox
           key={control.id}
           label={control.label}
-          CheckboxProps={{ checked: (control.state.value === 'true') }}
-
+          CheckboxProps={{ checked: control.state.value === "true" }}
         />
       );
     }
@@ -28,7 +28,7 @@ export default function ControlPanel(props: ControlPanelProps) {
           id={control.id}
           label={control.label}
           value={control.state.value}
-          type={'text'}
+          type={"text"}
           readOnly={control.readOnly}
           visible={control.visible}
           mandatory={control.mandatory}
@@ -45,30 +45,36 @@ export default function ControlPanel(props: ControlPanelProps) {
       );
     }
 
-    if (control.type === 'singleValueDate') {
-      const dateToProvide = '2022-04-17';
+    if (control.type === "singleValueDate") {
+      const dateToProvide = "2022-04-17";
       return (
-        <JVDatePicker key={control.id}
-                      label={control.label}
-                      value={dateToProvide}
-                      views={[ 'year', 'month', 'day' ]}
-                      readOnly={control.readOnly}
+        <DatePickerInputControl
+          key={control.id}
+          id={control.id}
+          label={control.label}
+          value={dateToProvide}
+          views={["year", "month", "day"]}
+          readOnly={control.readOnly}
+          mandatory={control.mandatory}
+          type={control.type}
+          visible={control.visible}
         />
-      )
+      );
     }
-  }
+  };
 
   const buildControls = (controlMap: any) => {
     if (controlMap.data) return controlMap.data.map(buildControl);
-    if (controlMap) return <span className='control-map-text'>{JSON.stringify(controlMap)}</span>;
+    if (controlMap)
+      return (
+        <span className="control-map-text">{JSON.stringify(controlMap)}</span>
+      );
     return <></>;
-  }
+  };
 
   return (
     <div className="controls">
-        <ul className="control-list">
-          {buildControls(props.controlData)}
-        </ul>
+      <ul className="control-list">{buildControls(props.controlData)}</ul>
     </div>
   );
 }
