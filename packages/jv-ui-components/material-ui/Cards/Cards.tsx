@@ -1,11 +1,11 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import {
     Card as MuiCard, CardProps as MuiCardProps
 } from '@mui/material';
 
 type CardProps = MuiCardProps
 
-export const Cards = React.forwardRef<HTMLDivElement, CardProps>(({
+export const Cards = forwardRef<HTMLDivElement, CardProps>(({
     variant = 'elevation', className: cardClassname = '', elevation = 2, ...rest
 }, ref) => {
 

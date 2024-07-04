@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Testing Application</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+
+    <link rel="stylesheet" href="jv-ui.css" />
+
+    <script type="text/javascript" src="bundle-outside.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>Non-react test app</h1>
+      <table>
+        <tr>
+          <td>
+            <div id="inputControls"></div>
+          </td>
+          <td>
+            <div id="reportViewer">
+              <h3>
+                this is where my report viewer would go, if I had a report
+                viewer!
+              </h3>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <script type="text/javascript">
+      new EventSource("/esbuild").addEventListener("change", () =>
+        location.reload(),
+      );
+    </script>
+  </body>
+</html>

@@ -1,7 +1,7 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import { Tooltip as MuiTooltip, TooltipProps as MuiTooltipProps } from '@mui/material';
 
-export const Tooltip = React.forwardRef<HTMLDivElement, MuiTooltipProps>(({
+export const Tooltip = forwardRef<HTMLDivElement, MuiTooltipProps>(({
     ...rest
 }, ref) => {
     return (

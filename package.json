@@ -5,6 +5,7 @@
   "description": "Plugins for Visualize.JS",
   "workspaces": {
     "packages": [
+      "packages/jv-ui-components",
       "packages/*"
     ]
   },
@@ -13,7 +14,8 @@
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
     "start": "yarn workspace test-app run start",
-    "start:styles:dev": "yarn workspace jv-ui-components run start:dev"
+    "start:styles:dev": "yarn workspace jv-ui-components run start:dev",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -28,5 +30,13 @@
   "bugs": {
     "url": "https://github.com/Jaspersoft/js-visualize-plugins/issues"
   },
-  "homepage": "https://github.com/Jaspersoft/js-visualize-plugins#readme"
+  "homepage": "https://github.com/Jaspersoft/js-visualize-plugins#readme",
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "prettier": "3.3.2"
+  }
 }

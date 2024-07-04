@@ -1,7 +1,7 @@
 import MuiTableSortLabel, { TableSortLabelProps as MuiTableSortLabelProps } from '@mui/material/TableSortLabel';
-import React from 'react';
+import { forwardRef } from 'react';
 
-export const TableSortLabel = React.forwardRef<HTMLElement, MuiTableSortLabelProps>(({
+export const TableSortLabel = forwardRef<HTMLElement, MuiTableSortLabelProps>(({
     ...rest
 }, ref) => {
     return (

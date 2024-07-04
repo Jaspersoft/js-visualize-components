@@ -1,3 +1,7 @@
+# ignore example txt files
+example_*.txt
+
+
 ### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json

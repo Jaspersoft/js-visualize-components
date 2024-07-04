@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import {
     ButtonGroupProps as MuiButtonGroupProps, InputLabel, InputLabelProps as MuiInputLabelProps
 } from '@mui/material';
@@ -11,7 +11,7 @@ export type ButtonGroupProps = MuiButtonGroupProps & {
     InputLabelProps?: MuiInputLabelProps
 }
 
-export const LabeledButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(({
+export const LabeledButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(({
     id, label, className = '', buttonGroupClassName = '', size, InputLabelProps = {}, children, ...rest
 }, ref) => {
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { AccordionSummary as MuiAccordionSummary, AccordionSummaryProps as MuiAccordionSummaryProps } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { AccordionSize } from '../Accordion/Accordion';
@@ -12,7 +12,7 @@ export type AccordionSummaryProps = MuiAccordionSummaryProps & {
     size?: AccordionSize
 }
 
-export const AccordionSummary = React.forwardRef<HTMLDivElement, AccordionSummaryProps>(({
+export const AccordionSummary = forwardRef<HTMLDivElement, AccordionSummaryProps>(({
     className = '', classes = {}, size = 'normal', children, ...rest
 }, ref) => {
     const { content = '', expandIconWrapper = '', ...restClasses } = classes;

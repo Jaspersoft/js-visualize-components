@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { Accordion as MuiAccordion, AccordionProps as MuiAccordionProps } from '@mui/material';
 
 export type AccordionSize = 'normal' | 'small';
@@ -12,7 +12,7 @@ export type AccordionProps = MuiAccordionProps & {
     size?: AccordionSize
 };
 
-export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(({
+export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(({
     className = '', size = 'normal', children, ...rest
 }, ref) => {
 

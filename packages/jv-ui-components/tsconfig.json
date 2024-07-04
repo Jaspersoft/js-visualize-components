@@ -3,6 +3,7 @@
     "target": "es6",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
     "jsx": "react-jsx",                           /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "declaration": true,                      /* Generates corresponding '.d.ts' file. */
+    "declarationDir": "dist/material-ui",
     "sourceMap": true,                        /* Generates corresponding '.map' file. */
     "outDir": "./dist/material-ui",                       /* Redirect output structure to the directory. */
     "strict": true,                           /* Enable all strict type-checking options. */

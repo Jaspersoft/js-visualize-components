@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import {
     Anchor, DIRECTION_CLASS, OnExpandCollapseClick, PanelDefinition
 } from './collapsiblePanelTypes';
@@ -20,7 +20,7 @@ export interface CollapsiblePanelTabsProps {
     onExpandClick: OnExpandCollapseClick
 }
 
-export const CollapsiblePanelTabs = React.forwardRef<HTMLDivElement, CollapsiblePanelTabsProps>(({
+export const CollapsiblePanelTabs = forwardRef<HTMLDivElement, CollapsiblePanelTabsProps>(({
     anchor,
     setPanelState,
     setSubPanelState,

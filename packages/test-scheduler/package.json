@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "echo \"Skipping tests\"",
     "eject": "react-scripts eject",
-    "clean": "rm -rf build"
+    "clean": "rm -rf ./build"
   },
   "eslintConfig": {
     "extends": [
