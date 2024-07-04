@@ -2,6 +2,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import postcss from 'rollup-plugin-postcss';
+import json from '@rollup/plugin-json';
 
 const packageJson = require("./package.json");
 
@@ -24,7 +25,8 @@ export default [
             typescript({
                 tsconfig: "./tsconfig.json" ,
                 include: ['**/*.ts+(|x)', '**/*.mts']
-            })
+            }),
+            json()
         ],
     },
     {
