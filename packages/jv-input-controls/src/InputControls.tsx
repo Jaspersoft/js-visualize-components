@@ -1,40 +1,44 @@
-import * as React from 'react'
-import { BoolICType } from './controls/BooleanInputControl'
-import { createRoot } from 'react-dom/client'
-import { TextFieldICType } from './controls/SingleValueTextInputControl';
-import BasePanel from './panels/BasePanel'
-import { InputControlCollection } from './controls/BaseInputControl';
+import * as React from "react";
+import { BoolICType } from "./controls/BooleanInputControl";
+import { createRoot } from "react-dom/client";
+import { DateICType } from "./controls/DatePickerInputControl";
+import { TextFieldICType } from "./controls/SingleValueTextInputControl";
+import BasePanel from "./panels/BasePanel";
+import { InputControlCollection } from "./controls/BaseInputControl";
 
 export interface InputControlConfig {
-  hostname?: string,
-  username: string,
-  password: string,
-  tenant: string,
-};
+  hostname?: string;
+  username: string;
+  password: string;
+  tenant: string;
+}
 
 export interface InputControlUserConfig {
   bool?: {
-    type: BoolICType
-  },
+    type: BoolICType;
+  };
   singleValueText?: {
-    type: TextFieldICType
-  },
+    type: TextFieldICType;
+  };
   singleValueNumber?: {
-    type: 'number'
-  }
+    type: "number";
+  };
+  singleValueDate?: {
+    type: DateICType;
+  };
 }
 
 export interface InputControlPanelConfig {
-  success?: (success: { code: number; message: string }) => void,
-  error?: (error: { code: number; message: string }) => void,
-  exclude?: string[],
-  config?: InputControlUserConfig
+  success?: () => void;
+  error?: (error: any) => void;
+  exclude?: string[];
+  config?: InputControlUserConfig;
 }
 
 const defaultInputControlConfig: InputControlConfig = {
-  username: 'joeuser',
-  password: 'joeuser',
-  tenant: 'organization_1',
+  username: "joeuser",
+  password: "joeuser",
+  tenant: "organization_1",
 };
 
 export class InputControls {
@@ -68,30 +72,36 @@ export class InputControls {
         console.log(e);
       },
     });
-  }
+  };
 
   public getControls = () => {
     return this.controlStructure;
-  }
+  };
 
-  public renderControlPanel = (uri: string, container: HTMLElement, icPanelDef?: InputControlPanelConfig) => {
+  public renderControlPanel = (
+    uri: string,
+    container: HTMLElement,
+    icPanelDef?: InputControlPanelConfig,
+  ) => {
     this.fillControlStructure(uri, (controls: InputControlCollection) => {
       try {
         const icRoot = createRoot(container);
         // TODO: we have to consider the exclude/include property from the icPanelDef before providing the controls prop
-        icRoot.render(<BasePanel controls={controls} config={icPanelDef?.config} />);
-        if (icPanelDef?.success) {
-          icPanelDef?.success.call(null, { code: 200, message: 'Controls rendered successfully' });
-        }
+        icRoot.render(
+          <BasePanel controls={controls} config={icPanelDef?.config} />,
+        );
+        icPanelDef?.success && icPanelDef?.success.call(null);
       } catch (e) {
-        icPanelDef?.error && icPanelDef?.error.call(null, { code: 500, message: 'An error occurred when rendering the controls' });
+        icPanelDef?.error && icPanelDef?.error.call(null, e);
       }
     });
-  }
+  };
 
-  public makeControlsForReport = (resourceUri: string, container: HTMLElement) => {
+  public makeControlsForReport = (
+    resourceUri: string,
+    container: HTMLElement,
+  ) => {
     this.fillControlStructure(resourceUri);
     container.innerText = JSON.stringify(this.controlStructure);
-  }
-
+  };
 }
