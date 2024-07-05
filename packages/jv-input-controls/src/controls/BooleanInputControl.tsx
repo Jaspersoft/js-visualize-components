@@ -14,7 +14,7 @@ export interface BooleanInputControlProps extends BaseInputControlProps {
 export default function BooleanInputControl(
   props: BooleanInputControlProps,
 ): React.JSX.Element {
-  const liveState = useLiveState(props.state?.value || "");
+  const liveState = useLiveState({ initialValue: props.state?.value || "" });
   const controlClasses = useControlClasses([], props);
 
   if (props.styleType === "switch") {

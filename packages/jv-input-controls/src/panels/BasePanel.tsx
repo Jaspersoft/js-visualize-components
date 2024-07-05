@@ -56,6 +56,7 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
           readOnly={control.readOnly}
           visible={control.visible}
           mandatory={control.mandatory}
+          validationRules={control.validationRules}
         />
       );
     }
