@@ -4,6 +4,7 @@ import {
   DatePickerInputControl,
   SingleValueTextInputControl,
 } from "@jaspersoft/jv-input-controls";
+import BooleanInputControl from "@jaspersoft/jv-input-controls/src/controls/BooleanInputControl";
 
 export interface ControlPanelProps {
   title?: string;
@@ -14,10 +15,16 @@ export default function ControlPanel(props: ControlPanelProps) {
   const buildControl = (control: any) => {
     if (control.type === "bool") {
       return (
-        <JVCheckbox
+        <BooleanInputControl
           key={control.id}
+          id={control.id}
           label={control.label}
-          CheckboxProps={{ checked: control.state.value === "true" }}
+          type={control.type}
+          readOnly={control.readOnly}
+          visible={control.visible}
+          mandatory={control.mandatory}
+          state={control.state}
+          styleType="switch"
         />
       );
     }
