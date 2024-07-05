@@ -86,7 +86,7 @@ describe("DatePickerInputControl tests", () => {
   });
 
   // test disable prop
-  test("check the component is read-only", () => {
+  test("check the component is disabled", () => {
     // Render the component
     const { rerender } = render(getDatePickerIC({ disabled: true }));
     let inputElement = screen.getByRole("textbox") as HTMLInputElement;
