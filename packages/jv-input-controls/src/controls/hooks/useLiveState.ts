@@ -8,7 +8,7 @@ export function useLiveState({ initialValue }: { initialValue: string }) {
   }
 
   return {
-    value,
+    value: value,
     onChange: handleChange,
   };
 }
