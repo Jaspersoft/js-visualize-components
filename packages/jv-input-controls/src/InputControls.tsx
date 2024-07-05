@@ -29,8 +29,8 @@ export interface InputControlUserConfig {
 }
 
 export interface InputControlPanelConfig {
-  success?: (success: { code: number; message: string }) => void;
-  error?: (error: { code: number; message: string }) => void;
+  success?: () => void;
+  error?: (error: any) => void;
   exclude?: string[];
   config?: InputControlUserConfig;
 }
@@ -90,18 +90,9 @@ export class InputControls {
         icRoot.render(
           <BasePanel controls={controls} config={icPanelDef?.config} />,
         );
-        if (icPanelDef?.success) {
-          icPanelDef?.success.call(null, {
-            code: 200,
-            message: "Controls rendered successfully",
-          });
-        }
+        icPanelDef?.success && icPanelDef?.success.call(null);
       } catch (e) {
-        icPanelDef?.error &&
-          icPanelDef?.error.call(null, {
-            code: 500,
-            message: "An error occurred when rendering the controls",
-          });
+        icPanelDef?.error && icPanelDef?.error.call(null, e);
       }
     });
   };

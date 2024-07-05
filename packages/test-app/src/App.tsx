@@ -76,11 +76,11 @@ export default function App(props: AppConfig) {
       reportUri,
       document.getElementById("controls-section") as HTMLElement,
       {
-        success: ({ code, message }) => {
-          console.log("Success code: ", code, ", message: ", message);
+        success: () => {
+          console.log("Controls rendered successfully");
         },
-        error: ({ code, message }) => {
-          console.log("Error: ", code, message);
+        error: (error) => {
+          console.log("Error: ", error);
         },
       },
     );
