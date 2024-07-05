@@ -1,8 +1,7 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
-import { ChangeEvent, useState } from "react";
-import BaseInputControl, { BaseInputControlProps } from "./BaseInputControl";
-import { useLiveState } from "./hooks/useLiveState";
+import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
+import { useLiveState } from "./hooks/useLiveState";
 
 export type TextFieldICType = "textField";
 
