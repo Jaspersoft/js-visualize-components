@@ -25,9 +25,7 @@ const getDatePickerIC = (options?: any): React.JSX.Element => {
 
 describe("DatePickerInputControl tests", () => {
   test("DatePickerInputControl is rendered correctly", () => {
-    render(
-      getDatePickerIC({ defaultValue: "2022-04-17", value: "2022-04-17" }),
-    );
+    render(getDatePickerIC({ value: "2022-04-17" }));
     const datePickerElement = screen.getByRole("textbox");
     expect(datePickerElement).toBeInTheDocument();
   });
@@ -39,7 +37,7 @@ describe("DatePickerInputControl tests", () => {
     const labelElement = screen.queryByLabelText(testLabel);
     expect(labelElement).toBeInTheDocument();
   });
-  //
+
   // Test for value prop
   test("uses value as the initial input value", () => {
     const defaultValue = "04/17/2022";
@@ -47,13 +45,15 @@ describe("DatePickerInputControl tests", () => {
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);
   });
-  //
+
   // Test for onChange event
   test("updates value on change", () => {
-    const { getByRole } = render(getDatePickerIC());
-    const inputElement = getByRole("textbox") as HTMLInputElement;
+    render(getDatePickerIC({ value: "04/17/2022" }));
+    const datePicker = screen.queryByLabelText(
+      "testDatePicker",
+    ) as HTMLInputElement;
     const newValue = "04/18/2022";
-    fireEvent.change(inputElement, { target: { value: newValue } });
-    expect(inputElement.value).toBe(newValue);
+    fireEvent.change(datePicker, { target: { value: newValue } });
+    expect(screen.getByDisplayValue(newValue)).toBeVisible();
   });
 });
