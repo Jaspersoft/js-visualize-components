@@ -7,6 +7,7 @@ import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
 export type DateICType = "Date";
+const DEFAULT_DATE_FORMAT = "YYYY-MM-DD";
 
 export interface DateICProps extends BaseInputControlProps {
   value?: string;
@@ -16,7 +17,7 @@ export interface DateICProps extends BaseInputControlProps {
 }
 
 export const DatePickerInputControl = (props: DateICProps) => {
-  let dateFormat = undefined;
+  let dateFormat = DEFAULT_DATE_FORMAT;
   if (props.validationRules !== undefined) {
     const [rule] = props.validationRules as ICDateValidationRule[];
     dateFormat = rule.dateTimeFormatValidationRule.format.toUpperCase();

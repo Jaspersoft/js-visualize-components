@@ -1,10 +1,8 @@
 import { useState } from "react";
 
-const DEFAULT_DATE_FORMAT = "YYYY-MM-DD";
-
 export function useLiveState({
   initialValue,
-  format = DEFAULT_DATE_FORMAT,
+  format,
 }: {
   initialValue: string;
   format?: string;

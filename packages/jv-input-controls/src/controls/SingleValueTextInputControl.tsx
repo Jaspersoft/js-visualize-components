@@ -9,7 +9,6 @@ export interface TextFieldICProps extends BaseInputControlProps {
   defaultValue?: string;
   value?: string;
   variant?: "standard" | "filled" | "outlined" | undefined;
-  size?: "large";
   className?: string;
 }
 
@@ -23,7 +22,6 @@ export interface TextFieldICProps extends BaseInputControlProps {
 export const SingleValueTextInputControl = (props: TextFieldICProps) => {
   const {
     value: theValue,
-    size = "large",
     className,
     defaultValue,
     mandatory,
@@ -44,7 +42,6 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
   return (
     <JVTextField
       {...remainingProps}
-      size={size}
       variant={props.variant || "outlined"}
       className={`${controlClasses.join(" ")} ${className || ""}`}
       InputProps={theInputProps}
