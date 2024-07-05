@@ -118,18 +118,11 @@ describe("SingleValueTextInputControls tests", () => {
 
   // Test for mandatory field
   test("verify the field shows error when mandatory prop is set", () => {
-    const CSS_ERROR_CLASS = "Mui-error";
+    const CSS_ERROR_CLASS = "jv-uMandatory";
     const { container } = render(getTextIC({ mandatory: true }));
     let wrapperDiv = container.querySelector(
       `div.${CSS_ERROR_CLASS}`,
     ) as HTMLInputElement;
     expect(wrapperDiv).toBeInTheDocument();
-    const inputElement = screen.getByRole("textbox") as HTMLInputElement;
-    const newValue = "New Value";
-    fireEvent.change(inputElement, { target: { value: newValue } });
-    wrapperDiv = container.querySelector(
-      `div.${CSS_ERROR_CLASS}`,
-    ) as HTMLInputElement;
-    expect(wrapperDiv).not.toBeInTheDocument();
   });
 });

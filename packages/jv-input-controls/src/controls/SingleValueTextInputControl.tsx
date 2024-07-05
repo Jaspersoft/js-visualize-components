@@ -23,7 +23,7 @@ export interface TextFieldICProps extends BaseInputControlProps {
 export const SingleValueTextInputControl = (props: TextFieldICProps) => {
   const {
     value: theValue,
-    size,
+    size = "large",
     className,
     defaultValue,
     mandatory,
@@ -41,16 +41,13 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     inputProps.readOnly = true;
   }
   const theInputProps = { ...inputProps, ...liveState };
-  // The isRequiredError is used to highlight a red textbox border when mandatory:
-  const isRequiredError = mandatory && liveState.value.trim().length === 0;
   return (
     <JVTextField
       {...remainingProps}
+      size={size}
       variant={props.variant || "outlined"}
       className={`${controlClasses.join(" ")} ${className || ""}`}
       InputProps={theInputProps}
-      required={props.mandatory}
-      error={isRequiredError}
     />
   );
 };
