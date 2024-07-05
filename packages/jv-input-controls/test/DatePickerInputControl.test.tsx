@@ -56,4 +56,47 @@ describe("DatePickerInputControl tests", () => {
     fireEvent.change(datePicker, { target: { value: newValue } });
     expect(screen.getByDisplayValue(newValue)).toBeVisible();
   });
+
+  // test readOnly prop
+  test("check the component is read-only", () => {
+    // Render the component
+    const { rerender } = render(getDatePickerIC({ readOnly: true }));
+    let inputElement = screen.getByRole("textbox") as HTMLInputElement;
+
+    // Assert that the element is found and has the expected attribute
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toHaveAttribute("readonly");
+
+    rerender(getDatePickerIC({}));
+    inputElement = screen.getByRole("textbox") as HTMLInputElement;
+    expect(inputElement).not.toHaveAttribute("readonly");
+  });
+
+  // test visible prop
+  test("check the component is visible or not", () => {
+    const HIDDEN_CLASS_NAME = "jv-uVisibility-hide";
+    // Render the component
+    const { container } = render(getDatePickerIC({ visible: false }));
+    // Use querySelector to get the first div with the class "jv-mInputLarge"
+    const divElement = container.querySelector(`div.${HIDDEN_CLASS_NAME}`);
+
+    // Assert that the element is found and has the expected class
+    expect(divElement).toBeInTheDocument();
+    expect(divElement).toHaveClass(HIDDEN_CLASS_NAME);
+  });
+
+  // test disable prop
+  test("check the component is read-only", () => {
+    // Render the component
+    const { rerender } = render(getDatePickerIC({ disabled: true }));
+    let inputElement = screen.getByRole("textbox") as HTMLInputElement;
+
+    // Assert that the element is found and has the expected attribute
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toHaveAttribute("disabled");
+
+    rerender(getDatePickerIC({}));
+    inputElement = screen.getByRole("textbox") as HTMLInputElement;
+    expect(inputElement).not.toHaveAttribute("disabled");
+  });
 });
