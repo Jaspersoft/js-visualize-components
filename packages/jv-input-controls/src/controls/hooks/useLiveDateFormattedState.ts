@@ -17,7 +17,7 @@ export function useLiveDateFormattedState({
   const [value, setValue] = useState(initialValue);
 
   function handleChange(e: any) {
-    setValue(e.format ? e.format(format) : e);
+    setValue(e && e.format ? e.format(format) : e);
   }
 
   return {
