@@ -30,4 +30,13 @@ describe("useControlClasses custom hook", () => {
     expect(result.current).toContain("jv-uReadOnly");
     expect(result.current).not.toContain("jv-uMandatory");
   });
+
+  it("should return hidden if not visible", () => {
+    const icProps = { ...requiredProps, visible: false };
+    const { result } = renderHook(() => useControlClasses([], icProps));
+    expect(result.current).toContain("jv-uVisibility-hide");
+    expect(result.current).not.toContain("jv-uMandatory");
+    expect(result.current).not.toContain("jv-uReadOnly");
+    expect(result.current).not.toContain("jv-uMandatory");
+  });
 });
