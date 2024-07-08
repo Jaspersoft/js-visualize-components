@@ -16,7 +16,7 @@ export function useControlClasses(
     if (!props.visible) controlClasses.push(INVISIBLE_CLASS);
     if (props.mandatory) controlClasses.push(MANDATORY_CLASS);
     if (props.readOnly) controlClasses.push(READ_ONLY_CLASS);
-    setClasses(controlClasses);
+    setClasses([...initialClasses, ...controlClasses]);
   };
 
   useEffect(() => {
