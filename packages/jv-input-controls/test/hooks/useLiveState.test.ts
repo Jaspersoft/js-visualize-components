@@ -15,5 +15,6 @@ describe("useLiveState hook tests", () => {
     const { result } = renderHook(() => useLiveState(0));
     expect(result.current.value).toBeDefined();
     expect(result.current.onChange).toBeDefined();
+    expect(result.current.onChange instanceof Function).toBeTruthy();
   });
 });
