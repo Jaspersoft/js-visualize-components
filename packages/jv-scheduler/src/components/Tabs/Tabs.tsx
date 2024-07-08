@@ -3,39 +3,43 @@ import { useTranslation } from 'react-i18next';
 import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import {JVTabs, JVTab} from "@jaspersoft/jv-ui-components";
 import { JVStylesProvider } from '@jaspersoft/jv-ui-components';
-import Schedule from "./TabsContent/Schedule";
-import Parameters from "./TabsContent/Parameters";
-import Output from "./TabsContent/Output";
-import Notifications from "./TabsContent/Notifications";
-import SchedulerFooter from "../SchedulerFooter";
+import Schedule from "../Tabs/TabsContent/Schedule";
+import Parameters from "../Tabs/TabsContent/Parameters";
+import Output from "../Tabs/TabsContent/Output";
+import Notifications from "../Tabs/TabsContent/Notifications";
+import SchedulerFooter from "./SchedulerFooter";
 import {
     getUserTimezones,
     getOutputOptions,
-    getSupportedLocale,
     getInputControls
 } from "../../services/schedulerServices"
+// import {useDispatch} from "react-redux";
+import {setUserTimeZones} from "../../actions/action";
 
 
-const SchedulerMain = () => {
+const Tabs = () => {
     const [value, setValue] = useState<number>(0);
+    // const dispatch = useDispatch();
     const { t } = useTranslation();
 
     useEffect(() => {
         const fetchData = async () => {
             const timezones = await getUserTimezones();
             const outputOptions = await getOutputOptions();
-            const locale = await getSupportedLocale();
+            // const locale = await getSupportedLocale();
             const inputControls = await getInputControls();
             if (timezones.error) {
                 // handle error for user timezones
+            } else {
+                // dispatch(setUserTimeZones(timezones))
             }
 
             if (outputOptions.error) {
                 // handle error for output options
             }
-            if(locale.error){
-                // handle error for locale
-            }
+            // if(locale.error){
+            //     // handle error for locale
+            // }
             if(inputControls.error){
                 // handle error for input controls
             }
@@ -64,4 +68,4 @@ const SchedulerMain = () => {
 
     )
 }
-export default SchedulerMain;
+export default Tabs;

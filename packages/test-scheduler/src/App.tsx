@@ -4,7 +4,7 @@ import { Scheduler } from "@jaspersoft/jv-scheduler";
 function App() {
 
   return (
-      <Scheduler/>
+      <Scheduler lang="en"/>
   );
 }
 

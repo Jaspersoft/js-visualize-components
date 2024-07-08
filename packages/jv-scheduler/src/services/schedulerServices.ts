@@ -26,18 +26,18 @@ export const getOutputOptions = async () => {
   }
 }
 
-export const getSupportedLocale = async() => {
-  try {
-    const response = await axios.get("http://localhost:8080/jasperserver-pro/rest_v2/settings/visualizeSettings", {
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-    return response.data.availableLocales;
-  } catch (error) {
-    return { error: 'Failed to fetch output options' };
-  }
-}
+// export const getSupportedLocale = async() => {
+//   try {
+//     const response = await axios.get("http://localhost:8080/jasperserver-pro/rest_v2/settings/visualizeSettings", {
+//       headers: {
+//         'Accept': 'application/json'
+//       }
+//     });
+//     return response.data.availableLocales;
+//   } catch (error) {
+//     return { error: 'Failed to fetch output options' };
+//   }
+// }
 
 export const getInputControls = async() => {
   const reportUri = "AI_ML/RevenueDetailReport"
