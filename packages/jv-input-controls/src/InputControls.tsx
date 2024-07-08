@@ -2,6 +2,7 @@ import * as React from "react";
 import { BoolICType } from "./controls/BooleanInputControl";
 import { createRoot } from "react-dom/client";
 import { DateICType } from "./controls/DatePickerInputControl";
+import { DateTimeICType } from "./controls/DateTimePickerInputControl";
 import { TextFieldICType } from "./controls/SingleValueTextInputControl";
 import BasePanel from "./panels/BasePanel";
 import { InputControlCollection } from "./controls/BaseInputControl";
@@ -25,6 +26,9 @@ export interface InputControlUserConfig {
   };
   singleValueDate?: {
     type: DateICType;
+  };
+  singleValueDatetime?: {
+    type: DateTimeICType;
   };
 }
 
