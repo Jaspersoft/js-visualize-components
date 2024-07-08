@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { Drawer as MuiDrawer, DrawerProps as MuiDrawerProps } from '@mui/material';
 
-export const Drawer = React.forwardRef<HTMLDivElement, MuiDrawerProps>(({
+export const Drawer = forwardRef<HTMLDivElement, MuiDrawerProps>(({
     classes = {}, elevation = 6, open = false, className = '', ...rest
 }, ref) => {
     const { paper: paperClasses = '', ...restClasses } = classes;

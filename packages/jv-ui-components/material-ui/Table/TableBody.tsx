@@ -1,7 +1,7 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import MuiTableBody, { TableBodyProps as MuiTableBodyProps } from '@mui/material/TableBody';
 
-export const TableBody = React.forwardRef<HTMLTableSectionElement, MuiTableBodyProps>(({
+export const TableBody = forwardRef<HTMLTableSectionElement, MuiTableBodyProps>(({
     ...rest
 }, ref) => {
     return (

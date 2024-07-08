@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC, ReactNode } from 'react';
 import { Drawer } from '@mui/material';
 import { IconButton } from '../IconButton/IconButton';
 import { Anchor } from './collapsiblePanelTypes';
@@ -8,10 +8,10 @@ export interface SinglePanelProps {
     className: string,
     id: string,
     onCollapse: () => void,
-    children: React.ReactNode
+    children: ReactNode
 }
 
-export const SinglePanel: React.FC<SinglePanelProps> = (
+export const SinglePanel: FC<SinglePanelProps> = (
     {
         onCollapse,
         anchor,

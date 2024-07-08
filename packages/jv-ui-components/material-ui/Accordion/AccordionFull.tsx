@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Accordion, AccordionProps } from './Accordion';
-import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary/AccordionSummary';
+import { forwardRef } from 'react';
 import { AccordionDetails, AccordionDetailsProps } from '../AccordionDetails/AccordionDetails';
+import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary/AccordionSummary';
+import { Accordion, AccordionProps } from './Accordion';
 
 export type AccordionFullProps = AccordionProps & {
     id?: string,
@@ -11,7 +11,7 @@ export type AccordionFullProps = AccordionProps & {
     children: NonNullable<React.ReactNode>;
 };
 
-export const AccordionFull = React.forwardRef<HTMLDivElement, AccordionFullProps>(({
+export const AccordionFull = forwardRef<HTMLDivElement, AccordionFullProps>(({
     id, size = 'normal', SummaryProps, summary, DetailsProps, children, ...rest
 }, ref) => {
     const headerId = id ? `${id}-header` : undefined;

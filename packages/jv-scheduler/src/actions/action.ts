@@ -1,4 +1,7 @@
-import {SET_OUTPUT_FORMATS, SET_USER_TIME_ZONES} from "../constants/actionConstants";
+import {
+  SET_OUTPUT_FORMATS,
+  SET_USER_TIME_ZONES,
+} from "../constants/actionConstants";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -10,19 +13,19 @@ import {SET_OUTPUT_FORMATS, SET_USER_TIME_ZONES} from "../constants/actionConsta
 // }
 
 export const setOutputFormats = (outputFormats) => {
-    return {
-        type: SET_OUTPUT_FORMATS,
-        payload: {
-            outputFormats: outputFormats
-        }
-    }
-}
+  return {
+    type: SET_OUTPUT_FORMATS,
+    payload: {
+      outputFormats: outputFormats,
+    },
+  };
+};
 
 export const setUserTimeZones = (timeZones) => {
-    return {
-        type: SET_USER_TIME_ZONES,
-        payload: {
-            userTimeZones: timeZones
-        }
-    }
-}
+  return {
+    type: SET_USER_TIME_ZONES,
+    payload: {
+      userTimeZones: timeZones,
+    },
+  };
+};

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ComponentType, FC, ReactNode } from 'react';
 import {
     ThemeProvider as MuiThemeProvider,
     StyledEngineProvider,
@@ -8,11 +8,11 @@ import { DefaultTheme } from '@mui/system'
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 
 export interface ThemeProviderProps<Theme = DefaultTheme> {
-    children?: React.ReactNode;
+    children?: ReactNode;
     theme: Partial<Theme> | ((outerTheme: Theme) => Theme);
 }
 export type CreateStylesProviderType = {
-    children: React.ReactNode
+    children: ReactNode
 }
 export const GenerateClassNameOptions = {
     seed: 'jv'
@@ -27,8 +27,8 @@ const muiTheme = createTheme(CreateMuiThemeOptions);
 
 export function createStylesProvider<Theme = DefaultTheme>(
     theme: ThemeProviderProps<Theme>['theme'],
-    ThemeProvider: React.ComponentType<ThemeProviderProps<Theme>> = MuiThemeProvider
-): React.FC<CreateStylesProviderType> {
+    ThemeProvider: ComponentType<ThemeProviderProps<Theme>> = MuiThemeProvider
+): FC<CreateStylesProviderType> {
     return ({ children }) => (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>

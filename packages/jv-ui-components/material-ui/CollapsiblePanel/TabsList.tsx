@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC } from 'react';
 import { Button, List, ListItem } from '@mui/material';
 import { OnExpandCollapseClick, SubPanelDefinition } from './collapsiblePanelTypes';
 import { SetSubPanelState, SubPanelState } from './useCollapsiblePanelState';
@@ -11,7 +11,7 @@ export interface TabsListProps {
     onExpandClick: OnExpandCollapseClick
 }
 
-export const TabsList: React.FC<TabsListProps> = ({
+export const TabsList: FC<TabsListProps> = ({
     subPanelsState, panelIndex, subPanels, setSubPanelState, onExpandClick
 }) => {
     const openSubPanelLabel = 'Open sub panel';

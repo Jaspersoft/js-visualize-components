@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef, HTMLAttributes, ReactElement } from 'react';
 import {
     FormControlLabel, FormControlLabelProps, Switch as MuiSwitch, SwitchProps as MuiSwitchProps
 } from '@mui/material';
@@ -10,12 +10,12 @@ export interface SwitchProps extends Omit<FormControlLabelProps, 'control'> {
     size?: Exclude<InputSize, 'large'>,
     noLabel?: boolean,
     inline?: boolean,
-    control?: React.ReactElement<any, any>,
+    control?: ReactElement<any, any>,
     SwitchProps?: Partial<MuiSwitchProps>,
-    WrapperProps?: React.HTMLAttributes<HTMLDivElement> & {[key: string]: any}
+    WrapperProps?: HTMLAttributes<HTMLDivElement> & {[key: string]: any}
 }
 
-export const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(({
+export const Switch = forwardRef<HTMLDivElement, SwitchProps>(({
     classes = {}, noLabel = false, inline = true, size = 'medium', control, SwitchProps = {}, WrapperProps, ...rest
 }, ref) => {
 

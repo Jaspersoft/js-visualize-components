@@ -1,59 +1,97 @@
-import { FC } from 'react';
-
-
-interface BooleanICConfig {
-    style?: string | FC,
-}
+import * as React from 'react'
+import { BoolICType } from './controls/BooleanInputControl'
+import { createRoot } from 'react-dom/client'
+import { TextFieldICType } from './controls/SingleValueTextInputControl';
+import BasePanel from './panels/BasePanel'
+import { InputControlCollection } from './controls/BaseInputControl';
 
 export interface InputControlConfig {
-    hostname?: string,
-    username: string,
-    password: string,
-    tenant: string,
-    
-    // customize control look & feel
-    boolean?: BooleanICConfig,
+  hostname?: string,
+  username: string,
+  password: string,
+  tenant: string,
 };
 
-const defaultInputControlConfig: InputControlConfig = {
-    username: 'joeuser',
-    password: 'joeuser',
-    tenant: 'organization_1',
+export interface InputControlUserConfig {
+  bool?: {
+    type: BoolICType
+  },
+  singleValueText?: {
+    type: TextFieldICType
+  },
+  singleValueNumber?: {
+    type: 'number'
+  }
+}
 
-    boolean: { style: 'switch' },
+export interface InputControlPanelConfig {
+  success?: (success: { code: number; message: string }) => void,
+  error?: (error: { code: number; message: string }) => void,
+  exclude?: string[],
+  config?: InputControlUserConfig
+}
+
+const defaultInputControlConfig: InputControlConfig = {
+  username: 'joeuser',
+  password: 'joeuser',
+  tenant: 'organization_1',
 };
 
 export class InputControls {
-    private viz: any;
-    private config: InputControlConfig;
-    protected controlStructure: object = {};
+  private viz: any;
+  private _config: InputControlConfig;
+  protected controlStructure: object = {};
 
-    constructor(vizjs: any, config?: InputControlConfig) {
-        this.viz = vizjs;
-        this.config = config || defaultInputControlConfig;
-    }
+  get config(): InputControlConfig {
+    return this._config;
+  }
 
-    public fillControlStructure = (uri: string, callbackFn?: Function) => {
-        this.viz.inputControls({
-            resource: uri,
-            success: (data: string) => {
-                this.controlStructure = {...this.controlStructure, data};
-                if (callbackFn) {
-                    callbackFn(this.controlStructure);
-                }
-            },
-            error: (e: object) => {
-                console.log(e);
-            },
-        });
-    }
+  set config(value: InputControlConfig) {
+    this._config = value;
+  }
 
-    public getControls = () => {
-        return this.controlStructure;
-    }
+  constructor(vizjs: any, config?: InputControlConfig) {
+    this.viz = vizjs;
+    this._config = config || defaultInputControlConfig;
+  }
 
-    public makeControlsForReport = (resourceUri: string, container: any) => {
-        this.fillControlStructure(resourceUri);
-        container = JSON.stringify(this.controlStructure);
-    };
+  public fillControlStructure = (uri: string, callbackFn?: Function) => {
+    this.viz.inputControls({
+      resource: uri,
+      success: (data: string) => {
+        this.controlStructure = { ...this.controlStructure, data };
+        if (callbackFn) {
+          callbackFn(this.controlStructure);
+        }
+      },
+      error: (e: object) => {
+        console.log(e);
+      },
+    });
+  }
+
+  public getControls = () => {
+    return this.controlStructure;
+  }
+
+  public renderControlPanel = (uri: string, container: HTMLElement, icPanelDef?: InputControlPanelConfig) => {
+    this.fillControlStructure(uri, (controls: InputControlCollection) => {
+      try {
+        const icRoot = createRoot(container);
+        // TODO: we have to consider the exclude/include property from the icPanelDef before providing the controls prop
+        icRoot.render(<BasePanel controls={controls} config={icPanelDef?.config} />);
+        if (icPanelDef?.success) {
+          icPanelDef?.success.call(null, { code: 200, message: 'Controls rendered successfully' });
+        }
+      } catch (e) {
+        icPanelDef?.error && icPanelDef?.error.call(null, { code: 500, message: 'An error occurred when rendering the controls' });
+      }
+    });
+  }
+
+  public makeControlsForReport = (resourceUri: string, container: HTMLElement) => {
+    this.fillControlStructure(resourceUri);
+    container.innerText = JSON.stringify(this.controlStructure);
+  }
+
 }

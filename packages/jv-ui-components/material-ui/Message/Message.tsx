@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef, ReactNode } from 'react';
 import {
     Card as MuiCard, CardContent as MuiCardContent, CardHeader as MuiCardHeader, CardProps as MuiCardProps, CardContentProps as MuiCardContentProps, CardHeaderProps as MuiCardHeaderProps
 } from '@mui/material';
@@ -7,7 +7,7 @@ import {
 // It is fixed in version 5 of mui.
 type CardProps = MuiCardProps & {
     isCardHeader?: boolean
-    cardHeaderProps?: Omit<MuiCardHeaderProps, 'title'> & { isHeaderPadded?: boolean, title?: React.ReactNode},
+    cardHeaderProps?: Omit<MuiCardHeaderProps, 'title'> & { isHeaderPadded?: boolean, title?: ReactNode},
     cardContentProps?: MuiCardContentProps & {isPadded?: boolean},
     type?: 'error' | 'warning'
 }
@@ -17,7 +17,7 @@ export enum TypeToClass {
     warning = 'jv-mMessageWarning'
 }
 
-export const Message = React.forwardRef<HTMLDivElement, CardProps>(({
+export const Message = forwardRef<HTMLDivElement, CardProps>(({
     elevation = 0, type = 'error', cardHeaderProps = {}, isCardHeader = true, cardContentProps = {}, className = '', children, ...rest
 }, ref) => {
 

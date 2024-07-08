@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { LinearProgress as MuiLinearProgress, LinearProgressProps } from '@mui/material';
 
-export const LinearProgress = React.forwardRef<HTMLElement, LinearProgressProps>(({
+export const LinearProgress = forwardRef<HTMLElement, LinearProgressProps>(({
     variant = 'determinate', className = '', classes = {}, ...rest
 }, ref) => {
 

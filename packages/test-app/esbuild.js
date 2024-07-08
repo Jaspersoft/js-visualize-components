@@ -43,4 +43,3 @@ build({
     copyStylesFromJrsUiComponents({ target: distFolder });
   })
   .catch((error) => console.error('Build failed: ', error));
-
