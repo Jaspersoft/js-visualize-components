@@ -5,6 +5,18 @@ export const OUTPUT_TAB = 'output';
 const allTabs = [
     PARAMETERS_TAB, SCHEDULE_TAB, NOTIFICATIONS_TAB, OUTPUT_TAB
 ];
+
+export const timeFrames = [
+    {
+        textPlural: "Hours", textSingular: "Hour", value: 'HOUR'
+    },
+    {
+        textPlural: "Days", textSingular: "Day", value: 'DAY'
+    },
+    {
+        textPlural: "Weeks", textSingular: "Week", value: 'WEEK'
+    }
+]
 export const tabParameters = [{
     key: 'condition',
     label: 'condition.label',
