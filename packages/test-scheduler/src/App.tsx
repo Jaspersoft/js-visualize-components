@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
 import { Scheduler } from "@jaspersoft/jv-scheduler";
 
 function App() {
-
-  return (
-      <Scheduler/>
-  );
+  return <Scheduler lang="en" />;
 }
 
 export default App;
