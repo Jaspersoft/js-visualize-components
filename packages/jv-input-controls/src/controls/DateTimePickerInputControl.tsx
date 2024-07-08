@@ -27,9 +27,6 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
     views: string[] = [];
   if (props.validationRules !== undefined) {
     const [rule] = props.validationRules as ICDateValidationRule[];
-    dateFormat = formatToDayJS(
-      removeSingleQuotes(rule.dateTimeFormatValidationRule.format),
-    );
     dateFormat = removeSingleQuotes(rule.dateTimeFormatValidationRule.format);
     dateFormat = formatToDayJS(dateFormat);
   }
