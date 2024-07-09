@@ -1,7 +1,19 @@
-import * as React from 'react'
-import { useState, useEffect } from 'react';
+import * as React from "react";
+import { useState, useEffect } from "react";
 
-export type ICType = string | 'bool' | 'singleValueText' | 'singleValueNumber' | 'singleValueDate' | 'singleValueDatetime' | 'singleValueTime' | 'singleSelect' | 'singleSelectRadio' | 'multiSelect' | 'multiSelectCheckbox' | undefined;
+export type ICType =
+  | string
+  | "bool"
+  | "singleValueText"
+  | "singleValueNumber"
+  | "singleValueDate"
+  | "singleValueDatetime"
+  | "singleValueTime"
+  | "singleSelect"
+  | "singleSelectRadio"
+  | "multiSelect"
+  | "multiSelectCheckbox"
+  | undefined;
 
 export interface ICOption {
   selected?: boolean;
@@ -22,7 +34,21 @@ export interface ICValidationRule {
   errorMessage?: string;
 }
 
-export type ICDataTypeType = string | 'date' | 'datetime' | 'time' | 'text' | 'number' | undefined;
+export interface ICDateValidationRule {
+  dateTimeFormatValidationRule: {
+    errorMessage: string;
+    format: string;
+  };
+}
+
+export type ICDataTypeType =
+  | string
+  | "date"
+  | "datetime"
+  | "time"
+  | "text"
+  | "number"
+  | undefined;
 
 export interface ICDataType {
   type?: ICDataTypeType;
@@ -44,7 +70,7 @@ export interface BaseInputControlProps {
   visible: boolean;
   uri?: string;
   state?: ICState;
-  validationRules?: ICValidationRule;
+  validationRules?: ICValidationRule | ICDateValidationRule[];
   dataType?: ICDataType;
 
   masterDependencies?: string[];
@@ -55,14 +81,15 @@ export interface InputControlCollection {
   inputControl: BaseInputControlProps[];
 }
 
-const CONTAINER_CLASS = 'jv-uInputControl-container';
-const INVISIBLE_CLASS = 'jv-uVisibility-hide';
-const MANDATORY_CLASS = 'jv-uMandatory';
-const READ_ONLY_CLASS = 'jv-uReadOnly';
+const CONTAINER_CLASS = "jv-uInputControl-container";
+const INVISIBLE_CLASS = "jv-uVisibility-hide";
+const MANDATORY_CLASS = "jv-uMandatory";
+const READ_ONLY_CLASS = "jv-uReadOnly";
 
 export default function BaseInputControl(props: BaseInputControlProps) {
-
-  const [additionalCssClasses, setAdditionalCssClasses] = useState<string[]>([]);
+  const [additionalCssClasses, setAdditionalCssClasses] = useState<string[]>(
+    [],
+  );
 
   const getClasses = () => {
     let activeClasses: string[] = [CONTAINER_CLASS];
@@ -70,16 +97,11 @@ export default function BaseInputControl(props: BaseInputControlProps) {
     if (props.mandatory) activeClasses.push(MANDATORY_CLASS);
     if (props.readOnly) activeClasses.push(READ_ONLY_CLASS);
     setAdditionalCssClasses(activeClasses);
-  }
+  };
 
   useEffect(() => {
     getClasses();
   }, []);
 
-  return (
-    <div className={additionalCssClasses.join(' ')}>
-      {props.children}
-    </div>
-  );
-
+  return <div className={additionalCssClasses.join(" ")}>{props.children}</div>;
 }
