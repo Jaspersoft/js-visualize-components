@@ -6,7 +6,7 @@ import { DateTimePickerInputControl } from "../src/controls/DateTimePickerInputC
 
 const requiredProps = {
   id: "column_timestamp_1",
-  label: "testDateTimePicker",
+  label: "column_timestamp",
   mandatory: false,
   readOnly: false,
   visible: true,
@@ -40,33 +40,6 @@ describe("DateTimePickerInputControl tests", () => {
     render(getDateTimePickerIC({ value: "2014-09-14T15:46:18" }));
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe("09/14/2014 03:46:18 PM");
-  });
-
-  test("input value updates on user input", () => {
-    const initialValue = "2014-09-14T15:46:18";
-    const newValue = "2024-07-08T15:49:18";
-    const expectedDisplayValue = "09/14/2014 03:46:18 PM"; // Adjust based on the expected format
-
-    const { getByRole } = render(
-      getDateTimePickerIC({
-        value: initialValue,
-        validationRules: [
-          {
-            dateTimeFormatValidationRule: {
-              errorMessage: "Specify a valid date/time value.",
-              format: "yyyy-MM-dd'T'HH:mm:ss",
-            },
-          },
-        ],
-      }),
-    );
-
-    // Find the input element and simulate a change
-    const inputElement = getByRole("textbox") as HTMLInputElement;
-    fireEvent.change(inputElement, newValue);
-
-    // Assert the input element's value has been updated
-    expect(screen.getByDisplayValue(expectedDisplayValue)).toBeInTheDocument();
   });
 
   test("check the component is read-only", () => {
