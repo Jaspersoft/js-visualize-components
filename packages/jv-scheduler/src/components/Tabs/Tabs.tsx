@@ -15,6 +15,7 @@ import {
 } from "../../services/schedulerServices";
 // import {useDispatch} from "react-redux";
 import { setUserTimeZones } from "../../actions/action";
+import ScheduleStepper from "../Stepper/ScheduleStepper";
 
 const Tabs = () => {
   const [value, setValue] = useState<number>(0);
@@ -50,19 +51,26 @@ const Tabs = () => {
   };
   return (
     <>
-      <JVStylesProvider>
-        <JVTabs value={value} onChange={handleChange}>
-          <JVTab label={t("schedule")} />
-          <JVTab label={t("parameters")} />
-          <JVTab label={t("output_options")} />
-          <JVTab label={t("notifications")} />
-        </JVTabs>
-        {value === 0 && <Schedule />}
-        {value === 1 && <Parameters />}
-        {value === 2 && <Output />}
-        {value === 3 && <Notifications />}
-        <SchedulerFooter />
-      </JVStylesProvider>
+      <div className="jv-lColumns">
+        <div className="jv-lColumns-column jv-uWidth-300px jv-uOverflow-auto jv-uBackgroundGrey-04">
+          <ScheduleStepper />
+        </div>
+        <JVStylesProvider>
+          <div className="jv-lColumns-column  jv-uWidth-550px jv-uOverflow-auto">
+            <JVTabs value={value} onChange={handleChange}>
+              <JVTab label={t("schedule")} />
+              <JVTab label={t("parameters")} />
+              <JVTab label={t("output_options")} />
+              <JVTab label={t("notifications")} />
+            </JVTabs>
+            {value === 0 && <Schedule />}
+            {value === 1 && <Parameters />}
+            {value === 2 && <Output />}
+            {value === 3 && <Notifications />}
+            <SchedulerFooter />
+          </div>
+        </JVStylesProvider>
+      </div>
     </>
   );
 };
