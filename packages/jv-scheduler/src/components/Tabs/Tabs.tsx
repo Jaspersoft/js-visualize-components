@@ -31,7 +31,7 @@ const Tabs = () => {
               <JVTabs value={value} onChange={handleChange} size="large">
                 <JVTab label={t("schedule")} />
                 <JVTab label={t("parameters")} />
-                <JVTab label={t("output_options")} />
+                <JVTab label={t("output")} />
                 <JVTab label={t("notifications")} />
               </JVTabs>
             </div>

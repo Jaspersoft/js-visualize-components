@@ -6,6 +6,7 @@ import {
   JVTextField,
   JVTypography,
 } from "@jaspersoft/jv-ui-components";
+import { JVTypographyComponent } from "../../common/CommonComponents";
 
 const Notifications = () => {
   const [selectedValue, setSelectedValue] = useState("option1");
@@ -14,19 +15,19 @@ const Notifications = () => {
   };
   return (
     <>
-      <JVTypography variant="h6">Email Notification</JVTypography>
+      <JVTypographyComponent text="Email Notification" />
       <div className="jv-mInputs mui">
         <JVTextField
           size="large"
-          label="Send alert to (required)"
+          label="Send to (required)"
           helperText="Use commas to separate email addresses."
         />
         <JVTextField size="large" label="Subject (required)" />
         <JVTextField size="large" label="Message" multiline rows={5} />
-        <JVRadioGroup title="Report access (required)">
+        <JVRadioGroup title="Report/dashboard access (required)">
           <JVRadioButton
             value="option1"
-            label="Include report as repository link."
+            label="Include report/dashboard as repository link."
             checked={selectedValue === "option1"}
             onChange={() => handleRadioChange("option1")}
           />
@@ -48,7 +49,7 @@ const Notifications = () => {
 
           <JVRadioButton
             value="option2"
-            label="Include report file as attachment."
+            label="Include report/dashboard file as attachment."
             checked={selectedValue === "option2"}
             onChange={() => handleRadioChange("option2")}
           />

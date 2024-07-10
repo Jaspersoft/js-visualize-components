@@ -60,7 +60,7 @@ export const stepInfo = [
   },
   {
     name: "outputOptions",
-    title: "Output Options",
+    title: "Output",
   },
   {
     name: "notifications",

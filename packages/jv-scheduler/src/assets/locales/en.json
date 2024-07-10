@@ -2,7 +2,7 @@
   "translation": {
     "schedule": "Schedule",
     "parameters": "Parameters",
-    "output_options": "Output Options",
+    "output": "Output",
     "notifications": "Notifications"
   }
 }

@@ -16,6 +16,9 @@ const Schedule = () => {
   };
   return (
     <>
+      <JVTypographyComponent text="Name and Description" />
+      <JVTextField size="large" label="Scheduled job name (required)" />
+      <JVTextField size="large" label="Description" multiline rows={5} />
       <JVTypographyComponent text={"Recurrence"} />
       <div className="jv-mControl jv-mControlInterval jv-mControlFlexwidth mui">
         <JVTextField
@@ -49,7 +52,9 @@ const Schedule = () => {
           </JVTextField>
         </div>
       </div>
+
       <JVRadioGroup size="large">
+        <JVTypography>Start time (required)</JVTypography>
         <JVRadioButton
           id="now"
           value="now"
@@ -68,9 +73,8 @@ const Schedule = () => {
       <div className="jv-uMargin-l-07 jv-uWidth-200px">
         <JVTextField
           size="large"
-          label="Start date"
           type="date"
-          defaultValue="2024-07-02"
+          defaultValue=""
           disabled={selectedValue !== "option2"}
         />
       </div>
