@@ -34,7 +34,6 @@ export const DatePickerInputControl = (props: DateICProps) => {
       onChange={liveState.onChange}
       value={liveState.value}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}
-      format={dateFormat}
     />
   );
 };

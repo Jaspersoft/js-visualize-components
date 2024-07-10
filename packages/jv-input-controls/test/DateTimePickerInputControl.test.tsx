@@ -51,7 +51,7 @@ describe("DateTimePickerInputControl tests", () => {
       }),
     );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
-    expect(inputElement.value).toBe("09/14/2014 03:46:18PM");
+    expect(inputElement.value).toBe("09/14/2014 03:46:18 PM");
   });
 
   test("check the component is read-only", () => {

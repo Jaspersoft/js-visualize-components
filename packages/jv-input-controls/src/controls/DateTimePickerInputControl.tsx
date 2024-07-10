@@ -46,7 +46,6 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
       views={views}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}
       timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
-      format={dateFormat}
     />
   );
 };
