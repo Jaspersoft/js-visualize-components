@@ -4,6 +4,7 @@ import BooleanInputControl from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
+import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { InputControlUserConfig } from "../InputControls";
 
 export interface BasePanelProps {
@@ -64,6 +65,21 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
     if (control.type === "singleValueDatetime") {
       return (
         <DateTimePickerInputControl
+          key={control.id}
+          id={control.id}
+          label={control.label}
+          value={control.state.value}
+          type={control.type}
+          readOnly={control.readOnly}
+          visible={control.visible}
+          mandatory={control.mandatory}
+          validationRules={control.validationRules}
+        />
+      );
+    }
+    if (control.type === "singleValueTime") {
+      return (
+        <TimePickerInputControl
           key={control.id}
           id={control.id}
           label={control.label}
