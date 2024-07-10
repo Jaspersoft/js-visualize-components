@@ -55,6 +55,10 @@ export const stepInfo = [
     title: "Schedule",
   },
   {
+    name: "parameters",
+    title: "Parameters",
+  },
+  {
     name: "outputOptions",
     title: "Output Options",
   },

@@ -7,6 +7,7 @@ import {
   JVSelectItem,
 } from "@jaspersoft/jv-ui-components";
 import { timeFrames } from "../../../constants/schedulerConstants";
+import { JVTypographyComponent } from "../../common/CommonComponents";
 
 const Schedule = () => {
   const [selectedValue, setSelectedValue] = useState("option1");
@@ -15,7 +16,7 @@ const Schedule = () => {
   };
   return (
     <>
-      <JVTypography variant="h6">Recurrence</JVTypography>
+      <JVTypographyComponent text={"Recurrence"} />
       <div className="jv-mControl jv-mControlInterval jv-mControlFlexwidth mui">
         <JVTextField
           id="recurrenceInterval"
