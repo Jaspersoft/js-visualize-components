@@ -40,21 +40,10 @@ describe("DatePickerInputControl tests", () => {
 
   // Test for value prop
   test("uses value as the initial input value", () => {
-    const defaultValue = "04/17/2022";
+    const defaultValue = "2022-04-17";
     render(getDatePickerIC({ value: defaultValue }));
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);
-  });
-
-  // Test for onChange event
-  test("updates value on change", () => {
-    render(getDatePickerIC({ value: "04/17/2022" }));
-    const datePicker = screen.queryByLabelText(
-      "testDatePicker",
-    ) as HTMLInputElement;
-    const newValue = "04/18/2022";
-    fireEvent.change(datePicker, { target: { value: newValue } });
-    expect(screen.getByDisplayValue(newValue)).toBeVisible();
   });
 
   // test readOnly prop

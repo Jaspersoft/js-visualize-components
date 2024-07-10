@@ -37,9 +37,21 @@ describe("DateTimePickerInputControl tests", () => {
   });
 
   test("value is converted to AM/PM format", () => {
-    render(getDateTimePickerIC({ value: "2014-09-14T15:46:18" }));
+    render(
+      getDateTimePickerIC({
+        value: "2014-09-14T15:46:18",
+        validationRules: [
+          {
+            dateTimeFormatValidationRule: {
+              errorMessage: "Specify a valid date/time value.",
+              format: "MM/dd/yyyy hh:mm:ssA",
+            },
+          },
+        ],
+      }),
+    );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
-    expect(inputElement.value).toBe("09/14/2014 03:46:18 PM");
+    expect(inputElement.value).toBe("09/14/2014 03:46:18PM");
   });
 
   test("check the component is read-only", () => {
