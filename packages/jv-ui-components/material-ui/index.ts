@@ -220,6 +220,7 @@ export {
   TextField as JVTextField,
   TextFieldProps,
 } from "./TextField/TextField";
+export { TimePicker as JVTimePicker } from "./Time/TimePicker";
 export { Toolbar as JVToolbar } from "./Toolbar/Toolbar";
 export { Tooltip as JVTooltip } from "./Tooltip/Tooltip";
 export {

@@ -23,7 +23,7 @@ const formatToDayJS = (str: string) => {
 };
 
 export const DateTimePickerInputControl = (props: DateTimeICProps) => {
-  let dateFormat,
+  let dateFormat = "YYYY-MM-DDTHH:mm:ss",
     views: string[] = [];
   if (props.validationRules !== undefined) {
     const [rule] = props.validationRules as ICDateValidationRule[];
