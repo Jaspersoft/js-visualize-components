@@ -10,6 +10,7 @@
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
+    "build:esbuild": "node esbuild.js",
     "clean": "rm -rf ./dist"
   },
   "repository": {

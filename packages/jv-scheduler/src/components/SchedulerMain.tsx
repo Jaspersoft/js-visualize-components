@@ -1,38 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Tabs from "./Tabs/Tabs";
 import { useDispatch } from "react-redux";
-import {
-  getUserTimezones,
-  getOutputOptions,
-  getInputControls,
-} from "../services/schedulerServices";
-import { setUserTimeZones, setOutputFormats } from "../actions/action";
+import { getInputControls } from "../services/schedulerServices";
+import { getUserTimeZones, getOutputFormats } from "../actions/action";
 
 const SchedulerMain = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const timezones = await getUserTimezones();
-      const outputOptions = await getOutputOptions();
-      // const locale = await getSupportedLocale();
-      const inputControls = await getInputControls();
-      if (timezones.error) {
-        // handle error for user timezones
-      } else {
-        dispatch(setUserTimeZones(timezones));
-      }
+    dispatch(getUserTimeZones());
+    dispatch(getOutputFormats());
 
-      if (outputOptions.error) {
-        // handle error for output options
-      } else {
-        dispatch(setOutputFormats(outputOptions.dashboard.outputFormats));
-      }
-      // if(locale.error){
-      //     // handle error for locale
-      // } else {
-      //     dispatch(setUserLocale(locale))
-      // }
+    const fetchData = async () => {
+      const inputControls = await getInputControls();
       if (inputControls.error) {
         // handle error for input controls
       }

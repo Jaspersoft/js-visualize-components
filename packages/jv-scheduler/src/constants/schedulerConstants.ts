@@ -48,3 +48,22 @@ export const tabParameters = [
     value: "output",
   },
 ];
+
+export const stepInfo = [
+  {
+    name: "schedule",
+    title: "Schedule",
+  },
+  {
+    name: "parameters",
+    title: "Parameters",
+  },
+  {
+    name: "outputOptions",
+    title: "Output",
+  },
+  {
+    name: "notifications",
+    title: "Notifications",
+  },
+];

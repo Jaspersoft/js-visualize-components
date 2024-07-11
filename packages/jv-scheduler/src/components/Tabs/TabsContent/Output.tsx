@@ -6,6 +6,7 @@ import {
   JVTypography,
 } from "@jaspersoft/jv-ui-components";
 import { useSelector } from "react-redux";
+import { JVTypographyComponent } from "../../common/CommonComponents";
 
 const Output = () => {
   const outputFormats = useSelector((state: any) => state.outputFormats);
@@ -13,9 +14,10 @@ const Output = () => {
   // console.log(outputFormats)
   return (
     <>
-      <JVTypography variant="h6">Output Settings</JVTypography>
+      <JVTypographyComponent text="Output File Options" />
       <div className="jv-mInputs mui">
         <JVTextField size="large" label="File name (required)" />
+        <JVTextField size="large" label="Description" multiline rows={5} />
         <JVTextField size="large" label="Time zone (required)" select />
         <JVCheckboxGroup size="large" title="Formats (required)">
           <JVCheckbox value="pdf" label="PDF" />

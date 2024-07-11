@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getUserTimezones = async () => {
+export const getUserTimezonesFromService = async () => {
   try {
     const response = await axios.get(
       "http://localhost:8080/jasperserver-pro/rest_v2/settings/userTimeZones",
@@ -16,7 +16,7 @@ export const getUserTimezones = async () => {
   }
 };
 
-export const getOutputOptions = async () => {
+export const getOutputFormatsFromService = async () => {
   try {
     const response = await axios.get(
       "http://localhost:8080/jasperserver-pro/rest_v2/settings/alertingSettings",
