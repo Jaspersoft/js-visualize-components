@@ -1,8 +1,8 @@
 import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { JSX } from "react";
 import { SingleValueNumberInputControl } from "../src/controls/SingleValueNumberInputControl";
 import "@testing-library/jest-dom";
-import * as React from "react";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
 const requiredProps = {
@@ -14,7 +14,7 @@ const requiredProps = {
   type: "singleValueNumber",
 };
 
-const getNumberIC = (options?: object): React.JSX.Element => {
+const getNumberIC = (options?: object): JSX.Element => {
   return (
     <SingleValueNumberInputControl {...{ ...requiredProps, ...options }} />
   );
