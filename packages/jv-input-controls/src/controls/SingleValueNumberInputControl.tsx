@@ -19,9 +19,9 @@ const checkIfNumber = (value: string) => {
 };
 
 /**
- * Text Input Control Component
+ * Number Input Control Component
  *
- * Will handle the text based input controls
+ * Will handle the numbers as a text based input
  * @param props
  * @constructor
  */
