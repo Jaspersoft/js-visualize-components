@@ -2,7 +2,11 @@ import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-co
 import * as React from "react";
 import BooleanInputControl from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
-import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
+import {
+  DateTimePickerICType,
+  DateTimePickerInputControl,
+} from "../controls/DateTimePickerInputControl";
+import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { InputControlUserConfig } from "../InputControls";
@@ -63,8 +67,23 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
       );
     }
     if (control.type === "singleValueDatetime") {
+      if (props.config?.singleValueDatetime?.type === "datetime_picker") {
+        return (
+          <DateTimePickerInputControl
+            key={control.id}
+            id={control.id}
+            label={control.label}
+            value={control.state.value}
+            type={control.type}
+            readOnly={control.readOnly}
+            visible={control.visible}
+            mandatory={control.mandatory}
+            validationRules={control.validationRules}
+          />
+        );
+      }
       return (
-        <DateTimePickerInputControl
+        <DateTimePickerTextFieldInputControl
           key={control.id}
           id={control.id}
           label={control.label}
@@ -73,7 +92,6 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
           readOnly={control.readOnly}
           visible={control.visible}
           mandatory={control.mandatory}
-          validationRules={control.validationRules}
         />
       );
     }
@@ -95,11 +113,14 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
   };
 
   const buildControls = (controlMap: any) => {
-    if (controlMap.data) return controlMap.data.map(buildControl);
-    if (controlMap)
+    if (controlMap.data) {
+      return controlMap.data.map(buildControl);
+    }
+    if (controlMap) {
       return (
         <span className="control-map-text">{JSON.stringify(controlMap)}</span>
       );
+    }
     return <></>;
   };
 

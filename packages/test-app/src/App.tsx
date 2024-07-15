@@ -82,6 +82,11 @@ export default function App(props: AppConfig) {
         error: (error) => {
           console.log("Error: ", error);
         },
+        config: {
+          singleValueDatetime: {
+            type: "datetime",
+          },
+        },
       },
     );
   }, [plugin]);
