@@ -14,7 +14,7 @@ export const rootReducer = (state = initialState, action) => {
     case SET_USER_TIME_ZONES:
       return {
         ...state,
-        userTimeZones: action.payload.timezones,
+        userTimeZones: action.payload.userTimeZones,
       };
     case SET_OUTPUT_FORMATS:
       return {

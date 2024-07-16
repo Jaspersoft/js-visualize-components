@@ -1,6 +1,7 @@
 import React from "react";
 import { JVStep, JVStepper } from "@jaspersoft/jv-ui-components";
 import { stepInfo } from "../../constants/schedulerConstants";
+import { ScheduleStepDefaultMessage } from "./DefaultData";
 
 const ScheduleStepper = () => {
   return (
@@ -17,7 +18,9 @@ const ScheduleStepper = () => {
               title: item.title,
               className: "jv-uGrey-dark jv-uText-lh-150 jv-uMargin-b-01",
             }}
-          ></JVStep>
+          >
+            <ScheduleStepDefaultMessage />
+          </JVStep>
         );
       })}
     </JVStepper>
