@@ -1,8 +1,11 @@
+import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
 import * as React from "react";
 import BooleanInputControl from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
-import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
+import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
+import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
+import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { InputControlUserConfig } from "../InputControls";
 
 export interface BasePanelProps {
@@ -45,9 +48,54 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
         />
       );
     }
+    if (control.type === "singleValueNumber") {
+      return (
+        <SingleValueNumberInputControl
+          key={control.id}
+          id={control.id}
+          label={control.label}
+          value={control.state.value}
+          type={control.type}
+          readOnly={control.readOnly}
+          visible={control.visible}
+          mandatory={control.mandatory}
+        />
+      );
+    }
+
     if (control.type === "singleValueDate") {
       return (
         <DatePickerInputControl
+          key={control.id}
+          id={control.id}
+          label={control.label}
+          value={control.state.value}
+          type={control.type}
+          readOnly={control.readOnly}
+          visible={control.visible}
+          mandatory={control.mandatory}
+          validationRules={control.validationRules}
+        />
+      );
+    }
+    if (control.type === "singleValueDatetime") {
+      return (
+        <DateTimePickerInputControl
+          key={control.id}
+          id={control.id}
+          label={control.label}
+          value={control.state.value}
+          type={control.type}
+          readOnly={control.readOnly}
+          visible={control.visible}
+          mandatory={control.mandatory}
+          validationRules={control.validationRules}
+        />
+      );
+    }
+    if (control.type === "singleValueTime") {
+      return (
+        <TimePickerInputControl
           key={control.id}
           id={control.id}
           label={control.label}

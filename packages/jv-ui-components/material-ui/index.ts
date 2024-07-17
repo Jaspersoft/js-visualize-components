@@ -106,6 +106,7 @@ export {
   ConfirmationDialogProps as JVConfirmationDialogProps,
 } from "./Dialog/ConfirmationDialog";
 export { DatePicker as JVDatePicker } from "./Date/DatePicker";
+export { DateTimePicker as JVDateTimePicker } from "./DateTime/DateTimePicker";
 export { DatePickerProvider as JVDatePickerProvider } from "./Date/DatePickerProvider";
 export { Divider as JVDivider } from "./Divider/Divider";
 export { Drawer as JVDrawer } from "./Drawer/Drawer";
@@ -219,6 +220,7 @@ export {
   TextField as JVTextField,
   TextFieldProps,
 } from "./TextField/TextField";
+export { TimePicker as JVTimePicker } from "./Time/TimePicker";
 export { Toolbar as JVToolbar } from "./Toolbar/Toolbar";
 export { Tooltip as JVTooltip } from "./Tooltip/Tooltip";
 export {
