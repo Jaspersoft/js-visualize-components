@@ -6,7 +6,8 @@ import { DateTimeICType } from "./controls/DateTimePickerTextFieldInputControl";
 import { NumberICType } from "./controls/SingleValueNumberInputControl";
 import { DateTimePickerICType } from "./controls/DateTimePickerInputControl";
 import { TextFieldICType } from "./controls/SingleValueTextInputControl";
-import { TimeICType } from "./controls/TimePickerInputControl";
+import { TimePickerICType } from "./controls/TimePickerInputControl";
+import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
 import { InputControlCollection } from "./controls/BaseInputControl";
 
@@ -34,7 +35,7 @@ export interface InputControlUserConfig {
     type: DateTimeICType | DateTimePickerICType;
   };
   singleValueTime?: {
-    type: TimeICType;
+    type: TimeICType | TimePickerICType;
   };
 }
 

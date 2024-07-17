@@ -21,16 +21,13 @@ export const DateTimeTextField = forwardRef<HTMLDivElement, TextFieldProps>(
       ...props.InputProps,
     };
     return (
-      <div className="demoSize">
-        <JVTextField
-          {...props}
-          className={`jv-mInput jv-mInputLarge jv-mInputText jv-mInputDatetime mui ${props.className || ""}`}
-          type="datetime-local"
-          variant="outlined"
-          InputLabelProps={{ ...mergedInputLabelProps }}
-          InputProps={{ ...mergeInputProps }}
-        ></JVTextField>
-      </div>
+      <JVTextField
+        {...props}
+        className={`jv-mInput jv-mInputLarge jv-mInputText mui ${props.className || ""}`}
+        variant="outlined"
+        InputLabelProps={{ ...mergedInputLabelProps }}
+        InputProps={{ ...mergeInputProps }}
+      ></JVTextField>
     );
   },
 );

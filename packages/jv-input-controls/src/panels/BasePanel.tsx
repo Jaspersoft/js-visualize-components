@@ -2,14 +2,12 @@ import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-co
 import * as React from "react";
 import BooleanInputControl from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
-import {
-  DateTimePickerICType,
-  DateTimePickerInputControl,
-} from "../controls/DateTimePickerInputControl";
-import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
+import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
+import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
+import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
 
 export interface BasePanelProps {
@@ -112,8 +110,23 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
       );
     }
     if (control.type === "singleValueTime") {
+      if (props.config?.singleValueTime?.type === "time_picker") {
+        return (
+          <TimePickerInputControl
+            key={control.id}
+            id={control.id}
+            label={control.label}
+            value={control.state.value}
+            type={control.type}
+            readOnly={control.readOnly}
+            visible={control.visible}
+            mandatory={control.mandatory}
+            validationRules={control.validationRules}
+          />
+        );
+      }
       return (
-        <TimePickerInputControl
+        <TimePickerTextFieldInputControl
           key={control.id}
           id={control.id}
           label={control.label}

@@ -8,9 +8,9 @@ import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
-export type DateTimeICType = "datetime";
+export type TimeICType = "time";
 
-export interface DateTimeTextFieldICProps extends BaseInputControlProps {
+export interface TimeTextFieldICProps extends BaseInputControlProps {
   defaultValue?: string;
   value?: string;
   variant?: "standard" | "filled" | "outlined" | undefined;
@@ -18,8 +18,8 @@ export interface DateTimeTextFieldICProps extends BaseInputControlProps {
   disabled?: boolean;
 }
 
-export const DateTimePickerTextFieldInputControl = (
-  props: DateTimeTextFieldICProps,
+export const TimePickerTextFieldInputControl = (
+  props: TimeTextFieldICProps,
 ) => {
   const {
     value,
@@ -42,9 +42,9 @@ export const DateTimePickerTextFieldInputControl = (
   return (
     <JVDateTimeTextField
       {...remainingProps}
-      type="datetime-local"
+      type="time"
       variant={props.variant || "outlined"}
-      className={`jv-mInputDatetime ${controlClasses.join(" ")} ${props.className || ""}`}
+      className={`jv-mInputTime ${controlClasses.join(" ")} ${props.className || ""}`}
       InputProps={theInputProps}
     />
   );
