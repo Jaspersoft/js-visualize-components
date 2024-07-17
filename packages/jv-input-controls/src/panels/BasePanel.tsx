@@ -17,18 +17,25 @@ export interface BasePanelProps {
 }
 
 export default function BasePanel(props: BasePanelProps): React.JSX.Element {
+  const getControlProps = (control: any) => {
+    return {
+      id: control.id,
+      label: control.label,
+      value: control.state.value,
+      type: control.type,
+      readOnly: control.readOnly,
+      visible: control.visible,
+      mandatory: control.mandatory,
+      uri: control.uri,
+    };
+  };
   const buildControl = (control: any) => {
+    const theProps = getControlProps(control);
     if (control.type === "bool") {
       return (
         <BooleanInputControl
+          {...theProps}
           key={control.id}
-          id={control.id}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
-          type={control.type}
-          uri={control.uri}
-          label={control.label}
           styleType={props.config?.bool?.type}
         />
       );
@@ -40,58 +47,30 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
       }
       return (
         <SingleValueTextInputControl
+          {...theProps}
           key={control.id}
-          id={control.id}
-          label={control.label}
-          value={control.state.value}
           type={inputTypeText}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
         />
       );
     }
     if (control.type === "singleValueNumber") {
-      return (
-        <SingleValueNumberInputControl
-          key={control.id}
-          id={control.id}
-          label={control.label}
-          value={control.state.value}
-          type={control.type}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
-        />
-      );
+      return <SingleValueNumberInputControl {...theProps} key={control.id} />;
     }
 
     if (control.type === "singleValueDate") {
       if (props?.config?.singleValueDate?.type === "date_picker") {
         return (
           <DatePickerInputControl
+            {...theProps}
             key={control.id}
-            id={control.id}
-            label={control.label}
-            value={control.state.value}
-            type={control.type}
-            readOnly={control.readOnly}
-            visible={control.visible}
-            mandatory={control.mandatory}
             validationRules={control.validationRules}
           />
         );
       }
       return (
         <DatePickerTextFieldInputControl
+          {...theProps}
           key={control.id}
-          id={control.id}
-          label={control.label}
-          value={control.state.value}
-          type={control.type}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
           validationRules={control.validationRules}
         />
       );
@@ -100,27 +79,16 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
       if (props.config?.singleValueDatetime?.type === "datetime_picker") {
         return (
           <DateTimePickerInputControl
+            {...theProps}
             key={control.id}
-            id={control.id}
-            label={control.label}
-            value={control.state.value}
-            type={control.type}
-            readOnly={control.readOnly}
-            visible={control.visible}
-            mandatory={control.mandatory}
             validationRules={control.validationRules}
           />
         );
       }
       return (
         <DateTimePickerTextFieldInputControl
+          {...theProps}
           key={control.id}
-          id={control.id}
-          label={control.label}
-          value={control.state.value}
-          type={control.type}
-          readOnly={control.readOnly}
-          visible={control.visible}
           mandatory={control.mandatory}
         />
       );
@@ -129,28 +97,16 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
       if (props.config?.singleValueTime?.type === "time_picker") {
         return (
           <TimePickerInputControl
+            {...theProps}
             key={control.id}
-            id={control.id}
-            label={control.label}
-            value={control.state.value}
-            type={control.type}
-            readOnly={control.readOnly}
-            visible={control.visible}
-            mandatory={control.mandatory}
             validationRules={control.validationRules}
           />
         );
       }
       return (
         <TimePickerTextFieldInputControl
+          {...theProps}
           key={control.id}
-          id={control.id}
-          label={control.label}
-          value={control.state.value}
-          type={control.type}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
           validationRules={control.validationRules}
         />
       );
