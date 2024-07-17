@@ -14,7 +14,7 @@ const requiredProps = {
   type: "singleValueDatetime",
 };
 
-const getDateTimePicketTextFieldIC = (options?: object): JSX.Element => {
+const getDateTimePickerTextFieldIC = (options?: object): JSX.Element => {
   return (
     <DateTimePickerTextFieldInputControl
       {...{ ...requiredProps, ...options }}
@@ -24,7 +24,7 @@ const getDateTimePicketTextFieldIC = (options?: object): JSX.Element => {
 
 describe("DateTimePickerTextFieldInputControl tests", () => {
   test("DateTimePickerTextFieldInputControl is rendered correctly", () => {
-    const { container } = render(getDateTimePicketTextFieldIC());
+    const { container } = render(getDateTimePickerTextFieldIC());
     const buttonElement = container.querySelector("input");
     expect(buttonElement).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   // Test for label prop
   test("displays the label when provided", () => {
     const testLabel = "Test Label";
-    render(getDateTimePicketTextFieldIC({ label: testLabel }));
+    render(getDateTimePickerTextFieldIC({ label: testLabel }));
     const labelElement = screen.queryByLabelText(testLabel);
     expect(labelElement).toBeInTheDocument();
   });
@@ -41,7 +41,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   test("uses value as the initial input value", () => {
     const defaultValue = "2014-09-12T15:46:18.000";
     const { container } = render(
-      getDateTimePicketTextFieldIC({ defaultValue }),
+      getDateTimePickerTextFieldIC({ defaultValue }),
     );
 
     const inputElement = container.querySelector("input") as HTMLInputElement;
@@ -50,7 +50,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
 
   // Test for onChange event
   test("updates value on change", () => {
-    const { container } = render(getDateTimePicketTextFieldIC({}));
+    const { container } = render(getDateTimePickerTextFieldIC({}));
     const inputElement = container.querySelector("input") as HTMLInputElement;
     const newValue = "2024-07-15T15:46:18.000";
     fireEvent.change(inputElement, { target: { value: newValue } });
@@ -60,7 +60,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   // Test for variant prop
   test("changes style based on variant prop", () => {
     const { container } = render(
-      getDateTimePicketTextFieldIC({ variant: "outlined" }),
+      getDateTimePickerTextFieldIC({ variant: "outlined" }),
     );
     let inputElement = container.querySelector("input") as HTMLInputElement;
     expect(inputElement).toHaveClass("MuiOutlinedInput-input");
@@ -69,7 +69,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   // test for default size.
   test("check the default size is large if it is not provided", () => {
     // Render the component
-    const { container } = render(getDateTimePicketTextFieldIC({}));
+    const { container } = render(getDateTimePickerTextFieldIC({}));
 
     // Use querySelector to get the first div with the class "jv-mInputLarge"
     const divElement = container.querySelector(`div.${LARGE_CSS_CLASS}`);
@@ -84,7 +84,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
     const cssClass = "jv-mInput";
     // Render the component
     const { container } = render(
-      getDateTimePicketTextFieldIC({ className: cssClass }),
+      getDateTimePickerTextFieldIC({ className: cssClass }),
     );
 
     // Use querySelector to get the first div with the class "jv-mInputLarge"
@@ -100,7 +100,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   test("check the component is read-only", () => {
     // Render the component
     const { container } = render(
-      getDateTimePicketTextFieldIC({ readOnly: true }),
+      getDateTimePickerTextFieldIC({ readOnly: true }),
     );
     let inputElement = container.querySelector("input") as HTMLInputElement;
 
@@ -114,7 +114,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
     const HIDDEN_CLASS_NAME = "jv-uVisibility-hide";
     // Render the component
     const { container } = render(
-      getDateTimePicketTextFieldIC({ visible: false }),
+      getDateTimePickerTextFieldIC({ visible: false }),
     );
     // Use querySelector to get the first div with the class "jv-mInputLarge"
     const divElement = container.querySelector(`div.${HIDDEN_CLASS_NAME}`);
@@ -128,7 +128,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   test("verify the field shows error when mandatory prop is set", () => {
     const CSS_ERROR_CLASS = "jv-uMandatory";
     const { container } = render(
-      getDateTimePicketTextFieldIC({ mandatory: true }),
+      getDateTimePickerTextFieldIC({ mandatory: true }),
     );
     let wrapperDiv = container.querySelector(
       `div.${CSS_ERROR_CLASS}`,
