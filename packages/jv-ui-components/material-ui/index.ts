@@ -271,3 +271,5 @@ export {
   TreeItem2Root as JVTreeItem2Root,
   TreeItem2IconContainer as JVTreeItem2IconContainer,
 } from "./Tree/TreeItem2";
+
+export { Box as JVBox } from "./Box/Box";

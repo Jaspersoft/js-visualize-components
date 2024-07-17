@@ -10,8 +10,9 @@ import {
 } from "@jaspersoft/jv-ui-components";
 import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
+import { TreeView } from "./TreeView";
 
-const DialogContentComponent = <></>;
+const DialogContentComponent = <TreeView />;
 
 function PaperComponent(props: JVPaperProps) {
   return (
@@ -43,6 +44,14 @@ export const RepositoryTree = ({ open: dialogOpen }: any) => {
         <Resizable
           size={{ width, height }}
           onResize={() => {}}
+          resizing
+          not
+          working
+          after
+          resizing
+          to
+          max
+          width
           onResizeStop={(e, direction, ref, d) => {
             setWidth(parseInt(width) + d.width + "px");
             setHeight(parseInt(height) + d.height + "px");

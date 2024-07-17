@@ -6,6 +6,7 @@ import {
 export const initialState = {
   userTimeZones: [],
   outputFormats: [],
+  folderData: {},
   // userLocale: []
 };
 

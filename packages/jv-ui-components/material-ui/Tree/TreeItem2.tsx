@@ -24,7 +24,7 @@ export namespace TreeProviderNameSpace {
   export import TreeItem2ProviderNameSpace = MuiTreeItem2Provider;
 }
 export const TreeItem2Icon = forwardRef<HTMLElement, any>(
-  ({ className, ...rest }, ref) => {
+  ({ className = "", ...rest }, ref) => {
     return (
       <>
         <MuiTreeItem2Icon ref={ref} className={`${className}  mui`} {...rest} />
@@ -34,7 +34,7 @@ export const TreeItem2Icon = forwardRef<HTMLElement, any>(
 );
 
 export const TreeItem2Content = forwardRef<HTMLElement, any>(
-  ({ className, ...rest }, ref) => {
+  ({ className = "", ...rest }, ref) => {
     return (
       <>
         <MuiTreeItem2Content
@@ -48,7 +48,7 @@ export const TreeItem2Content = forwardRef<HTMLElement, any>(
 );
 
 export const TreeItem2IconContainer = forwardRef<HTMLElement, any>(
-  ({ className, ...rest }, ref) => {
+  ({ className = "", ...rest }, ref) => {
     return (
       <>
         <MuiTreeItem2IconContainer
@@ -62,7 +62,7 @@ export const TreeItem2IconContainer = forwardRef<HTMLElement, any>(
 );
 
 export const TreeItem2Label = forwardRef<HTMLElement, any>(
-  ({ className, ...rest }, ref) => {
+  ({ className = "", ...rest }, ref) => {
     return (
       <>
         <MuiTreeItem2Label
@@ -76,7 +76,7 @@ export const TreeItem2Label = forwardRef<HTMLElement, any>(
 );
 
 export const TreeItem2Root = forwardRef<HTMLElement, any>(
-  ({ className, ...rest }, ref) => {
+  ({ className = "", ...rest }, ref) => {
     return (
       <>
         <MuiTreeItem2Root ref={ref} className={`${className}  mui`} {...rest} />
