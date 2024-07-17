@@ -26,6 +26,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       visible: control.visible,
       mandatory: control.mandatory,
       uri: control.uri,
+      state: control.state,
     };
   };
   const buildControl = (control: any) => {
