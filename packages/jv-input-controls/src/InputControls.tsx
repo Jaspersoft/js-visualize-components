@@ -1,16 +1,17 @@
+import { StylesProvider as JVStylesProvider } from "@jaspersoft/jv-ui-components/material-ui/styles/StylesProvider";
 import * as React from "react";
-import { BoolICType } from "./controls/BooleanInputControl";
 import { createRoot } from "react-dom/client";
+import { InputControlCollection } from "./controls/BaseInputControl";
+import { BoolICType } from "./controls/BooleanInputControl";
 import { DatePickerICType } from "./controls/DatePickerInputControl";
 import { DateICType } from "./controls/DatePickerTextFieldInputControl";
+import { DateTimePickerICType } from "./controls/DateTimePickerInputControl";
 import { DateTimeICType } from "./controls/DateTimePickerTextFieldInputControl";
 import { NumberICType } from "./controls/SingleValueNumberInputControl";
-import { DateTimePickerICType } from "./controls/DateTimePickerInputControl";
 import { TextFieldICType } from "./controls/SingleValueTextInputControl";
 import { TimePickerICType } from "./controls/TimePickerInputControl";
 import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
-import { InputControlCollection } from "./controls/BaseInputControl";
 
 export interface InputControlConfig {
   hostname?: string;
@@ -100,7 +101,9 @@ export class InputControls {
         const icRoot = createRoot(container);
         // TODO: we have to consider the exclude/include property from the icPanelDef before providing the controls prop
         icRoot.render(
-          <BasePanel controls={controls} config={icPanelDef?.config} />,
+          <JVStylesProvider>
+            <BasePanel controls={controls} config={icPanelDef?.config} />
+          </JVStylesProvider>,
         );
         icPanelDef?.success && icPanelDef?.success.call(null);
       } catch (e) {
