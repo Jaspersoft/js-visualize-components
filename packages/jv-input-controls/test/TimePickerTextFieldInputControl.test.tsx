@@ -12,6 +12,11 @@ const requiredProps = {
   readOnly: false,
   visible: true,
   type: "singleValueTime",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
+    id: "column_time_1",
+    value: "23:44:21",
+  },
 };
 
 const getTimePickerTextFieldIC = (options?: object): JSX.Element => {
@@ -38,7 +43,9 @@ describe("TimePickerTextFieldInputControl tests", () => {
   // Test for value prop
   test("uses value as the initial input value", () => {
     const defaultValue = "23:44:21";
-    const { container } = render(getTimePickerTextFieldIC({ defaultValue }));
+    const { container } = render(
+      getTimePickerTextFieldIC({ state: { value: defaultValue } }),
+    );
 
     const inputElement = container.querySelector("input") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);

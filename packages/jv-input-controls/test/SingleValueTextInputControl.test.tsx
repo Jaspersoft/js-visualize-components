@@ -6,12 +6,17 @@ import * as React from "react";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
 const requiredProps = {
-  id: "0",
-  label: "test",
+  id: "column_string_1",
+  label: "column_string_1",
   mandatory: false,
   readOnly: false,
   visible: true,
   type: "singleValueText",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_string_1",
+    id: "column_string_1",
+    value: "ddd",
+  },
 };
 
 const getTextIC = (options?: object): React.JSX.Element => {
@@ -36,7 +41,13 @@ describe("SingleValueTextInputControls tests", () => {
   // Test for value prop
   test("uses value as the initial input value", () => {
     const defaultValue = "Default Value";
-    render(getTextIC({ defaultValue }));
+    render(
+      getTextIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);
   });

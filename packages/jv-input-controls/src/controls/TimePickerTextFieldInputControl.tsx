@@ -11,8 +11,6 @@ import { useLiveState } from "./hooks/useLiveState";
 export type TimeICType = "time";
 
 export interface TimeTextFieldICProps extends BaseInputControlProps {
-  defaultValue?: string;
-  value?: string;
   variant?: "standard" | "filled" | "outlined" | undefined;
   className?: string;
   disabled?: boolean;
@@ -21,18 +19,9 @@ export interface TimeTextFieldICProps extends BaseInputControlProps {
 export const TimePickerTextFieldInputControl = (
   props: TimeTextFieldICProps,
 ) => {
-  const {
-    value,
-    defaultValue,
-    readOnly,
-    mandatory,
-    visible,
-    validationRules,
-    ...remainingProps
-  } = props;
-  const liveState = useLiveState(
-    props.state?.value || value || defaultValue || "",
-  );
+  const { readOnly, mandatory, visible, validationRules, ...remainingProps } =
+    props;
+  const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {

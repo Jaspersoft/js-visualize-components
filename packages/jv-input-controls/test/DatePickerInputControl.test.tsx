@@ -6,12 +6,17 @@ import * as React from "react";
 import { DatePickerInputControl } from "../src/controls/DatePickerInputControl";
 
 const requiredProps = {
-  id: "date-picker-id",
-  label: "testDatePicker",
+  id: "column_date_1",
+  label: "column_date",
   mandatory: false,
   readOnly: false,
   visible: true,
   type: "singleValueDate",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_date_1",
+    id: "column_date_1",
+    value: "2009-09-12",
+  },
 };
 
 const getDatePickerIC = (options?: any): React.JSX.Element => {
@@ -25,7 +30,13 @@ const getDatePickerIC = (options?: any): React.JSX.Element => {
 
 describe("DatePickerInputControl tests", () => {
   test("DatePickerInputControl is rendered correctly", () => {
-    render(getDatePickerIC({ value: "2022-04-17" }));
+    render(
+      getDatePickerIC({
+        state: {
+          value: "2022-04-17",
+        },
+      }),
+    );
     const datePickerElement = screen.getByRole("textbox");
     expect(datePickerElement).toBeInTheDocument();
   });
@@ -41,16 +52,28 @@ describe("DatePickerInputControl tests", () => {
   // Test for value prop
   test("uses value as the initial input value", () => {
     const defaultValue = "04/17/2022";
-    render(getDatePickerIC({ value: defaultValue }));
+    render(
+      getDatePickerIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);
   });
 
   // Test for onChange event
   test("updates value on change", () => {
-    render(getDatePickerIC({ value: "04/17/2022" }));
+    render(
+      getDatePickerIC({
+        state: {
+          value: "04/17/2022",
+        },
+      }),
+    );
     const datePicker = screen.queryByLabelText(
-      "testDatePicker",
+      requiredProps.label,
     ) as HTMLInputElement;
     const newValue = "04/18/2022";
     fireEvent.change(datePicker, { target: { value: newValue } });

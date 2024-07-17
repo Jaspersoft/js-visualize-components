@@ -12,6 +12,11 @@ const requiredProps = {
   readOnly: false,
   visible: true,
   type: "singleValueDate",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_date_1",
+    id: "column_date_1",
+    value: "2009-09-12",
+  },
 };
 
 const getDatePickerTextFieldIC = (options?: object): JSX.Element => {
@@ -38,7 +43,13 @@ describe("DatePickerTextFieldInputControl tests", () => {
   // Test for value prop
   test("uses value as the initial input value", () => {
     const defaultValue = "2009-09-12";
-    const { container } = render(getDatePickerTextFieldIC({ defaultValue }));
+    const { container } = render(
+      getDatePickerTextFieldIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
 
     const inputElement = container.querySelector("input") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);

@@ -11,6 +11,11 @@ const requiredProps = {
   readOnly: false,
   visible: true,
   type: "singleValueTime",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
+    id: "column_time_1",
+    value: "23:44:21",
+  },
 };
 
 const getTimePickerIC = (options?: any): JSX.Element => {
@@ -24,7 +29,7 @@ const getTimePickerIC = (options?: any): JSX.Element => {
 
 describe("TimePickerInputControl tests", () => {
   test("TimePickerInputControl is rendered correctly", () => {
-    render(getTimePickerIC({ value: "15:46:18" }));
+    render(getTimePickerIC({ state: { value: "15:46:18" } }));
     const datePickerElement = screen.getByRole("textbox");
     expect(datePickerElement).toBeInTheDocument();
   });
@@ -39,7 +44,9 @@ describe("TimePickerInputControl tests", () => {
   test("value is converted to AM/PM format", () => {
     render(
       getTimePickerIC({
-        value: "15:46:18",
+        state: {
+          value: "15:46:18",
+        },
         validationRules: [
           {
             dateTimeFormatValidationRule: {

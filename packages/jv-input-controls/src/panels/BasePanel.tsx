@@ -1,5 +1,5 @@
 import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
-import * as React from "react";
+import { JSX } from "react";
 import BooleanInputControl from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
@@ -16,12 +16,11 @@ export interface BasePanelProps {
   config?: InputControlUserConfig;
 }
 
-export default function BasePanel(props: BasePanelProps): React.JSX.Element {
+export default function BasePanel(props: BasePanelProps): JSX.Element {
   const getControlProps = (control: any) => {
     return {
       id: control.id,
       label: control.label,
-      value: control.state.value,
       type: control.type,
       readOnly: control.readOnly,
       visible: control.visible,

@@ -11,8 +11,6 @@ import { useLiveState } from "./hooks/useLiveState";
 export type DateTimeICType = "datetime";
 
 export interface DateTimeTextFieldICProps extends BaseInputControlProps {
-  defaultValue?: string;
-  value?: string;
   variant?: "standard" | "filled" | "outlined" | undefined;
   className?: string;
   disabled?: boolean;
@@ -21,18 +19,9 @@ export interface DateTimeTextFieldICProps extends BaseInputControlProps {
 export const DateTimePickerTextFieldInputControl = (
   props: DateTimeTextFieldICProps,
 ) => {
-  const {
-    value,
-    defaultValue,
-    readOnly,
-    mandatory,
-    visible,
-    validationRules,
-    ...remainingProps
-  } = props;
-  const liveState = useLiveState(
-    props.state?.value || value || defaultValue || "",
-  );
+  const { readOnly, mandatory, visible, validationRules, ...remainingProps } =
+    props;
+  const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {

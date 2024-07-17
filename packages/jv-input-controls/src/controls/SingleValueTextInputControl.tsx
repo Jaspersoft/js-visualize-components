@@ -6,8 +6,6 @@ import { useLiveState } from "./hooks/useLiveState";
 export type TextFieldICType = "textField";
 
 export interface TextFieldICProps extends BaseInputControlProps {
-  defaultValue?: string;
-  value?: string;
   variant?: "standard" | "filled" | "outlined" | undefined;
   className?: string;
 }
@@ -20,18 +18,8 @@ export interface TextFieldICProps extends BaseInputControlProps {
  * @constructor
  */
 export const SingleValueTextInputControl = (props: TextFieldICProps) => {
-  const {
-    value: theValue,
-    className,
-    defaultValue,
-    mandatory,
-    readOnly,
-    visible,
-    ...remainingProps
-  } = props;
-  const liveState = useLiveState(
-    props.state?.value || theValue || defaultValue || "",
-  );
+  const { className, mandatory, readOnly, visible, ...remainingProps } = props;
+  const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:
   const inputProps: any = {};

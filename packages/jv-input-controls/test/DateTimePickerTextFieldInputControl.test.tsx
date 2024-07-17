@@ -12,6 +12,11 @@ const requiredProps = {
   readOnly: false,
   visible: true,
   type: "singleValueDatetime",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_timestamp_1",
+    id: "column_timestamp_1",
+    value: "2014-09-12T15:46:18",
+  },
 };
 
 const getDateTimePickerTextFieldIC = (options?: object): JSX.Element => {
@@ -41,7 +46,7 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   test("uses value as the initial input value", () => {
     const defaultValue = "2014-09-12T15:46:18.000";
     const { container } = render(
-      getDateTimePickerTextFieldIC({ defaultValue }),
+      getDateTimePickerTextFieldIC({ state: { value: defaultValue } }),
     );
 
     const inputElement = container.querySelector("input") as HTMLInputElement;

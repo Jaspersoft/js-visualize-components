@@ -9,7 +9,6 @@ import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 export type DatePickerICType = "date_picker";
 
 export interface DateICProps extends BaseInputControlProps {
-  value?: string;
   className?: string;
   views?: Array<"year" | "month" | "day">;
   disabled?: boolean;
@@ -23,7 +22,7 @@ export const DatePickerInputControl = (props: DateICProps) => {
   }
 
   const liveState = useLiveDateFormattedState({
-    initialValue: props.state?.value || props.value || "",
+    initialValue: props.state?.value || "",
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);
