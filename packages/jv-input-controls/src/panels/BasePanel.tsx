@@ -6,6 +6,7 @@ import {
   DateTimePickerICType,
   DateTimePickerInputControl,
 } from "../controls/DateTimePickerInputControl";
+import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
@@ -51,6 +52,21 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
         />
       );
     }
+    if (control.type === "singleValueNumber") {
+      return (
+        <SingleValueNumberInputControl
+          key={control.id}
+          id={control.id}
+          label={control.label}
+          value={control.state.value}
+          type={control.type}
+          readOnly={control.readOnly}
+          visible={control.visible}
+          mandatory={control.mandatory}
+        />
+      );
+    }
+
     if (control.type === "singleValueDate") {
       return (
         <DatePickerInputControl
