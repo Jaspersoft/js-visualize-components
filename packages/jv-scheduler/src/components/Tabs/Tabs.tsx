@@ -5,7 +5,7 @@ import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
 import Schedule from "../Tabs/TabsContent/Schedule";
 import Parameters from "../Tabs/TabsContent/Parameters";
 import Output from "../Tabs/TabsContent/Output";
-import Notifications from "../Tabs/TabsContent/Notifications";
+import Notifications from "./TabsContent/notifications/Notifications";
 
 const Tabs = () => {
   const [value, setValue] = useState<number>(0);
