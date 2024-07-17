@@ -2,6 +2,7 @@ import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-co
 import * as React from "react";
 import BooleanInputControl from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
+import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
@@ -66,8 +67,23 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
     }
 
     if (control.type === "singleValueDate") {
+      if (props?.config?.singleValueDate?.type === "date_picker") {
+        return (
+          <DatePickerInputControl
+            key={control.id}
+            id={control.id}
+            label={control.label}
+            value={control.state.value}
+            type={control.type}
+            readOnly={control.readOnly}
+            visible={control.visible}
+            mandatory={control.mandatory}
+            validationRules={control.validationRules}
+          />
+        );
+      }
       return (
-        <DatePickerInputControl
+        <DatePickerTextFieldInputControl
           key={control.id}
           id={control.id}
           label={control.label}

@@ -6,7 +6,7 @@ import {
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
-export type DateICType = "Date";
+export type DatePickerICType = "date_picker";
 
 export interface DateICProps extends BaseInputControlProps {
   value?: string;
