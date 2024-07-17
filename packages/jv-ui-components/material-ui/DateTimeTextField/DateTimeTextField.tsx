@@ -24,7 +24,7 @@ export const DateTimeTextField = forwardRef<HTMLDivElement, TextFieldProps>(
       <div className="demoSize">
         <JVTextField
           {...props}
-          className="jv-mInput jv-mInputLarge jv-mInputText jv-mInputDatetime mui"
+          className={`jv-mInput jv-mInputLarge jv-mInputText jv-mInputDatetime mui ${props.className || ""}`}
           type="datetime-local"
           variant="outlined"
           InputLabelProps={{ ...mergedInputLabelProps }}
