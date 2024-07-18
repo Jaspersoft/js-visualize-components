@@ -1,11 +1,13 @@
 import {
   SET_OUTPUT_FORMATS,
+  SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
 } from "../constants/actionConstants";
 import {
   getOutputFormatsFromService,
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
+import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -33,7 +35,16 @@ export const setUserTimeZones = (timeZones) => {
     },
   };
 };
-
+export const setSechedulerUIConfig = (
+  schedulerUIConfig: ISchedulerUIConfig,
+) => {
+  return {
+    type: SET_SCHEDULER_UI_CONFIG,
+    payload: {
+      schedulerUIConfig: schedulerUIConfig,
+    },
+  };
+};
 export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();

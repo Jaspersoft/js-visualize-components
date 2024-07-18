@@ -2,16 +2,22 @@ import React, { useEffect } from "react";
 import Tabs from "./Tabs/Tabs";
 import { useDispatch } from "react-redux";
 import { getInputControls } from "../services/schedulerServices";
-import { getUserTimeZones, getOutputFormats } from "../actions/action";
+import {
+  getUserTimeZones,
+  getOutputFormats,
+  setSechedulerUIConfig,
+} from "../actions/action";
 import ScheduleStepper from "./Stepper/ScheduleStepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
+import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
 
-const SchedulerMain = () => {
+const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setSechedulerUIConfig(schedulerUIConfig));
     dispatch(getUserTimeZones());
     dispatch(getOutputFormats());
 

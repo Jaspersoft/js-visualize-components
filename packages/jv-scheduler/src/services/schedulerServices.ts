@@ -1,9 +1,10 @@
 import axios from "axios";
+import store from "../store/store";
 
 export const getUserTimezonesFromService = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:8080/jasperserver-pro/rest_v2/settings/userTimeZones",
+      `${store.getState().schedulerUIConfig.server}/rest_v2/settings/userTimeZones`,
       {
         headers: {
           Accept: "application/json",
@@ -19,7 +20,7 @@ export const getUserTimezonesFromService = async () => {
 export const getOutputFormatsFromService = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:8080/jasperserver-pro/rest_v2/settings/alertingSettings",
+      `${store.getState().schedulerUIConfig.server}/rest_v2/settings/alertingSettings`,
       {
         headers: {
           Accept: "application/json",
@@ -51,7 +52,7 @@ export const getInputControls = async () => {
   csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
   try {
     const response = await axios.post(
-      `http://localhost:8080/jasperserver-pro/rest_v2/reports${reportUri}/inputControls/ProductFamily/values/pagination?freshData=false&includeTotalCount=true`,
+      `${store.getState().schedulerUIConfig.server}/rest_v2/reports${reportUri}/inputControls/ProductFamily/values/pagination?freshData=false&includeTotalCount=true`,
       {
         reportParameter: [
           {
@@ -80,7 +81,7 @@ export const getCSRFToken = async () => {
   try {
     // noinspection TypeScriptValidateTypes
     const response = await axios.post(
-      "http://localhost:8080/jasperserver-pro/JavaScriptServlet",
+      `${store.getState().schedulerUIConfig.server}/JavaScriptServlet`,
       {},
       {
         headers: {

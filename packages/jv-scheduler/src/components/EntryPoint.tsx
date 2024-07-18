@@ -14,7 +14,7 @@ const EntryPoint = (schedulerUIConfig: ISchedulerUIConfig) => {
 
   return (
     <ReduxProvider store={store}>
-      <SchedulerMain />
+      <SchedulerMain {...schedulerUIConfig} />
     </ReduxProvider>
   );
 };

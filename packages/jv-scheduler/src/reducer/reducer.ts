@@ -1,11 +1,13 @@
 import {
   SET_OUTPUT_FORMATS,
+  SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
 } from "../constants/actionConstants";
 
 export const initialState = {
   userTimeZones: [],
   outputFormats: [],
+  schedulerUIConfig: {},
   // userLocale: []
 };
 
@@ -20,6 +22,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         outputFormats: action.payload.outputFormats,
+      };
+    case SET_SCHEDULER_UI_CONFIG:
+      return {
+        ...state,
+        schedulerUIConfig: action.payload.schedulerUIConfig,
       };
     // case SET_USER_LOCALE:
     //     return {
