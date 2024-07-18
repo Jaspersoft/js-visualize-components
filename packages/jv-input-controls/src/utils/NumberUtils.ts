@@ -3,6 +3,8 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
+import { ICDataType } from "../controls/BaseInputControl";
+
 const DECIMAL_SEPARATOR = "\\.";
 const GROUPING_SEPARATOR = ",";
 const SPACE_SEPARATOR = "\\s";
@@ -56,4 +58,42 @@ export const parseNumber = (value: string) => {
     );
   }
   return null;
+};
+
+export const verifyLimit = ({
+  dataType,
+  maxOrMinValAsNumber,
+  valAsNumber,
+  isVerifyingMin,
+}: {
+  dataType: ICDataType | undefined;
+  maxOrMinValAsNumber: number;
+  valAsNumber: number;
+  isVerifyingMin: boolean;
+}): { helperText: string; isError: boolean } => {
+  let helperText = "";
+  let isError = false;
+  if (dataType === undefined || isNaN(maxOrMinValAsNumber)) {
+    return { helperText, isError };
+  }
+  // verify the number is under the limits of the data type
+  let conditionalIsMet;
+  if (isVerifyingMin) {
+    conditionalIsMet =
+      dataType?.strictMin === true
+        ? valAsNumber > maxOrMinValAsNumber
+        : valAsNumber >= maxOrMinValAsNumber;
+  } else {
+    conditionalIsMet =
+      dataType?.strictMax === true
+        ? valAsNumber < maxOrMinValAsNumber
+        : valAsNumber <= maxOrMinValAsNumber;
+  }
+
+  if (conditionalIsMet) {
+    return { helperText, isError };
+  }
+  helperText = `Verify the number is not ${isVerifyingMin ? "lower" : "greater"} than the ${isVerifyingMin ? "minimum" : "maximum"} value.`;
+  isError = true;
+  return { helperText, isError };
 };

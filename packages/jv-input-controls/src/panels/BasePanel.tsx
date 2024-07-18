@@ -54,7 +54,13 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       );
     }
     if (control.type === "singleValueNumber") {
-      return <SingleValueNumberInputControl {...theProps} key={control.id} />;
+      return (
+        <SingleValueNumberInputControl
+          {...theProps}
+          key={control.id}
+          dataType={control.dataType}
+        />
+      );
     }
 
     if (control.type === "singleValueDate") {
