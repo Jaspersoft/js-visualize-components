@@ -60,6 +60,22 @@ export const parseNumber = (value: string) => {
   return null;
 };
 
+const getValueForVerificationText = (
+  dataType: ICDataType,
+  isVerifyingMin: boolean,
+) => {
+  if (isVerifyingMin) {
+    return dataType?.minValue;
+  }
+  return dataType?.maxValue;
+};
+
+const getVerificationText = (dataType: ICDataType, isVerifyingMin: boolean) => {
+  if (isVerifyingMin) {
+    return dataType?.strictMin === true ? "greater" : "greater or equal";
+  }
+  return dataType?.strictMax === true ? "lower" : "lower or equal";
+};
 export const verifyLimit = ({
   dataType,
   maxOrMinValAsNumber,
@@ -93,7 +109,10 @@ export const verifyLimit = ({
   if (conditionalIsMet) {
     return { helperText, isError };
   }
-  helperText = `Verify the number is not ${isVerifyingMin ? "lower" : "greater"} than the ${isVerifyingMin ? "minimum" : "maximum"} value.`;
+  helperText = `Verify the number is ${getVerificationText(
+    dataType,
+    isVerifyingMin,
+  )} than ${getValueForVerificationText(dataType, isVerifyingMin)}.`;
   isError = true;
   return { helperText, isError };
 };
