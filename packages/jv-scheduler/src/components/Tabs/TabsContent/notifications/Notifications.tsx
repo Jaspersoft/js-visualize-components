@@ -4,12 +4,13 @@ import {
   JVRadioButton,
   JVRadioGroup,
   JVTextField,
-  JVTypography,
 } from "@jaspersoft/jv-ui-components";
-import { JVTypographyComponent } from "../../common/CommonComponents";
+import { JVTypographyComponent } from "../../../common/CommonComponents";
+import { RepositoryTree } from "./RepositoryTree";
 
 const Notifications = () => {
   const [selectedValue, setSelectedValue] = useState("option1");
+  const [open, setOpen] = useState(false);
   const handleRadioChange = (value) => {
     setSelectedValue(value);
   };
@@ -42,6 +43,9 @@ const Notifications = () => {
               variant="contained"
               size="large"
               disabled={selectedValue !== "option1"}
+              onClick={() => {
+                setOpen(true);
+              }}
             >
               Browse...
             </JVButton>
@@ -55,6 +59,7 @@ const Notifications = () => {
           />
         </JVRadioGroup>
       </div>
+      <RepositoryTree open={open} />
     </>
   );
 };

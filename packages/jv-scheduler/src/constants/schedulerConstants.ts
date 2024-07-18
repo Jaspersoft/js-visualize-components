@@ -1,7 +1,7 @@
 export const PARAMETERS_TAB = "parameters";
 export const SCHEDULE_TAB = "schedule";
 export const NOTIFICATIONS_TAB = "notifications";
-export const OUTPUT_TAB = "output";
+export const OUTPUT_TAB = "outputOptions";
 const allTabs = [PARAMETERS_TAB, SCHEDULE_TAB, NOTIFICATIONS_TAB, OUTPUT_TAB];
 
 export const timeFrames = [

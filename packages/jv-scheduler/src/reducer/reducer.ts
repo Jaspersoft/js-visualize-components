@@ -8,6 +8,7 @@ export const initialState = {
   userTimeZones: [],
   outputFormats: [],
   schedulerUIConfig: {},
+  folderData: {},
   // userLocale: []
 };
 
