@@ -6,7 +6,7 @@ import {
   JVTextField,
 } from "@jaspersoft/jv-ui-components";
 import { JVTypographyComponent } from "../../../common/CommonComponents";
-import { RepositoryTree } from "./RepositoryTree";
+import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
 
 const Notifications = () => {
   const [selectedValue, setSelectedValue] = useState("option1");
@@ -59,7 +59,7 @@ const Notifications = () => {
           />
         </JVRadioGroup>
       </div>
-      <RepositoryTree open={open} />
+      <RepositoryTreeDialog open={open} />
     </>
   );
 };
