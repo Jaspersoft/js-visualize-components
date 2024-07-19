@@ -18,7 +18,7 @@ export const TimePickerInputControl = (props: TimeICProps) => {
   let dateFormat = "HH:mm:ss";
   if (props.validationRules !== undefined) {
     const [rule] = props.validationRules as ICDateValidationRule[];
-    dateFormat = rule.dateTimeFormatValidationRule.format;
+    dateFormat = rule.dateTimeFormatValidationRule!.format;
   }
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",

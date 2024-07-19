@@ -18,7 +18,7 @@ export const DatePickerInputControl = (props: DateICProps) => {
   let dateFormat = "YYYY-MM-DD";
   if (props.validationRules !== undefined) {
     const [rule] = props.validationRules as ICDateValidationRule[];
-    dateFormat = rule.dateTimeFormatValidationRule.format.toUpperCase();
+    dateFormat = rule.dateTimeFormatValidationRule!.format.toUpperCase();
   }
 
   const liveState = useLiveDateFormattedState({

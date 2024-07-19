@@ -109,6 +109,7 @@ export const verifyLimit = ({
   if (conditionalIsMet) {
     return { helperText, isError };
   }
+  // TODO: in the future, this message need to be considered for i18n:
   helperText = `Verify the number is ${getVerificationText(
     dataType,
     isVerifyingMin,

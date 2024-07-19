@@ -35,9 +35,12 @@ export interface ICValidationRule {
 }
 
 export interface ICDateValidationRule {
-  dateTimeFormatValidationRule: {
+  dateTimeFormatValidationRule?: {
     errorMessage: string;
     format: string;
+  };
+  mandatoryValidationRule?: {
+    errorMessage: string;
   };
 }
 

@@ -1,6 +1,10 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
+import { getMandatoryErrorMessage } from "../utils/ErrorMessageUtils";
 import { parseNumber, verifyLimit } from "../utils/NumberUtils";
-import { BaseInputControlProps } from "./BaseInputControl";
+import {
+  BaseInputControlProps,
+  ICDateValidationRule,
+} from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
@@ -30,6 +34,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     readOnly,
     visible,
     dataType,
+    validationRules,
     ...remainingProps
   } = props;
   const liveState = useLiveState(props.state?.value || "0");
@@ -42,15 +47,20 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
   }
   const theInputProps = { ...inputProps, ...liveState };
   let isError = !checkIfNumber(liveState.value);
-  // TODO: in the future, this message need to be considered for i18n:
-  let helperText = isError ? "Specify a valid value for type number." : "";
-
-  if (!isError) {
-    const maxValAsNumber = +dataType!.maxValue!;
-    const minValAsNumber = +dataType!.minValue!;
+  let helperText = "";
+  if (isError) {
+    if (!liveState.value.trim()) {
+      helperText = getMandatoryErrorMessage(
+        validationRules as ICDateValidationRule[],
+      );
+    } else {
+      // TODO: in the future, this message need to be considered for i18n:
+      helperText = "Specify a valid value for type number.";
+    }
+  } else {
     const valAsNumber = +liveState.value;
     const checkMax = verifyLimit({
-      maxOrMinValAsNumber: maxValAsNumber,
+      maxOrMinValAsNumber: +(dataType?.maxValue ?? 0),
       dataType,
       valAsNumber,
       isVerifyingMin: false,
@@ -60,7 +70,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
 
     if (!isError) {
       const checkMin = verifyLimit({
-        maxOrMinValAsNumber: minValAsNumber,
+        maxOrMinValAsNumber: +(dataType?.minValue ?? 0),
         dataType,
         valAsNumber,
         isVerifyingMin: true,

@@ -1,5 +1,4 @@
 import { StylesProvider as JVStylesProvider } from "@jaspersoft/jv-ui-components/material-ui/styles/StylesProvider";
-import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
@@ -99,7 +98,6 @@ export class InputControls {
     this.fillControlStructure(uri, (controls: InputControlCollection) => {
       try {
         const icRoot = createRoot(container);
-        // TODO: we have to consider the exclude/include property from the icPanelDef before providing the controls prop
         icRoot.render(
           <JVStylesProvider>
             <BasePanel controls={controls} config={icPanelDef?.config} />
