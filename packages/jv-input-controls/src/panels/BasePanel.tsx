@@ -96,7 +96,8 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         <DateTimePickerTextFieldInputControl
           {...theProps}
           key={control.id}
-          mandatory={control.mandatory}
+          dataType={control.dataType}
+          validationRules={control.validationRules}
         />
       );
     }
