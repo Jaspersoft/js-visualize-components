@@ -158,10 +158,110 @@ describe("SingleValueNumberInputControls tests", () => {
   // Test for mandatory field
   test("verify the field shows error when mandatory prop is set", () => {
     const CSS_ERROR_CLASS = "jv-uMandatory";
-    const { container } = render(getNumberIC({ mandatory: true }));
+    const { container } = render(
+      getNumberIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "number",
+          maxValue: "10",
+          strictMax: true,
+          minValue: "5",
+          strictMin: true,
+        },
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+          id: "column_float_1",
+          value: "",
+          error: "This field is mandatory so you must enter data.",
+        },
+      }),
+    );
     let wrapperDiv = container.querySelector(
       `div.${CSS_ERROR_CLASS}`,
     ) as HTMLInputElement;
     expect(wrapperDiv).toBeInTheDocument();
+    const muiError = container.querySelector(".Mui-error");
+    expect(muiError).toBeInTheDocument();
+    const errorMsg = container.querySelector(
+      ".MuiFormHelperText-root.jv-mInput-error",
+    );
+    expect(errorMsg).toBeInTheDocument();
+  });
+
+  test("verify the field shows error when value is not under the range of valid values", () => {
+    const CSS_ERROR_CLASS = "jv-uMandatory";
+    const { container } = render(
+      getNumberIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "number",
+          maxValue: "10",
+          strictMax: true,
+          minValue: "5",
+          strictMin: true,
+        },
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+          id: "column_float_1",
+          value: "3",
+          error: "This field is mandatory so you must enter data.",
+        },
+      }),
+    );
+    const muiError = container.querySelector(".Mui-error");
+    expect(muiError).toBeInTheDocument();
+    const errorMsg = container.querySelector(
+      ".MuiFormHelperText-root.jv-mInput-error",
+    );
+    expect(errorMsg).toBeInTheDocument();
+  });
+
+  test("verify the field does not show error when value is under the range of valid values", () => {
+    const CSS_ERROR_CLASS = "jv-uMandatory";
+    const { container } = render(
+      getNumberIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "number",
+          maxValue: "10",
+          strictMax: true,
+          minValue: "5",
+          strictMin: true,
+        },
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+          id: "column_float_1",
+          value: "7",
+          error: "This field is mandatory so you must enter data.",
+        },
+      }),
+    );
+    const muiError = container.querySelector(".Mui-error");
+    expect(muiError).not.toBeInTheDocument();
+    const errorMsg = container.querySelector(
+      ".MuiFormHelperText-root.jv-mInput-error",
+    );
+    expect(errorMsg).not.toBeInTheDocument();
   });
 });
