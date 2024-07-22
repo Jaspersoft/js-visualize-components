@@ -2,12 +2,14 @@ import {
   SET_OUTPUT_FORMATS,
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
+  SET_PROPERTIES_DETAILS,
 } from "../constants/actionConstants";
 import {
   getOutputFormatsFromService,
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
+import { IScheduleInfo, IStoreData } from "../types/schedulerTypes";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -35,6 +37,16 @@ export const setUserTimeZones = (timeZones) => {
     },
   };
 };
+
+export const setPropertiesDetails = (
+  scheduleInfo: IScheduleInfo | IStoreData,
+) => {
+  return {
+    type: SET_PROPERTIES_DETAILS,
+    payload: { newScheduleInfo: scheduleInfo },
+  };
+};
+
 export const setSechedulerUIConfig = (
   schedulerUIConfig: ISchedulerUIConfig,
 ) => {

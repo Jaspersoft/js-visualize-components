@@ -2,15 +2,11 @@ import {
   SET_OUTPUT_FORMATS,
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
+  SET_PROPERTIES_DETAILS,
 } from "../constants/actionConstants";
+import { defaultState } from "../constants/schedulerConstants";
 
-export const initialState = {
-  userTimeZones: [],
-  outputFormats: [],
-  schedulerUIConfig: {},
-  folderData: {},
-  // userLocale: []
-};
+export const initialState = defaultState;
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -28,6 +24,14 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         schedulerUIConfig: action.payload.schedulerUIConfig,
+      };
+    case SET_PROPERTIES_DETAILS:
+      return {
+        ...state,
+        scheduleInfo: {
+          ...state.scheduleInfo,
+          ...action.payload?.newScheduleInfo,
+        },
       };
     // case SET_USER_LOCALE:
     //     return {

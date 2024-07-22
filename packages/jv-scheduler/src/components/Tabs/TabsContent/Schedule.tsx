@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   JVTextField,
   JVTypography,
@@ -6,19 +6,70 @@ import {
   JVRadioButton,
   JVSelectItem,
 } from "@jaspersoft/jv-ui-components";
-import { timeFrames } from "../../../constants/schedulerConstants";
+import {
+  SCHEDULE_JOB_DESCRIPTION,
+  SCHEDULE_JOB_NAME,
+  timeFrames,
+} from "../../../constants/schedulerConstants";
 import { JVTypographyComponent } from "../../common/CommonComponents";
+import { useSelector } from "react-redux";
+import { IState } from "../../../types/schedulerTypes";
+import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 
 const Schedule = () => {
+  const scheduleJobName = useSelector(
+    (state: IState) => state.scheduleInfo.scheduleJobName,
+  );
+  const scheduleJobDescription = useSelector(
+    (state: IState) => state.scheduleInfo.scheduleJobDescription,
+  );
   const [selectedValue, setSelectedValue] = useState("option1");
+  const [scheduleName, setScheduleName] = useState(scheduleJobName);
+  const [scheduleDescription, setScheduleDescription] = useState(
+    scheduleJobDescription,
+  );
+  const updateStore = useStoreUpdate();
+
   const handleRadioChange = (value) => {
     setSelectedValue(value);
   };
+
+  useEffect(() => {
+    setScheduleName(scheduleJobName);
+  }, [scheduleJobName]);
+
+  const updateChangeToStore = (
+    propertyName: string,
+    propertyValue: string | string[],
+  ) => {
+    updateStore({ [propertyName]: propertyValue });
+  };
+
   return (
     <>
       <JVTypographyComponent text="Name and Description" />
-      <JVTextField size="large" label="Scheduled job name (required)" />
-      <JVTextField size="large" label="Description" multiline rows={5} />
+      <JVTextField
+        size="large"
+        label="Scheduled job name (required)"
+        value={scheduleName}
+        onChange={(e) => setScheduleName(e.target.value)}
+        onBlur={() => {
+          updateChangeToStore(SCHEDULE_JOB_NAME, scheduleName);
+        }}
+      />
+      <JVTextField
+        size="large"
+        label="Description"
+        multiline
+        rows={5}
+        value={scheduleDescription}
+        onChange={(e) => {
+          setScheduleDescription(e.target.value);
+        }}
+        onBlur={() =>
+          updateChangeToStore(SCHEDULE_JOB_DESCRIPTION, scheduleDescription)
+        }
+      />
       <JVTypographyComponent text={"Recurrence"} />
       <div className="jv-mControl jv-mControlInterval jv-mControlFlexwidth mui">
         <JVTextField
