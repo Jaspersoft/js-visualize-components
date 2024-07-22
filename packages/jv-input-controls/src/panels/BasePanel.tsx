@@ -58,7 +58,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     }
 
     if (control.type === "singleValueDate") {
-      if (props?.config?.singleValueDate?.type === "date_picker") {
+      if (props?.config?.singleValueDate?.type === "material") {
         return (
           <DatePickerInputControl
             {...theProps}
@@ -76,7 +76,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       );
     }
     if (control.type === "singleValueDatetime") {
-      if (props.config?.singleValueDatetime?.type === "datetime_picker") {
+      if (props.config?.singleValueDatetime?.type === "material") {
         return (
           <DateTimePickerInputControl
             {...theProps}
@@ -94,7 +94,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       );
     }
     if (control.type === "singleValueTime") {
-      if (props.config?.singleValueTime?.type === "time_picker") {
+      if (props.config?.singleValueTime?.type === "material") {
         return (
           <TimePickerInputControl
             {...theProps}

@@ -84,13 +84,13 @@ export default function App(props: AppConfig) {
         },
         config: {
           singleValueDatetime: {
-            type: "datetime", // even if it isn't provided, this will be the default component
+            type: "default", // even if it isn't provided, this will be the default component
           },
           singleValueTime: {
-            type: "time", // even if it isn't provided, this will be the default component
+            type: "default", // even if it isn't provided, this will be the default component
           },
           singleValueDate: {
-            type: "date", // even if it isn't provided, this will be the default component
+            type: "default", // even if it isn't provided, this will be the default component
           },
         },
       },

@@ -8,7 +8,7 @@ import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
-export type TimeICType = "time";
+export type TimeICType = "default";
 
 export interface TimeTextFieldICProps extends BaseInputControlProps {
   variant?: "standard" | "filled" | "outlined" | undefined;
