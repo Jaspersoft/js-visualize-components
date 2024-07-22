@@ -60,7 +60,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
   } else {
     const valAsNumber = +liveState.value;
     const checkMax = verifyLimit({
-      maxOrMinValAsNumber: +(dataType?.maxValue ?? 0),
+      maxOrMinValAsNumber: dataType?.maxValue ? +dataType.maxValue : null,
       dataType,
       valAsNumber,
       isVerifyingMin: false,
@@ -70,7 +70,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
 
     if (!isError) {
       const checkMin = verifyLimit({
-        maxOrMinValAsNumber: +(dataType?.minValue ?? 0),
+        maxOrMinValAsNumber: dataType?.minValue ? +dataType.minValue : null,
         dataType,
         valAsNumber,
         isVerifyingMin: true,
