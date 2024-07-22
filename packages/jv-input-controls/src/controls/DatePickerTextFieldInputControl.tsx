@@ -8,7 +8,7 @@ import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
-export type DateICType = "date";
+export type DateICType = "default";
 
 export interface DateTextFieldICProps extends BaseInputControlProps {
   variant?: "standard" | "filled" | "outlined" | undefined;
