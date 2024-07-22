@@ -89,7 +89,7 @@ export const verifyLimit = ({
 }): { helperText: string; isError: boolean } => {
   let helperText = "";
   let isError = false;
-  if (dataType === undefined || !Number.isNaN(maxOrMinValAsNumber)) {
+  if (dataType === undefined || maxOrMinValAsNumber === null) {
     return { helperText, isError };
   }
   // verify the number is under the limits of the data type
@@ -105,7 +105,6 @@ export const verifyLimit = ({
         ? valAsNumber < (maxOrMinValAsNumber as number)
         : valAsNumber <= (maxOrMinValAsNumber as number);
   }
-
   if (conditionalIsMet) {
     return { helperText, isError };
   }

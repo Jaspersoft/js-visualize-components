@@ -37,7 +37,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     validationRules,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "0");
+  const liveState = useLiveState(props.state?.value || "");
 
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:
@@ -49,7 +49,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
   let isError = !checkIfNumber(liveState.value);
   let helperText = "";
   if (isError) {
-    if (!liveState.value.trim()) {
+    if (mandatory && !liveState.value.trim()) {
       helperText = getMandatoryErrorMessage(
         validationRules as ICDateValidationRule[],
       );
