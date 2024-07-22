@@ -17,13 +17,14 @@ export const DateTimeTextField = forwardRef<HTMLDivElement, TextFieldProps>(
       disableAnimation: true,
     };
     const mergeInputProps = {
-      classes: { input: "jv-mInput-text mui" },
       ...props.InputProps,
+      classes: { input: "jv-mInput-text mui" },
     };
+
     return (
       <JVTextField
         {...props}
-        className={`jv-mInput jv-mInputLarge jv-mInputText mui ${props.className || ""}`}
+        className={`${props.className || ""}`}
         variant="outlined"
         InputLabelProps={{ ...mergedInputLabelProps }}
         InputProps={{ ...mergeInputProps }}
