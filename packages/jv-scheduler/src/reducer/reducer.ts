@@ -1,5 +1,6 @@
 import {
   SET_OUTPUT_FORMATS,
+  SET_REPOSITORY_FOLDER_DATA,
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
   SET_PROPERTIES_DETAILS,
@@ -24,6 +25,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         schedulerUIConfig: action.payload.schedulerUIConfig,
+      };
+    case SET_REPOSITORY_FOLDER_DATA:
+      return {
+        ...state,
+        folderData: { ...state.folderData, ...action.payload.folderData },
       };
     case SET_PROPERTIES_DETAILS:
       return {

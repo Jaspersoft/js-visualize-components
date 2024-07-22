@@ -6,6 +6,9 @@ import {
   JVTextField,
 } from "@jaspersoft/jv-ui-components";
 import { JVTypographyComponent } from "../../../common/CommonComponents";
+import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
+import { getFolderData } from "../../../../actions/action";
+import { useDispatch } from "react-redux";
 import { RepositoryTree } from "./RepositoryTree";
 import { useStoreUpdate } from "./../../../../hooks/useStoreUpdate";
 import { useSelector } from "react-redux";
@@ -26,6 +29,8 @@ const Notifications = () => {
   const [mailSubject, setMailSubject] = useState(subject);
   const [mailMessageText, setMailMessageText] = useState(messageText);
   const updateStore = useStoreUpdate();
+  const dispatch = useDispatch();
+
   const handleRadioChange = (value) => {
     setSelectedValue(value);
   };
@@ -100,6 +105,9 @@ const Notifications = () => {
               size="large"
               disabled={selectedValue !== "option1"}
               onClick={() => {
+                dispatch(getFolderData("/public"));
+                dispatch(getFolderData("/public/Samples"));
+                dispatch(getFolderData("/public/Samples/Reports"));
                 setOpen(true);
               }}
             >
@@ -115,7 +123,7 @@ const Notifications = () => {
           />
         </JVRadioGroup>
       </div>
-      <RepositoryTree open={open} />
+      <RepositoryTreeDialog open={open} />
     </>
   );
 };

@@ -1,11 +1,13 @@
 import {
   SET_OUTPUT_FORMATS,
+  SET_REPOSITORY_FOLDER_DATA,
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
   SET_PROPERTIES_DETAILS,
 } from "../constants/actionConstants";
 import {
   getOutputFormatsFromService,
+  getRepositoryFolderData,
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
@@ -57,6 +59,16 @@ export const setSechedulerUIConfig = (
     },
   };
 };
+
+export const setRepositoryFolderData = (folderData) => {
+  return {
+    type: SET_REPOSITORY_FOLDER_DATA,
+    payload: {
+      folderData: folderData,
+    },
+  };
+};
+
 export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
@@ -75,6 +87,19 @@ export const getUserTimeZones = () => {
       // dispatch error action
     } else {
       dispatch(setUserTimeZones(timezones));
+    }
+  };
+};
+
+export const getFolderData = (folderPath: string) => {
+  return async (dispatch) => {
+    const repositoryData = await getRepositoryFolderData(folderPath);
+    console.log(repositoryData);
+    if (repositoryData.error) {
+      // dispatch error action
+    } else {
+      const folderData = repositoryData.resourceLookup || {};
+      dispatch(setRepositoryFolderData({ [folderPath]: folderData }));
     }
   };
 };
