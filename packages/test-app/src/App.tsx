@@ -6,7 +6,6 @@ import {
   VisualizeType,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
-import ControlPanel from "./controls/ControlPanel.js";
 
 export interface AppConfig {
   title: string;
