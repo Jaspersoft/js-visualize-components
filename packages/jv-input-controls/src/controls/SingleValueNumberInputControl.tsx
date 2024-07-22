@@ -49,14 +49,11 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
   let isError = !checkIfNumber(liveState.value);
   let helperText = "";
   if (isError) {
-    if (mandatory && !liveState.value.trim()) {
-      helperText = getMandatoryErrorMessage(
-        validationRules as ICDateValidationRule[],
-      );
-    } else {
-      // TODO: in the future, this message need to be considered for i18n:
-      helperText = "Specify a valid value for type number.";
-    }
+    // TODO: in the future, this message need to be considered for i18n:
+    helperText =
+      mandatory && !liveState.value.trim()
+        ? getMandatoryErrorMessage(validationRules as ICDateValidationRule[])
+        : "Specify a valid value for type number.";
   } else {
     const valAsNumber = +liveState.value;
     const checkMax = verifyLimit({
