@@ -12,6 +12,11 @@ const requiredProps = {
   readOnly: false,
   visible: true,
   type: "singleValueNumber",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+    id: "column_float_1",
+    value: "0.33",
+  },
 };
 
 const getNumberIC = (options?: object): JSX.Element => {
@@ -38,21 +43,39 @@ describe("SingleValueNumberInputControls tests", () => {
   // Test for value prop
   test("uses value as the initial input value", () => {
     const defaultValue = "1,786";
-    render(getNumberIC({ defaultValue }));
+    render(
+      getNumberIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);
   });
 
   test("a string is an invalid value for this input", () => {
     const defaultValue = "this is a string";
-    render(getNumberIC({ defaultValue }));
+    render(
+      getNumberIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const element = screen.getByText("Specify a valid value for type number.");
     expect(element).toBeVisible();
   });
 
   test("a combination of numbers and strings is an invalid value", () => {
     const defaultValue = "1.23e-10";
-    render(getNumberIC({ defaultValue }));
+    render(
+      getNumberIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const element = screen.getByText("Specify a valid value for type number.");
     expect(element).toBeVisible();
   });

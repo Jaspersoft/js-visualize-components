@@ -11,6 +11,11 @@ const requiredProps = {
   readOnly: false,
   visible: true,
   type: "singleValueDatetime",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_timestamp_1",
+    id: "column_timestamp_1",
+    value: "2014-09-12T15:46:18",
+  },
 };
 
 const getDateTimePickerIC = (options?: any): React.JSX.Element => {
@@ -24,7 +29,7 @@ const getDateTimePickerIC = (options?: any): React.JSX.Element => {
 
 describe("DateTimePickerInputControl tests", () => {
   test("DateTimePickerInputControl is rendered correctly", () => {
-    render(getDateTimePickerIC({ value: "2014-09-12T15:46:18" }));
+    render(getDateTimePickerIC({ state: { value: "2014-09-12T15:46:18" } }));
     const datePickerElement = screen.getByRole("textbox");
     expect(datePickerElement).toBeInTheDocument();
   });
@@ -39,7 +44,9 @@ describe("DateTimePickerInputControl tests", () => {
   test("value is converted to AM/PM format", () => {
     render(
       getDateTimePickerIC({
-        value: "2014-09-14T15:46:18",
+        state: {
+          value: "2014-09-14T15:46:18",
+        },
         validationRules: [
           {
             dateTimeFormatValidationRule: {

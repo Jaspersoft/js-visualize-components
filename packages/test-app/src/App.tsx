@@ -82,6 +82,17 @@ export default function App(props: AppConfig) {
         error: (error) => {
           console.log("Error: ", error);
         },
+        config: {
+          singleValueDatetime: {
+            type: "default", // even if it isn't provided, this will be the default component
+          },
+          singleValueTime: {
+            type: "default", // even if it isn't provided, this will be the default component
+          },
+          singleValueDate: {
+            type: "default", // even if it isn't provided, this will be the default component
+          },
+        },
       },
     );
   }, [plugin]);

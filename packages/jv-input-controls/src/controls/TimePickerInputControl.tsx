@@ -6,10 +6,9 @@ import {
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
-export type TimeICType = "time";
+export type TimePickerICType = "material";
 
 export interface TimeICProps extends BaseInputControlProps {
-  value?: string;
   className?: string;
   views?: Array<"hours" | "minutes" | "seconds">;
   disabled?: boolean;
@@ -22,7 +21,7 @@ export const TimePickerInputControl = (props: TimeICProps) => {
     dateFormat = rule.dateTimeFormatValidationRule.format;
   }
   const liveState = useLiveDateFormattedState({
-    initialValue: props.state?.value || props.value || "",
+    initialValue: props.state?.value || "",
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);
