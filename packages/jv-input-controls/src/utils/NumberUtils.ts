@@ -83,13 +83,13 @@ export const verifyLimit = ({
   isVerifyingMin,
 }: {
   dataType: ICDataType | undefined;
-  maxOrMinValAsNumber: number;
+  maxOrMinValAsNumber: number | null;
   valAsNumber: number;
   isVerifyingMin: boolean;
 }): { helperText: string; isError: boolean } => {
   let helperText = "";
   let isError = false;
-  if (dataType === undefined || isNaN(maxOrMinValAsNumber)) {
+  if (dataType === undefined || !Number.isNaN(maxOrMinValAsNumber)) {
     return { helperText, isError };
   }
   // verify the number is under the limits of the data type
@@ -97,13 +97,13 @@ export const verifyLimit = ({
   if (isVerifyingMin) {
     conditionalIsMet =
       dataType?.strictMin === true
-        ? valAsNumber > maxOrMinValAsNumber
-        : valAsNumber >= maxOrMinValAsNumber;
+        ? valAsNumber > (maxOrMinValAsNumber as number)
+        : valAsNumber >= (maxOrMinValAsNumber as number);
   } else {
     conditionalIsMet =
       dataType?.strictMax === true
-        ? valAsNumber < maxOrMinValAsNumber
-        : valAsNumber <= maxOrMinValAsNumber;
+        ? valAsNumber < (maxOrMinValAsNumber as number)
+        : valAsNumber <= (maxOrMinValAsNumber as number);
   }
 
   if (conditionalIsMet) {
