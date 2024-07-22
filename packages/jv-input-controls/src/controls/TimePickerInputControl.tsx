@@ -6,7 +6,7 @@ import {
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
-export type TimePickerICType = "time_picker";
+export type TimePickerICType = "material";
 
 export interface TimeICProps extends BaseInputControlProps {
   className?: string;

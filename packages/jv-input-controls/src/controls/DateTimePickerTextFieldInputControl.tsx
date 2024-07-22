@@ -12,7 +12,7 @@ import {
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
-export type DateTimeICType = "datetime";
+export type DateTimeICType = "default";
 
 export interface DateTimeTextFieldICProps extends BaseInputControlProps {
   variant?: "standard" | "filled" | "outlined" | undefined;
