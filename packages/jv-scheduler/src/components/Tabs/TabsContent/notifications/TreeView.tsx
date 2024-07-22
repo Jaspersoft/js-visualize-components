@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   JVTypography,
   JVTreeItem2Content,
@@ -7,7 +7,6 @@ import {
   JVTreeItem2Root,
   JVTreeItem2Icon,
   JVTreeProviderNameSpace,
-  JVTreeViewBaseItemTypes,
   useJVTreeItem2ParametersTypes,
   useJVTreeItem2,
   JVIcon,
@@ -15,60 +14,26 @@ import {
   JVCollapse,
 } from "@jaspersoft/jv-ui-components";
 import { JVRichTreeView } from "@jaspersoft/jv-ui-components";
+import { useDispatch, useSelector } from "react-redux";
+import { getFolderData } from "../../../../actions/action";
 
-type FileType =
-  | "image"
-  | "pdf"
-  | "doc"
-  | "video"
-  | "folder"
-  | "pinned"
-  | "trash";
-
-type ExtendedTreeItemProps = {
-  fileType?: FileType;
-  id: string;
-  label: string;
-};
-
-const ITEMS: JVTreeViewBaseItemTypes<ExtendedTreeItemProps>[] = [
+const data = [
   {
-    id: "1",
-    label: "Documents",
-    children: [
-      {
-        id: "1.1",
-        label: "Company",
-        children: [
-          { id: "1.1.1", label: "Invoice", fileType: "pdf" },
-          { id: "1.1.2", label: "Meeting notes", fileType: "doc" },
-          { id: "1.1.3", label: "Tasks list", fileType: "doc" },
-          { id: "1.1.4", label: "Equipment", fileType: "pdf" },
-          { id: "1.1.5", label: "Video conference", fileType: "video" },
-        ],
-      },
-      { id: "1.2", label: "Personal", fileType: "folder" },
-      { id: "1.3", label: "Group photo", fileType: "image" },
-    ],
+    version: 0,
+    permissionMask: 1,
+    label: "Root",
+    description: "Root",
+    uri: "/",
+    resourceType: "folder",
   },
   {
-    id: "2",
-    label: "Bookmarked",
-    fileType: "pinned",
-    children: [
-      { id: "2.1", label: "Learning materials", fileType: "folder" },
-      { id: "2.2", label: "News", fileType: "folder" },
-      { id: "2.3", label: "Forums", fileType: "folder" },
-      { id: "2.4", label: "Travel documents", fileType: "pdf" },
-    ],
+    version: 0,
+    label: "Public",
+    description: "Public",
+    uri: "/public",
+    resourceType: "folder",
   },
-  { id: "3", label: "History", fileType: "folder" },
-  { id: "4", label: "Trash", fileType: "trash" },
 ];
-
-function DotIcon() {
-  return <JVBox />;
-}
 
 function TransitionComponent(props: any) {
   return <JVCollapse {...props} />;
@@ -107,7 +72,6 @@ const CustomLabel = ({
         {/*)}*/}
 
         <JVTypography variant="body2">{children}</JVTypography>
-        {expandable && <DotIcon />}
       </JVTreeItem2Label>
     </>
   );
@@ -117,7 +81,7 @@ const isExpandable = (reactChildren: React.ReactNode) => {
   if (Array.isArray(reactChildren)) {
     return reactChildren.length > 0 && reactChildren.some(isExpandable);
   }
-  return Boolean(reactChildren);
+  return true;
 };
 
 const getIconFromFileType = () => <></>;
@@ -136,29 +100,26 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     getRootProps,
     getContentProps,
     getIconContainerProps,
-    // getCheckboxProps,
     getLabelProps,
     getGroupTransitionProps,
     status,
-    // publicAPI
   } = useJVTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
 
-  // const item = publicAPI.getItem(itemId);
-  const expandable = isExpandable(children);
   let icon = getIconFromFileType();
 
+  status.expandable = true;
   return (
     <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
       <JVTreeItem2Root {...getRootProps(other)}>
         <JVTreeItem2Content {...getContentProps()}>
+          {/*rendering expand collapse icon*/}
           <JVTreeItem2IconContainer {...getIconContainerProps()}>
             <JVTreeItem2Icon status={status} />
           </JVTreeItem2IconContainer>
-          {/*    /!* <TreeItem2Checkbox {...getCheckboxProps()} /> *!/*/}
           <CustomLabel
             {...getLabelProps({
               icon,
-              expandable: expandable && status.expanded,
+              expandable: true,
             })}
           />
         </JVTreeItem2Content>
@@ -168,11 +129,66 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   );
 });
 
+function addChildrenToParentByParentId(id, node, childNodes) {
+  const { children } = node;
+  if (node.uri === id) {
+    node.children = childNodes;
+    console.log(node);
+    return node;
+  } else if (Array.isArray(children)) {
+    return children.some((child) =>
+      addChildrenToParentByParentId(id, child, childNodes),
+    );
+  }
+  return [];
+}
+
 export const TreeView = () => {
+  const [treeData, setTreeData] = useState(data);
+  const folderData = useSelector((state: any) => state.folderData);
+  const [currentExpandedNode, setCurrentExpandedNode] = useState();
+  const [currentStructureExpanded, setCurrentStructureExpanded] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const currentExpnadedFolderChildren = folderData[currentExpandedNode];
+    if (currentExpnadedFolderChildren) {
+      data.some((treeItems, index) => {
+        if (treeItems.uri == currentExpandedNode) {
+          const currentExpandedData = addChildrenToParentByParentId(
+            currentExpandedNode,
+            treeItems,
+            currentExpnadedFolderChildren,
+          );
+          data[index] = currentExpandedData;
+          setTreeData([...data]);
+          console.log(data);
+          return true;
+        }
+      });
+      setTreeData([...data]);
+    }
+  }, [folderData, currentExpandedNode]);
+
   return (
     <JVRichTreeView
-      items={ITEMS}
-      defaultExpandedItems={["1", "1.1"]}
+      items={data}
+      onItemExpansionToggle={(
+        event: React.SyntheticEvent,
+        itemId: [],
+        isExpanded: [],
+      ) => {
+        if (isExpanded) {
+          setCurrentExpandedNode(itemId as any);
+          dispatch(getFolderData(itemId as string));
+        }
+        // console.log(itemId)
+      }}
+      getLabel={(item) => {
+        return item.label;
+      }}
+      getItemId={(item) => item.uri}
       defaultSelectedItems="1.1"
       slots={{ item: CustomTreeItem }}
     />

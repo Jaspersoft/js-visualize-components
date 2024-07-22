@@ -7,10 +7,14 @@ import {
 } from "@jaspersoft/jv-ui-components";
 import { JVTypographyComponent } from "../../../common/CommonComponents";
 import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
+import { getFolderData } from "../../../../actions/action";
+import { useDispatch } from "react-redux";
 
 const Notifications = () => {
   const [selectedValue, setSelectedValue] = useState("option1");
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const handleRadioChange = (value) => {
     setSelectedValue(value);
   };
@@ -44,6 +48,9 @@ const Notifications = () => {
               size="large"
               disabled={selectedValue !== "option1"}
               onClick={() => {
+                dispatch(getFolderData("/public"));
+                dispatch(getFolderData("/public/Samples"));
+                dispatch(getFolderData("/public/Samples/Reports"));
                 setOpen(true);
               }}
             >
