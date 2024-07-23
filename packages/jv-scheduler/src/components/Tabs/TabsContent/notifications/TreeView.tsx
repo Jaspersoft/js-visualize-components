@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   JVTypography,
   JVTreeItem2Content,
@@ -7,7 +7,6 @@ import {
   JVTreeItem2Root,
   JVTreeItem2Icon,
   JVTreeProviderNameSpace,
-  JVTreeViewBaseItemTypes,
   useJVTreeItem2ParametersTypes,
   useJVTreeItem2,
   JVIcon,
@@ -15,60 +14,26 @@ import {
   JVCollapse,
 } from "@jaspersoft/jv-ui-components";
 import { JVRichTreeView } from "@jaspersoft/jv-ui-components";
+import { useDispatch, useSelector } from "react-redux";
+import { getFolderData } from "../../../../actions/action";
 
-type FileType =
-  | "image"
-  | "pdf"
-  | "doc"
-  | "video"
-  | "folder"
-  | "pinned"
-  | "trash";
-
-type ExtendedTreeItemProps = {
-  fileType?: FileType;
-  id: string;
-  label: string;
-};
-
-const ITEMS: JVTreeViewBaseItemTypes<ExtendedTreeItemProps>[] = [
+const data = [
   {
-    id: "1",
-    label: "Documents",
-    children: [
-      {
-        id: "1.1",
-        label: "Company",
-        children: [
-          { id: "1.1.1", label: "Invoice", fileType: "pdf" },
-          { id: "1.1.2", label: "Meeting notes", fileType: "doc" },
-          { id: "1.1.3", label: "Tasks list", fileType: "doc" },
-          { id: "1.1.4", label: "Equipment", fileType: "pdf" },
-          { id: "1.1.5", label: "Video conference", fileType: "video" },
-        ],
-      },
-      { id: "1.2", label: "Personal", fileType: "folder" },
-      { id: "1.3", label: "Group photo", fileType: "image" },
-    ],
+    version: 0,
+    permissionMask: 1,
+    label: "Root",
+    description: "Root",
+    uri: "/",
+    resourceType: "folder",
   },
   {
-    id: "2",
-    label: "Bookmarked",
-    fileType: "pinned",
-    children: [
-      { id: "2.1", label: "Learning materials", fileType: "folder" },
-      { id: "2.2", label: "News", fileType: "folder" },
-      { id: "2.3", label: "Forums", fileType: "folder" },
-      { id: "2.4", label: "Travel documents", fileType: "pdf" },
-    ],
+    version: 0,
+    label: "Public",
+    description: "Public",
+    uri: "/public",
+    resourceType: "folder",
   },
-  { id: "3", label: "History", fileType: "folder" },
-  { id: "4", label: "Trash", fileType: "trash" },
 ];
-
-function DotIcon() {
-  return <JVBox />;
-}
 
 function TransitionComponent(props: any) {
   return <JVCollapse {...props} />;
@@ -107,7 +72,6 @@ const CustomLabel = ({
         {/*)}*/}
 
         <JVTypography variant="body2">{children}</JVTypography>
-        {expandable && <DotIcon />}
       </JVTreeItem2Label>
     </>
   );
@@ -117,7 +81,7 @@ const isExpandable = (reactChildren: React.ReactNode) => {
   if (Array.isArray(reactChildren)) {
     return reactChildren.length > 0 && reactChildren.some(isExpandable);
   }
-  return Boolean(reactChildren);
+  return true;
 };
 
 const getIconFromFileType = () => <></>;
@@ -136,29 +100,30 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     getRootProps,
     getContentProps,
     getIconContainerProps,
-    // getCheckboxProps,
     getLabelProps,
     getGroupTransitionProps,
     status,
-    // publicAPI
   } = useJVTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
 
-  // const item = publicAPI.getItem(itemId);
-  const expandable = isExpandable(children);
   let icon = getIconFromFileType();
 
+  if (itemId == "/public/Samples/Reports") {
+    debugger;
+  }
+
+  status.expandable = true;
   return (
     <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
       <JVTreeItem2Root {...getRootProps(other)}>
         <JVTreeItem2Content {...getContentProps()}>
+          {/*rendering expand collapse icon*/}
           <JVTreeItem2IconContainer {...getIconContainerProps()}>
             <JVTreeItem2Icon status={status} />
           </JVTreeItem2IconContainer>
-          {/*    /!* <TreeItem2Checkbox {...getCheckboxProps()} /> *!/*/}
           <CustomLabel
             {...getLabelProps({
               icon,
-              expandable: expandable && status.expanded,
+              expandable: true,
             })}
           />
         </JVTreeItem2Content>
@@ -168,12 +133,146 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   );
 });
 
+const addChildrenToTreeOnLoad = (
+  treeStructure,
+  apiData,
+  pathWhereChildrensToBeAdded,
+) => {
+  let isIterate = true;
+  let nodeToManipulate = treeStructure;
+
+  while (isIterate) {
+    // retrive first node
+    nodeToManipulate = nodeToManipulate.filter(
+      (item) => item.uri == pathWhereChildrensToBeAdded[0],
+    )[0];
+    if (nodeToManipulate && apiData[nodeToManipulate.uri].length) {
+      nodeToManipulate.children = apiData[nodeToManipulate.uri];
+      nodeToManipulate = nodeToManipulate.children;
+    } else {
+      isIterate = false;
+    }
+    pathWhereChildrensToBeAdded.shift();
+  }
+  return treeStructure;
+};
+
 export const TreeView = () => {
+  const [treeData, setTreeData] = useState([]);
+  const resourceUri = useSelector(
+    (state: any) => state.schedulerUIConfig.resourceURI,
+  );
+  const folderData = useSelector((state: any) => state.folderData);
+  const [currentExpandedNode, setCurrentExpandedNode] = useState("");
+  const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState([]); // to keep track of whethere children nodes have been added to tree or not
+  const [currentStructureExpanded, setCurrentStructureExpanded] = useState([]);
+  const [expandedItems, setExpandedItems] = useState([]);
+
+  const dispatch = useDispatch();
+
+  // show data and expansion on initial load
+  // TODO : need to add initial data on load
+  useEffect(() => {
+    let foldersNameFromResourceUri = resourceUri.split("/").filter(Boolean); // splits the string at each slash character and removes empty strings
+    foldersNameFromResourceUri.pop();
+    // gets folders name from uri
+    let foldersUriToBeExapanded = foldersNameFromResourceUri.reduce(
+      (acc, curr, i) => {
+        if (i === 0) {
+          acc.push(`/${curr}`);
+        } else {
+          acc.push(`${acc[i - 1]}/${curr}`);
+        }
+        return acc;
+      },
+      [],
+    );
+
+    const initialTreeStructure = addChildrenToTreeOnLoad(data, folderData, [
+      ...foldersUriToBeExapanded,
+    ]);
+    setTreeData([...initialTreeStructure]);
+    setAlreadyLoadedTreeNode([
+      ...alreadyLoadedTreeNode,
+      foldersUriToBeExapanded[foldersUriToBeExapanded.length - 1],
+    ]);
+    setExpandedItems(foldersUriToBeExapanded);
+    setCurrentExpandedNode(
+      foldersUriToBeExapanded[foldersUriToBeExapanded.length - 1],
+    );
+  }, []);
+
+  useEffect(() => {
+    const currentExpandedNodeData = folderData[currentExpandedNode];
+    if (
+      currentExpandedNodeData &&
+      !alreadyLoadedTreeNode[currentExpandedNodeData]
+    ) {
+      if (currentExpandedNodeData.length !== 0) {
+        let foldersNameFromResourceUri = currentExpandedNode
+          .split("/")
+          .filter(Boolean); // splits the string at each slash character and removes empty strings
+        // gets folders name from uri
+        let foldersUriToBeExapanded = foldersNameFromResourceUri.reduce(
+          (acc, curr, i) => {
+            if (i === 0) {
+              acc.push(`/${curr}`);
+            } else {
+              acc.push(`${acc[i - 1]}/${curr}`);
+            }
+            return acc;
+          },
+          [],
+        );
+
+        const initialTreeStructure = addChildrenToTreeOnLoad(data, folderData, [
+          ...foldersUriToBeExapanded,
+        ]);
+        setTreeData([...initialTreeStructure]);
+        setAlreadyLoadedTreeNode([
+          ...alreadyLoadedTreeNode,
+          currentExpandedNode,
+        ]);
+      }
+      setExpandedItems([...expandedItems, currentExpandedNode]);
+    }
+  }, [folderData]);
+
+  console.log(currentExpandedNode);
   return (
     <JVRichTreeView
-      items={ITEMS}
-      defaultExpandedItems={["1", "1.1"]}
-      defaultSelectedItems="1.1"
+      items={treeData}
+      onItemExpansionToggle={(
+        event: React.SyntheticEvent,
+        itemId: [],
+        isExpanded: [],
+      ) => {
+        if (isExpanded) {
+          setCurrentExpandedNode(itemId as any);
+          dispatch(getFolderData(itemId as string));
+        }
+      }}
+      getLabel={(item) => {
+        return item.label;
+      }}
+      expandedItems={expandedItems}
+      onItemExpansionToggle={(event, itemId, isExapnded) => {
+        if (isExapnded) {
+          if (folderData[itemId]) {
+            setExpandedItems(() => [...expandedItems, itemId]);
+          } else {
+            setCurrentExpandedNode(itemId);
+            dispatch(getFolderData(itemId));
+          }
+        } else {
+          setExpandedItems(() =>
+            expandedItems.filter((item) => item !== itemId),
+          );
+        }
+      }}
+      selectedItems={currentExpandedNode}
+      multiSelect={false}
+      getItemId={(item) => item.uri}
       slots={{ item: CustomTreeItem }}
     />
   );

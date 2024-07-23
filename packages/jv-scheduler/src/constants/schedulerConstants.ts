@@ -67,3 +67,64 @@ export const stepInfo = [
     title: "Notifications",
   },
 ];
+
+export const simpleTriggerState = {
+  timezone: "",
+  occurrenceCount: -1,
+  startType: 1,
+  recurrenceInterval: 1,
+  recurrenceIntervalUnit: "",
+  endDate: null,
+  startDate: null,
+};
+
+export const ScheduleDefaultState = {
+  baseOutputFilename: "",
+  scheduleJobDescription: "",
+  scheduleJobName: "",
+  mailNotification: {
+    messageText: "",
+    subject: "",
+    toAddresses: {
+      address: [],
+    },
+    resultSendType: "SEND",
+  },
+  outputFormats: {},
+  // outputTimeZone: config.userTimezone,
+  trigger: {
+    simpleTrigger: { ...simpleTriggerState },
+  },
+  repositoryDestination: {
+    overwriteFiles: true,
+    sequentialFilenames: false,
+    folderURI: undefined,
+    saveToRepository: true,
+    timestampPattern: null,
+    outputFTPInfo: {
+      type: "ftp",
+      port: 21,
+      folderPath: null,
+      password: null,
+      propertiesMap: {},
+      serverName: null,
+      userName: null,
+    },
+  },
+};
+
+export const defaultState = {
+  userTimeZones: [],
+  outputFormats: [],
+  schedulerUIConfig: {},
+  folderData: {},
+  scheduleInfo: {
+    ...ScheduleDefaultState,
+  },
+  visitedTabs: [],
+};
+
+export const OUTPUT_FILE_NAME = "baseOutputFilename";
+export const OUTPUT_FILE_DESCRIPTION = "baseOutputFileDescription";
+export const SCHEDULE_JOB_NAME = "scheduleJobName";
+export const SCHEDULE_JOB_DESCRIPTION = "scheduleJobDescription";

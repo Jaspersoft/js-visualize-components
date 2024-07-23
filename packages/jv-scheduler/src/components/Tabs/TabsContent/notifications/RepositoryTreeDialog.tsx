@@ -11,8 +11,7 @@ import {
 import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
 import { TreeView } from "./TreeView";
-
-const DialogContentComponent = <TreeView />;
+import { useSelector } from "react-redux";
 
 function PaperComponent(props: JVPaperProps) {
   return (
@@ -25,10 +24,24 @@ function PaperComponent(props: JVPaperProps) {
   );
 }
 
-export const RepositoryTree = ({ open: dialogOpen }: any) => {
+export const RepositoryTreeDialog = ({ open: dialogOpen }: any) => {
+  const folderData = useSelector((state: any) => state.folderData);
+  const resourceUri = useSelector(
+    (state: any) => state.schedulerUIConfig.resourceURI,
+  );
+
+  const [showTree, setShowTree] = useState(false);
   const [open, setOpen] = useState<any>(dialogOpen);
   const [width, setWidth] = useState("400px");
   const [height, setHeight] = useState("500px");
+
+  useEffect(() => {
+    const folders = resourceUri.split("/");
+    const expandedFoldersData = folders.slice(1, folders.length - 1);
+    if (Object.keys(folderData).length === expandedFoldersData.length) {
+      setShowTree(true);
+    }
+  }, [folderData]);
 
   useEffect(() => {
     setOpen(dialogOpen);
@@ -44,14 +57,6 @@ export const RepositoryTree = ({ open: dialogOpen }: any) => {
         <Resizable
           size={{ width, height }}
           onResize={() => {}}
-          resizing
-          not
-          working
-          after
-          resizing
-          to
-          max
-          width
           onResizeStop={(e, direction, ref, d) => {
             setWidth(parseInt(width) + d.width + "px");
             setHeight(parseInt(height) + d.height + "px");
@@ -70,7 +75,7 @@ export const RepositoryTree = ({ open: dialogOpen }: any) => {
             }}
           />
           <JVDialogContent
-            DialogContentComponent={DialogContentComponent}
+            DialogContentComponent={showTree ? <TreeView /> : null}
             DialogContentProps={{
               dividers: scroll === "paper",
             }}
@@ -84,7 +89,14 @@ export const RepositoryTree = ({ open: dialogOpen }: any) => {
             >
               Select
             </JVButton>
-            <JVButton disableElevation size="large" variant="contained">
+            <JVButton
+              disableElevation
+              size="large"
+              variant="contained"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
               Cancel
             </JVButton>
           </JVDialogFooter>

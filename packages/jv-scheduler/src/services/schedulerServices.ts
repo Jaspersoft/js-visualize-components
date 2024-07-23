@@ -94,3 +94,23 @@ export const getCSRFToken = async () => {
     return { error: "Failed to fetch CSRF token" };
   }
 };
+
+export const getRepositoryFolderData = async (folderPath: string) => {
+  let csrfToken = await getCSRFToken();
+  csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
+  try {
+    const response = await axios.get(
+      `${store.getState().schedulerUIConfig.server}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
+      {
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          OWASP_CSRFTOKEN: csrfToken,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    return { error: "Failed to fetch repository folder data" };
+  }
+};

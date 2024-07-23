@@ -1,14 +1,18 @@
 import {
   SET_SCHEDULE_APIS_FAILURE_ERROR,
   SET_OUTPUT_FORMATS,
+  SET_REPOSITORY_FOLDER_DATA,
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
+  SET_PROPERTIES_DETAILS,
 } from "../constants/actionConstants";
 import {
   getOutputFormatsFromService,
+  getRepositoryFolderData,
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
+import { IScheduleInfo, IStoreData } from "../types/schedulerTypes";
 import { IApiFailed } from "../types/scheduleType";
 
 // export const setUserLocale = (supportedLocale) => {
@@ -43,6 +47,16 @@ export const setUserTimeZones = (timeZones) => {
     },
   };
 };
+
+export const setPropertiesDetails = (
+  scheduleInfo: IScheduleInfo | IStoreData,
+) => {
+  return {
+    type: SET_PROPERTIES_DETAILS,
+    payload: { newScheduleInfo: scheduleInfo },
+  };
+};
+
 export const setSechedulerUIConfig = (
   schedulerUIConfig: ISchedulerUIConfig,
 ) => {
@@ -53,6 +67,16 @@ export const setSechedulerUIConfig = (
     },
   };
 };
+
+export const setRepositoryFolderData = (folderData) => {
+  return {
+    type: SET_REPOSITORY_FOLDER_DATA,
+    payload: {
+      folderData: folderData,
+    },
+  };
+};
+
 export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
@@ -73,6 +97,19 @@ export const getUserTimeZones = () => {
     } else {
       dispatch(setUserTimeZones(timezones));
       dispatch(setApiFailure({ userTimezoneApiFailure: false }));
+    }
+  };
+};
+
+export const getFolderData = (folderPath: string) => {
+  return async (dispatch) => {
+    const repositoryData = await getRepositoryFolderData(folderPath);
+    console.log(repositoryData);
+    if (repositoryData.error) {
+      // dispatch error action
+    } else {
+      const folderData = repositoryData.resourceLookup || {};
+      dispatch(setRepositoryFolderData({ [folderPath]: folderData }));
     }
   };
 };
