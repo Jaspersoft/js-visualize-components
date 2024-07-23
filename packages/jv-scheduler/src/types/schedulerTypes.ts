@@ -22,4 +22,24 @@ export interface IScheduleInfo {
   scheduleJobName: string;
   scheduleJobDescription: string;
   mailNotification: IMailNotifications;
+  trigger: ITrigger;
+  outputTimeZone: string;
+  outputFormatList: string[];
+  outputFormats: IOutputFormat;
+}
+
+export interface ITrigger {
+  simpleTrigger: {
+    timezone: string;
+    occurrenceCount: number;
+    startType: number;
+    recurrenceInterval: number;
+    recurrenceIntervalUnit: string;
+    endDate: null | string;
+    startDate: null | string;
+  };
+}
+
+export interface IOutputFormat {
+  outputFormat: string[];
 }

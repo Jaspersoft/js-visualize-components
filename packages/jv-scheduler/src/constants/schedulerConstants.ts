@@ -68,6 +68,16 @@ export const stepInfo = [
   },
 ];
 
+export const simpleTriggerState = {
+  timezone: "",
+  occurrenceCount: -1,
+  startType: 1,
+  recurrenceInterval: 1,
+  recurrenceIntervalUnit: "",
+  endDate: null,
+  startDate: null,
+};
+
 export const ScheduleDefaultState = {
   baseOutputFilename: "",
   scheduleJobDescription: "",
@@ -82,9 +92,9 @@ export const ScheduleDefaultState = {
   },
   outputFormats: {},
   // outputTimeZone: config.userTimezone,
-  // trigger: {
-  //   simpleTrigger: { ...simpleTriggerState }
-  // },
+  trigger: {
+    simpleTrigger: { ...simpleTriggerState },
+  },
   repositoryDestination: {
     overwriteFiles: true,
     sequentialFilenames: false,
