@@ -3,6 +3,12 @@
     "schedule": "Schedule",
     "parameters": "Parameters",
     "output": "Output",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "schedule.timezone.network.error": "Time zone",
+    "schedule.output.network.error": "Formats",
+    "schedule.timezone.output.format.network.error": "A network error is preventing the following fields from loading:",
+    "schedule.timezone.output.format.retry.network": "You can try reloading these fields. If the network error persists, you will be unable to save this schedule",
+    "schedule.error.title": "Error",
+    "schedule.network.retry": "Retry"
   }
 }

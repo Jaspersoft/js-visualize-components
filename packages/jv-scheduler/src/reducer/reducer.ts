@@ -1,5 +1,6 @@
 import {
   SET_OUTPUT_FORMATS,
+  SET_SCHEDULE_APIS_FAILURE_ERROR,
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
 } from "../constants/actionConstants";
@@ -9,7 +10,10 @@ export const initialState = {
   outputFormats: [],
   schedulerUIConfig: {},
   folderData: {},
-  // userLocale: []
+  scheduleApisFailure: {
+    userTimezoneApiFailure: false,
+    userOutputFormatApiFailure: false,
+  },
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -28,6 +32,14 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         schedulerUIConfig: action.payload.schedulerUIConfig,
+      };
+    case SET_SCHEDULE_APIS_FAILURE_ERROR:
+      return {
+        ...state,
+        scheduleApisFailure: {
+          ...state.scheduleApisFailure,
+          ...action.payload?.failedApi,
+        },
       };
     // case SET_USER_LOCALE:
     //     return {
