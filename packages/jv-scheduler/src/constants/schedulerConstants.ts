@@ -118,6 +118,10 @@ export const defaultState = {
   outputFormats: [],
   schedulerUIConfig: {},
   folderData: {},
+  scheduleApisFailure: {
+    userTimezoneApiFailure: false,
+    userOutputFormatApiFailure: false,
+  },
   scheduleInfo: {
     ...ScheduleDefaultState,
   },
