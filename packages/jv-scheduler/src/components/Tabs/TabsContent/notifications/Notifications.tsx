@@ -8,12 +8,18 @@ import {
 import { JVTypographyComponent } from "../../../common/CommonComponents";
 import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
 import { getFolderData } from "../../../../actions/action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RepositoryTree } from "./RepositoryTree";
 import { useStoreUpdate } from "./../../../../hooks/useStoreUpdate";
 import { useSelector } from "react-redux";
 import { IState } from "../../../../types/schedulerTypes";
 
+const getFolderDataFromReportUri = (item, index, folder) => {
+  if (index == 0) {
+    return item;
+  }
+  return folder.slice(0, index + 1).join("/");
+};
 const Notifications = () => {
   const [selectedValue, setSelectedValue] = useState("option1");
   const [open, setOpen] = useState(false);
@@ -28,7 +34,9 @@ const Notifications = () => {
   const [mailAddress, setMailAddress] = useState(address);
   const [mailSubject, setMailSubject] = useState(subject);
   const [mailMessageText, setMailMessageText] = useState(messageText);
-  const updateStore = useStoreUpdate();
+    const [currentExpanded, setCurrentExpanded] = useState("");
+
+    const updateStore = useStoreUpdate();
   const dispatch = useDispatch();
 
   const handleRadioChange = (value) => {
@@ -105,9 +113,24 @@ const Notifications = () => {
               size="large"
               disabled={selectedValue !== "option1"}
               onClick={() => {
-                dispatch(getFolderData("/public"));
-                dispatch(getFolderData("/public/Samples"));
-                dispatch(getFolderData("/public/Samples/Reports"));
+                const reportUri =
+                  "/public/Samples/Reports/01._Sales_Summary_Report";
+                const folders = reportUri.split("/");
+                const expandedFoldersData = folders.slice(
+                  1,
+                  folders.length - 1,
+                );
+                console.log(expandedFoldersData);
+                expandedFoldersData.forEach((item, index) => {
+                  const path = getFolderDataFromReportUri(
+                    item,
+                    index,
+                    expandedFoldersData,
+                  );
+                  console.log(path);
+                  dispatch(getFolderData(`/${path}`));
+                });
+
                 setOpen(true);
               }}
             >

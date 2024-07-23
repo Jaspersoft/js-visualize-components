@@ -107,6 +107,10 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 
   let icon = getIconFromFileType();
 
+  if (itemId == "/public/Samples/Reports") {
+    debugger;
+  }
+
   status.expandable = true;
   return (
     <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
@@ -129,51 +133,115 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   );
 });
 
-function addChildrenToParentByParentId(id, node, childNodes) {
-  const { children } = node;
-  if (node.uri === id) {
-    node.children = childNodes;
-    console.log(node);
-    return node;
-  } else if (Array.isArray(children)) {
-    return children.some((child) =>
-      addChildrenToParentByParentId(id, child, childNodes),
-    );
+const addChildrenToTreeOnLoad = (
+  treeStructure,
+  apiData,
+  pathWhereChildrensToBeAdded,
+) => {
+  let isIterate = true;
+  let nodeToManipulate = treeStructure;
+
+  while (isIterate) {
+    // retrive first node
+    nodeToManipulate = nodeToManipulate.filter(
+      (item) => item.uri == pathWhereChildrensToBeAdded[0],
+    )[0];
+    if (nodeToManipulate && apiData[nodeToManipulate.uri].length) {
+      nodeToManipulate.children = apiData[nodeToManipulate.uri];
+      nodeToManipulate = nodeToManipulate.children;
+    } else {
+      isIterate = false;
+    }
+    pathWhereChildrensToBeAdded.shift();
   }
-  return [];
-}
+  return treeStructure;
+};
 
 export const TreeView = () => {
-  const [treeData, setTreeData] = useState(data);
+  const [treeData, setTreeData] = useState([]);
+  const resourceUri = useSelector(
+    (state: any) => state.schedulerUIConfig.resourceURI,
+  );
   const folderData = useSelector((state: any) => state.folderData);
-  const [currentExpandedNode, setCurrentExpandedNode] = useState();
+  const [currentExpandedNode, setCurrentExpandedNode] = useState("");
+  const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState([]); // to keep track of whethere children nodes have been added to tree or not
   const [currentStructureExpanded, setCurrentStructureExpanded] = useState([]);
+  const [expandedItems, setExpandedItems] = useState([]);
 
   const dispatch = useDispatch();
 
+  // show data and expansion on initial load
+  // TODO : need to add initial data on load
   useEffect(() => {
-    const currentExpnadedFolderChildren = folderData[currentExpandedNode];
-    if (currentExpnadedFolderChildren) {
-      data.some((treeItems, index) => {
-        if (treeItems.uri == currentExpandedNode) {
-          const currentExpandedData = addChildrenToParentByParentId(
-            currentExpandedNode,
-            treeItems,
-            currentExpnadedFolderChildren,
-          );
-          data[index] = currentExpandedData;
-          setTreeData([...data]);
-          console.log(data);
-          return true;
+    let foldersNameFromResourceUri = resourceUri.split("/").filter(Boolean); // splits the string at each slash character and removes empty strings
+    foldersNameFromResourceUri.pop();
+    // gets folders name from uri
+    let foldersUriToBeExapanded = foldersNameFromResourceUri.reduce(
+      (acc, curr, i) => {
+        if (i === 0) {
+          acc.push(`/${curr}`);
+        } else {
+          acc.push(`${acc[i - 1]}/${curr}`);
         }
-      });
-      setTreeData([...data]);
-    }
-  }, [folderData, currentExpandedNode]);
+        return acc;
+      },
+      [],
+    );
 
+    const initialTreeStructure = addChildrenToTreeOnLoad(data, folderData, [
+      ...foldersUriToBeExapanded,
+    ]);
+    setTreeData([...initialTreeStructure]);
+    setAlreadyLoadedTreeNode([
+      ...alreadyLoadedTreeNode,
+      foldersUriToBeExapanded[foldersUriToBeExapanded.length - 1],
+    ]);
+    setExpandedItems(foldersUriToBeExapanded);
+    setCurrentExpandedNode(
+      foldersUriToBeExapanded[foldersUriToBeExapanded.length - 1],
+    );
+  }, []);
+
+  useEffect(() => {
+    const currentExpandedNodeData = folderData[currentExpandedNode];
+    if (
+      currentExpandedNodeData &&
+      !alreadyLoadedTreeNode[currentExpandedNodeData]
+    ) {
+      if (currentExpandedNodeData.length !== 0) {
+        let foldersNameFromResourceUri = currentExpandedNode
+          .split("/")
+          .filter(Boolean); // splits the string at each slash character and removes empty strings
+        // gets folders name from uri
+        let foldersUriToBeExapanded = foldersNameFromResourceUri.reduce(
+          (acc, curr, i) => {
+            if (i === 0) {
+              acc.push(`/${curr}`);
+            } else {
+              acc.push(`${acc[i - 1]}/${curr}`);
+            }
+            return acc;
+          },
+          [],
+        );
+
+        const initialTreeStructure = addChildrenToTreeOnLoad(data, folderData, [
+          ...foldersUriToBeExapanded,
+        ]);
+        setTreeData([...initialTreeStructure]);
+        setAlreadyLoadedTreeNode([
+          ...alreadyLoadedTreeNode,
+          currentExpandedNode,
+        ]);
+      }
+      setExpandedItems([...expandedItems, currentExpandedNode]);
+    }
+  }, [folderData]);
+
+  console.log(currentExpandedNode);
   return (
     <JVRichTreeView
-      items={data}
+      items={treeData}
       onItemExpansionToggle={(
         event: React.SyntheticEvent,
         itemId: [],
@@ -183,13 +251,28 @@ export const TreeView = () => {
           setCurrentExpandedNode(itemId as any);
           dispatch(getFolderData(itemId as string));
         }
-        // console.log(itemId)
       }}
       getLabel={(item) => {
         return item.label;
       }}
+      expandedItems={expandedItems}
+      onItemExpansionToggle={(event, itemId, isExapnded) => {
+        if (isExapnded) {
+          if (folderData[itemId]) {
+            setExpandedItems(() => [...expandedItems, itemId]);
+          } else {
+            setCurrentExpandedNode(itemId);
+            dispatch(getFolderData(itemId));
+          }
+        } else {
+          setExpandedItems(() =>
+            expandedItems.filter((item) => item !== itemId),
+          );
+        }
+      }}
+      selectedItems={currentExpandedNode}
+      multiSelect={false}
       getItemId={(item) => item.uri}
-      defaultSelectedItems="1.1"
       slots={{ item: CustomTreeItem }}
     />
   );
