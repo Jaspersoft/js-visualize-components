@@ -1,5 +1,9 @@
 import { DateTimePicker as JVDateTimePicker } from "@jaspersoft/jv-ui-components/material-ui/DateTime/DateTimePicker";
 import {
+  getDateFormatIfAny,
+  getMinAndMaxSettings,
+} from "../utils/DateInputControlUtils";
+import {
   BaseInputControlProps,
   ICDateValidationRule,
 } from "./BaseInputControl";
@@ -25,8 +29,10 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   let dateFormat = "YYYY-MM-DDTHH:mm:ss",
     views: string[] = [];
   if (props.validationRules !== undefined) {
-    const [rule] = props.validationRules as ICDateValidationRule[];
-    dateFormat = removeSingleQuotes(rule.dateTimeFormatValidationRule!.format);
+    const formatStored = getDateFormatIfAny(
+      props.validationRules as ICDateValidationRule[],
+    );
+    dateFormat = removeSingleQuotes(formatStored);
     dateFormat = formatToDayJS(dateFormat);
   }
   views = props.views
@@ -37,9 +43,13 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);
+  const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
+    minKey: "minDateTime",
+    maxKey: "maxDateTime",
+  });
   return (
     <JVDateTimePicker
-      {...props}
+      {...{ ...props, ...minAndMaxSettings }}
       onChange={liveState.onChange}
       value={liveState.value}
       views={views}

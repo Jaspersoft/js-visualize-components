@@ -41,7 +41,10 @@ export const DateTimePickerTextFieldInputControl = (
     mandatory && !liveState.value.trim()
       ? getMandatoryErrorMessage(validationRules as ICDateValidationRule[])
       : "";
-  const minAndMaxSettings = getMinAndMaxSettings(dataType);
+  const minAndMaxSettings = getMinAndMaxSettings(dataType, {
+    minKey: "min",
+    maxKey: "max",
+  });
   const theInputProps = {
     ...inputProps,
     ...liveState,

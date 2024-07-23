@@ -3,12 +3,7 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { ICDataType } from "../controls/BaseInputControl";
-
-export interface MinAndMaxSettings {
-  min?: string;
-  max?: string;
-}
+import { ICDataType, ICDateValidationRule } from "../controls/BaseInputControl";
 
 const getMaxDateIfStrict = (dataType: ICDataType): string => {
   if (!dataType.strictMax) {
@@ -32,16 +27,33 @@ const getMinDateIfStrict = (dataType: ICDataType): string => {
 
 export const getMinAndMaxSettings = (
   dataType: ICDataType | undefined,
-): MinAndMaxSettings => {
-  const minAndMaxSettings: MinAndMaxSettings = {};
+  { minKey = "min", maxKey = "max" }: { minKey: string; maxKey: string },
+) => {
+  const minAndMaxSettings: any = {};
   if (dataType === undefined) {
     return minAndMaxSettings;
   }
   if (dataType!.minValue) {
-    minAndMaxSettings.min = getMinDateIfStrict(dataType);
+    minAndMaxSettings[minKey] = getMinDateIfStrict(dataType);
   }
   if (dataType!.maxValue) {
-    minAndMaxSettings.max = getMaxDateIfStrict(dataType);
+    minAndMaxSettings[maxKey] = getMaxDateIfStrict(dataType);
   }
   return minAndMaxSettings;
+};
+
+export const getDateFormatIfAny = (
+  validationRules: ICDateValidationRule[],
+): string => {
+  const defaultDateTimeFormat = "YYYY-MM-DDTHH:mm:ss";
+  if (!validationRules) {
+    return defaultDateTimeFormat;
+  }
+  const rule = validationRules.find(
+    (rule) => rule.dateTimeFormatValidationRule,
+  );
+  if (!rule) {
+    return defaultDateTimeFormat;
+  }
+  return rule!.dateTimeFormatValidationRule!.format || defaultDateTimeFormat;
 };
