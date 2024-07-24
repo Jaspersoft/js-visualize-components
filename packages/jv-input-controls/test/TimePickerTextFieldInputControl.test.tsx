@@ -126,7 +126,37 @@ describe("TimePickerTextFieldInputControl tests", () => {
   // Test for mandatory field
   test("verify the field shows error when mandatory prop is set", () => {
     const CSS_ERROR_CLASS = "jv-uMandatory";
-    const { container } = render(getTimePickerTextFieldIC({ mandatory: true }));
+    const { container } = render(
+      getTimePickerTextFieldIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+          {
+            dateTimeFormatValidationRule: {
+              errorMessage: "Specify a valid time value.",
+              format: "HH:mm:ss",
+            },
+          },
+        ],
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
+          id: "column_time_1",
+          value: "",
+          error: "This field is mandatory so you must enter data.",
+        },
+        dataType: {
+          type: "time",
+          maxValue: "16:59:23",
+          strictMax: true,
+          minValue: "04:20:44",
+          strictMin: true,
+        },
+      }),
+    );
     let wrapperDiv = container.querySelector(
       `div.${CSS_ERROR_CLASS}`,
     ) as HTMLInputElement;

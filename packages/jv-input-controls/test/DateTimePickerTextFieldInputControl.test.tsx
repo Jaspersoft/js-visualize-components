@@ -133,7 +133,35 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
   test("verify the field shows error when mandatory prop is set", () => {
     const CSS_ERROR_CLASS = "jv-uMandatory";
     const { container } = render(
-      getDateTimePickerTextFieldIC({ mandatory: true }),
+      getDateTimePickerTextFieldIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+          {
+            dateTimeFormatValidationRule: {
+              errorMessage: "Specify a valid date/time value.",
+              format: "yyyy-MM-dd'T'HH:mm:ss",
+            },
+          },
+        ],
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_timestamp_1",
+          id: "column_timestamp_1",
+          value: "",
+          error: "This field is mandatory so you must enter data.",
+        },
+        dataType: {
+          type: "datetime",
+          maxValue: "2024-07-25T06:17:36",
+          strictMax: true,
+          minValue: "2024-07-17T02:07:17",
+          strictMin: true,
+        },
+      }),
     );
     let wrapperDiv = container.querySelector(
       `div.${CSS_ERROR_CLASS}`,
