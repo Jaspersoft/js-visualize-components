@@ -51,6 +51,8 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           {...theProps}
           key={control.id}
           type={inputTypeText}
+          dataType={control.dataType}
+          validationRules={control.validationRules}
         />
       );
     }

@@ -12,6 +12,7 @@ import {
 } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
+import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
 
 export type DateTimeICType = "default";
 
@@ -37,10 +38,11 @@ export const DateTimePickerTextFieldInputControl = (
   if (readOnly) {
     inputProps.readOnly = true;
   }
-  const helperText =
-    mandatory && !liveState.value.trim()
-      ? getMandatoryErrorMessage(validationRules as ICDateValidationRule[])
-      : "";
+  const errorText = useMandatoryMsg({
+    textValue: liveState.value,
+    isMandatory: mandatory,
+    validationRules: validationRules as ICDateValidationRule[],
+  });
   const minAndMaxSettings = getMinAndMaxSettings(dataType, {
     minKey: "min",
     maxKey: "max",
@@ -56,7 +58,7 @@ export const DateTimePickerTextFieldInputControl = (
       className={`jv-mInputDatetime ${controlClasses.join(" ")} ${props.className || ""}`}
       InputProps={{ ...theInputProps }}
       inputProps={{ ...minAndMaxSettings }}
-      error={helperText}
+      error={errorText}
     />
   );
 };
