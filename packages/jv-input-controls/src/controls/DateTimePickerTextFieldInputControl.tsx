@@ -5,7 +5,6 @@
 
 import { DateTimeTextField as JVDateTimeTextField } from "@jaspersoft/jv-ui-components/material-ui/DateTimeTextField/DateTimeTextField";
 import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
-import { getMandatoryErrorMessage } from "../utils/ErrorMessageUtils";
 import {
   BaseInputControlProps,
   ICDateValidationRule,

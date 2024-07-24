@@ -19,13 +19,11 @@ export interface TimeICProps extends BaseInputControlProps {
 }
 
 export const TimePickerInputControl = (props: TimeICProps) => {
-  let dateFormat = "HH:mm:ss";
-  if (props.validationRules !== undefined) {
-    dateFormat = getDateFormatIfAny(
-      props.validationRules as ICDateValidationRule[],
-      dateFormat,
-    );
-  }
+  let dateFormat = getDateFormatIfAny(
+    props.validationRules as ICDateValidationRule[],
+    "HH:mm:ss",
+  );
+
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
