@@ -4,7 +4,12 @@
  */
 
 import { DateTimeTextField as JVDateTimeTextField } from "@jaspersoft/jv-ui-components/material-ui/DateTimeTextField/DateTimeTextField";
-import { BaseInputControlProps } from "./BaseInputControl";
+import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
+import { getMandatoryErrorMessage } from "../utils/ErrorMessageUtils";
+import {
+  BaseInputControlProps,
+  ICDateValidationRule,
+} from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
@@ -19,14 +24,28 @@ export interface DateTextFieldICProps extends BaseInputControlProps {
 export const DatePickerTextFieldInputControl = (
   props: DateTextFieldICProps,
 ) => {
-  const { readOnly, mandatory, visible, validationRules, ...remainingProps } =
-    props;
+  const {
+    readOnly,
+    mandatory,
+    visible,
+    dataType,
+    validationRules,
+    ...remainingProps
+  } = props;
   const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {
     inputProps.readOnly = true;
   }
+  const helperText =
+    mandatory && !liveState.value.trim()
+      ? getMandatoryErrorMessage(validationRules as ICDateValidationRule[])
+      : "";
+  const minAndMaxSettings = getMinAndMaxSettings(dataType, {
+    minKey: "min",
+    maxKey: "max",
+  });
   const theInputProps = { ...inputProps, ...liveState };
   return (
     <JVDateTimeTextField
@@ -35,6 +54,8 @@ export const DatePickerTextFieldInputControl = (
       variant={props.variant || "outlined"}
       className={`jv-mInputDate ${controlClasses.join(" ")} ${props.className || ""}`}
       InputProps={theInputProps}
+      inputProps={{ ...minAndMaxSettings }}
+      error={helperText}
     />
   );
 };

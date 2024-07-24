@@ -18,6 +18,9 @@ const getMaxDateIfStrict = (dataType: ICDataType): string => {
   const date = new Date(dataType.maxValue!);
   // we have to subtract 1 day to the max value
   date.setDate(date.getDate() - 1);
+  if (dataType.type === "date") {
+    return date.toISOString().split("T")[0];
+  }
   return date.toISOString().split(".")[0];
 };
 
@@ -34,6 +37,9 @@ const getMinDateIfStrict = (dataType: ICDataType): string => {
   const date = new Date(dataType.minValue!);
   // we have to add 1 day to the min value
   date.setDate(date.getDate() + 1);
+  if (dataType.type === "date") {
+    return date.toISOString().split("T")[0];
+  }
   return date.toISOString().split(".")[0];
 };
 

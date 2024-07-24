@@ -71,6 +71,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           <DatePickerInputControl
             {...theProps}
             key={control.id}
+            dataType={control.dataType}
             validationRules={control.validationRules}
           />
         );
@@ -79,6 +80,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         <DatePickerTextFieldInputControl
           {...theProps}
           key={control.id}
+          dataType={control.dataType}
           validationRules={control.validationRules}
         />
       );
