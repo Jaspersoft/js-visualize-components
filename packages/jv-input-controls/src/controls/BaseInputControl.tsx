@@ -83,28 +83,3 @@ export interface BaseInputControlProps {
 export interface InputControlCollection {
   inputControl: BaseInputControlProps[];
 }
-
-const CONTAINER_CLASS = "jv-uInputControl-container";
-const INVISIBLE_CLASS = "jv-uVisibility-hide";
-const MANDATORY_CLASS = "jv-uMandatory";
-const READ_ONLY_CLASS = "jv-uReadOnly";
-
-export default function BaseInputControl(props: BaseInputControlProps) {
-  const [additionalCssClasses, setAdditionalCssClasses] = useState<string[]>(
-    [],
-  );
-
-  const getClasses = () => {
-    let activeClasses: string[] = [CONTAINER_CLASS];
-    if (!props.visible) activeClasses.push(INVISIBLE_CLASS);
-    if (props.mandatory) activeClasses.push(MANDATORY_CLASS);
-    if (props.readOnly) activeClasses.push(READ_ONLY_CLASS);
-    setAdditionalCssClasses(activeClasses);
-  };
-
-  useEffect(() => {
-    getClasses();
-  }, []);
-
-  return <div className={additionalCssClasses.join(" ")}>{props.children}</div>;
-}

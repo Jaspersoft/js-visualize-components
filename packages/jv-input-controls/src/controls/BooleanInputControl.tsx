@@ -11,17 +11,20 @@ export interface BooleanInputControlProps extends BaseInputControlProps {
   styleType?: BoolICType;
 }
 
-export default function BooleanInputControl(
+export function BooleanInputControl(
   props: BooleanInputControlProps,
 ): React.JSX.Element {
-  const liveState = useLiveState({ initialValue: props.state?.value || "" });
+  const liveState = useLiveState(!!props.state?.value);
   const controlClasses = useControlClasses([], props);
 
   if (props.styleType === "switch") {
     return (
       <JVSwitch
         label={props.label || "UNDEF"}
-        SwitchProps={liveState}
+        SwitchProps={{
+          onChange: liveState.onChange,
+          checked: liveState.value,
+        }}
         className={controlClasses.join(" ")}
       />
     );
@@ -29,7 +32,10 @@ export default function BooleanInputControl(
     return (
       <JVCheckbox
         label={props.label || "UNDEF"}
-        CheckboxProps={liveState}
+        CheckboxProps={{
+          onChange: liveState.onChange,
+          checked: liveState.value,
+        }}
         className={controlClasses.join(" ")}
       />
     );

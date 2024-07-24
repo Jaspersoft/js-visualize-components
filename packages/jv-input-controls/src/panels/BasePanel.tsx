@@ -1,6 +1,6 @@
 import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
 import { JSX } from "react";
-import BooleanInputControl from "../controls/BooleanInputControl";
+import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
@@ -10,6 +10,7 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
+import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
 
 export interface BasePanelProps {
   controls: any;
@@ -101,6 +102,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           validationRules={control.validationRules}
         />
       );
+    }
+    if (control.type === "singleSelect") {
+      return <SingleSelectInputControl {...theProps} />;
     }
     if (control.type === "singleValueTime") {
       if (props.config?.singleValueTime?.type === "material") {
