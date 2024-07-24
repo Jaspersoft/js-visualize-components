@@ -6,7 +6,13 @@
 import { ICDataType, ICDateValidationRule } from "../controls/BaseInputControl";
 
 const getMaxDateIfStrict = (dataType: ICDataType): string => {
+  if (!dataType.maxValue) {
+    return "";
+  }
   if (!dataType.strictMax) {
+    return dataType.maxValue!;
+  }
+  if (dataType.type === "time") {
     return dataType.maxValue!;
   }
   const date = new Date(dataType.maxValue!);
@@ -16,7 +22,13 @@ const getMaxDateIfStrict = (dataType: ICDataType): string => {
 };
 
 const getMinDateIfStrict = (dataType: ICDataType): string => {
+  if (!dataType.minValue) {
+    return "";
+  }
   if (!dataType.strictMin) {
+    return dataType.minValue!;
+  }
+  if (dataType.type === "time") {
     return dataType.minValue!;
   }
   const date = new Date(dataType.minValue!);

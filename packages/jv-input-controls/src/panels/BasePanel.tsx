@@ -116,6 +116,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         <TimePickerTextFieldInputControl
           {...theProps}
           key={control.id}
+          dataType={control.dataType}
           validationRules={control.validationRules}
         />
       );
