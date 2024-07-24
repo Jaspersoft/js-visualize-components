@@ -12,6 +12,7 @@ export interface IMailNotifications {
 export interface IState {
   scheduleInfo: IScheduleInfo;
   visitedTabs: string[];
+  outputFormats: string[];
 }
 
 export interface IStoreData {}
@@ -26,6 +27,7 @@ export interface IScheduleInfo {
   outputTimeZone: string;
   outputFormatList: string[];
   outputFormats: IOutputFormat;
+  userTimeZones: [{ code: string; description: string }];
 }
 
 export interface ITrigger {

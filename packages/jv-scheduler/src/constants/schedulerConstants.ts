@@ -132,3 +132,7 @@ export const OUTPUT_FILE_NAME = "baseOutputFilename";
 export const OUTPUT_FILE_DESCRIPTION = "baseOutputFileDescription";
 export const SCHEDULE_JOB_NAME = "scheduleJobName";
 export const SCHEDULE_JOB_DESCRIPTION = "scheduleJobDescription";
+export const OUTPUT_TIME_ZONE = "outputTimeZone";
+export const OUTPUT_FORMAT = "outputFormat";
+export const SEND_LINK = "SEND";
+export const SEND_ATTACHMENT = "SEND_ATTACHMENT";

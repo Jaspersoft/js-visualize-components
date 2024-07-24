@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import {
   JVCheckbox,
   JVCheckboxGroup,
@@ -12,14 +12,22 @@ import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 import {
   OUTPUT_FILE_DESCRIPTION,
   OUTPUT_FILE_NAME,
+  OUTPUT_FORMAT,
+  OUTPUT_TIME_ZONE,
 } from "../../../constants/schedulerConstants";
 import { IState } from "../../../types/schedulerTypes";
 import { MessageAPIError } from "../../apiFailureError/scheduleAPIError";
 
 const Output = () => {
   const { t } = useTranslation();
-  const outputFormats = useSelector((state: any) => state.outputFormats);
+  const outputFormats = useSelector((state: IState) => state.outputFormats);
   const userTimeZones = useSelector((state: any) => state.userTimeZones);
+  const userSelectedTimezone = useSelector(
+    (state: IState) => state.scheduleInfo.outputTimeZone,
+  );
+  const userSelectedOutputFormats = useSelector(
+    (state: IState) => state.scheduleInfo.outputFormats.outputFormat,
+  );
   const userTimezoneApiFailure = useSelector(
     (state: any) => state.scheduleApisFailure.userTimezoneApiFailure,
   );
@@ -36,17 +44,37 @@ const Output = () => {
     baseOutputFileDescription,
   );
   const [fileName, setFileName] = useState(baseOutputFilename);
+  const [timezone, setTimezone] = useState(userSelectedTimezone);
+  const [outputFormatSelected, setOutputFormat] = useState(
+    userSelectedOutputFormats,
+  );
   const updateStore = useStoreUpdate();
 
   useEffect(() => {
     setFileName(baseOutputFilename);
   }, [baseOutputFilename]);
 
+  useEffect(() => {
+    setTimezone(timezone);
+  }, [timezone]);
+
   const updateChangeToStore = (
     propertyName: string,
     propertyValue: string | string[],
   ) => {
     updateStore({ [propertyName]: propertyValue });
+  };
+
+  const isOutputFormatSelected = (formatToCheck: string) =>
+    outputFormatSelected?.some((format: string) => formatToCheck === format);
+
+  const handleOutputFormatChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.checked;
+    const newOutputFormat = value
+      ? [...outputFormatSelected, e.target.name]
+      : outputFormatSelected?.filter((item) => item !== e.target.name);
+    setOutputFormat(newOutputFormat);
+    updateChangeToStore(OUTPUT_FORMAT, newOutputFormat);
   };
 
   return (
@@ -73,7 +101,17 @@ const Output = () => {
             updateChangeToStore(OUTPUT_FILE_DESCRIPTION, outputDescription)
           }
         />
-        <JVTextField size="large" label="Time zone (required)" select>
+        <JVTextField
+          size="large"
+          label="Time zone (required)"
+          select
+          value={timezone}
+          onChange={(e) => {
+            const newTimezone = e.target.value;
+            setTimezone(e.target.value);
+            updateChangeToStore(OUTPUT_TIME_ZONE, newTimezone);
+          }}
+        >
           {userTimeZones.map((item: { code: string; description: string }) => (
             <JVSelectItem key={item.code} value={item.code}>
               {item.code} - {item.description}
@@ -81,10 +119,20 @@ const Output = () => {
           ))}
         </JVTextField>
         <JVCheckboxGroup size="large" title="Formats (required)">
-          {outputFormats.map((format: any) => (
-            <JVCheckbox key={format} value={format.id} label={format} />
+          {outputFormats.map((format: string) => (
+            <JVCheckbox
+              key={format}
+              label={format}
+              value={format}
+              CheckboxProps={{
+                name: format,
+                checked: isOutputFormatSelected(format),
+                onChange: handleOutputFormatChange,
+              }}
+            />
           ))}
         </JVCheckboxGroup>
+
         {(userOutputFormatApiFailure || userTimezoneApiFailure) && (
           <MessageAPIError
             userTimezoneApiFailure={userTimezoneApiFailure}
