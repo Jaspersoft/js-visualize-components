@@ -18,6 +18,7 @@ const credentials: Authentication = {
 };
 
 const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
+const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
@@ -72,7 +73,8 @@ export default function App(props: AppConfig) {
       return;
     }
     plugin.renderControlPanel(
-      reportUri,
+      //reportUri,
+      singleSelectReportUri,
       document.getElementById("controls-section") as HTMLElement,
       {
         success: () => {
