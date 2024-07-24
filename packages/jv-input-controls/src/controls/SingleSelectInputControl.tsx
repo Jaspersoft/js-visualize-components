@@ -1,7 +1,6 @@
-import { Select } from "@jaspersoft/jv-ui-components/material-ui/Select/Select";
-import { SelectItem } from "@jaspersoft/jv-ui-components/material-ui/MenuItem/SelectItem";
 import React from "react";
-import { BaseInputControlProps, ICOption } from "./BaseInputControl";
+import { Select } from "@jaspersoft/jv-ui-components/material-ui/Select/Select";
+import { BaseInputControlProps } from "./BaseInputControl";
 import { useLiveState } from "./hooks/useLiveState";
 
 export interface SingleSelectInputControlProps extends BaseInputControlProps {}
@@ -12,7 +11,7 @@ export function SingleSelectInputControl(
   const liveState = useLiveState("");
 
   return (
-    <div>
+    <>
       <Select
         onChange={liveState.onChange}
         label={props.label}
@@ -21,6 +20,6 @@ export function SingleSelectInputControl(
         value={liveState.value}
         state={props.state}
       />
-    </div>
+    </>
   );
 }

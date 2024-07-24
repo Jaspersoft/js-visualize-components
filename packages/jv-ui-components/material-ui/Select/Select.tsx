@@ -20,9 +20,7 @@ export const Select = forwardRef((props: any, ref) => {
   };
 
   const makeOptions = (): JSX.Element[] => {
-    let sublen = 800,
-      subOpts = props.state?.options?.slice(0, sublen);
-    return subOpts.map((opt: any) => makeOption(opt)) || [];
+    return props.state?.options?.map((opt: any) => makeOption(opt)) || [];
   };
 
   return (
