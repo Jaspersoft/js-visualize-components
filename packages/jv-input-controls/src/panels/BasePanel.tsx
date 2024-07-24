@@ -106,7 +106,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       );
     }
     if (control.type === "singleSelect") {
-      return <SingleSelectInputControl {...theProps} />;
+      return <SingleSelectInputControl {...theProps} key={control.id} />;
     }
     if (control.type === "singleValueTime") {
       if (props.config?.singleValueTime?.type === "material") {

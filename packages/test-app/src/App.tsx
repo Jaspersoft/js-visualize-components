@@ -11,11 +11,6 @@ export interface AppConfig {
   title: string;
 }
 
-// TODO: NEED TO REVERT THIS BEFORE DELIVERING MY PR!
-// const credentials: Authentication = {
-//   name: "superuser",
-//   password: "superuser",
-// };
 const credentials: Authentication = {
   name: "joeuser",
   password: "joeuser",
@@ -23,13 +18,10 @@ const credentials: Authentication = {
 };
 
 const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
-// const reportUri = "/public/Samples/Reports/StoreDetails_1";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
-// const visualizeUrl =
-//   "https://infra-platforms-gcp-3704-ecanchev.pfa.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
 export default function App(props: AppConfig) {
   const [visualizeFactoryContainer, setVisualizeFactoryContainer] = useState(
@@ -81,15 +73,14 @@ export default function App(props: AppConfig) {
       return;
     }
     plugin.renderControlPanel(
-      //reportUri,
-      singleSelectReportUri,
-      document.getElementById("controls-section") as HTMLElement,
+      reportUri,
+      document.getElementById("basic-controls-section") as HTMLElement,
       {
         success: () => {
-          console.log("Controls rendered successfully");
+          console.log("Basic controls rendered successfully");
         },
         error: (error) => {
-          console.log("Error: ", error);
+          console.log("Error when rendering the Basic controls: ", error);
         },
         config: {
           singleValueDatetime: {
@@ -104,7 +95,24 @@ export default function App(props: AppConfig) {
         },
       },
     );
+    plugin.renderControlPanel(
+      singleSelectReportUri,
+      document.getElementById("select-controls-section") as HTMLElement,
+      {
+        success: () => {
+          console.log("Select controls rendered successfully");
+        },
+        error: (error) => {
+          console.log("Error when rendering the Select controls: ", error);
+        },
+      },
+    );
   }, [plugin]);
 
-  return <div id="controls-section"></div>;
+  return (
+    <>
+      <div id="basic-controls-section"></div>
+      <div id="select-controls-section"></div>
+    </>
+  );
 }
