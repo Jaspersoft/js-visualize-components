@@ -56,16 +56,16 @@ export const getMinAndMaxSettings = (
 
 export const getDateFormatIfAny = (
   validationRules: ICDateValidationRule[],
+  defaultFormat = "YYYY-MM-DDTHH:mm:ss",
 ): string => {
-  const defaultDateTimeFormat = "YYYY-MM-DDTHH:mm:ss";
   if (!validationRules) {
-    return defaultDateTimeFormat;
+    return defaultFormat;
   }
   const rule = validationRules.find(
     (rule) => rule.dateTimeFormatValidationRule,
   );
   if (!rule) {
-    return defaultDateTimeFormat;
+    return defaultFormat;
   }
-  return rule!.dateTimeFormatValidationRule!.format || defaultDateTimeFormat;
+  return rule!.dateTimeFormatValidationRule!.format || defaultFormat;
 };
