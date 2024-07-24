@@ -9,7 +9,7 @@ import Notifications from "./TabsContent/notifications/Notifications";
 
 const Tabs = () => {
   const [value, setValue] = useState<number>(0);
-  const { t } = useTranslation();
+  const { t } = useTranslation() as { t: (k: string) => string };
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
