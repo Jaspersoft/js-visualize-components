@@ -163,7 +163,7 @@ export const setStepperProperties = (updatedStepperData: any) => {
   };
 };
 
-export const currentTabValidator = () => {
+export const currentTabValidator = (newTabVal) => {
   return async (dispatch, getState) => {
     const { currentActiveTab, scheduleInfo } = getState(),
       currentTabValues = getStateOfCurrentActiveTab(
@@ -172,6 +172,7 @@ export const currentTabValidator = () => {
       );
     // handleStateChange();
     dispatch(setStepperProperties(currentTabValues));
+    dispatch(setCurrentActiveTab(newTabVal));
     // const currentTabErrs = await getErrorsForCurrentTab(currentActiveTab, alertCurrentStateValues);
     // dispatch(alertValidationError(currentTabErrs));
   };

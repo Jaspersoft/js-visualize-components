@@ -41,25 +41,11 @@ export const Tabs = () => {
   const visitedTabs = useSelector((state: any) => state.visitedTabs);
   const currentActiveTab = useSelector((state: any) => state.currentActiveTab);
 
-  const handleVisitedTabs = () => {
+  const handleChange = (event: ChangeEvent<{}>, newValue?: string) => {
     if (!visitedTabs.includes(currentActiveTab)) {
       dispatch(setVisitedTab([...visitedTabs, currentActiveTab]));
     }
-  };
-
-  const handleStateChange = (newValue: string | undefined) => () => {
-    handleVisitedTabs();
-    if (newValue) {
-      dispatch(setCurrentActiveTab(newValue));
-    }
-  };
-  // const handleTabsErrors = (newValue: string | undefined) => {
-  //     dispatch(currentTabValidationError(handleStateChange(newValue)));
-  // }
-
-  const handleChange = (event: ChangeEvent<{}>, newValue?: string) => {
-    dispatch(currentTabValidator());
-    handleStateChange(newValue);
+    dispatch(currentTabValidator(newValue));
   };
 
   return (

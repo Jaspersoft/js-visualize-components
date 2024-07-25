@@ -164,9 +164,21 @@ export const OUTPUT_FORMAT = "outputFormat";
 export const SEND_LINK = "SEND";
 export const SEND_ATTACHMENT = "SEND_ATTACHMENT";
 
+export const INCOMPLETE_STATE = "incomplete";
+export const INCOMPLETE_DEFAULT_STATE = "incompleteDefaults";
+export const SUCCESS_STATE = "success";
+export const ERROR_STATE = "error";
+
 export const stepperSteps: { [key: string]: number } = {
   [PARAMETERS_TAB]: 1,
   [SCHEDULE_TAB]: 0,
   [NOTIFICATIONS_TAB]: 2,
   [OUTPUT_TAB]: 3,
+};
+
+export const tabsStateDefaultState: { [key: string]: string } = {
+  [PARAMETERS_TAB]: "",
+  [SCHEDULE_TAB]: INCOMPLETE_DEFAULT_STATE,
+  [NOTIFICATIONS_TAB]: INCOMPLETE_STATE,
+  [OUTPUT_TAB]: INCOMPLETE_DEFAULT_STATE,
 };
