@@ -159,6 +159,7 @@ export {
   SelectItem as JVSelectItem,
   SelectItemProps as JVSelectItemProps,
 } from "./MenuItem/SelectItem";
+export { Select as JVSelect } from "./Select/Select";
 export {
   Message as JVMessage,
   TypeToClass as JVTypeToClass,

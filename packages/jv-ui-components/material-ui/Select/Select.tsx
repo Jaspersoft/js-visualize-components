@@ -1,5 +1,4 @@
-import * as React from "react";
-import { forwardRef } from "react";
+import { forwardRef, JSX } from "react";
 import { SelectItem } from "../MenuItem/SelectItem";
 import { TextField } from "../TextField/TextField";
 
