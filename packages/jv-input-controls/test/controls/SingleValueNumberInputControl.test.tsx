@@ -1,7 +1,7 @@
 import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSX } from "react";
-import { SingleValueNumberInputControl } from "../src/controls/SingleValueNumberInputControl";
+import { SingleValueNumberInputControl } from "../../src/controls/SingleValueNumberInputControl";
 import "@testing-library/jest-dom";
 
 const LARGE_CSS_CLASS = SizeToClass.large;

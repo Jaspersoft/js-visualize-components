@@ -2,32 +2,32 @@ import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/Inpu
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSX } from "react";
 import "@testing-library/jest-dom";
-import { TimePickerTextFieldInputControl } from "../src/controls/TimePickerTextFieldInputControl";
+import { DatePickerTextFieldInputControl } from "../../src/controls/DatePickerTextFieldInputControl";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
 const requiredProps = {
-  id: "column_time_1",
-  label: "column_time",
+  id: "column_date_1",
+  label: "column_date",
   mandatory: false,
   readOnly: false,
   visible: true,
-  type: "singleValueTime",
+  type: "singleValueDate",
   state: {
-    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
-    id: "column_time_1",
-    value: "23:44:21",
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_date_1",
+    id: "column_date_1",
+    value: "2009-09-12",
   },
 };
 
-const getTimePickerTextFieldIC = (options?: object): JSX.Element => {
+const getDatePickerTextFieldIC = (options?: object): JSX.Element => {
   return (
-    <TimePickerTextFieldInputControl {...{ ...requiredProps, ...options }} />
+    <DatePickerTextFieldInputControl {...{ ...requiredProps, ...options }} />
   );
 };
 
-describe("TimePickerTextFieldInputControl tests", () => {
-  test("TimePickerTextFieldInputControl is rendered correctly", () => {
-    const { container } = render(getTimePickerTextFieldIC());
+describe("DatePickerTextFieldInputControl tests", () => {
+  test("DatePickerTextFieldInputControl is rendered correctly", () => {
+    const { container } = render(getDatePickerTextFieldIC());
     const buttonElement = container.querySelector("input");
     expect(buttonElement).toBeInTheDocument();
   });
@@ -35,16 +35,20 @@ describe("TimePickerTextFieldInputControl tests", () => {
   // Test for label prop
   test("displays the label when provided", () => {
     const testLabel = "Test Label";
-    render(getTimePickerTextFieldIC({ label: testLabel }));
+    render(getDatePickerTextFieldIC({ label: testLabel }));
     const labelElement = screen.queryByLabelText(testLabel);
     expect(labelElement).toBeInTheDocument();
   });
 
   // Test for value prop
   test("uses value as the initial input value", () => {
-    const defaultValue = "23:44:21";
+    const defaultValue = "2009-09-12";
     const { container } = render(
-      getTimePickerTextFieldIC({ state: { value: defaultValue } }),
+      getDatePickerTextFieldIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
     );
 
     const inputElement = container.querySelector("input") as HTMLInputElement;
@@ -53,9 +57,9 @@ describe("TimePickerTextFieldInputControl tests", () => {
 
   // Test for onChange event
   test("updates value on change", () => {
-    const { container } = render(getTimePickerTextFieldIC({}));
+    const { container } = render(getDatePickerTextFieldIC({}));
     const inputElement = container.querySelector("input") as HTMLInputElement;
-    const newValue = "11:22:16";
+    const newValue = "2024-07-17";
     fireEvent.change(inputElement, { target: { value: newValue } });
     expect(inputElement.value).toBe(newValue);
   });
@@ -63,7 +67,7 @@ describe("TimePickerTextFieldInputControl tests", () => {
   // Test for variant prop
   test("changes style based on variant prop", () => {
     const { container } = render(
-      getTimePickerTextFieldIC({ variant: "outlined" }),
+      getDatePickerTextFieldIC({ variant: "outlined" }),
     );
     let inputElement = container.querySelector("input") as HTMLInputElement;
     expect(inputElement).toHaveClass("MuiOutlinedInput-input");
@@ -72,7 +76,7 @@ describe("TimePickerTextFieldInputControl tests", () => {
   // test for default size.
   test("check the default size is large if it is not provided", () => {
     // Render the component
-    const { container } = render(getTimePickerTextFieldIC({}));
+    const { container } = render(getDatePickerTextFieldIC({}));
 
     // Use querySelector to get the first div with the class "jv-mInputLarge"
     const divElement = container.querySelector(`div.${LARGE_CSS_CLASS}`);
@@ -87,7 +91,7 @@ describe("TimePickerTextFieldInputControl tests", () => {
     const cssClass = "jv-mInput";
     // Render the component
     const { container } = render(
-      getTimePickerTextFieldIC({ className: cssClass }),
+      getDatePickerTextFieldIC({ className: cssClass }),
     );
 
     // Use querySelector to get the first div with the class "jv-mInputLarge"
@@ -102,7 +106,7 @@ describe("TimePickerTextFieldInputControl tests", () => {
   // test readOnly prop
   test("check the component is read-only", () => {
     // Render the component
-    const { container } = render(getTimePickerTextFieldIC({ readOnly: true }));
+    const { container } = render(getDatePickerTextFieldIC({ readOnly: true }));
     let inputElement = container.querySelector("input") as HTMLInputElement;
 
     // Assert that the element is found and has the expected attribute
@@ -114,7 +118,7 @@ describe("TimePickerTextFieldInputControl tests", () => {
   test("check the component is visible or not", () => {
     const HIDDEN_CLASS_NAME = "jv-uVisibility-hide";
     // Render the component
-    const { container } = render(getTimePickerTextFieldIC({ visible: false }));
+    const { container } = render(getDatePickerTextFieldIC({ visible: false }));
     // Use querySelector to get the first div with the class "jv-mInputLarge"
     const divElement = container.querySelector(`div.${HIDDEN_CLASS_NAME}`);
 
@@ -127,7 +131,7 @@ describe("TimePickerTextFieldInputControl tests", () => {
   test("verify the field shows error when mandatory prop is set", () => {
     const CSS_ERROR_CLASS = "jv-uMandatory";
     const { container } = render(
-      getTimePickerTextFieldIC({
+      getDatePickerTextFieldIC({
         mandatory: true,
         validationRules: [
           {
@@ -137,22 +141,22 @@ describe("TimePickerTextFieldInputControl tests", () => {
           },
           {
             dateTimeFormatValidationRule: {
-              errorMessage: "Specify a valid time value.",
-              format: "HH:mm:ss",
+              errorMessage: "Specify a valid date value.",
+              format: "yyyy-MM-dd",
             },
           },
         ],
         state: {
-          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
-          id: "column_time_1",
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_date_1",
+          id: "column_date_1",
           value: "",
           error: "This field is mandatory so you must enter data.",
         },
         dataType: {
-          type: "time",
-          maxValue: "16:59:23",
+          type: "date",
+          maxValue: "2024-07-26",
           strictMax: true,
-          minValue: "04:20:44",
+          minValue: "2024-07-16",
           strictMin: true,
         },
       }),

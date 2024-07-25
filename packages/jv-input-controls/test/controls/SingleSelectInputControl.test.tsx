@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SingleSelectInputControl } from "../src/controls/SingleSelectInputControl";
+import { SingleSelectInputControl } from "../../src/controls/SingleSelectInputControl";
 import { cleanup, render } from "@testing-library/react";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";

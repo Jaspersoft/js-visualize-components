@@ -1,6 +1,5 @@
-import * as React from "react";
-import { useLiveState } from "../../src/controls/hooks/useLiveState";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
+import { useLiveState } from "../../../src/controls/hooks/useLiveState";
 
 describe("useLiveState hook tests", () => {
   it("should store initial value", () => {
@@ -16,5 +15,19 @@ describe("useLiveState hook tests", () => {
     expect(result.current.value).toBeDefined();
     expect(result.current.onChange).toBeDefined();
     expect(result.current.onChange instanceof Function).toBeTruthy();
+  });
+  it("should set value from checked event property for checkboxes", () => {
+    const { result } = renderHook(() => useLiveState(false));
+    expect(result.current.value).toBe(false);
+    act(() => {
+      result.current.onChange({
+        target: {
+          type: "checkbox",
+          checked: true,
+          value: 42,
+        },
+      });
+    });
+    expect(result.current.value).toBe(true);
   });
 });

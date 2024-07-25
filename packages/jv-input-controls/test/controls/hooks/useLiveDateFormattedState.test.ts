@@ -3,7 +3,7 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { useLiveDateFormattedState } from "../../src/controls/hooks/useLiveDateFormattedState";
+import { useLiveDateFormattedState } from "../../../src/controls/hooks/useLiveDateFormattedState";
 import { renderHook } from "@testing-library/react";
 
 describe("useLiveState hook tests", () => {

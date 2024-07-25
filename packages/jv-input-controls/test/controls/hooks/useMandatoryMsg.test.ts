@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import { useMandatoryMsg } from "../../src/controls/hooks/useMandatoryMsg";
+import { useMandatoryMsg } from "../../../src/controls/hooks/useMandatoryMsg";
 
 const MANDATORY_ERROR_MESSAGE =
   "This field is mandatory so you must enter data.";

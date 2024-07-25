@@ -1,6 +1,6 @@
 import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { SingleValueTextInputControl } from "../src/controls/SingleValueTextInputControl";
+import { SingleValueTextInputControl } from "../../src/controls/SingleValueTextInputControl";
 import "@testing-library/jest-dom";
 import * as React from "react";
 
