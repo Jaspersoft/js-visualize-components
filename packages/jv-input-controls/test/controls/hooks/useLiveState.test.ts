@@ -1,7 +1,5 @@
-import * as React from "react";
+import { act, renderHook } from "@testing-library/react";
 import { useLiveState } from "../../../src/controls/hooks/useLiveState";
-import { useState } from "react";
-import { renderHook, act } from "@testing-library/react";
 
 describe("useLiveState hook tests", () => {
   it("should store initial value", () => {
