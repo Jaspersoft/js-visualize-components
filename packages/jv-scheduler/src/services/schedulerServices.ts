@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../store/store";
+import { getFakeRootRepositoryData } from "../utils/schedulerUtils";
 
 export const getUserTimezonesFromService = async () => {
   try {
@@ -112,5 +113,32 @@ export const getRepositoryFolderData = async (folderPath: string) => {
     return response.data;
   } catch (error) {
     return { error: "Failed to fetch repository folder data" };
+  }
+};
+
+function decodeHtml(html) {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+}
+
+export const getFakeRootDataFromService = async () => {
+  let csrfToken = await getCSRFToken();
+  csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
+  try {
+    const response = await axios.get(
+      `${store.getState().schedulerUIConfig.server}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
+      {
+        withCredentials: true,
+        headers: {
+          Accept: "text/html",
+          // dataType:"text",
+          OWASP_CSRFTOKEN: csrfToken,
+        },
+      },
+    );
+    return getFakeRootRepositoryData(decodeHtml(response.data));
+  } catch (error) {
+    return { error: "Failed to fetch base folder data" };
   }
 };

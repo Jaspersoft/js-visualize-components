@@ -5,6 +5,7 @@ import {
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
   SET_PROPERTIES_DETAILS,
+  SET_FAKE_ROOT,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -31,6 +32,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         folderData: { ...state.folderData, ...action.payload.folderData },
+      };
+    case SET_FAKE_ROOT:
+      return {
+        ...state,
+        fakeRoot: action.payload.fakeRoot,
       };
     case SET_PROPERTIES_DETAILS:
       return {

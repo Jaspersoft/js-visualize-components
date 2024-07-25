@@ -29,6 +29,7 @@ export const RepositoryTreeDialog = ({
   handleDialogState,
 }: any) => {
   const folderData = useSelector((state: any) => state.folderData);
+  const folderRootData = useSelector((state: any) => state.fakeRoot);
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
@@ -41,10 +42,13 @@ export const RepositoryTreeDialog = ({
   useEffect(() => {
     const folders = resourceUri.split("/");
     const expandedFoldersData = folders.slice(1, folders.length - 1);
-    if (Object.keys(folderData).length === expandedFoldersData.length) {
+    if (
+      Object.keys(folderData).length === expandedFoldersData.length &&
+      folderRootData.length
+    ) {
       setShowTree(true);
     }
-  }, [folderData]);
+  }, [folderData, folderRootData]);
 
   useEffect(() => {
     setOpen(dialogOpen);

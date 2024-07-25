@@ -17,24 +17,6 @@ import { JVRichTreeView } from "@jaspersoft/jv-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getFolderData } from "../../../../actions/action";
 
-const data = [
-  {
-    version: 0,
-    permissionMask: 1,
-    label: "Root",
-    description: "Root",
-    uri: "/",
-    resourceType: "folder",
-  },
-  {
-    version: 0,
-    label: "Public",
-    description: "Public",
-    uri: "/public",
-    resourceType: "folder",
-  },
-];
-
 function TransitionComponent(props: any) {
   return <JVCollapse {...props} />;
 }
@@ -45,12 +27,7 @@ interface CustomLabelProps {
   expandable?: boolean;
 }
 
-const CustomLabel = ({
-  icon: Icon,
-  expandable,
-  children,
-  ...other
-}: CustomLabelProps) => {
+const CustomLabel = ({ expandable, children, ...other }: CustomLabelProps) => {
   return (
     <>
       <JVTreeItem2Label
@@ -60,8 +37,6 @@ const CustomLabel = ({
           alignItems: "center",
         }}
       >
-        {/*/!* render icon *!/*/}
-        {/*{Icon && (*/}
         <JVBox
           className="labelIcon"
           color="inherit"
@@ -106,11 +81,6 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   } = useJVTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
 
   let icon = getIconFromFileType();
-
-  if (itemId == "/public/Samples/Reports") {
-    debugger;
-  }
-
   status.expandable = true;
   return (
     <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
@@ -122,7 +92,6 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
           </JVTreeItem2IconContainer>
           <CustomLabel
             {...getLabelProps({
-              icon,
               expandable: true,
             })}
           />
@@ -157,15 +126,27 @@ const addChildrenToTreeOnLoad = (
   return treeStructure;
 };
 
+const getFoldersToBeExpandedFromURI = (foldersName) => {
+  // gets folders name from uri
+  return foldersName.reduce((acc, curr, i) => {
+    if (i === 0) {
+      acc.push(`/${curr}`);
+    } else {
+      acc.push(`${acc[i - 1]}/${curr}`);
+    }
+    return acc;
+  }, []);
+};
 export const TreeView = () => {
-  const [treeData, setTreeData] = useState([]);
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
   const folderData = useSelector((state: any) => state.folderData);
+  const rootData = useSelector((state: any) => state.fakeRoot);
+
+  const [treeData, setTreeData] = useState(rootData);
   const [currentExpandedNode, setCurrentExpandedNode] = useState("");
   const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState([]); // to keep track of whethere children nodes have been added to tree or not
-  const [currentStructureExpanded, setCurrentStructureExpanded] = useState([]);
   const [expandedItems, setExpandedItems] = useState([]);
 
   const dispatch = useDispatch();
@@ -176,19 +157,11 @@ export const TreeView = () => {
     let foldersNameFromResourceUri = resourceUri.split("/").filter(Boolean); // splits the string at each slash character and removes empty strings
     foldersNameFromResourceUri.pop();
     // gets folders name from uri
-    let foldersUriToBeExapanded = foldersNameFromResourceUri.reduce(
-      (acc, curr, i) => {
-        if (i === 0) {
-          acc.push(`/${curr}`);
-        } else {
-          acc.push(`${acc[i - 1]}/${curr}`);
-        }
-        return acc;
-      },
-      [],
+    let foldersUriToBeExapanded = getFoldersToBeExpandedFromURI(
+      foldersNameFromResourceUri,
     );
 
-    const initialTreeStructure = addChildrenToTreeOnLoad(data, folderData, [
+    const initialTreeStructure = addChildrenToTreeOnLoad(treeData, folderData, [
       ...foldersUriToBeExapanded,
     ]);
     setTreeData([...initialTreeStructure]);
@@ -213,21 +186,15 @@ export const TreeView = () => {
           .split("/")
           .filter(Boolean); // splits the string at each slash character and removes empty strings
         // gets folders name from uri
-        let foldersUriToBeExapanded = foldersNameFromResourceUri.reduce(
-          (acc, curr, i) => {
-            if (i === 0) {
-              acc.push(`/${curr}`);
-            } else {
-              acc.push(`${acc[i - 1]}/${curr}`);
-            }
-            return acc;
-          },
-          [],
+        let foldersUriToBeExapanded = getFoldersToBeExpandedFromURI(
+          foldersNameFromResourceUri,
         );
 
-        const initialTreeStructure = addChildrenToTreeOnLoad(data, folderData, [
-          ...foldersUriToBeExapanded,
-        ]);
+        const initialTreeStructure = addChildrenToTreeOnLoad(
+          treeData,
+          folderData,
+          [...foldersUriToBeExapanded],
+        );
         setTreeData([...initialTreeStructure]);
         setAlreadyLoadedTreeNode([
           ...alreadyLoadedTreeNode,

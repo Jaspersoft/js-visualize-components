@@ -124,6 +124,7 @@ export const defaultState = {
     userTimezoneApiFailure: false,
     userOutputFormatApiFailure: false,
   },
+  fakeRoot: [],
   scheduleInfo: {
     ...ScheduleDefaultState,
   },

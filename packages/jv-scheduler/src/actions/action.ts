@@ -5,8 +5,10 @@ import {
   SET_SCHEDULER_UI_CONFIG,
   SET_USER_TIME_ZONES,
   SET_PROPERTIES_DETAILS,
+  SET_FAKE_ROOT,
 } from "../constants/actionConstants";
 import {
+  getFakeRootDataFromService,
   getOutputFormatsFromService,
   getRepositoryFolderData,
   getUserTimezonesFromService,
@@ -77,6 +79,14 @@ export const setRepositoryFolderData = (folderData) => {
   };
 };
 
+export const setFakeRootData = (fakeRootData) => {
+  return {
+    type: SET_FAKE_ROOT,
+    payload: {
+      fakeRoot: fakeRootData,
+    },
+  };
+};
 export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
@@ -104,12 +114,22 @@ export const getUserTimeZones = () => {
 export const getFolderData = (folderPath: string) => {
   return async (dispatch) => {
     const repositoryData = await getRepositoryFolderData(folderPath);
-    console.log(repositoryData);
     if (repositoryData.error) {
       // dispatch error action
     } else {
       const folderData = repositoryData.resourceLookup || {};
       dispatch(setRepositoryFolderData({ [folderPath]: folderData }));
+    }
+  };
+};
+
+export const getFakeRootData = () => {
+  return async (dispatch) => {
+    const getRootData = await getFakeRootDataFromService();
+    if (getRootData.error) {
+      // dispatch error action
+    } else {
+      dispatch(setFakeRootData(getRootData));
     }
   };
 };
