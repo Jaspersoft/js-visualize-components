@@ -1,5 +1,9 @@
 import { DatePicker as JVDatePicker } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePicker";
 import {
+  getDateFormatIfAny,
+  getMinAndMaxSettings,
+} from "../utils/DateInputControlUtils";
+import {
   BaseInputControlProps,
   ICDateValidationRule,
 } from "./BaseInputControl";
@@ -15,21 +19,23 @@ export interface DateICProps extends BaseInputControlProps {
 }
 
 export const DatePickerInputControl = (props: DateICProps) => {
-  let dateFormat = "YYYY-MM-DD";
-  if (props.validationRules !== undefined) {
-    const [rule] = props.validationRules as ICDateValidationRule[];
-    dateFormat = rule.dateTimeFormatValidationRule.format.toUpperCase();
-  }
+  let dateFormat = getDateFormatIfAny(
+    props.validationRules as ICDateValidationRule[],
+    "YYYY-MM-DD",
+  ).toUpperCase();
 
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);
-
+  const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
+    minKey: "minDate",
+    maxKey: "maxDate",
+  });
   return (
     <JVDatePicker
-      {...props}
+      {...{ ...props, ...minAndMaxSettings }}
       onChange={liveState.onChange}
       value={liveState.value}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}

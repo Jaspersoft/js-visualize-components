@@ -1,5 +1,9 @@
 import { TimePicker as JVTimePicker } from "@jaspersoft/jv-ui-components/material-ui/Time/TimePicker";
 import {
+  getDateFormatIfAny,
+  getMinAndMaxSettings,
+} from "../utils/DateInputControlUtils";
+import {
   BaseInputControlProps,
   ICDateValidationRule,
 } from "./BaseInputControl";
@@ -15,26 +19,31 @@ export interface TimeICProps extends BaseInputControlProps {
 }
 
 export const TimePickerInputControl = (props: TimeICProps) => {
-  let dateFormat = "HH:mm:ss";
-  if (props.validationRules !== undefined) {
-    const [rule] = props.validationRules as ICDateValidationRule[];
-    dateFormat = rule.dateTimeFormatValidationRule.format;
-  }
+  let dateFormat = getDateFormatIfAny(
+    props.validationRules as ICDateValidationRule[],
+    "HH:mm:ss",
+  );
+
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);
   const views = props.views || ["hours", "minutes", "seconds"];
+  const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
+    minKey: "minTime",
+    maxKey: "maxTime",
+  });
   return (
     <JVTimePicker
-      {...props}
+      {...{ ...props, ...minAndMaxSettings }}
       views={views}
       onChange={liveState.onChange}
       value={liveState.value}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}
       timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
       format={dateFormat}
+      disableIgnoringDatePartForTimeValidation={true}
     />
   );
 };
