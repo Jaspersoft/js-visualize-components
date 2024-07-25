@@ -2,7 +2,7 @@ import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/Inpu
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSX } from "react";
 import "@testing-library/jest-dom";
-import { TimePickerTextFieldInputControl } from "../src/controls/TimePickerTextFieldInputControl";
+import { TimePickerTextFieldInputControl } from "../../src/controls/TimePickerTextFieldInputControl";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
 const requiredProps = {

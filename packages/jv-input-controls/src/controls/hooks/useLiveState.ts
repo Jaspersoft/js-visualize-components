@@ -11,7 +11,11 @@ export function useLiveState(initialValue: any) {
   const [value, setValue] = useState(initialValue);
 
   function handleChange(e: any) {
-    setValue(e.target.value);
+    if (e.target.type === "checkbox") {
+      setValue(e.target.checked);
+    } else {
+      setValue(e.target.value);
+    }
   }
   const liveStateProps = {
     value: value,

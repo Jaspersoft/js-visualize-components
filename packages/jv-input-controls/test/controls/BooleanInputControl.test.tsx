@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BooleanInputControl } from "../src/controls/BooleanInputControl";
+import { BooleanInputControl } from "../../src/controls/BooleanInputControl";
 import { cleanup, render } from "@testing-library/react";
 
 const requiredProps = {

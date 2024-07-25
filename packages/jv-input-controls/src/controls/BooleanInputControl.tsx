@@ -23,7 +23,7 @@ export function BooleanInputControl(
         label={props.label || "UNDEF"}
         SwitchProps={{
           onChange: liveState.onChange,
-          checked: liveState.value,
+          checked: !!liveState.value,
         }}
         className={controlClasses.join(" ")}
       />
@@ -34,7 +34,7 @@ export function BooleanInputControl(
         label={props.label || "UNDEF"}
         CheckboxProps={{
           onChange: liveState.onChange,
-          checked: liveState.value,
+          checked: !!liveState.value,
         }}
         className={controlClasses.join(" ")}
       />
