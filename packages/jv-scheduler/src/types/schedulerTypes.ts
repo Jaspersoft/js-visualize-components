@@ -45,3 +45,26 @@ export interface ITrigger {
 export interface IOutputFormat {
   outputFormat: string[];
 }
+
+interface IStepperData {
+  baseOutputFilename?: string;
+  messageText?: string;
+  name?: string;
+  operator?: string;
+  recurrenceIntervalUnit?: string;
+  subject?: string;
+  startType?: number | undefined;
+  outputTimeZone?: string | undefined;
+}
+
+export interface IStepperState extends IStepperData {
+  address?: string | string[];
+  outputFormat?: string[];
+  startDate?: string | null;
+  recurrenceInterval?: number;
+  thresholdValue?: number;
+  resultSendType?: string;
+  outputTimeZone?: string;
+  folderURI?: string;
+  saveToRepository?: boolean;
+}

@@ -8,6 +8,7 @@ import {
   SET_FAKE_ROOT,
   SET_VISITED_TABS,
   SET_ACTIVE_TAB,
+  SET_STEPPER_PROPERTIES,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -65,6 +66,15 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         currentActiveTab: action.payload?.activeTab,
+      };
+
+    case SET_STEPPER_PROPERTIES:
+      return {
+        ...state,
+        stepperState: {
+          ...state.stepperState,
+          ...action.payload?.updatedStepperData,
+        },
       };
     // case SET_USER_LOCALE:
     //     return {

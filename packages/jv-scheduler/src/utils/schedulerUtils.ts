@@ -1,3 +1,9 @@
+import {
+  NOTIFICATIONS_TAB,
+  OUTPUT_TAB,
+  SCHEDULE_TAB,
+} from "../constants/schedulerConstants";
+
 const computePermissionMask = (extra) => {
   var mask = 2;
   extra.isWritable && (mask = mask | 4);
@@ -50,4 +56,83 @@ export const getFakeRootRepositoryData = (data: any) => {
     });
   }
   return fakeRoot;
+};
+
+export const getStateOfCurrentActiveTab = (
+  tabName: string,
+  alertCurrentStateValues: any,
+) => {
+  const {
+    scheduleJobName,
+    scheduleJobDescription,
+    baseOutputFileDescription,
+    baseOutputFilename,
+    mailNotification,
+    outputFormats,
+    trigger,
+    outputTimeZone,
+    repositoryDestination,
+  } = alertCurrentStateValues;
+  const { toAddresses, subject, messageText, resultSendType } =
+    mailNotification;
+  const { address } = toAddresses;
+  const { outputFormat } = outputFormats;
+  const {
+      simpleTrigger: {
+        recurrenceInterval,
+        recurrenceIntervalUnit,
+        startDate,
+        startType,
+      },
+    } = trigger,
+    { folderURI } = repositoryDestination;
+  switch (tabName) {
+    case NOTIFICATIONS_TAB:
+      return {
+        address,
+        subject,
+        messageText,
+        startDate,
+        startType,
+        folderURI,
+        resultSendType,
+      };
+    case SCHEDULE_TAB:
+      return {
+        scheduleJobName,
+        scheduleJobDescription,
+        recurrenceInterval,
+        recurrenceIntervalUnit,
+        startDate,
+        startType,
+        outputTimeZone,
+      };
+    case OUTPUT_TAB:
+      return {
+        baseOutputFileDescription,
+        baseOutputFilename,
+        outputFormat,
+        outputTimeZone,
+        startDate,
+        startType,
+      };
+    default:
+      return {
+        scheduleJobDescription,
+        scheduleJobName,
+        baseOutputFileDescription,
+        startDate,
+        startType,
+        address,
+        subject,
+        messageText,
+        folderURI,
+        resultSendType,
+        recurrenceInterval,
+        recurrenceIntervalUnit,
+        outputTimeZone,
+        baseOutputFilename,
+        outputFormat,
+      };
+  }
 };

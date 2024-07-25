@@ -6,7 +6,11 @@ import Schedule from "../Tabs/TabsContent/Schedule";
 import Parameters from "../Tabs/TabsContent/Parameters";
 import Output from "../Tabs/TabsContent/Output";
 import Notifications from "./TabsContent/notifications/Notifications";
-import { setCurrentActiveTab, setVisitedTab } from "./../../actions/action";
+import {
+  currentTabValidator,
+  setCurrentActiveTab,
+  setVisitedTab,
+} from "./../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 export const tabParameters = [
@@ -54,7 +58,8 @@ export const Tabs = () => {
   // }
 
   const handleChange = (event: ChangeEvent<{}>, newValue?: string) => {
-    handleStateChange(newValue)();
+    dispatch(currentTabValidator());
+    handleStateChange(newValue);
   };
 
   return (

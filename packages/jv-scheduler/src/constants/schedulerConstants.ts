@@ -1,7 +1,7 @@
 export const PARAMETERS_TAB = "parameters";
 export const SCHEDULE_TAB = "schedule";
 export const NOTIFICATIONS_TAB = "notifications";
-export const OUTPUT_TAB = "outputOptions";
+export const OUTPUT_TAB = "output";
 const allTabs = [PARAMETERS_TAB, SCHEDULE_TAB, NOTIFICATIONS_TAB, OUTPUT_TAB];
 
 export const timeFrames = [
@@ -59,12 +59,12 @@ export const stepInfo = [
     title: "Parameters",
   },
   {
-    name: "outputOptions",
-    title: "Output",
-  },
-  {
     name: "notifications",
     title: "Notifications",
+  },
+  {
+    name: "output",
+    title: "Output",
   },
 ];
 
@@ -115,7 +115,8 @@ export const ScheduleDefaultState = {
   },
 };
 export const stepperState = {
-  name: undefined,
+  scheduleJobName: undefined,
+  scheduleJobDescription: undefined,
   operator: "equals",
   thresholdValue: 0,
   address: undefined,
@@ -125,6 +126,7 @@ export const stepperState = {
   recurrenceIntervalUnit: undefined,
   startDate: undefined,
   baseOutputFilename: undefined,
+  baseOutputFileDescription: undefined,
   resultSendType: "SEND",
   outputFormat: [],
   outputTimeZone: "",
@@ -148,6 +150,11 @@ export const defaultState = {
   currentActiveTab: "schedule",
 };
 
+export const RECURRENCE_INTERVAL_DATE_TIME = 2;
+export const RECURRENCE_INTERVAL_NOW = 1;
+export const MAX_STEPPER_EMAIL_ADDRESS = 1;
+export const MAX_STEPPER_OUTPUT_FORMATS = 5;
+export const START_TIME_FORMAT = "MM/DD/YYYY, hh:mm A";
 export const OUTPUT_FILE_NAME = "baseOutputFilename";
 export const OUTPUT_FILE_DESCRIPTION = "baseOutputFileDescription";
 export const SCHEDULE_JOB_NAME = "scheduleJobName";
@@ -156,3 +163,10 @@ export const OUTPUT_TIME_ZONE = "outputTimeZone";
 export const OUTPUT_FORMAT = "outputFormat";
 export const SEND_LINK = "SEND";
 export const SEND_ATTACHMENT = "SEND_ATTACHMENT";
+
+export const stepperSteps: { [key: string]: number } = {
+  [PARAMETERS_TAB]: 1,
+  [SCHEDULE_TAB]: 0,
+  [NOTIFICATIONS_TAB]: 2,
+  [OUTPUT_TAB]: 3,
+};

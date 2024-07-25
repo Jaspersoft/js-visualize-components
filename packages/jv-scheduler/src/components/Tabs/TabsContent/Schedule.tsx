@@ -9,11 +9,12 @@ import {
 import {
   SCHEDULE_JOB_DESCRIPTION,
   SCHEDULE_JOB_NAME,
+  SCHEDULE_TAB,
   timeFrames,
 } from "../../../constants/schedulerConstants";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useSelector } from "react-redux";
-import { IState } from "../../../types/schedulerTypes";
+import { IState, IStepperState } from "../../../types/schedulerTypes";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 
 const Schedule = () => {
@@ -29,11 +30,12 @@ const Schedule = () => {
   const outputTimeZone = useSelector(
     (state: IState) => state.scheduleInfo.outputTimeZone,
   );
+
   const [scheduleName, setScheduleName] = useState(scheduleJobName);
   const [scheduleDescription, setScheduleDescription] = useState(
     scheduleJobDescription,
   );
-  const updateStore = useStoreUpdate();
+  const updateStore = useStoreUpdate(SCHEDULE_TAB);
   const {
     recurrenceInterval,
     recurrenceIntervalUnit,
@@ -72,13 +74,6 @@ const Schedule = () => {
     updateRecurrenceToStore({ recurrenceIntervalUnit: newVal });
   };
 
-  const updateChangeToStore = (
-    propertyName: string,
-    propertyValue: string | string[] | number,
-  ) => {
-    updateStore({ [propertyName]: propertyValue });
-  };
-
   const handleStartType = (e: ChangeEvent<HTMLInputElement>) => {
     const newVal = +e.target.value;
     let changedVal: { startType: number; startDate: null | string } = {
@@ -93,11 +88,15 @@ const Schedule = () => {
     updateRecurrenceToStore(changedVal);
   };
 
+  const updateChangeToStore = (property: any) => {
+    updateStore(property, property);
+  };
+
   const updateRecurrenceToStore = (newProperty: {
     [key: string]: string | number | null;
   }) => {
     const triggerValues = { ...simpleTrigger, ...newProperty };
-    updateStore({ trigger: { simpleTrigger: triggerValues } });
+    updateStore({ trigger: { simpleTrigger: triggerValues } }, newProperty);
   };
 
   return (
@@ -109,7 +108,7 @@ const Schedule = () => {
         value={scheduleName}
         onChange={(e) => setScheduleName(e.target.value)}
         onBlur={() => {
-          updateChangeToStore(SCHEDULE_JOB_NAME, scheduleName);
+          updateChangeToStore({ [SCHEDULE_JOB_NAME]: scheduleName });
         }}
       />
       <JVTextField
@@ -122,7 +121,9 @@ const Schedule = () => {
           setScheduleDescription(e.target.value);
         }}
         onBlur={() =>
-          updateChangeToStore(SCHEDULE_JOB_DESCRIPTION, scheduleDescription)
+          updateChangeToStore({
+            [SCHEDULE_JOB_DESCRIPTION]: scheduleDescription,
+          })
         }
       />
       <JVTypographyComponent text={"Recurrence"} />

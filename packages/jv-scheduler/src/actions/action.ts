@@ -8,6 +8,7 @@ import {
   SET_FAKE_ROOT,
   SET_VISITED_TABS,
   SET_ACTIVE_TAB,
+  SET_STEPPER_PROPERTIES,
 } from "../constants/actionConstants";
 import {
   getFakeRootDataFromService,
@@ -16,8 +17,13 @@ import {
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
-import { IScheduleInfo, IStoreData } from "../types/schedulerTypes";
+import {
+  IScheduleInfo,
+  IStepperState,
+  IStoreData,
+} from "../types/schedulerTypes";
 import { IApiFailed } from "../types/scheduleType";
+import { getStateOfCurrentActiveTab } from "../utils/schedulerUtils";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -143,9 +149,30 @@ export const setVisitedTab = (tabs: string[]) => {
   };
 };
 
-export const setCurrentActiveTab = (activeTab: number) => {
+export const setCurrentActiveTab = (activeTab: string) => {
   return {
     type: SET_ACTIVE_TAB,
     payload: { activeTab },
+  };
+};
+
+export const setStepperProperties = (updatedStepperData: any) => {
+  return {
+    type: SET_STEPPER_PROPERTIES,
+    payload: { updatedStepperData },
+  };
+};
+
+export const currentTabValidator = () => {
+  return async (dispatch, getState) => {
+    const { currentActiveTab, scheduleInfo } = getState(),
+      currentTabValues = getStateOfCurrentActiveTab(
+        currentActiveTab,
+        scheduleInfo,
+      );
+    // handleStateChange();
+    dispatch(setStepperProperties(currentTabValues));
+    // const currentTabErrs = await getErrorsForCurrentTab(currentActiveTab, alertCurrentStateValues);
+    // dispatch(alertValidationError(currentTabErrs));
   };
 };
