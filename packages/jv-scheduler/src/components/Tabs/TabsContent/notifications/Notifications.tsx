@@ -146,7 +146,10 @@ const Notifications = () => {
           />
         </JVRadioGroup>
       </div>
-      <RepositoryTreeDialog open={open} />
+      <RepositoryTreeDialog
+        open={open}
+        handleDialogState={(isOpen) => setOpen(isOpen)}
+      />
     </>
   );
 };

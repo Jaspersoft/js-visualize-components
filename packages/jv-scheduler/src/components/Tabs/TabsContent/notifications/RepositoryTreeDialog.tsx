@@ -24,7 +24,10 @@ function PaperComponent(props: JVPaperProps) {
   );
 }
 
-export const RepositoryTreeDialog = ({ open: dialogOpen }: any) => {
+export const RepositoryTreeDialog = ({
+  open: dialogOpen,
+  handleDialogState,
+}: any) => {
   const folderData = useSelector((state: any) => state.folderData);
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
@@ -46,6 +49,7 @@ export const RepositoryTreeDialog = ({ open: dialogOpen }: any) => {
   useEffect(() => {
     setOpen(dialogOpen);
   }, [dialogOpen]);
+
   return (
     <>
       <JVDialog
@@ -95,6 +99,7 @@ export const RepositoryTreeDialog = ({ open: dialogOpen }: any) => {
               variant="contained"
               onClick={() => {
                 setOpen(false);
+                handleDialogState(false);
               }}
             >
               Cancel
