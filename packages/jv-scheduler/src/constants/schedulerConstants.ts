@@ -114,12 +114,28 @@ export const ScheduleDefaultState = {
     },
   },
 };
+export const stepperState = {
+  name: undefined,
+  operator: "equals",
+  thresholdValue: 0,
+  address: undefined,
+  subject: undefined,
+  messageText: undefined,
+  recurrenceInterval: undefined,
+  recurrenceIntervalUnit: undefined,
+  startDate: undefined,
+  baseOutputFilename: undefined,
+  resultSendType: "SEND",
+  outputFormat: [],
+  outputTimeZone: "",
+};
 
 export const defaultState = {
   userTimeZones: [],
   outputFormats: [],
   schedulerUIConfig: {},
   folderData: {},
+  stepperState,
   scheduleApisFailure: {
     userTimezoneApiFailure: false,
     userOutputFormatApiFailure: false,
@@ -129,6 +145,7 @@ export const defaultState = {
     ...ScheduleDefaultState,
   },
   visitedTabs: [],
+  currentActiveTab: "schedule",
 };
 
 export const OUTPUT_FILE_NAME = "baseOutputFilename";

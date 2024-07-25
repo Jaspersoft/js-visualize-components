@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
@@ -6,29 +6,83 @@ import Schedule from "../Tabs/TabsContent/Schedule";
 import Parameters from "../Tabs/TabsContent/Parameters";
 import Output from "../Tabs/TabsContent/Output";
 import Notifications from "./TabsContent/notifications/Notifications";
+import { setCurrentActiveTab, setVisitedTab } from "./../../actions/action";
+import { useDispatch, useSelector } from "react-redux";
 
-const Tabs = () => {
-  const [value, setValue] = useState<number>(0);
-  const { t } = useTranslation() as { t: (k: string) => string };
+export const tabParameters = [
+  {
+    key: "schedule",
+    label: "Schedule",
+    value: "schedule",
+  },
+  {
+    key: "parameters",
+    label: "Parameters",
+    value: "parameters",
+  },
+  {
+    key: "notifications",
+    label: "Notifications",
+    value: "notifications",
+  },
+  {
+    key: "output",
+    label: "Output",
+    value: "output",
+  },
+];
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+export const Tabs = () => {
+  const dispatch = useDispatch<any>();
+  const visitedTabs = useSelector((state: any) => state.visitedTabs);
+  const currentActiveTab = useSelector((state: any) => state.currentActiveTab);
+
+  const handleVisitedTabs = () => {
+    if (!visitedTabs.includes(currentActiveTab)) {
+      dispatch(setVisitedTab([...visitedTabs, currentActiveTab]));
+    }
   };
+
+  const handleStateChange = (newValue: string | undefined) => () => {
+    handleVisitedTabs();
+    if (newValue) {
+      dispatch(setCurrentActiveTab(newValue));
+    }
+  };
+  // const handleTabsErrors = (newValue: string | undefined) => {
+  //     dispatch(currentTabValidationError(handleStateChange(newValue)));
+  // }
+
+  const handleChange = (event: ChangeEvent<{}>, newValue?: string) => {
+    handleStateChange(newValue)();
+  };
+
   return (
     <>
       <div className="jv-mDrawer-subheader jv-uMargin-t-04 jv-mDrawer-subheaderPadded mui">
-        <JVTabs value={value} onChange={handleChange} size="large">
-          <JVTab label={t("schedule")} />
-          <JVTab label={t("parameters")} />
-          <JVTab label={t("output")} />
-          <JVTab label={t("notifications")} />
+        <JVTabs
+          value={currentActiveTab}
+          aria-label="navigationPanel"
+          size="large"
+          onChange={handleChange}
+        >
+          {tabParameters.map((item) => {
+            return (
+              <JVTab
+                key={item.key}
+                label={item.label}
+                value={item.value}
+                data-name={`schedule-${item.label}-button-tab`}
+              />
+            );
+          })}
         </JVTabs>
       </div>
-      <div className="jv-mDrawer-body jv-mDrawer-bodyPadded mui">
-        {value === 0 && <Schedule />}
-        {value === 1 && <Parameters />}
-        {value === 2 && <Output />}
-        {value === 3 && <Notifications />}
+      <div className="jr-mDrawer-body jr-mDrawer-bodyPadded mui">
+        {currentActiveTab === "schedule" && <Schedule />}
+        {currentActiveTab === "parameters" && <Parameters />}
+        {currentActiveTab === "notifications" && <Notifications />}
+        {currentActiveTab === "output" && <Output />}
       </div>
     </>
   );

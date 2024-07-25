@@ -6,6 +6,8 @@ import {
   SET_USER_TIME_ZONES,
   SET_PROPERTIES_DETAILS,
   SET_FAKE_ROOT,
+  SET_VISITED_TABS,
+  SET_ACTIVE_TAB,
 } from "../constants/actionConstants";
 import {
   getFakeRootDataFromService,
@@ -131,5 +133,19 @@ export const getFakeRootData = () => {
     } else {
       dispatch(setFakeRootData(getRootData));
     }
+  };
+};
+
+export const setVisitedTab = (tabs: string[]) => {
+  return {
+    type: SET_VISITED_TABS,
+    payload: { tabs },
+  };
+};
+
+export const setCurrentActiveTab = (activeTab: number) => {
+  return {
+    type: SET_ACTIVE_TAB,
+    payload: { activeTab },
   };
 };

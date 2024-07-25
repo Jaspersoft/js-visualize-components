@@ -6,6 +6,8 @@ import {
   SET_USER_TIME_ZONES,
   SET_PROPERTIES_DETAILS,
   SET_FAKE_ROOT,
+  SET_VISITED_TABS,
+  SET_ACTIVE_TAB,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -53,6 +55,16 @@ export const rootReducer = (state = initialState, action) => {
           ...state.scheduleApisFailure,
           ...action.payload?.failedApi,
         },
+      };
+    case SET_VISITED_TABS:
+      return {
+        ...state,
+        visitedTabs: action.payload?.tabs,
+      };
+    case SET_ACTIVE_TAB:
+      return {
+        ...state,
+        currentActiveTab: action.payload?.activeTab,
       };
     // case SET_USER_LOCALE:
     //     return {
