@@ -73,7 +73,7 @@ export const simpleTriggerState = {
   occurrenceCount: -1,
   startType: 1,
   recurrenceInterval: 1,
-  recurrenceIntervalUnit: "",
+  recurrenceIntervalUnit: "DAY",
   endDate: null,
   startDate: null,
 };
@@ -93,7 +93,7 @@ export const ScheduleDefaultState = {
   outputFormats: {
     outputFormat: ["pdf"],
   },
-  // outputTimeZone: config.userTimezone,
+  outputTimeZone: "Asia/Calcutta",
   trigger: {
     simpleTrigger: { ...simpleTriggerState },
   },
