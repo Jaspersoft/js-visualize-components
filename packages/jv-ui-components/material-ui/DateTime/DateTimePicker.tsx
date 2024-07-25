@@ -2,12 +2,27 @@ import { DateTimePicker as MuiDateTimePicker } from "@mui/x-date-pickers/DateTim
 import { forwardRef } from "react";
 import castValueIfNeeded from "../Date/Date.Utils";
 
-export const DateTimePicker = forwardRef((props: any, ref) => {
-  const { value, ...remainingProps } = props;
-
-  let otherProps = {};
-  if (value) {
-    otherProps = { value: castValueIfNeeded(value) };
+export const extractPropForDateAttr = (
+  otherProps: {},
+  propName: string,
+  value: any,
+): {} => {
+  if (value === undefined) {
+    return otherProps;
   }
-  return <MuiDateTimePicker {...{ ...remainingProps, ...otherProps }} />;
+  return {
+    ...otherProps,
+    [propName]: castValueIfNeeded(value),
+  };
+};
+
+export const DateTimePicker = forwardRef((props: any, ref) => {
+  const { value, minDateTime, maxDateTime, ...remainingProps } = props;
+
+  let otherProps = extractPropForDateAttr({}, "value", value);
+  otherProps = extractPropForDateAttr(otherProps, "minDateTime", minDateTime);
+  otherProps = extractPropForDateAttr(otherProps, "maxDateTime", maxDateTime);
+
+  const allProps = { ...remainingProps, ...otherProps };
+  return <MuiDateTimePicker {...allProps} />;
 });

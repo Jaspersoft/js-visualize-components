@@ -73,15 +73,14 @@ export default function App(props: AppConfig) {
       return;
     }
     plugin.renderControlPanel(
-      //reportUri,
-      singleSelectReportUri,
-      document.getElementById("controls-section") as HTMLElement,
+      reportUri,
+      document.getElementById("basic-controls-section") as HTMLElement,
       {
         success: () => {
-          console.log("Controls rendered successfully");
+          console.log("Basic controls rendered successfully");
         },
         error: (error) => {
-          console.log("Error: ", error);
+          console.log("Error when rendering the Basic controls: ", error);
         },
         config: {
           singleValueDatetime: {
@@ -96,7 +95,24 @@ export default function App(props: AppConfig) {
         },
       },
     );
+    plugin.renderControlPanel(
+      singleSelectReportUri,
+      document.getElementById("select-controls-section") as HTMLElement,
+      {
+        success: () => {
+          console.log("Select controls rendered successfully");
+        },
+        error: (error) => {
+          console.log("Error when rendering the Select controls: ", error);
+        },
+      },
+    );
   }, [plugin]);
 
-  return <div id="controls-section"></div>;
+  return (
+    <>
+      <div id="basic-controls-section"></div>
+      <div id="select-controls-section"></div>
+    </>
+  );
 }

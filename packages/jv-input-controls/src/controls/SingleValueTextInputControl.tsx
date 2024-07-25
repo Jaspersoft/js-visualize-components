@@ -1,7 +1,11 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
-import { BaseInputControlProps } from "./BaseInputControl";
+import {
+  BaseInputControlProps,
+  ICDateValidationRule,
+} from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
+import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
 
 export type TextFieldICType = "textField";
 
@@ -18,7 +22,15 @@ export interface TextFieldICProps extends BaseInputControlProps {
  * @constructor
  */
 export const SingleValueTextInputControl = (props: TextFieldICProps) => {
-  const { className, mandatory, readOnly, visible, ...remainingProps } = props;
+  const {
+    className,
+    mandatory,
+    readOnly,
+    visible,
+    validationRules,
+    dataType,
+    ...remainingProps
+  } = props;
   const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:
@@ -27,12 +39,18 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     inputProps.readOnly = true;
   }
   const theInputProps = { ...inputProps, ...liveState };
+  const errorText = useMandatoryMsg({
+    textValue: liveState.value,
+    isMandatory: mandatory,
+    validationRules: validationRules as ICDateValidationRule[],
+  });
   return (
     <JVTextField
       {...remainingProps}
       variant={props.variant || "outlined"}
       className={`${controlClasses.join(" ")} ${className || ""}`}
       InputProps={theInputProps}
+      error={errorText}
     />
   );
 };

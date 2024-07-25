@@ -1,5 +1,5 @@
 import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
-import * as React from "react";
+import { JSX } from "react";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
@@ -17,7 +17,7 @@ export interface BasePanelProps {
   config?: InputControlUserConfig;
 }
 
-export default function BasePanel(props: BasePanelProps): React.JSX.Element {
+export default function BasePanel(props: BasePanelProps): JSX.Element {
   const getControlProps = (control: any) => {
     return {
       id: control.id,
@@ -37,14 +37,6 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
         <BooleanInputControl
           {...theProps}
           key={control.id}
-          state={control.state}
-          id={control.id}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
-          type={control.type}
-          uri={control.uri}
-          label={control.label}
           styleType={props.config?.bool?.type}
         />
       );
@@ -58,14 +50,21 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
         <SingleValueTextInputControl
           {...theProps}
           key={control.id}
-          id={control.id}
-          label={control.label}
           type={inputTypeText}
+          dataType={control.dataType}
+          validationRules={control.validationRules}
         />
       );
     }
     if (control.type === "singleValueNumber") {
-      return <SingleValueNumberInputControl {...theProps} key={control.id} />;
+      return (
+        <SingleValueNumberInputControl
+          {...theProps}
+          key={control.id}
+          dataType={control.dataType}
+          validationRules={control.validationRules}
+        />
+      );
     }
 
     if (control.type === "singleValueDate") {
@@ -74,6 +73,7 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
           <DatePickerInputControl
             {...theProps}
             key={control.id}
+            dataType={control.dataType}
             validationRules={control.validationRules}
           />
         );
@@ -82,12 +82,7 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
         <DatePickerTextFieldInputControl
           {...theProps}
           key={control.id}
-          id={control.id}
-          label={control.label}
-          type={control.type}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
+          dataType={control.dataType}
           validationRules={control.validationRules}
         />
       );
@@ -98,6 +93,7 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
           <DateTimePickerInputControl
             {...theProps}
             key={control.id}
+            dataType={control.dataType}
             validationRules={control.validationRules}
           />
         );
@@ -106,29 +102,13 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
         <DateTimePickerTextFieldInputControl
           {...theProps}
           key={control.id}
-          id={control.id}
-          label={control.label}
-          type={control.type}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
+          dataType={control.dataType}
           validationRules={control.validationRules}
         />
       );
     }
     if (control.type === "singleSelect") {
-      return (
-        <SingleSelectInputControl
-          key={control.id}
-          id={control.id}
-          label={control.label}
-          state={control.state}
-          type={control.type}
-          readOnly={control.readOnly}
-          visible={control.visible}
-          mandatory={control.mandatory}
-        />
-      );
+      return <SingleSelectInputControl {...theProps} key={control.id} />;
     }
     if (control.type === "singleValueTime") {
       if (props.config?.singleValueTime?.type === "material") {
@@ -136,6 +116,7 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
           <TimePickerInputControl
             {...theProps}
             key={control.id}
+            dataType={control.dataType}
             validationRules={control.validationRules}
           />
         );
@@ -144,6 +125,7 @@ export default function BasePanel(props: BasePanelProps): React.JSX.Element {
         <TimePickerTextFieldInputControl
           {...theProps}
           key={control.id}
+          dataType={control.dataType}
           validationRules={control.validationRules}
         />
       );

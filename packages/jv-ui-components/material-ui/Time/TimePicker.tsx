@@ -5,13 +5,13 @@
 import { TimePicker as MuiTimePicker } from "@mui/x-date-pickers/TimePicker";
 import { forwardRef } from "react";
 import { setTodayToTime } from "../Date/Date.Utils";
+import { extractPropForDateAttr } from "../DateTime/DateTimePicker";
 
 export const TimePicker = forwardRef((props: any, ref) => {
-  const { value, ...remainingProps } = props;
+  const { value, minTime, maxTime, ...remainingProps } = props;
 
-  let otherProps = {};
-  if (value) {
-    otherProps = { value: setTodayToTime(value) };
-  }
+  let otherProps = extractPropForDateAttr({}, "value", setTodayToTime(value));
+  otherProps = extractPropForDateAttr(otherProps, "minTime", minTime);
+  otherProps = extractPropForDateAttr(otherProps, "maxTime", maxTime);
   return <MuiTimePicker {...{ ...remainingProps, ...otherProps }} />;
 });

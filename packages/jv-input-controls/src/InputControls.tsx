@@ -97,7 +97,6 @@ export class InputControls {
     this.fillControlStructure(uri, (controls: InputControlCollection) => {
       try {
         const icRoot = createRoot(container);
-        // TODO: we have to consider the exclude/include property from the icPanelDef before providing the controls prop
         icRoot.render(
           <JVStylesProvider>
             <BasePanel controls={controls} config={icPanelDef?.config} />

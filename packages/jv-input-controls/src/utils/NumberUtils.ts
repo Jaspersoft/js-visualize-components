@@ -3,6 +3,8 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
+import { ICDataType } from "../controls/BaseInputControl";
+
 const DECIMAL_SEPARATOR = "\\.";
 const GROUPING_SEPARATOR = ",";
 const SPACE_SEPARATOR = "\\s";
@@ -56,4 +58,61 @@ export const parseNumber = (value: string) => {
     );
   }
   return null;
+};
+
+const getValueForVerificationText = (
+  dataType: ICDataType,
+  isVerifyingMin: boolean,
+) => {
+  if (isVerifyingMin) {
+    return dataType?.minValue;
+  }
+  return dataType?.maxValue;
+};
+
+const getVerificationText = (dataType: ICDataType, isVerifyingMin: boolean) => {
+  if (isVerifyingMin) {
+    return dataType?.strictMin === true ? "greater" : "greater or equal";
+  }
+  return dataType?.strictMax === true ? "lower" : "lower or equal";
+};
+export const verifyLimit = ({
+  dataType,
+  maxOrMinValAsNumber,
+  valAsNumber,
+  isVerifyingMin,
+}: {
+  dataType: ICDataType | undefined;
+  maxOrMinValAsNumber: number | null;
+  valAsNumber: number;
+  isVerifyingMin: boolean;
+}): { helperText: string; isError: boolean } => {
+  let helperText = "";
+  let isError = false;
+  if (dataType === undefined || maxOrMinValAsNumber === null) {
+    return { helperText, isError };
+  }
+  // verify the number is under the limits of the data type
+  let conditionalIsMet;
+  if (isVerifyingMin) {
+    conditionalIsMet =
+      dataType?.strictMin === true
+        ? valAsNumber > (maxOrMinValAsNumber as number)
+        : valAsNumber >= (maxOrMinValAsNumber as number);
+  } else {
+    conditionalIsMet =
+      dataType?.strictMax === true
+        ? valAsNumber < (maxOrMinValAsNumber as number)
+        : valAsNumber <= (maxOrMinValAsNumber as number);
+  }
+  if (conditionalIsMet) {
+    return { helperText, isError };
+  }
+  // TODO: in the future, this message need to be considered for i18n:
+  helperText = `Verify the number is ${getVerificationText(
+    dataType,
+    isVerifyingMin,
+  )} than ${getValueForVerificationText(dataType, isVerifyingMin)}.`;
+  isError = true;
+  return { helperText, isError };
 };
