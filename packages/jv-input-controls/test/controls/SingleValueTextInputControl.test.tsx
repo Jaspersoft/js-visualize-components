@@ -129,7 +129,7 @@ describe("SingleValueTextInputControls tests", () => {
 
   // Test for mandatory field
   test("verify the field shows error when mandatory prop is set", () => {
-    const CSS_ERROR_CLASS = "jv-uMandatory";
+    const CSS_ERROR_CLASS = "jv-mInputRequired";
     const { container } = render(getTextIC({ mandatory: true }));
     let wrapperDiv = container.querySelector(
       `div.${CSS_ERROR_CLASS}`,

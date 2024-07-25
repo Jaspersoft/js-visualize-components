@@ -53,7 +53,8 @@ export const DatePickerTextFieldInputControl = (
       {...remainingProps}
       type="date"
       variant={props.variant || "outlined"}
-      className={`jv-mInputDate ${controlClasses.join(" ")} ${props.className || ""}`}
+      className={`${props.className || ""}`}
+      textFieldClassName={`jv-mInputDate ${controlClasses.join(" ")}`}
       InputProps={theInputProps}
       inputProps={{ ...minAndMaxSettings }}
       error={errorText}

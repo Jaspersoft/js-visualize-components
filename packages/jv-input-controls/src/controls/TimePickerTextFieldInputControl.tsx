@@ -54,7 +54,8 @@ export const TimePickerTextFieldInputControl = (
     <JVDateTimeTextField
       {...remainingProps}
       type="time"
-      className={`jv-mInputTime ${controlClasses.join(" ")} ${props.className || ""}`}
+      className={`${props.className || ""}`}
+      textFieldClassName={`jv-mInputTime ${controlClasses.join(" ")}`}
       InputProps={{ ...theInputProps }}
       inputProps={{ ...minAndMaxSettings }}
       error={errorText}
