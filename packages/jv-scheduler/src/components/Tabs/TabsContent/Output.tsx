@@ -15,11 +15,11 @@ import {
   OUTPUT_FORMAT,
   OUTPUT_TIME_ZONE,
 } from "../../../constants/schedulerConstants";
-import { IState } from "../../../types/schedulerTypes";
+import { IOutputFormat, IState } from "../../../types/schedulerTypes";
 import { MessageAPIError } from "../../apiFailureError/scheduleAPIError";
 
 const Output = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation() as { t: (k: string) => string };
   const outputFormats = useSelector((state: IState) => state.outputFormats);
   const userTimeZones = useSelector((state: any) => state.userTimeZones);
   const userSelectedTimezone = useSelector(
@@ -59,14 +59,15 @@ const Output = () => {
   }, [timezone]);
 
   const updateChangeToStore = (
+    storeData: { [key: string]: string | IOutputFormat },
     propertyName: string,
     propertyValue: string | string[],
   ) => {
-    updateStore({ [propertyName]: propertyValue });
+    updateStore(storeData);
   };
 
-  const isOutputFormatSelected = (formatToCheck: string) =>
-    outputFormatSelected?.some((format: string) => formatToCheck === format);
+  const isOutputFormatSelected = (formatToCheck: any) =>
+    outputFormatSelected?.some((format: any) => formatToCheck === format);
 
   const handleOutputFormatChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.checked;
@@ -74,7 +75,11 @@ const Output = () => {
       ? [...outputFormatSelected, e.target.name]
       : outputFormatSelected?.filter((item) => item !== e.target.name);
     setOutputFormat(newOutputFormat);
-    updateChangeToStore(OUTPUT_FORMAT, newOutputFormat);
+    updateChangeToStore(
+      { outputFormats: { outputFormat: newOutputFormat } },
+      OUTPUT_FORMAT,
+      newOutputFormat,
+    );
   };
 
   return (
@@ -86,7 +91,13 @@ const Output = () => {
           label="File name (required)"
           value={fileName}
           onChange={(e) => setFileName(e.target.value)}
-          onBlur={() => updateChangeToStore(OUTPUT_FILE_NAME, fileName)}
+          onBlur={() =>
+            updateChangeToStore(
+              { baseOutputFilename: fileName },
+              OUTPUT_FILE_NAME,
+              fileName,
+            )
+          }
         />
         <JVTextField
           size="large"
@@ -98,7 +109,11 @@ const Output = () => {
             setOutputDescription(e.target.value);
           }}
           onBlur={() =>
-            updateChangeToStore(OUTPUT_FILE_DESCRIPTION, outputDescription)
+            updateChangeToStore(
+              { baseOutputFileDescription: outputDescription },
+              OUTPUT_FILE_DESCRIPTION,
+              outputDescription,
+            )
           }
         />
         <JVTextField
@@ -109,7 +124,11 @@ const Output = () => {
           onChange={(e) => {
             const newTimezone = e.target.value;
             setTimezone(e.target.value);
-            updateChangeToStore(OUTPUT_TIME_ZONE, newTimezone);
+            updateChangeToStore(
+              { outputTimeZone: newTimezone },
+              OUTPUT_TIME_ZONE,
+              newTimezone,
+            );
           }}
         >
           {userTimeZones.map((item: { code: string; description: string }) => (
@@ -119,10 +138,10 @@ const Output = () => {
           ))}
         </JVTextField>
         <JVCheckboxGroup size="large" title="Formats (required)">
-          {outputFormats.map((format: string) => (
+          {outputFormats.map((format: any) => (
             <JVCheckbox
               key={format}
-              label={format}
+              label={t(`output.format.${format}`)}
               value={format}
               CheckboxProps={{
                 name: format,

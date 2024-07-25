@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import {
   JVButton,
   JVRadioButton,
@@ -13,6 +13,10 @@ import { RepositoryTree } from "./RepositoryTree";
 import { useStoreUpdate } from "./../../../../hooks/useStoreUpdate";
 import { useSelector } from "react-redux";
 import { IState } from "../../../../types/schedulerTypes";
+import {
+  SEND_ATTACHMENT,
+  SEND_LINK,
+} from "../../../../constants/schedulerConstants";
 
 const getFolderDataFromReportUri = (item, index, folder) => {
   if (index == 0) {
@@ -30,11 +34,13 @@ const Notifications = () => {
     messageText,
     subject,
     toAddresses: { address },
+    resultSendType,
   } = mailNotification;
   const [mailAddress, setMailAddress] = useState(address);
   const [mailSubject, setMailSubject] = useState(subject);
   const [mailMessageText, setMailMessageText] = useState(messageText);
   const [currentExpanded, setCurrentExpanded] = useState("");
+  const [sendType, setSendType] = useState(resultSendType);
 
   const updateStore = useStoreUpdate();
   const dispatch = useDispatch();
@@ -47,6 +53,20 @@ const Notifications = () => {
     updateStore({
       mailNotification: { ...mailNotification, ...updateProperty },
     });
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedVal = e.target.value,
+      saveToRepositoryVal = selectedVal === SEND_LINK,
+      updatedProperty = {
+        mailNotificationVal: {
+          ...mailNotification,
+          resultSendType: selectedVal,
+        },
+        resultSendType: selectedVal,
+      };
+    setSendType(selectedVal);
+    updateChangeToStore(updatedProperty);
   };
 
   useEffect(() => {
@@ -94,24 +114,29 @@ const Notifications = () => {
           onChange={(e) => setMailMessageText(e.target.value)}
           onBlur={() => updateChangeToStore({ messageText: mailMessageText })}
         />
-        <JVRadioGroup title="Report/dashboard access (required)">
+        <JVRadioGroup
+          title="Report/dashboard access (required)"
+          RadioGroupProps={{ value: sendType, onChange: handleChange }}
+        >
           <JVRadioButton
             value="option1"
             label="Include report/dashboard as repository link."
-            checked={selectedValue === "option1"}
-            onChange={() => handleRadioChange("option1")}
+            RadioProps={{
+              value: SEND_LINK,
+              checked: sendType === SEND_LINK,
+            }}
           />
 
           <div className="jv-mInput jv-mInputBrowse jv-mInputLarge jv-uMargin-l-07 mui">
             <JVTextField
               label="Repository URI"
-              disabled={selectedValue !== "option1"}
+              disabled={sendType !== SEND_LINK}
               value="/path/"
             />
             <JVButton
               variant="contained"
               size="large"
-              disabled={selectedValue !== "option1"}
+              disabled={sendType !== SEND_LINK}
               onClick={() => {
                 const reportUri =
                   "/public/Samples/Reports/01._Sales_Summary_Report";
@@ -141,8 +166,10 @@ const Notifications = () => {
           <JVRadioButton
             value="option2"
             label="Include report/dashboard file as attachment."
-            checked={selectedValue === "option2"}
-            onChange={() => handleRadioChange("option2")}
+            RadioProps={{
+              value: SEND_ATTACHMENT,
+              checked: sendType === SEND_ATTACHMENT,
+            }}
           />
         </JVRadioGroup>
       </div>

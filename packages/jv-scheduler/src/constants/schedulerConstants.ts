@@ -90,7 +90,9 @@ export const ScheduleDefaultState = {
     },
     resultSendType: "SEND",
   },
-  outputFormats: {},
+  outputFormats: {
+    outputFormat: ["pdf"],
+  },
   // outputTimeZone: config.userTimezone,
   trigger: {
     simpleTrigger: { ...simpleTriggerState },

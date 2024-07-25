@@ -9,6 +9,15 @@
     "schedule.timezone.output.format.network.error": "A network error is preventing the following fields from loading:",
     "schedule.timezone.output.format.retry.network": "You can try reloading these fields. If the network error persists, you will be unable to save this schedule",
     "schedule.error.title": "Error",
-    "schedule.network.retry": "Retry"
+    "schedule.network.retry": "Retry",
+    "output.format.pdf": "PDF Document (.pdf)",
+    "output.format.xls": "Microsoft Excel (.xls)",
+    "output.format.rtf": "Rich Text Format (.rtf)",
+    "output.format.csv": "Comma Separated Values (.csv)",
+    "output.format.odt": "OpenDocument Text (.odt)",
+    "output.format.docx": "Microsoft Word (.docx)",
+    "output.format.ods": "OpenDocument Spreadsheet (.ods)",
+    "output.format.xlsx": "Microsoft Excel - Paginated (.xlsx)",
+    "output.format.pptx": "Microsoft PowerPoint (.pptx)"
   }
 }
