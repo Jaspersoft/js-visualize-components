@@ -138,7 +138,7 @@
       30h. Text
       30i. Width/Height Measurements
   -----------------------------------
-  File last modified July 22, 2024
+  File last modified July 26, 2024
   ----------------------------------- */
 
 /* -------------------- */
@@ -2601,6 +2601,7 @@ textarea[readonly].jv-mInput-text.mui {
 /*  11l. Checkbox & Radio Inputs   */
 /*  -----------------------------  */
 .jv-mInputCheckbox.mui {
+  margin-bottom: 16px;
 }
 
 .jv-mInputCheckbox.mui > .jv-mInput-label.mui,
