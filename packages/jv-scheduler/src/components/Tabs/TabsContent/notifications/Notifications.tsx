@@ -12,16 +12,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
 import { IState } from "../../../../types/schedulerTypes";
 import {
+  NOTIFICATIONS_TAB,
   SEND_ATTACHMENT,
   SEND_LINK,
 } from "../../../../constants/schedulerConstants";
+import { getExpandedNodeDataFromUri } from "../../../../utils/schedulerUtils";
 
-const getFolderDataFromReportUri = (item, index, folder) => {
-  if (index == 0) {
-    return item;
-  }
-  return folder.slice(0, index + 1).join("/");
-};
 const Notifications = () => {
   const mailNotification = useSelector(
     (state: IState) => state.scheduleInfo.mailNotification,
@@ -30,6 +26,7 @@ const Notifications = () => {
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
+  const fakeRoot = useSelector((state: any) => state.fakeRoot);
   const {
     messageText,
     subject,
@@ -44,7 +41,7 @@ const Notifications = () => {
   const [mailMessageText, setMailMessageText] = useState(messageText);
   const [sendType, setSendType] = useState(resultSendType);
 
-  const updateStore = useStoreUpdate();
+  const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
   const dispatch = useDispatch();
 
   const handleRadioChange = (value) => {
@@ -84,17 +81,14 @@ const Notifications = () => {
   }, [mailMessageText]);
 
   const handleBrowseButtonClick = () => {
-    const folders = resourceUri.split("/");
-    const expandedFoldersData = folders.slice(1, folders.length - 1);
-
-    dispatch(getFakeRootData());
-    expandedFoldersData.forEach((item, index) => {
-      const path = getFolderDataFromReportUri(item, index, expandedFoldersData);
-      if (!folderData[path] || !folderData[path].length) {
-        dispatch(getFolderData(`/${path}`));
+    if (!fakeRoot.length) {
+      dispatch(getFakeRootData());
+    }
+    getExpandedNodeDataFromUri(resourceUri, (uri: string) => {
+      if (!folderData[uri]) {
+        dispatch(getFolderData(uri));
       }
     });
-
     setOpen(true);
   };
 

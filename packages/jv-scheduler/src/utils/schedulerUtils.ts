@@ -136,3 +136,27 @@ export const getStateOfCurrentActiveTab = (
       };
   }
 };
+
+export const getUriParts = (resourceUri: string) => {
+  const removeStartSlash = resourceUri.replace(/^\//g, "");
+  const uriParts = removeStartSlash.split("/");
+  uriParts.pop();
+  return uriParts;
+};
+
+export const getExpandedNodeDataFromUri = (
+  resourceUri: string,
+  itemHandlerCallback: any,
+) => {
+  const uriParts = getUriParts(resourceUri);
+
+  return uriParts.reduce((acc, item, i) => {
+    if (i === 0) {
+      acc.push(`/${item}`);
+    } else {
+      acc.push(`${acc[i - 1]}/${item}`);
+    }
+    itemHandlerCallback(acc[i]);
+    return acc;
+  }, []);
+};

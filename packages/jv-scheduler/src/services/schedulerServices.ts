@@ -132,7 +132,6 @@ export const getFakeRootDataFromService = async () => {
         withCredentials: true,
         headers: {
           Accept: "text/html",
-          // dataType:"text",
           OWASP_CSRFTOKEN: csrfToken,
         },
       },
