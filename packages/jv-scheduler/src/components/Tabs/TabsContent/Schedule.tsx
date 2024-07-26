@@ -16,8 +16,10 @@ import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useSelector } from "react-redux";
 import { IState, IStepperState } from "../../../types/schedulerTypes";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
+import { useTranslation } from "react-i18next";
 
 const Schedule = () => {
+  const { t } = useTranslation() as { t: (k: string) => string };
   const scheduleJobName = useSelector(
     (state: IState) => state.scheduleInfo.scheduleJobName,
   );
@@ -101,10 +103,10 @@ const Schedule = () => {
 
   return (
     <>
-      <JVTypographyComponent text="Name and Description" />
+      <JVTypographyComponent text={t("schedule.name.description.title")} />
       <JVTextField
         size="large"
-        label="Scheduled job name (required)"
+        label={t("schedule.job.name.label")}
         value={scheduleName}
         onChange={(e) => setScheduleName(e.target.value)}
         onBlur={() => {
@@ -113,7 +115,7 @@ const Schedule = () => {
       />
       <JVTextField
         size="large"
-        label="Description"
+        label={t("schedule.job.description.label")}
         multiline
         rows={5}
         value={scheduleDescription}
@@ -126,11 +128,11 @@ const Schedule = () => {
           })
         }
       />
-      <JVTypographyComponent text={"Recurrence"} />
+      <JVTypographyComponent text={t("schedule.recurrence.title")} />
       <div className="jv-mControl jv-mControlInterval jv-mControlFlexwidth mui">
         <JVTextField
           id="recurrenceInterval"
-          label="Interval (required)"
+          label={t("schedule.recurrence.interval")}
           size="large"
           className="jv-mControl-interval mui"
           InputLabelProps={{
@@ -149,7 +151,7 @@ const Schedule = () => {
         <div className="jv-mControl-timeframe mui">
           <JVTextField
             size="large"
-            label="Timeframe (required)"
+            label={t("schedule.recurrence.timeframe")}
             textFieldClassName="jv-uWidth-175px"
             select
             value={recurrenceUnit}
@@ -168,11 +170,11 @@ const Schedule = () => {
         size="large"
         RadioGroupProps={{ onChange: handleStartType }}
       >
-        <JVTypography>Start time (required)</JVTypography>
+        <JVTypography>{t("schedule.recurrence.start")}</JVTypography>
         <JVRadioButton
           id="start-now"
           value="start-now"
-          label="Now"
+          label={t("schedule.recurrence.start.now")}
           RadioProps={{
             value: 1,
             checked: startType === 1,
@@ -181,7 +183,7 @@ const Schedule = () => {
         <JVRadioButton
           id="specificDate"
           value="start-specific-time"
-          label="Specific date and time"
+          label={t("schedule.recurrence.start.custom")}
           RadioProps={{
             value: 2,
             checked: startType === 2,
