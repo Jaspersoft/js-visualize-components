@@ -21,17 +21,15 @@ export function SingleSelectInputControl(
     validationRules: props.validationRules as ICDateValidationRule[],
   });
   return (
-    <>
-      <JVSelect
-        onChange={liveState.onChange}
-        label={props.label}
-        id={props.id}
-        key={props.id}
-        value={liveState.value}
-        state={props.state}
-        textFieldClassName={`${controlClasses.join(" ")}`}
-        error={errorText}
-      />
-    </>
+    <JVSelect
+      onChange={liveState.onChange}
+      label={props.label}
+      id={props.id}
+      key={props.id}
+      value={liveState.value}
+      state={props.state}
+      textFieldClassName={`${controlClasses.join(" ")}`}
+      error={errorText}
+    />
   );
 }

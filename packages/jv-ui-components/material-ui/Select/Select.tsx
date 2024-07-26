@@ -23,30 +23,27 @@ export const Select = forwardRef((props: any, ref) => {
   };
 
   return (
-    <div>
-      <TextField
-        {...otherProps}
-        className={"jr-mInput jr-mInputText jr-mInputSelect mui"}
-        defaultValue={value}
-        id={id}
-        label={label}
-        select
-        variant="outlined"
-        InputLabelProps={{
-          classes: { root: "jr-mInput-label mui" },
-          disableAnimation: true,
-        }}
-        SelectProps={{
-          classes: { root: "jr-mInput-select mui" },
-          "aria-describedby":
-            "select-inline-helper-error-helper-text select-inline-helper-error-error-text",
-        }}
-        FormHelperTextProps={{
-          classes: { root: "jr-mInput-helper mui" },
-        }}
-      >
-        {makeOptions()}
-      </TextField>
-    </div>
+    <TextField
+      {...otherProps}
+      defaultValue={value}
+      id={id}
+      label={label}
+      select
+      variant="outlined"
+      InputLabelProps={{
+        classes: { root: "jr-mInput-label mui" },
+        disableAnimation: true,
+      }}
+      SelectProps={{
+        classes: { root: "jr-mInput-select mui" },
+        "aria-describedby":
+          "select-inline-helper-error-helper-text select-inline-helper-error-error-text",
+      }}
+      FormHelperTextProps={{
+        classes: { root: "jr-mInput-helper mui" },
+      }}
+    >
+      {makeOptions()}
+    </TextField>
   );
 });
