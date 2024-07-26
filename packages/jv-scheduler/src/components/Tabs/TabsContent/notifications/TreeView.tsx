@@ -97,6 +97,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 });
 
 export const TreeView = () => {
+  const dispatch = useDispatch();
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
@@ -108,32 +109,15 @@ export const TreeView = () => {
   const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState([]); // to keep track of whethere children nodes have been added to tree or not
   const [expandedItems, setExpandedItems] = useState([]);
 
-  const dispatch = useDispatch();
-  const setTreeStructureFromData = (resourcePath) => {
-    const foldersUriToBeExapanded = getExpandedNodeDataFromUri(resourcePath),
+  const setTreeStructureFromData = (resourcePath, isResourceContainName) => {
+    const foldersUriToBeExapanded = getExpandedNodeDataFromUri(
+        resourcePath,
+        isResourceContainName,
+      ),
       initialTreeStructure = addChildrenToTreeOnLoad(treeData, folderData, [
         ...foldersUriToBeExapanded,
       ]);
-    setTreeData([...initialTreeStructure]);
-    // keeping track of already added nodes to tree structure
-    setAlreadyLoadedTreeNode([
-      ...alreadyLoadedTreeNode,
-      foldersUriToBeExapanded[foldersUriToBeExapanded.length - 1],
-    ]);
-    // to set expandedItems property of tree
-    setExpandedItems([...expandedItems, foldersUriToBeExapanded]);
 
-    // latest tree node which has been expanded
-    setCurrentExpandedNode(
-      foldersUriToBeExapanded[foldersUriToBeExapanded.length - 1],
-    );
-  };
-  // show data and expansion on initial load
-  useEffect(() => {
-    const foldersUriToBeExapanded = getExpandedNodeDataFromUri(resourceUri),
-      initialTreeStructure = addChildrenToTreeOnLoad(treeData, folderData, [
-        ...foldersUriToBeExapanded,
-      ]);
     setTreeData([...initialTreeStructure]);
     // keeping track of already added nodes to tree structure
     setAlreadyLoadedTreeNode([
@@ -147,39 +131,26 @@ export const TreeView = () => {
     setCurrentExpandedNode(
       foldersUriToBeExapanded[foldersUriToBeExapanded.length - 1],
     );
+  };
+  // show data and expansion on initial load
+  useEffect(() => {
+    setTreeStructureFromData(resourceUri, true);
   }, []);
-  //
-  // useEffect(() => {
-  //   const currentExpandedNodeData = folderData[currentExpandedNode];
-  //   if (
-  //     currentExpandedNodeData &&
-  //     !alreadyLoadedTreeNode[currentExpandedNodeData]
-  //   ) {
-  //     if (currentExpandedNodeData.length !== 0) {
-  //       let foldersNameFromResourceUri = currentExpandedNode
-  //         .split("/")
-  //         .filter(Boolean); // splits the string at each slash character and removes empty strings
-  //       // gets folders name from uri
-  //       let foldersUriToBeExapanded = getFoldersToBeExpandedFromURI(
-  //         foldersNameFromResourceUri,
-  //       );
-  //
-  //       const initialTreeStructure = addChildrenToTreeOnLoad(
-  //         treeData,
-  //         folderData,
-  //         [...foldersUriToBeExapanded],
-  //       );
-  //       setTreeData([...initialTreeStructure]);
-  //       setAlreadyLoadedTreeNode([
-  //         ...alreadyLoadedTreeNode,
-  //         currentExpandedNode,
-  //       ]);
-  //     }
-  //     setExpandedItems([...expandedItems, currentExpandedNode]);
-  //   }
-  // }, [folderData]);
 
-  console.log(currentExpandedNode);
+  useEffect(() => {
+    const currentExpandedNodeData = folderData[currentExpandedNode];
+    if (currentExpandedNode && currentExpandedNodeData) {
+      const isNodeLoadedAlready = alreadyLoadedTreeNode.some(
+        (nodePath: string) => nodePath === currentExpandedNode,
+      );
+      if (!isNodeLoadedAlready) {
+        setTreeStructureFromData(currentExpandedNode, false);
+      } else {
+        setExpandedItems([...expandedItems, currentExpandedNode]);
+      }
+    }
+  }, [folderData]);
+
   return (
     <JVRichTreeView
       items={treeData}

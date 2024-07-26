@@ -83,7 +83,7 @@ const Notifications = () => {
       dispatch(getFakeRootData());
     }
     // get children data for each folder of resource uri
-    getExpandedNodeDataFromUri(resourceUri, (uri: string) => {
+    getExpandedNodeDataFromUri(resourceUri, true, (uri: string) => {
       if (!folderData[uri]) {
         dispatch(getFolderData(uri));
       }

@@ -28,7 +28,6 @@ const extractRootLevelDataFromHtmlResponse = (html: string) => {
     START_DIV_LENGTH,
     htmlTrimmed.length - END_DIV_LENGTH,
   );
-  console.log(jsonAsText);
   return JSON.parse(jsonAsText);
 };
 
@@ -137,18 +136,22 @@ export const getStateOfCurrentActiveTab = (
   }
 };
 
-export const getUriParts = (resourceUri: string) => {
+export const getUriParts = (
+  resourceUri: string,
+  isResourceContainName: boolean,
+) => {
   const removeStartSlash = resourceUri.replace(/^\//g, "");
   const uriParts = removeStartSlash.split("/");
-  uriParts.pop();
+  if (isResourceContainName) uriParts.pop();
   return uriParts;
 };
 
 export const getExpandedNodeDataFromUri = (
   resourceUri: string,
+  isResourceConatinName: boolean,
   itemHandlerCallback?: any,
 ) => {
-  const uriParts = getUriParts(resourceUri);
+  const uriParts = getUriParts(resourceUri, isResourceConatinName);
 
   return uriParts.reduce((acc, item, i) => {
     if (i === 0) {
