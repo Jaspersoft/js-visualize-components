@@ -12,6 +12,11 @@ import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
 import { TreeView } from "./TreeView";
 import { useSelector } from "react-redux";
+import {
+  getLengthOfObject,
+  getUriParts,
+} from "../../../../utils/schedulerUtils";
+import Loader from "../../../loader/Loader";
 
 function PaperComponent(props: JVPaperProps) {
   return (
@@ -40,10 +45,9 @@ export const RepositoryTreeDialog = ({
   const [height, setHeight] = useState("500px");
 
   useEffect(() => {
-    const folders = resourceUri.split("/");
-    const expandedFoldersData = folders.slice(1, folders.length - 1);
+    const expandedFoldersData = getUriParts(resourceUri);
     if (
-      Object.keys(folderData).length === expandedFoldersData.length &&
+      getLengthOfObject(expandedFoldersData) === expandedFoldersData.length &&
       folderRootData.length
     ) {
       setShowTree(true);
@@ -55,62 +59,54 @@ export const RepositoryTreeDialog = ({
   }, [dialogOpen]);
 
   return (
-    <>
-      <JVDialog
-        open={open}
-        scroll="paper"
-        PaperComponent={PaperComponent}
-        maxWidth={window.innerWidth - 12 + "px"}
+    <JVDialog open={open} scroll="paper" PaperComponent={PaperComponent}>
+      <Resizable
+        size={{ width, height }}
+        onResize={() => {}}
+        onResizeStop={(e, direction, ref, d) => {
+          setWidth(parseInt(width) + d.width + "px");
+          setHeight(parseInt(height) + d.height + "px");
+        }}
+        enable={{ bottomRight: true }}
+        minWidth={"400px"}
+        minHeight={"400px"}
+        maxWidth={window.innerWidth - 10 + "px"}
       >
-        <Resizable
-          size={{ width, height }}
-          onResize={() => {}}
-          onResizeStop={(e, direction, ref, d) => {
-            setWidth(parseInt(width) + d.width + "px");
-            setHeight(parseInt(height) + d.height + "px");
+        <JVDialogTitle
+          dialogTitle="Repository Content"
+          DialogTitleProps={{
+            style: { cursor: "move" },
+            id: "draggable-dialog-title",
           }}
-          enable={{ bottomRight: true }}
-          minWidth={"400px"}
-          minHeight={"400px"}
-          maxWidth={window.innerWidth - 10 + "px"}
-        >
-          <JVDialogTitle
-            dialogTitle="Repository Content"
-            DialogTitleProps={{
-              style: { cursor: "move" },
-              id: "draggable-dialog-title",
-              disableTypography: true,
+        />
+        <JVDialogContent
+          DialogContentComponent={showTree ? <TreeView /> : <Loader />}
+          DialogContentProps={{
+            dividers: scroll === "paper",
+          }}
+        />
+        <JVDialogFooter>
+          <JVButton
+            disableElevation
+            size="large"
+            variant="contained"
+            color="primary"
+          >
+            Select
+          </JVButton>
+          <JVButton
+            disableElevation
+            size="large"
+            variant="contained"
+            onClick={() => {
+              setOpen(false);
+              handleDialogState(false);
             }}
-          />
-          <JVDialogContent
-            DialogContentComponent={showTree ? <TreeView /> : null}
-            DialogContentProps={{
-              dividers: scroll === "paper",
-            }}
-          />
-          <JVDialogFooter>
-            <JVButton
-              disableElevation
-              size="large"
-              variant="contained"
-              color="primary"
-            >
-              Select
-            </JVButton>
-            <JVButton
-              disableElevation
-              size="large"
-              variant="contained"
-              onClick={() => {
-                setOpen(false);
-                handleDialogState(false);
-              }}
-            >
-              Cancel
-            </JVButton>
-          </JVDialogFooter>
-        </Resizable>
-      </JVDialog>
-    </>
+          >
+            Cancel
+          </JVButton>
+        </JVDialogFooter>
+      </Resizable>
+    </JVDialog>
   );
 };

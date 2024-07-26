@@ -146,7 +146,7 @@ export const getUriParts = (resourceUri: string) => {
 
 export const getExpandedNodeDataFromUri = (
   resourceUri: string,
-  itemHandlerCallback: any,
+  itemHandlerCallback?: any,
 ) => {
   const uriParts = getUriParts(resourceUri);
 
@@ -156,7 +156,41 @@ export const getExpandedNodeDataFromUri = (
     } else {
       acc.push(`${acc[i - 1]}/${item}`);
     }
-    itemHandlerCallback(acc[i]);
+    itemHandlerCallback?.(acc[i]);
     return acc;
   }, []);
+};
+
+export const getLengthOfObject = (obj: any) => {
+  return Object.keys(obj).length;
+};
+
+export const addChildrenToTreeOnLoad = (
+  treeStructure,
+  childrenDataOfTreeNodes,
+  pathWhereChildrensToBeAdded,
+) => {
+  let nodeToManipulate = treeStructure;
+  pathWhereChildrensToBeAdded.forEach((treeNode, treeNodeIndex) => {
+    let indexOfNode;
+    nodeToManipulate?.some?.((item, index) => {
+      const isNodeFound = item.uri === treeNode;
+      if (isNodeFound) {
+        indexOfNode = index;
+      }
+      return isNodeFound;
+    });
+    nodeToManipulate = indexOfNode ? nodeToManipulate[indexOfNode] : null;
+    if (nodeToManipulate && childrenDataOfTreeNodes[nodeToManipulate.uri]) {
+      if (!nodeToManipulate.children) {
+        nodeToManipulate.children = Array.isArray(
+          childrenDataOfTreeNodes[nodeToManipulate.uri],
+        )
+          ? childrenDataOfTreeNodes[nodeToManipulate.uri]
+          : [];
+      }
+      nodeToManipulate = nodeToManipulate.children;
+    }
+  });
+  return treeStructure;
 };
