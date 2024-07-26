@@ -168,6 +168,14 @@ export const getLengthOfObject = (obj: any) => {
   return Object.keys(obj).length;
 };
 
+export const getUriToCompare = (uri: string) => {
+  if (uri === "/") return "/root";
+  return uri.startsWith("/public") ? uri : `/root${uri}`;
+};
+
+const removePublicFolderFromChildren = (children: any) => {
+  return children.filter((item: any) => item.uri !== "/public");
+};
 export const addChildrenToTreeOnLoad = (
   treeStructure,
   childrenDataOfTreeNodes,
@@ -177,20 +185,29 @@ export const addChildrenToTreeOnLoad = (
   pathWhereChildrensToBeAdded.forEach((treeNode, treeNodeIndex) => {
     let indexOfNode;
     nodeToManipulate?.some?.((item, index) => {
-      const isNodeFound = item.uri === treeNode;
+      const isNodeFound = getUriToCompare(item.uri) === treeNode;
       if (isNodeFound) {
         indexOfNode = index;
       }
       return isNodeFound;
     });
-    nodeToManipulate = indexOfNode ? nodeToManipulate[indexOfNode] : null;
-    if (nodeToManipulate && childrenDataOfTreeNodes[nodeToManipulate.uri]) {
+    nodeToManipulate = indexOfNode > -1 ? nodeToManipulate[indexOfNode] : null;
+    const uri = getUriToCompare(nodeToManipulate.uri);
+    const childrenData = childrenDataOfTreeNodes[uri];
+    if (nodeToManipulate && childrenData) {
       if (!nodeToManipulate.children) {
-        nodeToManipulate.children = Array.isArray(
-          childrenDataOfTreeNodes[nodeToManipulate.uri],
-        )
-          ? childrenDataOfTreeNodes[nodeToManipulate.uri]
-          : [];
+        let modifiedlChildrenData;
+        if (Array.isArray(childrenData)) {
+          if (uri === "/root") {
+            modifiedlChildrenData =
+              removePublicFolderFromChildren(childrenData);
+          } else {
+            modifiedlChildrenData = childrenData;
+          }
+        } else {
+          modifiedlChildrenData = [];
+        }
+        nodeToManipulate.children = modifiedlChildrenData;
       }
       nodeToManipulate = nodeToManipulate.children;
     }

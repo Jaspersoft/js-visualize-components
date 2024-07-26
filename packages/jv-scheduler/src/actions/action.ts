@@ -23,7 +23,10 @@ import {
   IStoreData,
 } from "../types/schedulerTypes";
 import { IApiFailed } from "../types/scheduleType";
-import { getStateOfCurrentActiveTab } from "../utils/schedulerUtils";
+import {
+  getStateOfCurrentActiveTab,
+  getUriParts,
+} from "../utils/schedulerUtils";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -121,7 +124,15 @@ export const getUserTimeZones = () => {
 
 export const getFolderData = (folderPath: string) => {
   return async (dispatch) => {
-    const repositoryData = await getRepositoryFolderData(folderPath);
+    let folderName;
+    if (folderPath.startsWith("/public")) {
+      folderName = folderPath;
+    } else {
+      const uriParts = getUriParts(folderPath, false);
+      uriParts.shift();
+      folderName = `/${uriParts.join("/")}`;
+    }
+    const repositoryData = await getRepositoryFolderData(folderName);
     if (repositoryData.error) {
       // dispatch error action
     } else {

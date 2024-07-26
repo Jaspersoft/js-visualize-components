@@ -177,7 +177,13 @@ export const TreeView = () => {
       defaultSelectedItems={`/${getUriParts(resourceUri, true).join("/")}`}
       // selectedItems={currentExpandedNode}
       // multiSelect={true}
-      getItemId={(item) => item.uri}
+      getItemId={(item) =>
+        item.uri.startsWith("/public")
+          ? item.uri
+          : item.uri === "/"
+            ? "/root"
+            : `/root${item.uri}`
+      }
       slots={{ item: CustomTreeItem }}
     />
   );
