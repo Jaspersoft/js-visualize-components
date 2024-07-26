@@ -34,7 +34,7 @@ export function BooleanInputControl(
     );
   } else {
     return (
-      <JVCheckboxGroup>
+      <JVCheckboxGroup size="large">
         <JVCheckbox
           label={props.label || "UNDEF"}
           CheckboxProps={{
