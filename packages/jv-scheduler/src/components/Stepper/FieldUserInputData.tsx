@@ -191,6 +191,9 @@ export const OutputStepUserInput = () => {
   const fileName = useSelector(
       (state: any) => state.stepperState.baseOutputFilename,
     ),
+    fileDescription = useSelector(
+      (state: any) => state.scheduleInfo.baseOutputFileDescription,
+    ),
     formats = useSelector((state: any) => state.stepperState.outputFormat),
     // fileNameErr = useSelector((state: TAlertErrors) => state.alertErrors.baseOutputFilename),
     // formatsErr = useSelector((state: TAlertErrors) => state.alertErrors.outputFormat),
@@ -224,6 +227,12 @@ export const OutputStepUserInput = () => {
         error={""}
         title={t("stepper.output.filename.key")}
         value={fileName}
+        className="jr-uTextBreak"
+      />
+      <InputDataInStep
+        error={""}
+        title={t("stepper.output.description.key")}
+        value={fileDescription}
         className="jr-uTextBreak"
       />
       <KeyValueTemplate

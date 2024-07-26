@@ -58,6 +58,7 @@
     "stepper.parameters.brand.key": "Brand:",
     "stepper.output.helpertext": "Customize the output or it will be set to the following:",
     "stepper.output.filename.key": "File name:",
+    "stepper.output.description.key": "Description:",
     "stepper.output.timezone.key": "Time zone:",
     "stepper.output.formats.key": "Formats:",
     "stepper.notifications.recipients.helpertext": "Specify recipients.",
