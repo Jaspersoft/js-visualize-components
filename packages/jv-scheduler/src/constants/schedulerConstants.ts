@@ -59,12 +59,12 @@ export const stepInfo = [
     title: "Parameters",
   },
   {
-    name: "notifications",
-    title: "Notifications",
-  },
-  {
     name: "output",
     title: "Output",
+  },
+  {
+    name: "notifications",
+    title: "Notifications",
   },
 ];
 

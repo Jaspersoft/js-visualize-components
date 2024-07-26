@@ -25,14 +25,14 @@ export const tabParameters = [
     value: "parameters",
   },
   {
-    key: "notifications",
-    label: "Notifications",
-    value: "notifications",
-  },
-  {
     key: "output",
     label: "Output",
     value: "output",
+  },
+  {
+    key: "notifications",
+    label: "Notifications",
+    value: "notifications",
   },
 ];
 
