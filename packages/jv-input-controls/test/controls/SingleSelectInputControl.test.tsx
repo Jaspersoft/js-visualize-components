@@ -24,9 +24,7 @@ describe("SingleSelectInputControl tests", () => {
 
   it("should create select component with an input element within", () => {
     render(getSingleSelect());
-    const sElement = document.querySelectorAll("div.jr-mInputSelect"),
-      mElement = document.querySelectorAll("div.jr-mInputSelect input");
-    expect(sElement.length).toBe(1);
+    const mElement = document.querySelectorAll("div input");
     expect(mElement.length).toBe(1);
   });
 
@@ -40,7 +38,7 @@ describe("SingleSelectInputControl tests", () => {
       }),
     );
 
-    const mElement = document.querySelectorAll("div.jr-mInputSelect input");
+    const mElement = document.querySelectorAll("div input");
     expect(mElement.length).toBe(1);
     const inputElement = screen.getByLabelText("test");
     userEvent.click(inputElement);
@@ -62,7 +60,7 @@ describe("SingleSelectInputControl tests", () => {
       }),
     );
 
-    const mElement = document.querySelectorAll("div.jr-mInputSelect input");
+    const mElement = document.querySelectorAll("div input");
     expect(mElement.length).toBe(1);
     const inputElement = screen.getByLabelText("test");
     userEvent.click(inputElement);

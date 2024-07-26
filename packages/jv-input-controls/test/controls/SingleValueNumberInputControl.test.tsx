@@ -157,7 +157,7 @@ describe("SingleValueNumberInputControls tests", () => {
 
   // Test for mandatory field
   test("verify the field shows error when mandatory prop is set", () => {
-    const CSS_ERROR_CLASS = "jv-uMandatory";
+    const CSS_ERROR_CLASS = "jv-mInputRequired";
     const { container } = render(
       getNumberIC({
         mandatory: true,
@@ -230,7 +230,7 @@ describe("SingleValueNumberInputControls tests", () => {
   });
 
   test("verify the field does not show error when value is under the range of valid values", () => {
-    const CSS_ERROR_CLASS = "jv-uMandatory";
+    const CSS_ERROR_CLASS = "jv-mInputRequired";
     const { container } = render(
       getNumberIC({
         mandatory: true,

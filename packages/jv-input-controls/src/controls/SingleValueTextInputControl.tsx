@@ -48,7 +48,8 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     <JVTextField
       {...remainingProps}
       variant={props.variant || "outlined"}
-      className={`${controlClasses.join(" ")} ${className || ""}`}
+      className={`${className || ""}`}
+      textFieldClassName={`${controlClasses.join(" ")}`}
       InputProps={theInputProps}
       error={errorText}
     />

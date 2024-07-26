@@ -80,7 +80,8 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     <JVTextField
       {...remainingProps}
       variant={props.variant || "outlined"}
-      className={`${controlClasses.join(" ")} ${className || ""}`}
+      className={`${className || ""}`}
+      textFieldClassName={`${controlClasses.join(" ")}`}
       InputProps={theInputProps}
       type="text"
       error={isError ? helperText : false}

@@ -54,7 +54,8 @@ export const DateTimePickerTextFieldInputControl = (
     <JVDateTimeTextField
       {...remainingProps}
       type="datetime-local"
-      className={`jv-mInputDatetime ${controlClasses.join(" ")} ${props.className || ""}`}
+      className={`${props.className || ""}`}
+      textFieldClassName={`jv-mInputDatetime ${controlClasses.join(" ")}`}
       InputProps={{ ...theInputProps }}
       inputProps={{ ...minAndMaxSettings }}
       error={errorText}
