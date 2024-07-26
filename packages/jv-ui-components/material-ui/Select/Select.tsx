@@ -31,16 +31,16 @@ export const Select = forwardRef((props: any, ref) => {
       select
       variant="outlined"
       InputLabelProps={{
-        classes: { root: "jr-mInput-label mui" },
+        classes: { root: "jv-mInput-label mui" },
         disableAnimation: true,
       }}
       SelectProps={{
-        classes: { root: "jr-mInput-select mui" },
+        classes: { root: "jv-mInput-select mui" },
         "aria-describedby":
           "select-inline-helper-error-helper-text select-inline-helper-error-error-text",
       }}
       FormHelperTextProps={{
-        classes: { root: "jr-mInput-helper mui" },
+        classes: { root: "jv-mInput-helper mui" },
       }}
     >
       {makeOptions()}
