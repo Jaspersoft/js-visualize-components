@@ -16,7 +16,8 @@ export function BooleanInputControl(
   props: BooleanInputControlProps,
 ): React.JSX.Element {
   const liveState = useLiveState(!!props.state?.value);
-  const controlClasses = useControlClasses([], props);
+  // We don't need the required CSS class for booleans (request from Anna).
+  const controlClasses = useControlClasses([], { ...props, mandatory: false });
 
   if (props.styleType === "switch") {
     return (
