@@ -192,7 +192,9 @@ export const addChildrenToTreeOnLoad = (
       return isNodeFound;
     });
     nodeToManipulate = indexOfNode > -1 ? nodeToManipulate[indexOfNode] : null;
-    const uri = getUriToCompare(nodeToManipulate.uri);
+    const uri = nodeToManipulate?.uri
+      ? getUriToCompare(nodeToManipulate?.uri)
+      : nodeToManipulate?.uri;
     const childrenData = childrenDataOfTreeNodes[uri];
     if (nodeToManipulate && childrenData) {
       if (!nodeToManipulate.children) {

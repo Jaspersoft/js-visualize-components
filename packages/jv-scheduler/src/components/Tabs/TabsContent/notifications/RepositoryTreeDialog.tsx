@@ -47,9 +47,9 @@ export const RepositoryTreeDialog = ({
   const [height, setHeight] = useState("500px");
 
   useEffect(() => {
-    const expandedFoldersData = getUriParts(resourceUri);
+    const expandedFoldersData = getUriParts(resourceUri, true);
     if (
-      getLengthOfObject(expandedFoldersData) === expandedFoldersData.length &&
+      getLengthOfObject(folderData) === expandedFoldersData.length &&
       folderRootData.length
     ) {
       setShowTree(true);
