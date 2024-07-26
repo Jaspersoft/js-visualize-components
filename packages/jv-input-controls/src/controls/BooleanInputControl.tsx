@@ -26,7 +26,7 @@ export function BooleanInputControl(
           onChange: liveState.onChange,
           checked: !!liveState.value,
         }}
-        className={`${controlClasses.join(" ")} jv-mInputLarge`}
+        containerClassName={`${controlClasses.join(" ")} jv-mInputLarge`}
         inline={true}
         labelPlacement="end"
       />

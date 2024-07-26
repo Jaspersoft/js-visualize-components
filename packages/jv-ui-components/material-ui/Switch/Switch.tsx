@@ -19,6 +19,7 @@ export interface SwitchProps extends Omit<FormControlLabelProps, "control"> {
   control?: ReactElement<any, any>;
   SwitchProps?: Partial<MuiSwitchProps>;
   WrapperProps?: HTMLAttributes<HTMLDivElement> & { [key: string]: any };
+  containerClassName?: string;
 }
 
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
@@ -32,6 +33,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
       SwitchProps = {},
       WrapperProps,
       labelPlacement = "start",
+      containerClassName = "",
       ...rest
     },
     ref,
@@ -43,7 +45,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
     return (
       <div
         ref={ref}
-        className={`jv-mInput jv-mInputSwitch ${inlineClass} ${noLabelClass} ${SizeToClass[size]} mui`}
+        className={`jv-mInput jv-mInputSwitch ${inlineClass} ${noLabelClass} ${SizeToClass[size]} ${containerClassName} mui`}
         {...WrapperProps}
       >
         <FormControlLabel
