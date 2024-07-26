@@ -17,8 +17,10 @@ import {
   SEND_LINK,
 } from "../../../../constants/schedulerConstants";
 import { getExpandedNodeDataFromUri } from "../../../../utils/schedulerUtils";
+import { useTranslation } from "react-i18next";
 
 const Notifications = () => {
+  const { t } = useTranslation() as { t: (k: string) => string };
   const mailNotification = useSelector(
     (state: IState) => state.scheduleInfo.mailNotification,
   );
@@ -34,7 +36,6 @@ const Notifications = () => {
     resultSendType,
   } = mailNotification;
 
-  const [selectedValue, setSelectedValue] = useState("option1");
   const [open, setOpen] = useState(false);
   const [mailAddress, setMailAddress] = useState(address);
   const [mailSubject, setMailSubject] = useState(subject);
@@ -43,10 +44,6 @@ const Notifications = () => {
 
   const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
   const dispatch = useDispatch();
-
-  const handleRadioChange = (value) => {
-    setSelectedValue(value);
-  };
 
   const updateChangeToStore = (updateProperty: any) => {
     updateStore({
@@ -96,12 +93,12 @@ const Notifications = () => {
 
   return (
     <>
-      <JVTypographyComponent text="Email Notification" />
+      <JVTypographyComponent text={t("notifications.email.title")} />
       <div className="jv-mInputs mui">
         <JVTextField
           size="large"
-          label="Send to (required)"
-          helperText="Use commas to separate email addresses."
+          label={t("notifications.email.recipients.label")}
+          helperText={t("notifications.email.helpertext")}
           value={mailAddress}
           onChange={(e) => setMailAddress(e.target.value)}
           onBlur={() => {
@@ -113,14 +110,14 @@ const Notifications = () => {
         />
         <JVTextField
           size="large"
-          label="Subject (required)"
+          label={t("notifications.email.subject.label")}
           value={mailSubject}
           onChange={(e) => setMailSubject(e.target.value)}
           onBlur={() => updateChangeToStore({ subject: mailSubject })}
         />
         <JVTextField
           size="large"
-          label="Message"
+          label={t("notifications.email.message.label")}
           multiline
           rows={5}
           value={mailMessageText}
@@ -128,12 +125,11 @@ const Notifications = () => {
           onBlur={() => updateChangeToStore({ messageText: mailMessageText })}
         />
         <JVRadioGroup
-          title="Report/dashboard access (required)"
+          title={t("notifications.radiogroup.title")}
           RadioGroupProps={{ value: sendType, onChange: handleChange }}
         >
           <JVRadioButton
-            value="option1"
-            label="Include report/dashboard as repository link."
+            label={t("notifications.repositoryLink.label")}
             RadioProps={{
               value: SEND_LINK,
               checked: sendType === SEND_LINK,
@@ -142,7 +138,7 @@ const Notifications = () => {
 
           <div className="jv-mInput jv-mInputBrowse jv-mInputLarge jv-uMargin-l-07 mui">
             <JVTextField
-              label="Repository URI"
+              label={t("notifications.uri.label")}
               disabled={sendType !== SEND_LINK}
               value="/path/"
             />
@@ -152,13 +148,12 @@ const Notifications = () => {
               disabled={sendType !== SEND_LINK}
               onClick={handleBrowseButtonClick}
             >
-              Browse...
+              {t("notifications.browse.button")}
             </JVButton>
           </div>
 
           <JVRadioButton
-            value="option2"
-            label="Include report/dashboard file as attachment."
+            label={t("notifications.fileAsAttachment.label")}
             RadioProps={{
               value: SEND_ATTACHMENT,
               checked: sendType === SEND_ATTACHMENT,

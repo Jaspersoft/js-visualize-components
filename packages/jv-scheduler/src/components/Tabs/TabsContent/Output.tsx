@@ -20,6 +20,7 @@ import { MessageAPIError } from "../../apiFailureError/scheduleAPIError";
 
 const Output = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
+
   const outputFormats = useSelector((state: IState) => state.outputFormats);
   const userTimeZones = useSelector((state: any) => state.userTimeZones);
   const userSelectedTimezone = useSelector(
@@ -84,11 +85,11 @@ const Output = () => {
 
   return (
     <>
-      <JVTypographyComponent text="Output File Options" />
+      <JVTypographyComponent text={t("output.title")} />
       <div className="jv-mInputs mui">
         <JVTextField
           size="large"
-          label="File name (required)"
+          label={t("output.file.name.label")}
           value={fileName}
           onChange={(e) => setFileName(e.target.value)}
           onBlur={() =>
@@ -101,7 +102,7 @@ const Output = () => {
         />
         <JVTextField
           size="large"
-          label="Description"
+          label={t("output.file.description.label")}
           multiline
           rows={5}
           value={outputDescription}
@@ -118,7 +119,7 @@ const Output = () => {
         />
         <JVTextField
           size="large"
-          label="Time zone (required)"
+          label={t("output.timezone.label")}
           select
           value={timezone}
           onChange={(e) => {
@@ -137,7 +138,7 @@ const Output = () => {
             </JVSelectItem>
           ))}
         </JVTextField>
-        <JVCheckboxGroup size="large" title="Formats (required)">
+        <JVCheckboxGroup size="large" title={t("output.formats.label")}>
           {outputFormats.map((format: any) => (
             <JVCheckbox
               key={format}

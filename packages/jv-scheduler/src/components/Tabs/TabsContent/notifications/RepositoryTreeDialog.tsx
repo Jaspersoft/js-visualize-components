@@ -17,6 +17,7 @@ import {
   getUriParts,
 } from "../../../../utils/schedulerUtils";
 import Loader from "../../../loader/Loader";
+import { useTranslation } from "react-i18next";
 
 function PaperComponent(props: JVPaperProps) {
   return (
@@ -33,6 +34,7 @@ export const RepositoryTreeDialog = ({
   open: dialogOpen,
   handleDialogState,
 }: any) => {
+  const { t } = useTranslation() as { t: (k: string) => string };
   const folderData = useSelector((state: any) => state.folderData);
   const folderRootData = useSelector((state: any) => state.fakeRoot);
   const resourceUri = useSelector(
@@ -73,7 +75,7 @@ export const RepositoryTreeDialog = ({
         maxWidth={window.innerWidth - 10 + "px"}
       >
         <JVDialogTitle
-          dialogTitle="Repository Content"
+          dialogTitle={t("repository.dialog.title")}
           DialogTitleProps={{
             style: { cursor: "move" },
             id: "draggable-dialog-title",
@@ -92,7 +94,7 @@ export const RepositoryTreeDialog = ({
             variant="contained"
             color="primary"
           >
-            Select
+            {t("repository.dialog.select.button")}
           </JVButton>
           <JVButton
             disableElevation
@@ -103,7 +105,7 @@ export const RepositoryTreeDialog = ({
               handleDialogState(false);
             }}
           >
-            Cancel
+            {t("repository.dialog.cancel.button")}
           </JVButton>
         </JVDialogFooter>
       </Resizable>

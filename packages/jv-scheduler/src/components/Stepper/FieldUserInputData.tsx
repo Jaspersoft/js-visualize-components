@@ -17,6 +17,7 @@ import {
   START_TIME_FORMAT,
   SEND_LINK,
 } from "../../constants/schedulerConstants";
+import { useTranslation } from "react-i18next";
 
 interface InputDataInStepProps {
   error: string | undefined;
@@ -58,6 +59,7 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
 };
 
 export const ScheduleStepUserInput = () => {
+  const { t } = useTranslation() as { t: (k: string) => string };
   const scheduleJobName = useSelector(
       (state: any) => state.stepperState.scheduleJobName,
     ),
@@ -91,29 +93,37 @@ export const ScheduleStepUserInput = () => {
     <>
       <InputDataInStep
         error={""}
-        title={`Scheduled Job name:`}
+        title={t("stepper.schedule.jobname.key")}
         value={scheduleJobName}
       />
       <InputDataInStep
         error={""}
-        title={`Description:`}
+        title={t("stepper.schedule.jobdescription.key")}
         value={scheduleDescription}
       />
       <InputDataInStep
         error={""}
-        title={`Repeat every:`}
+        title={t("stepper.schedule.repeat.key")}
         value={`${interval} ${timeFrameText}`}
       />
       {startType === RECURRENCE_INTERVAL_DATE_TIME ? (
-        <InputDataInStep error={""} title={`Starting:`} value={time} />
+        <InputDataInStep
+          error={""}
+          title={t("stepper.schedule.start.key")}
+          value={time}
+        />
       ) : (
-        <KeyValueTemplate title={`Starting:`} value={"Now"} />
+        <KeyValueTemplate
+          title={t("stepper.schedule.start.key")}
+          value={"Now"}
+        />
       )}
     </>
   );
 };
 
 export const NotificationStepUserInput = () => {
+  const { t } = useTranslation() as { t: (k: string) => string };
   const mailNotificationSubject = useSelector(
       (state: any) => state.stepperState.subject,
     ),
@@ -148,24 +158,28 @@ export const NotificationStepUserInput = () => {
   }
   return (
     <>
-      <InputDataInStep error={""} title={`Recipients:`} value={address} />
       <InputDataInStep
         error={""}
-        title={`Subject:`}
+        title={t("stepper.notifications.recipients.key")}
+        value={address}
+      />
+      <InputDataInStep
+        error={""}
+        title={t("stepper.notifications.subject.key")}
         value={mailNotificationSubject}
         className="jr-uTextBreak"
       />
       {mailNotificationMessage && (
         <InputDataInStep
           error={""}
-          title={`Message:`}
+          title={t("stepper.notifications.message.key")}
           value={mailNotificationMessage}
           className=" jr-uTextBreak jr-uTextTruncate3"
         />
       )}
       <InputDataInStep
         error={""}
-        title={`Report access:`}
+        title={t("stepper.notifications.access.key")}
         value={reportionOptionValue}
       />
     </>
@@ -173,6 +187,7 @@ export const NotificationStepUserInput = () => {
 };
 
 export const OutputStepUserInput = () => {
+  const { t } = useTranslation() as { t: (k: string) => string };
   const fileName = useSelector(
       (state: any) => state.stepperState.baseOutputFilename,
     ),
@@ -207,12 +222,19 @@ export const OutputStepUserInput = () => {
     <>
       <InputDataInStep
         error={""}
-        title={`File name:`}
+        title={t("stepper.output.filename.key")}
         value={fileName}
         className="jr-uTextBreak"
       />
-      <KeyValueTemplate title={`Time zone:`} value={OutputTimeZone} />
-      <InputDataInStep error={""} title={`Format:`} value={formatsToDisplay} />
+      <KeyValueTemplate
+        title={t("stepper.output.timezone.key")}
+        value={OutputTimeZone}
+      />
+      <InputDataInStep
+        error={""}
+        title={t("stepper.output.formats.key")}
+        value={formatsToDisplay}
+      />
     </>
   );
 };
