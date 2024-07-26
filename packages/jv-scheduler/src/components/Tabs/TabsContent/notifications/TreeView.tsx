@@ -19,6 +19,8 @@ import { getFolderData } from "../../../../actions/action";
 import {
   addChildrenToTreeOnLoad,
   getExpandedNodeDataFromUri,
+  getUriParts,
+  removeRootFromUri,
 } from "../../../../utils/schedulerUtils";
 
 function TransitionComponent(props: any) {
@@ -154,16 +156,6 @@ export const TreeView = () => {
   return (
     <JVRichTreeView
       items={treeData}
-      onItemExpansionToggle={(
-        event: React.SyntheticEvent,
-        itemId: [],
-        isExpanded: [],
-      ) => {
-        if (isExpanded) {
-          setCurrentExpandedNode(itemId as any);
-          dispatch(getFolderData(itemId as string));
-        }
-      }}
       getItemLabel={(item) => {
         return item.label;
       }}
@@ -182,6 +174,7 @@ export const TreeView = () => {
           );
         }
       }}
+      defaultSelectedItems={`/${getUriParts(resourceUri, true).join("/")}`}
       // selectedItems={currentExpandedNode}
       // multiSelect={true}
       getItemId={(item) => item.uri}
