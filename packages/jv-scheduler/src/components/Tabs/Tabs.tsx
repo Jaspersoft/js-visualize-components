@@ -12,33 +12,15 @@ import {
   setVisitedTab,
 } from "./../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
-
-export const tabParameters = [
-  {
-    key: "schedule",
-    label: "Schedule",
-    value: "schedule",
-  },
-  {
-    key: "parameters",
-    label: "Parameters",
-    value: "parameters",
-  },
-  {
-    key: "output",
-    label: "Output",
-    value: "output",
-  },
-  {
-    key: "notifications",
-    label: "Notifications",
-    value: "notifications",
-  },
-];
+import { defaultTabsToShow } from "../../constants/schedulerConstants";
 
 export const Tabs = () => {
   const dispatch = useDispatch<any>();
   const visitedTabs = useSelector((state: any) => state.visitedTabs);
+  console.log(useSelector((state: any) => state));
+  const visibleTabs = useSelector(
+    (state: any) => state.tabsConfiguration.tabsToShow,
+  );
   const currentActiveTab = useSelector((state: any) => state.currentActiveTab);
 
   const handleChange = (event: ChangeEvent<{}>, newValue?: string) => {
@@ -57,7 +39,7 @@ export const Tabs = () => {
           size="large"
           onChange={handleChange}
         >
-          {tabParameters.map((item) => {
+          {visibleTabs.map((item) => {
             return (
               <JVTab
                 key={item.key}

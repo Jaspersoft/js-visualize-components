@@ -9,6 +9,7 @@ import {
   SET_VISITED_TABS,
   SET_ACTIVE_TAB,
   SET_STEPPER_PROPERTIES,
+  SET_TABS_CONFIG,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -75,6 +76,11 @@ export const rootReducer = (state = initialState, action) => {
           ...state.stepperState,
           ...action.payload?.updatedStepperData,
         },
+      };
+    case SET_TABS_CONFIG:
+      return {
+        ...state,
+        tabsConfiguration: action.payload?.tabsConfiguration,
       };
     // case SET_USER_LOCALE:
     //     return {

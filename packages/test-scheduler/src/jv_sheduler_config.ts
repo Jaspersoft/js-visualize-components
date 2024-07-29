@@ -4,8 +4,7 @@ const schedulerUIConfig = {
   contextPath: "/jasperserver-pro",
   tabs: {
     output: {
-      order: 3,
-      show: true,
+      show: false,
       defaultValues: {
         // output file name
         baseOutputFilename: {
@@ -26,15 +25,13 @@ const schedulerUIConfig = {
         },
       },
     },
-    parameter: {
-      order: 2,
+    parameters: {
       show: true,
       defaultValues: {
         // list of parameters
       },
     },
     schedule: {
-      order: 1,
       show: true,
       defaultValues: {
         //name of schedule
@@ -58,8 +55,7 @@ const schedulerUIConfig = {
         },
       },
     },
-    notification: {
-      order: 4,
+    notifications: {
       show: true,
       defaultValues: {
         address: { showField: true, disabled: false, value: ["a@tib.com"] },
@@ -78,6 +74,7 @@ const schedulerUIConfig = {
       },
     },
   },
+  tabsOrder: ["schedule", "parameters", "output", "notifications"],
   successIcon: "React/HTML element",
   errorIcon: "React/ HTML element",
   locale: "en",

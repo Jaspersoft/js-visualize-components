@@ -9,6 +9,7 @@ import {
   SET_VISITED_TABS,
   SET_ACTIVE_TAB,
   SET_STEPPER_PROPERTIES,
+  SET_TABS_CONFIG,
 } from "../constants/actionConstants";
 import {
   getFakeRootDataFromService,
@@ -17,11 +18,7 @@ import {
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
-import {
-  IScheduleInfo,
-  IStepperState,
-  IStoreData,
-} from "../types/schedulerTypes";
+import { IScheduleInfo, IStoreData } from "../types/schedulerTypes";
 import { IApiFailed } from "../types/scheduleType";
 import {
   getStateOfCurrentActiveTab,
@@ -186,5 +183,14 @@ export const currentTabValidator = (newTabVal) => {
     dispatch(setCurrentActiveTab(newTabVal));
     // const currentTabErrs = await getErrorsForCurrentTab(currentActiveTab, alertCurrentStateValues);
     // dispatch(alertValidationError(currentTabErrs));
+  };
+};
+
+export const setTabsVisibility = (tabsConfiguration: any) => {
+  return {
+    type: SET_TABS_CONFIG,
+    payload: {
+      tabsConfiguration,
+    },
   };
 };

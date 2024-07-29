@@ -6,20 +6,30 @@ import {
   getUserTimeZones,
   getOutputFormats,
   setSechedulerUIConfig,
+  setTabsVisibility,
 } from "../actions/action";
 import ScheduleStepper from "./Stepper/ScheduleStepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
+import { getTabsConfig, getTabsToShow } from "../utils/configurationUtils";
+import { tabsDefaultOrder } from "../constants/schedulerConstants";
 
 const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
   const dispatch = useDispatch();
+
+  const setTabsConfig = () => {
+    const tabsToShow = getTabsConfig(schedulerUIConfig);
+    dispatch(setTabsVisibility(tabsToShow));
+  };
 
   useEffect(() => {
     dispatch(setSechedulerUIConfig(schedulerUIConfig));
     dispatch(getUserTimeZones());
     dispatch(getOutputFormats());
+
+    setTabsConfig();
 
     const fetchData = async () => {
       const inputControls = await getInputControls();

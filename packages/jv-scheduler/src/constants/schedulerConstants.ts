@@ -21,35 +21,71 @@ export const timeFrames = [
     value: "WEEK",
   },
 ];
-export const tabParameters = [
-  {
-    key: "condition",
-    label: "condition.label",
-    value: "condition",
-  },
-  {
+
+export const tabsData = {
+  parameters: {
     key: "parameters",
-    label: "parameters.label",
+    label: "Parameters",
     value: "parameters",
   },
+  schedule: {
+    key: "schedule",
+    label: "Schedule",
+    value: "schedule",
+  },
+  output: {
+    key: "output",
+    label: "Output",
+    value: "output",
+  },
+  notifications: {
+    key: "notifications",
+    label: "Notifications",
+    value: "notifications",
+  },
+};
+export const defaultTabsToShow = [
   {
     key: "schedule",
-    label: "schedule.label",
+    label: "Schedule",
     value: "schedule",
   },
   {
-    key: "notifications",
-    label: "notifications.label",
-    value: "notifications",
+    key: "parameters",
+    label: "Parameters",
+    value: "parameters",
   },
   {
     key: "output",
-    label: "output.label",
+    label: "Output",
     value: "output",
+  },
+  {
+    key: "notifications",
+    label: "Notifications",
+    value: "notifications",
   },
 ];
 
-export const stepInfo = [
+export const stepInfo = {
+  schedule: {
+    name: "schedule",
+    title: "Schedule",
+  },
+  parameters: {
+    name: "parameters",
+    title: "Parameters",
+  },
+  output: {
+    name: "output",
+    title: "Output",
+  },
+  notifications: {
+    name: "notifications",
+    title: "Notifications",
+  },
+};
+export const defaultStepInfo = [
   {
     name: "schedule",
     title: "Schedule",
@@ -135,6 +171,10 @@ export const stepperState = {
 export const defaultState = {
   userTimeZones: [],
   outputFormats: [],
+  tabsConfiguration: {
+    tabsToShow: [],
+    stepsToShow: [],
+  },
   schedulerUIConfig: {},
   folderData: {},
   stepperState,
@@ -182,3 +222,10 @@ export const tabsStateDefaultState: { [key: string]: string } = {
   [NOTIFICATIONS_TAB]: INCOMPLETE_STATE,
   [OUTPUT_TAB]: INCOMPLETE_DEFAULT_STATE,
 };
+
+export const tabsDefaultOrder = [
+  "schedule",
+  "parameters",
+  "output",
+  "notifications",
+];

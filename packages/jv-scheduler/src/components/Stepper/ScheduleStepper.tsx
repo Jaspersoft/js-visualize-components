@@ -73,6 +73,9 @@ const ScheduleStepper = () => {
 
   const activeStep = useSelector((state: any) => state.currentActiveTab);
   const visitedTabs = useSelector((state: any) => state.visitedTabs);
+  const visibleSteps = useSelector(
+    (state: any) => state.tabsConfiguration.stepsToShow,
+  );
 
   const {
     scheduleJobName,
@@ -153,7 +156,7 @@ const ScheduleStepper = () => {
       activeStep={stepperSteps[activeStep]}
       className="jr-uMargin-tb-15 jr-uMargin-lr-08"
     >
-      {stepInfo.map((item, index, arr) => {
+      {visibleSteps.map((item, index, arr) => {
         const isDefaultMsg = !visitedTabs.includes(arr[index].name);
         return (
           <JVStep
