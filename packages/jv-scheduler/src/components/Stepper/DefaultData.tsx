@@ -14,7 +14,10 @@ export const ScheduleStepDefaultMessage = () => {
         title={t("stepper.schedule.repeat.key")}
         value="1 day"
       />
-      <KeyValueTemplate title={t("stepper.schedule.start.key")} value="Now" />
+      <KeyValueTemplate
+        title={t("stepper.schedule.start.key")}
+        value={t("stepper.schedule.startnow.value")}
+      />
     </>
   );
 };
@@ -36,6 +39,7 @@ export const OutputStepDefaultMessage = () => {
         title={t("stepper.output.formats.key")}
         value="format"
       />
+      <FieldHeader text={t("stepper.output.description.helpertext")} />
     </>
   );
 };
@@ -48,10 +52,6 @@ export const NotificationStepDefaultMessage = () => {
       <FieldHeader text={t("stepper.notifications.subject.helpertext")} />
       <FieldHeader text={t("stepper.notifications.message.helpertext")} />
       <FieldHeader text={t("stepper.notifications.access.helpertext")} />
-      <KeyValueTemplate
-        title={t("stepper.notifications.access.key")}
-        value="Link"
-      />
     </>
   );
 };
@@ -61,10 +61,6 @@ export const ParametersStepDefaultMessage = () => {
   return (
     <>
       <FieldHeader text={t("stepper.parameters.ic.helpertext")} />
-      <KeyValueTemplate
-        title={t("stepper.parameters.brand.key")}
-        value="brands"
-      />
     </>
   );
 };
