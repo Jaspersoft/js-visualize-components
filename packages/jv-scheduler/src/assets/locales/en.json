@@ -52,15 +52,17 @@
     "stepper.schedule.recurrence.helpertext": "Customize the recurrence or it will be set to the following: ",
     "stepper.schedule.jobname.key": "Scheduled job name:",
     "stepper.schedule.jobdescription.key": "Description:",
+    "stepper.schedule.startnow.value": "Now",
     "stepper.schedule.repeat.key": "Repeat every:",
     "stepper.schedule.start.key": "Starting:",
     "stepper.parameters.ic.helpertext": "Select the input control options for the report/dashboard.",
     "stepper.parameters.brand.key": "Brand:",
     "stepper.output.helpertext": "Customize the output or it will be set to the following:",
+    "stepper.output.description.helpertext": "Add an optional description.",
     "stepper.output.filename.key": "File name:",
     "stepper.output.description.key": "Description:",
     "stepper.output.timezone.key": "Time zone:",
-    "stepper.output.formats.key": "Formats:",
+    "stepper.output.formats.key": "Format:",
     "stepper.notifications.recipients.helpertext": "Specify recipients.",
     "stepper.notifications.subject.helpertext": "Add a subject line.",
     "stepper.notifications.message.helpertext": "Add an optional message.",
@@ -71,6 +73,7 @@
     "stepper.notifications.message.key": "Message:",
     "repository.dialog.title": "Repository Content",
     "repository.dialog.select.button": "Select",
-    "repository.dialog.cancel.button": "Cancel"
+    "repository.dialog.cancel.button": "Cancel",
+    "schedule.more": "more"
   }
 }

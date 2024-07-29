@@ -115,7 +115,7 @@ export const ScheduleStepUserInput = () => {
       ) : (
         <KeyValueTemplate
           title={t("stepper.schedule.start.key")}
-          value={"Now"}
+          value={t("stepper.schedule.startnow.value")}
         />
       )}
     </>
@@ -149,7 +149,7 @@ export const NotificationStepUserInput = () => {
   if (mailNotificationAddresses) {
     [address] = mailNotificationAddresses;
     if (mailNotificationAddresses.length > MAX_STEPPER_EMAIL_ADDRESS) {
-      address = `${address} (+${mailNotificationAddresses.length - MAX_STEPPER_EMAIL_ADDRESS} more)`;
+      address = `${address} (+${mailNotificationAddresses.length - MAX_STEPPER_EMAIL_ADDRESS} ${t("schedule.more")})`;
     }
   }
 
@@ -167,14 +167,14 @@ export const NotificationStepUserInput = () => {
         error={""}
         title={t("stepper.notifications.subject.key")}
         value={mailNotificationSubject}
-        className="jr-uTextBreak"
+        className="jv-uTextBreak"
       />
       {mailNotificationMessage && (
         <InputDataInStep
           error={""}
           title={t("stepper.notifications.message.key")}
           value={mailNotificationMessage}
-          className=" jr-uTextBreak jr-uTextTruncate3"
+          className=" jv-uTextBreak jv-uTextTruncate3"
         />
       )}
       <InputDataInStep
@@ -212,12 +212,12 @@ export const OutputStepUserInput = () => {
   if (formats?.length) {
     const displayFormats = formats
       .slice(0, MAX_STEPPER_OUTPUT_FORMATS)
-      .map((item: string) => item)
+      .map((item: string) => t(`output.format.${item}`))
       .join(", ");
 
     formatsToDisplay =
       formats.length > MAX_STEPPER_OUTPUT_FORMATS
-        ? `${displayFormats} (+${formats.length - MAX_STEPPER_OUTPUT_FORMATS} more)`
+        ? `${displayFormats} (+${formats.length - MAX_STEPPER_OUTPUT_FORMATS} ${t("schedule.more")})`
         : displayFormats;
   }
 
@@ -227,13 +227,13 @@ export const OutputStepUserInput = () => {
         error={""}
         title={t("stepper.output.filename.key")}
         value={fileName}
-        className="jr-uTextBreak"
+        className="jv-uTextBreak"
       />
       <InputDataInStep
         error={""}
         title={t("stepper.output.description.key")}
         value={fileDescription}
-        className="jr-uTextBreak"
+        className="jv-uTextBreak"
       />
       <KeyValueTemplate
         title={t("stepper.output.timezone.key")}
@@ -249,5 +249,13 @@ export const OutputStepUserInput = () => {
 };
 
 export const ParametersStepUserInput = () => {
-  return <></>;
+  const { t } = useTranslation() as { t: (k: string) => string };
+  return (
+    <>
+      <KeyValueTemplate
+        title={t("stepper.parameters.brand.key")}
+        value="brand"
+      />
+    </>
+  );
 };

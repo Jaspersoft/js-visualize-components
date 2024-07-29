@@ -39,12 +39,11 @@ const DefaultOrMessageBasedOnUserInput = (
         <ScheduleStepUserInput />
       );
     case PARAMETERS_TAB:
-      return <ParametersStepDefaultMessage />;
-    // return defaultMsg ? (
-    //   <ParametersStepDefaultMessage />
-    // ) : (
-    //   <ParametersStepUserInput />
-    // );
+      return defaultMsg ? (
+        <ParametersStepDefaultMessage />
+      ) : (
+        <ParametersStepUserInput />
+      );
     case NOTIFICATIONS_TAB:
       return defaultMsg ? (
         <NotificationStepDefaultMessage />
