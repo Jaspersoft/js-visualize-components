@@ -23,22 +23,22 @@ export const timeFrames = [
 ];
 
 export const tabsData = {
-  parameters: {
+  [PARAMETERS_TAB]: {
     key: "parameters",
     label: "Parameters",
     value: "parameters",
   },
-  schedule: {
+  [SCHEDULE_TAB]: {
     key: "schedule",
     label: "Schedule",
     value: "schedule",
   },
-  output: {
+  [OUTPUT_TAB]: {
     key: "output",
     label: "Output",
     value: "output",
   },
-  notifications: {
+  [NOTIFICATIONS_TAB]: {
     key: "notifications",
     label: "Notifications",
     value: "notifications",
@@ -68,41 +68,23 @@ export const defaultTabsToShow = [
 ];
 
 export const stepInfo = {
-  schedule: {
+  [SCHEDULE_TAB]: {
     name: "schedule",
     title: "Schedule",
   },
-  parameters: {
+  [PARAMETERS_TAB]: {
     name: "parameters",
     title: "Parameters",
   },
-  output: {
+  [OUTPUT_TAB]: {
     name: "output",
     title: "Output",
   },
-  notifications: {
+  [NOTIFICATIONS_TAB]: {
     name: "notifications",
     title: "Notifications",
   },
 };
-export const defaultStepInfo = [
-  {
-    name: "schedule",
-    title: "Schedule",
-  },
-  {
-    name: "parameters",
-    title: "Parameters",
-  },
-  {
-    name: "output",
-    title: "Output",
-  },
-  {
-    name: "notifications",
-    title: "Notifications",
-  },
-];
 
 export const simpleTriggerState = {
   timezone: "",

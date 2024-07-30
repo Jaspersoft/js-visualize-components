@@ -80,6 +80,7 @@ export const rootReducer = (state = initialState, action) => {
     case SET_TABS_CONFIG:
       return {
         ...state,
+        currentActiveTab: action.payload?.currentActiveTab,
         tabsConfiguration: action.payload?.tabsConfiguration,
       };
     // case SET_USER_LOCALE:

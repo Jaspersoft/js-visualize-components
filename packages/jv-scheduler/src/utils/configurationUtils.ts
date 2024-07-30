@@ -3,7 +3,6 @@ import {
   defaultTabsToShow,
   tabsData,
   tabsDefaultOrder,
-  defaultStepInfo,
 } from "../constants/schedulerConstants";
 
 const isTabVisible = (config: any) => {
@@ -14,26 +13,27 @@ export const getTabsAndStepsToShow = (tabsConfig: any, tabsOrder: string[]) => {
   let tabsToShow = [],
     stepsToShow = [];
   if (Array.isArray(tabsConfig)) {
-    tabsToShow = tabsConfig;
-    stepsToShow = defaultStepInfo;
+    tabsToShow = tabsOrder.map((tab) => tabsData[tab]);
+    stepsToShow = tabsOrder.map((tab) => stepInfo[tab]);
   } else {
     tabsOrder.forEach((tab: string) => {
       if (isTabVisible(tabsConfig[tab])) {
         tabsToShow.push(tabsData[tab]);
-        stepInfo.push(stepInfo[tab]);
+        stepsToShow.push(stepInfo[tab]);
       }
     });
   }
   return { tabsToShow, stepsToShow };
 };
 
-export const getTabsConfig = (tabsConfig: any) => {
+export const getTabsConfig = (config: any) => {
   const { tabsToShow, stepsToShow } = getTabsAndStepsToShow(
-    tabsConfig.tab || defaultTabsToShow,
-    tabsConfig.tabsOrder || tabsDefaultOrder,
+    config.tabs.tabsData || defaultTabsToShow,
+    config.tabs.tabsOrder || tabsDefaultOrder,
   );
   return {
     tabsToShow,
     stepsToShow,
+    currentActiveTab: config.tabs.activeTab || tabsToShow[0].value,
   };
 };

@@ -186,11 +186,9 @@ export const currentTabValidator = (newTabVal) => {
   };
 };
 
-export const setTabsVisibility = (tabsConfiguration: any) => {
+export const setTabsConfig = (tabsConfiguration: any) => {
   return {
     type: SET_TABS_CONFIG,
-    payload: {
-      tabsConfiguration,
-    },
+    payload: tabsConfiguration,
   };
 };

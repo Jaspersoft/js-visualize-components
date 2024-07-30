@@ -6,22 +6,21 @@ import {
   getUserTimeZones,
   getOutputFormats,
   setSechedulerUIConfig,
-  setTabsVisibility,
+  setTabsConfig,
 } from "../actions/action";
 import ScheduleStepper from "./Stepper/ScheduleStepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
-import { getTabsConfig, getTabsToShow } from "../utils/configurationUtils";
-import { tabsDefaultOrder } from "../constants/schedulerConstants";
+import { getTabsConfig } from "../utils/configurationUtils";
 
 const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
   const dispatch = useDispatch();
 
-  const setTabsConfig = () => {
-    const tabsToShow = getTabsConfig(schedulerUIConfig);
-    dispatch(setTabsVisibility(tabsToShow));
+  const setTabsData = () => {
+    const { currentActiveTab, ...rest } = getTabsConfig(schedulerUIConfig);
+    dispatch(setTabsConfig({ currentActiveTab, tabsConfiguration: rest }));
   };
 
   useEffect(() => {
@@ -29,7 +28,7 @@ const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
     dispatch(getUserTimeZones());
     dispatch(getOutputFormats());
 
-    setTabsConfig();
+    setTabsData();
 
     const fetchData = async () => {
       const inputControls = await getInputControls();
