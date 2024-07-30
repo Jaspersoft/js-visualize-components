@@ -7,13 +7,14 @@ import {
   getOutputFormats,
   setSechedulerUIConfig,
   setTabsConfig,
+  setPropertiesDetails,
 } from "../actions/action";
 import ScheduleStepper from "./Stepper/ScheduleStepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
-import { getTabsConfig } from "../utils/configurationUtils";
+import { getSchedulerData, getTabsConfig } from "../utils/configurationUtils";
 
 const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
   const setTabsData = () => {
     const { currentActiveTab, ...rest } = getTabsConfig(schedulerUIConfig);
     dispatch(setTabsConfig({ currentActiveTab, tabsConfiguration: rest }));
+    dispatch(
+      setPropertiesDetails(getSchedulerData(schedulerUIConfig.resourceURI)),
+    );
   };
 
   useEffect(() => {

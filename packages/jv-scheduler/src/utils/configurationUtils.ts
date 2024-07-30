@@ -3,7 +3,9 @@ import {
   defaultTabsToShow,
   tabsData,
   tabsDefaultOrder,
+  ScheduleDefaultState,
 } from "../constants/schedulerConstants";
+import { getUriParts } from "./schedulerUtils";
 
 const isTabVisible = (config: any) => {
   return !!config?.show;
@@ -35,5 +37,15 @@ export const getTabsConfig = (config: any) => {
     tabsToShow,
     stepsToShow,
     currentActiveTab: config.tabs.activeTab || tabsToShow[0].value,
+  };
+};
+
+export const getSchedulerData = (resourceUri: string) => {
+  return {
+    ...ScheduleDefaultState,
+    repositoryDestination: {
+      ...ScheduleDefaultState.repositoryDestination,
+      folderURI: `/${getUriParts(resourceUri, true).join("/")}`,
+    },
   };
 };

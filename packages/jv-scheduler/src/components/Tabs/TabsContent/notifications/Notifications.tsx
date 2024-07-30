@@ -24,6 +24,9 @@ const Notifications = () => {
   const mailNotification = useSelector(
     (state: IState) => state.scheduleInfo.mailNotification,
   );
+  const repositoryDestination = useSelector(
+    (state: IState) => state.scheduleInfo.repositoryDestination,
+  );
   const folderData = useSelector((state: any) => state.folderData);
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
@@ -36,11 +39,14 @@ const Notifications = () => {
     resultSendType,
   } = mailNotification;
 
+  const { folderURI } = repositoryDestination;
+
   const [open, setOpen] = useState(false);
   const [mailAddress, setMailAddress] = useState(address);
   const [mailSubject, setMailSubject] = useState(subject);
   const [mailMessageText, setMailMessageText] = useState(messageText);
   const [sendType, setSendType] = useState(resultSendType);
+  const [repoUri, setRepoUri] = useState(folderURI);
 
   const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
   const dispatch = useDispatch();
@@ -76,6 +82,10 @@ const Notifications = () => {
   useEffect(() => {
     setMailMessageText(mailMessageText);
   }, [mailMessageText]);
+
+  useEffect(() => {
+    setRepoUri(repositoryDestination.folderURI);
+  }, [repositoryDestination.folderURI]);
 
   const handleBrowseButtonClick = () => {
     // get data for what to show in the tree on first level
@@ -140,7 +150,7 @@ const Notifications = () => {
             <JVTextField
               label={t("notifications.uri.label")}
               disabled={sendType !== SEND_LINK}
-              value="/path/"
+              value={repoUri}
             />
             <JVButton
               variant="contained"

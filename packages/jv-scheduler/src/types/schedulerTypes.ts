@@ -1,5 +1,7 @@
-import { SCHEDULE_JOB_NAME } from "../constants/schedulerConstants";
-
+interface IRepositoryDestination {
+  folderURI: string;
+  saveToRepository: boolean;
+}
 export interface IMailNotifications {
   messageText: string;
   subject: string;
@@ -13,6 +15,7 @@ export interface IState {
   scheduleInfo: IScheduleInfo;
   visitedTabs: string[];
   outputFormats: string[];
+  repositoryDestination: IRepositoryDestination;
 }
 
 export interface IStoreData {}

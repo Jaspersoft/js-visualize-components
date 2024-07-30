@@ -19,8 +19,6 @@ import { getFolderData } from "../../../../actions/action";
 import {
   addChildrenToTreeOnLoad,
   getExpandedNodeDataFromUri,
-  getUriParts,
-  removeRootFromUri,
 } from "../../../../utils/schedulerUtils";
 
 function TransitionComponent(props: any) {
@@ -98,10 +96,10 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   );
 });
 
-export const TreeView = () => {
+export const TreeView = ({ handleCurrentSelection }: any) => {
   const dispatch = useDispatch();
-  const resourceUri = useSelector(
-    (state: any) => state.schedulerUIConfig.resourceURI,
+  const folderURI = useSelector(
+    (state: any) => state.scheduleInfo.repositoryDestination.folderURI,
   );
   const folderData = useSelector((state: any) => state.folderData);
   const rootData = useSelector((state: any) => state.fakeRoot);
@@ -110,6 +108,13 @@ export const TreeView = () => {
   const [currentExpandedNode, setCurrentExpandedNode] = useState("");
   const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState([]); // to keep track of whethere children nodes have been added to tree or not
   const [expandedItems, setExpandedItems] = useState([]);
+
+  useEffect(() => {
+    const currentExpand = currentExpandedNode.startsWith("/root")
+      ? currentExpandedNode.replace(/^\/root\/?/g, "/")
+      : currentExpandedNode;
+    handleCurrentSelection(currentExpand);
+  }, [currentExpandedNode]);
 
   const setTreeStructureFromData = (resourcePath, isResourceContainName) => {
     const foldersUriToBeExapanded = getExpandedNodeDataFromUri(
@@ -136,7 +141,7 @@ export const TreeView = () => {
   };
   // show data and expansion on initial load
   useEffect(() => {
-    setTreeStructureFromData(resourceUri, true);
+    setTreeStructureFromData(folderURI, true);
   }, []);
 
   useEffect(() => {
@@ -174,7 +179,7 @@ export const TreeView = () => {
           );
         }
       }}
-      defaultSelectedItems={`/${getUriParts(resourceUri, true).join("/")}`}
+      defaultSelectedItems={folderURI}
       // selectedItems={currentExpandedNode}
       // multiSelect={true}
       getItemId={(item) =>

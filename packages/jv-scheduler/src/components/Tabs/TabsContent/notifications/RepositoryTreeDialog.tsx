@@ -18,6 +18,8 @@ import {
 } from "../../../../utils/schedulerUtils";
 import Loader from "../../../loader/Loader";
 import { useTranslation } from "react-i18next";
+import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
+import { NOTIFICATIONS_TAB } from "../../../../constants/schedulerConstants";
 
 function PaperComponent(props: JVPaperProps) {
   return (
@@ -37,14 +39,28 @@ export const RepositoryTreeDialog = ({
   const { t } = useTranslation() as { t: (k: string) => string };
   const folderData = useSelector((state: any) => state.folderData);
   const folderRootData = useSelector((state: any) => state.fakeRoot);
+  const mailNotification = useSelector(
+    (state: any) => state.scheduleInfo.mailNotification,
+  );
+  const repositoryDestination = useSelector(
+    (state: any) => state.scheduleInfo.repositoryDestination,
+  );
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
+
+  const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
+
+  const updateChangeToStore = (updateProperty: any, stepperData: any) => {
+    updateStore(updateProperty, stepperData);
+  };
 
   const [showTree, setShowTree] = useState(false);
   const [open, setOpen] = useState<any>(dialogOpen);
   const [width, setWidth] = useState("400px");
   const [height, setHeight] = useState("500px");
+  const [currentSelectedFolder, setCurrentSelectedFolder] =
+    useState(resourceUri);
 
   useEffect(() => {
     const expandedFoldersData = getUriParts(resourceUri, true);
@@ -60,6 +76,24 @@ export const RepositoryTreeDialog = ({
     setOpen(dialogOpen);
   }, [dialogOpen]);
 
+  const handleCloseBtnClick = () => {
+    setOpen(false);
+    handleDialogState(false);
+  };
+
+  const handleSelectBtnClick = () => {
+    handleCloseBtnClick();
+    updateChangeToStore(
+      {
+        mailNotification: mailNotification,
+        repositoryDestination: {
+          ...repositoryDestination,
+          folderURI: currentSelectedFolder,
+        },
+      },
+      { folderURI: currentSelectedFolder },
+    );
+  };
   return (
     <JVDialog open={open} scroll="paper" PaperComponent={PaperComponent}>
       <Resizable
@@ -82,7 +116,16 @@ export const RepositoryTreeDialog = ({
           }}
         />
         <JVDialogContent
-          DialogContentComponent={showTree ? <TreeView /> : <Loader />}
+          DialogContentComponent={
+            showTree ? (
+              <TreeView
+                folderSelected={currentSelectedFolder}
+                handleCurrentSelection={setCurrentSelectedFolder}
+              />
+            ) : (
+              <Loader />
+            )
+          }
           DialogContentProps={{
             dividers: scroll === "paper",
           }}
@@ -93,6 +136,7 @@ export const RepositoryTreeDialog = ({
             size="large"
             variant="contained"
             color="primary"
+            onClick={handleSelectBtnClick}
           >
             {t("repository.dialog.select.button")}
           </JVButton>
@@ -100,10 +144,7 @@ export const RepositoryTreeDialog = ({
             disableElevation
             size="large"
             variant="contained"
-            onClick={() => {
-              setOpen(false);
-              handleDialogState(false);
-            }}
+            onClick={handleCloseBtnClick}
           >
             {t("repository.dialog.cancel.button")}
           </JVButton>
