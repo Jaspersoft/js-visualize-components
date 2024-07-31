@@ -4,14 +4,13 @@ const schedulerUIConfig = {
   contextPath: "/jasperserver-pro",
   tabs: {
     // should have array of length 4
-    tabsOrder: ["parameters", "schedule", "notifications", "output"],
+    // tabsOrder: ["notifications","parameters", "schedule",  "output"],
     activeTab: "notifications",
     tabsData: {
       schedule: {
-        show: true,
+        show: false,
         defaultValues: {
-          //name of schedule
-          // required in config
+          // name of the schedule: required in config
           label: { showField: true },
           description: {
             showField: true,
@@ -41,7 +40,7 @@ const schedulerUIConfig = {
         show: true,
         defaultValues: {
           // output file name
-          // required
+          // outputFileName: required in config
           baseOutputFilename: {
             showField: true,
             disabled: false,
@@ -70,19 +69,24 @@ const schedulerUIConfig = {
       notifications: {
         show: true,
         defaultValues: {
+          // required in config
           address: { showField: true, disabled: false, value: ["a@tib.com"] },
-          subject: { showField: true, disabled: false, value: "subject" },
+          // required in config
+          subject: { showField: true, disabled: false, value: "test subject" },
           messageText: {
             showField: true,
             disabled: false,
             value: "message text",
           },
-          folderURI: {
-            showField: true,
-            disabled: false,
-            value: "/public/Samples/Reports",
+          reportAccessType: {
+            value: "SEND", // "SEND_ATTACHMENT" | "SEND"
+            folderURI: {
+              showField: true,
+              disabled: false,
+              value: "/public",
+            },
+            saveToRepository: { showField: true, disabled: false, value: true },
           },
-          saveToRepository: { showField: true, disabled: false, value: true },
         },
       },
     },

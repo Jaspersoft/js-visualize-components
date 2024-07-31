@@ -1,5 +1,4 @@
 import React from "react";
-import { JVTypography } from "@jaspersoft/jv-ui-components";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useTranslation } from "react-i18next";
 

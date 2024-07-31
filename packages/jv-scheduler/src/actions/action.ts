@@ -24,6 +24,7 @@ import {
   getStateOfCurrentActiveTab,
   getUriParts,
 } from "../utils/schedulerUtils";
+import { getSchedulerData, getTabsConfig } from "../utils/configurationUtils";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -190,5 +191,25 @@ export const setTabsConfig = (tabsConfiguration: any) => {
   return {
     type: SET_TABS_CONFIG,
     payload: tabsConfiguration,
+  };
+};
+
+export const setInitialPluginState = (
+  schedulerUIConfig: ISchedulerUIConfig,
+) => {
+  return async (dispatch) => {
+    dispatch(setSechedulerUIConfig(schedulerUIConfig));
+    dispatch(getUserTimeZones());
+    dispatch(getOutputFormats());
+    const { currentActiveTab, ...rest } = getTabsConfig(schedulerUIConfig);
+    dispatch(setTabsConfig({ currentActiveTab, tabsConfiguration: rest }));
+    dispatch(
+      setPropertiesDetails(
+        getSchedulerData(
+          schedulerUIConfig.resourceURI,
+          schedulerUIConfig?.tabs?.tabsData,
+        ),
+      ),
+    );
   };
 };

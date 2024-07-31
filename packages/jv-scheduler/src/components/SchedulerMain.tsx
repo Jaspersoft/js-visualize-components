@@ -8,31 +8,31 @@ import {
   setSechedulerUIConfig,
   setTabsConfig,
   setPropertiesDetails,
+  setInitialPluginState,
 } from "../actions/action";
 import ScheduleStepper from "./Stepper/ScheduleStepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
-import { getSchedulerData, getTabsConfig } from "../utils/configurationUtils";
+import {
+  checkAllTheHiddenTabsValuesPresent,
+  getSchedulerData,
+  getTabsConfig,
+} from "../utils/configurationUtils";
 
 const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
   const dispatch = useDispatch();
 
-  const setTabsData = () => {
-    const { currentActiveTab, ...rest } = getTabsConfig(schedulerUIConfig);
-    dispatch(setTabsConfig({ currentActiveTab, tabsConfiguration: rest }));
-    dispatch(
-      setPropertiesDetails(getSchedulerData(schedulerUIConfig.resourceURI)),
-    );
-  };
+  // const setTabsData = () => {
+  //   const { currentActiveTab, ...rest } = getTabsConfig(schedulerUIConfig);
+  //   dispatch(setTabsConfig({ currentActiveTab, tabsConfiguration: rest }));
+  //   checkAllTheHiddenTabsValuesPresent(rest.tabsToShow, schedulerUIConfig?.tabs?.tabsData)
+  //   dispatch(setPropertiesDetails(getSchedulerData(schedulerUIConfig.resourceURI, schedulerUIConfig?.tabs?.tabsData)),);
+  // };
 
   useEffect(() => {
-    dispatch(setSechedulerUIConfig(schedulerUIConfig));
-    dispatch(getUserTimeZones());
-    dispatch(getOutputFormats());
-
-    setTabsData();
+    dispatch(setInitialPluginState(schedulerUIConfig));
 
     const fetchData = async () => {
       const inputControls = await getInputControls();

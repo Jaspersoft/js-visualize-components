@@ -116,10 +116,10 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
     handleCurrentSelection(currentExpand);
   }, [currentExpandedNode]);
 
-  const setTreeStructureFromData = (resourcePath, isResourceContainName) => {
+  const setTreeStructureFromData = (resourcePath) => {
     const foldersUriToBeExapanded = getExpandedNodeDataFromUri(
         resourcePath,
-        isResourceContainName,
+        false,
       ),
       initialTreeStructure = addChildrenToTreeOnLoad(treeData, folderData, [
         ...foldersUriToBeExapanded,
@@ -141,7 +141,7 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
   };
   // show data and expansion on initial load
   useEffect(() => {
-    setTreeStructureFromData(folderURI, true);
+    setTreeStructureFromData(folderURI);
   }, []);
 
   useEffect(() => {
@@ -151,7 +151,7 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
         (nodePath: string) => nodePath === currentExpandedNode,
       );
       if (!isNodeLoadedAlready) {
-        setTreeStructureFromData(currentExpandedNode, false);
+        setTreeStructureFromData(currentExpandedNode);
       } else {
         setExpandedItems([...expandedItems, currentExpandedNode]);
       }
