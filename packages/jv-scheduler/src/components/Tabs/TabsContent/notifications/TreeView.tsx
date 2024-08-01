@@ -78,7 +78,14 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   status.expandable = true;
   return (
     <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
-      <JVTreeItem2Root {...getRootProps(other)}>
+      <JVTreeItem2Root
+        {...getRootProps(other)}
+        onClick={(event) => {
+          if (status.disabled) {
+            event.stopPropagation();
+          }
+        }}
+      >
         <JVTreeItem2Content {...getContentProps()}>
           {/*rendering expand collapse icon*/}
           <JVTreeItem2IconContainer {...getIconContainerProps()}>
@@ -87,6 +94,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
           <CustomLabel
             {...getLabelProps({
               expandable: true,
+              disable: status.disabled,
             })}
           />
         </JVTreeItem2Content>
@@ -96,6 +104,9 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   );
 });
 
+const isItemDisable = (item: any) => {
+  return !(item.permissionMask == 1 || item.permissionMask & 4);
+};
 export const TreeView = ({ handleCurrentSelection }: any) => {
   const dispatch = useDispatch();
   const folderURI = useSelector(
@@ -179,7 +190,9 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
           );
         }
       }}
+      isItemDisabled={(item) => isItemDisable(item)}
       defaultSelectedItems={folderURI}
+      disabledItemsFocusable
       // selectedItems={currentExpandedNode}
       // multiSelect={true}
       getItemId={(item) =>

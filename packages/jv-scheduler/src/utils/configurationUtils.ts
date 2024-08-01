@@ -13,7 +13,7 @@ import {
 import { getUriParts } from "./schedulerUtils";
 
 const isTabVisible = (config: any) => {
-  return !!config?.show;
+  return config?.show !== false;
 };
 
 export const getTabsAndStepsToShow = (tabsConfig: any, tabsOrder: string[]) => {
@@ -38,19 +38,10 @@ export const getTabsConfig = (config: any) => {
     config.tabs?.tabsData || defaultTabsToShow,
     config.tabs?.tabsOrder || tabsDefaultOrder,
   );
-  let currentActiveTab;
-  if (
-    config.tabs?.activeTab &&
-    tabsToShow.filter((tab) => tab.value === config.tabs.activeTab).length
-  ) {
-    currentActiveTab = config.tabs?.activeTab;
-  } else {
-    currentActiveTab = tabsToShow[0].value;
-  }
   return {
     tabsToShow,
     stepsToShow,
-    currentActiveTab,
+    currentActiveTab: tabsToShow[0].value,
   };
 };
 

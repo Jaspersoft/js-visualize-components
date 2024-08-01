@@ -24,7 +24,11 @@ import {
   getStateOfCurrentActiveTab,
   getUriParts,
 } from "../utils/schedulerUtils";
-import { getSchedulerData, getTabsConfig } from "../utils/configurationUtils";
+import {
+  checkAllTheHiddenTabsValuesPresent,
+  getSchedulerData,
+  getTabsConfig,
+} from "../utils/configurationUtils";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -201,8 +205,20 @@ export const setInitialPluginState = (
     dispatch(setSechedulerUIConfig(schedulerUIConfig));
     dispatch(getUserTimeZones());
     dispatch(getOutputFormats());
-    const { currentActiveTab, ...rest } = getTabsConfig(schedulerUIConfig);
-    dispatch(setTabsConfig({ currentActiveTab, tabsConfiguration: rest }));
+    const { currentActiveTab, tabsToShow, stepsToShow } =
+      getTabsConfig(schedulerUIConfig);
+    if (schedulerUIConfig?.tabs?.tabsData) {
+      checkAllTheHiddenTabsValuesPresent(
+        tabsToShow,
+        schedulerUIConfig?.tabs?.tabsData,
+      );
+    }
+    dispatch(
+      setTabsConfig({
+        currentActiveTab,
+        tabsConfiguration: { tabsToShow, stepsToShow },
+      }),
+    );
     dispatch(
       setPropertiesDetails(
         getSchedulerData(

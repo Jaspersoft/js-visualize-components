@@ -64,8 +64,8 @@ const Schedule = () => {
   }, [recurrenceInterval]);
 
   useEffect(() => {
-    setRecurrenceUnit(recurrenceUnit);
-  }, [recurrenceUnit]);
+    setRecurrenceUnit(recurrenceIntervalUnit);
+  }, [recurrenceIntervalUnit]);
 
   const handleIntervalChange = (value: string) => {
     setRecurrenceInterval(value);

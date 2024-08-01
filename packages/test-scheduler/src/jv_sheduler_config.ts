@@ -5,90 +5,73 @@ const schedulerUIConfig = {
   tabs: {
     // should have array of length 4
     // tabsOrder: ["notifications","parameters", "schedule",  "output"],
-    activeTab: "notifications",
     tabsData: {
       schedule: {
-        show: false,
+        show: true,
         defaultValues: {
           // name of the schedule: required in config
           label: { showField: true },
           description: {
-            showField: true,
-            disabled: false,
             value: "description",
           },
           recurrence: {
-            recurrenceInterval: { showField: true, disabled: false, value: 1 },
+            recurrenceInterval: { value: 1 },
             recurrenceIntervalUnit: {
-              showField: true,
-              disabled: false,
-              value: "DAY",
+              value: "HOUR",
             },
           },
           startTime: {
-            startType: { showField: true, disabled: false, value: 1 },
+            startType: { value: 1 },
             // if startType is 2, we need start date
             startDate: {
-              showField: true,
-              disabled: false,
               value: "2024-07-31 14:11",
             },
           },
         },
       },
-      output: {
-        show: true,
-        defaultValues: {
-          // output file name
-          // outputFileName: required in config
-          baseOutputFilename: {
-            showField: true,
-            disabled: false,
-            value: "file name",
-          },
-          outputDescription: {
-            showField: true,
-            disabled: false,
-            value: "output description",
-          },
-          outputFormat: { showField: true, disabled: false, value: ["pdf"] },
-          // required
-          outputTimeZone: {
-            showField: true,
-            disabled: false,
-            value: "America/Los_Angeles",
-          },
-        },
-      },
-      parameters: {
-        show: true,
-        defaultValues: {
-          // list of parameters
-        },
-      },
-      notifications: {
-        show: true,
-        defaultValues: {
-          // required in config
-          address: { showField: true, disabled: false, value: ["a@tib.com"] },
-          // required in config
-          subject: { showField: true, disabled: false, value: "test subject" },
-          messageText: {
-            showField: true,
-            disabled: false,
-            value: "message text",
-          },
-          reportAccessType: {
-            value: "SEND", // "SEND_ATTACHMENT" | "SEND"
-            folderURI: {
-              showField: true,
-              disabled: false,
-              value: "/public",
-            },
-            saveToRepository: { showField: true, disabled: false, value: true },
-          },
-        },
-      },
+      // output: {
+      //   show: true,
+      //   defaultValues: {
+      //     // output file name
+      //     // outputFileName: required in config
+      //     baseOutputFilename: {
+      //       value: "file name",
+      //     },
+      //     outputDescription: {
+      //       value: "output description",
+      //     },
+      //     outputFormat: {  value: ["pdf"] },
+      //     // required
+      //     outputTimeZone: {
+      //       value: "America/Los_Angeles",
+      //     },
+      //   },
+      // },
+      // parameters: {
+      //   show: true,
+      //   defaultValues: {
+      //     // list of parameters
+      //   },
+      // },
+      // notifications: {
+      //   show: true,
+      //   defaultValues: {
+      //     // required in config
+      //     address: { value: ["a@tib.com"] },
+      //     // required in config
+      //     subject: { value: "test subject" },
+      //     messageText: {
+      //       value: "message text",
+      //     },
+      //     // reportAccessType: {
+      //     //   value: "SEND", // "SEND_ATTACHMENT" | "SEND"
+      //     //   folderURI: {
+      //     //     value: "/public",
+      //     //   },
+      //     //   saveToRepository: { showField: true, disabled: false, value: true },
+      //     // },
+      //   },
+      // },
     },
   },
   successIcon: "React/HTML element",
