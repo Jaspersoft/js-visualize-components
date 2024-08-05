@@ -22,7 +22,7 @@ export const timeFrames = [
   },
 ];
 
-export const tabsData = {
+export const tabsInfo = {
   [PARAMETERS_TAB]: {
     key: "parameters",
     label: "Parameters",

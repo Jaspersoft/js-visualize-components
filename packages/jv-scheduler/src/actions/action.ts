@@ -24,11 +24,6 @@ import {
   getStateOfCurrentActiveTab,
   getUriParts,
 } from "../utils/schedulerUtils";
-import {
-  checkAllTheHiddenTabsValuesPresent,
-  getSchedulerData,
-  getTabsConfig,
-} from "../utils/configurationUtils";
 
 // export const setUserLocale = (supportedLocale) => {
 //    return {
@@ -100,6 +95,35 @@ export const setFakeRootData = (fakeRootData) => {
     },
   };
 };
+
+export const setTabsConfig = (tabsConfiguration: any) => {
+  return {
+    type: SET_TABS_CONFIG,
+    payload: tabsConfiguration,
+  };
+};
+
+export const setVisitedTab = (tabs: string[]) => {
+  return {
+    type: SET_VISITED_TABS,
+    payload: { tabs },
+  };
+};
+
+export const setCurrentActiveTab = (activeTab: string) => {
+  return {
+    type: SET_ACTIVE_TAB,
+    payload: { activeTab },
+  };
+};
+
+export const setStepperProperties = (updatedStepperData: any) => {
+  return {
+    type: SET_STEPPER_PROPERTIES,
+    payload: { updatedStepperData },
+  };
+};
+
 export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
@@ -155,27 +179,6 @@ export const getFakeRootData = () => {
   };
 };
 
-export const setVisitedTab = (tabs: string[]) => {
-  return {
-    type: SET_VISITED_TABS,
-    payload: { tabs },
-  };
-};
-
-export const setCurrentActiveTab = (activeTab: string) => {
-  return {
-    type: SET_ACTIVE_TAB,
-    payload: { activeTab },
-  };
-};
-
-export const setStepperProperties = (updatedStepperData: any) => {
-  return {
-    type: SET_STEPPER_PROPERTIES,
-    payload: { updatedStepperData },
-  };
-};
-
 export const currentTabValidator = (newTabVal) => {
   return async (dispatch, getState) => {
     const { currentActiveTab, scheduleInfo } = getState(),
@@ -191,41 +194,19 @@ export const currentTabValidator = (newTabVal) => {
   };
 };
 
-export const setTabsConfig = (tabsConfiguration: any) => {
-  return {
-    type: SET_TABS_CONFIG,
-    payload: tabsConfiguration,
-  };
-};
-
-export const setInitialPluginState = (
-  schedulerUIConfig: ISchedulerUIConfig,
-) => {
+export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
   return async (dispatch) => {
+    const { tabsToShow, stepsToShow, scheduleInfo, currentActiveTab } =
+      schedulerData;
     dispatch(setSechedulerUIConfig(schedulerUIConfig));
     dispatch(getUserTimeZones());
     dispatch(getOutputFormats());
-    const { currentActiveTab, tabsToShow, stepsToShow } =
-      getTabsConfig(schedulerUIConfig);
-    if (schedulerUIConfig?.tabs?.tabsData) {
-      checkAllTheHiddenTabsValuesPresent(
-        tabsToShow,
-        schedulerUIConfig?.tabs?.tabsData,
-      );
-    }
     dispatch(
       setTabsConfig({
         currentActiveTab,
         tabsConfiguration: { tabsToShow, stepsToShow },
       }),
     );
-    dispatch(
-      setPropertiesDetails(
-        getSchedulerData(
-          schedulerUIConfig.resourceURI,
-          schedulerUIConfig?.tabs?.tabsData,
-        ),
-      ),
-    );
+    dispatch(setPropertiesDetails(scheduleInfo));
   };
 };

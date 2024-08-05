@@ -4,18 +4,31 @@ import { Provider as ReduxProvider } from "react-redux";
 import SchedulerMain from "./SchedulerMain";
 import { useTranslation } from "react-i18next";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
+import { ConfigurationErrorHandling } from "./errorHandling/configurationErrorHandling";
+import { getSchedulerData } from "../utils/configurationUtils";
 
 const EntryPoint = (schedulerUIConfig: ISchedulerUIConfig) => {
   const { i18n } = useTranslation();
+
+  const schedulerData = getSchedulerData(schedulerUIConfig);
 
   useEffect(() => {
     i18n.changeLanguage(schedulerUIConfig.locale || "en");
   }, [schedulerUIConfig.locale]);
 
   return (
-    <ReduxProvider store={store}>
-      <SchedulerMain {...schedulerUIConfig} />
-    </ReduxProvider>
+    <>
+      {schedulerData.error ? (
+        <ConfigurationErrorHandling />
+      ) : (
+        <ReduxProvider store={store}>
+          <SchedulerMain
+            schedulerUIConfig={schedulerUIConfig}
+            schedulerData={schedulerData}
+          />
+        </ReduxProvider>
+      )}
+    </>
   );
 };
 

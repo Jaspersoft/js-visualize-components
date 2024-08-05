@@ -1,7 +1,7 @@
 import {
   stepInfo,
   defaultTabsToShow,
-  tabsData,
+  tabsInfo,
   tabsDefaultOrder,
   ScheduleDefaultState,
   simpleTriggerState,
@@ -10,40 +10,7 @@ import {
   OUTPUT_TAB,
   NOTIFICATIONS_TAB,
 } from "../constants/schedulerConstants";
-import { getUriParts } from "./schedulerUtils";
-
-const isTabVisible = (config: any) => {
-  return config?.show !== false;
-};
-
-export const getTabsAndStepsToShow = (tabsConfig: any, tabsOrder: string[]) => {
-  let tabsToShow = [],
-    stepsToShow = [];
-  if (Array.isArray(tabsConfig)) {
-    tabsToShow = tabsOrder.map((tab) => tabsData[tab]);
-    stepsToShow = tabsOrder.map((tab) => stepInfo[tab]);
-  } else {
-    tabsOrder.forEach((tab: string) => {
-      if (isTabVisible(tabsConfig[tab])) {
-        tabsToShow.push(tabsData[tab]);
-        stepsToShow.push(stepInfo[tab]);
-      }
-    });
-  }
-  return { tabsToShow, stepsToShow };
-};
-
-export const getTabsConfig = (config: any) => {
-  const { tabsToShow, stepsToShow } = getTabsAndStepsToShow(
-    config.tabs?.tabsData || defaultTabsToShow,
-    config.tabs?.tabsOrder || tabsDefaultOrder,
-  );
-  return {
-    tabsToShow,
-    stepsToShow,
-    currentActiveTab: tabsToShow[0].value,
-  };
-};
+import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 
 const checkForStringOrNumber = (element) => {
   return (
@@ -52,14 +19,36 @@ const checkForStringOrNumber = (element) => {
   );
 };
 
-const getRequiredFiledData = (fieldName: string, tabData: any) => {
-  switch (fieldName) {
+const checkAvailabilityOfBasicConfig = (
+  resourceURI: string,
+  server: string,
+  contextPath: string,
+) => {
+  const error = {};
+  if (!resourceURI) {
+    error.resourceUri = "resourceURI is required in the configuration";
+    console.error("resourceURI is required in the configuration");
+  } else if (!server) {
+    error.server = "server is required in the configuration";
+    console.error("server is required in the configuration");
+  } else if (!contextPath) {
+    error.contextPath = "contextPath is required in the configuration";
+    console.error("contextPath is required in the configuration");
+  }
+  return error;
+};
+
+const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
+  const error = {};
+  switch (tabName) {
     case SCHEDULE_TAB: {
       const { label } = tabData;
       if (!label) {
         console.error(
           "Value for label is required in the configuration when schedule tab is hidden",
         );
+        error.label =
+          "Value for label is required in the configuration when schedule tab is hidden";
       }
       break;
     }
@@ -72,6 +61,8 @@ const getRequiredFiledData = (fieldName: string, tabData: any) => {
         console.error(
           "Value for baseOutputFilename is required in the configuration when output tab is hidden",
         );
+        error.baseOutputFilename =
+          "Value for baseOutputFilename is required in the configuration when output tab is hidden";
       }
       break;
     }
@@ -81,34 +72,75 @@ const getRequiredFiledData = (fieldName: string, tabData: any) => {
         console.error(
           "Value for address and subject is required in the configuration when notifications tab is hidden",
         );
+        error.address =
+          "Value for address is required in the configuration when notifications tab is hidden";
+        error.subject =
+          "Value for subject is required in the configuration when notifications tab is hidden";
       } else if (Array.isArray(address) || !checkForStringOrNumber(address)) {
         console.error(
           "Value for address should be a string or number or array of strings or numbers",
         );
+        error.address =
+          "Value for address should be a string or number or array of strings or numbers";
       }
       break;
     }
   }
+  return error;
 };
 
-export const checkAllTheHiddenTabsValuesPresent = (
-  tabsToShow: string[],
-  tabsData: any,
-) => {
-  tabsToShow.forEach((tab) => {
-    if (!isTabVisible(tabsData[tab])) {
-      getRequiredFiledData(tab, tabsData[tab].defaultValues);
+export const getSchedulerData = (scheduleConfig: any) => {
+  const { resourceURI, tabs, contextPath, server } = scheduleConfig || {};
+  const { tabsData = {}, tabsOrder } = tabs || {};
+  let error = checkAvailabilityOfBasicConfig(resourceURI, server, contextPath);
+  // check resourceURI, server, contextPath are provided by user
+  if (!!getLengthOfObject(error)) {
+    return { error };
+  }
+
+  // check whether resourceURI is correct and has permission to view.
+
+  const tabsConfig = tabsOrder || tabsDefaultOrder;
+
+  const stepsToShow = [],
+    tabsToShow = [];
+  tabsConfig.map((tab) => {
+    stepsToShow.push(stepInfo[tab]);
+  });
+  tabsConfig.map((tab) => {
+    tabsToShow.push(tabsInfo[tab]);
+  });
+
+  // find out hidden tabs
+  const hiddenTabs = tabsDefaultOrder.filter(
+    (tab) => tabsConfig.indexOf(tab) === -1,
+  );
+
+  // check we have data for all hidden tabs
+  hiddenTabs.forEach((tab) => {
+    const dataForTab = tabsData?.[tab];
+    const tabError = checkRequiredDataForHiddenTabs(
+      tab,
+      dataForTab?.defaultValues,
+    );
+    if (!!getLengthOfObject(tabError)) {
+      error[tab] = checkRequiredDataForHiddenTabs(
+        tab,
+        dataForTab?.defaultValues,
+      );
     }
   });
-};
+  if (!!getLengthOfObject(error)) {
+    return { error };
+  }
 
-export const getSchedulerData = (resourceUri: string, tabsData: any) => {
+  // check wehther we have data for all hidden tabs/ fields
   const {
     schedule = {},
     output = {},
     notifications = {},
     parameters = {},
-  } = tabsData || {};
+  } = tabsData;
   const schduleDefaultValues = schedule.defaultValues || {},
     outputDefaultValues = output.defaultValues || {},
     notificationsDefaultValues = notifications.defaultValues || {},
@@ -130,7 +162,7 @@ export const getSchedulerData = (resourceUri: string, tabsData: any) => {
   } = reportAccessType || {};
   const { startType, startDate } = startTime || {};
 
-  return {
+  const scheduleInfo = {
     ...ScheduleDefaultState,
     baseOutputFilename: baseOutputFilename?.value || "",
     scheduleJobDescription: description?.value || "",
@@ -159,8 +191,15 @@ export const getSchedulerData = (resourceUri: string, tabsData: any) => {
     repositoryDestination: {
       ...ScheduleDefaultState.repositoryDestination,
       folderURI:
-        folderURI?.value || `/${getUriParts(resourceUri, true).join("/")}`,
+        folderURI?.value || `/${getUriParts(resourceURI, true).join("/")}`,
       saveToRepository: true,
     },
+  };
+
+  return {
+    scheduleInfo,
+    tabsToShow,
+    stepsToShow,
+    currentActiveTab: tabsConfig[0],
   };
 };

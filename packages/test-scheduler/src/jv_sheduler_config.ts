@@ -4,15 +4,14 @@ const schedulerUIConfig = {
   contextPath: "/jasperserver-pro",
   tabs: {
     // should have array of length 4
-    // tabsOrder: ["notifications","parameters", "schedule",  "output"],
+    tabsOrder: ["schedule", "parameters", "notifications", "output"],
     tabsData: {
       schedule: {
-        show: true,
         defaultValues: {
           // name of the schedule: required in config
           label: { showField: true },
           description: {
-            value: "description",
+            value: "description test 1",
           },
           recurrence: {
             recurrenceInterval: { value: 1 },
@@ -29,49 +28,49 @@ const schedulerUIConfig = {
           },
         },
       },
-      // output: {
-      //   show: true,
-      //   defaultValues: {
-      //     // output file name
-      //     // outputFileName: required in config
-      //     baseOutputFilename: {
-      //       value: "file name",
-      //     },
-      //     outputDescription: {
-      //       value: "output description",
-      //     },
-      //     outputFormat: {  value: ["pdf"] },
-      //     // required
-      //     outputTimeZone: {
-      //       value: "America/Los_Angeles",
-      //     },
-      //   },
-      // },
-      // parameters: {
-      //   show: true,
-      //   defaultValues: {
-      //     // list of parameters
-      //   },
-      // },
-      // notifications: {
-      //   show: true,
-      //   defaultValues: {
-      //     // required in config
-      //     address: { value: ["a@tib.com"] },
-      //     // required in config
-      //     subject: { value: "test subject" },
-      //     messageText: {
-      //       value: "message text",
-      //     },
-      //     // reportAccessType: {
-      //     //   value: "SEND", // "SEND_ATTACHMENT" | "SEND"
-      //     //   folderURI: {
-      //     //     value: "/public",
-      //     //   },
-      //     //   saveToRepository: { showField: true, disabled: false, value: true },
-      //     // },
-      //   },
-      // },
+      output: {
+        show: true,
+        defaultValues: {
+          // output file name
+          // outputFileName: required in config
+          baseOutputFilename: {
+            value: "file name",
+          },
+          outputDescription: {
+            value: "output description",
+          },
+          outputFormat: { value: ["pdf"] },
+          // required
+          outputTimeZone: {
+            value: "America/Los_Angeles",
+          },
+        },
+      },
+      parameters: {
+        show: true,
+        defaultValues: {
+          // list of parameters
+        },
+      },
+      notifications: {
+        show: true,
+        defaultValues: {
+          // required in config
+          address: { value: ["a@tib.com"] },
+          // required in config
+          subject: { value: "test subject" },
+          messageText: {
+            value: "message text",
+          },
+          // reportAccessType: {
+          //   value: "SEND", // "SEND_ATTACHMENT" | "SEND"
+          //   folderURI: {
+          //     value: "/public",
+          //   },
+          //   saveToRepository: { showField: true, disabled: false, value: true },
+          // },
+        },
+      },
     },
   },
   successIcon: "React/HTML element",

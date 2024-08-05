@@ -1,27 +1,17 @@
 import React, { useEffect } from "react";
 import Tabs from "./Tabs/Tabs";
 import { useDispatch } from "react-redux";
-import { getInputControls } from "../services/schedulerServices";
-import {
-  getUserTimeZones,
-  getOutputFormats,
-  setSechedulerUIConfig,
-  setTabsConfig,
-  setPropertiesDetails,
-  setInitialPluginState,
-} from "../actions/action";
+import { setInitialPluginState } from "../actions/action";
 import ScheduleStepper from "./Stepper/ScheduleStepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
-import {
-  checkAllTheHiddenTabsValuesPresent,
-  getSchedulerData,
-  getTabsConfig,
-} from "../utils/configurationUtils";
 
-const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
+const SchedulerMain = ({
+  schedulerData,
+  schedulerUIConfig,
+}: ISchedulerUIConfig) => {
   const dispatch = useDispatch();
 
   // const setTabsData = () => {
@@ -32,16 +22,18 @@ const SchedulerMain = (schedulerUIConfig: ISchedulerUIConfig) => {
   // };
 
   useEffect(() => {
-    dispatch(setInitialPluginState(schedulerUIConfig));
-
-    const fetchData = async () => {
-      const inputControls = await getInputControls();
-      if (inputControls.error) {
-        // handle error for input controls
-      }
-    };
-    fetchData();
+    dispatch(setInitialPluginState(schedulerData, schedulerUIConfig));
   }, []);
+  // useEffect(() => {
+  //
+  //   const fetchData = async () => {
+  //     const inputControls = await getInputControls();
+  //     if (inputControls.error) {
+  //       // handle error for input controls
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <>
