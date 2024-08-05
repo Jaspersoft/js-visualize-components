@@ -67,7 +67,7 @@ const StepStateIcon = (props: any) => {
   return <StepIcon {...props} />;
 };
 
-const ScheduleStepper = () => {
+const Stepper = () => {
   const [iconState, setIconState] = useState({ ...tabsStateDefaultState });
 
   const activeStep = useSelector((state: any) => state.currentActiveTab);
@@ -143,9 +143,7 @@ const ScheduleStepper = () => {
     visitedTabs,
   ]);
   useEffect(() => {
-    // if (visitedTabs.includes(PARAMETERS_TAB)) {
     setIconStateOnChange(PARAMETERS_TAB, SUCCESS_STATE);
-    // }
   }, [visitedTabs]);
 
   return (
@@ -182,4 +180,4 @@ const ScheduleStepper = () => {
   );
 };
 
-export default ScheduleStepper;
+export default Stepper;

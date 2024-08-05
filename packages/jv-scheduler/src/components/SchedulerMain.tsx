@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Tabs from "./Tabs/Tabs";
 import { useDispatch } from "react-redux";
 import { setInitialPluginState } from "../actions/action";
-import ScheduleStepper from "./Stepper/ScheduleStepper";
+import Stepper from "./Stepper/Stepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
@@ -13,13 +13,6 @@ const SchedulerMain = ({
   schedulerUIConfig,
 }: ISchedulerUIConfig) => {
   const dispatch = useDispatch();
-
-  // const setTabsData = () => {
-  //   const { currentActiveTab, ...rest } = getTabsConfig(schedulerUIConfig);
-  //   dispatch(setTabsConfig({ currentActiveTab, tabsConfiguration: rest }));
-  //   checkAllTheHiddenTabsValuesPresent(rest.tabsToShow, schedulerUIConfig?.tabs?.tabsData)
-  //   dispatch(setPropertiesDetails(getSchedulerData(schedulerUIConfig.resourceURI, schedulerUIConfig?.tabs?.tabsData)),);
-  // };
 
   useEffect(() => {
     dispatch(setInitialPluginState(schedulerData, schedulerUIConfig));
@@ -40,7 +33,7 @@ const SchedulerMain = ({
       <JVStylesProvider>
         <div className="jv-lColumns">
           <div className="jv-lColumns-column jv-uWidth-300px jv-uOverflow-auto jv-uBackgroundGrey-04">
-            <ScheduleStepper />
+            <Stepper />
           </div>
           <div className="jv-lColumns-column  jv-uWidth-550px jv-uOverflow-auto">
             <SchedulerHeader />

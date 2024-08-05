@@ -12,6 +12,7 @@ const schedulerUIConfig = {
           label: { showField: true },
           description: {
             value: "description test 1",
+            show: true,
           },
           recurrence: {
             recurrenceInterval: { value: 1 },
