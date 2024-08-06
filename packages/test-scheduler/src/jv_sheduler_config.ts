@@ -9,16 +9,15 @@ const schedulerUIConfig = {
       schedule: {
         defaultValues: {
           // name of the schedule: required in config
-          label: { showField: true },
+          label: { showField: true, value: "aaa" },
           description: {
             value: "description test 1",
-            show: true,
+            showField: true,
           },
-          recurrence: {
-            recurrenceInterval: { value: 1 },
-            recurrenceIntervalUnit: {
-              value: "HOUR",
-            },
+          recurrenceInterval: { showField: true, value: 1 },
+          recurrenceIntervalUnit: {
+            showField: true,
+            value: "HOUR",
           },
           startTime: {
             startType: { value: 1 },
@@ -30,37 +29,38 @@ const schedulerUIConfig = {
         },
       },
       output: {
-        show: true,
         defaultValues: {
           // output file name
           // outputFileName: required in config
           baseOutputFilename: {
-            value: "file name",
+            showField: false,
+            // value: "file name",
           },
           outputDescription: {
+            showField: true,
             value: "output description",
           },
-          outputFormat: { value: ["pdf"] },
+          outputFormat: { showField: true, value: ["pdf"] },
           // required
           outputTimeZone: {
+            showField: true,
             value: "America/Los_Angeles",
           },
         },
       },
       parameters: {
-        show: true,
         defaultValues: {
           // list of parameters
         },
       },
       notifications: {
-        show: true,
         defaultValues: {
           // required in config
-          address: { value: ["a@tib.com"] },
+          address: { showField: true, value: ["a@tib.com"] },
           // required in config
-          subject: { value: "test subject" },
+          subject: { showField: true, value: "test subject" },
           messageText: {
+            showField: true,
             value: "message text",
           },
           // reportAccessType: {

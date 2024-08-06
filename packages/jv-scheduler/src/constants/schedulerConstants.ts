@@ -211,3 +211,11 @@ export const tabsDefaultOrder = [
   "output",
   "notifications",
 ];
+
+export const manadatoryHiddenField = [
+  "label",
+  "startType==2:startDate",
+  "address",
+  "subject",
+  "baseOutputFilename",
+];

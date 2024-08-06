@@ -1,6 +1,5 @@
 import {
   stepInfo,
-  defaultTabsToShow,
   tabsInfo,
   tabsDefaultOrder,
   ScheduleDefaultState,
@@ -9,6 +8,7 @@ import {
   PARAMETERS_TAB,
   OUTPUT_TAB,
   NOTIFICATIONS_TAB,
+  manadatoryHiddenField,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 
@@ -89,6 +89,21 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
   return error;
 };
 
+const checkHiddenFieldData = (fieldsData: any) => {
+  const error = {};
+  Object.keys(fieldsData).forEach((field) => {
+    if (
+      fieldsData[field].showField === false &&
+      manadatoryHiddenField.indexOf(field) > -1 &&
+      !fieldsData[field].value
+    ) {
+      console.error(`${field} is required in the configuration`);
+      error[field] = `${field} is required in the configuration`;
+    }
+  });
+  return error;
+};
+
 export const getSchedulerData = (scheduleConfig: any) => {
   const { resourceURI, tabs, contextPath, server } = scheduleConfig || {};
   const { tabsData = {}, tabsOrder } = tabs || {};
@@ -134,17 +149,31 @@ export const getSchedulerData = (scheduleConfig: any) => {
     return { error };
   }
 
-  // check wehther we have data for all hidden tabs/ fields
   const {
     schedule = {},
     output = {},
     notifications = {},
     parameters = {},
   } = tabsData;
-  const schduleDefaultValues = schedule.defaultValues || {},
+
+  const scheduleDefaultValues = schedule.defaultValues || {},
     outputDefaultValues = output.defaultValues || {},
     notificationsDefaultValues = notifications.defaultValues || {},
     parametersDefaultValues = parameters.defaultValues || {};
+
+  // check whether we have all data for hidden fields
+  const inputFieldsInfo = {
+    ...scheduleDefaultValues,
+    ...outputDefaultValues,
+    ...notificationsDefaultValues,
+    ...parametersDefaultValues,
+  };
+
+  error = checkHiddenFieldData(inputFieldsInfo);
+  if (!!getLengthOfObject(error)) {
+    return { error };
+  }
+
   const {
     baseOutputFilename,
     outputDescription,
@@ -153,8 +182,13 @@ export const getSchedulerData = (scheduleConfig: any) => {
   } = outputDefaultValues;
   const { address, messageText, subject, reportAccessType } =
     notificationsDefaultValues;
-  const { label, description, recurrence, startTime } = schduleDefaultValues;
-  const { recurrenceInterval, recurrenceIntervalUnit } = recurrence || {};
+  const {
+    label,
+    description,
+    startTime,
+    recurrenceInterval,
+    recurrenceIntervalUnit,
+  } = scheduleDefaultValues;
   const {
     value: resultSendType,
     folderURI,
