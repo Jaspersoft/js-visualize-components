@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { getBaseInputControlProps } from "../BaseInputControl";
 
-export function useLiveState(initialValue: any) {
+export function useLiveState(initialValue: any, callback?: any, props?: any) {
   /**
    * Changes the value of an input element to match the one selected
    *
@@ -10,13 +11,28 @@ export function useLiveState(initialValue: any) {
    */
   const [value, setValue] = useState(initialValue);
 
+  const triggerCallbackIfNeeded = (
+    callback: any,
+    props: any,
+    value: string | boolean,
+  ) => {
+    if (callback && props) {
+      callback(getBaseInputControlProps(props, value));
+    }
+  };
+
   function handleChange(e: any) {
     if (e.target.type === "checkbox") {
-      setValue(e.target.checked);
+      const val = e.target.checked;
+      setValue(val);
+      triggerCallbackIfNeeded(callback, props, val);
     } else {
-      setValue(e.target.value);
+      const val = e.target.value;
+      setValue(val);
+      triggerCallbackIfNeeded(callback, props, val);
     }
   }
+
   const liveStateProps = {
     value: value,
     onChange: handleChange,

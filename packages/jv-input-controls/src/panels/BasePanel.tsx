@@ -1,23 +1,28 @@
 import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
-import { JSX } from "react";
+import { JSX, useState } from "react";
+import { BaseInputControlProps } from "../controls/BaseInputControl";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
+import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
 import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
-import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
 
 export interface BasePanelProps {
   controls: any;
   config?: InputControlUserConfig;
+  callbackChange?: (ic: BaseInputControlProps[]) => void;
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
+  const [inputControls, setInputControls] = useState<BaseInputControlProps[]>(
+    props.controls.data,
+  );
   const getControlProps = (control: any) => {
     return {
       id: control.id,
@@ -29,6 +34,18 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       uri: control.uri,
       state: control.state,
     };
+  };
+  const buildLatestJSON = (ctrlUpdated: BaseInputControlProps) => {
+    const inputControlsUpdated = inputControls.map(
+      (ctrl: BaseInputControlProps) => {
+        if (ctrl.id !== ctrlUpdated.id) {
+          return ctrl;
+        }
+        return ctrlUpdated;
+      },
+    );
+    setInputControls(inputControlsUpdated);
+    props.callbackChange?.(inputControlsUpdated);
   };
   const buildControl = (control: any) => {
     const theProps = getControlProps(control);
@@ -53,6 +70,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           type={inputTypeText}
           dataType={control.dataType}
           validationRules={control.validationRules}
+          callbackChange={buildLatestJSON}
         />
       );
     }

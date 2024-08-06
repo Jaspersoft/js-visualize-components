@@ -93,6 +93,9 @@ export default function App(props: AppConfig) {
             type: "default", // even if it isn't provided, this will be the default component
           },
         },
+        callbackChange: (ics) => {
+          console.log("ics => ", ics);
+        },
       },
     );
     plugin.renderControlPanel(

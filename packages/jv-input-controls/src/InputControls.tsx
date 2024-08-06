@@ -1,6 +1,9 @@
 import { createRoot } from "react-dom/client";
 import { StylesProvider as JVStylesProvider } from "@jaspersoft/jv-ui-components/material-ui/styles/StylesProvider";
-import { InputControlCollection } from "./controls/BaseInputControl";
+import {
+  BaseInputControlProps,
+  InputControlCollection,
+} from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
 import { DatePickerICType } from "./controls/DatePickerInputControl";
 import { DateICType } from "./controls/DatePickerTextFieldInputControl";
@@ -11,6 +14,7 @@ import { TextFieldICType } from "./controls/SingleValueTextInputControl";
 import { TimePickerICType } from "./controls/TimePickerInputControl";
 import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
+
 export interface InputControlConfig {
   hostname?: string;
   username: string;
@@ -44,6 +48,7 @@ export interface InputControlPanelConfig {
   error?: (error: any) => void;
   exclude?: string[];
   config?: InputControlUserConfig;
+  callbackChange?: (ic: BaseInputControlProps[]) => void;
 }
 
 const defaultInputControlConfig: InputControlConfig = {
@@ -99,7 +104,11 @@ export class InputControls {
         const icRoot = createRoot(container);
         icRoot.render(
           <JVStylesProvider>
-            <BasePanel controls={controls} config={icPanelDef?.config} />
+            <BasePanel
+              controls={controls}
+              config={icPanelDef?.config}
+              callbackChange={icPanelDef?.callbackChange}
+            />
           </JVStylesProvider>,
         );
         icPanelDef?.success && icPanelDef?.success.call(null);
