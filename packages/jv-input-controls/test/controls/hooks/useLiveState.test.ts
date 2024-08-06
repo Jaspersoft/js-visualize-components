@@ -30,4 +30,17 @@ describe("useLiveState hook tests", () => {
     });
     expect(result.current.value).toBe(true);
   });
+  it("should call the callback method if it is provided", () => {
+    const callback = jest.fn();
+    const { result } = renderHook(() => useLiveState(0, callback, {}));
+    act(() => {
+      result.current.onChange({
+        target: {
+          type: "text",
+          value: 42,
+        },
+      });
+    });
+    expect(callback).toHaveBeenCalled();
+  });
 });
