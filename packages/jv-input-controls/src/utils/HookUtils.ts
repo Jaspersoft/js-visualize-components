@@ -3,10 +3,13 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { getBaseInputControlProps } from "../controls/BaseInputControl";
+import {
+  BaseInputControlProps,
+  getBaseInputControlProps,
+} from "../controls/BaseInputControl";
 
 export const triggerCallbackIfNeeded = (
-  props: any,
+  props: BaseInputControlProps | undefined,
   value: string | boolean,
 ) => {
   if (props && props.callbackChange) {

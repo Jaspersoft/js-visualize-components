@@ -33,6 +33,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       mandatory: control.mandatory,
       uri: control.uri,
       state: control.state,
+      callbackChange: buildLatestJSON,
     };
   };
   const buildLatestJSON = (ctrlUpdated: BaseInputControlProps) => {
@@ -55,7 +56,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           {...theProps}
           key={control.id}
           styleType={props.config?.bool?.type}
-          callbackChange={buildLatestJSON}
         />
       );
     }
@@ -71,7 +71,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           type={inputTypeText}
           dataType={control.dataType}
           validationRules={control.validationRules}
-          callbackChange={buildLatestJSON}
         />
       );
     }
@@ -82,7 +81,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
-          callbackChange={buildLatestJSON}
         />
       );
     }
@@ -95,7 +93,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
             key={control.id}
             dataType={control.dataType}
             validationRules={control.validationRules}
-            callbackChange={buildLatestJSON}
           />
         );
       }
@@ -105,7 +102,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
-          callbackChange={buildLatestJSON}
         />
       );
     }
@@ -117,7 +113,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
             key={control.id}
             dataType={control.dataType}
             validationRules={control.validationRules}
-            callbackChange={buildLatestJSON}
           />
         );
       }
@@ -127,7 +122,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
-          callbackChange={buildLatestJSON}
         />
       );
     }
@@ -137,7 +131,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           {...theProps}
           key={control.id}
           validationRules={control.validationRules}
-          callbackChange={buildLatestJSON}
         />
       );
     }
@@ -149,7 +142,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
             key={control.id}
             dataType={control.dataType}
             validationRules={control.validationRules}
-            callbackChange={buildLatestJSON}
           />
         );
       }
@@ -159,7 +151,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
-          callbackChange={buildLatestJSON}
         />
       );
     }
