@@ -1,77 +1,105 @@
 import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
 import { fireEvent, render, screen } from "@testing-library/react";
+
 import "@testing-library/jest-dom";
 import * as React from "react";
-import { DateTimePickerInputControl } from "../src/controls/DateTimePickerInputControl";
+import { DatePickerInputControl } from "../../src/controls/DatePickerInputControl";
 
 const requiredProps = {
-  id: "column_timestamp_1",
-  label: "column_timestamp",
+  id: "column_date_1",
+  label: "column_date",
   mandatory: false,
   readOnly: false,
   visible: true,
-  type: "singleValueDatetime",
+  type: "singleValueDate",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_date_1",
+    id: "column_date_1",
+    value: "2009-09-12",
+  },
 };
 
-const getDateTimePickerIC = (options?: any): React.JSX.Element => {
+const getDatePickerIC = (options?: any): React.JSX.Element => {
   const mergedProps = { ...requiredProps, ...options };
   return (
     <JVDatePickerProvider>
-      <DateTimePickerInputControl {...mergedProps} />
+      <DatePickerInputControl {...mergedProps} />
     </JVDatePickerProvider>
   );
 };
 
-describe("DateTimePickerInputControl tests", () => {
-  test("DateTimePickerInputControl is rendered correctly", () => {
-    render(getDateTimePickerIC({ value: "2014-09-12T15:46:18" }));
+describe("DatePickerInputControl tests", () => {
+  test("DatePickerInputControl is rendered correctly", () => {
+    render(
+      getDatePickerIC({
+        state: {
+          value: "2022-04-17",
+        },
+      }),
+    );
     const datePickerElement = screen.getByRole("textbox");
     expect(datePickerElement).toBeInTheDocument();
   });
 
+  // Test for label prop
   test("displays the label when provided", () => {
     const testLabel = "Test Label";
-    render(getDateTimePickerIC({ label: testLabel }));
+    render(getDatePickerIC({ label: testLabel }));
     const labelElement = screen.queryByLabelText(testLabel);
     expect(labelElement).toBeInTheDocument();
   });
 
-  test("value is converted to AM/PM format", () => {
+  // Test for value prop
+  test("uses value as the initial input value", () => {
+    const defaultValue = "04/17/2022";
     render(
-      getDateTimePickerIC({
-        value: "2014-09-14T15:46:18",
-        validationRules: [
-          {
-            dateTimeFormatValidationRule: {
-              errorMessage: "Specify a valid date/time value.",
-              format: "MM/dd/yyyy hh:mm:ssA",
-            },
-          },
-        ],
+      getDatePickerIC({
+        state: {
+          value: defaultValue,
+        },
       }),
     );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
-    expect(inputElement.value).toBe("09/14/2014 03:46:18 PM");
+    expect(inputElement.value).toBe(defaultValue);
   });
 
+  // Test for onChange event
+  test("updates value on change", () => {
+    render(
+      getDatePickerIC({
+        state: {
+          value: "04/17/2022",
+        },
+      }),
+    );
+    const datePicker = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "04/18/2022";
+    fireEvent.change(datePicker, { target: { value: newValue } });
+    expect(screen.getByDisplayValue(newValue)).toBeVisible();
+  });
+
+  // test readOnly prop
   test("check the component is read-only", () => {
     // Render the component
-    const { rerender } = render(getDateTimePickerIC({ readOnly: true }));
+    const { rerender } = render(getDatePickerIC({ readOnly: true }));
     let inputElement = screen.getByRole("textbox") as HTMLInputElement;
 
     // Assert that the element is found and has the expected attribute
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute("readonly");
 
-    rerender(getDateTimePickerIC({}));
+    rerender(getDatePickerIC({}));
     inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement).not.toHaveAttribute("readonly");
   });
 
+  // test visible prop
   test("check the component is visible or not", () => {
     const HIDDEN_CLASS_NAME = "jv-uVisibility-hide";
     // Render the component
-    const { container } = render(getDateTimePickerIC({ visible: false }));
+    const { container } = render(getDatePickerIC({ visible: false }));
     // Use querySelector to get the first div with the class "jv-mInputLarge"
     const divElement = container.querySelector(`div.${HIDDEN_CLASS_NAME}`);
 
@@ -80,16 +108,17 @@ describe("DateTimePickerInputControl tests", () => {
     expect(divElement).toHaveClass(HIDDEN_CLASS_NAME);
   });
 
+  // test disable prop
   test("check the component is disabled", () => {
     // Render the component
-    const { rerender } = render(getDateTimePickerIC({ disabled: true }));
+    const { rerender } = render(getDatePickerIC({ disabled: true }));
     let inputElement = screen.getByRole("textbox") as HTMLInputElement;
 
     // Assert that the element is found and has the expected attribute
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute("disabled");
 
-    rerender(getDateTimePickerIC({}));
+    rerender(getDatePickerIC({}));
     inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement).not.toHaveAttribute("disabled");
   });
