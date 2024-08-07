@@ -193,7 +193,7 @@ const Schedule = () => {
       <div className="jv-uMargin-l-07 jv-uWidth-200px">
         <JVTextField
           size="large"
-          type="date"
+          type="datetime-local"
           disabled={startType === 1}
           value={specificDateTime.split(" ").join("T")}
           onChange={(e) => {

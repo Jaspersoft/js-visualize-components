@@ -38,8 +38,12 @@ const Output = () => {
   const baseOutputFilename = useSelector(
     (state: IState) => state.scheduleInfo.baseOutputFilename,
   );
+  const repositoryDestination = useSelector(
+    (state: IState) => state.scheduleInfo.repositoryDestination,
+  );
   const baseOutputFileDescription = useSelector(
-    (state: IState) => state.scheduleInfo.baseOutputFileDescription,
+    (state: IState) =>
+      state.scheduleInfo.repositoryDestination.outputDescription,
   );
   const [outputDescription, setOutputDescription] = useState(
     baseOutputFileDescription,
@@ -111,7 +115,12 @@ const Output = () => {
           }}
           onBlur={() =>
             updateChangeToStore(
-              { baseOutputFileDescription: outputDescription },
+              {
+                repositoryDestination: {
+                  ...repositoryDestination,
+                  outputDescription,
+                },
+              },
               OUTPUT_FILE_DESCRIPTION,
               outputDescription,
             )

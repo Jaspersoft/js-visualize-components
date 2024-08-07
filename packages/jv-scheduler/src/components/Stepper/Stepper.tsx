@@ -154,7 +154,9 @@ const Stepper = () => {
       className="jr-uMargin-tb-15 jr-uMargin-lr-08"
     >
       {visibleSteps.map((item, index, arr) => {
-        const isDefaultMsg = !visitedTabs.includes(arr[index].name);
+        const isDefaultMsg =
+          activeStep === arr[index].name &&
+          !visitedTabs.includes(arr[index].name);
         return (
           <JVStep
             key={item.name}

@@ -12,8 +12,8 @@ const visualizeUrl =
   "https://localhost:8443/jasperserver-pro/client/visualize.js";
 
 const credentials: Authentication = {
-  name: "joeuser",
-  password: "joeuser",
+  name: "superuser",
+  password: "superuser",
 };
 
 function App() {

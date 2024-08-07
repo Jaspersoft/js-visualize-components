@@ -18,6 +18,7 @@ import {
   SEND_LINK,
 } from "../../constants/schedulerConstants";
 import { useTranslation } from "react-i18next";
+import { IState } from "../../types/schedulerTypes";
 
 interface InputDataInStepProps {
   error: string | undefined;
@@ -192,7 +193,8 @@ export const OutputStepUserInput = () => {
       (state: any) => state.stepperState.baseOutputFilename,
     ),
     fileDescription = useSelector(
-      (state: any) => state.scheduleInfo.baseOutputFileDescription,
+      (state: IState) =>
+        state.scheduleInfo.repositoryDestination.outputDescription,
     ),
     formats = useSelector((state: any) => state.stepperState.outputFormat),
     // fileNameErr = useSelector((state: TAlertErrors) => state.alertErrors.baseOutputFilename),

@@ -224,6 +224,7 @@ export const getSchedulerData = (scheduleConfig: any) => {
     },
     repositoryDestination: {
       ...ScheduleDefaultState.repositoryDestination,
+      outputDescription: outputDescription?.value || "",
       folderURI:
         folderURI?.value || `/${getUriParts(resourceURI, true).join("/")}`,
       saveToRepository: true,
