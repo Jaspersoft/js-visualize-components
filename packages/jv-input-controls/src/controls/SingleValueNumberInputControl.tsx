@@ -35,9 +35,10 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     visible,
     dataType,
     validationRules,
+    callbackChange,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "");
+  const liveState = useLiveState(props.state?.value || "", props);
 
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:

@@ -29,9 +29,10 @@ export const TimePickerTextFieldInputControl = (
     visible,
     dataType,
     validationRules,
+    callbackChange,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "");
+  const liveState = useLiveState(props.state?.value || "", props);
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {

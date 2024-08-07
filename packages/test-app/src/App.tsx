@@ -108,6 +108,9 @@ export default function App(props: AppConfig) {
         error: (error) => {
           console.log("Error when rendering the Select controls: ", error);
         },
+        callbackChange: (ics) => {
+          console.log("single select ics => ", ics);
+        },
       },
     );
   }, [plugin]);

@@ -27,6 +27,7 @@ export const TimePickerInputControl = (props: TimeICProps) => {
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
+    props,
   });
   const controlClasses = useControlClasses([], props);
   const views = props.views || ["hours", "minutes", "seconds"];
@@ -34,9 +35,10 @@ export const TimePickerInputControl = (props: TimeICProps) => {
     minKey: "minTime",
     maxKey: "maxTime",
   });
+  const { callbackChange, ...remainingProps } = props;
   return (
     <JVTimePicker
-      {...{ ...props, ...minAndMaxSettings }}
+      {...{ ...remainingProps, ...minAndMaxSettings }}
       views={views}
       onChange={liveState.onChange}
       value={liveState.value}

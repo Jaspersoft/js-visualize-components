@@ -41,15 +41,17 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
+    props,
   });
   const controlClasses = useControlClasses([], props);
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
     minKey: "minDateTime",
     maxKey: "maxDateTime",
   });
+  const { callbackChange, ...remainingProps } = props;
   return (
     <JVDateTimePicker
-      {...{ ...props, ...minAndMaxSettings }}
+      {...{ ...remainingProps, ...minAndMaxSettings }}
       onChange={liveState.onChange}
       value={liveState.value}
       views={views}
