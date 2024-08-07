@@ -123,6 +123,7 @@ export {
 } from "./Dialog/DialogTitle";
 export { DatePicker as JVDatePicker } from "./Date/DatePicker";
 export { DateTimePicker as JVDateTimePicker } from "./DateTime/DateTimePicker";
+export { DateTimeTextField as JVDateTimeTextField } from "./DateTimeTextField/DateTimeTextField";
 export { DatePickerProvider as JVDatePickerProvider } from "./Date/DatePickerProvider";
 export { Divider as JVDivider } from "./Divider/Divider";
 export { Drawer as JVDrawer } from "./Drawer/Drawer";
@@ -174,6 +175,7 @@ export {
   SelectItem as JVSelectItem,
   SelectItemProps as JVSelectItemProps,
 } from "./MenuItem/SelectItem";
+export { Select as JVSelect } from "./Select/Select";
 export {
   Message as JVMessage,
   TypeToClass as JVTypeToClass,

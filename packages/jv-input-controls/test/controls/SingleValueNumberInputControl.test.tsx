@@ -1,7 +1,7 @@
 import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSX } from "react";
-import { SingleValueNumberInputControl } from "../src/controls/SingleValueNumberInputControl";
+import { SingleValueNumberInputControl } from "../../src/controls/SingleValueNumberInputControl";
 import "@testing-library/jest-dom";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
@@ -12,6 +12,11 @@ const requiredProps = {
   readOnly: false,
   visible: true,
   type: "singleValueNumber",
+  state: {
+    uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+    id: "column_float_1",
+    value: "0.33",
+  },
 };
 
 const getNumberIC = (options?: object): JSX.Element => {
@@ -38,21 +43,39 @@ describe("SingleValueNumberInputControls tests", () => {
   // Test for value prop
   test("uses value as the initial input value", () => {
     const defaultValue = "1,786";
-    render(getNumberIC({ defaultValue }));
+    render(
+      getNumberIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);
   });
 
   test("a string is an invalid value for this input", () => {
     const defaultValue = "this is a string";
-    render(getNumberIC({ defaultValue }));
+    render(
+      getNumberIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const element = screen.getByText("Specify a valid value for type number.");
     expect(element).toBeVisible();
   });
 
   test("a combination of numbers and strings is an invalid value", () => {
     const defaultValue = "1.23e-10";
-    render(getNumberIC({ defaultValue }));
+    render(
+      getNumberIC({
+        state: {
+          value: defaultValue,
+        },
+      }),
+    );
     const element = screen.getByText("Specify a valid value for type number.");
     expect(element).toBeVisible();
   });
@@ -134,11 +157,110 @@ describe("SingleValueNumberInputControls tests", () => {
 
   // Test for mandatory field
   test("verify the field shows error when mandatory prop is set", () => {
-    const CSS_ERROR_CLASS = "jv-uMandatory";
-    const { container } = render(getNumberIC({ mandatory: true }));
+    const CSS_ERROR_CLASS = "jv-mInputRequired";
+    const { container } = render(
+      getNumberIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "number",
+          maxValue: "10",
+          strictMax: true,
+          minValue: "5",
+          strictMin: true,
+        },
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+          id: "column_float_1",
+          value: "",
+          error: "This field is mandatory so you must enter data.",
+        },
+      }),
+    );
     let wrapperDiv = container.querySelector(
       `div.${CSS_ERROR_CLASS}`,
     ) as HTMLInputElement;
     expect(wrapperDiv).toBeInTheDocument();
+    const muiError = container.querySelector(".Mui-error");
+    expect(muiError).toBeInTheDocument();
+    const errorMsg = container.querySelector(
+      ".MuiFormHelperText-root.jv-mInput-error",
+    );
+    expect(errorMsg).toBeInTheDocument();
+  });
+
+  test("verify the field shows error when value is not under the range of valid values", () => {
+    const { container } = render(
+      getNumberIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "number",
+          maxValue: "10",
+          strictMax: true,
+          minValue: "5",
+          strictMin: true,
+        },
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+          id: "column_float_1",
+          value: "3",
+          error: "This field is mandatory so you must enter data.",
+        },
+      }),
+    );
+    const muiError = container.querySelector(".Mui-error");
+    expect(muiError).toBeInTheDocument();
+    const errorMsg = container.querySelector(
+      ".MuiFormHelperText-root.jv-mInput-error",
+    );
+    expect(errorMsg).toBeInTheDocument();
+  });
+
+  test("verify the field does not show error when value is under the range of valid values", () => {
+    const CSS_ERROR_CLASS = "jv-mInputRequired";
+    const { container } = render(
+      getNumberIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "number",
+          maxValue: "10",
+          strictMax: true,
+          minValue: "5",
+          strictMin: true,
+        },
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
+          id: "column_float_1",
+          value: "7",
+          error: "This field is mandatory so you must enter data.",
+        },
+      }),
+    );
+    const muiError = container.querySelector(".Mui-error");
+    expect(muiError).not.toBeInTheDocument();
+    const errorMsg = container.querySelector(
+      ".MuiFormHelperText-root.jv-mInput-error",
+    );
+    expect(errorMsg).not.toBeInTheDocument();
   });
 });

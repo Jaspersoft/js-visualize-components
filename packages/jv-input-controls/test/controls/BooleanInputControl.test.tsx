@@ -1,5 +1,5 @@
 import * as React from "react";
-import BooleanInputControl from "../src/controls/BooleanInputControl";
+import { BooleanInputControl } from "../../src/controls/BooleanInputControl";
 import { cleanup, render } from "@testing-library/react";
 
 const requiredProps = {
@@ -26,9 +26,16 @@ describe("BooleanInputControl tests", () => {
     expect(checkboxElement.length).toBe(1);
   });
 
-  describe("should create switch", () => {
+  it("should create switch", () => {
     render(getBoolIC({ styleType: "switch" }));
     const switchElement = document.querySelectorAll('input[type="checkbox"]');
     expect(switchElement.length).toBe(1);
+    expect((switchElement[0] as any).checked).not.toBeTruthy();
+  });
+
+  it("should be chekced when state.value === true", () => {
+    render(getBoolIC({ state: { value: "true" } }));
+    const checkboxElement = document.querySelectorAll('input[type="checkbox"]');
+    expect((checkboxElement[0] as any).checked).toBeTruthy();
   });
 });
