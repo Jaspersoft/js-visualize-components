@@ -10,6 +10,7 @@ import {
   SET_ACTIVE_TAB,
   SET_STEPPER_PROPERTIES,
   SET_TABS_CONFIG,
+  SET_VISIBLE_FIELDS,
 } from "../constants/actionConstants";
 import {
   getFakeRootDataFromService,
@@ -124,6 +125,13 @@ export const setStepperProperties = (updatedStepperData: any) => {
   };
 };
 
+export const setVisibleFields = (fieldsVisibility: any) => {
+  return {
+    type: SET_VISIBLE_FIELDS,
+    payload: { fieldsVisibility },
+  };
+};
+
 export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
@@ -207,6 +215,7 @@ export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
         tabsConfiguration: { tabsToShow, stepsToShow },
       }),
     );
+    dispatch(setVisibleFields(schedulerData.fieldsVisibility));
     dispatch(setPropertiesDetails(scheduleInfo));
   };
 };

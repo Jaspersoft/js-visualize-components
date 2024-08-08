@@ -133,10 +133,8 @@ export const ScheduleDefaultState = {
   },
 };
 export const stepperState = {
-  scheduleJobName: undefined,
-  scheduleJobDescription: undefined,
-  operator: "equals",
-  thresholdValue: 0,
+  label: undefined,
+  description: undefined,
   address: undefined,
   subject: undefined,
   messageText: undefined,
@@ -148,6 +146,19 @@ export const stepperState = {
   resultSendType: "SEND",
   outputFormat: [],
   outputTimeZone: "",
+};
+
+export const defaultFieldVisibility = {
+  baseOutputFilename: true,
+  outputDescription: true,
+  outputFormat: true,
+  outputTimeZone: true,
+  address: true,
+  subject: true,
+  messageText: true,
+  label: true,
+  recurrenceInterval: true,
+  recurrenceIntervalUnit: true,
 };
 
 export const defaultState = {
@@ -165,6 +176,7 @@ export const defaultState = {
     userOutputFormatApiFailure: false,
   },
   fakeRoot: [],
+  fieldsVisibility: defaultFieldVisibility,
   scheduleInfo: {
     ...ScheduleDefaultState,
   },

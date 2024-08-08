@@ -10,6 +10,7 @@ import {
   SET_ACTIVE_TAB,
   SET_STEPPER_PROPERTIES,
   SET_TABS_CONFIG,
+  SET_VISIBLE_FIELDS,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -82,6 +83,11 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         currentActiveTab: action.payload?.currentActiveTab,
         tabsConfiguration: action.payload?.tabsConfiguration,
+      };
+    case SET_VISIBLE_FIELDS:
+      return {
+        ...state,
+        fieldsVisibility: action.payload?.fieldsVisibility,
       };
     // case SET_USER_LOCALE:
     //     return {

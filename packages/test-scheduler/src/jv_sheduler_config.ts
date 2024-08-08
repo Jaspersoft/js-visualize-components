@@ -6,28 +6,28 @@ const schedulerUIConfig = {
     // should have array of length 4
     tabsOrder: ["schedule", "parameters", "output", "notifications"],
     tabsData: {
-      // schedule: {
-      //   defaultValues: {
-      //     // name of the schedule: required in config
-      //     label: { showField: true, value: "aaa" },
-      //     description: {
-      //       value: "description test 1",
-      //       showField: true,
-      //     },
-      //     recurrenceInterval: { showField: true, value: 1 },
-      //     recurrenceIntervalUnit: {
-      //       showField: true,
-      //       value: "HOUR",
-      //     },
-      //     startTime: {
-      //       startType: { value: 1 },
-      //       // if startType is 2, we need start date
-      //       startDate: {
-      //         value: "2024-07-31 14:11",
-      //       },
-      //     },
-      //   },
-      // },
+      schedule: {
+        defaultValues: {
+          // name of the schedule: required in config
+          label: { value: "aaa" },
+          description: {
+            value: "description test 1",
+            showField: false,
+          },
+          recurrenceInterval: { showField: true, value: 1 },
+          recurrenceIntervalUnit: {
+            showField: true,
+            value: "HOUR",
+          },
+          startTime: {
+            startType: { value: 1 },
+            // if startType is 2, we need start date
+            startDate: {
+              value: "2024-07-31 14:11",
+            },
+          },
+        },
+      },
       output: {
         defaultValues: {
           // output file name

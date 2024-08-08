@@ -32,6 +32,12 @@ const Schedule = () => {
   const outputTimeZone = useSelector(
     (state: IState) => state.scheduleInfo.outputTimeZone,
   );
+  const {
+    label: labelVisible,
+    description: descriptionVisible,
+    recurrenceInterval: recurrenceIntervalVisible,
+    recurrenceIntervalUnit: recurrenceIntervalUnitVisible,
+  } = useSelector((state: IState) => state.fieldsVisibility);
 
   const [scheduleName, setScheduleName] = useState(scheduleJobName);
   const [scheduleDescription, setScheduleDescription] = useState(
@@ -104,31 +110,38 @@ const Schedule = () => {
   return (
     <>
       <JVTypographyComponent text={t("schedule.name.description.title")} />
-      <JVTextField
-        size="large"
-        label={t("schedule.job.name.label")}
-        value={scheduleName}
-        onChange={(e) => setScheduleName(e.target.value)}
-        onBlur={() => {
-          updateChangeToStore({ [SCHEDULE_JOB_NAME]: scheduleName });
-        }}
-      />
-      <JVTextField
-        size="large"
-        label={t("schedule.job.description.label")}
-        multiline
-        rows={5}
-        value={scheduleDescription}
-        onChange={(e) => {
-          setScheduleDescription(e.target.value);
-        }}
-        onBlur={() =>
-          updateChangeToStore({
-            [SCHEDULE_JOB_DESCRIPTION]: scheduleDescription,
-          })
-        }
-      />
-      <JVTypographyComponent text={t("schedule.recurrence.title")} />
+      {labelVisible && (
+        <JVTextField
+          size="large"
+          label={t("schedule.job.name.label")}
+          value={scheduleName}
+          onChange={(e) => setScheduleName(e.target.value)}
+          onBlur={() => {
+            updateChangeToStore({ [SCHEDULE_JOB_NAME]: scheduleName });
+          }}
+        />
+      )}
+      {descriptionVisible && (
+        <JVTextField
+          size="large"
+          label={t("schedule.job.description.label")}
+          multiline
+          rows={5}
+          value={scheduleDescription}
+          onChange={(e) => {
+            setScheduleDescription(e.target.value);
+          }}
+          onBlur={() =>
+            updateChangeToStore({
+              [SCHEDULE_JOB_DESCRIPTION]: scheduleDescription,
+            })
+          }
+        />
+      )}
+      {recurrenceIntervalVisible ||
+        (recurrenceIntervalUnitVisible && (
+          <JVTypographyComponent text={t("schedule.recurrence.title")} />
+        ))}
       <div className="jv-mControl jv-mControlInterval jv-mControlFlexwidth mui">
         <JVTextField
           id="recurrenceInterval"

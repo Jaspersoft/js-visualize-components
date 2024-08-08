@@ -90,7 +90,8 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
 };
 
 const checkHiddenFieldData = (fieldsData: any) => {
-  const error = {};
+  const error = {},
+    fieldsVisibility = {};
   Object.keys(fieldsData).forEach((field) => {
     if (
       fieldsData[field].showField === false &&
@@ -99,9 +100,14 @@ const checkHiddenFieldData = (fieldsData: any) => {
     ) {
       console.error(`${field} is required in the configuration`);
       error[field] = `${field} is required in the configuration`;
+    } else {
+      fieldsVisibility[field] =
+        fieldsData[field].showField === undefined
+          ? true
+          : fieldsData[field].showField;
     }
   });
-  return error;
+  return { error, fieldsVisibility };
 };
 
 export const getSchedulerData = (scheduleConfig: any) => {
@@ -169,8 +175,9 @@ export const getSchedulerData = (scheduleConfig: any) => {
     ...parametersDefaultValues,
   };
 
-  error = checkHiddenFieldData(inputFieldsInfo);
-  if (!!getLengthOfObject(error)) {
+  const { error: fieldsErrs, fieldsVisibility } =
+    checkHiddenFieldData(inputFieldsInfo);
+  if (!!getLengthOfObject(fieldsErrs)) {
     return { error };
   }
 
@@ -236,5 +243,6 @@ export const getSchedulerData = (scheduleConfig: any) => {
     tabsToShow,
     stepsToShow,
     currentActiveTab: tabsConfig[0],
+    fieldsVisibility,
   };
 };
