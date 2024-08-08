@@ -35,7 +35,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       mandatory: control.mandatory,
       uri: control.uri,
       state: control.state,
-      callbackChange: buildLatestJSON,
+      events: {
+        change: buildLatestJSON,
+      },
     };
   };
   const buildLatestJSON = (ctrlUpdated: BaseInputControlProps) => {

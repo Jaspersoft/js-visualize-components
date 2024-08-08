@@ -98,7 +98,9 @@ export interface BaseInputControlProps {
 
   masterDependencies?: string[];
   slaveDependencies?: string[];
-  callbackChange?: (ic: BaseInputControlProps) => void;
+  events?: {
+    change: (ic: BaseInputControlProps) => void;
+  };
 }
 
 export interface InputControlCollection {

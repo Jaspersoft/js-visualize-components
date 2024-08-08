@@ -35,7 +35,7 @@ describe("useLiveState hook tests", () => {
     // help me fix the next line
     const { result } = renderHook(() =>
       useLiveState(0, {
-        callbackChange: callback,
+        events: { change: callback },
         id: "column_time_1",
         label: "column_time",
         mandatory: false,

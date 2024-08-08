@@ -56,7 +56,7 @@ describe("useLiveState hook tests", () => {
         initialValue: "2014-09-12T15:46:18",
         format: "YYYY-MM-DDTHH:mm:ss",
         props: {
-          callbackChange: callback,
+          events: { change: callback },
           id: "column_time_1",
           label: "column_time",
           mandatory: false,

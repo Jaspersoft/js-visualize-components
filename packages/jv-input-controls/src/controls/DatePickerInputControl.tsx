@@ -34,7 +34,7 @@ export const DatePickerInputControl = (props: DateICProps) => {
     minKey: "minDate",
     maxKey: "maxDate",
   });
-  const { callbackChange, ...remainingProps } = props;
+  const { events, ...remainingProps } = props;
   return (
     <JVDatePicker
       {...{ ...remainingProps, ...minAndMaxSettings }}

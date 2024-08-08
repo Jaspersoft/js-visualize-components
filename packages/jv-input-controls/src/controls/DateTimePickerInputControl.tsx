@@ -48,7 +48,7 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
     minKey: "minDateTime",
     maxKey: "maxDateTime",
   });
-  const { callbackChange, ...remainingProps } = props;
+  const { events, ...remainingProps } = props;
   return (
     <JVDateTimePicker
       {...{ ...remainingProps, ...minAndMaxSettings }}

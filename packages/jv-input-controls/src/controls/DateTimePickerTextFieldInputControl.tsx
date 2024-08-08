@@ -29,7 +29,7 @@ export const DateTimePickerTextFieldInputControl = (
     visible,
     dataType,
     validationRules,
-    callbackChange,
+    events,
     ...remainingProps
   } = props;
   const liveState = useLiveState(props.state?.value || "", props);

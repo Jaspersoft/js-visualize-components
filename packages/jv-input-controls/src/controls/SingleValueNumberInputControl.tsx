@@ -35,7 +35,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     visible,
     dataType,
     validationRules,
-    callbackChange,
+    events,
     ...remainingProps
   } = props;
   const liveState = useLiveState(props.state?.value || "", props);

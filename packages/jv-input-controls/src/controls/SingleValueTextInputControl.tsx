@@ -29,7 +29,7 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     visible,
     validationRules,
     dataType,
-    callbackChange,
+    events,
     ...remainingProps
   } = props;
   const liveState = useLiveState(props.state?.value || "", props);

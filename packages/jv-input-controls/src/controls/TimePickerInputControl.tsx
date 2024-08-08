@@ -35,7 +35,7 @@ export const TimePickerInputControl = (props: TimeICProps) => {
     minKey: "minTime",
     maxKey: "maxTime",
   });
-  const { callbackChange, ...remainingProps } = props;
+  const { events, ...remainingProps } = props;
   return (
     <JVTimePicker
       {...{ ...remainingProps, ...minAndMaxSettings }}

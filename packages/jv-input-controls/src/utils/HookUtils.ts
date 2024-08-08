@@ -12,7 +12,5 @@ export const triggerCallbackIfNeeded = (
   props: BaseInputControlProps | undefined,
   value: string | boolean,
 ) => {
-  if (props && props.callbackChange) {
-    props.callbackChange(getBaseInputControlProps(props, value));
-  }
+  props?.events?.change?.(getBaseInputControlProps(props, value));
 };
