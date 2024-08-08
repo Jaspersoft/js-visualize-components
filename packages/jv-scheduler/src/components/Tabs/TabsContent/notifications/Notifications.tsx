@@ -33,12 +33,17 @@ const Notifications = () => {
   );
   const fakeRoot = useSelector((state: any) => state.fakeRoot);
   const {
+    address: addressVisible,
+    subject: subjectVisible,
+    messageText: messageTextVisible,
+  } = useSelector((state: IState) => state.fieldsVisibility);
+
+  const {
     messageText,
     subject,
     toAddresses: { address },
     resultSendType,
   } = mailNotification;
-
   const { folderURI } = repositoryDestination;
 
   const [open, setOpen] = useState(false);
@@ -105,35 +110,41 @@ const Notifications = () => {
     <>
       <JVTypographyComponent text={t("notifications.email.title")} />
       <div className="jv-mInputs mui">
-        <JVTextField
-          size="large"
-          label={t("notifications.email.recipients.label")}
-          helperText={t("notifications.email.helpertext")}
-          value={mailAddress}
-          onChange={(e) => setMailAddress(e.target.value)}
-          onBlur={() => {
-            const addressArr = mailAddress.length
-              ? mailAddress.split(new RegExp(" *, *"))
-              : mailAddress;
-            updateChangeToStore({ toAddresses: { address: addressArr } });
-          }}
-        />
-        <JVTextField
-          size="large"
-          label={t("notifications.email.subject.label")}
-          value={mailSubject}
-          onChange={(e) => setMailSubject(e.target.value)}
-          onBlur={() => updateChangeToStore({ subject: mailSubject })}
-        />
-        <JVTextField
-          size="large"
-          label={t("notifications.email.message.label")}
-          multiline
-          rows={5}
-          value={mailMessageText}
-          onChange={(e) => setMailMessageText(e.target.value)}
-          onBlur={() => updateChangeToStore({ messageText: mailMessageText })}
-        />
+        {addressVisible && (
+          <JVTextField
+            size="large"
+            label={t("notifications.email.recipients.label")}
+            helperText={t("notifications.email.helpertext")}
+            value={mailAddress}
+            onChange={(e) => setMailAddress(e.target.value)}
+            onBlur={() => {
+              const addressArr = mailAddress.length
+                ? mailAddress.split(new RegExp(" *, *"))
+                : mailAddress;
+              updateChangeToStore({ toAddresses: { address: addressArr } });
+            }}
+          />
+        )}
+        {subjectVisible && (
+          <JVTextField
+            size="large"
+            label={t("notifications.email.subject.label")}
+            value={mailSubject}
+            onChange={(e) => setMailSubject(e.target.value)}
+            onBlur={() => updateChangeToStore({ subject: mailSubject })}
+          />
+        )}
+        {messageTextVisible && (
+          <JVTextField
+            size="large"
+            label={t("notifications.email.message.label")}
+            multiline
+            rows={5}
+            value={mailMessageText}
+            onChange={(e) => setMailMessageText(e.target.value)}
+            onBlur={() => updateChangeToStore({ messageText: mailMessageText })}
+          />
+        )}
         <JVRadioGroup
           title={t("notifications.radiogroup.title")}
           RadioGroupProps={{ value: sendType, onChange: handleChange }}

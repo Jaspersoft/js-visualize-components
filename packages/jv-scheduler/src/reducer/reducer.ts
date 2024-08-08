@@ -88,7 +88,10 @@ export const rootReducer = (state = initialState, action) => {
     case SET_VISIBLE_FIELDS:
       return {
         ...state,
-        fieldsVisibility: action.payload?.fieldsVisibility,
+        fieldsVisibility: {
+          ...state.fieldsVisibility,
+          ...action.payload?.fieldsVisibility,
+        },
       };
     case SCHEDULE_ERROR_OCCURRED:
       return {

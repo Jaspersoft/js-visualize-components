@@ -49,6 +49,13 @@ const Output = () => {
     (state: IState) =>
       state.scheduleInfo.repositoryDestination.outputDescription,
   );
+  const {
+    baseOutputFilename: baseOutputFilenameVisible,
+    outputDescription: outputDescriptionVisible,
+    outputFormat: outputFormatsVisible,
+    outputTimeZone: timezoneVisible,
+  } = useSelector((state: IState) => state.fieldsVisibility);
+
   const [outputDescription, setOutputDescription] = useState(
     baseOutputFileDescription,
   );
@@ -95,77 +102,87 @@ const Output = () => {
     <>
       <JVTypographyComponent text={t("output.title")} />
       <div className="jv-mInputs mui">
-        <JVTextField
-          size="large"
-          label={t("output.file.name.label")}
-          value={fileName}
-          onChange={(e) => setFileName(e.target.value)}
-          onBlur={() =>
-            updateChangeToStore(
-              { baseOutputFilename: fileName },
-              OUTPUT_FILE_NAME,
-              fileName,
-            )
-          }
-          error={t(baseFileOutputErr || "")}
-        />
-        <JVTextField
-          size="large"
-          label={t("output.file.description.label")}
-          multiline
-          rows={5}
-          value={outputDescription}
-          onChange={(e) => {
-            setOutputDescription(e.target.value);
-          }}
-          onBlur={() =>
-            updateChangeToStore(
-              {
-                repositoryDestination: {
-                  ...repositoryDestination,
-                  outputDescription,
+        {baseOutputFilenameVisible && (
+          <JVTextField
+            size="large"
+            label={t("output.file.name.label")}
+            value={fileName}
+            onChange={(e) => setFileName(e.target.value)}
+            onBlur={() =>
+              updateChangeToStore(
+                { baseOutputFilename: fileName },
+                OUTPUT_FILE_NAME,
+                fileName,
+              )
+            }
+            error={t(baseFileOutputErr || "")}
+          />
+        )}
+        {outputDescriptionVisible && (
+          <JVTextField
+            size="large"
+            label={t("output.file.description.label")}
+            multiline
+            rows={5}
+            value={outputDescription}
+            onChange={(e) => {
+              setOutputDescription(e.target.value);
+            }}
+            onBlur={() =>
+              updateChangeToStore(
+                {
+                  repositoryDestination: {
+                    ...repositoryDestination,
+                    outputDescription,
+                  },
                 },
-              },
-              OUTPUT_FILE_DESCRIPTION,
-              outputDescription,
-            )
-          }
-        />
-        <JVTextField
-          size="large"
-          label={t("output.timezone.label")}
-          select
-          value={timezone}
-          onChange={(e) => {
-            const newTimezone = e.target.value;
-            setTimezone(e.target.value);
-            updateChangeToStore(
-              { outputTimeZone: newTimezone },
-              OUTPUT_TIME_ZONE,
-              newTimezone,
-            );
-          }}
-        >
-          {userTimeZones.map((item: { code: string; description: string }) => (
-            <JVSelectItem key={item.code} value={item.code}>
-              {item.code} - {item.description}
-            </JVSelectItem>
-          ))}
-        </JVTextField>
-        <JVCheckboxGroup size="large" title={t("output.formats.label")}>
-          {outputFormats.map((format: any) => (
-            <JVCheckbox
-              key={format}
-              label={t(`output.format.${format}`)}
-              value={format}
-              CheckboxProps={{
-                name: format,
-                checked: isOutputFormatSelected(format),
-                onChange: handleOutputFormatChange,
-              }}
-            />
-          ))}
-        </JVCheckboxGroup>
+                OUTPUT_FILE_DESCRIPTION,
+                outputDescription,
+              )
+            }
+          />
+        )}
+        {timezoneVisible && (
+          <JVTextField
+            size="large"
+            label={t("output.timezone.label")}
+            select
+            value={timezone}
+            onChange={(e) => {
+              const newTimezone = e.target.value;
+              setTimezone(e.target.value);
+              updateChangeToStore(
+                { outputTimeZone: newTimezone },
+                OUTPUT_TIME_ZONE,
+                newTimezone,
+              );
+            }}
+          >
+            {userTimeZones.map(
+              (item: { code: string; description: string }) => (
+                <JVSelectItem key={item.code} value={item.code}>
+                  {item.code} - {item.description}
+                </JVSelectItem>
+              ),
+            )}
+          </JVTextField>
+        )}
+        {outputFormatsVisible && (
+          <JVCheckboxGroup size="large" title={t("output.formats.label")}>
+            {outputFormats.map((format: any) => (
+              <JVCheckbox
+                key={format}
+                label={t(`output.format.${format}`)}
+                value={format}
+                CheckboxProps={{
+                  name: format,
+                  checked: isOutputFormatSelected(format),
+                  onChange: handleOutputFormatChange,
+                }}
+              />
+            ))}
+          </JVCheckboxGroup>
+        )}
 
         {(userOutputFormatApiFailure || userTimezoneApiFailure) && (
           <MessageAPIError
