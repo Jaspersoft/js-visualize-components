@@ -93,8 +93,10 @@ export default function App(props: AppConfig) {
             type: "default", // even if it isn't provided, this will be the default component
           },
         },
-        callbackChange: (ics) => {
-          console.log("ics => ", ics);
+        events: {
+          change: (ics) => {
+            console.log("ics => ", ics);
+          },
         },
       },
     );
@@ -108,8 +110,10 @@ export default function App(props: AppConfig) {
         error: (error) => {
           console.log("Error when rendering the Select controls: ", error);
         },
-        callbackChange: (ics) => {
-          console.log("single select ics => ", ics);
+        events: {
+          change: (ics) => {
+            console.log("single select ics => ", ics);
+          },
         },
       },
     );

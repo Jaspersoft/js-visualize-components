@@ -48,7 +48,9 @@ export interface InputControlPanelConfig {
   error?: (error: any) => void;
   exclude?: string[];
   config?: InputControlUserConfig;
-  callbackChange?: (ic: BaseInputControlProps[]) => void;
+  events?: {
+    change?: (ic: BaseInputControlProps[]) => void;
+  };
 }
 
 const defaultInputControlConfig: InputControlConfig = {
@@ -107,7 +109,7 @@ export class InputControls {
             <BasePanel
               controls={controls}
               config={icPanelDef?.config}
-              callbackChange={icPanelDef?.callbackChange}
+              events={icPanelDef?.events}
             />
           </JVStylesProvider>,
         );

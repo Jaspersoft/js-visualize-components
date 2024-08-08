@@ -16,7 +16,9 @@ import { InputControlUserConfig } from "../InputControls";
 export interface BasePanelProps {
   controls: any;
   config?: InputControlUserConfig;
-  callbackChange?: (ic: BaseInputControlProps[]) => void;
+  events?: {
+    change?: (ic: BaseInputControlProps[]) => void;
+  };
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
@@ -46,7 +48,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       },
     );
     setInputControls(inputControlsUpdated);
-    props.callbackChange?.(inputControlsUpdated);
+    props.events?.change?.(inputControlsUpdated);
   };
   const buildControl = (control: any) => {
     const theProps = getControlProps(control);

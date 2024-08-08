@@ -8,14 +8,14 @@ import "@testing-library/jest-dom";
 import BasePanel from "../../src/panels/BasePanel";
 
 describe("BasePanel", () => {
-  const mockCallbackChange = jest.fn();
+  const mockChange = jest.fn();
 
   const renderComponent = (controls: any, config?: any) => {
     render(
       <BasePanel
         controls={controls}
         config={config}
-        callbackChange={mockCallbackChange}
+        events={{ change: mockChange }}
       />,
     );
   };
