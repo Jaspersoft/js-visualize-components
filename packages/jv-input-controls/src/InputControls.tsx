@@ -49,7 +49,7 @@ export interface InputControlPanelConfig {
   exclude?: string[];
   config?: InputControlUserConfig;
   events?: {
-    change?: (ic: BaseInputControlProps[]) => void;
+    change?: (ic: { [key: string]: any[] }) => void;
   };
 }
 

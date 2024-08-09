@@ -17,7 +17,7 @@ export interface BasePanelProps {
   controls: any;
   config?: InputControlUserConfig;
   events?: {
-    change?: (ic: BaseInputControlProps[]) => void;
+    change?: (ic: { [key: string]: any[] }) => void;
   };
 }
 
@@ -25,6 +25,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   const [inputControls, setInputControls] = useState<BaseInputControlProps[]>(
     props.controls.data,
   );
+  const [devResponse, setDevResponse] = useState<{ [key: string]: any[] }>({});
   const getControlProps = (control: any) => {
     return {
       id: control.id,
@@ -41,16 +42,28 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     };
   };
   const buildLatestJSON = (ctrlUpdated: BaseInputControlProps) => {
-    const inputControlsUpdated = inputControls.map(
-      (ctrl: BaseInputControlProps) => {
-        if (ctrl.id !== ctrlUpdated.id) {
-          return ctrl;
-        }
-        return ctrlUpdated;
+    const inputControlsUpdated = inputControls.reduce(
+      (
+        acc: {
+          state: BaseInputControlProps[];
+          response: { [key: string]: any[] };
+        },
+        ctrl: BaseInputControlProps,
+      ) => {
+        const prevState = acc.response[ctrl.id] || [];
+        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
+        acc.state.push(ctrlToUse);
+        acc.response[ctrlToUse.id] =
+          ctrlToUse.type === "multiSelect"
+            ? [...prevState, ctrlToUse.state?.value]
+            : [ctrlToUse.state?.value];
+        return acc;
       },
+      { state: [], response: { ...devResponse } },
     );
-    setInputControls(inputControlsUpdated);
-    props.events?.change?.(inputControlsUpdated);
+    setInputControls(inputControlsUpdated.state);
+    setDevResponse(inputControlsUpdated.response);
+    props.events?.change?.(inputControlsUpdated.response);
   };
   const buildControl = (control: any) => {
     const theProps = getControlProps(control);
