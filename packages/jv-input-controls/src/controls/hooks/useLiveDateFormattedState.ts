@@ -4,8 +4,10 @@
  */
 
 import { useState } from "react";
-import { triggerCallbackIfNeeded } from "../../utils/HookUtils";
-import { BaseInputControlProps } from "../BaseInputControl";
+import {
+  BaseInputControlProps,
+  getBaseInputControlProps,
+} from "../BaseInputControl";
 
 const DEFAULT_DATE_FORMAT = "YYYY-MM-DD";
 
@@ -23,7 +25,7 @@ export function useLiveDateFormattedState({
   function handleChange(e: any) {
     const val = e && e.format ? e.format(format) : e;
     setValue(val);
-    triggerCallbackIfNeeded(props, val);
+    props?.events?.change?.(getBaseInputControlProps(props, val));
   }
 
   return {

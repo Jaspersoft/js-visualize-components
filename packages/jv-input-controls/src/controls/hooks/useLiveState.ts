@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { triggerCallbackIfNeeded } from "../../utils/HookUtils";
-import { BaseInputControlProps } from "../BaseInputControl";
+import {
+  BaseInputControlProps,
+  getBaseInputControlProps,
+} from "../BaseInputControl";
 
 export function useLiveState(initialValue: any, props?: BaseInputControlProps) {
   /**
@@ -17,11 +19,11 @@ export function useLiveState(initialValue: any, props?: BaseInputControlProps) {
     if (e.target.type === "checkbox") {
       const val = e.target.checked;
       setValue(val);
-      triggerCallbackIfNeeded(props, val);
+      props?.events?.change?.(getBaseInputControlProps(props, val));
     } else {
       const val = e.target.value;
       setValue(val);
-      triggerCallbackIfNeeded(props, val);
+      props?.events?.change?.(getBaseInputControlProps(props, val));
     }
   }
 
