@@ -3,8 +3,7 @@ const schedulerUIConfig = {
   resourceURI: "/public/Samples/Reports/02._Sales_Mix_by_City_Report",
   contextPath: "/jasperserver-pro",
   tabs: {
-    // should have array of length 4
-    tabsOrder: ["schedule", "parameters", "output", "notifications"],
+    tabsOrder: ["schedule", "output", "parameters", "notifications"],
     tabsData: {
       schedule: {
         defaultValues: {
@@ -12,7 +11,7 @@ const schedulerUIConfig = {
           label: { value: "aaa" },
           description: {
             value: "description test 1",
-            showField: false,
+            showField: true,
           },
           recurrenceInterval: { showField: true, value: 1 },
           recurrenceIntervalUnit: {
@@ -20,11 +19,7 @@ const schedulerUIConfig = {
             value: "HOUR",
           },
           startTime: {
-            startType: { value: 1 },
-            // if startType is 2, we need start date
-            startDate: {
-              value: "2024-07-31 14:11",
-            },
+            showField: true,
           },
         },
       },
@@ -63,13 +58,13 @@ const schedulerUIConfig = {
             // showField: true,
             value: "Email message",
           },
-          // reportAccessType: {
-          //   value: "SEND", // "SEND_ATTACHMENT" | "SEND"
-          //   folderURI: {
-          //     value: "/public",
-          //   },
-          //   saveToRepository: { showField: true, disabled: false, value: true },
-          // },
+          reportAccessType: {
+            value: "SEND", // "SEND_ATTACHMENT" | "SEND"
+            folderURI: {
+              value: "/public",
+            },
+            saveToRepository: { showField: true, disabled: false, value: true },
+          },
         },
       },
     },

@@ -121,14 +121,12 @@ export const getSchedulerData = (scheduleConfig: any) => {
 
   // check whether resourceURI is correct and has permission to view.
 
-  const tabsConfig = tabsOrder || tabsDefaultOrder;
+  const tabsConfig = tabsOrder.length > 0 ? tabsOrder : tabsDefaultOrder;
 
   const stepsToShow = [],
     tabsToShow = [];
   tabsConfig.map((tab) => {
     stepsToShow.push(stepInfo[tab]);
-  });
-  tabsConfig.map((tab) => {
     tabsToShow.push(tabsInfo[tab]);
   });
 
@@ -144,14 +142,11 @@ export const getSchedulerData = (scheduleConfig: any) => {
       tab,
       dataForTab?.defaultValues,
     );
-    if (!!getLengthOfObject(tabError)) {
-      error[tab] = checkRequiredDataForHiddenTabs(
-        tab,
-        dataForTab?.defaultValues,
-      );
+    if (getLengthOfObject(tabError)) {
+      error[tab] = { ...tabError };
     }
   });
-  if (!!getLengthOfObject(error)) {
+  if (getLengthOfObject(error)) {
     return { error };
   }
 
@@ -177,7 +172,7 @@ export const getSchedulerData = (scheduleConfig: any) => {
 
   const { error: fieldsErrs, fieldsVisibility } =
     checkHiddenFieldData(inputFieldsInfo);
-  if (!!getLengthOfObject(fieldsErrs)) {
+  if (getLengthOfObject(fieldsErrs)) {
     return { error };
   }
 
