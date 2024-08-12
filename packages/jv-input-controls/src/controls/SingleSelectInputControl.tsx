@@ -1,9 +1,6 @@
 import React from "react";
 import { Select as JVSelect } from "@jaspersoft/jv-ui-components/material-ui/Select/Select";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
@@ -18,7 +15,7 @@ export function SingleSelectInputControl(
   const errorText = useMandatoryMsg({
     textValue: liveState.value,
     isMandatory: props.mandatory,
-    validationRules: props.validationRules as ICDateValidationRule[],
+    validationRules: props.validationRules as ICValidationRule[],
   });
   return (
     <JVSelect

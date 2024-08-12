@@ -3,10 +3,7 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
@@ -20,7 +17,7 @@ export interface DateICProps extends BaseInputControlProps {
 
 export const DatePickerInputControl = (props: DateICProps) => {
   let dateFormat = getDateFormatIfAny(
-    props.validationRules as ICDateValidationRule[],
+    props.validationRules as ICValidationRule[],
     "YYYY-MM-DD",
   ).toUpperCase();
 

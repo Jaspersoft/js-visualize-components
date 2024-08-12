@@ -3,7 +3,7 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { ICDataType, ICDateValidationRule } from "../controls/BaseInputControl";
+import { ICDataType, ICValidationRule } from "../controls/BaseInputControl";
 
 const getMaxDateIfStrict = (dataType: ICDataType): string => {
   if (!dataType.maxValue) {
@@ -61,7 +61,7 @@ export const getMinAndMaxSettings = (
 };
 
 export const getDateFormatIfAny = (
-  validationRules: ICDateValidationRule[],
+  validationRules: ICValidationRule[],
   defaultFormat = "YYYY-MM-DDTHH:mm:ss",
 ): string => {
   if (!validationRules) {

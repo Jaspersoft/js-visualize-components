@@ -1,8 +1,5 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
@@ -43,7 +40,7 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
   const errorText = useMandatoryMsg({
     textValue: liveState.value,
     isMandatory: mandatory,
-    validationRules: validationRules as ICDateValidationRule[],
+    validationRules: validationRules as ICValidationRule[],
   });
   return (
     <JVTextField

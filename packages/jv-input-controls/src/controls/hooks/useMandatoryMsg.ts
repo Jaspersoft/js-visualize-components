@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
-import { ICDateValidationRule } from "../BaseInputControl";
+import { ICValidationRule } from "../BaseInputControl";
 
 interface UseMandatoryMsgProps {
-  validationRules: ICDateValidationRule[];
+  validationRules: ICValidationRule[];
   isMandatory: boolean;
   textValue: string;
   defaultValue?: string;

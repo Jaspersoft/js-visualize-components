@@ -1,10 +1,7 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
 import { getMandatoryErrorMessage } from "../utils/ErrorMessageUtils";
 import { parseNumber, verifyLimit } from "../utils/NumberUtils";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
@@ -53,7 +50,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     // TODO: in the future, this message need to be considered for i18n:
     helperText =
       mandatory && !liveState.value.trim()
-        ? getMandatoryErrorMessage(validationRules as ICDateValidationRule[])
+        ? getMandatoryErrorMessage(validationRules as ICValidationRule[])
         : "Specify a valid value for type number.";
   } else {
     const valAsNumber = +liveState.value;

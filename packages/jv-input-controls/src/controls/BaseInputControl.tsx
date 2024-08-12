@@ -31,15 +31,17 @@ export interface ICState {
 }
 
 export interface ICValidationRule {
-  errorMessage?: string;
-}
-
-export interface ICDateValidationRule {
   dateTimeFormatValidationRule?: {
     errorMessage: string;
     format: string;
   };
   mandatoryValidationRule?: {
+    errorMessage: string;
+  };
+  regexpValidationRule?: {
+    errorMessage: string;
+  };
+  rangeValidationRule?: {
     errorMessage: string;
   };
 }
@@ -93,7 +95,7 @@ export interface BaseInputControlProps {
   visible: boolean;
   uri?: string;
   state?: ICState;
-  validationRules?: ICValidationRule | ICDateValidationRule[];
+  validationRules?: ICValidationRule[];
   dataType?: ICDataType;
 
   masterDependencies?: string[];

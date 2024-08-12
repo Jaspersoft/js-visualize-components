@@ -3,10 +3,7 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
@@ -29,9 +26,7 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   let dateFormat = "YYYY-MM-DDTHH:mm:ss",
     views: string[] = [];
   if (props.validationRules !== undefined) {
-    const formatStored = getDateFormatIfAny(
-      props.validationRules as ICDateValidationRule[],
-    );
+    const formatStored = getDateFormatIfAny(props.validationRules);
     dateFormat = removeSingleQuotes(formatStored);
     dateFormat = formatToDayJS(dateFormat);
   }
