@@ -6,7 +6,7 @@
 import { ICValidationRule } from "../controls/BaseInputControl";
 
 export const getMandatoryErrorMessage = (
-  validationRules: ICValidationRule[],
+  validationRules: ICValidationRule[] | undefined,
 ): string => {
   if (!validationRules) {
     return "";

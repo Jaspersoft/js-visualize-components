@@ -65,13 +65,11 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         acc.state.push(ctrlToUse);
         if (theValidationResult) {
           acc.validationResult[ctrlToUse.id] = theValidationResult;
-          acc.response[ctrlToUse.id] = [];
-        } else {
-          acc.response[ctrlToUse.id] =
-            ctrlToUse.type === "multiSelect"
-              ? [...prevState, ctrlToUse.state?.value]
-              : [ctrlToUse.state?.value];
         }
+        acc.response[ctrlToUse.id] =
+          ctrlToUse.type === "multiSelect"
+            ? [...prevState, ctrlToUse.state?.value]
+            : [ctrlToUse.state?.value];
         return acc;
       },
       { state: [], response: { ...validResponse }, validationResult: {} },

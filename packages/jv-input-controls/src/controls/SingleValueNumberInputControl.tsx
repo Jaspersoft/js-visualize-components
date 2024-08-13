@@ -1,9 +1,8 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
-import { getMandatoryErrorMessage } from "../utils/ErrorMessageUtils";
-import { parseNumber, verifyLimit } from "../utils/NumberUtils";
-import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
+import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
+import { useNumberErrorMsg } from "./hooks/useNumberErrorMsgs";
 
 export type NumberICType = "number";
 
@@ -11,11 +10,6 @@ export interface NumberICProps extends BaseInputControlProps {
   variant?: "standard" | "filled" | "outlined" | undefined;
   className?: string;
 }
-
-const checkIfNumber = (value: string) => {
-  const result = parseNumber(value);
-  return result !== null;
-};
 
 /**
  * Number Input Control Component
@@ -44,36 +38,10 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     inputProps.readOnly = true;
   }
   const theInputProps = { ...inputProps, ...liveState };
-  let isError = !checkIfNumber(liveState.value);
-  let helperText = "";
-  if (isError) {
-    // TODO: in the future, this message need to be considered for i18n:
-    helperText =
-      mandatory && !liveState.value.trim()
-        ? getMandatoryErrorMessage(validationRules as ICValidationRule[])
-        : "Specify a valid value for type number.";
-  } else {
-    const valAsNumber = +liveState.value;
-    const checkMax = verifyLimit({
-      maxOrMinValAsNumber: dataType?.maxValue ? +dataType.maxValue : null,
-      dataType,
-      valAsNumber,
-      isVerifyingMin: false,
-    });
-    helperText = checkMax.helperText;
-    isError = checkMax.isError;
-
-    if (!isError) {
-      const checkMin = verifyLimit({
-        maxOrMinValAsNumber: dataType?.minValue ? +dataType.minValue : null,
-        dataType,
-        valAsNumber,
-        isVerifyingMin: true,
-      });
-      helperText = checkMin.helperText;
-      isError = checkMin.isError;
-    }
-  }
+  const errorText = useNumberErrorMsg({
+    textValue: liveState.value,
+    props,
+  });
   return (
     <JVTextField
       {...remainingProps}
@@ -82,7 +50,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
       textFieldClassName={`${controlClasses.join(" ")}`}
       InputProps={theInputProps}
       type="text"
-      error={isError ? helperText : false}
+      error={errorText !== "" ? errorText : false}
     />
   );
 };
