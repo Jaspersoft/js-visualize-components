@@ -8,16 +8,14 @@ import {
 
 interface UseNumberErrorMsgProps {
   textValue: string;
-  defaultValue?: string;
   props?: BaseInputControlProps;
 }
 
 export const useNumberErrorMsg = ({
   textValue,
-  defaultValue = "",
   props,
 }: UseNumberErrorMsgProps) => {
-  const [msg, setMsg] = useState<string>(defaultValue);
+  const [msg, setMsg] = useState<string>("");
 
   useEffect(() => {
     // Determine the message based on:
@@ -39,7 +37,7 @@ export const useNumberErrorMsg = ({
     theMsg =
       props?.mandatory && !textValue.trim()
         ? getMandatoryErrorMessage(props?.validationRules)
-        : defaultValue;
+        : "";
     if (!theMsg.trim() && props?.dataType?.pattern) {
       // we have to evaluate the dataType and check if there is no pattern defined that we need to verify.
       const regex = new RegExp(props.dataType.pattern);
