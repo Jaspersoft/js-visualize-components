@@ -35,7 +35,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
     events,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "", props);
+  const liveState = useLiveState(props.state?.value || "");
 
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:

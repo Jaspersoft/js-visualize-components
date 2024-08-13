@@ -17,3 +17,21 @@ export const getMandatoryErrorMessage = (
   }
   return rule!.mandatoryValidationRule!.errorMessage || "";
 };
+
+export const getValidationRuleByKey = ({
+  validationRules,
+  key,
+}: {
+  validationRules: ICValidationRule[];
+  key:
+    | "dateTimeFormatValidationRule"
+    | "mandatoryValidationRule"
+    | "regexpValidationRule"
+    | "rangeValidationRule";
+}): null | ICValidationRule => {
+  if (!validationRules) {
+    return null;
+  }
+  const rule = validationRules.find((rule) => rule[key] !== undefined);
+  return rule || null;
+};

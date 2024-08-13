@@ -1,5 +1,9 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
-import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
+import {
+  BaseInputControlProps,
+  getBaseInputControlProps,
+  ICValidationRule,
+} from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
@@ -29,7 +33,7 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     events,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "", props);
+  const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:
   const inputProps: any = {};
@@ -41,6 +45,7 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     textValue: liveState.value,
     isMandatory: mandatory,
     validationRules: validationRules as ICValidationRule[],
+    props,
   });
   return (
     <JVTextField

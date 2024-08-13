@@ -10,7 +10,7 @@ export interface SingleSelectInputControlProps extends BaseInputControlProps {}
 export function SingleSelectInputControl(
   props: SingleSelectInputControlProps,
 ): React.JSX.Element {
-  const liveState = useLiveState("", props);
+  const liveState = useLiveState("");
   const controlClasses = useControlClasses([], props);
   const errorText = useMandatoryMsg({
     textValue: liveState.value,

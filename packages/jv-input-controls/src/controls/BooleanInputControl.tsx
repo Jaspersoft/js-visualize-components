@@ -15,7 +15,7 @@ export interface BooleanInputControlProps extends BaseInputControlProps {
 export function BooleanInputControl(
   props: BooleanInputControlProps,
 ): React.JSX.Element {
-  const liveState = useLiveState(!!props.state?.value, props);
+  const liveState = useLiveState(!!props.state?.value);
   // We don't need the required CSS class for booleans (request from Anna).
   const controlClasses = useControlClasses([], { ...props, mandatory: false });
 

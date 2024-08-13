@@ -29,7 +29,7 @@ export const TimePickerTextFieldInputControl = (
     events,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "", props);
+  const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {
