@@ -24,6 +24,8 @@ export const useNumberErrorMsg = ({
     // 1. whether the field is a number or not
     // 2. whether the field is mandatory and the text value is empty
     // 3. whether the field has a pattern that needs to be matched
+    // 4. whether the field meets the max value
+    // 5. whether the field meets the min value
     let isError = !checkIfNumber(textValue);
     let theMsg: string;
     if (isError) {
@@ -65,7 +67,6 @@ export const useNumberErrorMsg = ({
     }
     if (!isError) {
       // verify min limit:
-      // debugger
       const checkMin = verifyLimit({
         maxOrMinValAsNumber:
           props?.dataType?.minValue !== undefined
