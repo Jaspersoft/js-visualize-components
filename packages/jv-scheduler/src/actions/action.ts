@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import {
   SET_SCHEDULE_APIS_FAILURE_ERROR,
   SET_OUTPUT_FORMATS,
@@ -10,8 +11,10 @@ import {
   SET_ACTIVE_TAB,
   SET_STEPPER_PROPERTIES,
   SET_TABS_CONFIG,
+  SCHEDULE_ERROR_OCCURRED,
   SET_VISIBLE_FIELDS,
 } from "../constants/actionConstants";
+import { allTabs } from "../constants/schedulerConstants";
 import {
   getFakeRootDataFromService,
   getOutputFormatsFromService,
@@ -19,9 +22,15 @@ import {
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
-import { IScheduleInfo, IStoreData } from "../types/schedulerTypes";
-import { IApiFailed } from "../types/scheduleType";
 import {
+  IApiFailed,
+  IScheduleErrors,
+  IScheduleInfo,
+  IState,
+  IStoreData,
+} from "../types/scheduleType";
+import {
+  getErrorsForCurrentTab,
   getStateOfCurrentActiveTab,
   getUriParts,
 } from "../utils/schedulerUtils";
@@ -217,5 +226,45 @@ export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
     );
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
     dispatch(setPropertiesDetails(scheduleInfo));
+  };
+};
+export const scheduleValidationError = (errors: IScheduleErrors) => {
+  return {
+    type: SCHEDULE_ERROR_OCCURRED,
+    payload: { errors },
+  };
+};
+export const currentTabValidationError = (handleStateChange: () => void) => {
+  return async (dispatch: Dispatch, getState: () => IState) => {
+    const { currentActiveTab, scheduleInfo: scheduleCurrentStateValues } =
+        getState(),
+      currentTabValues = getStateOfCurrentActiveTab(
+        currentActiveTab,
+        scheduleCurrentStateValues,
+      );
+    handleStateChange();
+    dispatch(setStepperProperties(currentTabValues));
+    const currentTabErrs = await getErrorsForCurrentTab(
+      currentActiveTab,
+      scheduleCurrentStateValues,
+    );
+    dispatch(scheduleValidationError(currentTabErrs));
+  };
+};
+
+export const allTabValidationError = (
+  handleCreateOrUpdateSchedule: (isErrorOccured: boolean) => void,
+) => {
+  return async (dispatch: Dispatch, getState: () => IState) => {
+    const { scheduleInfo: currentState } = getState();
+    const currentStateError = await getErrorsForCurrentTab("all", currentState);
+    dispatch(scheduleValidationError(currentStateError));
+    const isErrPresent = Object.values(currentStateError).some((item) => item);
+    if (isErrPresent) {
+      dispatch(setVisitedTab([...allTabs]));
+      handleCreateOrUpdateSchedule(true);
+    } else {
+      handleCreateOrUpdateSchedule(false);
+    }
   };
 };

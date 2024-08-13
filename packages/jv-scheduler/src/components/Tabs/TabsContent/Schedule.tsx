@@ -14,9 +14,9 @@ import {
 } from "../../../constants/schedulerConstants";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useSelector } from "react-redux";
-import { IState, IStepperState } from "../../../types/schedulerTypes";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 import { useTranslation } from "react-i18next";
+import { IState, IStepperState } from "../../../types/scheduleType";
 
 const Schedule = () => {
   const { t } = useTranslation() as { t: (k: string) => string };

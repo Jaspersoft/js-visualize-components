@@ -10,7 +10,6 @@ import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
 import { getFakeRootData, getFolderData } from "../../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
-import { IState } from "../../../../types/schedulerTypes";
 import {
   NOTIFICATIONS_TAB,
   SEND_ATTACHMENT,
@@ -18,6 +17,7 @@ import {
 } from "../../../../constants/schedulerConstants";
 import { getExpandedNodeDataFromUri } from "../../../../utils/schedulerUtils";
 import { useTranslation } from "react-i18next";
+import { IState } from "../../../../types/scheduleType";
 
 const Notifications = () => {
   const { t } = useTranslation() as { t: (k: string) => string };

@@ -2,7 +2,12 @@ export const PARAMETERS_TAB = "parameters";
 export const SCHEDULE_TAB = "schedule";
 export const NOTIFICATIONS_TAB = "notifications";
 export const OUTPUT_TAB = "output";
-const allTabs = [PARAMETERS_TAB, SCHEDULE_TAB, NOTIFICATIONS_TAB, OUTPUT_TAB];
+export const allTabs = [
+  PARAMETERS_TAB,
+  SCHEDULE_TAB,
+  NOTIFICATIONS_TAB,
+  OUTPUT_TAB,
+];
 
 export const timeFrames = [
   {
@@ -160,7 +165,20 @@ export const defaultFieldVisibility = {
   recurrenceInterval: true,
   recurrenceIntervalUnit: true,
 };
-
+export const scheduleDefaultErrorState = {
+  name: undefined,
+  operator: undefined,
+  thresholdValue: undefined,
+  address: undefined,
+  subject: undefined,
+  messageText: undefined,
+  recurrenceInterval: undefined,
+  recurrenceIntervalUnit: undefined,
+  startDate: undefined,
+  baseOutputFilename: undefined,
+  outputFormats: undefined,
+  folderURI: undefined,
+};
 export const defaultState = {
   userTimeZones: [],
   outputFormats: [],
@@ -171,6 +189,9 @@ export const defaultState = {
   schedulerUIConfig: {},
   folderData: {},
   stepperState,
+  scheduleErrors: {
+    ...scheduleDefaultErrorState,
+  },
   scheduleApisFailure: {
     userTimezoneApiFailure: false,
     userOutputFormatApiFailure: false,
@@ -193,6 +214,20 @@ export const OUTPUT_FILE_NAME = "baseOutputFilename";
 export const OUTPUT_FILE_DESCRIPTION = "baseOutputFileDescription";
 export const SCHEDULE_JOB_NAME = "scheduleJobName";
 export const SCHEDULE_JOB_DESCRIPTION = "scheduleJobDescription";
+export const accessiblePermissionMask = [1, 30, 6];
+export const ERROR_FIELDS = {
+  NAME: "name",
+  THRESHOLD: "thresholdValue",
+  RECURRENCE: "recurrenceInterval",
+  START_DATE: "startDate",
+  EMAIL_ADDRESS: "address",
+  EMAIL_SUBJECT: "subject",
+  MESSAGE: "messageText",
+  FILE_NAME: "baseOutputFilename",
+  OUTPUT_FORMAT: "outputFormat",
+  FOLDER_URI: "folderURI",
+  SEND_TYPE: "resultSendType",
+};
 export const OUTPUT_TIME_ZONE = "outputTimeZone";
 export const OUTPUT_FORMAT = "outputFormat";
 export const SEND_LINK = "SEND";

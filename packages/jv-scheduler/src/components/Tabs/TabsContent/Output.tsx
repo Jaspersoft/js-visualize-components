@@ -13,16 +13,20 @@ import {
   OUTPUT_FILE_DESCRIPTION,
   OUTPUT_FILE_NAME,
   OUTPUT_FORMAT,
+  OUTPUT_TAB,
   OUTPUT_TIME_ZONE,
 } from "../../../constants/schedulerConstants";
-import { IOutputFormat, IState } from "../../../types/schedulerTypes";
 import { MessageAPIError } from "../../apiFailureError/scheduleAPIError";
+import { IOutputFormat, IState } from "../../../types/scheduleType";
 
 const Output = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
 
   const outputFormats = useSelector((state: IState) => state.outputFormats);
   const userTimeZones = useSelector((state: any) => state.userTimeZones);
+  const baseFileOutputErr = useSelector(
+    (state: IState) => state.scheduleErrors.baseOutputFilename,
+  );
   const userSelectedTimezone = useSelector(
     (state: IState) => state.scheduleInfo.outputTimeZone,
   );
@@ -53,7 +57,7 @@ const Output = () => {
   const [outputFormatSelected, setOutputFormat] = useState(
     userSelectedOutputFormats,
   );
-  const updateStore = useStoreUpdate();
+  const updateStore = useStoreUpdate(OUTPUT_TAB);
 
   useEffect(() => {
     setFileName(baseOutputFilename);
@@ -68,7 +72,7 @@ const Output = () => {
     propertyName: string,
     propertyValue: string | string[],
   ) => {
-    updateStore(storeData);
+    updateStore(storeData, { [propertyName]: propertyValue });
   };
 
   const isOutputFormatSelected = (formatToCheck: any) =>
@@ -103,6 +107,7 @@ const Output = () => {
               fileName,
             )
           }
+          error={t(baseFileOutputErr || "")}
         />
         <JVTextField
           size="large"

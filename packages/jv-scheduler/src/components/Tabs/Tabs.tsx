@@ -7,12 +7,16 @@ import Parameters from "../Tabs/TabsContent/Parameters";
 import Output from "../Tabs/TabsContent/Output";
 import Notifications from "./TabsContent/notifications/Notifications";
 import {
+  currentTabValidationError,
   currentTabValidator,
   setCurrentActiveTab,
   setVisitedTab,
 } from "./../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
-import { defaultTabsToShow } from "../../constants/schedulerConstants";
+import {
+  defaultTabsToShow,
+  PARAMETERS_TAB,
+} from "../../constants/schedulerConstants";
 
 export const Tabs = () => {
   const dispatch = useDispatch<any>();
@@ -23,11 +27,26 @@ export const Tabs = () => {
   );
   const currentActiveTab = useSelector((state: any) => state.currentActiveTab);
 
-  const handleChange = (event: ChangeEvent<{}>, newValue?: string) => {
+  const handleVisitedTabs = () => {
     if (!visitedTabs.includes(currentActiveTab)) {
       dispatch(setVisitedTab([...visitedTabs, currentActiveTab]));
     }
-    dispatch(currentTabValidator(newValue));
+  };
+  const handleStateChange = (newValue: string | undefined) => () => {
+    handleVisitedTabs();
+    if (newValue) {
+      dispatch(setCurrentActiveTab(newValue));
+    }
+  };
+  const handleTabsErrors = (newValue: string | undefined) => {
+    dispatch(currentTabValidationError(handleStateChange(newValue)));
+  };
+  const handleChange = (event: ChangeEvent<{}>, newValue?: string) => {
+    if (currentActiveTab !== PARAMETERS_TAB) {
+      handleTabsErrors(newValue);
+    } else {
+      handleStateChange(newValue)();
+    }
   };
 
   return (

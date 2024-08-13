@@ -18,7 +18,7 @@ import {
   SEND_LINK,
 } from "../../constants/schedulerConstants";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../types/schedulerTypes";
+import { IState } from "../../types/scheduleType";
 
 interface InputDataInStepProps {
   error: string | undefined;

@@ -3,6 +3,8 @@ import {
   OUTPUT_TAB,
   SCHEDULE_TAB,
 } from "../constants/schedulerConstants";
+import { stateValidator } from "../validations/scheduleValidators";
+import { IScheduleInfo } from "../types/scheduleType";
 
 const computePermissionMask = (extra) => {
   var mask = 2;
@@ -59,7 +61,7 @@ export const getFakeRootRepositoryData = (data: any) => {
 
 export const getStateOfCurrentActiveTab = (
   tabName: string,
-  alertCurrentStateValues: any,
+  scheduleCurrentStateValues: any,
 ) => {
   const {
     scheduleJobName,
@@ -71,7 +73,7 @@ export const getStateOfCurrentActiveTab = (
     trigger,
     outputTimeZone,
     repositoryDestination,
-  } = alertCurrentStateValues;
+  } = scheduleCurrentStateValues;
   const { toAddresses, subject, messageText, resultSendType } =
     mailNotification;
   const { address } = toAddresses;
@@ -135,7 +137,17 @@ export const getStateOfCurrentActiveTab = (
       };
   }
 };
-
+export const getErrorsForCurrentTab = async (
+  currentActiveTab: string,
+  currentState: IScheduleInfo,
+) => {
+  const currentTabValues = getStateOfCurrentActiveTab(
+    currentActiveTab,
+    currentState,
+  );
+  const errors = await stateValidator(currentTabValues);
+  return errors;
+};
 export const getUriParts = (
   resourceUri: string,
   isResourceContainName: boolean,

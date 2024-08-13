@@ -11,6 +11,7 @@ import {
   SET_STEPPER_PROPERTIES,
   SET_TABS_CONFIG,
   SET_VISIBLE_FIELDS,
+  SCHEDULE_ERROR_OCCURRED,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -88,6 +89,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         fieldsVisibility: action.payload?.fieldsVisibility,
+      };
+    case SCHEDULE_ERROR_OCCURRED:
+      return {
+        ...state,
+        scheduleErrors: { ...state.scheduleErrors, ...action.payload?.errors },
       };
     // case SET_USER_LOCALE:
     //     return {

@@ -2,6 +2,22 @@ import axios from "axios";
 import store from "../store/store";
 import { getFakeRootRepositoryData } from "../utils/schedulerUtils";
 
+export const checkPermissionOnFolder = async (folder: string) => {
+  try {
+    const response = await axios.get(
+      `${store.getState().schedulerUIConfig.server}/rest_v2/resources${folder}`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    return { error: "Failed to check permission folder" };
+  }
+};
+
 export const getUserTimezonesFromService = async () => {
   try {
     const response = await axios.get(

@@ -4,20 +4,24 @@
  */
 
 import { useDispatch, useSelector } from "react-redux";
-// import { stateValidator } from '../validations/AlertValidators';
-// import { alertValidationError, setPropertiesDetails, setStepperProperties } from '../actions/alertAction';
+import { stateValidator } from "../validations/scheduleValidators";
+import {
+  scheduleValidationError,
+  setPropertiesDetails,
+  setStepperProperties,
+} from "../actions/action";
 import { setPropertiesDetails, setStepperProperties } from "../actions/action";
 
 export const useStoreUpdate = (tabName: string) => {
   const dispatch = useDispatch();
   const visitedTab = useSelector((state: any) => state.visitedTabs);
 
-  return (storeData: any, stepperData: any) => {
+  return async (storeData: any, stepperData: any) => {
     dispatch(setPropertiesDetails(storeData));
     if (visitedTab.includes(tabName)) {
       dispatch(setStepperProperties(stepperData));
-      // const errors = await stateValidator(stepperData);
-      // dispatch(alertValidationError(errors));
+      const errors = await stateValidator(stepperData);
+      dispatch(scheduleValidationError(errors));
     }
   };
 };
