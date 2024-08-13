@@ -36,7 +36,6 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
-    props,
   });
   const controlClasses = useControlClasses([], props);
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {

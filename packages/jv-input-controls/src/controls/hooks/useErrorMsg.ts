@@ -14,7 +14,7 @@ interface UseMandatoryMsgProps {
   props?: BaseInputControlProps;
 }
 
-export const useMandatoryMsg = ({
+export const useErrorMsg = ({
   validationRules,
   isMandatory,
   textValue,
@@ -24,19 +24,28 @@ export const useMandatoryMsg = ({
   const [msg, setMsg] = useState<string>(defaultValue);
 
   useEffect(() => {
-    // Determine the message based on whether the field is mandatory and the text value is empty
-    const theMsg =
+    // Determine the message based on:
+    // 1. whether the field is mandatory and the text value is empty
+    // 2. whether the field has a pattern that needs to be matched
+    let theMsg =
       isMandatory && !textValue.trim()
         ? getMandatoryErrorMessage(validationRules)
         : defaultValue;
-    setMsg(theMsg);
-    // if (!errorText.trim()) {
-    // we have to evaluate the regexpValidationRule.
-    // }
+    if (!theMsg.trim() && props?.dataType?.pattern) {
+      // we have to evaluate the dataType and check if there is no pattern defined that we need to verify.
+      const regex = new RegExp(props.dataType.pattern);
+      regex.lastIndex = 0;
+      const isMatch = regex.test(textValue);
+      // TODO: we will need to translate this message once we add the i18n support:
+      theMsg = !isMatch
+        ? "This field does not match the required pattern."
+        : "";
+    }
     // also, we have to trigger the callback because there was an error
     props?.events?.change?.(getBaseInputControlProps(props, textValue), {
       [props.id]: theMsg,
     });
+    setMsg(theMsg);
   }, [validationRules, isMandatory, textValue, defaultValue]);
   return msg;
 };

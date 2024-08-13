@@ -8,7 +8,7 @@ import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
 import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
-import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 
 export type TimeICType = "default";
 
@@ -35,10 +35,11 @@ export const TimePickerTextFieldInputControl = (
   if (readOnly) {
     inputProps.readOnly = true;
   }
-  const errorText = useMandatoryMsg({
+  const errorText = useErrorMsg({
     textValue: liveState.value,
     isMandatory: mandatory,
     validationRules: validationRules as ICValidationRule[],
+    props,
   });
   const minAndMaxSettings = getMinAndMaxSettings(dataType, {
     minKey: "min",

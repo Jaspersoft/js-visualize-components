@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import { useMandatoryMsg } from "../../../src/controls/hooks/useMandatoryMsg";
+import { useErrorMsg } from "../../../src/controls/hooks/useErrorMsg";
 
 const MANDATORY_ERROR_MESSAGE =
   "This field is mandatory so you must enter data.";
@@ -15,7 +15,7 @@ const validationRules = [
 describe("useMandatoryMsg custom hook", () => {
   it("should return no error message because it has a valid value", () => {
     const { result } = renderHook(() =>
-      useMandatoryMsg({
+      useErrorMsg({
         textValue: "I have a value and I am mandatory!",
         isMandatory: true,
         validationRules: validationRules,
@@ -25,7 +25,7 @@ describe("useMandatoryMsg custom hook", () => {
   });
   it("should return error message provided by server", () => {
     const { result } = renderHook(() =>
-      useMandatoryMsg({
+      useErrorMsg({
         textValue: "",
         isMandatory: true,
         validationRules: validationRules,
@@ -37,7 +37,7 @@ describe("useMandatoryMsg custom hook", () => {
   it("should return custom error message", () => {
     const customErrorMsg = "Specify a valid value for type number.";
     const { result } = renderHook(() =>
-      useMandatoryMsg({
+      useErrorMsg({
         textValue: "",
         isMandatory: false,
         validationRules: validationRules,
@@ -48,7 +48,7 @@ describe("useMandatoryMsg custom hook", () => {
   });
   it("should not return any error even if it is empty but not mandatory", () => {
     const { result } = renderHook(() =>
-      useMandatoryMsg({
+      useErrorMsg({
         textValue: "",
         isMandatory: false,
         validationRules: validationRules,

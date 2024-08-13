@@ -24,7 +24,6 @@ export const TimePickerInputControl = (props: TimeICProps) => {
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
-    props,
   });
   const controlClasses = useControlClasses([], props);
   const views = props.views || ["hours", "minutes", "seconds"];

@@ -3,7 +3,7 @@ import { Select as JVSelect } from "@jaspersoft/jv-ui-components/material-ui/Sel
 import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
-import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 
 export interface SingleSelectInputControlProps extends BaseInputControlProps {}
 
@@ -12,10 +12,11 @@ export function SingleSelectInputControl(
 ): React.JSX.Element {
   const liveState = useLiveState("");
   const controlClasses = useControlClasses([], props);
-  const errorText = useMandatoryMsg({
+  const errorText = useErrorMsg({
     textValue: liveState.value,
     isMandatory: props.mandatory,
     validationRules: props.validationRules as ICValidationRule[],
+    props,
   });
   return (
     <JVSelect
