@@ -48,12 +48,11 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         },
         ctrl: BaseInputControlProps,
       ) => {
-        console.log("acc.invalidResponse: ", acc.invalidResponse);
         const prevState = acc.response[ctrl.id] || [];
-        const theValidationResult = resultValidation?.[ctrl.id] || null;
+        const theValidationResult = resultValidation?.[ctrl.id];
         const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
         acc.state.push(ctrlToUse);
-        if (theValidationResult !== "" && theValidationResult !== null) {
+        if (theValidationResult !== undefined && theValidationResult !== "") {
           // acc.invalidResponse[ctrlToUse.id] = theValidationResult;
           acc.invalidResponse = {
             ...acc.invalidResponse,
@@ -77,16 +76,12 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     );
     setInputControls(inputControlsUpdated.state);
     setValidResponse(inputControlsUpdated.response);
-    const finalState = {
-      ...validationResultState,
-      ...inputControlsUpdated.invalidResponse,
-    };
-    setValidationResultState(finalState);
-    console.log("inputControlsUpdated.invalidResponse: ", finalState);
-    const isError = Object.keys(finalState).length > 0;
+    setValidationResultState(inputControlsUpdated.invalidResponse);
+    const isError =
+      Object.keys(inputControlsUpdated.invalidResponse).length > 0;
     props.events?.change?.(
       inputControlsUpdated.response,
-      isError ? finalState : false,
+      isError ? inputControlsUpdated.invalidResponse : false,
     );
   };
 
