@@ -49,7 +49,7 @@ export const useNumberErrorMsg = ({
         : "";
     }
     const valAsNumber = +textValue;
-    if (!isError) {
+    if (!theMsg.trim()) {
       // verify max limit:
       const checkMax = verifyLimit({
         maxOrMinValAsNumber:

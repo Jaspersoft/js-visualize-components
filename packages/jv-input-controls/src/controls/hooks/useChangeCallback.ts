@@ -9,8 +9,6 @@ export const useChangeCallback = (
   props: BaseInputControlProps,
 ) => {
   useEffect(() => {
-    props?.events?.change?.(getBaseInputControlProps(props, theValue), {
-      [props.id]: "",
-    });
+    props?.events?.change?.(getBaseInputControlProps(props, theValue));
   }, [theValue]);
 };

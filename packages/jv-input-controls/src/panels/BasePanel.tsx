@@ -31,6 +31,65 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
     {},
   );
+  const [validationResultState, setValidationResultState] = useState<{
+    [key: string]: string;
+  }>({});
+
+  const buildLatestJSON = (
+    ctrlUpdated: BaseInputControlProps,
+    resultValidation?: { [key: string]: string },
+  ) => {
+    const inputControlsUpdated = inputControls.reduce(
+      (
+        acc: {
+          state: BaseInputControlProps[];
+          response: { [key: string]: any[] };
+          invalidResponse: { [key: string]: any };
+        },
+        ctrl: BaseInputControlProps,
+      ) => {
+        console.log("acc.invalidResponse: ", acc.invalidResponse);
+        const prevState = acc.response[ctrl.id] || [];
+        const theValidationResult = resultValidation?.[ctrl.id] || null;
+        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
+        acc.state.push(ctrlToUse);
+        if (theValidationResult !== "" && theValidationResult !== null) {
+          // acc.invalidResponse[ctrlToUse.id] = theValidationResult;
+          acc.invalidResponse = {
+            ...acc.invalidResponse,
+            [ctrlToUse.id]: theValidationResult,
+          };
+        } else if (theValidationResult === "") {
+          // this means that the validation result is empty, so we need to remove the key from the invalidResponse
+          delete acc.invalidResponse[ctrlToUse.id];
+        }
+        acc.response[ctrlToUse.id] =
+          ctrlToUse.type === "multiSelect"
+            ? [...prevState, ctrlToUse.state?.value]
+            : [ctrlToUse.state?.value];
+        return acc;
+      },
+      {
+        state: [],
+        response: { ...validResponse },
+        invalidResponse: { ...validationResultState },
+      },
+    );
+    setInputControls(inputControlsUpdated.state);
+    setValidResponse(inputControlsUpdated.response);
+    const finalState = {
+      ...validationResultState,
+      ...inputControlsUpdated.invalidResponse,
+    };
+    setValidationResultState(finalState);
+    console.log("inputControlsUpdated.invalidResponse: ", finalState);
+    const isError = Object.keys(finalState).length > 0;
+    props.events?.change?.(
+      inputControlsUpdated.response,
+      isError ? finalState : false,
+    );
+  };
+
   const getControlProps = (control: any) => {
     return {
       id: control.id,
@@ -45,43 +104,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         change: buildLatestJSON,
       },
     };
-  };
-  const buildLatestJSON = (
-    ctrlUpdated: BaseInputControlProps,
-    validationResult?: { [key: string]: string },
-  ) => {
-    const inputControlsUpdated = inputControls.reduce(
-      (
-        acc: {
-          state: BaseInputControlProps[];
-          response: { [key: string]: any[] };
-          validationResult: { [key: string]: string };
-        },
-        ctrl: BaseInputControlProps,
-      ) => {
-        const prevState = acc.response[ctrl.id] || [];
-        const theValidationResult = validationResult?.[ctrl.id] || null;
-        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
-        acc.state.push(ctrlToUse);
-        if (theValidationResult) {
-          acc.validationResult[ctrlToUse.id] = theValidationResult;
-        }
-        acc.response[ctrlToUse.id] =
-          ctrlToUse.type === "multiSelect"
-            ? [...prevState, ctrlToUse.state?.value]
-            : [ctrlToUse.state?.value];
-        return acc;
-      },
-      { state: [], response: { ...validResponse }, validationResult: {} },
-    );
-    setInputControls(inputControlsUpdated.state);
-    setValidResponse(inputControlsUpdated.response);
-    const isError =
-      Object.keys(inputControlsUpdated.validationResult).length > 0;
-    props.events?.change?.(
-      inputControlsUpdated.response,
-      isError ? inputControlsUpdated.validationResult : false,
-    );
   };
   const buildControl = (control: any) => {
     const theProps = getControlProps(control);

@@ -65,7 +65,7 @@ export const checkIfNumber = (value: string) => {
   return result !== null;
 };
 
-const getValueForVerificationText = (
+export const getValueForVerificationText = (
   dataType: ICDataType,
   isVerifyingMin: boolean,
 ) => {

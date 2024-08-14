@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { verifyDateLimit } from "../../utils/DateInputControlUtils";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
 import {
   BaseInputControlProps,
@@ -12,6 +13,7 @@ interface UseMandatoryMsgProps {
   textValue: string;
   defaultValue?: string;
   props?: BaseInputControlProps;
+  minAndMaxDate?: { [key: string]: string };
 }
 
 export const useErrorMsg = ({
@@ -20,6 +22,7 @@ export const useErrorMsg = ({
   textValue,
   defaultValue = "",
   props,
+  minAndMaxDate,
 }: UseMandatoryMsgProps) => {
   const [msg, setMsg] = useState<string>(defaultValue);
 
@@ -27,6 +30,8 @@ export const useErrorMsg = ({
     // Determine the message based on:
     // 1. whether the field is mandatory and the text value is empty
     // 2. whether the field has a pattern that needs to be matched
+    // 3. whether the field meets the max date value
+    // 4. whether the field meets the min date value
     let theMsg =
       isMandatory && !textValue.trim()
         ? getMandatoryErrorMessage(validationRules)
@@ -41,11 +46,37 @@ export const useErrorMsg = ({
         ? "This field does not match the required pattern."
         : "";
     }
+    let isError = false;
+    if (!theMsg.trim() && minAndMaxDate) {
+      const checkMax = verifyDateLimit({
+        maxOrMinDateAsString:
+          minAndMaxDate.max ||
+          minAndMaxDate.maxDate ||
+          minAndMaxDate.maxDateTime,
+        dataType: props?.dataType,
+        dateAsString: textValue,
+        isVerifyingMin: false,
+      });
+      theMsg = checkMax.helperText;
+      isError = checkMax.isError;
+    }
+    if (!isError && minAndMaxDate) {
+      const checkMax = verifyDateLimit({
+        maxOrMinDateAsString:
+          minAndMaxDate.min ||
+          minAndMaxDate.minDate ||
+          minAndMaxDate.minDateTime,
+        dataType: props?.dataType,
+        dateAsString: textValue,
+        isVerifyingMin: true,
+      });
+      theMsg = checkMax.helperText;
+    }
     // also, we have to trigger the callback because there was an error
     props?.events?.change?.(getBaseInputControlProps(props, textValue), {
       [props.id]: theMsg,
     });
     setMsg(theMsg);
-  }, [validationRules, isMandatory, textValue, defaultValue]);
+  }, [textValue]);
   return msg;
 };

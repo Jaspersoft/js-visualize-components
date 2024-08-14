@@ -109,7 +109,7 @@ export interface BaseInputControlProps {
   events?: {
     change: (
       ic: BaseInputControlProps,
-      validationResult: { [key: string]: string },
+      validationResult?: { [key: string]: string },
     ) => void;
   };
 }

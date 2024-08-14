@@ -19,7 +19,7 @@ export function BooleanInputControl(
   const liveState = useLiveState(!!props.state?.value);
   // We don't need the required CSS class for booleans (request from Anna).
   const controlClasses = useControlClasses([], { ...props, mandatory: false });
-  useChangeCallback(liveState.value, props);
+  useChangeCallback(!!liveState.value, props);
   if (props.styleType === "switch") {
     return (
       <JVSwitch

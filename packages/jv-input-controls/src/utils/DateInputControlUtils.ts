@@ -4,6 +4,7 @@
  */
 
 import { ICDataType, ICValidationRule } from "../controls/BaseInputControl";
+import { getValueForVerificationText } from "./NumberUtils";
 
 const getMaxDateIfStrict = (dataType: ICDataType): string => {
   if (!dataType.maxValue) {
@@ -74,4 +75,49 @@ export const getDateFormatIfAny = (
     return defaultFormat;
   }
   return rule!.dateTimeFormatValidationRule!.format || defaultFormat;
+};
+
+const getDateVerificationText = (
+  dataType: ICDataType,
+  isVerifyingMin: boolean,
+) => {
+  if (isVerifyingMin) {
+    return dataType?.strictMin === true ? "after" : "after or exactly";
+  }
+  return dataType?.strictMax === true ? "before" : "before or exactly";
+};
+
+export const verifyDateLimit = ({
+  dataType,
+  maxOrMinDateAsString,
+  dateAsString,
+  isVerifyingMin,
+}: {
+  dataType: ICDataType | undefined;
+  maxOrMinDateAsString: string | null;
+  dateAsString: string;
+  isVerifyingMin: boolean;
+}): { helperText: string; isError: boolean } => {
+  let helperText = "";
+  let isError = false;
+  if (dataType === undefined || maxOrMinDateAsString === null) {
+    return { helperText, isError };
+  }
+  // verify the number is under the limits of the data type
+  let conditionalIsMet;
+  if (isVerifyingMin) {
+    conditionalIsMet = new Date(dateAsString) >= new Date(maxOrMinDateAsString);
+  } else {
+    conditionalIsMet = new Date(dateAsString) <= new Date(maxOrMinDateAsString);
+  }
+  if (conditionalIsMet) {
+    return { helperText, isError };
+  }
+  // TODO: in the future, this message need to be considered for i18n:
+  helperText = `Verify the date is ${getDateVerificationText(
+    dataType,
+    isVerifyingMin,
+  )} than ${getValueForVerificationText(dataType, isVerifyingMin)}.`;
+  isError = true;
+  return { helperText, isError };
 };
