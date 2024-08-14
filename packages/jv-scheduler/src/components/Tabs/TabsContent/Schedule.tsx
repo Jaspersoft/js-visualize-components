@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   JVTextField,
   JVTypography,
@@ -13,7 +14,6 @@ import {
   timeFrames,
 } from "../../../constants/schedulerConstants";
 import { JVTypographyComponent } from "../../common/CommonComponents";
-import { useSelector } from "react-redux";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 import { useTranslation } from "react-i18next";
 import { IState, IStepperState } from "../../../types/scheduleType";
@@ -59,16 +59,7 @@ const Schedule = () => {
   const [specificDateTime, setSpecificDateTime] = useState<string>(startDate);
 
   useEffect(() => {
-    console.log("simpleTrigger.startDate:", simpleTrigger.startDate);
-    console.log("simpleTrigger.startType:", simpleTrigger.startType);
-    console.log(
-      "simpleTrigger.recurrenceInterval:",
-      simpleTrigger.recurrenceInterval,
-    );
-    console.log(
-      "simpleTrigger.recurrenceIntervalUnit:",
-      simpleTrigger.recurrenceIntervalUnit,
-    );
+    console.log(simpleTrigger);
   }, [simpleTrigger]);
 
   useEffect(() => {

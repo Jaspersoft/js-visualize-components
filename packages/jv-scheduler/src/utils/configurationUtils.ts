@@ -105,11 +105,13 @@ const validate = (propertName, propertyValue, extraParams) => {
       } else if (value === 2 && !extraParams.startDate) {
         return { error: "startDate is required when startTime is 2" };
       }
+      break;
     }
     case "reportAccessType": {
       if (propertyValue !== "SEND" && propertyValue !== "SEND_ATTACHMENT") {
         return { error: "Entered incorrect value for reportAccessType" };
       }
+      break;
     }
   }
   return { error: null };

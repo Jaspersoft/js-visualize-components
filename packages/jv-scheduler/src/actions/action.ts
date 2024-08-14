@@ -225,14 +225,8 @@ export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
       }),
     );
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
-    const { trigger, ...restScheduleInfo } = scheduleInfo;
-    const { simpleTrigger } = trigger;
-    dispatch(
-      setPropertiesDetails({
-        trigger: { simpleTrigger: { ...simpleTrigger } },
-        ...restScheduleInfo,
-      }),
-    );
+
+    dispatch(setPropertiesDetails(JSON.parse(JSON.stringify(scheduleInfo))));
   };
 };
 export const scheduleValidationError = (errors: IScheduleErrors) => {
