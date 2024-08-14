@@ -164,6 +164,9 @@ export const defaultFieldVisibility = {
   label: true,
   recurrenceInterval: true,
   recurrenceIntervalUnit: true,
+  showTime: true,
+  startTimeNow: true,
+  startTimeSpecificDateAndTime: true,
 };
 export const scheduleDefaultErrorState = {
   name: undefined,
@@ -261,8 +264,25 @@ export const tabsDefaultOrder = [
 
 export const manadatoryHiddenField = [
   "label",
-  "startType==2:startDate",
   "address",
   "subject",
   "baseOutputFilename",
 ];
+
+export const scheduleTabsFields = [];
+export const typeOfFields = {
+  label: "simple",
+  description: "simple",
+  recurrenceInterval: "simple",
+  recurrenceIntervalUnit: "simple",
+  startTime: "radio",
+  baseOutputFilename: "simple",
+  outputDescription: "simple",
+  outputFormat: "simple",
+  outputTimeZone: "simple",
+  address: "simple",
+  subject: "simple",
+  messageText: "simple",
+  reportAccessType: "radio",
+  folderUri: "simple",
+};

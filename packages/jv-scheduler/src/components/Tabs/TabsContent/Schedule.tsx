@@ -37,6 +37,7 @@ const Schedule = () => {
     description: descriptionVisible,
     recurrenceInterval: recurrenceIntervalVisible,
     recurrenceIntervalUnit: recurrenceIntervalUnitVisible,
+    startTime: startTimeVisible,
   } = useSelector((state: IState) => state.fieldsVisibility);
 
   const [scheduleName, setScheduleName] = useState(scheduleJobName);
@@ -55,23 +56,40 @@ const Schedule = () => {
   );
   const [recurrenceUnit, setRecurrenceUnit] = useState(recurrenceIntervalUnit);
   const [startType, setStartType] = useState(storeStartType);
-  const [specificDateTime, setSpecificDateTime] = useState<string>("");
+  const [specificDateTime, setSpecificDateTime] = useState<string>(startDate);
+
+  useEffect(() => {
+    console.log("simpleTrigger.startDate:", simpleTrigger.startDate);
+    console.log("simpleTrigger.startType:", simpleTrigger.startType);
+    console.log(
+      "simpleTrigger.recurrenceInterval:",
+      simpleTrigger.recurrenceInterval,
+    );
+    console.log(
+      "simpleTrigger.recurrenceIntervalUnit:",
+      simpleTrigger.recurrenceIntervalUnit,
+    );
+  }, [simpleTrigger]);
 
   useEffect(() => {
     if (startDate) setSpecificDateTime(startDate);
-  }, [startDate]);
+  }, [simpleTrigger.startDate]);
 
   useEffect(() => {
     setScheduleName(scheduleJobName);
   }, [scheduleJobName]);
 
   useEffect(() => {
+    setStartType(storeStartType);
+  }, [simpleTrigger.startType]);
+
+  useEffect(() => {
     setRecurrenceInterval(recurrenceInterval);
-  }, [recurrenceInterval]);
+  }, [simpleTrigger.recurrenceInterval]);
 
   useEffect(() => {
     setRecurrenceUnit(recurrenceIntervalUnit);
-  }, [recurrenceIntervalUnit]);
+  }, [simpleTrigger.recurrenceIntervalUnit]);
 
   const handleIntervalChange = (value: string) => {
     setRecurrenceInterval(value);
@@ -179,49 +197,55 @@ const Schedule = () => {
         </div>
       </div>
 
-      <JVRadioGroup
-        size="large"
-        RadioGroupProps={{ onChange: handleStartType }}
-      >
-        <JVTypography>{t("schedule.recurrence.start")}</JVTypography>
-        <JVRadioButton
-          id="start-now"
-          value="start-now"
-          label={t("schedule.recurrence.start.now")}
-          RadioProps={{
-            value: 1,
-            checked: startType === 1,
-          }}
-        />
-        <JVRadioButton
-          id="specificDate"
-          value="start-specific-time"
-          label={t("schedule.recurrence.start.custom")}
-          RadioProps={{
-            value: 2,
-            checked: startType === 2,
-          }}
-        />
-      </JVRadioGroup>
-      <div className="jv-uMargin-l-07 jv-uWidth-200px">
-        <JVTextField
-          size="large"
-          type="datetime-local"
-          disabled={startType === 1}
-          value={specificDateTime.split(" ").join("T")}
-          onChange={(e) => {
-            const formattedDate = e.target.value.split("T").join(" ");
-            setSpecificDateTime(formattedDate);
-          }}
-          onBlur={() =>
-            updateRecurrenceToStore({
-              startDate: specificDateTime,
-              startType,
-              outputTimeZone,
-            })
-          }
-        />
-      </div>
+      {startTimeVisible && (
+        <>
+          <JVRadioGroup
+            size="large"
+            RadioGroupProps={{ onChange: handleStartType }}
+          >
+            <JVTypography>{t("schedule.recurrence.start")}</JVTypography>
+            <JVRadioButton
+              id="start-now"
+              value="start-now"
+              label={t("schedule.recurrence.start.now")}
+              RadioProps={{
+                value: 1,
+                checked: startType === 1,
+              }}
+            />
+
+            <JVRadioButton
+              id="specificDate"
+              value="start-specific-time"
+              label={t("schedule.recurrence.start.custom")}
+              RadioProps={{
+                value: 2,
+                checked: startType === 2,
+              }}
+            />
+          </JVRadioGroup>
+
+          <div className="jv-uMargin-l-07 jv-uWidth-200px">
+            <JVTextField
+              size="large"
+              type="datetime-local"
+              disabled={startType === 1}
+              value={specificDateTime.split(" ").join("T")}
+              onChange={(e) => {
+                const formattedDate = e.target.value.split("T").join(" ");
+                setSpecificDateTime(formattedDate);
+              }}
+              onBlur={() =>
+                updateRecurrenceToStore({
+                  startDate: specificDateTime,
+                  startType,
+                  outputTimeZone,
+                })
+              }
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };

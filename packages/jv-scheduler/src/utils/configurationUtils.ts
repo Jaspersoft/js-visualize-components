@@ -3,12 +3,12 @@ import {
   tabsInfo,
   tabsDefaultOrder,
   ScheduleDefaultState,
-  simpleTriggerState,
   SCHEDULE_TAB,
   PARAMETERS_TAB,
   OUTPUT_TAB,
   NOTIFICATIONS_TAB,
   manadatoryHiddenField,
+  typeOfFields,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 
@@ -42,7 +42,7 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
   const error = {};
   switch (tabName) {
     case SCHEDULE_TAB: {
-      const { label } = tabData;
+      const { label, startTime } = tabData;
       if (!label) {
         console.error(
           "Value for label is required in the configuration when schedule tab is hidden",
@@ -89,32 +89,212 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
   return error;
 };
 
-const checkHiddenFieldData = (fieldsData: any) => {
-  const error = {},
-    fieldsVisibility = {};
+const checkFieldValueIsIncorrect = (field: string) => {
+  // if value is correct return field name and value
+  // if value is not correct return error
+
+  return field;
+};
+
+const validate = (propertName, propertyValue, extraParams) => {
+  switch (propertName) {
+    case "startTime": {
+      const value = parseInt(propertyValue);
+      if (value !== 1 && value !== 2) {
+        return { error: "Entered incorrect value for startTime" };
+      } else if (value === 2 && !extraParams.startDate) {
+        return { error: "startDate is required when startTime is 2" };
+      }
+    }
+    case "reportAccessType": {
+      if (propertyValue !== "SEND" && propertyValue !== "SEND_ATTACHMENT") {
+        return { error: "Entered incorrect value for reportAccessType" };
+      }
+    }
+  }
+  return { error: null };
+};
+
+const getValuesForRadio = (value, field) => {
+  const [propertyValue, dependantValue] = value.split("="),
+    error = {};
+  switch (field) {
+    case "startTime": {
+      const { error } = validate("startTime", propertyValue, {
+        startDate: dependantValue,
+      });
+      if (error) {
+        return { error };
+      }
+      return {
+        startType: propertyValue,
+        startDate: dependantValue,
+      };
+    }
+    case "reportAccessType": {
+      const { error } = validate("reportAccessType", propertyValue, {});
+      if (error) {
+        return { error };
+      }
+      return {
+        resultSendType: propertyValue,
+        folderURI: dependantValue,
+      };
+    }
+  }
+};
+
+// const retriveDataFromConfig = (type: string, fieldData, field) => {
+//   const error = {},
+//       fieldsVisibility = {}, fieldConvertedData = {]};
+//   switch (type) {
+//     case "simple":{
+//       if (fieldData[field].showField === false && manadatoryHiddenField.indexOf(field) > -1 && !fieldData[field].value) {
+//         console.error(`${field} is required in the configuration`);
+//         error[field] = `${field} is required in the configuration`;
+//       } else {
+//         const fieldValue = checkFieldValueIsIncorrect(fieldData[field].value)
+//         if(fieldValue.error) {
+//           console.error(`${field} is not valid`);
+//           error[field] = `${field} is not valid`;
+//         } else {
+//           fieldConvertedData[field] = fieldValue;
+//           fieldsVisibility[field] = fieldData[field].showField === undefined ? true : fieldData[field].showField;
+//         }
+//       }
+//       return
+//     }
+//     case "radio": {
+//       return
+//     }
+//   }
+// }
+
+const checkFieldDataValidity = (fieldsData: any) => {
+  let error = {},
+    fieldsVisibility = {},
+    fieldConvertedData = {};
+
   Object.keys(fieldsData).forEach((field) => {
-    if (
-      fieldsData[field].showField === false &&
-      manadatoryHiddenField.indexOf(field) > -1 &&
-      !fieldsData[field].value
-    ) {
-      console.error(`${field} is required in the configuration`);
-      error[field] = `${field} is required in the configuration`;
-    } else {
-      fieldsVisibility[field] =
-        fieldsData[field].showField === undefined
-          ? true
-          : fieldsData[field].showField;
+    const type = typeOfFields[field];
+    switch (type) {
+      case "simple": {
+        if (
+          fieldsData[field].showField === false &&
+          manadatoryHiddenField.indexOf(field) > -1 &&
+          !fieldsData[field].value
+        ) {
+          console.error(`${field} is required in the configuration`);
+          error[field] = `${field} is required in the configuration`;
+        } else {
+          const fieldValue = checkFieldValueIsIncorrect(
+            fieldsData[field].value,
+          );
+          if (fieldValue.error) {
+            console.error(`${field} is not valid`);
+            error[`${field}ValErr`] = `${field} is not valid`;
+          } else {
+            fieldConvertedData[field] = fieldValue;
+            fieldsVisibility[field] =
+              fieldsData[field].showField === undefined
+                ? true
+                : fieldsData[field].showField;
+          }
+        }
+        break;
+      }
+      case "radio": {
+        const { showField, value, options } = fieldsData[field];
+        if (
+          showField === false &&
+          manadatoryHiddenField.indexOf(field) > -1 &&
+          !value
+        ) {
+          console.error(`${field} is required in the configuration`);
+          error[field] = `${field} is required in the configuration`;
+        } else {
+          const fieldValue = getValuesForRadio(value, field);
+          if (fieldValue.error) {
+            console.error(fieldValue.error);
+            error[`${field}ValErr`] = fieldValue.error;
+          } else {
+            fieldConvertedData = { ...fieldConvertedData, ...fieldValue };
+            fieldsVisibility[field] =
+              showField === undefined ? true : showField;
+          }
+        }
+        break;
+      }
     }
   });
-  return { error, fieldsVisibility };
+  return { error, fieldsVisibility, fieldConvertedData };
+};
+
+const setDefaultValuesForFields = (
+  fieldConvertedData: any,
+  resourceURI: string,
+) => {
+  const {
+    baseOutputFilename = "",
+    description = "",
+    label = "",
+    messageText = "",
+    subject = "",
+    address = [],
+    resultSendType = "SEND",
+    outputFormat = ["pdf"],
+    outputTimeZone = "Asia/Calcutta",
+    startType = "1",
+    recurrenceInterval = 1,
+    recurrenceIntervalUnit = "DAY",
+    startDate = null,
+    outputDescription = "",
+    folderURI,
+  } = fieldConvertedData;
+
+  return {
+    ...ScheduleDefaultState,
+    baseOutputFilename,
+    scheduleJobDescription: description,
+    scheduleJobName: label,
+    mailNotification: {
+      messageText,
+      subject,
+      toAddresses: {
+        address,
+      },
+      resultSendType,
+    },
+    outputFormats: {
+      outputFormat,
+    },
+    outputTimeZone,
+    trigger: {
+      simpleTrigger: {
+        //...simpleTriggerState,
+        startType: parseInt(startType),
+        recurrenceInterval,
+        recurrenceIntervalUnit,
+        startDate,
+      },
+    },
+    repositoryDestination: {
+      ...ScheduleDefaultState.repositoryDestination,
+      outputDescription,
+      folderURI: folderURI
+        ? folderURI
+        : `/${getUriParts(resourceURI, true).join("/")}`,
+      saveToRepository: true,
+    },
+  };
 };
 
 export const getSchedulerData = (scheduleConfig: any) => {
   const { resourceURI, tabs, contextPath, server } = scheduleConfig || {};
   const { tabsData = {}, tabsOrder } = tabs || {};
-  let error = checkAvailabilityOfBasicConfig(resourceURI, server, contextPath);
+
   // check resourceURI, server, contextPath are provided by user
+  let error = checkAvailabilityOfBasicConfig(resourceURI, server, contextPath);
   if (!!getLengthOfObject(error)) {
     return { error };
   }
@@ -122,7 +302,6 @@ export const getSchedulerData = (scheduleConfig: any) => {
   // check whether resourceURI is correct and has permission to view.
 
   const tabsConfig = tabsOrder.length > 0 ? tabsOrder : tabsDefaultOrder;
-
   const stepsToShow = [],
     tabsToShow = [];
   tabsConfig.map((tab) => {
@@ -170,68 +349,19 @@ export const getSchedulerData = (scheduleConfig: any) => {
     ...parametersDefaultValues,
   };
 
-  const { error: fieldsErrs, fieldsVisibility } =
-    checkHiddenFieldData(inputFieldsInfo);
+  const {
+    error: fieldsErrs,
+    fieldsVisibility,
+    fieldConvertedData,
+  } = checkFieldDataValidity(inputFieldsInfo);
   if (getLengthOfObject(fieldsErrs)) {
     return { error };
   }
 
-  const {
-    baseOutputFilename,
-    outputDescription,
-    outputFormat,
-    outputTimeZone,
-  } = outputDefaultValues;
-  const { address, messageText, subject, reportAccessType } =
-    notificationsDefaultValues;
-  const {
-    label,
-    description,
-    startTime,
-    recurrenceInterval,
-    recurrenceIntervalUnit,
-  } = scheduleDefaultValues;
-  const {
-    value: resultSendType,
-    folderURI,
-    saveToRepository,
-  } = reportAccessType || {};
-  const { startType, startDate } = startTime || {};
-
-  const scheduleInfo = {
-    ...ScheduleDefaultState,
-    baseOutputFilename: baseOutputFilename?.value || "",
-    scheduleJobDescription: description?.value || "",
-    scheduleJobName: label?.value || "",
-    mailNotification: {
-      messageText: messageText?.value || "",
-      subject: subject?.value || "",
-      toAddresses: {
-        address: address?.value || [],
-      },
-      resultSendType: resultSendType || "SEND",
-    },
-    outputFormats: {
-      outputFormat: outputFormat?.value || ["pdf"],
-    },
-    outputTimeZone: outputTimeZone?.value || "Asia/Calcutta",
-    trigger: {
-      simpleTrigger: {
-        ...simpleTriggerState,
-        startType: startType?.value || 1,
-        recurrenceInterval: recurrenceInterval?.value || 1,
-        recurrenceIntervalUnit: recurrenceIntervalUnit?.value || "DAY",
-        startDate: startDate?.value || null,
-      },
-    },
-    repositoryDestination: {
-      ...ScheduleDefaultState.repositoryDestination,
-      outputDescription: outputDescription?.value || "",
-      folderURI:
-        folderURI?.value || `/${getUriParts(resourceURI, true).join("/")}`,
-      saveToRepository: true,
-    },
-  };
+  const scheduleInfo = setDefaultValuesForFields(
+    fieldConvertedData,
+    resourceURI,
+  );
 
   return {
     scheduleInfo,

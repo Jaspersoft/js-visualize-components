@@ -225,7 +225,14 @@ export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
       }),
     );
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
-    dispatch(setPropertiesDetails(scheduleInfo));
+    const { trigger, ...restScheduleInfo } = scheduleInfo;
+    const { simpleTrigger } = trigger;
+    dispatch(
+      setPropertiesDetails({
+        trigger: { simpleTrigger: { ...simpleTrigger } },
+        ...restScheduleInfo,
+      }),
+    );
   };
 };
 export const scheduleValidationError = (errors: IScheduleErrors) => {

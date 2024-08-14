@@ -18,9 +18,11 @@ const schedulerUIConfig = {
             showField: true,
             value: "HOUR",
           },
-          startTime: {
-            showField: true,
-          },
+          // startTime: {
+          //   showField: true,
+          //   value: "1",
+          //   options: ["now", "specificDateAndTime"]
+          // },
         },
       },
       output: {
@@ -59,12 +61,21 @@ const schedulerUIConfig = {
             value: "Email message",
           },
           reportAccessType: {
-            value: "SEND", // "SEND_ATTACHMENT" | "SEND"
-            folderURI: {
-              value: "/public",
-            },
-            saveToRepository: { showField: true, disabled: false, value: true },
+            showField: true,
+            value: "SEND_ATTACHMENT", // "SEND_ATTACHMENT" | "SEND"
+            options: ["SEND", "SEND_ATTACHMENT"],
           },
+          // reportAccessType: {
+          //   showField: true,
+          //   value: "SEND", // "SEND_ATTACHMENT" | "SEND"
+          // },
+          // folderURI: {
+          //   showField: true,
+          //   value: "/public",
+          // },
+          // saveToRepository: {
+          //   showField: true,
+          // },
         },
       },
     },
