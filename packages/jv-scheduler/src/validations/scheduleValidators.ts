@@ -96,9 +96,23 @@ const validator = (
   switch (propName) {
     case ERROR_FIELDS.NAME:
       if (isFieldEmpty(propVal)) {
-        schedulerPropError = "error.alert.name";
+        schedulerPropError = "error.schedule.name";
       } else if (propVal.length > 100) {
-        schedulerPropError = "error.alert.name.too.long";
+        schedulerPropError = "error.schedule.name.too.long";
+      }
+      break;
+    case ERROR_FIELDS.SCHEDULE_JOB_NAME:
+      if (isFieldEmpty(propVal)) {
+        schedulerPropError = "error.schedule.job.name";
+      } else if (propVal.length > 100) {
+        schedulerPropError = "error.schedule.job.name.too.long";
+      }
+      break;
+    case ERROR_FIELDS.SCHEDULE_JOB_DESCRIPTION:
+      if (isFieldEmpty(propVal)) {
+        schedulerPropError = "error.schedule.job.description";
+      } else if (propVal.length > 250) {
+        schedulerPropError = "error.schedule.job.description.too.long";
       }
       break;
     case ERROR_FIELDS.THRESHOLD:
@@ -126,7 +140,7 @@ const validator = (
       break;
     case ERROR_FIELDS.EMAIL_ADDRESS:
       if (isFieldEmpty(propVal)) {
-        schedulerPropError = "notifications.send.alert.to.helper.text";
+        schedulerPropError = "notifications.send.schedule.to.helper.text";
       } else if (!validateEmail(propName, propVal)) {
         schedulerPropError = "error.email.address";
       }
@@ -169,7 +183,7 @@ const validator = (
       }
       if (!isValidUri(propVal)) {
         return {
-          folderURI: "error.report.alert.output.folder.resourceuri.format",
+          folderURI: "error.report.schedule.output.folder.resourceuri.format",
         };
       }
       return getFolderErr(propVal);

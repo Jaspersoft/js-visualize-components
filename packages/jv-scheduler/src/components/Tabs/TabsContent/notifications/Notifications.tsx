@@ -17,12 +17,23 @@ import {
 } from "../../../../constants/schedulerConstants";
 import { getExpandedNodeDataFromUri } from "../../../../utils/schedulerUtils";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../../../types/scheduleType";
+import {
+  IAddress,
+  IState,
+  IStepperState,
+} from "../../../../types/scheduleType";
 
 const Notifications = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
   const mailNotification = useSelector(
     (state: IState) => state.scheduleInfo.mailNotification,
+  );
+  const emailErr = useSelector((state: IState) => state.scheduleErrors.address);
+  const subjectErr = useSelector(
+    (state: IState) => state.scheduleErrors.subject,
+  );
+  const messageErr = useSelector(
+    (state: IState) => state.scheduleErrors.messageText,
   );
   const repositoryDestination = useSelector(
     (state: IState) => state.scheduleInfo.repositoryDestination,
@@ -56,10 +67,14 @@ const Notifications = () => {
   const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
   const dispatch = useDispatch();
 
-  const updateChangeToStore = (updateProperty: any) => {
-    updateStore({
-      mailNotification: { ...mailNotification, ...updateProperty },
-    });
+  const updateChangeToStore = (
+    updateProperty: { [key: string]: string | IAddress },
+    stepperData?: IStepperState,
+  ) => {
+    updateStore(
+      { mailNotification: { ...mailNotification, ...updateProperty } },
+      stepperData || updateProperty,
+    );
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -123,6 +138,7 @@ const Notifications = () => {
                 : mailAddress;
               updateChangeToStore({ toAddresses: { address: addressArr } });
             }}
+            error={t(emailErr || "")}
           />
         )}
         {subjectVisible && (
@@ -132,6 +148,7 @@ const Notifications = () => {
             value={mailSubject}
             onChange={(e) => setMailSubject(e.target.value)}
             onBlur={() => updateChangeToStore({ subject: mailSubject })}
+            error={t(subjectErr || "")}
           />
         )}
         {messageTextVisible && (
@@ -143,6 +160,7 @@ const Notifications = () => {
             value={mailMessageText}
             onChange={(e) => setMailMessageText(e.target.value)}
             onBlur={() => updateChangeToStore({ messageText: mailMessageText })}
+            error={t(messageErr || "")}
           />
         )}
         <JVRadioGroup

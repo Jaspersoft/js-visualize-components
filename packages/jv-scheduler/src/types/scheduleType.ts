@@ -18,6 +18,10 @@ interface IStepperErrorData {
   outputTimeZone?: string | undefined;
 }
 
+export interface IAddress {
+  address: string | string[];
+}
+
 export interface IStepperState extends IStepperErrorData {
   address?: string | string[];
   outputFormat?: string[];
@@ -38,6 +42,8 @@ export interface IScheduleErrors extends IStepperErrorData {
   outputFormat?: string;
   startDate?: string;
   thresholdValue?: string;
+  scheduleJobName?: string;
+  scheduleJobDescription?: string;
 }
 
 interface IRepositoryDestination {
@@ -88,7 +94,7 @@ export interface IStoreData {}
 export interface IScheduleInfo {
   baseOutputFilename: string;
   baseOutputFileDescription: string;
-  label: string;
+  scheduleJobName: string;
   description: string;
   mailNotification: IMailNotifications;
   trigger: ITrigger;

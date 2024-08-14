@@ -257,8 +257,8 @@ const setDefaultValuesForFields = (
   return {
     ...ScheduleDefaultState,
     baseOutputFilename,
-    description,
-    label,
+    scheduleJobName: label,
+    scheduleJobDescription: description,
     mailNotification: {
       messageText,
       subject,

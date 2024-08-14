@@ -213,11 +213,13 @@ export const MAX_STEPPER_OUTPUT_FORMATS = 5;
 export const START_TIME_FORMAT = "MM/DD/YYYY, hh:mm A";
 export const OUTPUT_FILE_NAME = "baseOutputFilename";
 export const OUTPUT_FILE_DESCRIPTION = "baseOutputFileDescription";
-export const SCHEDULE_JOB_NAME = "label";
-export const SCHEDULE_JOB_DESCRIPTION = "description";
+export const SCHEDULE_JOB_NAME = "scheduleJobName";
+export const SCHEDULE_JOB_DESCRIPTION = "scheduleJobDescription";
 export const accessiblePermissionMask = [1, 30, 6];
 export const ERROR_FIELDS = {
   NAME: "name",
+  SCHEDULE_JOB_NAME: "scheduleJobName",
+  SCHEDULE_JOB_DESCRIPTION: "scheduleJobDescription",
   THRESHOLD: "thresholdValue",
   RECURRENCE: "recurrenceInterval",
   START_DATE: "startDate",

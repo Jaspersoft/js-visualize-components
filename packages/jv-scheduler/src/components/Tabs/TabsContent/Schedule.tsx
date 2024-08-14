@@ -16,12 +16,28 @@ import {
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 import { useTranslation } from "react-i18next";
-import { IState, IStepperState } from "../../../types/scheduleType";
+import {
+  IOutputFormat,
+  IState,
+  IStepperState,
+} from "../../../types/scheduleType";
 
 const Schedule = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
+  const recurrenceIntervalErr = useSelector(
+    (state: IState) => state.scheduleErrors.recurrenceInterval,
+  );
+  const startDateErr = useSelector(
+    (state: IState) => state.scheduleErrors.startDate,
+  );
+  const scheduleJobNameErr = useSelector(
+    (state: IState) => state.scheduleErrors.scheduleJobName,
+  );
+  const scheduleJobDescriptionErr = useSelector(
+    (state: IState) => state.scheduleErrors.scheduleJobDescription,
+  );
   const scheduleJobName = useSelector(
-    (state: IState) => state.scheduleInfo.label,
+    (state: IState) => state.scheduleInfo.scheduleJobName,
   );
   const scheduleJobDescription = useSelector(
     (state: IState) => state.scheduleInfo.description,
@@ -105,8 +121,12 @@ const Schedule = () => {
     updateRecurrenceToStore(changedVal);
   };
 
-  const updateChangeToStore = (property: any) => {
-    updateStore(property, property);
+  const updateChangeToStore = (
+    storeData: { [key: string]: string | any },
+    propertyName: string,
+    propertyValue: string | string[],
+  ) => {
+    updateStore(storeData, { [propertyName]: propertyValue });
   };
 
   const updateRecurrenceToStore = (newProperty: {
@@ -126,8 +146,13 @@ const Schedule = () => {
           value={scheduleName}
           onChange={(e) => setScheduleName(e.target.value)}
           onBlur={() => {
-            updateChangeToStore({ [SCHEDULE_JOB_NAME]: scheduleName });
+            updateChangeToStore(
+              { scheduleJobName: scheduleName },
+              SCHEDULE_JOB_NAME,
+              scheduleName,
+            );
           }}
+          error={t(scheduleJobNameErr || "")}
         />
       )}
       {descriptionVisible && (
@@ -140,11 +165,14 @@ const Schedule = () => {
           onChange={(e) => {
             setScheduleDescription(e.target.value);
           }}
-          onBlur={() =>
-            updateChangeToStore({
-              [SCHEDULE_JOB_DESCRIPTION]: scheduleDescription,
-            })
-          }
+          onBlur={() => {
+            updateChangeToStore(
+              { scheduleJobDescription: scheduleDescription },
+              SCHEDULE_JOB_DESCRIPTION,
+              scheduleDescription,
+            );
+          }}
+          error={t(scheduleJobDescriptionErr || "")}
         />
       )}
       {recurrenceIntervalVisible ||
@@ -169,6 +197,7 @@ const Schedule = () => {
             setRecurrenceInterval(convertedValue);
             updateRecurrenceToStore({ recurrenceInterval: convertedValue });
           }}
+          error={t(recurrenceIntervalErr || "")}
         />
         <div className="jv-mControl-timeframe mui">
           <JVTextField

@@ -61,8 +61,19 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
 
 export const ScheduleStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
-  const label = useSelector((state: any) => state.stepperState.label),
-    description = useSelector((state: any) => state.stepperState.description),
+  const label = useSelector((state: any) => state.stepperState.scheduleJobName),
+    description = useSelector(
+      (state: any) => state.stepperState.scheduleJobDescription,
+    ),
+    scheduleJobNameErr = useSelector(
+      (state: IState) => state.scheduleErrors.scheduleJobName,
+    ),
+    scheduleJobDescriptionErr = useSelector(
+      (state: IState) => state.scheduleErrors.scheduleJobDescription,
+    ),
+    intervalErr = useSelector(
+      (state: IState) => state.scheduleErrors.recurrenceInterval,
+    ),
     interval = useSelector(
       (state: any) => state.stepperState.recurrenceInterval,
     ),
@@ -88,17 +99,17 @@ export const ScheduleStepUserInput = () => {
   return (
     <>
       <InputDataInStep
-        error={""}
+        error={scheduleJobNameErr}
         title={t("stepper.schedule.jobname.key")}
         value={label}
       />
       <InputDataInStep
-        error={""}
+        error={scheduleJobDescriptionErr}
         title={t("stepper.schedule.jobdescription.key")}
         value={description}
       />
       <InputDataInStep
-        error={""}
+        error={intervalErr}
         title={t("stepper.schedule.repeat.key")}
         value={`${interval} ${timeFrameText}`}
       />
