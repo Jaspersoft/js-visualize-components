@@ -9,6 +9,7 @@ import {
   NOTIFICATIONS_TAB,
   manadatoryHiddenField,
   typeOfFields,
+  simpleTriggerState,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 
@@ -118,8 +119,7 @@ const validate = (propertName, propertyValue, extraParams) => {
 };
 
 const getValuesForRadio = (value, field) => {
-  const [propertyValue, dependantValue] = value.split("="),
-    error = {};
+  const [propertyValue, dependantValue] = value.split("=");
   switch (field) {
     case "startTime": {
       const { error } = validate("startTime", propertyValue, {
@@ -130,7 +130,7 @@ const getValuesForRadio = (value, field) => {
       }
       return {
         startType: propertyValue,
-        startDate: dependantValue,
+        startDate: dependantValue || "",
       };
     }
     case "reportAccessType": {
@@ -273,7 +273,7 @@ const setDefaultValuesForFields = (
     outputTimeZone,
     trigger: {
       simpleTrigger: {
-        //...simpleTriggerState,
+        ...simpleTriggerState,
         startType: parseInt(startType),
         recurrenceInterval,
         recurrenceIntervalUnit,

@@ -164,9 +164,7 @@ export const defaultFieldVisibility = {
   label: true,
   recurrenceInterval: true,
   recurrenceIntervalUnit: true,
-  showTime: true,
-  startTimeNow: true,
-  startTimeSpecificDateAndTime: true,
+  reportAccessType: true,
 };
 export const scheduleDefaultErrorState = {
   name: undefined,
@@ -285,4 +283,20 @@ export const typeOfFields = {
   messageText: "simple",
   reportAccessType: "radio",
   folderUri: "simple",
+};
+
+export const defaultVisibility = {
+  label: true,
+  description: true,
+  recurrenceInterval: true,
+  recurrenceIntervalUnit: true,
+  startTime: true,
+  baseOutputFilename: true,
+  outputDescription: true,
+  outputFormat: true,
+  outputTimeZone: true,
+  address: true,
+  subject: true,
+  messageText: true,
+  reportAccessType: true,
 };

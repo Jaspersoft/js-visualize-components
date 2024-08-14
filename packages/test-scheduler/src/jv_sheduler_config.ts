@@ -3,7 +3,7 @@ const schedulerUIConfig = {
   resourceURI: "/public/Samples/Reports/02._Sales_Mix_by_City_Report",
   contextPath: "/jasperserver-pro",
   tabs: {
-    tabsOrder: ["schedule", "output", "parameters", "notifications"],
+    tabsOrder: ["schedule", "parameters", "notifications", "output"],
     tabsData: {
       schedule: {
         defaultValues: {
@@ -18,11 +18,11 @@ const schedulerUIConfig = {
             showField: true,
             value: "HOUR",
           },
-          // startTime: {
-          //   showField: true,
-          //   value: "1",
-          //   options: ["now", "specificDateAndTime"]
-          // },
+          startTime: {
+            showField: true,
+            value: "2=2024-07-31 14:11",
+            options: ["now", "specificDateAndTime"],
+          },
         },
       },
       output: {

@@ -221,7 +221,7 @@ const Schedule = () => {
               size="large"
               type="datetime-local"
               disabled={startType === 1}
-              value={specificDateTime.split(" ").join("T")}
+              value={specificDateTime?.split(" ").join("T")}
               onChange={(e) => {
                 const formattedDate = e.target.value.split("T").join(" ");
                 setSpecificDateTime(formattedDate);
