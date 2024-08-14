@@ -248,11 +248,6 @@ export const OutputStepUserInput = () => {
 export const ParametersStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
   return (
-    <>
-      <KeyValueTemplate
-        title={t("stepper.parameters.brand.key")}
-        value="brand"
-      />
-    </>
+    <KeyValueTemplate title={t("stepper.parameters.brand.key")} value="brand" />
   );
 };

@@ -88,8 +88,8 @@ export interface IStoreData {}
 export interface IScheduleInfo {
   baseOutputFilename: string;
   baseOutputFileDescription: string;
-  scheduleJobName: string;
-  scheduleJobDescription: string;
+  label: string;
+  description: string;
   mailNotification: IMailNotifications;
   trigger: ITrigger;
   outputTimeZone: string;

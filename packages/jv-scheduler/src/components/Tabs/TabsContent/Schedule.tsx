@@ -21,10 +21,10 @@ import { IState, IStepperState } from "../../../types/scheduleType";
 const Schedule = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
   const scheduleJobName = useSelector(
-    (state: IState) => state.scheduleInfo.scheduleJobName,
+    (state: IState) => state.scheduleInfo.label,
   );
   const scheduleJobDescription = useSelector(
-    (state: IState) => state.scheduleInfo.scheduleJobDescription,
+    (state: IState) => state.scheduleInfo.description,
   );
   const simpleTrigger = useSelector(
     (state: IState) => state.scheduleInfo.trigger.simpleTrigger,

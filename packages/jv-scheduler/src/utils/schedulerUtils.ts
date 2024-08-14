@@ -64,8 +64,8 @@ export const getStateOfCurrentActiveTab = (
   scheduleCurrentStateValues: any,
 ) => {
   const {
-    scheduleJobName,
-    scheduleJobDescription,
+    label,
+    description,
     baseOutputFileDescription,
     baseOutputFilename,
     mailNotification,
@@ -100,8 +100,8 @@ export const getStateOfCurrentActiveTab = (
       };
     case SCHEDULE_TAB:
       return {
-        scheduleJobName,
-        scheduleJobDescription,
+        label,
+        description,
         recurrenceInterval,
         recurrenceIntervalUnit,
         startDate,
@@ -119,8 +119,8 @@ export const getStateOfCurrentActiveTab = (
       };
     default:
       return {
-        scheduleJobDescription,
-        scheduleJobName,
+        description,
+        label,
         baseOutputFileDescription,
         startDate,
         startType,
