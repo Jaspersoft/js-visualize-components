@@ -50,7 +50,7 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
       textFieldClassName={`${controlClasses.join(" ")}`}
       InputProps={theInputProps}
       type="text"
-      error={errorText !== "" ? errorText : false}
+      error={errorText}
     />
   );
 };
