@@ -8,6 +8,7 @@ import {
 } from "../BaseInputControl";
 
 interface UseMandatoryMsgProps {
+  // TODO: delete these 2 props:
   validationRules: ICValidationRule[];
   isMandatory: boolean;
   textValue: string;
@@ -17,8 +18,6 @@ interface UseMandatoryMsgProps {
 }
 
 export const useErrorMsg = ({
-  validationRules,
-  isMandatory,
   textValue,
   defaultValue = "",
   props,
@@ -33,8 +32,8 @@ export const useErrorMsg = ({
     // 3. whether the field meets the max date value
     // 4. whether the field meets the min date value
     let theMsg =
-      isMandatory && !textValue.trim()
-        ? getMandatoryErrorMessage(validationRules)
+      props?.mandatory && !textValue.trim()
+        ? getMandatoryErrorMessage(props?.validationRules)
         : defaultValue;
     if (!theMsg.trim() && props?.dataType?.pattern) {
       // we have to evaluate the dataType and check if there is no pattern defined that we need to verify.

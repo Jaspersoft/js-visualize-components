@@ -5,6 +5,7 @@ import {
 } from "../utils/DateInputControlUtils";
 import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
 export type TimePickerICType = "material";
@@ -31,6 +32,13 @@ export const TimePickerInputControl = (props: TimeICProps) => {
     minKey: "minTime",
     maxKey: "maxTime",
   });
+  const errorText = useErrorMsg({
+    textValue: liveState.value,
+    isMandatory: props.mandatory,
+    validationRules: props.validationRules as ICValidationRule[],
+    props,
+    minAndMaxDate: minAndMaxSettings,
+  });
   const { events, ...remainingProps } = props;
   return (
     <JVTimePicker
@@ -42,6 +50,7 @@ export const TimePickerInputControl = (props: TimeICProps) => {
       timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
       format={dateFormat}
       disableIgnoringDatePartForTimeValidation={true}
+      error={errorText}
     />
   );
 };

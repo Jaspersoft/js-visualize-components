@@ -35,15 +35,16 @@ export const TimePickerTextFieldInputControl = (
   if (readOnly) {
     inputProps.readOnly = true;
   }
+  const minAndMaxSettings = getMinAndMaxSettings(dataType, {
+    minKey: "min",
+    maxKey: "max",
+  });
   const errorText = useErrorMsg({
     textValue: liveState.value,
     isMandatory: mandatory,
     validationRules: validationRules as ICValidationRule[],
     props,
-  });
-  const minAndMaxSettings = getMinAndMaxSettings(dataType, {
-    minKey: "min",
-    maxKey: "max",
+    minAndMaxDate: minAndMaxSettings,
   });
   const theInputProps = {
     ...inputProps,

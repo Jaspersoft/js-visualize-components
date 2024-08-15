@@ -5,6 +5,7 @@ import {
 } from "../utils/DateInputControlUtils";
 import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
 export type DatePickerICType = "material";
@@ -30,6 +31,13 @@ export const DatePickerInputControl = (props: DateICProps) => {
     minKey: "minDate",
     maxKey: "maxDate",
   });
+  const errorText = useErrorMsg({
+    textValue: liveState.value,
+    isMandatory: props.mandatory,
+    validationRules: props.validationRules as ICValidationRule[],
+    props,
+    minAndMaxDate: minAndMaxSettings,
+  });
   const { events, ...remainingProps } = props;
   return (
     <JVDatePicker
@@ -37,6 +45,7 @@ export const DatePickerInputControl = (props: DateICProps) => {
       onChange={liveState.onChange}
       value={liveState.value}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}
+      error={errorText}
     />
   );
 };
