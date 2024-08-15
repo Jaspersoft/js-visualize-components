@@ -117,7 +117,7 @@ export const verifyDateLimit = ({
   helperText = `Verify the date is ${getDateVerificationText(
     dataType,
     isVerifyingMin,
-  )} than ${getValueForVerificationText(dataType, isVerifyingMin)}.`;
+  )} ${getValueForVerificationText(dataType, isVerifyingMin)}.`;
   isError = true;
   return { helperText, isError };
 };
