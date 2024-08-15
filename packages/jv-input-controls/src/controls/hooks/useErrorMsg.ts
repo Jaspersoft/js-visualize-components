@@ -51,6 +51,7 @@ export const useErrorMsg = ({
         maxOrMinDateAsString:
           minAndMaxDate.max ||
           minAndMaxDate.maxDate ||
+          minAndMaxDate.maxTime ||
           minAndMaxDate.maxDateTime,
         dataType: props?.dataType,
         dateAsString: textValue,
@@ -59,11 +60,12 @@ export const useErrorMsg = ({
       theMsg = checkMax.helperText;
       isError = checkMax.isError;
     }
-    if (!isError && minAndMaxDate) {
+    if (!isError && !theMsg.trim() && minAndMaxDate) {
       const checkMax = verifyDateLimit({
         maxOrMinDateAsString:
           minAndMaxDate.min ||
           minAndMaxDate.minDate ||
+          minAndMaxDate.minTime ||
           minAndMaxDate.minDateTime,
         dataType: props?.dataType,
         dateAsString: textValue,
