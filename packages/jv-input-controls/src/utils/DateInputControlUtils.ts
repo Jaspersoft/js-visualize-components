@@ -6,6 +6,23 @@
 import { ICDataType, ICValidationRule } from "../controls/BaseInputControl";
 import { getValueForVerificationText } from "./NumberUtils";
 
+const getDateFromTimeString = (timeString: string): Date => {
+  const [hours, minutes, seconds] = timeString.split(":").map(Number);
+  const date = new Date();
+  date.setHours(hours, minutes, seconds);
+  return date;
+};
+
+const modifyTimeData = (timeString: string, isAdding: boolean): string => {
+  const date = getDateFromTimeString(timeString);
+  if (isAdding) {
+    date.setSeconds(date.getSeconds() + 1);
+  } else {
+    date.setSeconds(date.getSeconds() - 1);
+  }
+  return date.toTimeString().split(" ")[0];
+};
+
 const getMaxDateIfStrict = (dataType: ICDataType): string => {
   if (!dataType.maxValue) {
     return "";
@@ -14,7 +31,8 @@ const getMaxDateIfStrict = (dataType: ICDataType): string => {
     return dataType.maxValue!;
   }
   if (dataType.type === "time") {
-    return dataType.maxValue!;
+    // reduce in 1 second the time string
+    return modifyTimeData(dataType.maxValue!, false);
   }
   const date = new Date(dataType.maxValue!);
   // we have to subtract 1 day to the max value
@@ -33,7 +51,7 @@ const getMinDateIfStrict = (dataType: ICDataType): string => {
     return dataType.minValue!;
   }
   if (dataType.type === "time") {
-    return dataType.minValue!;
+    return modifyTimeData(dataType.minValue!, true);
   }
   const date = new Date(dataType.minValue!);
   // we have to add 1 day to the min value
@@ -106,9 +124,23 @@ export const verifyDateLimit = ({
   // verify the number is under the limits of the data type
   let conditionalIsMet;
   if (isVerifyingMin) {
-    conditionalIsMet = new Date(dateAsString) >= new Date(maxOrMinDateAsString);
+    if (dataType.type === "time") {
+      conditionalIsMet =
+        getDateFromTimeString(dateAsString) >=
+        getDateFromTimeString(maxOrMinDateAsString);
+    } else {
+      conditionalIsMet =
+        new Date(dateAsString) >= new Date(maxOrMinDateAsString);
+    }
   } else {
-    conditionalIsMet = new Date(dateAsString) <= new Date(maxOrMinDateAsString);
+    if (dataType.type === "time") {
+      conditionalIsMet =
+        getDateFromTimeString(dateAsString) <=
+        getDateFromTimeString(maxOrMinDateAsString);
+    } else {
+      conditionalIsMet =
+        new Date(dateAsString) <= new Date(maxOrMinDateAsString);
+    }
   }
   if (conditionalIsMet) {
     return { helperText, isError };
