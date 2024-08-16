@@ -23,6 +23,22 @@ const modifyTimeData = (timeString: string, isAdding: boolean): string => {
   return date.toTimeString().split(" ")[0];
 };
 
+const formatDateIfNeeded = (
+  piece: number,
+  isMonth = false,
+): number | string => {
+  if (isMonth) {
+    return piece + 1 < 10 ? `0${piece + 1}` : piece + 1;
+  }
+  return piece < 10 ? `0${piece}` : piece;
+};
+
+const formatFullDate = (date: Date): string => {
+  return `${date.getFullYear()}-${formatDateIfNeeded(date.getMonth(), true)}-${formatDateIfNeeded(
+    date.getDate(),
+  )}T${formatDateIfNeeded(date.getHours())}:${formatDateIfNeeded(date.getMinutes())}:${formatDateIfNeeded(date.getSeconds())}`;
+};
+
 const getMaxDateIfStrict = (dataType: ICDataType): string => {
   if (!dataType.maxValue) {
     return "";
@@ -35,12 +51,15 @@ const getMaxDateIfStrict = (dataType: ICDataType): string => {
     return modifyTimeData(dataType.maxValue!, false);
   }
   const date = new Date(dataType.maxValue!);
-  // we have to subtract 1 day to the max value
-  date.setDate(date.getDate() - 1);
+
   if (dataType.type === "date") {
+    // we have to subtract 1 day to the max value
+    date.setDate(date.getDate() - 1);
     return date.toISOString().split("T")[0];
   }
-  return date.toISOString().split(".")[0];
+  // it is datetime:
+  date.setSeconds(date.getSeconds() - 1);
+  return formatFullDate(date);
 };
 
 const getMinDateIfStrict = (dataType: ICDataType): string => {
@@ -54,12 +73,14 @@ const getMinDateIfStrict = (dataType: ICDataType): string => {
     return modifyTimeData(dataType.minValue!, true);
   }
   const date = new Date(dataType.minValue!);
-  // we have to add 1 day to the min value
-  date.setDate(date.getDate() + 1);
   if (dataType.type === "date") {
+    // we have to add 1 day to the min value
+    date.setDate(date.getDate() + 1);
     return date.toISOString().split("T")[0];
   }
-  return date.toISOString().split(".")[0];
+  // it is datetime:
+  date.setSeconds(date.getSeconds() + 1);
+  return formatFullDate(date);
 };
 
 export const getMinAndMaxSettings = (
