@@ -228,3 +228,14 @@ export const addChildrenToTreeOnLoad = (
   });
   return treeStructure;
 };
+export const updateChangeToStore = (
+  storeData: { [key: string]: string | any },
+  propertyName: string,
+  propertyValue: string | string[],
+  updateStore: (
+    storeData: { [p: string]: any },
+    p: { [p: string]: string | string[] },
+  ) => {},
+) => {
+  updateStore(storeData, { [propertyName]: propertyValue });
+};
