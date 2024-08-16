@@ -34,8 +34,6 @@ export const TimePickerInputControl = (props: TimeICProps) => {
   });
   const errorText = useErrorMsg({
     textValue: liveState.value,
-    isMandatory: props.mandatory,
-    validationRules: props.validationRules as ICValidationRule[],
     props,
     minAndMaxDate: minAndMaxSettings,
   });

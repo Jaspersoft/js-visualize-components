@@ -45,8 +45,6 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   });
   const errorText = useErrorMsg({
     textValue: liveState.value,
-    isMandatory: props.mandatory,
-    validationRules: props.validationRules as ICValidationRule[],
     props,
     minAndMaxDate: minAndMaxSettings,
   });

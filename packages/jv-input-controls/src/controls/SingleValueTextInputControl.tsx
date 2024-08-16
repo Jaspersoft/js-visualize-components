@@ -43,8 +43,6 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
   const theInputProps = { ...inputProps, ...liveState };
   const errorText = useErrorMsg({
     textValue: liveState.value,
-    isMandatory: mandatory,
-    validationRules: validationRules as ICValidationRule[],
     props,
   });
   return (

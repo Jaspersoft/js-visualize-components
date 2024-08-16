@@ -14,8 +14,6 @@ export function SingleSelectInputControl(
   const controlClasses = useControlClasses([], props);
   const errorText = useErrorMsg({
     textValue: liveState.value,
-    isMandatory: props.mandatory,
-    validationRules: props.validationRules as ICValidationRule[],
     props,
   });
   return (

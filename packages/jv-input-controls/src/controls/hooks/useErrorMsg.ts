@@ -4,13 +4,9 @@ import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
 import {
   BaseInputControlProps,
   getBaseInputControlProps,
-  ICValidationRule,
 } from "../BaseInputControl";
 
 interface UseMandatoryMsgProps {
-  // TODO: delete these 2 props:
-  validationRules: ICValidationRule[];
-  isMandatory: boolean;
   textValue: string;
   defaultValue?: string;
   props?: BaseInputControlProps;
