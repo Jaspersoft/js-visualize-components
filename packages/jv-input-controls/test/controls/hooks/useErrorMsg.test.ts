@@ -156,4 +156,19 @@ describe("useErrorMsg custom hook", () => {
     );
     expect(result.current).toBe("");
   });
+  // add a test that checks if the props.events.change has been called if it's provided
+
+  it("should call the callback method if it is provided", () => {
+    const callback = jest.fn();
+    renderHook(() =>
+      useErrorMsg({
+        textValue: "2014-09-12T15:46:18",
+        props: {
+          ...props,
+          events: { change: callback },
+        },
+      }),
+    );
+    expect(callback).toHaveBeenCalled();
+  });
 });
