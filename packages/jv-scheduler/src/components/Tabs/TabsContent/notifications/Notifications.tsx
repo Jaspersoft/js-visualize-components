@@ -133,10 +133,18 @@ const Notifications = () => {
             value={mailAddress}
             onChange={(e) => setMailAddress(e.target.value)}
             onBlur={() => {
-              const addressArr = mailAddress.length
-                ? mailAddress.split(new RegExp(" *, *"))
-                : mailAddress;
-              updateChangeToStore({ toAddresses: { address: addressArr } });
+              let addressArr;
+              if (Array.isArray(mailAddress)) {
+                addressArr = mailAddress;
+              } else {
+                addressArr = mailAddress.length
+                  ? mailAddress.split(new RegExp(" *, *"))
+                  : mailAddress;
+              }
+              updateChangeToStore(
+                { toAddresses: { address: addressArr } },
+                { address: addressArr },
+              );
             }}
             error={t(emailErr || "")}
           />

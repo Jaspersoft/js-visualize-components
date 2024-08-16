@@ -74,6 +74,11 @@
     "repository.dialog.title": "Repository Content",
     "repository.dialog.select.button": "Select",
     "repository.dialog.cancel.button": "Cancel",
-    "schedule.more": "more"
+    "schedule.more": "more",
+    "error.schedule.job.description.too.long": "The scheduled job description is too long. The maximum length is 250 characters.",
+    "error.schedule.job.name.too.long": "The scheduled job name is too long. The maximum length is 100 characters.",
+    "error.invalid.file.name": "The base output name contains invalid characters. You might have mistyped it.",
+    "error.file.name.too.long": "The file name is too long. It must be 200 characters or less.",
+    "error.recurrence.must.be.integer": "The recurrence interval must be an integer greater than 0."
   }
 }

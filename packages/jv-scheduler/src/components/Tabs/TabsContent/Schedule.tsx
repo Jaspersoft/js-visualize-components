@@ -40,7 +40,7 @@ const Schedule = () => {
     (state: IState) => state.scheduleInfo.scheduleJobName,
   );
   const scheduleJobDescription = useSelector(
-    (state: IState) => state.scheduleInfo.description,
+    (state: IState) => state.scheduleInfo.scheduleJobDescription,
   );
   const simpleTrigger = useSelector(
     (state: IState) => state.scheduleInfo.trigger.simpleTrigger,

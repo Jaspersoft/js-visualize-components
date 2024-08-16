@@ -95,7 +95,7 @@ export interface IScheduleInfo {
   baseOutputFilename: string;
   baseOutputFileDescription: string;
   scheduleJobName: string;
-  description: string;
+  scheduleJobDescription: string;
   mailNotification: IMailNotifications;
   trigger: ITrigger;
   outputTimeZone: string;
