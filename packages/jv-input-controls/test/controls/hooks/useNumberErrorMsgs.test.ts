@@ -1,5 +1,4 @@
 import { renderHook } from "@testing-library/react";
-import { BaseInputControlProps } from "../../../src/controls/BaseInputControl";
 import { useNumberErrorMsg } from "../../../src/controls/hooks/useNumberErrorMsgs";
 
 const ALL_PROPS = {
@@ -56,19 +55,16 @@ describe("useNumberErrorMsg", () => {
     expect(result.current).toBe("Specify a valid value for type number.");
   });
   it("should return an error message for input not matching the required pattern", () => {
-    const customErrorMsg = "Specify a valid value for type number.";
+    const customErrorMsg = "This field does not match the required pattern.";
     const { result } = renderHook(() =>
       useNumberErrorMsg({
-        textValue: "asdasd",
+        textValue: "300",
         props: {
           ...ALL_PROPS,
           dataType: {
-            type: "number",
-            maxValue: "10",
-            strictMax: false,
-            minValue: "1",
-            strictMin: false,
-            pattern: "hello",
+            ...ALL_PROPS.dataType,
+            maxValue: "500",
+            pattern: "^[1-5]$",
           },
         },
       }),
@@ -106,5 +102,19 @@ describe("useNumberErrorMsg", () => {
       }),
     );
     expect(result.current).toBe("");
+  });
+
+  it("should call the callback method if it is provided", () => {
+    const callback = jest.fn();
+    renderHook(() =>
+      useNumberErrorMsg({
+        textValue: "5",
+        props: {
+          ...ALL_PROPS,
+          events: { change: callback },
+        },
+      }),
+    );
+    expect(callback).toHaveBeenCalled();
   });
 });

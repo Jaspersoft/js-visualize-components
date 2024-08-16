@@ -40,7 +40,7 @@ export const useNumberErrorMsg = ({
         : "";
     if (!theMsg.trim() && props?.dataType?.pattern) {
       // we have to evaluate the dataType and check if there is no pattern defined that we need to verify.
-      const regex = new RegExp(props.dataType.pattern);
+      const regex = new RegExp(`${props.dataType.pattern}`);
       regex.lastIndex = 0;
       const isMatch = regex.test(textValue);
       // TODO: we will need to translate this message once we add the i18n support:
@@ -63,7 +63,7 @@ export const useNumberErrorMsg = ({
       theMsg = checkMax.helperText;
       isError = checkMax.isError;
     }
-    if (!isError) {
+    if (!isError && !theMsg.trim()) {
       // verify min limit:
       const checkMin = verifyLimit({
         maxOrMinValAsNumber:
