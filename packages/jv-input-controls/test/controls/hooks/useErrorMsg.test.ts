@@ -88,27 +88,6 @@ describe("useErrorMsg custom hook", () => {
     );
     expect(result.current).toBe("");
   });
-  // it("should return error for type number", () => {
-  //   const customErrorMsg = "Specify a valid value for type number.";
-  //   const { result } = renderHook(() =>
-  //     useErrorMsg({
-  //       textValue: "asdasd",
-  //       defaultValue: customErrorMsg,
-  //       props: {
-  //         ...props,
-  //         dataType: {
-  //           type: "number",
-  //           maxValue: "10",
-  //           strictMax: false,
-  //           minValue: "1",
-  //           strictMin: false,
-  //           pattern: "hello",
-  //         },
-  //       },
-  //     }),
-  //   );
-  //   expect(result.current).toBe(customErrorMsg);
-  // });
   it("should return error for type date because of max date value is specified", () => {
     const { result } = renderHook(() =>
       useErrorMsg({
