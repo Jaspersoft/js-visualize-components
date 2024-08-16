@@ -167,7 +167,7 @@ export const verifyDateLimit = ({
     return { helperText, isError };
   }
   // TODO: in the future, this message need to be considered for i18n:
-  helperText = `Verify the date is ${getDateVerificationText(
+  helperText = `Verify the ${dataType.type === "time" ? "time" : "date"} is ${getDateVerificationText(
     dataType,
     isVerifyingMin,
   )} ${getValueForVerificationText(dataType, isVerifyingMin)}.`;
