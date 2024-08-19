@@ -37,7 +37,7 @@ const Notifications = () => {
     (state: IState) => state.scheduleErrors.messageText,
   );
   const repositoryDestination = useSelector(
-    (state: IState) => state.scheduleInfo.repositoryDestination,
+    (state: IState) => state.repositoryDestination,
   );
   const folderData = useSelector((state: any) => state.folderData);
   const resourceUri = useSelector(
