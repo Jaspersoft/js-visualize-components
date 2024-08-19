@@ -20,7 +20,7 @@ const schedulerUIConfig = {
           },
           startTime: {
             showField: true,
-            value: "2=2024-07-31 14:11",
+            value: "2024-07-31 14:11",
             options: ["now", "specificDateAndTime"],
           },
         },
@@ -62,7 +62,7 @@ const schedulerUIConfig = {
           },
           reportAccessType: {
             showField: true,
-            value: "SEND_ATTACHMENT", // "SEND_ATTACHMENT" | "SEND"
+            value: "/public", // "SEND_ATTACHMENT" | "SEND"
             options: ["SEND", "SEND_ATTACHMENT"],
           },
           // reportAccessType: {

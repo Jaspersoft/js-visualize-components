@@ -97,19 +97,25 @@ const checkFieldValueIsIncorrect = (field: string) => {
   return field;
 };
 
-const validate = (propertName, propertyValue, extraParams) => {
+const checkValidDate = (date: string) => {
+  return true;
+};
+const checkValueOfFolderUri = (uri: string) => {
+  return true;
+};
+const validate = (propertName, propertyValue) => {
   switch (propertName) {
     case "startTime": {
-      const value = parseInt(propertyValue);
-      if (value !== 1 && value !== 2) {
+      if (propertyValue !== "now" && !checkValidDate(propertyValue)) {
         return { error: "Entered incorrect value for startTime" };
-      } else if (value === 2 && !extraParams.startDate) {
-        return { error: "startDate is required when startTime is 2" };
       }
       break;
     }
     case "reportAccessType": {
-      if (propertyValue !== "SEND" && propertyValue !== "SEND_ATTACHMENT") {
+      if (
+        propertyValue !== "SEND_ATTACHMENT" &&
+        !checkValueOfFolderUri(propertyValue)
+      ) {
         return { error: "Entered incorrect value for reportAccessType" };
       }
       break;
@@ -118,59 +124,39 @@ const validate = (propertName, propertyValue, extraParams) => {
   return { error: null };
 };
 
+const getStartTimeValue = (value: string) => {
+  const isNow = value === "now";
+  return {
+    startType: isNow ? 1 : 2,
+    startDate: isNow ? null : value,
+  };
+};
+
+const getReportAccessValue = (value: string) => {
+  const isSendAsAttachment = value === "SEND_ATTACHMENT";
+  return {
+    resultSendType: isSendAsAttachment ? "SEND_ATTACHMENT" : "SEND",
+    folderURI: isSendAsAttachment ? null : value,
+  };
+};
 const getValuesForRadio = (value, field) => {
-  const [propertyValue, dependantValue] = value.split("=");
   switch (field) {
     case "startTime": {
-      const { error } = validate("startTime", propertyValue, {
-        startDate: dependantValue,
-      });
+      const { error } = validate("startTime", value);
       if (error) {
         return { error };
       }
-      return {
-        startType: propertyValue,
-        startDate: dependantValue || "",
-      };
+      return getStartTimeValue(value);
     }
     case "reportAccessType": {
-      const { error } = validate("reportAccessType", propertyValue, {});
+      const { error } = validate("reportAccessType", value);
       if (error) {
         return { error };
       }
-      return {
-        resultSendType: propertyValue,
-        folderURI: dependantValue,
-      };
+      return getReportAccessValue(value);
     }
   }
 };
-
-// const retriveDataFromConfig = (type: string, fieldData, field) => {
-//   const error = {},
-//       fieldsVisibility = {}, fieldConvertedData = {]};
-//   switch (type) {
-//     case "simple":{
-//       if (fieldData[field].showField === false && manadatoryHiddenField.indexOf(field) > -1 && !fieldData[field].value) {
-//         console.error(`${field} is required in the configuration`);
-//         error[field] = `${field} is required in the configuration`;
-//       } else {
-//         const fieldValue = checkFieldValueIsIncorrect(fieldData[field].value)
-//         if(fieldValue.error) {
-//           console.error(`${field} is not valid`);
-//           error[field] = `${field} is not valid`;
-//         } else {
-//           fieldConvertedData[field] = fieldValue;
-//           fieldsVisibility[field] = fieldData[field].showField === undefined ? true : fieldData[field].showField;
-//         }
-//       }
-//       return
-//     }
-//     case "radio": {
-//       return
-//     }
-//   }
-// }
 
 const checkFieldDataValidity = (fieldsData: any) => {
   let error = {},
