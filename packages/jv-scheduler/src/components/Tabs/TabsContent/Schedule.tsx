@@ -21,6 +21,7 @@ import {
   IState,
   IStepperState,
 } from "../../../types/scheduleType";
+import { updateChangeToStore } from "../../../utils/schedulerUtils";
 
 const Schedule = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
@@ -121,14 +122,6 @@ const Schedule = () => {
     updateRecurrenceToStore(changedVal);
   };
 
-  const updateChangeToStore = (
-    storeData: { [key: string]: string | any },
-    propertyName: string,
-    propertyValue: string | string[],
-  ) => {
-    updateStore(storeData, { [propertyName]: propertyValue });
-  };
-
   const updateRecurrenceToStore = (newProperty: {
     [key: string]: string | number | null;
   }) => {
@@ -150,6 +143,7 @@ const Schedule = () => {
               { scheduleJobName: scheduleName },
               SCHEDULE_JOB_NAME,
               scheduleName,
+              updateStore,
             );
           }}
           error={t(scheduleJobNameErr || "")}
@@ -170,6 +164,7 @@ const Schedule = () => {
               { scheduleJobDescription: scheduleDescription },
               SCHEDULE_JOB_DESCRIPTION,
               scheduleDescription,
+              updateStore,
             );
           }}
           error={t(scheduleJobDescriptionErr || "")}

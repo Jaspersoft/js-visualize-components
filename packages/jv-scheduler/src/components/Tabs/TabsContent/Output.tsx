@@ -17,7 +17,8 @@ import {
   OUTPUT_TIME_ZONE,
 } from "../../../constants/schedulerConstants";
 import { MessageAPIError } from "../../apiFailureError/scheduleAPIError";
-import { IOutputFormat, IState } from "../../../types/scheduleType";
+import { IState } from "../../../types/scheduleType";
+import { updateChangeToStore } from "../../../utils/schedulerUtils";
 
 const Output = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
@@ -45,7 +46,7 @@ const Output = () => {
   const repositoryDestination = useSelector(
     (state: IState) => state.scheduleInfo.repositoryDestination,
   );
-  const baseOutputFileDescription = useSelector(
+  const baseOutputFileDescription: string = useSelector(
     (state: IState) =>
       state.scheduleInfo.repositoryDestination.outputDescription,
   );
@@ -74,14 +75,6 @@ const Output = () => {
     setTimezone(timezone);
   }, [timezone]);
 
-  const updateChangeToStore = (
-    storeData: { [key: string]: string | IOutputFormat },
-    propertyName: string,
-    propertyValue: string | string[],
-  ) => {
-    updateStore(storeData, { [propertyName]: propertyValue });
-  };
-
   const isOutputFormatSelected = (formatToCheck: any) =>
     outputFormatSelected?.some((format: any) => formatToCheck === format);
 
@@ -95,6 +88,7 @@ const Output = () => {
       { outputFormats: { outputFormat: newOutputFormat } },
       OUTPUT_FORMAT,
       newOutputFormat,
+      updateStore,
     );
   };
 
@@ -113,6 +107,7 @@ const Output = () => {
                 { baseOutputFilename: fileName },
                 OUTPUT_FILE_NAME,
                 fileName,
+                updateStore,
               )
             }
             error={t(baseFileOutputErr || "")}
@@ -138,6 +133,7 @@ const Output = () => {
                 },
                 OUTPUT_FILE_DESCRIPTION,
                 outputDescription,
+                updateStore,
               )
             }
           />
@@ -155,6 +151,7 @@ const Output = () => {
                 { outputTimeZone: newTimezone },
                 OUTPUT_TIME_ZONE,
                 newTimezone,
+                updateStore,
               );
             }}
           >

@@ -140,9 +140,15 @@ export const NotificationStepUserInput = () => {
     resultSendType = useSelector(
       (state: any) => state.stepperState.resultSendType,
     ),
-    // mailNotificationSubjectErr = useSelector((state: TAlertErrors) => state.alertErrors.subject),
-    // mailNotificaitonfolderUriErr = useSelector((state: TAlertErrors) => state.alertErrors.folderURI),
-    // mailNotificationAddressesErr = useSelector((state: TAlertErrors) => state.alertErrors.address),
+    mailNotificationAddressesErr = useSelector(
+      (state: IState) => state.scheduleErrors.address,
+    ),
+    mailNotificationSubjectErr = useSelector(
+      (state: IState) => state.scheduleErrors.subject,
+    ),
+    mailNotificationMessageErr = useSelector(
+      (state: IState) => state.scheduleErrors.messageText,
+    ),
     mailNotificationMessage = useSelector(
       (state: any) => state.stepperState.messageText,
     );
@@ -166,19 +172,19 @@ export const NotificationStepUserInput = () => {
   return (
     <>
       <InputDataInStep
-        error={""}
+        error={mailNotificationAddressesErr}
         title={t("stepper.notifications.recipients.key")}
         value={address}
       />
       <InputDataInStep
-        error={""}
+        error={mailNotificationSubjectErr}
         title={t("stepper.notifications.subject.key")}
         value={mailNotificationSubject}
         className="jv-uTextBreak"
       />
       {mailNotificationMessage && (
         <InputDataInStep
-          error={""}
+          error={mailNotificationMessageErr}
           title={t("stepper.notifications.message.key")}
           value={mailNotificationMessage}
           className=" jv-uTextBreak jv-uTextTruncate3"
@@ -203,8 +209,12 @@ export const OutputStepUserInput = () => {
         state.scheduleInfo.repositoryDestination.outputDescription,
     ),
     formats = useSelector((state: any) => state.stepperState.outputFormat),
-    // fileNameErr = useSelector((state: TAlertErrors) => state.alertErrors.baseOutputFilename),
-    // formatsErr = useSelector((state: TAlertErrors) => state.alertErrors.outputFormat),
+    fileNameErr = useSelector(
+      (state: IState) => state.scheduleErrors.baseOutputFilename,
+    ),
+    formatsErr = useSelector(
+      (state: IState) => state.scheduleErrors.outputFormat,
+    ),
     outputTimezone = useSelector(
       (state: any) => state.stepperState.outputTimeZone,
     ),
@@ -232,7 +242,7 @@ export const OutputStepUserInput = () => {
   return (
     <>
       <InputDataInStep
-        error={""}
+        error={fileNameErr}
         title={t("stepper.output.filename.key")}
         value={fileName}
         className="jv-uTextBreak"
@@ -248,7 +258,7 @@ export const OutputStepUserInput = () => {
         value={OutputTimeZone}
       />
       <InputDataInStep
-        error={""}
+        error={formatsErr}
         title={t("stepper.output.formats.key")}
         value={formatsToDisplay}
       />

@@ -22,5 +22,5 @@
 export default {
   resourceIdNotSupportedSymbols:
     "[~!#\\$%^|\\s`@&*()\\-+={}\\[\\]:;\"'\\<\\>,?/\\|\\\\]",
-  emailRegExpPattern: "^[\\\\p{L}\\\\p{M}\\\\p{N}._%\\'-\\\\@\\\\,\\\\;\\\\s]",
+  emailRegExpPattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
 };

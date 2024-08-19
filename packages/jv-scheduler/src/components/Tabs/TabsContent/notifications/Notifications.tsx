@@ -22,6 +22,7 @@ import {
   IState,
   IStepperState,
 } from "../../../../types/scheduleType";
+import { updateChangeToStore } from "../../../../utils/schedulerUtils";
 
 const Notifications = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
@@ -67,16 +68,6 @@ const Notifications = () => {
   const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
   const dispatch = useDispatch();
 
-  const updateChangeToStore = (
-    updateProperty: { [key: string]: string | IAddress },
-    stepperData?: IStepperState,
-  ) => {
-    updateStore(
-      { mailNotification: { ...mailNotification, ...updateProperty } },
-      stepperData || updateProperty,
-    );
-  };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedVal = e.target.value,
       saveToRepositoryVal = selectedVal === SEND_LINK,
@@ -88,7 +79,7 @@ const Notifications = () => {
         resultSendType: selectedVal,
       };
     setSendType(selectedVal);
-    updateChangeToStore(updatedProperty);
+    updateChangeToStore(updatedProperty, "", "", updateStore);
   };
 
   useEffect(() => {
@@ -142,8 +133,15 @@ const Notifications = () => {
                   : mailAddress;
               }
               updateChangeToStore(
-                { toAddresses: { address: addressArr } },
-                { address: addressArr },
+                {
+                  mailNotification: {
+                    ...mailNotification,
+                    toAddresses: { address: addressArr },
+                  },
+                },
+                "address",
+                addressArr,
+                updateStore,
               );
             }}
             error={t(emailErr || "")}
@@ -155,7 +153,19 @@ const Notifications = () => {
             label={t("notifications.email.subject.label")}
             value={mailSubject}
             onChange={(e) => setMailSubject(e.target.value)}
-            onBlur={() => updateChangeToStore({ subject: mailSubject })}
+            onBlur={() =>
+              updateChangeToStore(
+                {
+                  mailNotification: {
+                    ...mailNotification,
+                    subject: mailSubject,
+                  },
+                },
+                "subject",
+                mailSubject,
+                updateStore,
+              )
+            }
             error={t(subjectErr || "")}
           />
         )}
@@ -167,7 +177,19 @@ const Notifications = () => {
             rows={5}
             value={mailMessageText}
             onChange={(e) => setMailMessageText(e.target.value)}
-            onBlur={() => updateChangeToStore({ messageText: mailMessageText })}
+            onBlur={() =>
+              updateChangeToStore(
+                {
+                  mailNotification: {
+                    ...mailNotification,
+                    messageText: mailMessageText,
+                  },
+                },
+                "messageText",
+                mailMessageText,
+                updateStore,
+              )
+            }
             error={t(messageErr || "")}
           />
         )}
