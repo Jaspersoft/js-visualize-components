@@ -30,4 +30,33 @@ describe("useLiveState hook tests", () => {
     });
     expect(result.current.value).toBe(true);
   });
+  it("should call the callback method if it is provided", () => {
+    const callback = jest.fn();
+    // help me fix the next line
+    const { result } = renderHook(() =>
+      useLiveState(0, {
+        events: { change: callback },
+        id: "column_time_1",
+        label: "column_time",
+        mandatory: false,
+        readOnly: false,
+        visible: true,
+        type: "singleValueTime",
+        state: {
+          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
+          id: "column_time_1",
+          value: "23:44:21",
+        },
+      }),
+    );
+    act(() => {
+      result.current.onChange({
+        target: {
+          type: "text",
+          value: 42,
+        },
+      });
+    });
+    expect(callback).toHaveBeenCalled();
+  });
 });

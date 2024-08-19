@@ -93,6 +93,11 @@ export default function App(props: AppConfig) {
             type: "default", // even if it isn't provided, this will be the default component
           },
         },
+        events: {
+          change: (ics) => {
+            console.log("ics => ", ics);
+          },
+        },
       },
     );
     plugin.renderControlPanel(
@@ -104,6 +109,11 @@ export default function App(props: AppConfig) {
         },
         error: (error) => {
           console.log("Error when rendering the Select controls: ", error);
+        },
+        events: {
+          change: (ics) => {
+            console.log("single select ics => ", ics);
+          },
         },
       },
     );

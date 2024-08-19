@@ -17,15 +17,19 @@ import {
   defaultTabsToShow,
   PARAMETERS_TAB,
 } from "../../constants/schedulerConstants";
+import { IState } from "../../types/scheduleType";
 
 export const Tabs = () => {
   const dispatch = useDispatch<any>();
-  const visitedTabs = useSelector((state: any) => state.visitedTabs);
-  console.log(useSelector((state: any) => state));
-  const visibleTabs = useSelector(
-    (state: any) => state.tabsConfiguration.tabsToShow,
+  const visitedTabs = useSelector(
+    (state: Pick<IState, "visitedTabs">) => state.visitedTabs,
   );
-  const currentActiveTab = useSelector((state: any) => state.currentActiveTab);
+  const visibleTabs = useSelector(
+    (state: IState) => state.tabsConfiguration.tabsToShow,
+  );
+  const currentActiveTab = useSelector(
+    (state: Pick<IState, "currentActiveTab">) => state.currentActiveTab,
+  );
 
   const handleVisitedTabs = () => {
     if (!visitedTabs.includes(currentActiveTab)) {

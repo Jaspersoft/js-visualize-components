@@ -82,12 +82,31 @@ export interface IScheduleErrors extends IStepperErrorData {
   thresholdValue?: string;
 }
 
+export interface IFieldsVisibility {
+  baseOutputFilename?: boolean;
+  outputDescription?: boolean;
+  outputFormat?: boolean;
+  outputTimeZone?: boolean;
+  address?: boolean;
+  subject?: boolean;
+  messageText?: boolean;
+  label?: boolean;
+  recurrenceInterval?: boolean;
+  recurrenceIntervalUnit?: boolean;
+  reportAccessType?: boolean;
+}
+
 export interface IState {
   scheduleErrors: IScheduleErrors;
   scheduleInfo: IScheduleInfo;
   visitedTabs: string[];
   outputFormats: string[];
-  repositoryDestination: IRepositoryDestination;
+  currentActiveTab: string;
+  tabsConfiguration: {
+    tabsToShow: string[];
+    stepsToShow: string[];
+  };
+  fieldsVisibility: IFieldsVisibility;
 }
 
 export interface IStoreData {}
@@ -103,6 +122,7 @@ export interface IScheduleInfo {
   outputFormatList: string[];
   outputFormats: IOutputFormat;
   userTimeZones: [{ code: string; description: string }];
+  repositoryDestination: IRepositoryDestination;
 }
 
 export interface ITrigger {

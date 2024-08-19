@@ -29,9 +29,10 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     visible,
     validationRules,
     dataType,
+    events,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "");
+  const liveState = useLiveState(props.state?.value || "", props);
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:
   const inputProps: any = {};
