@@ -16,6 +16,7 @@ import {
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
+  createSchedule,
   getFakeRootDataFromService,
   getOutputFormatsFromService,
   getRepositoryFolderData,
@@ -266,6 +267,23 @@ export const allTabValidationError = (
       handleCreateOrUpdateSchedule(true);
     } else {
       handleCreateOrUpdateSchedule(false);
+    }
+  };
+};
+
+export const createAlert = () => {
+  return async (dispatch: any, getState: () => IState) => {
+    try {
+      const { scheduleJobDescription, scheduleJobName, ...rest } =
+        getState().scheduleInfo;
+      await createSchedule({
+        label: scheduleJobName,
+        description: scheduleJobDescription,
+        ...rest,
+      });
+      dispatch(setApiFailure({ createScheduleApiFailure: false }));
+    } catch (err) {
+      dispatch(setApiFailure({ createScheduleApiFailure: true }));
     }
   };
 };

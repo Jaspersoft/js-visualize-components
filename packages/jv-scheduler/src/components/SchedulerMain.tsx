@@ -7,6 +7,7 @@ import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
+import { ErrorConfirmationDialog } from "./apiFailureError/ErrorConfirmationDialog";
 
 const SchedulerMain = ({
   schedulerData,
@@ -40,6 +41,7 @@ const SchedulerMain = ({
             <Tabs />
             <SchedulerFooter />
           </div>
+          <ErrorConfirmationDialog />
         </div>
       </JVStylesProvider>
     </>

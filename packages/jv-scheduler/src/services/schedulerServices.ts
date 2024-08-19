@@ -3,12 +3,15 @@ import store from "../store/store";
 import { getFakeRootRepositoryData } from "../utils/schedulerUtils";
 
 export const checkPermissionOnFolder = async (folder: string) => {
+  let csrfToken = await getCSRFToken();
   try {
     const response = await axios.get(
       `${store.getState().schedulerUIConfig.server}/rest_v2/resources${folder}`,
       {
+        withCredentials: true,
         headers: {
           Accept: "application/json",
+          OWASP_CSRFTOKEN: csrfToken,
         },
       },
     );
@@ -49,19 +52,6 @@ export const getOutputFormatsFromService = async () => {
     return { error: "Failed to fetch output options" };
   }
 };
-
-// export const getSupportedLocale = async() => {
-//   try {
-//     const response = await axios.get("http://localhost:8080/jasperserver-pro/rest_v2/settings/visualizeSettings", {
-//       headers: {
-//         'Accept': 'application/json'
-//       }
-//     });
-//     return response.data.availableLocales;
-//   } catch (error) {
-//     return { error: 'Failed to fetch output options' };
-//   }
-// }
 
 export const getInputControls = async () => {
   const reportUri = "AI_ML/RevenueDetailReport";
@@ -156,4 +146,24 @@ export const getFakeRootDataFromService = async () => {
   } catch (error) {
     return { error: "Failed to fetch base folder data" };
   }
+};
+
+export const createSchedule = async (scheduleInfo: any) => {
+  let csrfToken = await getCSRFToken();
+  csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
+
+  return axios.put(
+    `${store.getState().schedulerUIConfig.server}/rest_v2/jobs`,
+    {
+      ...scheduleInfo,
+    },
+    {
+      withCredentials: true,
+      headers: {
+        Accept: "application/job+json",
+        "Content-Type": "application/job+json",
+        OWASP_CSRFTOKEN: csrfToken,
+      },
+    },
+  );
 };

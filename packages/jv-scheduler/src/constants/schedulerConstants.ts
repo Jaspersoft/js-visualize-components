@@ -103,8 +103,8 @@ export const simpleTriggerState = {
 
 export const ScheduleDefaultState = {
   baseOutputFilename: "",
-  description: "",
-  label: "",
+  scheduleJobDescription: "",
+  scheduleJobName: "",
   mailNotification: {
     messageText: "",
     subject: "",
@@ -113,6 +113,7 @@ export const ScheduleDefaultState = {
     },
     resultSendType: "SEND",
   },
+  source: {},
   outputFormats: {
     outputFormat: ["pdf"],
   },
@@ -196,6 +197,7 @@ export const defaultState = {
   scheduleApisFailure: {
     userTimezoneApiFailure: false,
     userOutputFormatApiFailure: false,
+    createScheduleApiFailure: false,
   },
   fakeRoot: [],
   fieldsVisibility: defaultFieldVisibility,

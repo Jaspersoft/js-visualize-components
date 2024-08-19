@@ -43,7 +43,7 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
   const error = {};
   switch (tabName) {
     case SCHEDULE_TAB: {
-      const { label, startTime } = tabData;
+      const { label } = tabData;
       if (!label) {
         console.error(
           "Value for label is required in the configuration when schedule tab is hidden",
@@ -265,6 +265,9 @@ const setDefaultValuesForFields = (
         recurrenceIntervalUnit,
         startDate,
       },
+    },
+    source: {
+      reportUnitURI: resourceURI,
     },
     repositoryDestination: {
       ...ScheduleDefaultState.repositoryDestination,

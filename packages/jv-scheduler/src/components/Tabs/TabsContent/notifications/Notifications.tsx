@@ -48,6 +48,7 @@ const Notifications = () => {
     address: addressVisible,
     subject: subjectVisible,
     messageText: messageTextVisible,
+    reportAccessType: reportAccessTypeVisible,
   } = useSelector((state: IState) => state.fieldsVisibility);
 
   const {
@@ -193,47 +194,51 @@ const Notifications = () => {
             error={t(messageErr || "")}
           />
         )}
-        <JVRadioGroup
-          title={t("notifications.radiogroup.title")}
-          RadioGroupProps={{ value: sendType, onChange: handleChange }}
-        >
-          <JVRadioButton
-            label={t("notifications.repositoryLink.label")}
-            RadioProps={{
-              value: SEND_LINK,
-              checked: sendType === SEND_LINK,
-            }}
-          />
-
-          <div className="jv-mInput jv-mInputBrowse jv-mInputLarge jv-uMargin-l-07 mui">
-            <JVTextField
-              label={t("notifications.uri.label")}
-              disabled={sendType !== SEND_LINK}
-              value={repoUri}
+        {reportAccessTypeVisible && (
+          <JVRadioGroup
+            title={t("notifications.radiogroup.title")}
+            RadioGroupProps={{ value: sendType, onChange: handleChange }}
+          >
+            <JVRadioButton
+              label={t("notifications.repositoryLink.label")}
+              RadioProps={{
+                value: SEND_LINK,
+                checked: sendType === SEND_LINK,
+              }}
             />
-            <JVButton
-              variant="contained"
-              size="large"
-              disabled={sendType !== SEND_LINK}
-              onClick={handleBrowseButtonClick}
-            >
-              {t("notifications.browse.button")}
-            </JVButton>
-          </div>
 
-          <JVRadioButton
-            label={t("notifications.fileAsAttachment.label")}
-            RadioProps={{
-              value: SEND_ATTACHMENT,
-              checked: sendType === SEND_ATTACHMENT,
-            }}
-          />
-        </JVRadioGroup>
+            <div className="jv-mInput jv-mInputBrowse jv-mInputLarge jv-uMargin-l-07 mui">
+              <JVTextField
+                label={t("notifications.uri.label")}
+                disabled={sendType !== SEND_LINK}
+                value={repoUri}
+              />
+              <JVButton
+                variant="contained"
+                size="large"
+                disabled={sendType !== SEND_LINK}
+                onClick={handleBrowseButtonClick}
+              >
+                {t("notifications.browse.button")}
+              </JVButton>
+            </div>
+
+            <JVRadioButton
+              label={t("notifications.fileAsAttachment.label")}
+              RadioProps={{
+                value: SEND_ATTACHMENT,
+                checked: sendType === SEND_ATTACHMENT,
+              }}
+            />
+          </JVRadioGroup>
+        )}
       </div>
-      <RepositoryTreeDialog
-        open={open}
-        handleDialogState={(isOpen) => setOpen(isOpen)}
-      />
+      {reportAccessTypeVisible && (
+        <RepositoryTreeDialog
+          open={open}
+          handleDialogState={(isOpen) => setOpen(isOpen)}
+        />
+      )}
     </>
   );
 };
