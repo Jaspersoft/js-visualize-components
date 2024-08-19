@@ -4,7 +4,8 @@
  */
 
 import { useLiveDateFormattedState } from "../../../src/controls/hooks/useLiveDateFormattedState";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
+import { useLiveState } from "../../../src/controls/hooks/useLiveState";
 
 describe("useLiveState hook tests", () => {
   const initialValue = "2024-07-08";
@@ -46,5 +47,38 @@ describe("useLiveState hook tests", () => {
       }),
     );
     expect(result.current.value).toBe(dateTimeValue);
+  });
+  it("should call the callback method if it is provided", () => {
+    const callback = jest.fn();
+    // help me fix the next line
+    const { result } = renderHook(() =>
+      useLiveDateFormattedState({
+        initialValue: "2014-09-12T15:46:18",
+        format: "YYYY-MM-DDTHH:mm:ss",
+        props: {
+          events: { change: callback },
+          id: "column_time_1",
+          label: "column_time",
+          mandatory: false,
+          readOnly: false,
+          visible: true,
+          type: "singleValueTime",
+          state: {
+            uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
+            id: "column_time_1",
+            value: "23:44:21",
+          },
+        },
+      }),
+    );
+    act(() => {
+      result.current.onChange({
+        target: {
+          type: "date",
+          value: "2014-09-12T15:46:18",
+        },
+      });
+    });
+    expect(callback).toHaveBeenCalled();
   });
 });

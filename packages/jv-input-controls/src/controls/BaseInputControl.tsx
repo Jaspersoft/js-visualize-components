@@ -63,6 +63,26 @@ export interface ICDataType {
   maxLength?: number;
 }
 
+export const getBaseInputControlProps = (
+  ic: BaseInputControlProps,
+  updatedStateValue: any,
+) => {
+  return {
+    id: ic.id,
+    type: ic.type,
+    label: ic.label,
+    mandatory: ic.mandatory,
+    readOnly: ic.readOnly,
+    visible: ic.visible,
+    uri: ic.uri,
+    state: { ...ic.state!, value: updatedStateValue! },
+    validationRules: ic.validationRules,
+    dataType: ic.dataType,
+    masterDependencies: ic.masterDependencies,
+    slaveDependencies: ic.slaveDependencies,
+  };
+};
+
 export interface BaseInputControlProps {
   children?: React.JSX.Element[] | React.JSX.Element;
   id: string;
@@ -78,6 +98,9 @@ export interface BaseInputControlProps {
 
   masterDependencies?: string[];
   slaveDependencies?: string[];
+  events?: {
+    change: (ic: BaseInputControlProps) => void;
+  };
 }
 
 export interface InputControlCollection {

@@ -27,15 +27,17 @@ export const DatePickerInputControl = (props: DateICProps) => {
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
+    props,
   });
   const controlClasses = useControlClasses([], props);
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
     minKey: "minDate",
     maxKey: "maxDate",
   });
+  const { events, ...remainingProps } = props;
   return (
     <JVDatePicker
-      {...{ ...props, ...minAndMaxSettings }}
+      {...{ ...remainingProps, ...minAndMaxSettings }}
       onChange={liveState.onChange}
       value={liveState.value}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}

@@ -1,23 +1,31 @@
 import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
-import { JSX } from "react";
+import { JSX, useState } from "react";
+import { BaseInputControlProps } from "../controls/BaseInputControl";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
+import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
 import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
-import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
 
 export interface BasePanelProps {
   controls: any;
   config?: InputControlUserConfig;
+  events?: {
+    change?: (ic: { [key: string]: any[] }) => void;
+  };
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
+  const [inputControls, setInputControls] = useState<BaseInputControlProps[]>(
+    props.controls.data,
+  );
+  const [devResponse, setDevResponse] = useState<{ [key: string]: any[] }>({});
   const getControlProps = (control: any) => {
     return {
       id: control.id,
@@ -28,7 +36,34 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       mandatory: control.mandatory,
       uri: control.uri,
       state: control.state,
+      events: {
+        change: buildLatestJSON,
+      },
     };
+  };
+  const buildLatestJSON = (ctrlUpdated: BaseInputControlProps) => {
+    const inputControlsUpdated = inputControls.reduce(
+      (
+        acc: {
+          state: BaseInputControlProps[];
+          response: { [key: string]: any[] };
+        },
+        ctrl: BaseInputControlProps,
+      ) => {
+        const prevState = acc.response[ctrl.id] || [];
+        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
+        acc.state.push(ctrlToUse);
+        acc.response[ctrlToUse.id] =
+          ctrlToUse.type === "multiSelect"
+            ? [...prevState, ctrlToUse.state?.value]
+            : [ctrlToUse.state?.value];
+        return acc;
+      },
+      { state: [], response: { ...devResponse } },
+    );
+    setInputControls(inputControlsUpdated.state);
+    setDevResponse(inputControlsUpdated.response);
+    props.events?.change?.(inputControlsUpdated.response);
   };
   const buildControl = (control: any) => {
     const theProps = getControlProps(control);
