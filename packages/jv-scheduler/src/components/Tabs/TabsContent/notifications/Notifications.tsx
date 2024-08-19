@@ -36,6 +36,9 @@ const Notifications = () => {
   const messageErr = useSelector(
     (state: IState) => state.scheduleErrors.messageText,
   );
+  const folderUriErr = useSelector(
+    (state: IState) => state.scheduleErrors.folderURI,
+  );
   const repositoryDestination = useSelector(
     (state: IState) => state.scheduleInfo.repositoryDestination,
   );
@@ -44,6 +47,7 @@ const Notifications = () => {
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
   const fakeRoot = useSelector((state: any) => state.fakeRoot);
+
   const {
     address: addressVisible,
     subject: subjectVisible,
@@ -212,6 +216,41 @@ const Notifications = () => {
                 label={t("notifications.uri.label")}
                 disabled={sendType !== SEND_LINK}
                 value={repoUri}
+                error={t(folderUriErr || "")}
+                onChange={(e) => {
+                  let newFolderUri = e.target.value;
+                  newFolderUri = newFolderUri.startsWith("/")
+                    ? newFolderUri
+                    : `/${newFolderUri}`;
+                  setRepoUri(newFolderUri);
+                }}
+                onBlur={() => {
+                  let newFolderUri = repoUri;
+                  function reValidate(uri: string) {
+                    newFolderUri = uri;
+                    if (uri.startsWith("//")) {
+                      reValidate(uri.substring(1, uri.length));
+                    }
+                    if (uri.length > 1 && uri.endsWith("/")) {
+                      reValidate(uri.substring(0, uri.length - 1));
+                    }
+                  }
+
+                  reValidate(repoUri);
+
+                  setRepoUri(newFolderUri);
+                  const mailNotificationVal = { ...mailNotification },
+                    repositoryDestinationVal = {
+                      ...repositoryDestination,
+                      folderURI: newFolderUri,
+                    };
+                  updateChangeToStore(
+                    { mailNotificationVal, repositoryDestinationVal },
+                    "folderURI",
+                    newFolderUri,
+                    updateStore,
+                  );
+                }}
               />
               <JVButton
                 variant="contained"
