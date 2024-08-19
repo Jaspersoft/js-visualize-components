@@ -100,7 +100,6 @@ export interface IState {
   scheduleInfo: IScheduleInfo;
   visitedTabs: string[];
   outputFormats: string[];
-  repositoryDestination: IRepositoryDestination;
   currentActiveTab: string;
   tabsConfiguration: {
     tabsToShow: string[];
@@ -122,6 +121,7 @@ export interface IScheduleInfo {
   outputFormatList: string[];
   outputFormats: IOutputFormat;
   userTimeZones: [{ code: string; description: string }];
+  repositoryDestination: IRepositoryDestination;
 }
 
 export interface ITrigger {
