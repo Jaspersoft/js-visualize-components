@@ -3,11 +3,9 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
 export type DateTimePickerICType = "material";
@@ -29,9 +27,7 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   let dateFormat = "YYYY-MM-DDTHH:mm:ss",
     views: string[] = [];
   if (props.validationRules !== undefined) {
-    const formatStored = getDateFormatIfAny(
-      props.validationRules as ICDateValidationRule[],
-    );
+    const formatStored = getDateFormatIfAny(props.validationRules);
     dateFormat = removeSingleQuotes(formatStored);
     dateFormat = formatToDayJS(dateFormat);
   }
@@ -41,12 +37,16 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
-    props,
   });
   const controlClasses = useControlClasses([], props);
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
     minKey: "minDateTime",
     maxKey: "maxDateTime",
+  });
+  const errorText = useErrorMsg({
+    textValue: liveState.value,
+    props,
+    minAndMaxDate: minAndMaxSettings,
   });
   const { events, ...remainingProps } = props;
   return (
@@ -57,6 +57,7 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
       views={views}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}
       timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
+      error={errorText}
     />
   );
 };

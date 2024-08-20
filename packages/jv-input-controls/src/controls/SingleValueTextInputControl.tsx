@@ -1,11 +1,12 @@
 import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
 import {
   BaseInputControlProps,
-  ICDateValidationRule,
+  getBaseInputControlProps,
+  ICValidationRule,
 } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
-import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 
 export type TextFieldICType = "textField";
 
@@ -32,7 +33,7 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     events,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "", props);
+  const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:
   const inputProps: any = {};
@@ -40,10 +41,9 @@ export const SingleValueTextInputControl = (props: TextFieldICProps) => {
     inputProps.readOnly = true;
   }
   const theInputProps = { ...inputProps, ...liveState };
-  const errorText = useMandatoryMsg({
+  const errorText = useErrorMsg({
     textValue: liveState.value,
-    isMandatory: mandatory,
-    validationRules: validationRules as ICDateValidationRule[],
+    props,
   });
   return (
     <JVTextField
