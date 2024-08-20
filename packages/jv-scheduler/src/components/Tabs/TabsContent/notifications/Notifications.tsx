@@ -245,7 +245,10 @@ const Notifications = () => {
                       folderURI: newFolderUri,
                     };
                   updateChangeToStore(
-                    { mailNotificationVal, repositoryDestinationVal },
+                    {
+                      mailNotificationVal,
+                      repositoryDestination: repositoryDestinationVal,
+                    },
                     "folderURI",
                     newFolderUri,
                     updateStore,
