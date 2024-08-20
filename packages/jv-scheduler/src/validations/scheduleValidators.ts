@@ -87,20 +87,13 @@ const getFolderErr = async (folderUri: string) => {
   return folderUriError;
 };
 
-const validator = (
+export const validator = (
   propName: string,
   propVal: string,
   extraParams?: Pick<IStepperState, "startType" | "outputTimeZone">,
 ) => {
   let schedulerPropError;
   switch (propName) {
-    case ERROR_FIELDS.NAME:
-      if (isFieldEmpty(propVal)) {
-        schedulerPropError = "error.schedule.name";
-      } else if (propVal.length > 100) {
-        schedulerPropError = "error.schedule.name.too.long";
-      }
-      break;
     case ERROR_FIELDS.SCHEDULE_JOB_NAME:
       if (isFieldEmpty(propVal)) {
         schedulerPropError = "error.schedule.job.name";
@@ -113,11 +106,6 @@ const validator = (
         schedulerPropError = "error.schedule.job.description";
       } else if (propVal.length > 250) {
         schedulerPropError = "error.schedule.job.description.too.long";
-      }
-      break;
-    case ERROR_FIELDS.THRESHOLD:
-      if (isFieldEmpty(propVal)) {
-        schedulerPropError = "error.threshold";
       }
       break;
     case ERROR_FIELDS.RECURRENCE:
@@ -158,15 +146,15 @@ const validator = (
         schedulerPropError = "error.message.too.long";
       }
       break;
-    case ERROR_FIELDS.FILE_NAME:
-      if (isFieldEmpty(propVal)) {
-        schedulerPropError = "error.file.name";
-      } else if (propVal.length > 200) {
-        schedulerPropError = "error.file.name.too.long";
-      } else if (!isValidFileName(propVal)) {
-        schedulerPropError = "error.invalid.file.name";
-      }
-      break;
+    // case ERROR_FIELDS.FILE_NAME:
+    //   if (isFieldEmpty(propVal)) {
+    //     schedulerPropError = "error.file.name";
+    //   } else if (propVal.length > 200) {
+    //     schedulerPropError = "error.file.name.too.long";
+    //   } else if (!isValidFileName(propVal)) {
+    //     schedulerPropError = "error.invalid.file.name";
+    //   }
+    //   break;
     case ERROR_FIELDS.OUTPUT_FORMAT:
       if (!propVal?.length) {
         schedulerPropError = "error.output.format";

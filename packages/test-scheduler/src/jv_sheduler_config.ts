@@ -11,7 +11,7 @@ const schedulerUIConfig = {
       schedule: {
         defaultValues: {
           // name of the schedule: required in config
-          label: { value: "aa" },
+          label: { value: "aa cdn" },
           description: {
             value: "description test 1",
             showField: true,
@@ -65,7 +65,7 @@ const schedulerUIConfig = {
           },
           reportAccessType: {
             showField: true,
-            value: "/public", // "SEND_ATTACHMENT" | "SEND"
+            value: "/publi", // "SEND_ATTACHMENT" | "SEND"
             options: ["SEND", "SEND_ATTACHMENT"],
           },
         },

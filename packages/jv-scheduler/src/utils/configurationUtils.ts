@@ -12,7 +12,12 @@ import {
   simpleTriggerState,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
+import { validator } from "../validations/scheduleValidators";
 
+const mapFieldName = {
+  label: "scheduleJobName",
+  description: "scheduleJobDescription",
+};
 const checkForStringOrNumber = (element) => {
   return (
     typeof element === "string" ||
@@ -90,13 +95,6 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
   return error;
 };
 
-const checkFieldValueIsIncorrect = (field: string) => {
-  // if value is correct return field name and value
-  // if value is not correct return error
-
-  return field;
-};
-
 const checkValidDate = (date: string) => {
   return true;
 };
@@ -159,6 +157,7 @@ const getValuesForRadio = (value, field) => {
 };
 
 const checkFieldDataValidity = (fieldsData: any) => {
+  const promises: Array<any> = [];
   let error = {},
     fieldsVisibility = {},
     fieldConvertedData = {};
@@ -166,31 +165,26 @@ const checkFieldDataValidity = (fieldsData: any) => {
   Object.keys(fieldsData).forEach((field) => {
     const type = typeOfFields[field];
     switch (type) {
-      case "simple": {
-        if (
-          fieldsData[field].showField === false &&
-          manadatoryHiddenField.indexOf(field) > -1 &&
-          !fieldsData[field].value
-        ) {
-          console.error(`${field} is required in the configuration`);
-          error[field] = `${field} is required in the configuration`;
-        } else {
-          const fieldValue = checkFieldValueIsIncorrect(
-            fieldsData[field].value,
-          );
-          if (fieldValue.error) {
-            console.error(`${field} is not valid`);
-            error[`${field}ValErr`] = `${field} is not valid`;
+      case "simple":
+        {
+          if (
+            fieldsData[field].showField === false &&
+            manadatoryHiddenField.indexOf(field) > -1 &&
+            !fieldsData[field].value
+          ) {
+            console.error(`${field} is required in the configuration`);
+            error[field] = `${field} is required in the configuration`;
           } else {
-            fieldConvertedData[field] = fieldValue;
-            fieldsVisibility[field] =
+            const fieldName = mapFieldName[field] || field;
+            promises.push(validator(fieldName, fieldsData[field].value, {}));
+            fieldConvertedData[fieldName] = fieldsData[field].value;
+            fieldsVisibility[fieldName] =
               fieldsData[field].showField === undefined
                 ? true
                 : fieldsData[field].showField;
           }
         }
         break;
-      }
       case "radio": {
         const { showField, value, options } = fieldsData[field];
         if (
@@ -215,7 +209,21 @@ const checkFieldDataValidity = (fieldsData: any) => {
       }
     }
   });
-  return { error, fieldsVisibility, fieldConvertedData };
+  return Promise.all(promises).then((data) => {
+    let validationPromise = {};
+    data.forEach((item: any) => {
+      Object.keys(item).forEach((key) => {
+        if (item[key]) {
+          validationPromise = { ...validationPromise, ...item };
+        }
+      });
+    });
+    return {
+      error: { ...validationPromise, ...error },
+      fieldsVisibility,
+      fieldConvertedData,
+    };
+  });
 };
 
 const setDefaultValuesForFields = (
@@ -280,7 +288,7 @@ const setDefaultValuesForFields = (
   };
 };
 
-export const getSchedulerData = (scheduleConfig: any) => {
+export const getSchedulerData = async (scheduleConfig: any) => {
   const { resourceURI, tabs, contextPath, server, stepper } =
     scheduleConfig || {};
   const { tabsData = {}, tabsOrder } = tabs || {};
@@ -345,7 +353,7 @@ export const getSchedulerData = (scheduleConfig: any) => {
     error: fieldsErrs,
     fieldsVisibility,
     fieldConvertedData,
-  } = checkFieldDataValidity(inputFieldsInfo);
+  } = await checkFieldDataValidity(inputFieldsInfo);
   if (getLengthOfObject(fieldsErrs)) {
     return { error };
   }
