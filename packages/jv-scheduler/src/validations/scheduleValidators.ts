@@ -5,7 +5,7 @@
 
 import _ from "underscore";
 // @ts-ignore
-import { XRegExp } from "xregexp";
+import XRegExp from "xregexp";
 // @ts-ignore
 import globalConfig from "../constants/globalConfiguration.settings";
 import moment from "moment";
@@ -146,15 +146,15 @@ export const validator = (
         schedulerPropError = "error.message.too.long";
       }
       break;
-    // case ERROR_FIELDS.FILE_NAME:
-    //   if (isFieldEmpty(propVal)) {
-    //     schedulerPropError = "error.file.name";
-    //   } else if (propVal.length > 200) {
-    //     schedulerPropError = "error.file.name.too.long";
-    //   } else if (!isValidFileName(propVal)) {
-    //     schedulerPropError = "error.invalid.file.name";
-    //   }
-    //   break;
+    case ERROR_FIELDS.FILE_NAME:
+      if (isFieldEmpty(propVal)) {
+        schedulerPropError = "error.file.name";
+      } else if (propVal.length > 200) {
+        schedulerPropError = "error.file.name.too.long";
+      } else if (!isValidFileName(propVal)) {
+        schedulerPropError = "error.invalid.file.name";
+      }
+      break;
     case ERROR_FIELDS.OUTPUT_FORMAT:
       if (!propVal?.length) {
         schedulerPropError = "error.output.format";

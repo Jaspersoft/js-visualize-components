@@ -34,7 +34,7 @@ const schedulerUIConfig = {
           // outputFileName: required in config
           baseOutputFilename: {
             showField: true,
-            value: "File name",
+            value: "Filename",
           },
           outputDescription: {
             showField: true,
