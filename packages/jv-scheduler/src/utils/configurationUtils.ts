@@ -281,7 +281,8 @@ const setDefaultValuesForFields = (
 };
 
 export const getSchedulerData = (scheduleConfig: any) => {
-  const { resourceURI, tabs, contextPath, server } = scheduleConfig || {};
+  const { resourceURI, tabs, contextPath, server, stepper } =
+    scheduleConfig || {};
   const { tabsData = {}, tabsOrder } = tabs || {};
 
   // check resourceURI, server, contextPath are provided by user
@@ -355,6 +356,7 @@ export const getSchedulerData = (scheduleConfig: any) => {
   );
 
   return {
+    showStepper: stepper?.showStepper === false ? stepper.showStepper : true,
     scheduleInfo,
     tabsToShow,
     stepsToShow,

@@ -16,10 +16,14 @@ export const useStoreUpdate = (tabName: string) => {
   const dispatch = useDispatch();
   const visitedTab = useSelector((state: any) => state.visitedTabs);
 
-  return async (storeData: any, stepperData: any) => {
+  return async (
+    storeData: any,
+    stepperData: any,
+    isStepperVisible: boolean,
+  ) => {
     dispatch(setPropertiesDetails(storeData));
     if (visitedTab.includes(tabName)) {
-      dispatch(setStepperProperties(stepperData));
+      if (isStepperVisible) dispatch(setStepperProperties(stepperData));
       const errors = await stateValidator(stepperData);
       dispatch(scheduleValidationError(errors));
     }

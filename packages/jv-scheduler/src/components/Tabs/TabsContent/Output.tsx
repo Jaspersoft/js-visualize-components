@@ -25,6 +25,9 @@ const Output = () => {
 
   const outputFormats = useSelector((state: IState) => state.outputFormats);
   const userTimeZones = useSelector((state: any) => state.userTimeZones);
+  const stepperConfig = useSelector(
+    (state: IState) => state.stepperConfiguration,
+  );
   const baseFileOutputErr = useSelector(
     (state: IState) => state.scheduleErrors.baseOutputFilename,
   );
@@ -88,6 +91,7 @@ const Output = () => {
       { outputFormats: { outputFormat: newOutputFormat } },
       OUTPUT_FORMAT,
       newOutputFormat,
+      stepperConfig.show,
       updateStore,
     );
   };
@@ -107,6 +111,7 @@ const Output = () => {
                 { baseOutputFilename: fileName },
                 OUTPUT_FILE_NAME,
                 fileName,
+                stepperConfig.show,
                 updateStore,
               )
             }
@@ -133,6 +138,7 @@ const Output = () => {
                 },
                 OUTPUT_FILE_DESCRIPTION,
                 outputDescription,
+                stepperConfig.show,
                 updateStore,
               )
             }
@@ -151,6 +157,7 @@ const Output = () => {
                 { outputTimeZone: newTimezone },
                 OUTPUT_TIME_ZONE,
                 newTimezone,
+                stepperConfig.show,
                 updateStore,
               );
             }}

@@ -182,10 +182,12 @@ export const updateChangeToStore = (
   storeData: { [key: string]: string | any },
   propertyName: string,
   propertyValue: string | string[],
+  isStepperVisbile: boolean,
   updateStore: (
     storeData: { [p: string]: any },
     p: { [p: string]: string | string[] },
+    isStepperVisbile: boolean,
   ) => {},
 ) => {
-  updateStore(storeData, { [propertyName]: propertyValue });
+  updateStore(storeData, { [propertyName]: propertyValue }, isStepperVisbile);
 };

@@ -26,6 +26,9 @@ import { updateChangeToStore } from "../../../../utils/schedulerUtils";
 
 const Notifications = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
+  const stepperConfig = useSelector(
+    (state: IState) => state.stepperConfiguration,
+  );
   const mailNotification = useSelector(
     (state: IState) => state.scheduleInfo.mailNotification,
   );
@@ -84,7 +87,13 @@ const Notifications = () => {
         resultSendType: selectedVal,
       };
     setSendType(selectedVal);
-    updateChangeToStore(updatedProperty, "", "", updateStore);
+    updateChangeToStore(
+      updatedProperty,
+      "",
+      "",
+      stepperConfig.show,
+      updateStore,
+    );
   };
 
   useEffect(() => {
@@ -146,6 +155,7 @@ const Notifications = () => {
                 },
                 "address",
                 addressArr,
+                stepperConfig.show,
                 updateStore,
               );
             }}
@@ -168,6 +178,7 @@ const Notifications = () => {
                 },
                 "subject",
                 mailSubject,
+                stepperConfig.show,
                 updateStore,
               )
             }
@@ -192,6 +203,7 @@ const Notifications = () => {
                 },
                 "messageText",
                 mailMessageText,
+                stepperConfig.show,
                 updateStore,
               )
             }
@@ -251,6 +263,7 @@ const Notifications = () => {
                     },
                     "folderURI",
                     newFolderUri,
+                    stepperConfig.show,
                     updateStore,
                   );
                 }}

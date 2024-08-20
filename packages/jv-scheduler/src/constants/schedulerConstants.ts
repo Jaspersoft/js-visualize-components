@@ -188,6 +188,9 @@ export const defaultState = {
     tabsToShow: [],
     stepsToShow: [],
   },
+  stepperConfiguration: {
+    show: true,
+  },
   schedulerUIConfig: {},
   folderData: {},
   stepperState,

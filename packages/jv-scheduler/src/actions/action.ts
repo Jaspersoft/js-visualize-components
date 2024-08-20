@@ -13,6 +13,7 @@ import {
   SET_TABS_CONFIG,
   SCHEDULE_ERROR_OCCURRED,
   SET_VISIBLE_FIELDS,
+  SET_STEPPER_CONFIG,
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
@@ -142,6 +143,20 @@ export const setVisibleFields = (fieldsVisibility: any) => {
   };
 };
 
+export const scheduleValidationError = (errors: IScheduleErrors) => {
+  return {
+    type: SCHEDULE_ERROR_OCCURRED,
+    payload: { errors },
+  };
+};
+
+export const setStepperConfig = (stepperConfiguration: any) => {
+  return {
+    type: SET_STEPPER_CONFIG,
+    payload: stepperConfiguration,
+  };
+};
+
 export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
@@ -199,13 +214,14 @@ export const getFakeRootData = () => {
 
 export const currentTabValidator = (newTabVal) => {
   return async (dispatch, getState) => {
-    const { currentActiveTab, scheduleInfo } = getState(),
+    const { currentActiveTab, scheduleInfo, stepperConfiguration } = getState(),
       currentTabValues = getStateOfCurrentActiveTab(
         currentActiveTab,
         scheduleInfo,
       );
     // handleStateChange();
-    dispatch(setStepperProperties(currentTabValues));
+    if (stepperConfiguration.show)
+      dispatch(setStepperProperties(currentTabValues));
     dispatch(setCurrentActiveTab(newTabVal));
     // const currentTabErrs = await getErrorsForCurrentTab(currentActiveTab, alertCurrentStateValues);
     // dispatch(alertValidationError(currentTabErrs));
@@ -214,8 +230,13 @@ export const currentTabValidator = (newTabVal) => {
 
 export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
   return async (dispatch) => {
-    const { tabsToShow, stepsToShow, scheduleInfo, currentActiveTab } =
-      schedulerData;
+    const {
+      tabsToShow,
+      stepsToShow,
+      scheduleInfo,
+      currentActiveTab,
+      showStepper,
+    } = schedulerData;
     dispatch(setSechedulerUIConfig(schedulerUIConfig));
     dispatch(getUserTimeZones());
     dispatch(getOutputFormats());
@@ -225,27 +246,27 @@ export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
         tabsConfiguration: { tabsToShow, stepsToShow },
       }),
     );
+    dispatch(setStepperConfig({ show: showStepper }));
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
 
     dispatch(setPropertiesDetails(JSON.parse(JSON.stringify(scheduleInfo))));
   };
 };
-export const scheduleValidationError = (errors: IScheduleErrors) => {
-  return {
-    type: SCHEDULE_ERROR_OCCURRED,
-    payload: { errors },
-  };
-};
+
 export const currentTabValidationError = (handleStateChange: () => void) => {
   return async (dispatch: Dispatch, getState: () => IState) => {
-    const { currentActiveTab, scheduleInfo: scheduleCurrentStateValues } =
-        getState(),
+    const {
+        currentActiveTab,
+        scheduleInfo: scheduleCurrentStateValues,
+        stepperConfiguration,
+      } = getState(),
       currentTabValues = getStateOfCurrentActiveTab(
         currentActiveTab,
         scheduleCurrentStateValues,
       );
     handleStateChange();
-    dispatch(setStepperProperties(currentTabValues));
+    if (stepperConfiguration.show)
+      dispatch(setStepperProperties(currentTabValues));
     const currentTabErrs = await getErrorsForCurrentTab(
       currentActiveTab,
       scheduleCurrentStateValues,

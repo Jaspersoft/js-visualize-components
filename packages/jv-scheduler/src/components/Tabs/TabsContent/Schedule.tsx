@@ -28,6 +28,9 @@ const Schedule = () => {
   const recurrenceIntervalErr = useSelector(
     (state: IState) => state.scheduleErrors.recurrenceInterval,
   );
+  const stepperConfig = useSelector(
+    (state: IState) => state.stepperConfiguration,
+  );
   const startDateErr = useSelector(
     (state: IState) => state.scheduleErrors.startDate,
   );
@@ -143,6 +146,7 @@ const Schedule = () => {
               { scheduleJobName: scheduleName },
               SCHEDULE_JOB_NAME,
               scheduleName,
+              stepperConfig.show,
               updateStore,
             );
           }}
@@ -164,6 +168,7 @@ const Schedule = () => {
               { scheduleJobDescription: scheduleDescription },
               SCHEDULE_JOB_DESCRIPTION,
               scheduleDescription,
+              stepperConfig.show,
               updateStore,
             );
           }}

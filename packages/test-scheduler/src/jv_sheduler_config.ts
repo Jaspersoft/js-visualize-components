@@ -2,6 +2,9 @@ const schedulerUIConfig = {
   server: "http://localhost:8080/jasperserver-pro",
   resourceURI: "/public/Samples/Reports/02._Sales_Mix_by_City_Report",
   contextPath: "/jasperserver-pro",
+  stepper: {
+    showStepper: true,
+  },
   tabs: {
     tabsOrder: ["schedule", "parameters", "notifications", "output"],
     tabsData: {
@@ -65,17 +68,6 @@ const schedulerUIConfig = {
             value: "/public", // "SEND_ATTACHMENT" | "SEND"
             options: ["SEND", "SEND_ATTACHMENT"],
           },
-          // reportAccessType: {
-          //   showField: true,
-          //   value: "SEND", // "SEND_ATTACHMENT" | "SEND"
-          // },
-          // folderURI: {
-          //   showField: true,
-          //   value: "/public",
-          // },
-          // saveToRepository: {
-          //   showField: true,
-          // },
         },
       },
     },

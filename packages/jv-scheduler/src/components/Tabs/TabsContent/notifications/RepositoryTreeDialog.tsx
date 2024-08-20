@@ -15,11 +15,13 @@ import { useSelector } from "react-redux";
 import {
   getLengthOfObject,
   getUriParts,
+  updateChangeToStore,
 } from "../../../../utils/schedulerUtils";
 import Loader from "../../../loader/Loader";
 import { useTranslation } from "react-i18next";
 import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
 import { NOTIFICATIONS_TAB } from "../../../../constants/schedulerConstants";
+import { IState } from "../../../../types/scheduleType";
 
 function PaperComponent(props: JVPaperProps) {
   return (
@@ -39,6 +41,9 @@ export const RepositoryTreeDialog = ({
   const { t } = useTranslation() as { t: (k: string) => string };
   const folderData = useSelector((state: any) => state.folderData);
   const folderRootData = useSelector((state: any) => state.fakeRoot);
+  const stepperConfig = useSelector(
+    (state: IState) => state.stepperConfiguration,
+  );
   const mailNotification = useSelector(
     (state: any) => state.scheduleInfo.mailNotification,
   );
@@ -50,10 +55,6 @@ export const RepositoryTreeDialog = ({
   );
 
   const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
-
-  const updateChangeToStore = (updateProperty: any, stepperData: any) => {
-    updateStore(updateProperty, stepperData);
-  };
 
   const [showTree, setShowTree] = useState(false);
   const [open, setOpen] = useState<any>(dialogOpen);
@@ -91,7 +92,10 @@ export const RepositoryTreeDialog = ({
           folderURI: currentSelectedFolder,
         },
       },
-      { folderURI: currentSelectedFolder },
+      "folderURI",
+      currentSelectedFolder,
+      stepperConfig.show,
+      updateStore,
     );
   };
   return (

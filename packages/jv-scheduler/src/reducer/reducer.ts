@@ -12,6 +12,7 @@ import {
   SET_TABS_CONFIG,
   SET_VISIBLE_FIELDS,
   SCHEDULE_ERROR_OCCURRED,
+  SET_STEPPER_CONFIG,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -78,6 +79,11 @@ export const rootReducer = (state = initialState, action) => {
           ...state.stepperState,
           ...action.payload?.updatedStepperData,
         },
+      };
+    case SET_STEPPER_CONFIG:
+      return {
+        ...state,
+        stepperConfiguration: action.payload,
       };
     case SET_TABS_CONFIG:
       return {
