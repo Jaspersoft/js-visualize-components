@@ -6,59 +6,6 @@ import {
 import { stateValidator } from "../validations/scheduleValidators";
 import { IScheduleInfo } from "../types/scheduleType";
 
-const computePermissionMask = (extra) => {
-  var mask = 2;
-  extra.isWritable && (mask = mask | 4);
-  extra.isRemovable && (mask = mask | 16);
-  extra.isAdministrable && (mask = 1);
-  return mask;
-};
-
-const extractRootLevelDataFromHtmlResponse = (html: string) => {
-  // The length for '<div id='treeNodeText'>' is 23:
-  const START_DIV_LENGTH = 23;
-  // The length for '</div>' is 6:
-  const END_DIV_LENGTH = 6;
-  // Length for start + end is 29:
-  const WRAPPING_DIV_LENGTH = 29;
-
-  const htmlTrimmed = html.trim();
-  if (htmlTrimmed.length <= WRAPPING_DIV_LENGTH) {
-    return {};
-  }
-  const jsonAsText = htmlTrimmed.substring(
-    START_DIV_LENGTH,
-    htmlTrimmed.length - END_DIV_LENGTH,
-  );
-  return JSON.parse(jsonAsText);
-};
-
-export const getFakeRootRepositoryData = (data: any) => {
-  const extractedData = extractRootLevelDataFromHtmlResponse(data);
-  const publicFolder = extractedData.children.find(
-      (item: any) => item.uri === "/public",
-    ),
-    fakeRoot = [
-      {
-        id: "/root",
-        label: extractedData.label,
-        uri: "/",
-        resourceType: "folder",
-        permissionMask: computePermissionMask(extractedData.extra),
-      },
-    ];
-  if (publicFolder) {
-    fakeRoot.push({
-      id: "/public",
-      label: publicFolder.label,
-      uri: "/public",
-      resourceType: "folder",
-      permissionMask: computePermissionMask(publicFolder.extra),
-    });
-  }
-  return fakeRoot;
-};
-
 export const getStateOfCurrentActiveTab = (
   tabName: string,
   scheduleCurrentStateValues: any,
@@ -189,12 +136,12 @@ const removePublicFolderFromChildren = (children: any) => {
   return children.filter((item: any) => item.uri !== "/public");
 };
 export const addChildrenToTreeOnLoad = (
-  treeStructure,
-  childrenDataOfTreeNodes,
-  pathWhereChildrensToBeAdded,
+  treeStructure: any,
+  childrenDataOfTreeNodes: any,
+  pathWhereChildrensToBeAdded: string[],
 ) => {
   let nodeToManipulate = treeStructure;
-  pathWhereChildrensToBeAdded.forEach((treeNode, treeNodeIndex) => {
+  pathWhereChildrensToBeAdded.forEach((treeNode: any) => {
     let indexOfNode;
     nodeToManipulate?.some?.((item, index) => {
       const isNodeFound = getUriToCompare(item.uri) === treeNode;
@@ -203,7 +150,10 @@ export const addChildrenToTreeOnLoad = (
       }
       return isNodeFound;
     });
-    nodeToManipulate = indexOfNode > -1 ? nodeToManipulate[indexOfNode] : null;
+    nodeToManipulate =
+      indexOfNode !== undefined && indexOfNode > -1
+        ? nodeToManipulate[indexOfNode]
+        : null;
     const uri = nodeToManipulate?.uri
       ? getUriToCompare(nodeToManipulate?.uri)
       : nodeToManipulate?.uri;

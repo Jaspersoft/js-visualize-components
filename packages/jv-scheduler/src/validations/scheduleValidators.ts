@@ -5,7 +5,7 @@
 
 import _ from "underscore";
 // @ts-ignore
-import XRegExp from "xregexp";
+import { XRegExp } from "xregexp";
 // @ts-ignore
 import globalConfig from "../constants/globalConfiguration.settings";
 import moment from "moment";
