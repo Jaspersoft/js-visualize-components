@@ -60,6 +60,7 @@ export const rootReducer = (state = initialState, action) => {
           ...state.scheduleApisFailure,
           ...action.payload?.failedApi,
         },
+        lastApiCalledFailed: action.payload?.failedApiName,
       };
     case SET_VISITED_TABS:
       return {

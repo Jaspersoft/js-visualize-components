@@ -6,6 +6,8 @@ export interface IApiFailed extends ApiErrorMsg {
   userTimezoneApiFailure?: boolean;
   userOutputFormatApiFailure?: boolean;
   createScheduleApiFailure?: boolean;
+  initialTreeDataLoadApiFailure?: boolean;
+  treeLoadApiFailure?: boolean;
 }
 
 interface IStepperErrorData {

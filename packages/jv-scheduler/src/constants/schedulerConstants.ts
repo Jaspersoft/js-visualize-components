@@ -201,7 +201,10 @@ export const defaultState = {
     userTimezoneApiFailure: false,
     userOutputFormatApiFailure: false,
     createScheduleApiFailure: false,
+    initialTreeDataLoadApiFailure: false,
+    treeLoadApiFailure: false,
   },
+  lastApiCalledFailed: "",
   fakeRoot: [],
   fieldsVisibility: defaultFieldVisibility,
   scheduleInfo: {

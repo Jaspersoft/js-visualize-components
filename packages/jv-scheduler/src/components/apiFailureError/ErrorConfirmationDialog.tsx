@@ -9,34 +9,47 @@ import { setApiFailure } from "../../actions/action";
 import { IState } from "../../types/scheduleType";
 import { ErrorDialog } from "../common/ErrorDialog";
 
+const errorDialogAPI = [
+  "createScheduleApiFailure",
+  "initialTreeDataLoadApiFailure",
+  "treeLoadApiFailure",
+];
 export const ErrorConfirmationDialog = () => {
   const dispatch = useDispatch();
   const listOfApiFailed = useSelector(
     (state: IState) => state.scheduleApisFailure,
   );
+  const lastApiCallFail = useSelector(
+    (state: IState) => state.lastApiCalledFailed,
+  );
 
   const handleCancelBtn = () => {
-    dispatch(
-      setApiFailure({
-        createScheduleApiFailure: false,
-      }),
-    );
+    dispatch(setApiFailure(listOfApiFailed, ""));
+  };
+
+  const errorMap = {
+    createScheduleApiFailure: [
+      "You can close this error message and try to save the alert again.",
+      "A network error is preventing the alert from being saved.",
+    ],
+    initialTreeDataLoadApiFailure: [
+      "You can close this error message and try to open repo dialog again.",
+      "A network error is preventing the repo from being opened.",
+    ],
+    treeLoadApiFailure: [
+      "You can close this error message and try to open repo dialog again.",
+      "A network error is preventing the repo from being opened.",
+    ],
   };
 
   const getErrorMessage = () => {
-    const { createScheduleApiFailure } = listOfApiFailed;
-    const isApiFailed = createScheduleApiFailure;
-    const errorMsg = {
-      errorMsg: "",
-      subContainMsg: "",
+    const isErrorDialogReq = errorDialogAPI.indexOf(lastApiCallFail) > -1,
+      errorMsg = isErrorDialogReq ? errorMap[lastApiCallFail][0] : "",
+      subContainMsg = isErrorDialogReq ? errorMap[lastApiCallFail][1] : "";
+    return {
+      errorMsg,
+      subContainMsg,
     };
-    if (isApiFailed) {
-      errorMsg.errorMsg =
-        "You can close this error message and try to save the alert again.";
-      errorMsg.subContainMsg =
-        "A network error is preventing the alert from being saved.";
-    }
-    return errorMsg;
   };
 
   const { errorMsg, subContainMsg } = getErrorMessage();

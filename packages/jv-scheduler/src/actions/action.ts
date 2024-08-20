@@ -45,10 +45,10 @@ import {
 //         }
 //     }
 // }
-export const setApiFailure = (failedApi: IApiFailed) => {
+export const setApiFailure = (failedApi: IApiFailed, failedApiName: string) => {
   return {
     type: SET_SCHEDULE_APIS_FAILURE_ERROR,
-    payload: { failedApi },
+    payload: { failedApi, failedApiName },
   };
 };
 
@@ -161,10 +161,15 @@ export const getOutputFormats = () => {
   return async (dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
     if (outputFormats.error) {
-      dispatch(setApiFailure({ userOutputFormatApiFailure: true }));
+      dispatch(
+        setApiFailure(
+          { userOutputFormatApiFailure: true },
+          "userOutputFormatApiFailure",
+        ),
+      );
     } else {
       dispatch(setOutputFormats(outputFormats.dashboard.outputFormats));
-      dispatch(setApiFailure({ userOutputFormatApiFailure: false }));
+      dispatch(setApiFailure({ userOutputFormatApiFailure: false }, ""));
     }
   };
 };
@@ -173,10 +178,15 @@ export const getUserTimeZones = () => {
   return async (dispatch) => {
     const timezones = await getUserTimezonesFromService();
     if (timezones.error) {
-      dispatch(setApiFailure({ userTimezoneApiFailure: true }));
+      dispatch(
+        setApiFailure(
+          { userTimezoneApiFailure: true },
+          "userTimezoneApiFailure",
+        ),
+      );
     } else {
       dispatch(setUserTimeZones(timezones));
-      dispatch(setApiFailure({ userTimezoneApiFailure: false }));
+      dispatch(setApiFailure({ userTimezoneApiFailure: false }, ""));
     }
   };
 };
@@ -193,10 +203,15 @@ export const getFolderData = (folderPath: string) => {
     }
     const repositoryData = await getRepositoryFolderData(folderName);
     if (repositoryData.error) {
-      // dispatch error action
+      dispatch(
+        setApiFailure({ treeLoadApiFailure: true }, "treeLoadApiFailure"),
+      );
     } else {
       const folderData = repositoryData.resourceLookup || {};
       dispatch(setRepositoryFolderData({ [folderPath]: folderData }));
+      dispatch(
+        setApiFailure({ treeLoadApiFailure: false }, "treeLoadApiFailure"),
+      );
     }
   };
 };
@@ -205,8 +220,14 @@ export const getFakeRootData = () => {
   return async (dispatch) => {
     const getRootData = await getFakeRootDataFromService();
     if (getRootData.error) {
-      // dispatch error action
+      dispatch(
+        setApiFailure(
+          { initialTreeDataLoadApiFailure: true },
+          "initialTreeDataLoadApiFailure",
+        ),
+      );
     } else {
+      dispatch(setApiFailure({ initialTreeDataLoadApiFailure: false }, ""));
       dispatch(setFakeRootData(getRootData));
     }
   };
@@ -302,9 +323,14 @@ export const createAlert = (enableCreateBtn: () => void) => {
         description: scheduleJobDescription,
         ...rest,
       });
-      dispatch(setApiFailure({ createScheduleApiFailure: false }));
+      dispatch(setApiFailure({ createScheduleApiFailure: false }, ""));
     } catch (err) {
-      dispatch(setApiFailure({ createScheduleApiFailure: true }));
+      dispatch(
+        setApiFailure(
+          { createScheduleApiFailure: true },
+          "createScheduleApiFailure",
+        ),
+      );
     } finally {
       enableCreateBtn();
     }

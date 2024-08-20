@@ -50,6 +50,9 @@ const Notifications = () => {
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
   const fakeRoot = useSelector((state: any) => state.fakeRoot);
+  const initialTreeDataLoadApiFailure = useSelector(
+    (state: IState) => state.scheduleApisFailure.initialTreeDataLoadApiFailure,
+  );
 
   const {
     address: addressVisible,
@@ -288,7 +291,7 @@ const Notifications = () => {
           </JVRadioGroup>
         )}
       </div>
-      {reportAccessTypeVisible && (
+      {reportAccessTypeVisible && !initialTreeDataLoadApiFailure && (
         <RepositoryTreeDialog
           open={open}
           handleDialogState={(isOpen) => setOpen(isOpen)}
