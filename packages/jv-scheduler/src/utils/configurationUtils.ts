@@ -172,8 +172,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
             manadatoryHiddenField.indexOf(field) > -1 &&
             !fieldsData[field].value
           ) {
-            console.error(`${field} is required in the configuration`);
-            error[field] = `${field} is required in the configuration`;
+            promises.push(Promise.resolve({ [field]: `${field} is required` }));
           } else {
             const fieldName = mapFieldName[field] || field;
             promises.push(validator(fieldName, fieldsData[field].value, {}));
@@ -192,8 +191,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
           manadatoryHiddenField.indexOf(field) > -1 &&
           !value
         ) {
-          console.error(`${field} is required in the configuration`);
-          error[field] = `${field} is required in the configuration`;
+          promises.push(Promise.resolve({ [field]: `${field} is required` }));
         } else {
           const fieldValue = getValuesForRadio(value, field);
           if (fieldValue.error) {
@@ -214,6 +212,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
     data.forEach((item: any) => {
       Object.keys(item).forEach((key) => {
         if (item[key]) {
+          console.error(`Invalid value for ${key}`);
           validationPromise = { ...validationPromise, ...item };
         }
       });
@@ -232,8 +231,8 @@ const setDefaultValuesForFields = (
 ) => {
   const {
     baseOutputFilename = "",
-    description = "",
-    label = "",
+    scheduleJobDescription = "",
+    scheduleJobName = "",
     messageText = "",
     subject = "",
     address = [],
@@ -251,8 +250,8 @@ const setDefaultValuesForFields = (
   return {
     ...ScheduleDefaultState,
     baseOutputFilename,
-    scheduleJobName: label,
-    scheduleJobDescription: description,
+    scheduleJobName,
+    scheduleJobDescription,
     mailNotification: {
       messageText,
       subject,
