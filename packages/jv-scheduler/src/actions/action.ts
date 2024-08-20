@@ -255,7 +255,7 @@ export const currentTabValidationError = (handleStateChange: () => void) => {
 };
 
 export const allTabValidationError = (
-  handleCreateOrUpdateSchedule: (isErrorOccured: boolean) => void,
+  handleCreateScheduleAPI: (isErrorOccured: boolean) => void,
 ) => {
   return async (dispatch: Dispatch, getState: () => IState) => {
     const { scheduleInfo: currentState } = getState();
@@ -264,14 +264,14 @@ export const allTabValidationError = (
     const isErrPresent = Object.values(currentStateError).some((item) => item);
     if (isErrPresent) {
       dispatch(setVisitedTab([...allTabs]));
-      handleCreateOrUpdateSchedule(true);
+      handleCreateScheduleAPI(true);
     } else {
-      handleCreateOrUpdateSchedule(false);
+      handleCreateScheduleAPI(false);
     }
   };
 };
 
-export const createAlert = () => {
+export const createAlert = (enableCreateBtn: () => void) => {
   return async (dispatch: any, getState: () => IState) => {
     try {
       const { scheduleJobDescription, scheduleJobName, ...rest } =
@@ -284,6 +284,8 @@ export const createAlert = () => {
       dispatch(setApiFailure({ createScheduleApiFailure: false }));
     } catch (err) {
       dispatch(setApiFailure({ createScheduleApiFailure: true }));
+    } finally {
+      enableCreateBtn();
     }
   };
 };
