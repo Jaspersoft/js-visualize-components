@@ -72,8 +72,6 @@ const schedulerUIConfig = {
       },
     },
   },
-  successIcon: "React/HTML element",
-  errorIcon: "React/ HTML element",
   locale: "en",
   timezone: "UTC",
 };
