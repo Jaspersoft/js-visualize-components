@@ -139,8 +139,8 @@ const Output = () => {
                   },
                 },
                 OUTPUT_FILE_DESCRIPTION,
-                outputDescription,
-                stepperConfig.show,
+                outputDescription ? outputDescription : "",
+                stepperConfig ? stepperConfig.show : true,
                 updateStore,
               )
             }

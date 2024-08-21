@@ -40,6 +40,9 @@ export interface IStepperState extends IStepperErrorData {
 }
 
 export interface IScheduleErrors extends IStepperErrorData {
+  label?: string;
+  description?: string;
+  baseOutputFileDescription?: string;
   folderURI?: string;
   address?: string;
   outputFormats?: string;
@@ -110,6 +113,8 @@ export interface ITabsConfiguration {
     tabsToShow?: boolean;
     stepsToShow?: boolean;
   };
+  tabsToShow?: [];
+  stepsToShow?: [];
 }
 export interface IState {
   scheduleErrors: IScheduleErrors;
@@ -119,14 +124,14 @@ export interface IState {
   currentActiveTab: string;
   tabsConfiguration: ITabsConfiguration;
   fieldsVisibility: IFieldsVisibility;
-  stepperConfiguration?: {
-    show?: boolean;
+  stepperConfiguration: {
+    show: boolean;
   };
   stepperState?: IStepperState;
   scheduleApisFailure?: IApiFailed;
   lastApiCalledFailed?: boolean;
-  folderData?: {};
-  fakeRoot?: string;
+  folderData?: any;
+  fakeRoot?: any;
   schedulerUIConfig?: {
     resourceURI?: string;
   };

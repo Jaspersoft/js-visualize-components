@@ -74,7 +74,7 @@ const Stepper = () => {
   const activeStep = useSelector((state: IState) => state.currentActiveTab);
   const visitedTabs = useSelector((state: IState) => state.visitedTabs);
   const visibleSteps = useSelector(
-    (state: IState) => state.tabsConfiguration.stepsToShow,
+    (state: IState) => state.tabsConfiguration?.stepsToShow,
   );
 
   const {
@@ -154,7 +154,7 @@ const Stepper = () => {
       activeStep={stepperSteps[activeStep]}
       className="jr-uMargin-tb-15 jr-uMargin-lr-08"
     >
-      {visibleSteps.map((item: any, index: number, arr: any) => {
+      {visibleSteps?.map((item: any, index: number, arr: any) => {
         const isDefaultMsg =
           activeStep === arr[index].name &&
           !visitedTabs.includes(arr[index].name);

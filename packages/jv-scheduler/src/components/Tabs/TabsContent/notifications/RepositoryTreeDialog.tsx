@@ -60,14 +60,15 @@ export const RepositoryTreeDialog = ({
   const [open, setOpen] = useState<any>(dialogOpen);
   const [width, setWidth] = useState("400px");
   const [height, setHeight] = useState("500px");
-  const [currentSelectedFolder, setCurrentSelectedFolder] =
-    useState(resourceUri);
+  const [currentSelectedFolder, setCurrentSelectedFolder] = useState(
+    resourceUri || "",
+  );
 
   useEffect(() => {
-    const expandedFoldersData = getUriParts(resourceUri, true);
+    const expandedFoldersData = getUriParts(resourceUri || "", true);
     if (
       getLengthOfObject(folderData) === expandedFoldersData.length &&
-      folderRootData.length
+      folderRootData?.length
     ) {
       setShowTree(true);
     }
@@ -93,8 +94,8 @@ export const RepositoryTreeDialog = ({
         },
       },
       "folderURI",
-      currentSelectedFolder,
-      stepperConfig.show,
+      currentSelectedFolder ? currentSelectedFolder : [],
+      stepperConfig ? stepperConfig.show : true,
       updateStore,
     );
   };

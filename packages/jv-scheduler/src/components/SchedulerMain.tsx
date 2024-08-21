@@ -34,7 +34,7 @@ const SchedulerMain = ({ schedulerData, schedulerUIConfig }: any) => {
     <>
       <JVStylesProvider>
         <div className="jv-lColumns">
-          {stepperConfig.show && (
+          {stepperConfig?.show && (
             <div className="jv-lColumns-column jv-uWidth-300px jv-uOverflow-auto jv-uBackgroundGrey-04">
               <Stepper />
             </div>

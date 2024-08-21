@@ -117,11 +117,11 @@ const Notifications = () => {
 
   const handleBrowseButtonClick = () => {
     // get data for what to show in the tree on first level
-    if (!fakeRoot.length) {
+    if (!fakeRoot?.length) {
       dispatch(getFakeRootData());
     }
     // get children data for each folder of resource uri
-    getExpandedNodeDataFromUri(resourceUri, true, (uri: string) => {
+    getExpandedNodeDataFromUri(resourceUri as string, true, (uri: string) => {
       if (!folderData[uri]) {
         dispatch(getFolderData(uri));
       }
