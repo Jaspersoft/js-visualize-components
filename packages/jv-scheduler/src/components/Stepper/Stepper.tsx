@@ -26,6 +26,7 @@ import {
 } from "./FieldUserInputData";
 import { useSelector } from "react-redux";
 import { StepIcon } from "./StepIcon";
+import { IState } from "../../types/scheduleType";
 
 const DefaultOrMessageBasedOnUserInput = (
   currentTab: string,
@@ -70,10 +71,10 @@ const StepStateIcon = (props: any) => {
 const Stepper = () => {
   const [iconState, setIconState] = useState({ ...tabsStateDefaultState });
 
-  const activeStep = useSelector((state: any) => state.currentActiveTab);
-  const visitedTabs = useSelector((state: any) => state.visitedTabs);
+  const activeStep = useSelector((state: IState) => state.currentActiveTab);
+  const visitedTabs = useSelector((state: IState) => state.visitedTabs);
   const visibleSteps = useSelector(
-    (state: any) => state.tabsConfiguration.stepsToShow,
+    (state: IState) => state.tabsConfiguration.stepsToShow,
   );
 
   const {
@@ -89,7 +90,7 @@ const Stepper = () => {
     outputFormat,
     folderURI,
     baseOutputFileDescription,
-  } = useSelector((state: any) => state.scheduleErrors || {});
+  } = useSelector((state: IState) => state.scheduleErrors || {});
 
   const setIconStateOnChange = (tabName: string, tabState: string) => {
     setIconState((prevState) => {

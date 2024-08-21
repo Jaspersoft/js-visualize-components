@@ -23,7 +23,7 @@ import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
 import { NOTIFICATIONS_TAB } from "../../../../constants/schedulerConstants";
 import { IState } from "../../../../types/scheduleType";
 
-function PaperComponent(props: JVPaperProps) {
+function PaperComponent(props: typeof JVPaperProps) {
   return (
     <Draggable
       handle="#draggable-dialog-title"
@@ -39,19 +39,19 @@ export const RepositoryTreeDialog = ({
   handleDialogState,
 }: any) => {
   const { t } = useTranslation() as { t: (k: string) => string };
-  const folderData = useSelector((state: any) => state.folderData);
-  const folderRootData = useSelector((state: any) => state.fakeRoot);
+  const folderData = useSelector((state: IState) => state.folderData);
+  const folderRootData = useSelector((state: IState) => state.fakeRoot);
   const stepperConfig = useSelector(
     (state: IState) => state.stepperConfiguration,
   );
   const mailNotification = useSelector(
-    (state: any) => state.scheduleInfo.mailNotification,
+    (state: IState) => state.scheduleInfo.mailNotification,
   );
   const repositoryDestination = useSelector(
-    (state: any) => state.scheduleInfo.repositoryDestination,
+    (state: IState) => state.scheduleInfo.repositoryDestination,
   );
   const resourceUri = useSelector(
-    (state: any) => state.schedulerUIConfig.resourceURI,
+    (state: IState) => state.schedulerUIConfig?.resourceURI,
   );
 
   const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);

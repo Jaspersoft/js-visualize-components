@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../store/store";
+import { IFakeRootData } from "../types/scheduleType";
 
 const getServerPath = () => {
   return store.getState().schedulerUIConfig.server;
@@ -32,8 +33,12 @@ const extractRootLevelDataFromHtmlResponse = (html: string) => {
   return JSON.parse(jsonAsText);
 };
 
-const getFakeRootRepositoryData = (data: any) => {
-  const extractedData = extractRootLevelDataFromHtmlResponse(data);
+const getFakeRootRepositoryData = (data: string) => {
+  const extractedData: {
+    children: any[];
+    label: string;
+    extra: { [key: string]: any };
+  } = extractRootLevelDataFromHtmlResponse(data);
   const publicFolder = extractedData.children.find(
       (item: any) => item.uri === "/public",
     ),

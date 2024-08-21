@@ -27,7 +27,7 @@ export const ErrorConfirmationDialog = () => {
     dispatch(setApiFailure(listOfApiFailed, ""));
   };
 
-  const errorMap = {
+  const errorMap: any = {
     createScheduleApiFailure: [
       "You can close this error message and try to save the alert again.",
       "A network error is preventing the alert from being saved.",
@@ -43,7 +43,9 @@ export const ErrorConfirmationDialog = () => {
   };
 
   const getErrorMessage = () => {
-    const isErrorDialogReq = errorDialogAPI.indexOf(lastApiCallFail) > -1,
+    const isErrorDialogReq =
+        typeof lastApiCallFail === "string" &&
+        errorDialogAPI.indexOf(lastApiCallFail) > -1,
       errorMsg = isErrorDialogReq ? errorMap[lastApiCallFail][0] : "",
       subContainMsg = isErrorDialogReq ? errorMap[lastApiCallFail][1] : "";
     return {
@@ -59,6 +61,7 @@ export const ErrorConfirmationDialog = () => {
       handleCancelBtn={handleCancelBtn}
       errorMsg={errorMsg}
       subContainerMsg={subContainMsg}
+      style=""
     />
   );
 };

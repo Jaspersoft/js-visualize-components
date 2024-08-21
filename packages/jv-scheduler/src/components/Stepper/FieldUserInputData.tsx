@@ -61,9 +61,11 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
 
 export const ScheduleStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
-  const label = useSelector((state: any) => state.stepperState.scheduleJobName),
+  const label = useSelector(
+      (state: IState) => state.stepperState?.scheduleJobName,
+    ),
     description = useSelector(
-      (state: any) => state.stepperState.scheduleJobDescription,
+      (state: IState) => state.stepperState?.scheduleJobDescription,
     ),
     scheduleJobNameErr = useSelector(
       (state: IState) => state.scheduleErrors.scheduleJobName,
@@ -75,14 +77,14 @@ export const ScheduleStepUserInput = () => {
       (state: IState) => state.scheduleErrors.recurrenceInterval,
     ),
     interval = useSelector(
-      (state: any) => state.stepperState.recurrenceInterval,
+      (state: IState) => state.stepperState?.recurrenceInterval,
     ),
     intervalUnit = useSelector(
-      (state: any) => state.stepperState.recurrenceIntervalUnit,
+      (state: IState) => state.stepperState?.recurrenceIntervalUnit,
     ),
     // intervalErr = useSelector((state: TAlertErrors) => state.alertErrors.recurrenceInterval),
-    startDate = useSelector((state: any) => state.stepperState.startDate),
-    startType = useSelector((state: any) => state.stepperState.startType),
+    startDate = useSelector((state: IState) => state.stepperState?.startDate),
+    startType = useSelector((state: IState) => state.stepperState?.startType),
     // startDateErr = useSelector((state: TAlertErrors) => state.alertErrors.startDate),
     // stepperIntervalErr = intervalErr ? i18n[`alert.stepper.${intervalErr}`] : intervalErr,
     // stepperStartDateErr = startDateErr ? i18n[`alert.stepper.${startDateErr}`] : startDateErr,
@@ -136,13 +138,13 @@ export const ScheduleStepUserInput = () => {
 export const NotificationStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
   const mailNotificationSubject = useSelector(
-      (state: any) => state.stepperState.subject,
+      (state: IState) => state.stepperState?.subject,
     ),
     mailNotificationAddresses = useSelector(
-      (state: any) => state.stepperState.address,
+      (state: IState) => state.stepperState?.address,
     ),
     resultSendType = useSelector(
-      (state: any) => state.stepperState.resultSendType,
+      (state: IState) => state.stepperState?.resultSendType,
     ),
     mailNotificationAddressesErr = useSelector(
       (state: IState) => state.scheduleErrors.address,
@@ -154,7 +156,7 @@ export const NotificationStepUserInput = () => {
       (state: IState) => state.scheduleErrors.messageText,
     ),
     mailNotificationMessage = useSelector(
-      (state: any) => state.stepperState.messageText,
+      (state: IState) => state.stepperState?.messageText,
     );
   // mailNotificationMessageErr = useSelector((state:TAlertErrors) => state.alertErrors.messageText),
   // stepperSubjectErr = mailNotificationSubjectErr ? i18n[`alert.stepper.${mailNotificationSubjectErr}`] : mailNotificationSubjectErr,
@@ -210,13 +212,13 @@ export const NotificationStepUserInput = () => {
 export const OutputStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
   const fileName = useSelector(
-      (state: any) => state.stepperState.baseOutputFilename,
+      (state: IState) => state.stepperState?.baseOutputFilename,
     ),
     fileDescription = useSelector(
       (state: IState) =>
         state.scheduleInfo.repositoryDestination.outputDescription,
     ),
-    formats = useSelector((state: any) => state.stepperState.outputFormat),
+    formats = useSelector((state: IState) => state.stepperState?.outputFormat),
     fileNameErr = useSelector(
       (state: IState) => state.scheduleErrors.baseOutputFilename,
     ),
@@ -224,9 +226,9 @@ export const OutputStepUserInput = () => {
       (state: IState) => state.scheduleErrors.outputFormat,
     ),
     outputTimezone = useSelector(
-      (state: any) => state.stepperState.outputTimeZone,
+      (state: IState) => state.stepperState?.outputTimeZone,
     ),
-    timezones = useSelector((state: any) => state.userTimeZones),
+    timezones = useSelector((state: IState) => state.userTimeZones),
     currentTimezone = timezones.filter(
       (item: { code: string }) => item.code === outputTimezone,
     ),

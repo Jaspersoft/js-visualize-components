@@ -45,13 +45,13 @@ const Notifications = () => {
   const repositoryDestination = useSelector(
     (state: IState) => state.scheduleInfo.repositoryDestination,
   );
-  const folderData = useSelector((state: any) => state.folderData);
+  const folderData = useSelector((state: IState) => state.folderData);
   const resourceUri = useSelector(
-    (state: any) => state.schedulerUIConfig.resourceURI,
+    (state: IState) => state.schedulerUIConfig?.resourceURI,
   );
-  const fakeRoot = useSelector((state: any) => state.fakeRoot);
+  const fakeRoot = useSelector((state: IState) => state.fakeRoot);
   const initialTreeDataLoadApiFailure = useSelector(
-    (state: IState) => state.scheduleApisFailure.initialTreeDataLoadApiFailure,
+    (state: IState) => state.scheduleApisFailure?.initialTreeDataLoadApiFailure,
   );
 
   const {

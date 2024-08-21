@@ -1,4 +1,4 @@
-import { Dispatch } from "redux";
+import { Action, Dispatch } from "redux";
 import {
   SET_SCHEDULE_APIS_FAILURE_ERROR,
   SET_OUTPUT_FORMATS,
@@ -26,10 +26,14 @@ import {
 import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
 import {
   IApiFailed,
+  IFakeRootData,
+  IFieldsVisibility,
   IScheduleErrors,
   IScheduleInfo,
   IState,
+  IStepperData,
   IStoreData,
+  ITabsConfiguration,
 } from "../types/scheduleType";
 import {
   getErrorsForCurrentTab,
@@ -45,14 +49,17 @@ import {
 //         }
 //     }
 // }
-export const setApiFailure = (failedApi: IApiFailed, failedApiName: string) => {
+export const setApiFailure = (
+  failedApi: IApiFailed | undefined,
+  failedApiName: string,
+) => {
   return {
     type: SET_SCHEDULE_APIS_FAILURE_ERROR,
     payload: { failedApi, failedApiName },
   };
 };
 
-export const setOutputFormats = (outputFormats) => {
+export const setOutputFormats = (outputFormats: string[]) => {
   return {
     type: SET_OUTPUT_FORMATS,
     payload: {
@@ -61,7 +68,7 @@ export const setOutputFormats = (outputFormats) => {
   };
 };
 
-export const setUserTimeZones = (timeZones) => {
+export const setUserTimeZones = (timeZones: string[]) => {
   return {
     type: SET_USER_TIME_ZONES,
     payload: {
@@ -90,7 +97,7 @@ export const setSechedulerUIConfig = (
   };
 };
 
-export const setRepositoryFolderData = (folderData) => {
+export const setRepositoryFolderData = (folderData: {}) => {
   return {
     type: SET_REPOSITORY_FOLDER_DATA,
     payload: {
@@ -99,7 +106,7 @@ export const setRepositoryFolderData = (folderData) => {
   };
 };
 
-export const setFakeRootData = (fakeRootData) => {
+export const setFakeRootData = (fakeRootData: {}) => {
   return {
     type: SET_FAKE_ROOT,
     payload: {
@@ -108,7 +115,7 @@ export const setFakeRootData = (fakeRootData) => {
   };
 };
 
-export const setTabsConfig = (tabsConfiguration: any) => {
+export const setTabsConfig = (tabsConfiguration?: ITabsConfiguration) => {
   return {
     type: SET_TABS_CONFIG,
     payload: tabsConfiguration,
@@ -129,14 +136,14 @@ export const setCurrentActiveTab = (activeTab: string) => {
   };
 };
 
-export const setStepperProperties = (updatedStepperData: any) => {
+export const setStepperProperties = (updatedStepperData?: IStepperData) => {
   return {
     type: SET_STEPPER_PROPERTIES,
     payload: { updatedStepperData },
   };
 };
 
-export const setVisibleFields = (fieldsVisibility: any) => {
+export const setVisibleFields = (fieldsVisibility: IFieldsVisibility) => {
   return {
     type: SET_VISIBLE_FIELDS,
     payload: { fieldsVisibility },
@@ -150,15 +157,18 @@ export const scheduleValidationError = (errors: IScheduleErrors) => {
   };
 };
 
-export const setStepperConfig = (stepperConfiguration: any) => {
+export const setStepperConfig = (stepperConfiguration: {}) => {
   return {
     type: SET_STEPPER_CONFIG,
     payload: stepperConfiguration,
   };
 };
-
+// interface Action {
+//   type: string;
+//   payload?: any;
+// }
 export const getOutputFormats = () => {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
     if (outputFormats.error) {
       dispatch(
@@ -175,7 +185,7 @@ export const getOutputFormats = () => {
 };
 
 export const getUserTimeZones = () => {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch) => {
     const timezones = await getUserTimezonesFromService();
     if (timezones.error) {
       dispatch(
@@ -192,7 +202,7 @@ export const getUserTimeZones = () => {
 };
 
 export const getFolderData = (folderPath: string) => {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch) => {
     let folderName;
     if (folderPath.startsWith("/public")) {
       folderName = folderPath;
@@ -217,9 +227,10 @@ export const getFolderData = (folderPath: string) => {
 };
 
 export const getFakeRootData = () => {
-  return async (dispatch) => {
-    const getRootData = await getFakeRootDataFromService();
-    if (getRootData.error) {
+  return async (dispatch: Dispatch) => {
+    const getRootData: IFakeRootData[] | { error?: string } =
+      await getFakeRootDataFromService();
+    if (getRootData && "error" in getRootData && getRootData.error) {
       dispatch(
         setApiFailure(
           { initialTreeDataLoadApiFailure: true },
@@ -233,8 +244,8 @@ export const getFakeRootData = () => {
   };
 };
 
-export const currentTabValidator = (newTabVal) => {
-  return async (dispatch, getState) => {
+export const currentTabValidator = (newTabVal: string) => {
+  return async (dispatch: Dispatch, getState: any) => {
     const { currentActiveTab, scheduleInfo, stepperConfiguration } = getState(),
       currentTabValues = getStateOfCurrentActiveTab(
         currentActiveTab,
@@ -249,8 +260,11 @@ export const currentTabValidator = (newTabVal) => {
   };
 };
 
-export const setInitialPluginState = (schedulerData, schedulerUIConfig) => {
-  return async (dispatch) => {
+export const setInitialPluginState = (
+  schedulerData: IState,
+  schedulerUIConfig: ISchedulerUIConfig,
+) => {
+  return async (dispatch: any) => {
     const {
       tabsToShow,
       stepsToShow,
@@ -286,7 +300,7 @@ export const currentTabValidationError = (handleStateChange: () => void) => {
         scheduleCurrentStateValues,
       );
     handleStateChange();
-    if (stepperConfiguration.show)
+    if (stepperConfiguration?.show)
       dispatch(setStepperProperties(currentTabValues));
     const currentTabErrs = await getErrorsForCurrentTab(
       currentActiveTab,
@@ -314,7 +328,7 @@ export const allTabValidationError = (
 };
 
 export const createAlert = (enableCreateBtn: () => void) => {
-  return async (dispatch: any, getState: () => IState) => {
+  return async (dispatch: Dispatch, getState: () => IState) => {
     try {
       const { scheduleJobDescription, scheduleJobName, ...rest } =
         getState().scheduleInfo;

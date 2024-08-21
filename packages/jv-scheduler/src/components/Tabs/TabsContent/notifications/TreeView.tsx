@@ -20,6 +20,7 @@ import {
   addChildrenToTreeOnLoad,
   getExpandedNodeDataFromUri,
 } from "../../../../utils/schedulerUtils";
+import { IState } from "../../../../types/scheduleType";
 
 function TransitionComponent(props: any) {
   return <JVCollapse {...props} />;
@@ -57,7 +58,7 @@ const CustomLabel = ({ expandable, children, ...other }: CustomLabelProps) => {
 };
 
 interface CustomTreeItemProps
-  extends Omit<useJVTreeItem2ParametersTypes, "rootRef">,
+  extends Omit<typeof useJVTreeItem2ParametersTypes, "rootRef">,
     Omit<React.HTMLAttributes<HTMLLIElement>, "onFocus"> {}
 
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
@@ -110,10 +111,10 @@ const isItemDisable = (item: any) => {
 export const TreeView = ({ handleCurrentSelection }: any) => {
   const dispatch = useDispatch();
   const folderURI = useSelector(
-    (state: any) => state.scheduleInfo.repositoryDestination.folderURI,
+    (state: IState) => state.scheduleInfo.repositoryDestination.folderURI,
   );
-  const folderData = useSelector((state: any) => state.folderData);
-  const rootData = useSelector((state: any) => state.fakeRoot);
+  const folderData = useSelector((state: IState) => state.folderData);
+  const rootData = useSelector((state: IState) => state.fakeRoot);
 
   const [treeData, setTreeData] = useState(rootData);
   const [currentExpandedNode, setCurrentExpandedNode] = useState("");

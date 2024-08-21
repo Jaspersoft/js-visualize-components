@@ -35,6 +35,8 @@ export interface IStepperState extends IStepperErrorData {
   outputTimeZone?: string;
   folderURI?: string;
   saveToRepository?: boolean;
+  scheduleJobName?: string;
+  scheduleJobDescription?: string;
 }
 
 export interface IScheduleErrors extends IStepperErrorData {
@@ -99,19 +101,39 @@ export interface IFieldsVisibility {
   reportAccessType?: boolean;
   description?: boolean;
   startTime?: boolean;
+  scheduleJobDescription?: boolean;
+  scheduleJobName?: boolean;
 }
-
+export interface ITabsConfiguration {
+  currentActiveTab?: string;
+  tabsConfiguration?: {
+    tabsToShow?: boolean;
+    stepsToShow?: boolean;
+  };
+}
 export interface IState {
   scheduleErrors: IScheduleErrors;
   scheduleInfo: IScheduleInfo;
   visitedTabs: string[];
   outputFormats: string[];
   currentActiveTab: string;
-  tabsConfiguration: {
-    tabsToShow: string[];
-    stepsToShow: string[];
-  };
+  tabsConfiguration: ITabsConfiguration;
   fieldsVisibility: IFieldsVisibility;
+  stepperConfiguration?: {
+    show?: boolean;
+  };
+  stepperState?: IStepperState;
+  scheduleApisFailure?: IApiFailed;
+  lastApiCalledFailed?: boolean;
+  folderData?: {};
+  fakeRoot?: string;
+  schedulerUIConfig?: {
+    resourceURI?: string;
+  };
+  userTimeZones: [{ code: string; description: string }];
+  tabsToShow?: boolean;
+  stepsToShow?: boolean;
+  showStepper?: boolean;
 }
 
 export interface IStoreData {}
@@ -146,7 +168,7 @@ export interface IOutputFormat {
   outputFormat: string[];
 }
 
-interface IStepperData {
+export interface IStepperData {
   baseOutputFilename?: string;
   messageText?: string;
   name?: string;
@@ -167,4 +189,11 @@ export interface IStepperState extends IStepperData {
   outputTimeZone?: string;
   folderURI?: string;
   saveToRepository?: boolean;
+}
+export interface IFakeRootData {
+  id: string;
+  label: any;
+  uri: string;
+  resourceType: string;
+  permissionMask: number;
 }

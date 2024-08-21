@@ -24,7 +24,7 @@ const Output = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
 
   const outputFormats = useSelector((state: IState) => state.outputFormats);
-  const userTimeZones = useSelector((state: any) => state.userTimeZones);
+  const userTimeZones = useSelector((state: IState) => state.userTimeZones);
   const stepperConfig = useSelector(
     (state: IState) => state.stepperConfiguration,
   );
@@ -38,10 +38,10 @@ const Output = () => {
     (state: IState) => state.scheduleInfo.outputFormats.outputFormat,
   );
   const userTimezoneApiFailure = useSelector(
-    (state: any) => state.scheduleApisFailure.userTimezoneApiFailure,
+    (state: IState) => state.scheduleApisFailure?.userTimezoneApiFailure,
   );
   const userOutputFormatApiFailure = useSelector(
-    (state: any) => state.scheduleApisFailure.userOutputFormatApiFailure,
+    (state: IState) => state.scheduleApisFailure?.userOutputFormatApiFailure,
   );
   const baseOutputFilename = useSelector(
     (state: IState) => state.scheduleInfo.baseOutputFilename,
@@ -49,7 +49,7 @@ const Output = () => {
   const repositoryDestination = useSelector(
     (state: IState) => state.scheduleInfo.repositoryDestination,
   );
-  const baseOutputFileDescription: string = useSelector(
+  const baseOutputFileDescription: string | undefined = useSelector(
     (state: IState) =>
       state.scheduleInfo.repositoryDestination.outputDescription,
   );
