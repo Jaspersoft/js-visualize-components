@@ -33,16 +33,32 @@ export const StepIcon = (props: any) => {
   return (
     <div>
       {icon === SUCCESS_STATE && (
-        <CommonIcon icon="checkmarkRound" className="jr-uColor-success" />
+        <CommonIcon
+          icon="checkmarkRound"
+          className="jr-uColor-success"
+          dataName=""
+        />
       )}
       {icon === ERROR_STATE && (
-        <CommonIcon icon="warningRound" className="jr-uColor-error" />
+        <CommonIcon
+          icon="warningRound"
+          className="jr-uColor-error"
+          dataName=""
+        />
       )}
       {icon === INCOMPLETE_DEFAULT_STATE && (
-        <CommonIcon icon="checkmarkRound" className="jr-uColor-incomplete" />
+        <CommonIcon
+          icon="checkmarkRound"
+          className="jr-uColor-incomplete"
+          dataName=""
+        />
       )}
       {icon === INCOMPLETE_STATE && (
-        <CommonIcon icon="circleSolid" className="jr-uColor-incomplete" />
+        <CommonIcon
+          icon="circleSolid"
+          className="jr-uColor-incomplete"
+          dataName=""
+        />
       )}
     </div>
   );

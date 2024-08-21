@@ -1,7 +1,11 @@
 import axios from "axios";
 import store from "../store/store";
 
-const computePermissionMask = (extra) => {
+const getServerPath = () => {
+  return store.getState().schedulerUIConfig.server;
+};
+
+const computePermissionMask = (extra: { [key: string]: any }) => {
   var mask = 2;
   extra.isWritable && (mask = mask | 4);
   extra.isRemovable && (mask = mask | 16);
@@ -58,7 +62,7 @@ export const checkPermissionOnFolder = async (folder: string) => {
   let csrfToken = await getCSRFToken();
   try {
     const response = await axios.get(
-      `${store.getState().schedulerUIConfig.server}/rest_v2/resources${folder}`,
+      `${getServerPath()}/rest_v2/resources${folder}`,
       {
         withCredentials: true,
         headers: {
@@ -76,7 +80,7 @@ export const checkPermissionOnFolder = async (folder: string) => {
 export const getUserTimezonesFromService = async () => {
   try {
     const response = await axios.get(
-      `${store.getState().schedulerUIConfig.server}/rest_v2/settings/userTimeZones`,
+      `${getServerPath()}/rest_v2/settings/userTimeZones`,
       {
         headers: {
           Accept: "application/json",
@@ -92,7 +96,7 @@ export const getUserTimezonesFromService = async () => {
 export const getOutputFormatsFromService = async () => {
   try {
     const response = await axios.get(
-      `${store.getState().schedulerUIConfig.server}/rest_v2/settings/alertingSettings`,
+      `${getServerPath()}/rest_v2/settings/alertingSettings`,
       {
         headers: {
           Accept: "application/json",
@@ -111,7 +115,7 @@ export const getInputControls = async () => {
   csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
   try {
     const response = await axios.post(
-      `${store.getState().schedulerUIConfig.server}/rest_v2/reports${reportUri}/inputControls/ProductFamily/values/pagination?freshData=false&includeTotalCount=true`,
+      `${getServerPath()}/rest_v2/reports${reportUri}/inputControls/ProductFamily/values/pagination?freshData=false&includeTotalCount=true`,
       {
         reportParameter: [
           {
@@ -140,7 +144,7 @@ export const getCSRFToken = async () => {
   try {
     // noinspection TypeScriptValidateTypes
     const response = await axios.post(
-      `${store.getState().schedulerUIConfig.server}/JavaScriptServlet`,
+      `${getServerPath()}/JavaScriptServlet`,
       {},
       {
         headers: {
@@ -159,7 +163,7 @@ export const getRepositoryFolderData = async (folderPath: string) => {
   csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
   try {
     const response = await axios.get(
-      `${store.getState().schedulerUIConfig.server}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
+      `${getServerPath()}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
       {
         withCredentials: true,
         headers: {
@@ -174,7 +178,7 @@ export const getRepositoryFolderData = async (folderPath: string) => {
   }
 };
 
-function decodeHtml(html) {
+function decodeHtml(html: string) {
   var txt = document.createElement("textarea");
   txt.innerHTML = html;
   return txt.value;
@@ -185,7 +189,7 @@ export const getFakeRootDataFromService = async () => {
   csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
   try {
     const response = await axios.get(
-      `${store.getState().schedulerUIConfig.server}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
+      `${getServerPath()}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
       {
         withCredentials: true,
         headers: {
@@ -205,7 +209,7 @@ export const createSchedule = async (scheduleInfo: any) => {
   csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
 
   return axios.put(
-    `${store.getState().schedulerUIConfig.server}/rest_v2/jobs`,
+    `${getServerPath()}/rest_v2/jobs`,
     {
       ...scheduleInfo,
     },

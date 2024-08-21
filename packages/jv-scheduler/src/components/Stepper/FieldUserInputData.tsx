@@ -102,22 +102,26 @@ export const ScheduleStepUserInput = () => {
         error={scheduleJobNameErr}
         title={t("stepper.schedule.jobname.key")}
         value={label}
+        dataName=""
       />
       <InputDataInStep
         error={scheduleJobDescriptionErr}
         title={t("stepper.schedule.jobdescription.key")}
         value={description}
+        dataName=""
       />
       <InputDataInStep
         error={intervalErr}
         title={t("stepper.schedule.repeat.key")}
         value={`${interval} ${timeFrameText}`}
+        dataName=""
       />
       {startType === RECURRENCE_INTERVAL_DATE_TIME ? (
         <InputDataInStep
           error={""}
           title={t("stepper.schedule.start.key")}
           value={time}
+          dataName=""
         />
       ) : (
         <KeyValueTemplate
@@ -175,12 +179,14 @@ export const NotificationStepUserInput = () => {
         error={mailNotificationAddressesErr}
         title={t("stepper.notifications.recipients.key")}
         value={address}
+        dataName=""
       />
       <InputDataInStep
         error={mailNotificationSubjectErr}
         title={t("stepper.notifications.subject.key")}
         value={mailNotificationSubject}
         className="jv-uTextBreak"
+        dataName=""
       />
       {mailNotificationMessage && (
         <InputDataInStep
@@ -188,12 +194,14 @@ export const NotificationStepUserInput = () => {
           title={t("stepper.notifications.message.key")}
           value={mailNotificationMessage}
           className=" jv-uTextBreak jv-uTextTruncate3"
+          dataName=""
         />
       )}
       <InputDataInStep
         error={""}
         title={t("stepper.notifications.access.key")}
         value={reportionOptionValue}
+        dataName=""
       />
     </>
   );
@@ -246,12 +254,14 @@ export const OutputStepUserInput = () => {
         title={t("stepper.output.filename.key")}
         value={fileName}
         className="jv-uTextBreak"
+        dataName=""
       />
       <InputDataInStep
         error={""}
         title={t("stepper.output.description.key")}
         value={fileDescription}
         className="jv-uTextBreak"
+        dataName=""
       />
       <KeyValueTemplate
         title={t("stepper.output.timezone.key")}
@@ -261,6 +271,7 @@ export const OutputStepUserInput = () => {
         error={formatsErr}
         title={t("stepper.output.formats.key")}
         value={formatsToDisplay}
+        dataName=""
       />
     </>
   );

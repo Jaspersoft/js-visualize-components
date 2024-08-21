@@ -4,7 +4,7 @@ import { JVTypography } from "@jaspersoft/jv-ui-components";
 interface KeyValueTemplateProps {
   title: string;
   value: string | undefined | null | number;
-  dataName: string;
+  dataName?: string;
   className?: string;
 }
 

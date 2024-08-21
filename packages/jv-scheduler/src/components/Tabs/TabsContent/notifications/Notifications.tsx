@@ -69,7 +69,7 @@ const Notifications = () => {
   } = mailNotification;
   const { folderURI } = repositoryDestination;
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [mailAddress, setMailAddress] = useState(address);
   const [mailSubject, setMailSubject] = useState(subject);
   const [mailMessageText, setMailMessageText] = useState(messageText);
@@ -139,7 +139,9 @@ const Notifications = () => {
             label={t("notifications.email.recipients.label")}
             helperText={t("notifications.email.helpertext")}
             value={mailAddress}
-            onChange={(e) => setMailAddress(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setMailAddress(e.target.value)
+            }
             onBlur={() => {
               let addressArr;
               if (Array.isArray(mailAddress)) {
@@ -170,7 +172,9 @@ const Notifications = () => {
             size="large"
             label={t("notifications.email.subject.label")}
             value={mailSubject}
-            onChange={(e) => setMailSubject(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setMailSubject(e.target.value)
+            }
             onBlur={() =>
               updateChangeToStore(
                 {
@@ -195,7 +199,9 @@ const Notifications = () => {
             multiline
             rows={5}
             value={mailMessageText}
-            onChange={(e) => setMailMessageText(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setMailMessageText(e.target.value)
+            }
             onBlur={() =>
               updateChangeToStore(
                 {
@@ -232,7 +238,7 @@ const Notifications = () => {
                 disabled={sendType !== SEND_LINK}
                 value={repoUri}
                 error={t(folderUriErr || "")}
-                onChange={(e) => {
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   let newFolderUri = e.target.value;
                   newFolderUri = newFolderUri.startsWith("/")
                     ? newFolderUri
@@ -294,7 +300,7 @@ const Notifications = () => {
       {reportAccessTypeVisible && !initialTreeDataLoadApiFailure && (
         <RepositoryTreeDialog
           open={open}
-          handleDialogState={(isOpen) => setOpen(isOpen)}
+          handleDialogState={(isOpen: boolean) => setOpen(isOpen)}
         />
       )}
     </>

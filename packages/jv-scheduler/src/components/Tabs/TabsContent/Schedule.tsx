@@ -76,7 +76,9 @@ const Schedule = () => {
   );
   const [recurrenceUnit, setRecurrenceUnit] = useState(recurrenceIntervalUnit);
   const [startType, setStartType] = useState(storeStartType);
-  const [specificDateTime, setSpecificDateTime] = useState<string>(startDate);
+  const [specificDateTime, setSpecificDateTime] = useState<string | null>(
+    startDate,
+  );
 
   useEffect(() => {
     console.log(simpleTrigger);
@@ -129,7 +131,11 @@ const Schedule = () => {
     [key: string]: string | number | null;
   }) => {
     const triggerValues = { ...simpleTrigger, ...newProperty };
-    updateStore({ trigger: { simpleTrigger: triggerValues } }, newProperty);
+    updateStore(
+      { trigger: { simpleTrigger: triggerValues } },
+      newProperty,
+      stepperConfig.show,
+    );
   };
 
   return (
@@ -140,7 +146,9 @@ const Schedule = () => {
           size="large"
           label={t("schedule.job.name.label")}
           value={scheduleName}
-          onChange={(e) => setScheduleName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setScheduleName(e.target.value)
+          }
           onBlur={() => {
             updateChangeToStore(
               { scheduleJobName: scheduleName },
@@ -160,7 +168,7 @@ const Schedule = () => {
           multiline
           rows={5}
           value={scheduleDescription}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setScheduleDescription(e.target.value);
           }}
           onBlur={() => {
@@ -191,7 +199,9 @@ const Schedule = () => {
           textFieldClassName="jv-uWidth-140px"
           type="number"
           value={String(recurrenceInt)}
-          onChange={(e) => handleIntervalChange(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleIntervalChange(e.target.value)
+          }
           onBlur={() => {
             const convertedValue = Number(recurrenceInt);
             setRecurrenceInterval(convertedValue);
@@ -206,7 +216,9 @@ const Schedule = () => {
             textFieldClassName="jv-uWidth-175px"
             select
             value={recurrenceUnit}
-            onChange={(e) => handleTimeFrameChange(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleTimeFrameChange(e.target.value)
+            }
           >
             {timeFrames.map((timeFrame) => (
               <JVSelectItem key={timeFrame.value} value={timeFrame.value}>
@@ -251,7 +263,7 @@ const Schedule = () => {
               type="datetime-local"
               disabled={startType === 1}
               value={specificDateTime?.split(" ").join("T")}
-              onChange={(e) => {
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const formattedDate = e.target.value.split("T").join(" ");
                 setSpecificDateTime(formattedDate);
               }}

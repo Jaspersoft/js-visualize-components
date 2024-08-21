@@ -112,7 +112,7 @@ export const getExpandedNodeDataFromUri = (
 ) => {
   const uriParts = getUriParts(resourceUri, isResourceConatinName);
 
-  return uriParts.reduce((acc, item, i) => {
+  return uriParts.reduce((acc: any[], item: string, i: number) => {
     if (i === 0) {
       acc.push(`/${item}`);
     } else {
@@ -143,7 +143,7 @@ export const addChildrenToTreeOnLoad = (
   let nodeToManipulate = treeStructure;
   pathWhereChildrensToBeAdded.forEach((treeNode: any) => {
     let indexOfNode;
-    nodeToManipulate?.some?.((item, index) => {
+    nodeToManipulate?.some?.((item: any, index: number) => {
       const isNodeFound = getUriToCompare(item.uri) === treeNode;
       if (isNodeFound) {
         indexOfNode = index;

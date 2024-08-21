@@ -80,7 +80,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
       <JVTreeItem2Root
         {...getRootProps(other)}
-        onClick={(event) => {
+        onClick={(event: React.MouseEvent) => {
           if (status.disabled) {
             event.stopPropagation();
           }
@@ -117,8 +117,8 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
 
   const [treeData, setTreeData] = useState(rootData);
   const [currentExpandedNode, setCurrentExpandedNode] = useState("");
-  const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState([]); // to keep track of whethere children nodes have been added to tree or not
-  const [expandedItems, setExpandedItems] = useState([]);
+  const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState<any[]>([]); // to keep track of whethere children nodes have been added to tree or not
+  const [expandedItems, setExpandedItems] = useState<any[]>([]);
 
   useEffect(() => {
     const currentExpand = currentExpandedNode.startsWith("/root")
@@ -127,7 +127,7 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
     handleCurrentSelection(currentExpand);
   }, [currentExpandedNode]);
 
-  const setTreeStructureFromData = (resourcePath) => {
+  const setTreeStructureFromData = (resourcePath: string) => {
     const foldersUriToBeExapanded = getExpandedNodeDataFromUri(
         resourcePath,
         false,
@@ -172,11 +172,15 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
   return (
     <JVRichTreeView
       items={treeData}
-      getItemLabel={(item) => {
+      getItemLabel={(item: any) => {
         return item.label;
       }}
       expandedItems={expandedItems}
-      onItemExpansionToggle={(event, itemId, isExapnded) => {
+      onItemExpansionToggle={(
+        event: React.MouseEvent,
+        itemId: string,
+        isExapnded: boolean,
+      ) => {
         if (isExapnded) {
           if (folderData[itemId]) {
             setExpandedItems(() => [...expandedItems, itemId]);
@@ -190,12 +194,12 @@ export const TreeView = ({ handleCurrentSelection }: any) => {
           );
         }
       }}
-      isItemDisabled={(item) => isItemDisable(item)}
+      isItemDisabled={(item: any) => isItemDisable(item)}
       defaultSelectedItems={folderURI}
       disabledItemsFocusable
       // selectedItems={currentExpandedNode}
       // multiSelect={true}
-      getItemId={(item) =>
+      getItemId={(item: any) =>
         item.uri.startsWith("/public")
           ? item.uri
           : item.uri === "/"

@@ -52,6 +52,7 @@ export interface IScheduleErrors extends IStepperErrorData {
 interface IRepositoryDestination {
   folderURI: string;
   saveToRepository: boolean;
+  outputDescription?: string;
 }
 
 export interface IMailNotifications {
@@ -96,6 +97,8 @@ export interface IFieldsVisibility {
   recurrenceInterval?: boolean;
   recurrenceIntervalUnit?: boolean;
   reportAccessType?: boolean;
+  description?: boolean;
+  startTime?: boolean;
 }
 
 export interface IState {

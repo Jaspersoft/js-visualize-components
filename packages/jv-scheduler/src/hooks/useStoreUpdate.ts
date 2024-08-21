@@ -10,7 +10,6 @@ import {
   setPropertiesDetails,
   setStepperProperties,
 } from "../actions/action";
-import { setPropertiesDetails, setStepperProperties } from "../actions/action";
 
 export const useStoreUpdate = (tabName: string) => {
   const dispatch = useDispatch();

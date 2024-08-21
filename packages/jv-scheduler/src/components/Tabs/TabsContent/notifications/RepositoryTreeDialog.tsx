@@ -134,6 +134,7 @@ export const RepositoryTreeDialog = ({
             dividers: scroll === "paper",
           }}
         />
+        x
         <JVDialogFooter>
           <JVButton
             disableElevation

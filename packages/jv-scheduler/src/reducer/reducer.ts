@@ -18,7 +18,10 @@ import { defaultState } from "../constants/schedulerConstants";
 
 export const initialState = defaultState;
 
-export const rootReducer = (state = initialState, action) => {
+export const rootReducer = (
+  state = initialState,
+  action: { type: string; payload: { [key: string]: any } },
+) => {
   switch (action.type) {
     case SET_USER_TIME_ZONES:
       return {

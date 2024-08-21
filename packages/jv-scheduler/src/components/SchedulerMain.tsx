@@ -10,10 +10,7 @@ import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
 import { ErrorConfirmationDialog } from "./apiFailureError/ErrorConfirmationDialog";
 import { IState } from "../types/scheduleType";
 
-const SchedulerMain = ({
-  schedulerData,
-  schedulerUIConfig,
-}: ISchedulerUIConfig) => {
+const SchedulerMain = ({ schedulerData, schedulerUIConfig }: any) => {
   const dispatch = useDispatch();
   const stepperConfig = useSelector(
     (state: IState) => state.stepperConfiguration,

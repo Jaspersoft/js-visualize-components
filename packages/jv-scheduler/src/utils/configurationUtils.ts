@@ -14,11 +14,11 @@ import {
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 import { validator } from "../validations/scheduleValidators";
 
-const mapFieldName = {
+const mapFieldName: { [key: string]: string } = {
   label: "scheduleJobName",
   description: "scheduleJobDescription",
 };
-const checkForStringOrNumber = (element) => {
+const checkForStringOrNumber = (element: string | number | undefined) => {
   return (
     typeof element === "string" ||
     (typeof element === "number" && !isNaN(element))
@@ -30,7 +30,7 @@ const checkAvailabilityOfBasicConfig = (
   server: string,
   contextPath: string,
 ) => {
-  const error = {};
+  const error: { [key: string]: string } = {};
   if (!resourceURI) {
     error.resourceUri = "resourceURI is required in the configuration";
     console.error("resourceURI is required in the configuration");
@@ -45,7 +45,7 @@ const checkAvailabilityOfBasicConfig = (
 };
 
 const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
-  const error = {};
+  const error: { [key: string]: string } = {};
   switch (tabName) {
     case SCHEDULE_TAB: {
       const { label } = tabData;
@@ -101,7 +101,7 @@ const checkValidDate = (date: string) => {
 const checkValueOfFolderUri = (uri: string) => {
   return true;
 };
-const validate = (propertName, propertyValue) => {
+const validate = (propertName: string, propertyValue: string) => {
   switch (propertName) {
     case "startTime": {
       if (propertyValue !== "now" && !checkValidDate(propertyValue)) {
@@ -137,7 +137,7 @@ const getReportAccessValue = (value: string) => {
     folderURI: isSendAsAttachment ? null : value,
   };
 };
-const getValuesForRadio = (value, field) => {
+const getValuesForRadio = (value: string, field: string) => {
   switch (field) {
     case "startTime": {
       const { error } = validate("startTime", value);
@@ -158,12 +158,12 @@ const getValuesForRadio = (value, field) => {
 
 const checkFieldDataValidity = (fieldsData: any) => {
   const promises: Array<any> = [];
-  let error = {},
-    fieldsVisibility = {},
-    fieldConvertedData = {};
+  let error: { [key: string]: string } = {},
+    fieldsVisibility: { [key: string]: string } = {},
+    fieldConvertedData: any = {};
 
-  Object.keys(fieldsData).forEach((field) => {
-    const type = typeOfFields[field];
+  Object.keys(fieldsData).forEach((field: string) => {
+    const type: string = typeOfFields[field] as string;
     switch (type) {
       case "simple":
         {
@@ -175,7 +175,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
             console.error(`${field} is required in the configuration`);
             error[field] = `${field} is required in the configuration`;
           } else {
-            const fieldName = mapFieldName[field] || field;
+            const fieldName: any = mapFieldName[field] || field;
             promises.push(validator(fieldName, fieldsData[field].value, {}));
             fieldConvertedData[fieldName] = fieldsData[field].value;
             fieldsVisibility[fieldName] =
@@ -195,7 +195,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
           console.error(`${field} is required in the configuration`);
           error[field] = `${field} is required in the configuration`;
         } else {
-          const fieldValue = getValuesForRadio(value, field);
+          const fieldValue: any = getValuesForRadio(value, field);
           if (fieldValue.error) {
             console.error(fieldValue.error);
             error[`${field}ValErr`] = fieldValue.error;
@@ -294,7 +294,11 @@ export const getSchedulerData = async (scheduleConfig: any) => {
   const { tabsData = {}, tabsOrder } = tabs || {};
 
   // check resourceURI, server, contextPath are provided by user
-  let error = checkAvailabilityOfBasicConfig(resourceURI, server, contextPath);
+  let error: { [key: string]: any } = checkAvailabilityOfBasicConfig(
+    resourceURI,
+    server,
+    contextPath,
+  );
   if (!!getLengthOfObject(error)) {
     return { error };
   }
@@ -302,9 +306,11 @@ export const getSchedulerData = async (scheduleConfig: any) => {
   // check whether resourceURI is correct and has permission to view.
 
   const tabsConfig = tabsOrder.length > 0 ? tabsOrder : tabsDefaultOrder;
-  const stepsToShow = [],
-    tabsToShow = [];
-  tabsConfig.map((tab) => {
+  const stepsToShow: any[] = [],
+    tabsToShow: any[] = [];
+  type TabKeys = "parameters" | "schedule" | "output" | "notifications";
+
+  tabsConfig.map((tab: TabKeys) => {
     stepsToShow.push(stepInfo[tab]);
     tabsToShow.push(tabsInfo[tab]);
   });

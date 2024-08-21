@@ -105,7 +105,9 @@ const Output = () => {
             size="large"
             label={t("output.file.name.label")}
             value={fileName}
-            onChange={(e) => setFileName(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setFileName(e.target.value)
+            }
             onBlur={() =>
               updateChangeToStore(
                 { baseOutputFilename: fileName },
@@ -125,7 +127,7 @@ const Output = () => {
             multiline
             rows={5}
             value={outputDescription}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setOutputDescription(e.target.value);
             }}
             onBlur={() =>
@@ -150,7 +152,7 @@ const Output = () => {
             label={t("output.timezone.label")}
             select
             value={timezone}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const newTimezone = e.target.value;
               setTimezone(e.target.value);
               updateChangeToStore(

@@ -10,7 +10,7 @@ import { getSchedulerData } from "../utils/configurationUtils";
 const EntryPoint = (schedulerUIConfig: ISchedulerUIConfig) => {
   const { i18n } = useTranslation();
   const [isLoadComp, setIsLoadComp] = useState(false);
-  const [schedulerData, setSchedulerData] = useState({});
+  const [schedulerData, setSchedulerData] = useState<any>({});
 
   useEffect(() => {
     const fetchData = async () => {

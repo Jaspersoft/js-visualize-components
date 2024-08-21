@@ -153,7 +153,7 @@ const Stepper = () => {
       activeStep={stepperSteps[activeStep]}
       className="jr-uMargin-tb-15 jr-uMargin-lr-08"
     >
-      {visibleSteps.map((item, index, arr) => {
+      {visibleSteps.map((item: any, index: number, arr: any) => {
         const isDefaultMsg =
           activeStep === arr[index].name &&
           !visitedTabs.includes(arr[index].name);

@@ -53,7 +53,7 @@ const isFieldEmpty = (propVal: string) => {
 };
 
 const isPastDate = (propVal: string) => {
-  const timeZone = `${store.getState().schedulerUIConfig.timezone}`,
+  const timeZone = `${store.getState()?.schedulerUIConfig.timezone}`,
     selectedDate = moment(propVal).format("X");
 
   if (!propVal || !timeZone) return false;

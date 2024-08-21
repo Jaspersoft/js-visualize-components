@@ -62,7 +62,7 @@ export const Tabs = () => {
           size="large"
           onChange={handleChange}
         >
-          {visibleTabs.map((item) => {
+          {visibleTabs.map((item: any) => {
             return (
               <JVTab
                 key={item.key}

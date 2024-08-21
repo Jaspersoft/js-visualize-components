@@ -278,7 +278,7 @@ export const manadatoryHiddenField = [
 ];
 
 export const scheduleTabsFields = [];
-export const typeOfFields = {
+export const typeOfFields: { [key: string]: string } = {
   label: "simple",
   description: "simple",
   recurrenceInterval: "simple",
