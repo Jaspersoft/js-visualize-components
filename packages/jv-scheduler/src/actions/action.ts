@@ -23,13 +23,13 @@ import {
   getRepositoryFolderData,
   getUserTimezonesFromService,
 } from "../services/schedulerServices";
-import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
 import {
   IApiFailed,
   IFakeRootData,
   IFieldsVisibility,
   IScheduleErrors,
   IScheduleInfo,
+  ISchedulerUIConfig,
   IState,
   IStepperData,
   IStoreData,

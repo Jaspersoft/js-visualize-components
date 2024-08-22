@@ -46,7 +46,6 @@ export const ErrorDialog = ({
           dialogTitle={"Error"}
           type="error"
           disableEscapeKeyDown
-          style={{ zIndex: 1350 }}
           DialogContentComponent={
             <JVTypography variant="body1">{errorMsg}</JVTypography>
           }

@@ -9,7 +9,7 @@ import XRegExp from "xregexp";
 // @ts-ignore
 import globalConfig from "../constants/globalConfiguration.settings";
 import moment from "moment";
-import { IStepperState, IScheduleErrors } from "../types/scheduleType";
+import { IStepperState, IScheduleErrors, IState } from "../types/scheduleType";
 import {
   accessiblePermissionMask,
   ERROR_FIELDS,
@@ -20,7 +20,7 @@ import store from "../store/store";
 const validatedFolderURIsCache: { [key: string]: any } = {};
 const isEmail = (email: string) => {
   if (!email) return false;
-  const re = new XRegExp(globalConfig.emailRegExpPattern, "g");
+  const re = new RegExp(globalConfig.emailRegExpPattern, "g");
   return re.test(email);
 };
 
@@ -53,7 +53,7 @@ const isFieldEmpty = (propVal: string) => {
 };
 
 const isPastDate = (propVal: string) => {
-  const timeZone = `${store.getState()?.schedulerUIConfig.timezone}`,
+  const timeZone = `${(store.getState() as IState)?.schedulerUIConfig?.timezone}`,
     selectedDate = moment(propVal).format("X");
 
   if (!propVal || !timeZone) return false;

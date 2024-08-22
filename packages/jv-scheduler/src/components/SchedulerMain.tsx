@@ -6,9 +6,8 @@ import Stepper from "./Stepper/Stepper";
 import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
-import { ISchedulerUIConfig } from "../types/schedulerUIConfigTypes";
 import { ErrorConfirmationDialog } from "./apiFailureError/ErrorConfirmationDialog";
-import { IState } from "../types/scheduleType";
+import { ISchedulerUIConfig, IState } from "../types/scheduleType";
 
 const SchedulerMain = ({ schedulerData, schedulerUIConfig }: any) => {
   const dispatch = useDispatch();

@@ -1,9 +1,9 @@
 import axios from "axios";
 import store from "../store/store";
-import { IFakeRootData } from "../types/scheduleType";
+import { IState } from "../types/scheduleType";
 
 const getServerPath = () => {
-  return store.getState().schedulerUIConfig.server;
+  return (store.getState() as IState)?.schedulerUIConfig?.server;
 };
 
 const computePermissionMask = (extra: { [key: string]: any }) => {

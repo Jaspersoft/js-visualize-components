@@ -61,7 +61,7 @@ export const ErrorConfirmationDialog = () => {
       handleCancelBtn={handleCancelBtn}
       errorMsg={errorMsg}
       subContainerMsg={subContainMsg}
-      style=""
+      style={{ zIndex: 1350 }}
     />
   );
 };

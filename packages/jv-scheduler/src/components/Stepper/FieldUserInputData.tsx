@@ -166,7 +166,9 @@ export const NotificationStepUserInput = () => {
 
   let address, reportionOptionValue;
   if (mailNotificationAddresses) {
-    [address] = mailNotificationAddresses;
+    address = mailNotificationAddresses.length
+      ? mailNotificationAddresses[0]
+      : undefined;
     if (mailNotificationAddresses.length > MAX_STEPPER_EMAIL_ADDRESS) {
       address = `${address} (+${mailNotificationAddresses.length - MAX_STEPPER_EMAIL_ADDRESS} ${t("schedule.more")})`;
     }
