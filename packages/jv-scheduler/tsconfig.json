@@ -20,5 +20,6 @@
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
     "resolveJsonModule": true
-  }
+  },
+  "exclude": ["node_modules", "dist", "jest.config.ts", "babel.config.cjs"]
 }
