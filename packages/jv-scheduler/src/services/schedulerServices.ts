@@ -63,11 +63,15 @@ const getFakeRootRepositoryData = (data: string) => {
   return fakeRoot;
 };
 
-export const checkPermissionOnFolder = async (folder: string) => {
-  let csrfToken = await getCSRFToken();
+export const checkPermissionOnResource = async (
+  resource: string,
+  server?: string,
+) => {
+  let csrfToken = await getCSRFToken(server);
+  const serverPath = server || getServerPath();
   try {
     const response = await axios.get(
-      `${getServerPath()}/rest_v2/resources${folder}`,
+      `${serverPath}/rest_v2/resources${resource}`,
       {
         withCredentials: true,
         headers: {
@@ -145,11 +149,12 @@ export const getInputControls = async () => {
   }
 };
 
-export const getCSRFToken = async () => {
+export const getCSRFToken = async (server?: string) => {
+  const serverPath = server || getServerPath();
   try {
     // noinspection TypeScriptValidateTypes
     const response = await axios.post(
-      `${getServerPath()}/JavaScriptServlet`,
+      `${serverPath}/JavaScriptServlet`,
       {},
       {
         headers: {

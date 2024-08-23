@@ -13,11 +13,16 @@ import {
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 import { validator } from "../validations/scheduleValidators";
+import { checkPermissionOnResource } from "../services/schedulerServices";
 
 const mapFieldName: { [key: string]: string } = {
   label: "scheduleJobName",
   description: "scheduleJobDescription",
 };
+const isResourceWritable = (item: any) => {
+  return item.permissionMask == 1 || item.permissionMask & 4;
+};
+
 const checkForStringOrNumber = (element: string | number | undefined) => {
   return (
     typeof element === "string" ||
@@ -137,6 +142,7 @@ const getReportAccessValue = (value: string) => {
     folderURI: isSendAsAttachment ? null : value,
   };
 };
+
 const getValuesForRadio = (value: string, field: string) => {
   switch (field) {
     case "startTime": {
@@ -225,6 +231,24 @@ const checkFieldDataValidity = (fieldsData: any) => {
   });
 };
 
+const checkResourceUriIsRightOrHavePermission = async (
+  resourceURI: string,
+  server: string,
+) => {
+  let error: { [key: string]: string } = {};
+  const response = await checkPermissionOnResource(resourceURI, server);
+  if (response.permissionMask) {
+    if (!isResourceWritable(response)) {
+      console.error("You don't have permission to schedule this report");
+      error.NoPermission = "You don't have permission to schedule this report";
+    }
+  } else {
+    console.error("Resource URI is not correct");
+    error.UriIsNotCorrect = "Resource URI is not correct";
+  }
+  return error;
+};
+
 const setDefaultValuesForFields = (
   fieldConvertedData: any,
   resourceURI: string,
@@ -303,6 +327,10 @@ export const getSchedulerData = async (scheduleConfig: any) => {
   }
 
   // check whether resourceURI is correct and has permission to view.
+  error = await checkResourceUriIsRightOrHavePermission(resourceURI, server);
+  if (!!getLengthOfObject(error)) {
+    return { error };
+  }
 
   const tabsConfig = tabsOrder.length > 0 ? tabsOrder : tabsDefaultOrder;
   const stepsToShow: any[] = [],

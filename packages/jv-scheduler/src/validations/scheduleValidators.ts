@@ -14,7 +14,7 @@ import {
   accessiblePermissionMask,
   ERROR_FIELDS,
 } from "../constants/schedulerConstants";
-import { checkPermissionOnFolder } from "../services/schedulerServices";
+import { checkPermissionOnResource } from "../services/schedulerServices";
 import store from "../store/store";
 
 const validatedFolderURIsCache: { [key: string]: any } = {};
@@ -71,7 +71,7 @@ const getFolderErr = async (folderUri: string) => {
     folderURI: undefined,
   };
   try {
-    const validResourceProps = await checkPermissionOnFolder(folderUri);
+    const validResourceProps = await checkPermissionOnResource(folderUri);
     if (
       accessiblePermissionMask.indexOf(validResourceProps.permissionMask) < 0
     ) {
