@@ -219,9 +219,7 @@ export const getFolderData = (folderPath: string) => {
     } else {
       const folderData = repositoryData.resourceLookup || {};
       dispatch(setRepositoryFolderData({ [folderPath]: folderData }));
-      dispatch(
-        setApiFailure({ treeLoadApiFailure: false }, "treeLoadApiFailure"),
-      );
+      dispatch(setApiFailure({ treeLoadApiFailure: false }, ""));
     }
   };
 };
