@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-// import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
+import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
 import Schedule from "../Tabs/TabsContent/Schedule";
 import Parameters from "../Tabs/TabsContent/Parameters";

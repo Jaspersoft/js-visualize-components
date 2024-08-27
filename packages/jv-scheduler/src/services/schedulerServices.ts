@@ -67,7 +67,6 @@ export const checkPermissionOnResource = async (
   resource: string,
   server?: string,
 ) => {
-  let csrfToken = await getCSRFToken(server);
   const serverPath = server || getServerPath();
   try {
     const response = await axios.get(
@@ -76,7 +75,7 @@ export const checkPermissionOnResource = async (
         withCredentials: true,
         headers: {
           Accept: "application/json",
-          OWASP_CSRFTOKEN: csrfToken,
+          // OWASP_CSRFTOKEN: csrfToken,
         },
       },
     );
@@ -118,37 +117,6 @@ export const getOutputFormatsFromService = async () => {
   }
 };
 
-export const getInputControls = async () => {
-  const reportUri = "AI_ML/RevenueDetailReport";
-  let csrfToken = await getCSRFToken();
-  csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
-  try {
-    const response = await axios.post(
-      `${getServerPath()}/rest_v2/reports${reportUri}/inputControls/ProductFamily/values/pagination?freshData=false&includeTotalCount=true`,
-      {
-        reportParameter: [
-          {
-            name: "ProductFamily",
-            offset: 0,
-            limit: 100,
-            select: "selectedValues",
-          },
-        ],
-      },
-      {
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          OWASP_CSRFTOKEN: csrfToken,
-        },
-      },
-    );
-    return response.data;
-  } catch (error) {
-    return { error: "Failed to fetch input controls" };
-  }
-};
-
 export const getCSRFToken = async (server?: string) => {
   const serverPath = server || getServerPath();
   try {
@@ -169,8 +137,6 @@ export const getCSRFToken = async (server?: string) => {
 };
 
 export const getRepositoryFolderData = async (folderPath: string) => {
-  let csrfToken = await getCSRFToken();
-  csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
   try {
     const response = await axios.get(
       `${getServerPath()}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
@@ -178,7 +144,6 @@ export const getRepositoryFolderData = async (folderPath: string) => {
         withCredentials: true,
         headers: {
           Accept: "application/json",
-          OWASP_CSRFTOKEN: csrfToken,
         },
       },
     );
@@ -195,8 +160,6 @@ function decodeHtml(html: string) {
 }
 
 export const getFakeRootDataFromService = async () => {
-  let csrfToken = await getCSRFToken();
-  csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
   try {
     const response = await axios.get(
       `${getServerPath()}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
@@ -204,7 +167,6 @@ export const getFakeRootDataFromService = async () => {
         withCredentials: true,
         headers: {
           Accept: "text/html",
-          OWASP_CSRFTOKEN: csrfToken,
         },
       },
     );
@@ -216,7 +178,7 @@ export const getFakeRootDataFromService = async () => {
 
 export const createSchedule = async (scheduleInfo: any) => {
   let csrfToken = await getCSRFToken();
-  csrfToken = csrfToken ? csrfToken.split(":")[1] : null;
+  csrfToken = csrfToken && csrfToken.split ? csrfToken.split(":")[1] : null;
 
   return axios.put(
     `${getServerPath()}/rest_v2/jobs`,
