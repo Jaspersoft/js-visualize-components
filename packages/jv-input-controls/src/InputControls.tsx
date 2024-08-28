@@ -126,7 +126,6 @@ export class InputControls {
           );
           icPanelDef?.success && icPanelDef?.success.call(null);
         } catch (e) {
-          debugger;
           icPanelDef?.error && icPanelDef?.error.call(null, e);
         }
       },
