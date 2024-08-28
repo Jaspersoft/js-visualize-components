@@ -80,7 +80,11 @@ export class InputControls {
     this._config = config || defaultInputControlConfig;
   }
 
-  public fillControlStructure = (uri: string, callbackFn?: Function) => {
+  public fillControlStructure = (
+    uri: string,
+    callbackFn?: Function,
+    callbackErrorFn?: Function,
+  ) => {
     this.viz.inputControls({
       resource: uri,
       success: (data: string) => {
@@ -90,7 +94,9 @@ export class InputControls {
         }
       },
       error: (e: object) => {
-        console.log(e);
+        if (callbackErrorFn) {
+          callbackErrorFn(e);
+        }
       },
     });
   };
@@ -104,23 +110,29 @@ export class InputControls {
     container: HTMLElement,
     icPanelDef?: InputControlPanelConfig,
   ) => {
-    this.fillControlStructure(uri, (controls: InputControlCollection) => {
-      try {
-        const icRoot = createRoot(container);
-        icRoot.render(
-          <JVStylesProvider>
-            <BasePanel
-              controls={controls}
-              config={icPanelDef?.config}
-              events={icPanelDef?.events}
-            />
-          </JVStylesProvider>,
-        );
-        icPanelDef?.success && icPanelDef?.success.call(null);
-      } catch (e) {
+    this.fillControlStructure(
+      uri,
+      (controls: InputControlCollection) => {
+        try {
+          const icRoot = createRoot(container);
+          icRoot.render(
+            <JVStylesProvider>
+              <BasePanel
+                controls={controls}
+                config={icPanelDef?.config}
+                events={icPanelDef?.events}
+              />
+            </JVStylesProvider>,
+          );
+          icPanelDef?.success && icPanelDef?.success.call(null);
+        } catch (e) {
+          icPanelDef?.error && icPanelDef?.error.call(null, e);
+        }
+      },
+      (e: any) => {
         icPanelDef?.error && icPanelDef?.error.call(null, e);
-      }
-    });
+      },
+    );
   };
 
   public makeControlsForReport = (
