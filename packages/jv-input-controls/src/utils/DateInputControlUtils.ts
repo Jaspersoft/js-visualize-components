@@ -5,6 +5,7 @@
 
 import { ICDataType, ICValidationRule } from "../controls/BaseInputControl";
 import { getValueForVerificationText } from "./NumberUtils";
+import { isEmptyObject } from "./ObjectUtils";
 
 const getDateFromTimeString = (timeString: string): Date => {
   const [hours, minutes, seconds] = timeString.split(":").map(Number);
@@ -97,7 +98,7 @@ export const getMinAndMaxSettings = (
   if (dataType!.maxValue) {
     minAndMaxSettings[maxKey] = getMaxDateIfStrict(dataType);
   }
-  return minAndMaxSettings;
+  return isEmptyObject(minAndMaxSettings) ? null : minAndMaxSettings;
 };
 
 export const getDateFormatIfAny = (
