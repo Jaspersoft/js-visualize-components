@@ -9,25 +9,21 @@ import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ErrorConfirmationDialog } from "./apiFailureError/ErrorConfirmationDialog";
 import { ISchedulerUIConfig, IState } from "../types/scheduleType";
 
-const SchedulerMain = ({ schedulerData, schedulerUIConfig }: any) => {
+const SchedulerMain = ({
+  schedulerData,
+  schedulerUIConfig,
+  visualize,
+}: any) => {
   const dispatch = useDispatch();
   const stepperConfig = useSelector(
     (state: IState) => state.stepperConfiguration,
   );
 
   useEffect(() => {
-    dispatch(setInitialPluginState(schedulerData, schedulerUIConfig));
+    dispatch(
+      setInitialPluginState(schedulerData, schedulerUIConfig, visualize),
+    );
   }, []);
-  // useEffect(() => {
-  //
-  //   const fetchData = async () => {
-  //     const inputControls = await getInputControls();
-  //     if (inputControls.error) {
-  //       // handle error for input controls
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
 
   return (
     <>

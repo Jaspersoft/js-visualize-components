@@ -212,6 +212,7 @@ export const defaultState = {
   },
   visitedTabs: [],
   currentActiveTab: "schedule",
+  visualize: undefined,
 };
 
 export const RECURRENCE_INTERVAL_DATE_TIME = 2;

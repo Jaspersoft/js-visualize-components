@@ -13,6 +13,7 @@ import {
   SET_VISIBLE_FIELDS,
   SCHEDULE_ERROR_OCCURRED,
   SET_STEPPER_CONFIG,
+  SET_VISUALIZE_DATA,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -111,6 +112,11 @@ export const rootReducer = (
       return {
         ...state,
         scheduleErrors: { ...state.scheduleErrors, ...action.payload?.errors },
+      };
+    case SET_VISUALIZE_DATA:
+      return {
+        ...state,
+        visualize: action.payload.visualize,
       };
     // case SET_USER_LOCALE:
     //     return {

@@ -6,21 +6,39 @@ import { getFolderData } from "../../../../../actions/action";
 import {
   addChildrenToTreeOnLoad,
   getExpandedNodeDataFromUri,
+  getUriParts,
 } from "../../../../../utils/schedulerUtils";
 import { IState } from "../../../../../types/scheduleType";
 
+const removeRoot = (folderUri: string) => {
+  let folderName;
+  if (folderUri.startsWith("/public")) {
+    folderName = folderUri;
+  } else {
+    const uriParts = getUriParts(folderUri, false);
+    uriParts.shift();
+    folderName = `/${uriParts.join("/")}`;
+  }
+  return folderName;
+};
+const addRoot = (folderUri: string) => {
+  return folderUri.startsWith("/public")
+    ? folderUri
+    : folderUri === "/"
+      ? "/root"
+      : `/root${folderUri}`;
+};
 export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
   const dispatch = useDispatch();
-  const folderURI = useSelector(
-    (state: IState) => state.scheduleInfo.repositoryDestination.folderURI,
-  );
   const folderData = useSelector((state: IState) => state.folderData);
   const rootData = useSelector((state: IState) => state.fakeRoot);
 
   const [treeData, setTreeData] = useState(rootData);
   const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState<any[]>([]); // to keep track of whethere children nodes have been added to tree or not
   const [expandedItems, setExpandedItems] = useState<any[]>([]);
-  const [lastExapanded, setLastExpandedNode] = useState<string>(folderSelected);
+  const [lastExapanded, setLastExpandedNode] = useState<string>(
+    addRoot(folderSelected),
+  );
   const [disableNode, setDisableNode] = useState(false);
   const [isExapnded, setIsExpanded] = useState(true);
 
@@ -58,11 +76,7 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
 
   // show data and expansion on initial load
   useEffect(() => {
-    let convertedUri = lastExapanded;
-    if (!convertedUri.startsWith("/public")) {
-      convertedUri = "/root" + folderURI;
-    }
-    updateLastSelectedNode(convertedUri, true, false);
+    updateLastSelectedNode(lastExapanded, true, false);
   }, []);
 
   const setTreeStructureWhenExapndCollapse = () => {
@@ -74,7 +88,7 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
     } else {
       setExpandedItems(expandedItems.filter((item) => item !== lastExapanded));
     }
-    if (!disableNode) handleCurrentSelection(lastExapanded);
+    if (!disableNode) handleCurrentSelection(removeRoot(lastExapanded));
   };
   useEffect(() => {
     setTreeStructureWhenExapndCollapse();
@@ -87,7 +101,7 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
         return item.label;
       }}
       expandedItems={expandedItems}
-      defaultSelectedItems={folderURI}
+      defaultSelectedItems={lastExapanded}
       multipleSelection
       getItemId={(item: any) =>
         item.uri.startsWith("/public")

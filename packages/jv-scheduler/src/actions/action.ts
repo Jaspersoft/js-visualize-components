@@ -14,6 +14,7 @@ import {
   SCHEDULE_ERROR_OCCURRED,
   SET_VISIBLE_FIELDS,
   SET_STEPPER_CONFIG,
+  SET_VISUALIZE_DATA,
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
@@ -163,10 +164,12 @@ export const setStepperConfig = (stepperConfiguration: {}) => {
     payload: stepperConfiguration,
   };
 };
-// interface Action {
-//   type: string;
-//   payload?: any;
-// }
+export const setVisualizeObj = (visualize: any) => {
+  return {
+    type: SET_VISUALIZE_DATA,
+    payload: { visualize },
+  };
+};
 export const getOutputFormats = () => {
   return async (dispatch: Dispatch) => {
     const outputFormats = await getOutputFormatsFromService();
@@ -261,6 +264,7 @@ export const currentTabValidator = (newTabVal: string) => {
 export const setInitialPluginState = (
   schedulerData: IState,
   schedulerUIConfig: ISchedulerUIConfig,
+  visualize: any,
 ) => {
   return async (dispatch: any) => {
     const {
@@ -281,7 +285,7 @@ export const setInitialPluginState = (
     );
     dispatch(setStepperConfig({ show: showStepper }));
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
-
+    dispatch(setVisualizeObj(visualize));
     dispatch(setPropertiesDetails(JSON.parse(JSON.stringify(scheduleInfo))));
   };
 };

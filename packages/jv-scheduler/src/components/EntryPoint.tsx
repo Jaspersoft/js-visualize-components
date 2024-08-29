@@ -7,7 +7,12 @@ import { ConfigurationErrorHandling } from "./errorHandling/configurationErrorHa
 import { getSchedulerData } from "../utils/configurationUtils";
 import { ISchedulerUIConfig } from "../types/scheduleType";
 
-const EntryPoint = (schedulerUIConfig: ISchedulerUIConfig) => {
+type IEntryPoint = {
+  visualize: {};
+  schedulerUIConfig: ISchedulerUIConfig;
+};
+
+const EntryPoint = (props: IEntryPoint) => {
   const { i18n } = useTranslation();
   const [isLoadComp, setIsLoadComp] = useState(false);
   const [schedulerData, setSchedulerData] = useState<any>({});
@@ -15,7 +20,7 @@ const EntryPoint = (schedulerUIConfig: ISchedulerUIConfig) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getSchedulerData(schedulerUIConfig);
+        const response = await getSchedulerData(props.schedulerUIConfig);
         setSchedulerData(response);
         setIsLoadComp(true);
       } catch (error) {
@@ -26,8 +31,8 @@ const EntryPoint = (schedulerUIConfig: ISchedulerUIConfig) => {
     fetchData();
   }, []);
   useEffect(() => {
-    i18n.changeLanguage(schedulerUIConfig.locale || "en");
-  }, [schedulerUIConfig.locale]);
+    i18n.changeLanguage(props.schedulerUIConfig.locale || "en");
+  }, [props.schedulerUIConfig.locale]);
 
   return (
     <>
@@ -37,8 +42,9 @@ const EntryPoint = (schedulerUIConfig: ISchedulerUIConfig) => {
         isLoadComp && (
           <ReduxProvider store={store}>
             <SchedulerMain
-              schedulerUIConfig={schedulerUIConfig}
+              schedulerUIConfig={props.schedulerUIConfig}
               schedulerData={schedulerData}
+              visualize={props.visualize}
             />
           </ReduxProvider>
         )

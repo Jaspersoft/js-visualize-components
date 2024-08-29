@@ -115,8 +115,13 @@ const Notifications = () => {
     }
     // get children data for each folder of resource uri
     getExpandedNodeDataFromUri(folderURI as string, false, (uri: string) => {
-      if (!folderData[uri]) {
-        dispatch(getFolderData(uri));
+      const uriToCheck = uri.startsWith("/public")
+        ? uri
+        : uri === "/"
+          ? "/root"
+          : `/root${uri}`;
+      if (!folderData[uriToCheck]) {
+        dispatch(getFolderData(uriToCheck));
       }
     });
     setOpen(true);
