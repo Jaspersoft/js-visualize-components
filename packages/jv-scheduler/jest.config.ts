@@ -7,6 +7,9 @@ const conf: Config = {
   transform: {
     "^.+\\.([tj]s|[tj]sx)$": "ts-jest",
   },
+  moduleNameMapper: {
+    "\\.(css|less)$": "<rootDir>/styleMock.js",
+  },
 };
 
 export default conf;
