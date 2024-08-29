@@ -19,9 +19,9 @@ const mapFieldName: { [key: string]: string } = {
   label: "scheduleJobName",
   description: "scheduleJobDescription",
 };
-// const isResourceWritable = (item: any) => {
-//   return item.permissionMask == 1 || item.permissionMask & 4;
-// };
+const isResourceWritable = (item: any) => {
+  return item.permissionMask == 1 || item.permissionMask & 4;
+};
 
 const checkForStringOrNumber = (element: string | number | undefined) => {
   return (
@@ -238,10 +238,10 @@ const checkResourceUriIsRightOrHavePermission = async (
   let error: { [key: string]: string } = {};
   const response = await checkPermissionOnResource(resourceURI, server);
   if (response.permissionMask) {
-    // if (!isResourceWritable(response)) {
-    //   console.error("You don't have permission to schedule this report");
-    //   error.NoPermission = "You don't have permission to schedule this report";
-    // }
+    if (!isResourceWritable(response)) {
+      console.error("You don't have permission to schedule this report");
+      error.NoPermission = "You don't have permission to schedule this report";
+    }
   } else {
     console.error("Resource URI is not correct");
     error.UriIsNotCorrect = "Resource URI is not correct";
