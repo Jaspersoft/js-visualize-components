@@ -10,7 +10,7 @@ import {
 } from "@jaspersoft/jv-ui-components";
 import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
-import { TreeView } from "./TreeView";
+import { TreeView } from "./tree/TreeView";
 import { useSelector } from "react-redux";
 import {
   getLengthOfObject,
@@ -50,22 +50,23 @@ export const RepositoryTreeDialog = ({
   const repositoryDestination = useSelector(
     (state: IState) => state.scheduleInfo.repositoryDestination,
   );
-  const resourceUri = useSelector(
-    (state: IState) => state.schedulerUIConfig?.resourceURI,
-  );
 
   const updateStore = useStoreUpdate(NOTIFICATIONS_TAB);
+
+  const { folderURI } = repositoryDestination;
 
   const [showTree, setShowTree] = useState(false);
   const [open, setOpen] = useState<any>(dialogOpen);
   const [width, setWidth] = useState("400px");
   const [height, setHeight] = useState("500px");
-  const [currentSelectedFolder, setCurrentSelectedFolder] = useState(
-    resourceUri || "",
-  );
+  const [currentSelectedFolder, setCurrentSelectedFolder] = useState(folderURI);
 
   useEffect(() => {
-    const expandedFoldersData = getUriParts(resourceUri || "", true);
+    setCurrentSelectedFolder(folderURI);
+  }, [folderURI]);
+
+  useEffect(() => {
+    const expandedFoldersData = getUriParts(folderURI, false);
     if (
       getLengthOfObject(folderData) === expandedFoldersData.length &&
       folderRootData?.length
@@ -135,7 +136,6 @@ export const RepositoryTreeDialog = ({
             dividers: scroll === "paper",
           }}
         />
-        x
         <JVDialogFooter>
           <JVButton
             disableElevation

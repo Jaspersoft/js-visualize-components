@@ -17,11 +17,7 @@ import {
 } from "../../../../constants/schedulerConstants";
 import { getExpandedNodeDataFromUri } from "../../../../utils/schedulerUtils";
 import { useTranslation } from "react-i18next";
-import {
-  IAddress,
-  IState,
-  IStepperState,
-} from "../../../../types/scheduleType";
+import { IState } from "../../../../types/scheduleType";
 import { updateChangeToStore } from "../../../../utils/schedulerUtils";
 
 const Notifications = () => {
@@ -46,9 +42,6 @@ const Notifications = () => {
     (state: IState) => state.scheduleInfo.repositoryDestination,
   );
   const folderData = useSelector((state: IState) => state.folderData);
-  const resourceUri = useSelector(
-    (state: IState) => state.schedulerUIConfig?.resourceURI,
-  );
   const fakeRoot = useSelector((state: IState) => state.fakeRoot);
   const initialTreeDataLoadApiFailure = useSelector(
     (state: IState) => state.scheduleApisFailure?.initialTreeDataLoadApiFailure,
@@ -121,7 +114,7 @@ const Notifications = () => {
       dispatch(getFakeRootData());
     }
     // get children data for each folder of resource uri
-    getExpandedNodeDataFromUri(resourceUri as string, true, (uri: string) => {
+    getExpandedNodeDataFromUri(folderURI as string, false, (uri: string) => {
       if (!folderData[uri]) {
         dispatch(getFolderData(uri));
       }

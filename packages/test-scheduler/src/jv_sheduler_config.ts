@@ -65,7 +65,7 @@ const schedulerUIConfig = {
           },
           reportAccessType: {
             showField: true,
-            value: "/public", // "SEND_ATTACHMENT" | "SEND"
+            value: "/public/Samples", // "SEND_ATTACHMENT" | "SEND"
             options: ["SEND", "SEND_ATTACHMENT"],
           },
         },
