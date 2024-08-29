@@ -1,26 +1,16 @@
-import { createRoot } from "react-dom/client";
 import { StylesProvider as JVStylesProvider } from "@jaspersoft/jv-ui-components/material-ui/styles/StylesProvider";
-import {
-  BaseInputControlProps,
-  InputControlCollection,
-} from "./controls/BaseInputControl";
+import { createRoot } from "react-dom/client";
+import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
 import { DatePickerICType } from "./controls/DatePickerInputControl";
 import { DateICType } from "./controls/DatePickerTextFieldInputControl";
-import { DateTimeICType } from "./controls/DateTimePickerTextFieldInputControl";
 import { DateTimePickerICType } from "./controls/DateTimePickerInputControl";
+import { DateTimeICType } from "./controls/DateTimePickerTextFieldInputControl";
 import { NumberICType } from "./controls/SingleValueNumberInputControl";
 import { TextFieldICType } from "./controls/SingleValueTextInputControl";
 import { TimePickerICType } from "./controls/TimePickerInputControl";
 import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
-
-export interface InputControlConfig {
-  hostname?: string;
-  username: string;
-  password: string;
-  tenant: string;
-}
 
 export interface InputControlUserConfig {
   bool?: {
@@ -56,28 +46,12 @@ export interface InputControlPanelConfig {
   };
 }
 
-const defaultInputControlConfig: InputControlConfig = {
-  username: "joeuser",
-  password: "joeuser",
-  tenant: "organization_1",
-};
-
 export class InputControls {
   private viz: any;
-  private _config: InputControlConfig;
   protected controlStructure: object = {};
 
-  get config(): InputControlConfig {
-    return this._config;
-  }
-
-  set config(value: InputControlConfig) {
-    this._config = value;
-  }
-
-  constructor(vizjs: any, config?: InputControlConfig) {
+  constructor(vizjs: any) {
     this.viz = vizjs;
-    this._config = config || defaultInputControlConfig;
   }
 
   public fillControlStructure = (
