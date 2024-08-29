@@ -3,7 +3,8 @@ const schedulerUIConfig = {
   resourceURI: "/public/Samples/Reports/02._Sales_Mix_by_City_Report",
   contextPath: "/jasperserver-pro",
   stepper: {
-    showStepper: true,
+    // show: true
+    showStepper: false,
   },
   tabs: {
     tabsOrder: ["schedule", "parameters", "notifications", "output"],

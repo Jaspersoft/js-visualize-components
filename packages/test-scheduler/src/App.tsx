@@ -12,8 +12,8 @@ const visualizeUrl =
   "https://localhost:8443/jasperserver-pro/client/visualize.js";
 
 const credentials: Authentication = {
-  name: "superuser",
-  password: "superuser",
+  name: "joeuser",
+  password: "joeuser",
 };
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
   }, []);
 
   return visualize ? (
-    <Scheduler {...schedulerUIConfig} />
+    <Scheduler schedulerUIConfig={schedulerUIConfig} visualize={visualize} />
   ) : (
     <div>Loading...</div>
   );
