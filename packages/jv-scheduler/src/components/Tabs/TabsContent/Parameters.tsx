@@ -12,7 +12,6 @@ const Parameters = () => {
   );
   const [plugin, setPlugin] = useState<any>();
 
-  console.log(resourceUri);
   useEffect(() => {
     // setPlugin(new InputControls(visualize.v))
   }, [visualize]);

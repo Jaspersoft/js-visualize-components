@@ -61,13 +61,23 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
 
 export const ScheduleStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
+
   const label = useSelector(
       (state: IState) => state.scheduleInfo?.scheduleJobName,
     ),
     description = useSelector(
       (state: IState) => state.stepperState?.scheduleJobDescription,
     ),
-    scheduleJobNameErr = useSelector(
+    interval = useSelector(
+      (state: IState) => state.stepperState?.recurrenceInterval,
+    ),
+    intervalUnit = useSelector(
+      (state: IState) => state.stepperState?.recurrenceIntervalUnit,
+    ),
+    startDate = useSelector((state: IState) => state.stepperState?.startDate),
+    startType = useSelector((state: IState) => state.stepperState?.startType);
+
+  const scheduleJobNameErr = useSelector(
       (state: IState) => state.scheduleErrors.scheduleJobName,
     ),
     scheduleJobDescriptionErr = useSelector(
@@ -76,19 +86,11 @@ export const ScheduleStepUserInput = () => {
     intervalErr = useSelector(
       (state: IState) => state.scheduleErrors.recurrenceInterval,
     ),
-    interval = useSelector(
-      (state: IState) => state.stepperState?.recurrenceInterval,
-    ),
-    intervalUnit = useSelector(
-      (state: IState) => state.stepperState?.recurrenceIntervalUnit,
-    ),
-    // intervalErr = useSelector((state: TAlertErrors) => state.alertErrors.recurrenceInterval),
-    startDate = useSelector((state: IState) => state.stepperState?.startDate),
-    startType = useSelector((state: IState) => state.stepperState?.startType),
-    // startDateErr = useSelector((state: TAlertErrors) => state.alertErrors.startDate),
-    // stepperIntervalErr = intervalErr ? i18n[`alert.stepper.${intervalErr}`] : intervalErr,
-    // stepperStartDateErr = startDateErr ? i18n[`alert.stepper.${startDateErr}`] : startDateErr,
-    time =
+    startDateErr = useSelector(
+      (state: IState) => state.scheduleErrors.startDate,
+    );
+
+  const time =
       startType === RECURRENCE_INTERVAL_DATE_TIME
         ? moment(startDate).format(START_TIME_FORMAT)
         : startDate,
@@ -104,26 +106,22 @@ export const ScheduleStepUserInput = () => {
         error={scheduleJobNameErr}
         title={t("stepper.schedule.jobname.key")}
         value={label}
-        dataName=""
       />
       <InputDataInStep
         error={scheduleJobDescriptionErr}
         title={t("stepper.schedule.jobdescription.key")}
         value={description}
-        dataName=""
       />
       <InputDataInStep
         error={intervalErr}
         title={t("stepper.schedule.repeat.key")}
         value={`${interval} ${timeFrameText}`}
-        dataName=""
       />
       {startType === RECURRENCE_INTERVAL_DATE_TIME ? (
         <InputDataInStep
-          error={""}
+          error={startDateErr}
           title={t("stepper.schedule.start.key")}
           value={time}
-          dataName=""
         />
       ) : (
         <KeyValueTemplate
@@ -146,7 +144,11 @@ export const NotificationStepUserInput = () => {
     resultSendType = useSelector(
       (state: IState) => state.stepperState?.resultSendType,
     ),
-    mailNotificationAddressesErr = useSelector(
+    mailNotificationMessage = useSelector(
+      (state: IState) => state.stepperState?.messageText,
+    );
+
+  const mailNotificationAddressesErr = useSelector(
       (state: IState) => state.scheduleErrors.address,
     ),
     mailNotificationSubjectErr = useSelector(
@@ -154,15 +156,7 @@ export const NotificationStepUserInput = () => {
     ),
     mailNotificationMessageErr = useSelector(
       (state: IState) => state.scheduleErrors.messageText,
-    ),
-    mailNotificationMessage = useSelector(
-      (state: IState) => state.stepperState?.messageText,
     );
-  // mailNotificationMessageErr = useSelector((state:TAlertErrors) => state.alertErrors.messageText),
-  // stepperSubjectErr = mailNotificationSubjectErr ? i18n[`alert.stepper.${mailNotificationSubjectErr}`] : mailNotificationSubjectErr,
-  // stepperAddressErr = mailNotificationAddressesErr ? i18n[`alert.stepper.${mailNotificationAddressesErr}`] : mailNotificationAddressesErr,
-  // stepperMessageErr = mailNotificationMessageErr ? i18n[`alert.stepper.${mailNotificationMessageErr}`] : mailNotificationMessageErr,
-  // stepperFolderUriErr = mailNotificaitonfolderUriErr ? i18n[`alert.stepper.${mailNotificaitonfolderUriErr}`] : mailNotificaitonfolderUriErr
 
   let address, reportionOptionValue;
   if (mailNotificationAddresses) {
@@ -221,21 +215,21 @@ export const OutputStepUserInput = () => {
         state.scheduleInfo.repositoryDestination.outputDescription,
     ),
     formats = useSelector((state: IState) => state.stepperState?.outputFormat),
-    fileNameErr = useSelector(
+    outputTimezone = useSelector(
+      (state: IState) => state.stepperState?.outputTimeZone,
+    ),
+    timezones = useSelector((state: IState) => state.userTimeZones);
+
+  const fileNameErr = useSelector(
       (state: IState) => state.scheduleErrors.baseOutputFilename,
     ),
     formatsErr = useSelector(
       (state: IState) => state.scheduleErrors.outputFormat,
-    ),
-    outputTimezone = useSelector(
-      (state: IState) => state.stepperState?.outputTimeZone,
-    ),
-    timezones = useSelector((state: IState) => state.userTimeZones),
-    currentTimezone = timezones.filter(
+    );
+
+  const currentTimezone = timezones.filter(
       (item: { code: string }) => item.code === outputTimezone,
     ),
-    // stepperFileNameErr = fileNameErr ? i18n[`alert.stepper.${fileNameErr}`] : fileNameErr,
-    // stepperFormatErr = formatsErr ? i18n[`alert.stepper.${formatsErr}`] : formatsErr,
     OutputTimeZone = `${currentTimezone[0]?.code} - ${currentTimezone[0]?.description}`;
 
   let formatsToDisplay;

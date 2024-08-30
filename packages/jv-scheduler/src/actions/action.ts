@@ -41,15 +41,8 @@ import {
   getStateOfCurrentActiveTab,
   getUriParts,
 } from "../utils/schedulerUtils";
+import { removeRootFolderPath } from "../utils/treeUtils";
 
-// export const setUserLocale = (supportedLocale) => {
-//    return {
-//         type: SET_USER_LOCALE,
-//         payload: {
-//             userLocale: supportedLocale
-//         }
-//     }
-// }
 export const setApiFailure = (
   failedApi: IApiFailed | undefined,
   failedApiName: string,
@@ -206,15 +199,9 @@ export const getUserTimeZones = () => {
 
 export const getFolderData = (folderPath: string) => {
   return async (dispatch: Dispatch) => {
-    let folderName;
-    if (folderPath.startsWith("/public")) {
-      folderName = folderPath;
-    } else {
-      const uriParts = getUriParts(folderPath, false);
-      uriParts.shift();
-      folderName = `/${uriParts.join("/")}`;
-    }
-    const repositoryData = await getRepositoryFolderData(folderName);
+    const repositoryData = await getRepositoryFolderData(
+      removeRootFolderPath(folderPath),
+    );
     if (repositoryData.error) {
       dispatch(
         setApiFailure({ treeLoadApiFailure: true }, "treeLoadApiFailure"),

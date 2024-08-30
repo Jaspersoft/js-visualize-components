@@ -10,10 +10,7 @@ import {
 } from "@jaspersoft/jv-ui-components";
 import React from "react";
 import { TreeItemLabel } from "./TreeItemLabel";
-
-const isItemDisable = (item: any) => {
-  return !(item.permissionMask == 1 || item.permissionMask & 4);
-};
+import { isTreeNodeDisable } from "../../../../../utils/treeUtils";
 
 function TransitionComponent(props: any) {
   return <JVCollapse {...props} />;
@@ -49,8 +46,8 @@ export const TreeItem = React.forwardRef(function CustomTreeItem(
 
   const item = publicAPI.getItem(itemId);
   status.expandable = true;
-  status.disabled = isItemDisable(item);
-  console.log("disabled", isItemDisable(item));
+  status.disabled = isTreeNodeDisable(item);
+
   return (
     <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
       <JVTreeItem2Root

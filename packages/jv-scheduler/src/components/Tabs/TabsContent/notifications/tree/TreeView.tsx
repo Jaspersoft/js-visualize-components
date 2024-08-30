@@ -6,28 +6,13 @@ import { getFolderData } from "../../../../../actions/action";
 import {
   addChildrenToTreeOnLoad,
   getExpandedNodeDataFromUri,
-  getUriParts,
-} from "../../../../../utils/schedulerUtils";
+} from "./../../../../../utils/treeUtils";
 import { IState } from "../../../../../types/scheduleType";
+import {
+  addRootFolderPath,
+  removeRootFolderPath,
+} from "../../../../../utils/treeUtils";
 
-const removeRoot = (folderUri: string) => {
-  let folderName;
-  if (folderUri.startsWith("/public")) {
-    folderName = folderUri;
-  } else {
-    const uriParts = getUriParts(folderUri, false);
-    uriParts.shift();
-    folderName = `/${uriParts.join("/")}`;
-  }
-  return folderName;
-};
-const addRoot = (folderUri: string) => {
-  return folderUri.startsWith("/public")
-    ? folderUri
-    : folderUri === "/"
-      ? "/root"
-      : `/root${folderUri}`;
-};
 export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
   const dispatch = useDispatch();
   const folderData = useSelector((state: IState) => state.folderData);
@@ -37,7 +22,7 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
   const [alreadyLoadedTreeNode, setAlreadyLoadedTreeNode] = useState<any[]>([]); // to keep track of whethere children nodes have been added to tree or not
   const [expandedItems, setExpandedItems] = useState<any[]>([]);
   const [lastExapanded, setLastExpandedNode] = useState<string>(
-    addRoot(folderSelected),
+    addRootFolderPath(folderSelected),
   );
   const [disableNode, setDisableNode] = useState(false);
   const [isExapnded, setIsExpanded] = useState(true);
@@ -88,7 +73,8 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
     } else {
       setExpandedItems(expandedItems.filter((item) => item !== lastExapanded));
     }
-    if (!disableNode) handleCurrentSelection(removeRoot(lastExapanded));
+    if (!disableNode)
+      handleCurrentSelection(removeRootFolderPath(lastExapanded));
   };
   useEffect(() => {
     setTreeStructureWhenExapndCollapse();
@@ -103,13 +89,7 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
       expandedItems={expandedItems}
       defaultSelectedItems={lastExapanded}
       multipleSelection
-      getItemId={(item: any) =>
-        item.uri.startsWith("/public")
-          ? item.uri
-          : item.uri === "/"
-            ? "/root"
-            : `/root${item.uri}`
-      }
+      getItemId={(item: any) => addRootFolderPath(item.uri)}
       slots={{
         item: (customItemProps: CustomTreeItemProps) => (
           <TreeItem

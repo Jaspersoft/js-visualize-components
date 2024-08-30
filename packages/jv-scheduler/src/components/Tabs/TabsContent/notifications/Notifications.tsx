@@ -15,10 +15,13 @@ import {
   SEND_ATTACHMENT,
   SEND_LINK,
 } from "../../../../constants/schedulerConstants";
-import { getExpandedNodeDataFromUri } from "../../../../utils/schedulerUtils";
 import { useTranslation } from "react-i18next";
 import { IState } from "../../../../types/scheduleType";
 import { updateChangeToStore } from "../../../../utils/schedulerUtils";
+import {
+  addRootFolderPath,
+  getExpandedNodeDataFromUri,
+} from "../../../../utils/treeUtils";
 
 const Notifications = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
@@ -115,11 +118,7 @@ const Notifications = () => {
     }
     // get children data for each folder of resource uri
     getExpandedNodeDataFromUri(folderURI as string, false, (uri: string) => {
-      const uriToCheck = uri.startsWith("/public")
-        ? uri
-        : uri === "/"
-          ? "/root"
-          : `/root${uri}`;
+      const uriToCheck = addRootFolderPath(uri);
       if (!folderData[uriToCheck]) {
         dispatch(getFolderData(uriToCheck));
       }

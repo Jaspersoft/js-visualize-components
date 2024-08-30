@@ -296,18 +296,5 @@ export const typeOfFields: { [key: string]: string } = {
   folderUri: "simple",
 };
 
-export const defaultVisibility = {
-  label: true,
-  description: true,
-  recurrenceInterval: true,
-  recurrenceIntervalUnit: true,
-  startTime: true,
-  baseOutputFilename: true,
-  outputDescription: true,
-  outputFormat: true,
-  outputTimeZone: true,
-  address: true,
-  subject: true,
-  messageText: true,
-  reportAccessType: true,
-};
+export const PUBLIC_FOLDER = "/public";
+export const ROOT_FOLDER = "/root";
