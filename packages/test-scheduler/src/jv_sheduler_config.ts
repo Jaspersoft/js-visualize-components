@@ -23,7 +23,7 @@ const schedulerUIConfig = {
           },
           startTime: {
             showField: true,
-            value: "2024-07-31 14:11",
+            value: "2024-10-31 14:11",
             options: ["now", "specificDateAndTime"],
           },
         },

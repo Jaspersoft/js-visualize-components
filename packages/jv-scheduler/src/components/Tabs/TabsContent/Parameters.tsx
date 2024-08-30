@@ -1,60 +1,67 @@
-import React, { useEffect, useState } from "react";
-// import InputControls from "@jaspersoft/jv-input-controls";
+import React, { useEffect } from "react";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPropertiesDetails } from "../../../actions/action";
+import { getLengthOfObject } from "../../../utils/schedulerUtils";
 
 const Parameters = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
+  const dispatch = useDispatch();
   const visualize = useSelector((state: any) => state.visualize);
+  const source = useSelector((state: any) => state.scheduleInfo.source);
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
-  const [plugin, setPlugin] = useState<any>();
 
   useEffect(() => {
-    // setPlugin(new InputControls(visualize.v))
-  }, [visualize]);
-
-  useEffect(() => {
-    if (plugin === undefined) {
-      return;
-    }
-    // plugin.renderControlPanel(
-    //     resourceUri,
-    //     document.getElementById("parametersTab") as HTMLElement,
-    //     {
-    //       success: () => {
-    //         console.log("Basic controls rendered successfully");
-    //       },
-    //       error: (error) => {
-    //         console.log("Error when rendering the Basic controls: ", error);
-    //       }
-    //     },
-    // );
-    // plugin.renderControlPanel(
-    //     singleSelectReportUri,
-    //     document.getElementById("select-controls-section") as HTMLElement,
-    //     {
-    //       success: () => {
-    //         console.log("Select controls rendered successfully");
-    //       },
-    //       error: (error) => {
-    //         console.log("Error when rendering the Select controls: ", error);
-    //       },
-    //       events: {
-    //         change: (ics) => {
-    //           console.log("single select ics => ", ics);
-    //         },
-    //       },
-    //     },
-    // );
-  }, [plugin]);
+    const inputControlsData = getLengthOfObject(
+      source?.parameters?.parameterValues,
+    )
+      ? { params: source?.parameters?.parameterValues }
+      : {};
+    const controls = visualize.v.inputControls({
+      resource: resourceUri,
+      container: "#parametersTab",
+      events: {
+        change: (params: any, error: any) => {
+          if (!error) {
+            dispatch(
+              setPropertiesDetails({
+                source: {
+                  ...source,
+                  parameters: {
+                    parameterValues: params,
+                  },
+                },
+              }),
+            );
+          } else {
+            // dispatch()
+          }
+        },
+      },
+      success: function () {
+        dispatch(
+          setPropertiesDetails({
+            source: {
+              ...source,
+              parameters: {
+                parameterValues: controls.params(),
+              },
+            },
+          }),
+        );
+      },
+      ...inputControlsData,
+    });
+  }, []);
 
   return (
-    <div id="parametersTab">
+    <>
       <JVTypographyComponent text={t("parameters.title")} />
-    </div>
+      <div id={"parametersTab"}></div>
+    </>
   );
 };
 

@@ -20,7 +20,7 @@ const mapFieldName: { [key: string]: string } = {
   description: "scheduleJobDescription",
 };
 const isResourceWritable = (item: any) => {
-  return item.permissionMask == 1 || item.permissionMask & 4;
+  return item.permissionMask !== 0;
 };
 
 const checkForStringOrNumber = (element: string | number | undefined) => {
@@ -299,6 +299,9 @@ const setDefaultValuesForFields = (
       },
       source: {
         reportUnitURI: resourceURI,
+        parameters: {
+          parameterValues: {},
+        },
       },
       repositoryDestination: {
         ...ScheduleDefaultState.repositoryDestination,

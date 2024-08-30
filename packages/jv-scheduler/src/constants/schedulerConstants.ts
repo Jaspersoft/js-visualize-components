@@ -113,7 +113,11 @@ export const ScheduleDefaultState = {
     },
     resultSendType: "SEND",
   },
-  source: {},
+  source: {
+    parameters: {
+      parameterValues: {},
+    },
+  },
   outputFormats: {
     outputFormat: ["pdf"],
   },

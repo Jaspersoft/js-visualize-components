@@ -276,3 +276,5 @@ export {
 
 export { TreeItem as JVTreeItem } from "./Tree/TreeItem";
 export { Box as JVBox } from "./Box/Box";
+export { TabPanels as JVTabPanels } from "./Tabs/TabPanels";
+export { TabContext as JVTabContext } from "./Tabs/TabContext";

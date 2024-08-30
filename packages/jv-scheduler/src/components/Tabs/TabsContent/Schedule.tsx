@@ -81,10 +81,6 @@ const Schedule = () => {
   );
 
   useEffect(() => {
-    console.log(simpleTrigger);
-  }, [simpleTrigger]);
-
-  useEffect(() => {
     if (startDate) setSpecificDateTime(startDate);
   }, [simpleTrigger.startDate]);
 
