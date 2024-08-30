@@ -23,13 +23,47 @@ import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
 import { NOTIFICATIONS_TAB } from "../../../../constants/schedulerConstants";
 import { IState } from "../../../../types/scheduleType";
 
-function PaperComponent(props: typeof JVPaperProps) {
+function PaperComponent(props: JVPaperProps) {
   return (
     <Draggable
       handle="#draggable-dialog-title"
       cancel={'[class*="jv-MuiDialogContent-root"]'}
     >
-      <JVPaper {...props} />
+      <div>
+        <Resizable
+          defaultSize={{ width: 600, height: 400 }}
+          minWidth={300}
+          minHeight={200}
+          enable={{
+            top: false,
+            right: false,
+            bottom: false,
+            left: false,
+            topRight: false,
+            bottomRight: true,
+            bottomLeft: false,
+            topLeft: false,
+          }}
+          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+          handleComponent={{
+            bottomRight: (
+              <div
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  backgroundColor: "red",
+                  position: "absolute",
+                  right: "5px",
+                  bottom: "0px",
+                  cursor: "se-resize",
+                }}
+              />
+            ),
+          }}
+        >
+          <JVPaper {...props} />
+        </Resizable>
+      </div>
     </Draggable>
   );
 }
@@ -102,60 +136,47 @@ export const RepositoryTreeDialog = ({
   };
   return (
     <JVDialog open={open} scroll="paper" PaperComponent={PaperComponent}>
-      <Resizable
-        size={{ width, height }}
-        onResize={() => {}}
-        onResizeStop={(e, direction, ref, d) => {
-          setWidth(parseInt(width) + d.width + "px");
-          setHeight(parseInt(height) + d.height + "px");
+      <JVDialogTitle
+        dialogTitle={t("repository.dialog.title")}
+        DialogTitleProps={{
+          style: { cursor: "move" },
+          id: "draggable-dialog-title",
         }}
-        enable={{ bottomRight: true }}
-        minWidth={"400px"}
-        minHeight={"400px"}
-        maxWidth={window.innerWidth - 10 + "px"}
-      >
-        <JVDialogTitle
-          dialogTitle={t("repository.dialog.title")}
-          DialogTitleProps={{
-            style: { cursor: "move" },
-            id: "draggable-dialog-title",
-          }}
-        />
-        <JVDialogContent
-          DialogContentComponent={
-            showTree ? (
-              <TreeView
-                folderSelected={currentSelectedFolder}
-                handleCurrentSelection={setCurrentSelectedFolder}
-              />
-            ) : (
-              <Loader />
-            )
-          }
-          DialogContentProps={{
-            dividers: scroll === "paper",
-          }}
-        />
-        <JVDialogFooter>
-          <JVButton
-            disableElevation
-            size="large"
-            variant="contained"
-            color="primary"
-            onClick={handleSelectBtnClick}
-          >
-            {t("repository.dialog.select.button")}
-          </JVButton>
-          <JVButton
-            disableElevation
-            size="large"
-            variant="contained"
-            onClick={handleCloseBtnClick}
-          >
-            {t("repository.dialog.cancel.button")}
-          </JVButton>
-        </JVDialogFooter>
-      </Resizable>
+      />
+      <JVDialogContent
+        DialogContentComponent={
+          showTree ? (
+            <TreeView
+              folderSelected={currentSelectedFolder}
+              handleCurrentSelection={setCurrentSelectedFolder}
+            />
+          ) : (
+            <Loader />
+          )
+        }
+        DialogContentProps={{
+          dividers: scroll === "paper",
+        }}
+      />
+      <JVDialogFooter>
+        <JVButton
+          disableElevation
+          size="large"
+          variant="contained"
+          color="primary"
+          onClick={handleSelectBtnClick}
+        >
+          {t("repository.dialog.select.button")}
+        </JVButton>
+        <JVButton
+          disableElevation
+          size="large"
+          variant="contained"
+          onClick={handleCloseBtnClick}
+        >
+          {t("repository.dialog.cancel.button")}
+        </JVButton>
+      </JVDialogFooter>
     </JVDialog>
   );
 };
