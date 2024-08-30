@@ -397,7 +397,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
   );
 
   return {
-    showStepper: stepper?.showStepper === false ? stepper.showStepper : true,
+    showStepper: stepper?.show === false ? stepper.show : true,
     scheduleInfo,
     tabsToShow,
     stepsToShow,
