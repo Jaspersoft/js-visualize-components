@@ -62,7 +62,7 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
 export const ScheduleStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
   const label = useSelector(
-      (state: IState) => state.stepperState?.scheduleJobName,
+      (state: IState) => state.scheduleInfo?.scheduleJobName,
     ),
     description = useSelector(
       (state: IState) => state.stepperState?.scheduleJobDescription,

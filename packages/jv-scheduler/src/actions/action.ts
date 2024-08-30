@@ -273,6 +273,7 @@ export const setInitialPluginState = (
       scheduleInfo,
       currentActiveTab,
       showStepper,
+      stepperDefaultState,
     } = schedulerData;
     dispatch(setSechedulerUIConfig(schedulerUIConfig));
     dispatch(getUserTimeZones());
@@ -283,6 +284,7 @@ export const setInitialPluginState = (
         tabsConfiguration: { tabsToShow, stepsToShow },
       }),
     );
+    dispatch(setStepperProperties(stepperDefaultState));
     dispatch(setStepperConfig({ show: showStepper }));
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
     dispatch(setVisualizeObj(visualize));

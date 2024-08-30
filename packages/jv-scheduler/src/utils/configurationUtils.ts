@@ -254,11 +254,11 @@ const setDefaultValuesForFields = (
   resourceURI: string,
 ) => {
   const {
-    baseOutputFilename = "",
-    scheduleJobDescription = "",
-    scheduleJobName = "",
-    messageText = "",
-    subject = "",
+    baseOutputFilename,
+    scheduleJobDescription,
+    scheduleJobName,
+    messageText,
+    subject,
     address = [],
     resultSendType = "SEND",
     outputFormat = ["pdf"],
@@ -267,47 +267,67 @@ const setDefaultValuesForFields = (
     recurrenceInterval = 1,
     recurrenceIntervalUnit = "DAY",
     startDate = null,
-    outputDescription = "",
+    outputDescription,
     folderURI,
   } = fieldConvertedData;
 
-  return {
-    ...ScheduleDefaultState,
-    baseOutputFilename,
-    scheduleJobName,
-    scheduleJobDescription,
-    mailNotification: {
-      messageText,
-      subject,
-      toAddresses: {
-        address,
+  const scheduleInfo = {
+      ...ScheduleDefaultState,
+      baseOutputFilename,
+      scheduleJobName,
+      scheduleJobDescription,
+      mailNotification: {
+        messageText,
+        subject,
+        toAddresses: {
+          address,
+        },
+        resultSendType,
       },
-      resultSendType,
-    },
-    outputFormats: {
-      outputFormat,
-    },
-    outputTimeZone,
-    trigger: {
-      simpleTrigger: {
-        ...simpleTriggerState,
-        startType: parseInt(startType),
-        recurrenceInterval,
-        recurrenceIntervalUnit,
-        startDate,
+      outputFormats: {
+        outputFormat,
+      },
+      outputTimeZone,
+      trigger: {
+        simpleTrigger: {
+          ...simpleTriggerState,
+          startType: parseInt(startType),
+          recurrenceInterval,
+          recurrenceIntervalUnit,
+          startDate,
+        },
+      },
+      source: {
+        reportUnitURI: resourceURI,
+      },
+      repositoryDestination: {
+        ...ScheduleDefaultState.repositoryDestination,
+        outputDescription,
+        folderURI: folderURI
+          ? folderURI
+          : `/${getUriParts(resourceURI, true).join("/")}`,
+        saveToRepository: true,
       },
     },
-    source: {
-      reportUnitURI: resourceURI,
-    },
-    repositoryDestination: {
-      ...ScheduleDefaultState.repositoryDestination,
+    stepperDefaultState = {
+      scheduleJobName,
+      scheduleJobDescription,
+      address: address.length ? address : undefined,
+      subject: subject,
+      messageText: messageText,
+      recurrenceInterval,
+      recurrenceIntervalUnit,
+      startDate,
+      baseOutputFilename,
       outputDescription,
-      folderURI: folderURI
-        ? folderURI
-        : `/${getUriParts(resourceURI, true).join("/")}`,
-      saveToRepository: true,
-    },
+      resultSendType: "SEND",
+      outputFormat,
+      outputTimeZone,
+    };
+
+  return {
+    scheduleInfo,
+    stepperDefaultState,
   };
 };
 
@@ -391,13 +411,14 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     return { error };
   }
 
-  const scheduleInfo = setDefaultValuesForFields(
+  const { scheduleInfo, stepperDefaultState } = setDefaultValuesForFields(
     fieldConvertedData,
     resourceURI,
   );
 
   return {
     showStepper: stepper?.show === false ? stepper.show : true,
+    stepperDefaultState,
     scheduleInfo,
     tabsToShow,
     stepsToShow,

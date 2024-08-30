@@ -139,8 +139,8 @@ export const ScheduleDefaultState = {
   },
 };
 export const stepperState = {
-  label: undefined,
-  description: undefined,
+  scheduleJobName: undefined,
+  scheduleJobDescription: undefined,
   address: undefined,
   subject: undefined,
   messageText: undefined,
