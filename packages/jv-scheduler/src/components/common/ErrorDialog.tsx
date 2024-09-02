@@ -2,13 +2,11 @@
  * Copyright (C) 2005 - 2023. Cloud Software Group, Inc. All Rights Reserved. Confidential & Proprietary.
  * Licensed pursuant to commercial Cloud Software Group, Inc. End User License Agreement.
  */
+import { Icon as JVIcon } from "@jaspersoft/jv-ui-components/material-ui/Icon/Icon";
+import { Typography as JVTypography } from "@jaspersoft/jv-ui-components/material-ui/Typography/Typography";
+import { ConfirmationDialog as JVConfirmationDialog } from "@jaspersoft/jv-ui-components/material-ui/Dialog/ConfirmationDialog";
+import { Button as JVButton } from "@jaspersoft/jv-ui-components/material-ui/Button/Button";
 
-import {
-  JVIcon,
-  JVTypography,
-  JVConfirmationDialog,
-  JVButton,
-} from "@jaspersoft/jv-ui-components";
 import React from "react";
 
 interface IErrorDialog {

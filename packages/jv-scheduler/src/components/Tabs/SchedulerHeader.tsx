@@ -1,5 +1,5 @@
 import React from "react";
-import { JVTypography } from "@jaspersoft/jv-ui-components";
+import { Typography as JVTypography } from "@jaspersoft/jv-ui-components/material-ui/Typography/Typography";
 import { useTranslation } from "react-i18next";
 
 const SchedulerHeader = () => {
