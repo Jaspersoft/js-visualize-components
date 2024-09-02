@@ -9,12 +9,6 @@
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/material-ui/index.es.js",
-      "require": "./dist/material-ui/index.umd.js"
-    }
-  },
   "scripts": {
     "sass:jvui": "sass --no-source-map --style=expanded scss/jv-ui.scss ${BUILD_THEMES_DIR}/jv-ui.css",
     "styles": "dotenv -c -- run-p sass:jvui",
