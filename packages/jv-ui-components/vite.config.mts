@@ -2,6 +2,8 @@ import react from "@vitejs/plugin-react";
 import { join, resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+// @ts-ignore
+import packageJson from "./package.json";
 
 export default defineConfig({
   root: join(__dirname),
@@ -12,8 +14,13 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "material-ui/index.ts"),
       name: "@jaspersoft/jv-ui-components",
-      formats: ["es", "cjs", "umd"],
       fileName: (format) => `index.${format}.js`,
+    },
+    rollupOptions: {
+      external: [
+        ...Object.keys(packageJson.dependencies || {}),
+        "@mui/system/RtlProvider",
+      ],
     },
   },
   plugins: [

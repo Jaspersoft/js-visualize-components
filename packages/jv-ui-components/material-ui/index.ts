@@ -1,7 +1,5 @@
-/*
- * Copyright © 2005-2024. Cloud Software Group, Inc. All rights reserved. Confidential & Proprietary.
- * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
- */
+// @ts-ignore
+import React from "react";
 export { Accordion as JVAccordion } from "./Accordion/Accordion";
 export type {
   AccordionProps as JVAccordionProps,
