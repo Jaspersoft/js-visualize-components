@@ -1,4 +1,4 @@
-import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
+import { JVTextField } from "@jaspersoft/jv-ui-components";
 import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";

@@ -1,4 +1,4 @@
-import { StylesProvider as JVStylesProvider } from "@jaspersoft/jv-ui-components/material-ui/styles/StylesProvider";
+import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import { createRoot } from "react-dom/client";
 import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";

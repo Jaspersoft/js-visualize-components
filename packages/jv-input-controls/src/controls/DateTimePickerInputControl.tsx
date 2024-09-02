@@ -1,4 +1,4 @@
-import { DateTimePicker as JVDateTimePicker } from "@jaspersoft/jv-ui-components/material-ui/DateTime/DateTimePicker";
+import { JVDateTimePicker } from "@jaspersoft/jv-ui-components";
 import {
   getDateFormatIfAny,
   getMinAndMaxSettings,

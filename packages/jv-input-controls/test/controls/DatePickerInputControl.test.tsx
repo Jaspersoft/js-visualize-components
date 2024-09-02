@@ -1,4 +1,4 @@
-import { DatePickerProvider as JVDatePickerProvider } from "@jaspersoft/jv-ui-components/material-ui/Date/DatePickerProvider";
+import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
