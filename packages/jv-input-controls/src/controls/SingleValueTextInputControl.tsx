@@ -1,12 +1,8 @@
-import { TextField as JVTextField } from "@jaspersoft/jv-ui-components/material-ui/TextField/TextField";
-import {
-  BaseInputControlProps,
-  getBaseInputControlProps,
-  ICValidationRule,
-} from "./BaseInputControl";
+import { JVTextField } from "@jaspersoft/jv-ui-components";
+import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useLiveState } from "./hooks/useLiveState";
 import { useErrorMsg } from "./hooks/useErrorMsg";
+import { useLiveState } from "./hooks/useLiveState";
 
 export type TextFieldICType = "textField";
 

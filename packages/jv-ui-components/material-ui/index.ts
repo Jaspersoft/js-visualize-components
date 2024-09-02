@@ -1,5 +1,3 @@
-// @ts-ignore
-import React from "react";
 export { Accordion as JVAccordion } from "./Accordion/Accordion";
 export type {
   AccordionProps as JVAccordionProps,

@@ -1,23 +1,25 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "useDefineForClassFields": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
     "jsx": "react-jsx",
-    "declaration": true,
-    "declarationDir": "./dist/material-ui",
-    "sourceMap": true,
-    "outDir": "./dist/material-ui",
+
+    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
-    "moduleResolution": "node",
-    "module": "esnext",
-    "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "removeComments": true,
-    "rootDir": "material-ui",
-    "isolatedModules": true,
-    "resolvePackageJsonImports": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* build */
     "resolveJsonModule": true
   },
   "include": ["./material-ui/**/*"],

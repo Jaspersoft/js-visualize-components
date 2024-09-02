@@ -2,10 +2,17 @@ import react from "@vitejs/plugin-react";
 import { join, resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+
 // @ts-ignore
 import packageJson from "./package.json";
 
 export default defineConfig({
+  plugins: [
+    react(),
+    dts({
+      tsconfigPath: resolve(__dirname, "tsconfig.json"),
+    }),
+  ],
   root: join(__dirname),
   build: {
     outDir: "dist/material-ui",
@@ -19,14 +26,14 @@ export default defineConfig({
     rollupOptions: {
       external: [
         ...Object.keys(packageJson.dependencies || {}),
-        "@mui/system/RtlProvider",
+        "react/jsx-runtime",
       ],
+      output: {
+        globals: {
+          "@mui/system": "MuiSystem",
+        },
+      },
     },
+    copyPublicDir: false,
   },
-  plugins: [
-    react(),
-    dts({
-      tsconfigPath: resolve(__dirname, "tsconfig.json"),
-    }),
-  ],
 });
