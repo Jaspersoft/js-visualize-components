@@ -60,7 +60,12 @@ export const parseNumber = (value: string) => {
   return null;
 };
 
-const getValueForVerificationText = (
+export const checkIfNumber = (value: string) => {
+  const result = parseNumber(value);
+  return result !== null;
+};
+
+export const getValueForVerificationText = (
   dataType: ICDataType,
   isVerifyingMin: boolean,
 ) => {

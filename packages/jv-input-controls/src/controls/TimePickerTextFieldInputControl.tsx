@@ -5,13 +5,10 @@
 
 import { DateTimeTextField as JVDateTimeTextField } from "@jaspersoft/jv-ui-components/material-ui/DateTimeTextField/DateTimeTextField";
 import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
-import { useMandatoryMsg } from "./hooks/useMandatoryMsg";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 
 export type TimeICType = "default";
 
@@ -32,20 +29,20 @@ export const TimePickerTextFieldInputControl = (
     events,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "", props);
+  const liveState = useLiveState(props.state?.value || "");
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {
     inputProps.readOnly = true;
   }
-  const errorText = useMandatoryMsg({
-    textValue: liveState.value,
-    isMandatory: mandatory,
-    validationRules: validationRules as ICDateValidationRule[],
-  });
   const minAndMaxSettings = getMinAndMaxSettings(dataType, {
     minKey: "min",
     maxKey: "max",
+  });
+  const errorText = useErrorMsg({
+    textValue: liveState.value,
+    props,
+    minAndMaxDate: minAndMaxSettings,
   });
   const theInputProps = {
     ...inputProps,

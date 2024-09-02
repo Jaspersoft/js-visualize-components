@@ -3,11 +3,9 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import {
-  BaseInputControlProps,
-  ICDateValidationRule,
-} from "./BaseInputControl";
+import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
+import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
 export type TimePickerICType = "material";
@@ -20,20 +18,24 @@ export interface TimeICProps extends BaseInputControlProps {
 
 export const TimePickerInputControl = (props: TimeICProps) => {
   let dateFormat = getDateFormatIfAny(
-    props.validationRules as ICDateValidationRule[],
+    props.validationRules as ICValidationRule[],
     "HH:mm:ss",
   );
 
   const liveState = useLiveDateFormattedState({
     initialValue: props.state?.value || "",
     format: dateFormat,
-    props,
   });
   const controlClasses = useControlClasses([], props);
   const views = props.views || ["hours", "minutes", "seconds"];
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
     minKey: "minTime",
     maxKey: "maxTime",
+  });
+  const errorText = useErrorMsg({
+    textValue: liveState.value,
+    props,
+    minAndMaxDate: minAndMaxSettings,
   });
   const { events, ...remainingProps } = props;
   return (
@@ -46,6 +48,7 @@ export const TimePickerInputControl = (props: TimeICProps) => {
       timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
       format={dateFormat}
       disableIgnoringDatePartForTimeValidation={true}
+      error={errorText}
     />
   );
 };

@@ -3,10 +3,10 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { ICDateValidationRule } from "../controls/BaseInputControl";
+import { ICValidationRule } from "../controls/BaseInputControl";
 
 export const getMandatoryErrorMessage = (
-  validationRules: ICDateValidationRule[],
+  validationRules: ICValidationRule[] | undefined,
 ): string => {
   if (!validationRules) {
     return "";

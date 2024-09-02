@@ -17,4 +17,15 @@ export const setTodayToTime = (time: string): dayjs.Dayjs => {
     .second(parseInt(seconds, 10));
 };
 
+export const prepareErrorHelperTextParams = (
+  props: any,
+): { hasErrorText: boolean; errorTextId: string | undefined } => {
+  const hasError = Boolean(props.error);
+  const hasErrorText = hasError && typeof props.error === "string";
+  const errorTextId =
+    props.errorId ??
+    (hasError && props.id ? `${props.id}-error-text` : undefined);
+  return { hasErrorText, errorTextId };
+};
+
 export default castValueIfNeeded;

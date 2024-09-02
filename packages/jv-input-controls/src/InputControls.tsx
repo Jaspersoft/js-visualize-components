@@ -1,26 +1,16 @@
-import { createRoot } from "react-dom/client";
 import { StylesProvider as JVStylesProvider } from "@jaspersoft/jv-ui-components/material-ui/styles/StylesProvider";
-import {
-  BaseInputControlProps,
-  InputControlCollection,
-} from "./controls/BaseInputControl";
+import { createRoot } from "react-dom/client";
+import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
 import { DatePickerICType } from "./controls/DatePickerInputControl";
 import { DateICType } from "./controls/DatePickerTextFieldInputControl";
-import { DateTimeICType } from "./controls/DateTimePickerTextFieldInputControl";
 import { DateTimePickerICType } from "./controls/DateTimePickerInputControl";
+import { DateTimeICType } from "./controls/DateTimePickerTextFieldInputControl";
 import { NumberICType } from "./controls/SingleValueNumberInputControl";
 import { TextFieldICType } from "./controls/SingleValueTextInputControl";
 import { TimePickerICType } from "./controls/TimePickerInputControl";
 import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
-
-export interface InputControlConfig {
-  hostname?: string;
-  username: string;
-  password: string;
-  tenant: string;
-}
 
 export interface InputControlUserConfig {
   bool?: {
@@ -49,35 +39,26 @@ export interface InputControlPanelConfig {
   exclude?: string[];
   config?: InputControlUserConfig;
   events?: {
-    change?: (ic: { [key: string]: any[] }) => void;
+    change?: (
+      ic: { [key: string]: any[] },
+      validationResult: { [key: string]: string } | boolean,
+    ) => void;
   };
 }
 
-const defaultInputControlConfig: InputControlConfig = {
-  username: "joeuser",
-  password: "joeuser",
-  tenant: "organization_1",
-};
-
 export class InputControls {
   private viz: any;
-  private _config: InputControlConfig;
   protected controlStructure: object = {};
 
-  get config(): InputControlConfig {
-    return this._config;
-  }
-
-  set config(value: InputControlConfig) {
-    this._config = value;
-  }
-
-  constructor(vizjs: any, config?: InputControlConfig) {
+  constructor(vizjs: any) {
     this.viz = vizjs;
-    this._config = config || defaultInputControlConfig;
   }
 
-  public fillControlStructure = (uri: string, callbackFn?: Function) => {
+  public fillControlStructure = (
+    uri: string,
+    callbackFn?: Function,
+    callbackErrorFn?: Function,
+  ) => {
     this.viz.inputControls({
       resource: uri,
       success: (data: string) => {
@@ -87,7 +68,9 @@ export class InputControls {
         }
       },
       error: (e: object) => {
-        console.log(e);
+        if (callbackErrorFn) {
+          callbackErrorFn(e);
+        }
       },
     });
   };
@@ -101,23 +84,29 @@ export class InputControls {
     container: HTMLElement,
     icPanelDef?: InputControlPanelConfig,
   ) => {
-    this.fillControlStructure(uri, (controls: InputControlCollection) => {
-      try {
-        const icRoot = createRoot(container);
-        icRoot.render(
-          <JVStylesProvider>
-            <BasePanel
-              controls={controls}
-              config={icPanelDef?.config}
-              events={icPanelDef?.events}
-            />
-          </JVStylesProvider>,
-        );
-        icPanelDef?.success && icPanelDef?.success.call(null);
-      } catch (e) {
+    this.fillControlStructure(
+      uri,
+      (controls: InputControlCollection) => {
+        try {
+          const icRoot = createRoot(container);
+          icRoot.render(
+            <JVStylesProvider>
+              <BasePanel
+                controls={controls}
+                config={icPanelDef?.config}
+                events={icPanelDef?.events}
+              />
+            </JVStylesProvider>,
+          );
+          icPanelDef?.success && icPanelDef?.success.call(null);
+        } catch (e) {
+          icPanelDef?.error && icPanelDef?.error.call(null, e);
+        }
+      },
+      (e: any) => {
         icPanelDef?.error && icPanelDef?.error.call(null, e);
-      }
-    });
+      },
+    );
   };
 
   public makeControlsForReport = (
