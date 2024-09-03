@@ -1,9 +1,5 @@
-/*
- * Copyright © 2005-2024. Cloud Software Group, Inc. All rights reserved. Confidential & Proprietary.
- * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
- */
 import { FormHelperText } from "@mui/material";
-import { TimePicker as MuiTimePicker } from "@mui/x-date-pickers/TimePicker";
+import { TimePicker as MuiTimePicker } from "@mui/x-date-pickers";
 import { forwardRef } from "react";
 import {
   prepareErrorHelperTextParams,

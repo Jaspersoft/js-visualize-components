@@ -1,5 +1,5 @@
 import React from "react";
-import { Select as JVSelect } from "@jaspersoft/jv-ui-components/material-ui/Select/Select";
+import { JVSelect } from "@jaspersoft/jv-ui-components";
 import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";

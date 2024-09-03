@@ -1,4 +1,4 @@
-import { TimePicker as JVTimePicker } from "@jaspersoft/jv-ui-components/material-ui/Time/TimePicker";
+import { JVTimePicker } from "@jaspersoft/jv-ui-components";
 import {
   getDateFormatIfAny,
   getMinAndMaxSettings,

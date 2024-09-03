@@ -1,9 +1,4 @@
-/*
- * Copyright © 2005-2024. Cloud Software Group, Inc. All rights reserved. Confidential & Proprietary.
- * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
- */
-
-import { DateTimeTextField as JVDateTimeTextField } from "@jaspersoft/jv-ui-components/material-ui/DateTimeTextField/DateTimeTextField";
+import { JVDateTimeTextField } from "@jaspersoft/jv-ui-components";
 import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
 import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
