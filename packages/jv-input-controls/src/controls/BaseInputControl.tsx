@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
 
 export type ICType =
   | string
@@ -31,16 +30,25 @@ export interface ICState {
 }
 
 export interface ICValidationRule {
-  errorMessage?: string;
-}
-
-export interface ICDateValidationRule {
   dateTimeFormatValidationRule?: {
     errorMessage: string;
     format: string;
   };
   mandatoryValidationRule?: {
     errorMessage: string;
+  };
+  regexpValidationRule?: {
+    errorMessage: string;
+    inverted: boolean;
+    regexp: string;
+  };
+  rangeValidationRule?: {
+    errorMessage: string;
+    inverted: boolean;
+    maxValue: number;
+    minValue: number;
+    includeMaxValue: boolean;
+    includeMinValue: boolean;
   };
 }
 
@@ -93,13 +101,16 @@ export interface BaseInputControlProps {
   visible: boolean;
   uri?: string;
   state?: ICState;
-  validationRules?: ICValidationRule | ICDateValidationRule[];
+  validationRules?: ICValidationRule[];
   dataType?: ICDataType;
 
   masterDependencies?: string[];
   slaveDependencies?: string[];
   events?: {
-    change: (ic: BaseInputControlProps) => void;
+    change: (
+      ic: BaseInputControlProps,
+      validationResult?: { [key: string]: string },
+    ) => void;
   };
 }
 

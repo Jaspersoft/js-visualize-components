@@ -17,7 +17,10 @@ export interface BasePanelProps {
   controls: any;
   config?: InputControlUserConfig;
   events?: {
-    change?: (ic: { [key: string]: any[] }) => void;
+    change?: (
+      ic: { [key: string]: any[] },
+      validationResult: { [key: string]: string } | boolean,
+    ) => void;
   };
 }
 
@@ -25,7 +28,63 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   const [inputControls, setInputControls] = useState<BaseInputControlProps[]>(
     props.controls.data,
   );
-  const [devResponse, setDevResponse] = useState<{ [key: string]: any[] }>({});
+  const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
+    {},
+  );
+  const [validationResultState, setValidationResultState] = useState<{
+    [key: string]: string;
+  }>({});
+
+  const buildLatestJSON = (
+    ctrlUpdated: BaseInputControlProps,
+    resultValidation?: { [key: string]: string },
+  ) => {
+    const inputControlsUpdated = inputControls.reduce(
+      (
+        acc: {
+          state: BaseInputControlProps[];
+          response: { [key: string]: any[] };
+          invalidResponse: { [key: string]: any };
+        },
+        ctrl: BaseInputControlProps,
+      ) => {
+        const prevState = acc.response[ctrl.id] || [];
+        const theValidationResult = resultValidation?.[ctrl.id];
+        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
+        acc.state.push(ctrlToUse);
+        if (theValidationResult !== undefined && theValidationResult !== "") {
+          // acc.invalidResponse[ctrlToUse.id] = theValidationResult;
+          acc.invalidResponse = {
+            ...acc.invalidResponse,
+            [ctrlToUse.id]: theValidationResult,
+          };
+        } else if (theValidationResult === "") {
+          // this means that the validation result is empty, so we need to remove the key from the invalidResponse
+          delete acc.invalidResponse[ctrlToUse.id];
+        }
+        acc.response[ctrlToUse.id] =
+          ctrlToUse.type === "multiSelect"
+            ? [...prevState, ctrlToUse.state?.value]
+            : [ctrlToUse.state?.value];
+        return acc;
+      },
+      {
+        state: [],
+        response: { ...validResponse },
+        invalidResponse: { ...validationResultState },
+      },
+    );
+    setInputControls(inputControlsUpdated.state);
+    setValidResponse(inputControlsUpdated.response);
+    setValidationResultState(inputControlsUpdated.invalidResponse);
+    const isError =
+      Object.keys(inputControlsUpdated.invalidResponse).length > 0;
+    props.events?.change?.(
+      inputControlsUpdated.response,
+      isError ? inputControlsUpdated.invalidResponse : false,
+    );
+  };
+
   const getControlProps = (control: any) => {
     return {
       id: control.id,
@@ -40,30 +99,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         change: buildLatestJSON,
       },
     };
-  };
-  const buildLatestJSON = (ctrlUpdated: BaseInputControlProps) => {
-    const inputControlsUpdated = inputControls.reduce(
-      (
-        acc: {
-          state: BaseInputControlProps[];
-          response: { [key: string]: any[] };
-        },
-        ctrl: BaseInputControlProps,
-      ) => {
-        const prevState = acc.response[ctrl.id] || [];
-        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
-        acc.state.push(ctrlToUse);
-        acc.response[ctrlToUse.id] =
-          ctrlToUse.type === "multiSelect"
-            ? [...prevState, ctrlToUse.state?.value]
-            : [ctrlToUse.state?.value];
-        return acc;
-      },
-      { state: [], response: { ...devResponse } },
-    );
-    setInputControls(inputControlsUpdated.state);
-    setDevResponse(inputControlsUpdated.response);
-    props.events?.change?.(inputControlsUpdated.response);
   };
   const buildControl = (control: any) => {
     const theProps = getControlProps(control);

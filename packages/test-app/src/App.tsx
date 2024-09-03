@@ -94,7 +94,8 @@ export default function App(props: AppConfig) {
           },
         },
         events: {
-          change: (ics) => {
+          change: (ics, validationResult) => {
+            console.log("validationResult => ", validationResult);
             console.log("ics => ", ics);
           },
         },

@@ -3,6 +3,7 @@ import { Switch as JVSwitch } from "@jaspersoft/jv-ui-components/material-ui/Swi
 import { Checkbox as JVCheckbox } from "@jaspersoft/jv-ui-components/material-ui/Checkbox/Checkbox";
 import { CheckboxGroup as JVCheckboxGroup } from "@jaspersoft/jv-ui-components/material-ui/Checkbox/CheckboxGroup";
 import { BaseInputControlProps } from "./BaseInputControl";
+import { useChangeCallback } from "./hooks/useChangeCallback";
 import { useLiveState } from "./hooks/useLiveState";
 import { useControlClasses } from "./hooks/useControlClasses";
 
@@ -15,10 +16,10 @@ export interface BooleanInputControlProps extends BaseInputControlProps {
 export function BooleanInputControl(
   props: BooleanInputControlProps,
 ): React.JSX.Element {
-  const liveState = useLiveState(!!props.state?.value, props);
+  const liveState = useLiveState(!!props.state?.value);
   // We don't need the required CSS class for booleans (request from Anna).
   const controlClasses = useControlClasses([], { ...props, mandatory: false });
-
+  useChangeCallback(!!liveState.value, props);
   if (props.styleType === "switch") {
     return (
       <JVSwitch

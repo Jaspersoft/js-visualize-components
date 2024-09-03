@@ -1,6 +1,9 @@
+import { FormHelperText } from "@mui/material";
 import { DateTimePicker as MuiDateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { forwardRef } from "react";
-import castValueIfNeeded from "../Date/Date.Utils";
+import castValueIfNeeded, {
+  prepareErrorHelperTextParams,
+} from "../Date/Date.Utils";
 
 export const extractPropForDateAttr = (
   otherProps: {},
@@ -22,7 +25,18 @@ export const DateTimePicker = forwardRef((props: any, ref) => {
   let otherProps = extractPropForDateAttr({}, "value", value);
   otherProps = extractPropForDateAttr(otherProps, "minDateTime", minDateTime);
   otherProps = extractPropForDateAttr(otherProps, "maxDateTime", maxDateTime);
+  // error props:
+  const { hasErrorText, errorTextId } = prepareErrorHelperTextParams(props);
 
   const allProps = { ...remainingProps, ...otherProps };
-  return <MuiDateTimePicker {...allProps} />;
+  return (
+    <>
+      <MuiDateTimePicker {...allProps} />
+      {hasErrorText && (
+        <FormHelperText className={`jv-mInput-error mui`} id={errorTextId}>
+          {props.error}
+        </FormHelperText>
+      )}
+    </>
+  );
 });
