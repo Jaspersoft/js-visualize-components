@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import { Icon as JVIcon } from "@jaspersoft/jv-ui-components/material-ui/Icon/Icon";
+import { JVIcon } from "@jaspersoft/jv-ui-components";
 import {
   ERROR_STATE,
   INCOMPLETE_DEFAULT_STATE,

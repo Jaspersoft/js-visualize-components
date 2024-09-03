@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import { Typography as JVTypography } from "@jaspersoft/jv-ui-components/material-ui/Typography/Typography";
+import { JVTypography } from "@jaspersoft/jv-ui-components";
 
 export const ErrorTemplate = ({
   text,
