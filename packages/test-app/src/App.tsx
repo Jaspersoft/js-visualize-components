@@ -1,4 +1,5 @@
 import InputControls from "@jaspersoft/jv-input-controls";
+import { BaseInputControlProps } from "@jaspersoft/jv-input-controls/src/controls/BaseInputControl";
 import {
   Authentication,
   VisualizeFactory,
@@ -6,6 +7,7 @@ import {
   VisualizeType,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
+import ReportPanel from "./ReportPanel";
 
 export interface AppConfig {
   title: string;
@@ -31,6 +33,8 @@ export default function App(props: AppConfig) {
     null as { v: VisualizeType } | null,
   );
   const [plugin, setPlugin] = useState<InputControls>();
+  const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
+  const [vReport, setVReport] = useState<any>();
 
   useEffect(() => {
     const loadVisualize = visualizejsLoader(visualizeUrl);
@@ -65,7 +69,14 @@ export default function App(props: AppConfig) {
   }, [visualizeFactoryContainer]);
 
   useEffect(() => {
-    vContainer && setPlugin(new InputControls(vContainer.v));
+    if (vContainer && vContainer.v) {
+      setPlugin(new InputControls(vContainer.v));
+      var report = vContainer.v.report({
+        resource: singleSelectReportUri,
+        container: "#report-viewer",
+      });
+      setVReport(report);
+    }
   }, [vContainer]);
 
   useEffect(() => {
@@ -112,18 +123,38 @@ export default function App(props: AppConfig) {
           console.log("Error when rendering the Select controls: ", error);
         },
         events: {
-          change: (ics) => {
+          change: (ics: any) => {
             console.log("single select ics => ", ics);
+            setControlBuffer(ics);
           },
         },
       },
     );
   }, [plugin]);
 
+  const onClickSubmit = () => {
+    if (vContainer?.v) {
+      if (vReport) {
+        vReport.params(controlBuffer).run();
+      }
+    }
+  };
+
   return (
     <>
       <div id="basic-controls-section"></div>
+      <hr />
       <div id="select-controls-section"></div>
+      <button id="change" type="button" onClick={onClickSubmit}>
+        Submit
+      </button>
+      <hr />
+      <ReportPanel
+        vObject={vContainer?.v}
+        reportUri={reportUri}
+        controlState={controlBuffer}
+      ></ReportPanel>
+      <div id="report-viewer"></div>
     </>
   );
 }
