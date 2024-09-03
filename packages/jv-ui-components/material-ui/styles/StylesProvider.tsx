@@ -1,4 +1,3 @@
-import { unstable_ClassNameGenerator as MuiClassNameGenerator } from "@mui/material";
 import {
   createTheme as MuiCreateTheme,
   StyledEngineProvider as MuiStyledEngineProvider,
@@ -20,10 +19,6 @@ const GenerateClassNameOptions = {
 };
 
 const CreateMuiThemeOptions = {};
-
-MuiClassNameGenerator.configure((componentName: string) => {
-  return `jv-${componentName}`;
-});
 const muiTheme = MuiCreateTheme(CreateMuiThemeOptions);
 
 function createStylesProvider<Theme = MuiDefaultTheme>(
