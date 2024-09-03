@@ -14,6 +14,7 @@ export default defineConfig({
     libCss(),
   ],
   build: {
+    sourcemap: true,
     outDir: "dist",
     lib: {
       entry: "src/index.ts",
