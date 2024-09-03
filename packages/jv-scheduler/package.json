@@ -2,7 +2,9 @@
   "name": "@jaspersoft/jv-scheduler",
   "version": "1.0.0",
   "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
-  "module": "dist/esm/index.js",
+  "type": "module",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],

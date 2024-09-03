@@ -19,10 +19,10 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       formats: ["es"],
-      fileName: () => `index.js`,
+      fileName: () => "index.js",
     },
     rollupOptions: {
-      external: ["react", "react-dom", "i18next-http-backend"],
+      external: ["react", "react-dom", "i18next-http-backend", "moment"],
     },
   },
 });

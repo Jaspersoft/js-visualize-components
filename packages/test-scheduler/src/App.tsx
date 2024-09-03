@@ -5,7 +5,7 @@ import {
   visualizejsLoader,
   VisualizeType,
 } from "@jaspersoft/jv-tools";
-import { Scheduler } from "@jaspersoft/jv-scheduler/dist/index";
+import { Scheduler } from "@jaspersoft/jv-scheduler";
 import schedulerUIConfig from "./jv_sheduler_config";
 
 const visualizeUrl =
