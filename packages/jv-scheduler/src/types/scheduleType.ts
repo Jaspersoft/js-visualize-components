@@ -189,7 +189,7 @@ export interface IScheduleInfo {
   repositoryDestination: IRepositoryDestination;
   source: {
     parameters: {
-      parameterValues: {};
+      parameterValues: { [key: string]: string | string[] };
     };
   };
 }
