@@ -76,8 +76,6 @@ export interface IStepperState extends IStepperErrorData {
 }
 
 export interface IScheduleErrors extends IStepperErrorData {
-  label?: string;
-  description?: string;
   baseOutputFileDescription?: string;
   folderURI?: string;
   address?: string;
@@ -85,9 +83,9 @@ export interface IScheduleErrors extends IStepperErrorData {
   recurrenceInterval?: string;
   outputFormat?: string;
   startDate?: string;
-  thresholdValue?: string;
   scheduleJobName?: string;
   scheduleJobDescription?: string;
+  parameters?: string;
 }
 
 interface IRepositoryDestination {
@@ -189,6 +187,11 @@ export interface IScheduleInfo {
   outputFormats: IOutputFormat;
   userTimeZones: [{ code: string; description: string }];
   repositoryDestination: IRepositoryDestination;
+  source: {
+    parameters: {
+      parameterValues: {};
+    };
+  };
 }
 
 export interface ITrigger {

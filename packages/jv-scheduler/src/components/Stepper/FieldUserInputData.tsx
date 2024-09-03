@@ -24,15 +24,6 @@ interface InputDataInStepProps {
   error: string | undefined;
   value: string | undefined | null | number;
   title: string;
-  dataName: string;
-  className?: string;
-}
-
-interface InputDataInStepProps {
-  error: string | undefined;
-  value: string | undefined | null | number;
-  title: string;
-  dataName: string;
   className?: string;
 }
 
@@ -40,20 +31,14 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
   error,
   value,
   title,
-  dataName,
   className = "",
 }) => {
   return (
     <>
       {error ? (
-        <ErrorTemplate text={error} dataName={`${dataName}-err`} />
+        <ErrorTemplate text={error} />
       ) : (
-        <KeyValueTemplate
-          title={title}
-          value={value}
-          dataName={dataName}
-          className={className}
-        />
+        <KeyValueTemplate title={title} value={value} className={className} />
       )}
     </>
   );
@@ -177,14 +162,12 @@ export const NotificationStepUserInput = () => {
         error={mailNotificationAddressesErr}
         title={t("stepper.notifications.recipients.key")}
         value={address}
-        dataName=""
       />
       <InputDataInStep
         error={mailNotificationSubjectErr}
         title={t("stepper.notifications.subject.key")}
         value={mailNotificationSubject}
         className="jv-uTextBreak"
-        dataName=""
       />
       {mailNotificationMessage && (
         <InputDataInStep
@@ -192,14 +175,12 @@ export const NotificationStepUserInput = () => {
           title={t("stepper.notifications.message.key")}
           value={mailNotificationMessage}
           className=" jv-uTextBreak jv-uTextTruncate3"
-          dataName=""
         />
       )}
       <InputDataInStep
         error={""}
         title={t("stepper.notifications.access.key")}
         value={reportionOptionValue}
-        dataName=""
       />
     </>
   );
@@ -252,14 +233,12 @@ export const OutputStepUserInput = () => {
         title={t("stepper.output.filename.key")}
         value={fileName}
         className="jv-uTextBreak"
-        dataName=""
       />
       <InputDataInStep
         error={""}
         title={t("stepper.output.description.key")}
         value={fileDescription}
         className="jv-uTextBreak"
-        dataName=""
       />
       <KeyValueTemplate
         title={t("stepper.output.timezone.key")}
@@ -269,7 +248,6 @@ export const OutputStepUserInput = () => {
         error={formatsErr}
         title={t("stepper.output.formats.key")}
         value={formatsToDisplay}
-        dataName=""
       />
     </>
   );
@@ -277,7 +255,32 @@ export const OutputStepUserInput = () => {
 
 export const ParametersStepUserInput = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
+  const parameters = useSelector(
+    (state: IState) => state.scheduleInfo.source.parameters.parameterValues,
+  );
+
+  const parametersErr = useSelector(
+    (state: IState) => state.scheduleErrors.parameters,
+  );
   return (
-    <KeyValueTemplate title={t("stepper.parameters.brand.key")} value="brand" />
+    <>
+      {parametersErr ? (
+        <InputDataInStep
+          error={parametersErr}
+          value={""}
+          title={"Parameters"}
+        />
+      ) : (
+        Object.keys(parameters).map((key) => {
+          return (
+            <KeyValueTemplate
+              title={key}
+              value={parameters[key].join(", ")}
+              key={key}
+            />
+          );
+        })
+      )}
+    </>
   );
 };

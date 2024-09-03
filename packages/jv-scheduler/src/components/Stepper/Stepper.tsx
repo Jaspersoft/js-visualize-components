@@ -78,8 +78,8 @@ const Stepper = () => {
   );
 
   const {
-    label,
-    description,
+    scheduleJobName,
+    scheduleJobDescription,
     address,
     subject,
     messageText,
@@ -114,16 +114,16 @@ const Stepper = () => {
         recurrenceIntervalUnit ||
         recurrenceInterval ||
         startDate ||
-        label ||
-        description
+        scheduleJobName ||
+        scheduleJobDescription
           ? ERROR_STATE
           : SUCCESS_STATE;
       setIconStateOnChange(SCHEDULE_TAB, tabState);
     }
   }, [
     recurrenceInterval,
-    label,
-    description,
+    scheduleJobName,
+    scheduleJobDescription,
     recurrenceIntervalUnit,
     startDate,
     visitedTabs,

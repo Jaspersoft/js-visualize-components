@@ -6,18 +6,9 @@
 import React from "react";
 import { JVTypography } from "@jaspersoft/jv-ui-components";
 
-export const ErrorTemplate = ({
-  text,
-  dataName,
-}: {
-  text: string;
-  dataName: string;
-}) => {
+export const ErrorTemplate = ({ text }: { text: string }) => {
   return (
-    <JVTypography
-      className="jr-mText jr-uMargin-b-01 jr-uColor-error"
-      data-name={dataName}
-    >
+    <JVTypography className="jr-mText jr-uMargin-b-01 jr-uColor-error">
       {text}
     </JVTypography>
   );
