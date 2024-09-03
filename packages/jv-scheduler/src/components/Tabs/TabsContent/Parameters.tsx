@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { setPropertiesDetails } from "../../../actions/action";
+import {
+  scheduleValidationError,
+  setPropertiesDetails,
+} from "../../../actions/action";
 import { getLengthOfObject } from "../../../utils/schedulerUtils";
 
 const Parameters = () => {
@@ -14,6 +17,18 @@ const Parameters = () => {
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
 
+  const updateStoreWithParameters = (params: any) => {
+    dispatch(
+      setPropertiesDetails({
+        source: {
+          ...source,
+          parameters: {
+            parameterValues: params,
+          },
+        },
+      }),
+    );
+  };
   useEffect(() => {
     const inputControlsData = getLengthOfObject(
       source?.parameters?.parameterValues,
@@ -26,32 +41,17 @@ const Parameters = () => {
       events: {
         change: (params: any, error: any) => {
           if (!error) {
-            dispatch(
-              setPropertiesDetails({
-                source: {
-                  ...source,
-                  parameters: {
-                    parameterValues: params,
-                  },
-                },
-              }),
-            );
+            updateStoreWithParameters(params);
           } else {
-            // dispatch()
+            dispatch(
+              scheduleValidationError({ parameters: "error.parameters.error" }),
+            );
+            updateStoreWithParameters(params);
           }
         },
       },
-      success: function () {
-        dispatch(
-          setPropertiesDetails({
-            source: {
-              ...source,
-              parameters: {
-                parameterValues: controls.params(),
-              },
-            },
-          }),
-        );
+      success: function (params: any) {
+        updateStoreWithParameters(params.parameters);
       },
       ...inputControlsData,
     });

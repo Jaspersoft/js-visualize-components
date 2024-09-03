@@ -19,6 +19,22 @@ import {
 } from "../../constants/schedulerConstants";
 import { IState } from "../../types/scheduleType";
 
+function CustomTabPanel(props: any) {
+  const { children, value, currentActive, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== currentActive}
+      id={`simple-tabpanel-${currentActive}`}
+      aria-labelledby={`simple-tab-${currentActive}`}
+      {...other}
+    >
+      {value === currentActive && children}
+    </div>
+  );
+}
+
 const Tabs = () => {
   const dispatch = useDispatch<any>();
   const visitedTabs = useSelector(
@@ -75,10 +91,18 @@ const Tabs = () => {
         </JVTabs>
       </div>
       <div className="jr-mDrawer-body jr-mDrawer-bodyPadded mui">
-        {currentActiveTab === "schedule" && <Schedule />}
-        {currentActiveTab === "parameters" && <Parameters />}
-        {currentActiveTab === "notifications" && <Notifications />}
-        {currentActiveTab === "output" && <Output />}
+        <CustomTabPanel value="schedule" currentActive={currentActiveTab}>
+          <Schedule />
+        </CustomTabPanel>
+        <CustomTabPanel value="parameters" currentActive={currentActiveTab}>
+          <Parameters />
+        </CustomTabPanel>
+        <CustomTabPanel value="notifications" currentActive={currentActiveTab}>
+          <Notifications />
+        </CustomTabPanel>
+        <CustomTabPanel value="output" currentActive={currentActiveTab}>
+          <Output />
+        </CustomTabPanel>
       </div>
     </>
   );
