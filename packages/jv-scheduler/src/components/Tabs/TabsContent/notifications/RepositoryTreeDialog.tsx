@@ -91,8 +91,6 @@ export const RepositoryTreeDialog = ({
 
   const [showTree, setShowTree] = useState(false);
   const [open, setOpen] = useState<any>(dialogOpen);
-  const [width, setWidth] = useState("400px");
-  const [height, setHeight] = useState("500px");
   const [currentSelectedFolder, setCurrentSelectedFolder] = useState(folderURI);
 
   useEffect(() => {
@@ -154,9 +152,6 @@ export const RepositoryTreeDialog = ({
             <Loader />
           )
         }
-        DialogContentProps={{
-          dividers: scroll === "paper",
-        }}
       />
       <JVDialogFooter>
         <JVButton

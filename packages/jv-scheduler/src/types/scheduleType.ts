@@ -141,23 +141,44 @@ export interface IFieldsVisibility {
   scheduleJobDescription?: boolean;
   scheduleJobName?: boolean;
 }
+export type ITabConfig = {
+  tabsToShow?: tabsToShow[];
+  stepsToShow?: stepsToShow[];
+};
 export interface ITabsConfiguration {
   currentActiveTab?: string;
   tabsConfiguration?: {
-    tabsToShow?: boolean;
-    stepsToShow?: boolean;
+    tabsToShow?: tabsToShow[];
+    stepsToShow?: stepsToShow[];
   };
-  tabsToShow?: [];
-  stepsToShow?: [];
 }
-export interface IState {
-  scheduleErrors: IScheduleErrors;
+
+type stepsToShow = {
+  name: string;
+  title: string;
+};
+
+type tabsToShow = {
+  key: string;
+  label: string;
+  value: string;
+};
+
+export interface ISchedulerInitialPluginData {
+  currentActiveTab: string;
+  fieldsVisibility: IFieldsVisibility;
   scheduleInfo: IScheduleInfo;
+  showStepper: boolean;
+  stepperDefaultState: IStepperState;
+  stepsToShow: stepsToShow[];
+  tabsToShow: tabsToShow[];
+}
+
+export interface IState extends ISchedulerInitialPluginData {
+  scheduleErrors: IScheduleErrors;
   visitedTabs: string[];
   outputFormats: string[];
-  currentActiveTab: string;
-  tabsConfiguration: ITabsConfiguration;
-  fieldsVisibility: IFieldsVisibility;
+  tabsConfiguration: ITabConfig;
   stepperConfiguration: {
     show: boolean;
   };
@@ -168,9 +189,6 @@ export interface IState {
   fakeRoot?: any;
   schedulerUIConfig?: ISchedulerUIConfig;
   userTimeZones: [{ code: string; description: string }];
-  tabsToShow?: boolean;
-  stepsToShow?: boolean;
-  showStepper?: boolean;
 }
 
 export interface IStoreData {}
@@ -189,7 +207,7 @@ export interface IScheduleInfo {
   repositoryDestination: IRepositoryDestination;
   source: {
     parameters: {
-      parameterValues: { [key: string]: string | string[] };
+      parameterValues: { [key: string]: string[] };
     };
   };
 }

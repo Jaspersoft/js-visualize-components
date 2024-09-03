@@ -30,6 +30,7 @@ import {
   IFieldsVisibility,
   IScheduleErrors,
   IScheduleInfo,
+  ISchedulerInitialPluginData,
   ISchedulerUIConfig,
   IState,
   IStepperData,
@@ -249,7 +250,7 @@ export const currentTabValidator = (newTabVal: string) => {
 };
 
 export const setInitialPluginState = (
-  schedulerData: IState,
+  schedulerData: ISchedulerInitialPluginData,
   schedulerUIConfig: ISchedulerUIConfig,
   visualize: any,
 ) => {
