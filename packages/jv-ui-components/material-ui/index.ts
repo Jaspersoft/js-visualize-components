@@ -128,17 +128,16 @@ export { Step as JVStep } from "./Stepper/Step";
 export type { StepComponentProps as JVStepComponentProps } from "./Stepper/Step";
 export { Stepper as JVStepper } from "./Stepper/Stepper";
 export { StyleEngineProvider as JVStyleEngineProvider } from "./StyleEngineProvider/StyleEngineProvider";
-export {
-  StylesProvider as JVStylesProvider,
-  createStylesProvider as JVCreateStylesProvider,
-  CreateMuiThemeOptions as JVCreateMuiThemeOptions,
-  GenerateClassNameOptions as JVGenerateClassNameOptions,
-} from "./styles/StylesProvider";
 export type {
-  CreateStylesProviderType as JVCreateStylesProviderType,
   ThemeProviderProps as JVThemeProviderProps,
+  CreateStylesProviderType as JVCreateStylesProviderType,
 } from "./styles/StylesProvider";
-
+export {
+  GenerateClassNameOptions as JVGenerateClassNameOptions,
+  CreateMuiThemeOptions as JVCreateMuiThemeOptions,
+  createStylesProvider as JVCreateStylesProvider,
+  StylesProvider as JVStylesProvider,
+} from "./styles/StylesProvider";
 export { Switch as JVSwitch } from "./Switch/Switch";
 export type { SwitchProps as JVSwitchProps } from "./Switch/Switch";
 export { Table as JVTable } from "./Table/Table";
