@@ -1,7 +1,9 @@
 import * as React from "react";
-import { Switch as JVSwitch } from "@jaspersoft/jv-ui-components/material-ui/Switch/Switch";
-import { Checkbox as JVCheckbox } from "@jaspersoft/jv-ui-components/material-ui/Checkbox/Checkbox";
-import { CheckboxGroup as JVCheckboxGroup } from "@jaspersoft/jv-ui-components/material-ui/Checkbox/CheckboxGroup";
+import {
+  JVSwitch,
+  JVCheckbox,
+  JVCheckboxGroup,
+} from "@jaspersoft/jv-ui-components";
 import { BaseInputControlProps } from "./BaseInputControl";
 import { useChangeCallback } from "./hooks/useChangeCallback";
 import { useLiveState } from "./hooks/useLiveState";

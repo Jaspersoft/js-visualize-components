@@ -1,4 +1,7 @@
-import { StylesProvider as JVStylesProvider } from "@jaspersoft/jv-ui-components/material-ui/styles/StylesProvider";
+// This line is necessary to setting up the styles
+// refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
+import "@jaspersoft/jv-ui-components/material-ui/styles/JVMuiClassNameSetup";
+import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import { createRoot } from "react-dom/client";
 import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";

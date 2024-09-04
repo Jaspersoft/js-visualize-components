@@ -1,5 +1,5 @@
 import { FormHelperText } from "@mui/material";
-import { DateTimePicker as MuiDateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { DateTimePicker as MuiDateTimePicker } from "@mui/x-date-pickers";
 import { forwardRef } from "react";
 import castValueIfNeeded, {
   prepareErrorHelperTextParams,

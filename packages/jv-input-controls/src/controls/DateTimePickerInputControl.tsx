@@ -1,9 +1,9 @@
-import { DateTimePicker as JVDateTimePicker } from "@jaspersoft/jv-ui-components/material-ui/DateTime/DateTimePicker";
+import { JVDateTimePicker } from "@jaspersoft/jv-ui-components";
 import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
+import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
