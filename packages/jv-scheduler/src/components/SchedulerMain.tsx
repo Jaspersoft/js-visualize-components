@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "@jaspersoft/jv-ui-components/material-ui/styles/JVMuiClassNameSetup";
 import Tabs from "./Tabs/Tabs";
 import { useDispatch, useSelector } from "react-redux";
 import { setInitialPluginState } from "../actions/action";
@@ -7,7 +8,7 @@ import SchedulerFooter from "./Tabs/SchedulerFooter";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import SchedulerHeader from "./Tabs/SchedulerHeader";
 import { ErrorConfirmationDialog } from "./apiFailureError/ErrorConfirmationDialog";
-import { ISchedulerUIConfig, IState } from "../types/scheduleType";
+import { IState } from "../types/scheduleType";
 
 const SchedulerMain = ({
   schedulerData,
