@@ -4,10 +4,6 @@
  */
 
 import { useState } from "react";
-import {
-  BaseInputControlProps,
-  getBaseInputControlProps,
-} from "../BaseInputControl";
 
 const DEFAULT_DATE_FORMAT = "YYYY-MM-DD";
 

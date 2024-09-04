@@ -230,7 +230,6 @@ describe("SingleValueNumberInputControls tests", () => {
   });
 
   test("verify the field does not show error when value is under the range of valid values", () => {
-    const CSS_ERROR_CLASS = "jv-mInputRequired";
     const { container } = render(
       getNumberIC({
         mandatory: true,

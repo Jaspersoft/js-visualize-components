@@ -1,9 +1,9 @@
 import { JVDateTimeTextField } from "@jaspersoft/jv-ui-components";
 import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
-import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
+import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useLiveState } from "./hooks/useLiveState";
 import { useErrorMsg } from "./hooks/useErrorMsg";
+import { useLiveState } from "./hooks/useLiveState";
 
 export type DateTimeICType = "default";
 
