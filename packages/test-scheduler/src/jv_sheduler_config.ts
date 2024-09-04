@@ -1,7 +1,7 @@
 const schedulerUIConfig = {
   server: "http://localhost:8080/jasperserver-pro",
-  resourceURI: "/public/Samples/Reports/ProfitDetailReport",
   contextPath: "/jasperserver-pro",
+  resourceURI: "/public/Samples/Reports/ProfitDetailReport",
   stepper: {
     show: true,
   },

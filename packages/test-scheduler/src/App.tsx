@@ -8,8 +8,7 @@ import {
 import { Scheduler } from "@jaspersoft/jv-scheduler";
 import schedulerUIConfig from "./jv_sheduler_config";
 
-const visualizeUrl =
-  "https://localhost:8443/jasperserver-pro/client/visualize.js";
+const visualizeUrl = `${schedulerUIConfig.server}/client/visualize.js`;
 
 const credentials: Authentication = {
   name: "superuser",
