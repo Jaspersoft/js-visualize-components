@@ -1,5 +1,5 @@
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
@@ -126,24 +126,33 @@ export interface ICPanelProps {
 }
 export function InputControlsPanel(props: ICPanelProps) {
   const [embedControls, setEmbedControls] = useState<InputControlCollection>();
+  const [embedPlugin, setEmbedPlugin] = useState<InputControls>();
 
   if (props.vObject === undefined) return <></>;
 
-  let icPlugin = new InputControls(props.vObject);
-  icPlugin.fillControlStructure(
-    props.uri,
-    (controls: InputControlCollection) => {
-      setEmbedControls(controls);
-    },
-    (error: any) => {
-      console.log("Error: ", error);
-    },
-  );
+  useEffect(() => {
+    if (props.vObject !== undefined) {
+      let icPlugin = new InputControls(props.vObject);
+      setEmbedPlugin(icPlugin);
+    }
+  }, []);
+
+  useEffect(() => {
+    embedPlugin?.fillControlStructure(
+      props.uri,
+      (controls: InputControlCollection) => {
+        setEmbedControls(controls);
+      },
+      (error: any) => {
+        console.log("Error: ", error);
+      },
+    );
+  }, [embedPlugin]);
 
   return (
     <JVStylesProvider>
       <BasePanel
-        controls={embedControls || {}}
+        controls={embedControls}
         config={props.panelDef?.config}
         events={props.panelDef?.events}
       ></BasePanel>

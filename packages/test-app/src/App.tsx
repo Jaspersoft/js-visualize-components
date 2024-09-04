@@ -146,9 +146,24 @@ export default function App(props: AppConfig) {
     }
   };
 
-  return (
+  let panelD = {
+    events: {
+      change: (ics: any) => {
+        console.log("NEW ICS!! ", ics);
+      },
+    },
+  };
+
+  return 1 ? (
     <>
-      <InputControlsPanel vObject={vContainer?.v} uri={reportUri} />
+      <InputControlsPanel
+        vObject={vContainer?.v}
+        uri={reportUri}
+        panelDef={panelD}
+      />
+    </>
+  ) : (
+    <>
       <div id="basic-controls-section"></div>
       <hr />
       <div id="select-controls-section"></div>
