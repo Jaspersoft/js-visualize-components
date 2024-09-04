@@ -14,7 +14,7 @@ import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextField
 import { InputControlUserConfig } from "../InputControls";
 
 export interface BasePanelProps {
-  controls: any;
+  controls?: any;
   config?: InputControlUserConfig;
   events?: {
     change?: (
@@ -26,7 +26,7 @@ export interface BasePanelProps {
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
   const [inputControls, setInputControls] = useState<BaseInputControlProps[]>(
-    props.controls.data,
+    props.controls?.data,
   );
   const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
     {},
@@ -209,7 +209,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   };
 
   const buildControls = (controlMap: any) => {
-    if (controlMap.data) {
+    if (controlMap?.data) {
       return controlMap.data.map(buildControl);
     }
     if (controlMap) {

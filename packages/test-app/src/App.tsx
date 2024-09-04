@@ -13,6 +13,7 @@ import {
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./ReportPanel";
+import { InputControlsPanel } from "@jaspersoft/jv-input-controls/src/InputControls";
 
 export interface AppConfig {
   title: string;
@@ -147,6 +148,7 @@ export default function App(props: AppConfig) {
 
   return (
     <>
+      <InputControlsPanel vObject={vContainer?.v} uri={reportUri} />
       <div id="basic-controls-section"></div>
       <hr />
       <div id="select-controls-section"></div>

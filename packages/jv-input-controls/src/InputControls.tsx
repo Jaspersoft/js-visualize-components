@@ -1,4 +1,5 @@
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
+import { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
@@ -116,4 +117,36 @@ export class InputControls {
     this.fillControlStructure(resourceUri);
     container.innerText = JSON.stringify(this.controlStructure);
   };
+}
+
+export interface ICPanelProps {
+  vObject: any;
+  uri: string;
+  panelDef?: InputControlPanelConfig;
+}
+export function InputControlsPanel(props: ICPanelProps) {
+  const [embedControls, setEmbedControls] = useState<InputControlCollection>();
+
+  if (props.vObject === undefined) return <></>;
+
+  let icPlugin = new InputControls(props.vObject);
+  icPlugin.fillControlStructure(
+    props.uri,
+    (controls: InputControlCollection) => {
+      setEmbedControls(controls);
+    },
+    (error: any) => {
+      console.log("Error: ", error);
+    },
+  );
+
+  return (
+    <JVStylesProvider>
+      <BasePanel
+        controls={embedControls}
+        config={props.panelDef?.config}
+        events={props.panelDef?.events}
+      ></BasePanel>
+    </JVStylesProvider>
+  );
 }
