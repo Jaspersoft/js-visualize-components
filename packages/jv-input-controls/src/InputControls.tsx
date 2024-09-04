@@ -143,7 +143,7 @@ export function InputControlsPanel(props: ICPanelProps) {
   return (
     <JVStylesProvider>
       <BasePanel
-        controls={embedControls}
+        controls={embedControls || {}}
         config={props.panelDef?.config}
         events={props.panelDef?.events}
       ></BasePanel>
