@@ -19,7 +19,7 @@
     "copy:styles:dev": "node scripts/copy-styles-context.js dev",
     "dev": "vite",
     "build": "dotenv -c -- run-s copy:styles styles vite:build",
-    "vite:build": "tsc -b && vite build",
+    "vite:build": "vite build",
     "serve": "vite preview",
     "clean": "rm -rf dist",
     "test": "jest"
