@@ -1,5 +1,10 @@
-import InputControls from "@jaspersoft/jv-input-controls";
-import { BaseInputControlProps } from "@jaspersoft/jv-input-controls/src/controls/BaseInputControl";
+// This line is necessary to setting up the styles
+// refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
+import "@jaspersoft/jv-ui-components/material-ui/styles/JVMuiClassNameSetup";
+import {
+  BaseInputControlProps,
+  InputControls,
+} from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
   VisualizeFactory,

@@ -24,16 +24,7 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        ...Object.keys(packageJson.dependencies || {}),
-        "react/jsx-runtime",
-      ],
-      output: {
-        globals: {
-          // "@mui/system": "MuiSystem",
-        },
-      },
+      external: [...Object.keys(packageJson.dependencies || {})],
     },
-    // copyPublicDir: false,
   },
 });

@@ -107,12 +107,12 @@ export type VisualizationConfig = {
 };
 
 export interface VisualizeType {
-  resourcesSearch: (config: ResourcesSearch) => void;
+  resourcesSearch: (config: ResourcesSearch) => any;
   logout(): Deferred;
-  report: (config: VisualizationConfig) => void;
-  adhocView: (config: VisualizationConfig) => void;
-  dashboard: (config: VisualizationConfig) => void;
-  inputControls: (config: VisualizationConfig) => void;
+  report: (config: VisualizationConfig) => any;
+  adhocView: (config: VisualizationConfig) => any;
+  dashboard: (config: VisualizationConfig) => any;
+  inputControls: (config: VisualizationConfig) => any;
 }
 
 export {
