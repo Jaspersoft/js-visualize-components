@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { Box as MuiBox } from "@mui/material";
 
 export const Box = forwardRef<HTMLElement, any>(

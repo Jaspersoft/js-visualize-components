@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
 
 export const RichTree = forwardRef<HTMLUListElement, any>(

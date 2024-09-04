@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { TreeItem2Icon as MuiTreeItem2Icon } from "@mui/x-tree-view/TreeItem2Icon";
 import { TreeItem2Provider as MuiTreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
 import { TreeViewBaseItem as MuiTreeViewBaseItem } from "@mui/x-tree-view/models";

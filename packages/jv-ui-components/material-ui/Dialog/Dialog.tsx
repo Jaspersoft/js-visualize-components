@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import {
   Dialog as MuiDialog,
   DialogProps as MuiDialogProps,

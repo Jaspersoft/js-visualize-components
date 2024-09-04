@@ -182,17 +182,19 @@ export type { TypographyProps as JVTypographyProps } from "./Typography/Typograp
 export { RichTree as JVRichTreeView } from "./Tree/RichTree";
 export {
   useTreeItem2 as useJVTreeItem2,
-  UseTreeItem2ParametersTypes as useJVTreeItem2ParametersTypes,
   TreeItem2Icon as JVTreeItem2Icon,
   TreeProviderNameSpace as JVTreeProviderNameSpace,
-  TreeViewBaseItemTypes as JVTreeViewBaseItemTypes,
   TreeItem2Content as JVTreeItem2Content,
   TreeItem2Label as JVTreeItem2Label,
   TreeItem2Root as JVTreeItem2Root,
   TreeItem2IconContainer as JVTreeItem2IconContainer,
 } from "./Tree/TreeItem2";
 
+export type {
+  UseTreeItem2ParametersTypes as useJVTreeItem2ParametersTypes,
+  TreeViewBaseItemTypes as JVTreeViewBaseItemTypes,
+} from "./Tree/TreeItem2";
+
 export { TreeItem as JVTreeItem } from "./Tree/TreeItem";
 export { Box as JVBox } from "./Box/Box";
 export { TabPanels as JVTabPanels } from "./Tabs/TabPanels";
-export { TabContext as JVTabContext } from "./Tabs/TabContext";
