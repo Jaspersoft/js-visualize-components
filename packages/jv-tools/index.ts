@@ -115,7 +115,5 @@ export interface VisualizeType {
   inputControls: (config: VisualizationConfig) => any;
 }
 
-export {
-  visualizejsLoader,
-  VisualizejsProvider,
-} from "./src/visualize/VisualizejsProvider";
+export { visualizejsLoader } from "./src/visualize/VisualizejsProvider";
+export type { VisualizejsProvider } from "./src/visualize/VisualizejsProvider";
