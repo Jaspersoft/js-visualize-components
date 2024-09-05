@@ -123,6 +123,7 @@ export interface ICPanelProps {
   vObject: any;
   uri: string;
   panelDef?: InputControlPanelConfig;
+  handleError?: (error: any) => void;
 }
 
 export function InputControlsPanel(props: ICPanelProps) {
@@ -142,9 +143,11 @@ export function InputControlsPanel(props: ICPanelProps) {
       (controls: InputControlCollection) => {
         setEmbedControls(controls);
       },
-      (error: any) => {
-        console.log("Error: ", error);
-      },
+      props.handleError === undefined
+        ? (error: any) => {
+            console.log("Error filling controls: ", error);
+          }
+        : props.handleError,
     );
   }, [embedPlugin]);
 
