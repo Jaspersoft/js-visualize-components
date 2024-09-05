@@ -35,7 +35,7 @@ const Parameters = () => {
     )
       ? { params: source?.parameters?.parameterValues }
       : {};
-    const controls = visualize.v.inputControls({
+    visualize.v.inputControls({
       resource: resourceUri,
       container: "#parametersTab",
       events: {

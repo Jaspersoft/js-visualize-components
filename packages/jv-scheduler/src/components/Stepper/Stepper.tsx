@@ -6,7 +6,6 @@ import {
   OUTPUT_TAB,
   PARAMETERS_TAB,
   SCHEDULE_TAB,
-  stepInfo,
   stepperSteps,
   SUCCESS_STATE,
   tabsStateDefaultState,

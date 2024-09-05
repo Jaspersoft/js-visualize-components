@@ -1,5 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
-import { useTranslation } from "react-i18next";
+import React, { ChangeEvent } from "react";
 import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
 import Schedule from "../Tabs/TabsContent/Schedule";
@@ -8,15 +7,11 @@ import Output from "../Tabs/TabsContent/Output";
 import Notifications from "./TabsContent/notifications/Notifications";
 import {
   currentTabValidationError,
-  currentTabValidator,
   setCurrentActiveTab,
   setVisitedTab,
 } from "./../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  defaultTabsToShow,
-  PARAMETERS_TAB,
-} from "../../constants/schedulerConstants";
+import { PARAMETERS_TAB } from "../../constants/schedulerConstants";
 import { IState } from "../../types/scheduleType";
 
 function CustomTabPanel(props: any) {

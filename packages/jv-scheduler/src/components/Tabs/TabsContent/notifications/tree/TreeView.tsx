@@ -88,7 +88,6 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
       }}
       expandedItems={expandedItems}
       defaultSelectedItems={lastExapanded}
-      multipleSelection
       getItemId={(item: any) => addRootFolderPath(item.uri)}
       slots={{
         item: (customItemProps: CustomTreeItemProps) => (

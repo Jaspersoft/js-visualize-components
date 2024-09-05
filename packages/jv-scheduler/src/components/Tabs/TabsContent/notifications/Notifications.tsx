@@ -77,7 +77,6 @@ const Notifications = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedVal = e.target.value,
-      saveToRepositoryVal = selectedVal === SEND_LINK,
       updatedProperty = {
         mailNotificationVal: {
           ...mailNotification,

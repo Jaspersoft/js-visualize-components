@@ -254,7 +254,6 @@ export const OutputStepUserInput = () => {
 };
 
 export const ParametersStepUserInput = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
   const parameters = useSelector(
     (state: IState) => state.scheduleInfo.source.parameters.parameterValues,
   );

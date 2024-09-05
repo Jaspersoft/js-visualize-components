@@ -1,4 +1,4 @@
-import { Action, Dispatch } from "redux";
+import { Dispatch } from "redux";
 import {
   SET_SCHEDULE_APIS_FAILURE_ERROR,
   SET_OUTPUT_FORMATS,
@@ -40,7 +40,6 @@ import {
 import {
   getErrorsForCurrentTab,
   getStateOfCurrentActiveTab,
-  getUriParts,
 } from "../utils/schedulerUtils";
 import { removeRootFolderPath } from "../utils/treeUtils";
 

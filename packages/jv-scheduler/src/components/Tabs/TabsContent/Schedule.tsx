@@ -16,11 +16,7 @@ import {
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 import { useTranslation } from "react-i18next";
-import {
-  IOutputFormat,
-  IState,
-  IStepperState,
-} from "../../../types/scheduleType";
+import { IState } from "../../../types/scheduleType";
 import { updateChangeToStore } from "../../../utils/schedulerUtils";
 
 const Schedule = () => {
@@ -30,9 +26,6 @@ const Schedule = () => {
   );
   const stepperConfig = useSelector(
     (state: IState) => state.stepperConfiguration,
-  );
-  const startDateErr = useSelector(
-    (state: IState) => state.scheduleErrors.startDate,
   );
   const scheduleJobNameErr = useSelector(
     (state: IState) => state.scheduleErrors.scheduleJobName,
