@@ -124,18 +124,17 @@ export interface ICPanelProps {
   uri: string;
   panelDef?: InputControlPanelConfig;
 }
+
 export function InputControlsPanel(props: ICPanelProps) {
   const [embedControls, setEmbedControls] = useState<InputControlCollection>();
   const [embedPlugin, setEmbedPlugin] = useState<InputControls>();
-
-  if (props.vObject === undefined) return <></>;
 
   useEffect(() => {
     if (props.vObject !== undefined) {
       let icPlugin = new InputControls(props.vObject);
       setEmbedPlugin(icPlugin);
     }
-  }, []);
+  }, [props.vObject]);
 
   useEffect(() => {
     embedPlugin?.fillControlStructure(
@@ -148,6 +147,21 @@ export function InputControlsPanel(props: ICPanelProps) {
       },
     );
   }, [embedPlugin]);
+
+  if (props.vObject === undefined) {
+    return (
+      <>
+        <h2>Loading visualize.js...</h2>
+      </>
+    );
+  }
+  if (!embedControls) {
+    return (
+      <>
+        <h2>Fetching input controls...</h2>
+      </>
+    );
+  }
 
   return (
     <JVStylesProvider>

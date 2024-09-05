@@ -2,9 +2,10 @@
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import {
-  BaseInputControlProps,
   InputControls,
-} from "@jaspersoft/jv-input-controls";
+  InputControlsPanel
+} from "@jaspersoft/jv-input-controls/src/InputControls";
+import { BaseInputControlProps } from "@jaspersoft/jv-input-controls/src/controls/BaseInputControl";
 import {
   Authentication,
   VisualizeFactory,
@@ -13,7 +14,6 @@ import {
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./ReportPanel";
-import { InputControlsPanel } from "@jaspersoft/jv-input-controls/src/InputControls";
 
 export interface AppConfig {
   title: string;
