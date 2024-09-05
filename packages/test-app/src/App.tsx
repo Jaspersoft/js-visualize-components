@@ -2,10 +2,11 @@
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import {
+  BaseInputControlProps,
+  InputControlPanelConfig,
   InputControls,
-  InputControlsPanel
-} from "@jaspersoft/jv-input-controls/src/InputControls";
-import { BaseInputControlProps } from "@jaspersoft/jv-input-controls/src/controls/BaseInputControl";
+  InputControlsPanel,
+} from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
   VisualizeFactory,
@@ -146,7 +147,7 @@ export default function App(props: AppConfig) {
     }
   };
 
-  let panelD = {
+  const panelD: InputControlPanelConfig = {
     config: { bool: { type: "switch" } },
     events: {
       change: (ics: any, vs: any) => {

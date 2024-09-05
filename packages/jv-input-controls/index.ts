@@ -12,6 +12,8 @@ export { SingleValueNumberInputControl } from "./src/controls/SingleValueNumberI
 export { SingleValueTextInputControl } from "./src/controls/SingleValueTextInputControl";
 export { TimePickerInputControl } from "./src/controls/TimePickerInputControl";
 export { TimePickerTextFieldInputControl } from "./src/controls/TimePickerTextFieldInputControl";
+export { InputControlsPanel } from "./src/InputControls";
 
 // types
 export type { BaseInputControlProps } from "./src/controls/BaseInputControl";
+export type { InputControlPanelConfig } from "./src/InputControls";
