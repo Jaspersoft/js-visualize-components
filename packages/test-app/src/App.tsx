@@ -1,6 +1,6 @@
 // This line is necessary to setting up the styles
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
-import "@jaspersoft/jv-ui-components/material-ui/styles/JVMuiClassNameSetup";
+import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import {
   BaseInputControlProps,
   InputControls,
