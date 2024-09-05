@@ -147,23 +147,22 @@ export default function App(props: AppConfig) {
   };
 
   let panelD = {
+    config: { bool: { type: "switch" } },
     events: {
-      change: (ics: any) => {
+      change: (ics: any, vs: any) => {
         console.log("NEW ICS!! ", ics);
+        if (vs) console.log("Validations: ", vs);
       },
     },
   };
 
-  return 1 ? (
+  return (
     <>
       <InputControlsPanel
         vObject={vContainer?.v}
         uri={reportUri}
         panelDef={panelD}
       />
-    </>
-  ) : (
-    <>
       <div id="basic-controls-section"></div>
       <hr />
       <div id="select-controls-section"></div>
