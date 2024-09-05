@@ -1,4 +1,4 @@
-import * as React from "react";
+import { JSX } from "react";
 
 export type ICType =
   | string
@@ -92,7 +92,7 @@ export const getBaseInputControlProps = (
 };
 
 export interface BaseInputControlProps {
-  children?: React.JSX.Element[] | React.JSX.Element;
+  children?: JSX.Element[] | JSX.Element;
   id: string;
   type: ICType;
   label: string;

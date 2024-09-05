@@ -1,7 +1,4 @@
-import {
-  BaseInputControlProps,
-  ICType,
-} from "@jaspersoft/jv-input-controls/src/controls/BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-input-controls";
 import { VisualizeType } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 
@@ -19,7 +16,7 @@ export default function ReportPanel(props: ReportPanelProps) {
       resource: props.reportUri || "",
       container: "#report-viewer",
       events: {
-        reportCompleted: function (status) {},
+        reportCompleted: function (status: any) {},
       },
     });
     setVizReport(report as any);

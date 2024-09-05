@@ -7,7 +7,6 @@ import { ICDataType } from "../controls/BaseInputControl";
 
 const DECIMAL_SEPARATOR = "\\.";
 const GROUPING_SEPARATOR = ",";
-const SPACE_SEPARATOR = "\\s";
 const MAX_INT = Number.MAX_SAFE_INTEGER
   ? Number.MAX_SAFE_INTEGER + 1
   : 9007199254740992;
@@ -25,11 +24,6 @@ const DECIMAL_NUMBER_PATTERN = new RegExp(
     "[0-9]+)?|0(" +
     DECIMAL_SEPARATOR +
     "[0-9]+)?)$",
-);
-const INTEGER_NUMBER_PATTERN = new RegExp(
-  "^-?([1-9]{1}[0-9]{0,2}(" +
-    GROUPING_SEPARATOR +
-    "[0-9]{3})*|[1-9]{1}[0-9]{0,}|0)$",
 );
 
 export const parseNumber = (value: string) => {
