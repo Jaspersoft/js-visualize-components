@@ -20,8 +20,8 @@ import { getOutputFormats, getUserTimeZones } from "../../actions/action";
 
 const ErrorList = (props: { errorMsg: string }) => {
   return (
-    <JVListItem className="jr-mList-item">
-      <JVListItemText className="jr-mList-item-text" primary={props.errorMsg} />
+    <JVListItem className="jv-mList-item">
+      <JVListItemText className="jv-mList-item-text" primary={props.errorMsg} />
     </JVListItem>
   );
 };
@@ -43,7 +43,7 @@ export const MessageAPIError = ({
   const RetryButton = () => (
     <JVButton
       size="large"
-      className="jr-mButtonError jr-uMargin-t-04"
+      className="jv-mButtonError jv-uMargin-t-04"
       variant="contained"
       onClick={onRetryBtnClick}
     >
@@ -55,19 +55,19 @@ export const MessageAPIError = ({
     <JVMessage
       type="error"
       isCardHeader
-      className={"jr-uMargin-t-07"}
+      className={"jv-uMargin-t-07"}
       cardHeaderProps={{
         isHeaderPadded: true,
         avatar: (
           <JVIcon
-            className="jr-uColor-error"
+            className="jv-uColor-error"
             size="large"
             icon="warningRound"
           />
         ),
         title: (
           <JVTypography
-            className="jr-mText jr-mTextTitle jr-uColor-error jr-uTextBold"
+            className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold"
             variant="h3"
           >
             {t("schedule.error.title")}
@@ -80,7 +80,7 @@ export const MessageAPIError = ({
     >
       <JVTypography variant="body1">{apiErrorTitle}</JVTypography>
       {(userTimezoneApiFailure || userOutputFormatApiFailure) && (
-        <JVList className="jr-mList jr-uMargin-tb-02" isBulleted disablePadding>
+        <JVList className="jv-mList jv-uMargin-tb-02" isBulleted disablePadding>
           {userTimezoneApiFailure && (
             <ErrorList errorMsg={t("schedule.timezone.network.error")} />
           )}

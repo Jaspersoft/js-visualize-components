@@ -152,7 +152,8 @@ const Stepper = () => {
       nonLinear
       orientation="vertical"
       activeStep={stepperSteps[activeStep]}
-      className="jr-uMargin-tb-15 jr-uMargin-lr-08"
+      connector={<></>}
+      className="jv-uMargin-tb-15 jv-uMargin-lr-08"
     >
       {visibleSteps?.map((item: any, index: number, arr: any) => {
         const isDefaultMsg =
@@ -164,7 +165,7 @@ const Stepper = () => {
             TypographyProps={{
               title: item.title,
               dataName: item.title,
-              className: "jr-uGrey-dark jr-uText-lh-150 jr-uMargin-b-01",
+              className: "jv-uGrey-dark jv-uText-lh-150 jv-uMargin-b-01",
             }}
             StepLabelProps={{
               ...getIconState(iconState[arr[index].name]),

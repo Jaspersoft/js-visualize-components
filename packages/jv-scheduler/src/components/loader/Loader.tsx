@@ -16,7 +16,7 @@ const Loader = () => {
     <JVTableBody>
       <JVTableRow>
         <JVTableCell colSpan={3} align="center">
-          <div className="jr-v-mSpinner jv-mSpinnerCenter jv-uMargin-tb-10 mui">
+          <div className="jv-v-mSpinner jv-mSpinnerCenter jv-uMargin-tb-10 mui">
             <JVCircularProgress
               variant="determinate"
               size={28}

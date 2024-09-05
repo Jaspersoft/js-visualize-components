@@ -7,7 +7,7 @@ type StepDefaultMessage = {
 
 export const FieldHeader = ({ text }: StepDefaultMessage) => {
   return (
-    <JVTypography className="jr-uGrey-light jr-uMargin-b-01" variant="body1">
+    <JVTypography className="jv-uGrey-light jv-uMargin-b-01" variant="body1">
       {text}
     </JVTypography>
   );

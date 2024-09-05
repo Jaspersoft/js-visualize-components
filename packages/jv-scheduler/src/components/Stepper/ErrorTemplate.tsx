@@ -8,7 +8,7 @@ import { JVTypography } from "@jaspersoft/jv-ui-components";
 
 export const ErrorTemplate = ({ text }: { text: string }) => {
   return (
-    <JVTypography className="jr-mText jr-uMargin-b-01 jr-uColor-error">
+    <JVTypography className="jv-mText jv-uMargin-b-01 jv-uColor-error">
       {text}
     </JVTypography>
   );

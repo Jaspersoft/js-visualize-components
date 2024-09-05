@@ -22,7 +22,7 @@ const CommonIcon = ({ icon, className, dataName }: CommonIconProps) => {
   return (
     <JVIcon
       icon={icon}
-      className={`jr-mStepper-icon ${className}`}
+      className={`jv-mStepper-icon ${className}`}
       data-name={dataName}
     />
   );
@@ -35,28 +35,28 @@ export const StepIcon = (props: any) => {
       {icon === SUCCESS_STATE && (
         <CommonIcon
           icon="checkmarkRound"
-          className="jr-uColor-success"
+          className="jv-uColor-success"
           dataName=""
         />
       )}
       {icon === ERROR_STATE && (
         <CommonIcon
           icon="warningRound"
-          className="jr-uColor-error"
+          className="jv-uColor-error"
           dataName=""
         />
       )}
       {icon === INCOMPLETE_DEFAULT_STATE && (
         <CommonIcon
           icon="checkmarkRound"
-          className="jr-uColor-incomplete"
+          className="jv-uColor-incomplete"
           dataName=""
         />
       )}
       {icon === INCOMPLETE_STATE && (
         <CommonIcon
           icon="circleSolid"
-          className="jr-uColor-incomplete"
+          className="jv-uColor-incomplete"
           dataName=""
         />
       )}

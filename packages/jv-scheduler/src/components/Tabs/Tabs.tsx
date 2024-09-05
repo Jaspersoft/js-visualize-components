@@ -90,7 +90,7 @@ const Tabs = () => {
           })}
         </JVTabs>
       </div>
-      <div className="jr-mDrawer-body jr-mDrawer-bodyPadded mui">
+      <div className="jv-mDrawer-body jv-mDrawer-bodyPadded mui">
         <CustomTabPanel value="schedule" currentActive={currentActiveTab}>
           <Schedule />
         </CustomTabPanel>
