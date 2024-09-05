@@ -1,4 +1,3 @@
-import * as React from "react";
 import { InputControls, InputControlsPanel } from "../src/InputControls";
 import { render } from "@testing-library/react";
 
