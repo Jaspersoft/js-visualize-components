@@ -18,8 +18,6 @@ import {
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./ReportPanel";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 
 const credentials: Authentication = {
   name: "joeuser",
