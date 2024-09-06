@@ -2,7 +2,7 @@ import {
   createTheme as MuiCreateTheme,
   StyledEngineProvider as MuiStyledEngineProvider,
   ThemeProvider as MuiThemeProvider,
-} from "@mui/material/styles";
+} from "@mui/material";
 import { DefaultTheme as MuiDefaultTheme } from "@mui/system";
 import { ComponentType, FC, ReactNode } from "react";
 
