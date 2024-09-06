@@ -3,7 +3,6 @@ import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
-
 import {
   BaseInputControlProps,
   InputControlPanelConfig,
@@ -17,7 +16,7 @@ import {
   VisualizeType,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
-import ReportPanel from "./ReportPanel";
+import ReportPanel from "./report/ReportPanel.tsx";
 
 const credentials: Authentication = {
   name: "joeuser",
