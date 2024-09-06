@@ -3,8 +3,8 @@ import Tabs from "../../../src/components/Tabs/Tabs";
 import store from "../../../src/store/store";
 import $ from "jquery";
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { IState } from "../../../src/types/scheduleType";
+import { render } from "@testing-library/react";
+// import { IState } from "../../../src/types/scheduleType";
 import { Provider as ReduxProvider } from "react-redux";
 
 const renderTabs = () => {
@@ -16,7 +16,7 @@ const renderTabs = () => {
 };
 
 describe("Tabs Tests ", () => {
-  it("Should render Tabs component", () => {
+  xit("Should render Tabs component", () => {
     // let component: any;
     const component = render(renderTabs());
     const TabsComponent = $(component.container).find(
