@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "@jaspersoft/jv-ui-components/material-ui/styles/JVMuiClassNameSetup";
+import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import Tabs from "./Tabs/Tabs";
 import { useDispatch, useSelector } from "react-redux";
 import { setInitialPluginState } from "../actions/action";
