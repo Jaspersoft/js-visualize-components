@@ -4,7 +4,7 @@
   "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
   "private": true,
   "type": "module",
-  "main": "dist/index.es.js",
+  "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [

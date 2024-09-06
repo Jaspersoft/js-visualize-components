@@ -1,4 +1,4 @@
-import { StyledEngineProvider } from "@mui/material";
+import { StyledEngineProvider } from "@mui/material/styles";
 import { ReactNode } from "react";
 
 export const StyleEngineProvider = ({ children }: { children: ReactNode }) => {
