@@ -1,5 +1,12 @@
-import InputControls from "@jaspersoft/jv-input-controls";
-import { BaseInputControlProps } from "@jaspersoft/jv-input-controls/src/controls/BaseInputControl";
+// This line is necessary to setting up the styles
+// refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
+import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
+import {
+  BaseInputControlProps,
+  InputControlPanelConfig,
+  InputControls,
+  InputControlsPanel,
+} from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
   VisualizeFactory,
@@ -140,8 +147,23 @@ export default function App(props: AppConfig) {
     }
   };
 
+  const panelD: InputControlPanelConfig = {
+    config: { bool: { type: "switch" } },
+    events: {
+      change: (ics: any, vs: any) => {
+        console.log("NEW ICS!! ", ics);
+        if (vs) console.log("Validations: ", vs);
+      },
+    },
+  };
+
   return (
     <>
+      <InputControlsPanel
+        vObject={vContainer?.v}
+        uri={reportUri}
+        panelDef={panelD}
+      />
       <div id="basic-controls-section"></div>
       <hr />
       <div id="select-controls-section"></div>

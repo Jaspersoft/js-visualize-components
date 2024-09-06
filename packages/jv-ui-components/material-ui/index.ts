@@ -1,4 +1,4 @@
-export * from "./styles/JVMuiClassNameSetup";
+export * from "./JVMuiClassNameSetup";
 export {
   GenerateClassNameOptions as JVGenerateClassNameOptions,
   CreateMuiThemeOptions as JVCreateMuiThemeOptions,

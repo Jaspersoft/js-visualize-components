@@ -1,9 +1,9 @@
-import React from "react";
 import { JVSelect } from "@jaspersoft/jv-ui-components";
-import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
+import React from "react";
+import { BaseInputControlProps } from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useLiveState } from "./hooks/useLiveState";
 import { useErrorMsg } from "./hooks/useErrorMsg";
+import { useLiveState } from "./hooks/useLiveState";
 
 export interface SingleSelectInputControlProps extends BaseInputControlProps {}
 

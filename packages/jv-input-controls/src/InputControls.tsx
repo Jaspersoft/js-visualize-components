@@ -1,7 +1,5 @@
-// This line is necessary to setting up the styles
-// refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
-import "@jaspersoft/jv-ui-components/material-ui/styles/JVMuiClassNameSetup";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
+import { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
@@ -119,4 +117,62 @@ export class InputControls {
     this.fillControlStructure(resourceUri);
     container.innerText = JSON.stringify(this.controlStructure);
   };
+}
+
+export interface ICPanelProps {
+  vObject: any;
+  uri: string;
+  panelDef?: InputControlPanelConfig;
+  handleError?: (error: any) => void;
+}
+
+export function InputControlsPanel(props: ICPanelProps) {
+  const [embedControls, setEmbedControls] = useState<InputControlCollection>();
+  const [embedPlugin, setEmbedPlugin] = useState<InputControls>();
+
+  useEffect(() => {
+    if (props.vObject !== undefined) {
+      let icPlugin = new InputControls(props.vObject);
+      setEmbedPlugin(icPlugin);
+    }
+  }, [props.vObject]);
+
+  useEffect(() => {
+    embedPlugin?.fillControlStructure(
+      props.uri,
+      (controls: InputControlCollection) => {
+        setEmbedControls(controls);
+      },
+      props.handleError === undefined
+        ? (error: any) => {
+            console.log("Error filling controls: ", error);
+          }
+        : props.handleError,
+    );
+  }, [embedPlugin]);
+
+  if (props.vObject === undefined) {
+    return (
+      <>
+        <h2>Loading visualize.js...</h2>
+      </>
+    );
+  }
+  if (!embedControls) {
+    return (
+      <>
+        <h2>Fetching input controls...</h2>
+      </>
+    );
+  }
+
+  return (
+    <JVStylesProvider>
+      <BasePanel
+        controls={embedControls}
+        config={props.panelDef?.config}
+        events={props.panelDef?.events}
+      ></BasePanel>
+    </JVStylesProvider>
+  );
 }
