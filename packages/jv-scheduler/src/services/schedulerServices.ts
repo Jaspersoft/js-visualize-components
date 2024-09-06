@@ -191,6 +191,7 @@ export const createSchedule = async (scheduleInfo: any) => {
       headers: {
         Accept: "application/job+json",
         "Content-Type": "application/job+json",
+        "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
         OWASP_CSRFTOKEN: csrfToken,
       },
     },
