@@ -11,4 +11,7 @@ export default defineConfig({
       external: [...Object.keys(dependencies || {}), "react/jsx-runtime"],
     },
   },
+  server: {
+    port: 8000,
+  },
 });
