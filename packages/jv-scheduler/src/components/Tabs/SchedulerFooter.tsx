@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { JVButton } from "@jaspersoft/jv-ui-components";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { allTabValidationError, createAlert } from "../../actions/action";
+import { allTabValidationError, createScheduleJob } from "../../actions/action";
 
 const SchedulerFooter = () => {
   const { t } = useTranslation() as { t: (k: string) => string };
@@ -14,7 +14,7 @@ const SchedulerFooter = () => {
     if (isError) {
       enableCreateButton();
     } else {
-      dispatch(createAlert(enableCreateButton));
+      dispatch(createScheduleJob(enableCreateButton));
     }
   };
   const handleCreateSchedule = () => {

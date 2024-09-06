@@ -125,6 +125,7 @@ export const getCSRFToken = async (server?: string) => {
       `${serverPath}/JavaScriptServlet`,
       {},
       {
+        withCredentials: true,
         headers: {
           "Fetch-Csrf-Token": "1",
         },

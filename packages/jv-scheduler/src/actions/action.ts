@@ -318,14 +318,25 @@ export const allTabValidationError = (
   };
 };
 
-export const createAlert = (enableCreateBtn: () => void) => {
+export const createScheduleJob = (enableCreateBtn: () => void) => {
   return async (dispatch: Dispatch, getState: () => IState) => {
     try {
-      const { scheduleJobDescription, scheduleJobName, ...rest } =
-        getState().scheduleInfo;
+      const {
+        scheduleJobDescription,
+        scheduleJobName,
+        outputFormats,
+        ...rest
+      } = getState().scheduleInfo;
+      const { outputFormat } = outputFormats;
+      const capitlizedOutputFormat = outputFormat.map((item) =>
+        item.toUpperCase(),
+      );
       await createSchedule({
         label: scheduleJobName,
         description: scheduleJobDescription,
+        outputFormats: {
+          outputFormat: capitlizedOutputFormat,
+        },
         ...rest,
       });
       dispatch(setApiFailure({ createScheduleApiFailure: false }, ""));
