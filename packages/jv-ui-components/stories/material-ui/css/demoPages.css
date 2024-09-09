@@ -1,0 +1,161 @@
+/*----------------------------
+ *  TABLE OF CONTENTS
+ *
+ *  1. CONTAINERS
+ *
+ *  2. TEXT
+ *
+ *  3. SPACERS & DIVIDERS
+ *
+ * ----------------------------
+ *  last modified Sep 20, 2023
+ * ---------------------------- */
+
+/* demo-only styles */
+
+/*-------------------*/
+/*  1. CONTAINERS    */
+/*-------------------*/
+.demoWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 12px 0;
+  vertical-align: top;
+}
+
+.demoSize {
+  background-color: transparent;
+  border-radius: 3px;
+  padding: 0 0 24px 4px;
+  margin: 0 24px 24px 0;
+  min-width: 250px;
+}
+
+/*---------------*/
+/*  2. TEXT      */
+/*---------------*/
+.demoType {
+  background-color: #0078bd;
+  border-radius: 2px;
+  color: #ffffff;
+  font-size: 12px;
+  font-family: source_sans_proregular;
+  padding: 4px 8px;
+}
+
+.demoTypeDesign {
+  background-color: #0078bd;
+}
+
+.demoTypeComponent {
+  background-color: #444444;
+}
+
+.demoTypeDesign + .demoTitle {
+  color: #01529a;
+}
+
+.demoTitle {
+  color: #212121;
+  font-size: 22px;
+  font-family: source_sans_proregular;
+  margin: 0 0 28px 4px;
+}
+
+.demoTitle + .demoText {
+  margin-top: -16px;
+  margin-bottom: 36px;
+}
+
+.demoText {
+  color: #444444;
+  font-family: source_sans_proregular;
+  font-size: 13px;
+  padding-left: 4px;
+}
+
+.demoSubtitle {
+  color: #212121;
+  font-size: 16px;
+  font-family: source_sans_prosemibold;
+  margin: 0 0 22px 0;
+}
+
+.demoSubtitle-2 {
+  color: #212121;
+  font-size: 14px;
+  font-family: source_sans_prosemibold;
+  margin: 24px 0 10px 0;
+}
+
+.demoSubtitle + .demoSubtitle-2 {
+  margin-top: 2px;
+}
+
+/* ------------------------- */
+/*  3. SPACERS & DIVIDERS    */
+/* ------------------------- */
+.demoSpacer4 {
+  height: 4px;
+  width: 4px;
+}
+.demoSpacer8 {
+  height: 8px;
+  width: 8px;
+}
+
+.demoSpacer12 {
+  height: 12px;
+  width: 12px;
+}
+
+.demoSpacer14 {
+  height: 14px;
+  width: 14px;
+}
+
+.demoSpacer16 {
+  height: 16px;
+  width: 16px;
+}
+
+.demoSpacer22 {
+  height: 22px;
+  width: 22px;
+}
+
+.demoSpacer24 {
+  height: 24px;
+  width: 24px;
+}
+
+.demoSpacer28 {
+  height: 28px;
+  width: 28px;
+}
+
+.demoSpacer36 {
+  height: 36px;
+  width: 36px;
+}
+
+.demoSpacer48 {
+  height: 48px;
+  width: 48px;
+}
+
+.demoHorizontalRule {
+  border-top: 1px solid #ececec;
+  height: 2px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+/*
+.demoVerticalRule {
+    align-self: stretch;
+    border-left: 1px solid #ececec;
+    margin: 0 24px 24px 0;
+    width: 2px;
+}*/

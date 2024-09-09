@@ -1,0 +1,7 @@
+/* =================================
+    Last modified:    Sep 9, 2024
+ * ================================= */
+
+/* workaround for live reloading of styles issue for yarn run styles:watch as jasper-ui.scss file is taking changes from node_modules.
+and storybook webpack is not recognizing the changes in node_modules folder for hot reloading */
+@import "../../scss/jv-ui";

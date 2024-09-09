@@ -21,6 +21,9 @@ const config: StorybookConfig = {
     getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-interactions"),
   ],
+  core: {
+    builder: "@storybook/builder-vite", // The builder enabled here.
+  },
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},

@@ -1,0 +1,781 @@
+/* ===========================================
+   INPUT STYLES
+   Last modified date:    Feb 1, 2023
+   Last modified by:      Anna Leeg
+ * =========================================== */
+
+// --------------------------------
+//   GROUPING MECHANISM FOR INPUTS
+// --------------------------------
+@use "sass:math";
+
+.jv-mInputgroup.jv .jv-mInput-editable.jv,
+.jv-mInputgroup.jv .jv-mInput-selectt.jv {
+  margin-bottom: em(18px, 13px);
+}
+
+.jv-mInputgroup.jv .jv-mInput-select.jv {
+  margin-bottom: em(20px, 13px);
+}
+
+.jv-mInputpair.jv {
+  // use to contain two of the same input types when the operator is "between" or "is not between"
+}
+
+.jv-mInputpair-text.jv {
+  height: em(28px);
+  top: em(-4px);
+  text-align: center;
+  line-height: math.div(28px, 11px);
+}
+
+// ---------------------
+//   BASE INPUT MODULE
+// --------------------
+.jv-mInput.jv {
+  font-family: $font-family-primary;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.jv-mInput-label.jv {
+  @include input-label;
+  font-family: $font-family-semibold;
+  font-size: 1em;
+}
+
+// label variations
+.jv-mInput-labelLight.jv {
+  color: $grey-textLightest;
+}
+
+.jv-mInput-labelRequired.jv::after {
+  color: $color-tciMedium;
+  content: " *";
+}
+
+.jv-mInput-hint.jv {
+  color: $grey-textLightest;
+  display: inline-block;
+  font-size: em(12px, 13px);
+  font-style: italic;
+  font-weight: normal;
+  line-height: math.div(15px, 13px);
+  // line-height and display are here so this element can be inline or block
+}
+
+.jv-mInput-alert.jv {
+  // TODO remove this rule after resolving JRS-12101 AND after replacing in embeddable input controls
+  // JRS-12101 has been resolved; embeddable input controls has not.
+  color: $color-errorDark;
+  display: block;
+  font-weight: bold;
+  line-height: math.div(16px, 13px);
+  margin-bottom: em(4px, 13px); /* added back in for JRS-15714 */
+  margin-top: em(2px, 13px); /* added back in for JRS-15714 */
+}
+
+// validation done automatically on save
+.jv-mInput-validation.jv {
+  line-height: math.div(14px, 11px);
+}
+
+.jv-mInput-validation.jv {
+  // NEW
+  align-items: flex-start;
+  align-content: stretch;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-bottom: em(6px, 13px);
+  margin-top: em(4px, 13px);
+}
+
+.jv-mInput-validation-message.jv {
+  // NEW, holds validation component
+  flex: 1 1 auto;
+  margin-top: em(3px, 13px);
+}
+
+.jv-mInput-validation-button.jv {
+  // NEW
+  flex: 0 0 auto;
+  margin-bottom: 2em;
+  margin-top: em(3px, 13px);
+}
+
+.jv-mInput-validation-message.jv:first-child {
+  // NEW
+  //display: inline-flex; flex seems to work just fine
+  display: flex;
+  justify-content: flex-end;
+  padding-right: em(8px, 13px);
+}
+
+.jv-mInput-validation-message.jv:only-child {
+  // NEW
+  // this rule must come after first-child rule (immediately above)
+  justify-content: flex-start;
+  margin-top: 0;
+}
+
+.jv-mInput-validation-button.jv:first-child {
+  // NEW
+  padding-right: em(8px, 13px);
+}
+
+.jv-mInput-validation-alert.jv {
+  // TODO remove this rule after resolving JRS-12101
+  display: table-row;
+  min-height: em(20px, 13px);
+  white-space: nowrap;
+}
+
+.jv-mInput-validation-alert-text.jv {
+  // TODO remove this rule after resolving JRS-12101
+  display: table-cell;
+  font-family: $font-family-semibold;
+  font-size: 12px; // new base font size
+  line-height: math.div(16px, 12px);
+  padding-top: 0;
+  white-space: normal;
+}
+
+.jv-mInput-validation-alert-icon.jv {
+  // TODO remove this rule after resolving JRS-12101
+  color: inherit !important;
+  display: table-cell;
+  line-height: 1.2 !important;
+  vertical-align: top !important;
+  width: em(20px, 13px);
+}
+
+// validation done manually with associated button
+.jv-mInput-validationManual.jv {
+  // TODO remove this rule after resolving JRS-12101
+  display: table;
+  margin-bottom: 2em;
+  margin-top: em(7px, 13px);
+  width: 100%;
+}
+
+.jv-mInput-validationManual.jv .jv-mInput-validation-button.jv {
+  // TODO remove this rule after resolving JRS-12101
+  display: table-cell;
+  vertical-align: top;
+}
+
+.jv-mInput-validationManual.jv .jv-mInput-validation-alert.jv {
+  // TODO remove this rule after resolving JRS-12101
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+}
+
+// validation types
+.jv-mInput-validation-alertError.jv {
+  color: $color-errorMedium;
+} // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alertSuccess.jv {
+  color: $color-successDark;
+} // TODO remove this rule after resolving JRS-12101
+.jv-mInput-validation-alertWarning.jv {
+  color: $color-warningMedium;
+} // TODO remove this rule after resolving JRS-12101
+
+// the following relate to which side the button is on (left or right)
+.jv-mInput-validationManual.jv .jv-mInput-validation-button.jv:first-child,
+.jv-mInput-validationManual.jv .jv-mInput-validation-alert.jv:first-child {
+  // TODO remove this rule after resolving JRS-12101
+  padding-right: em(8px, 13px);
+}
+
+// ----------------------------
+//  MODULE VARIATION - INLINE
+// ----------------------------
+/* INITIAL TEST
+.jv-mInputInline.jv {
+  display: table;
+}
+
+.jv-mInputInline.jv .jv-mInput-label.jv {
+  display: table-cell;
+  padding-right: 1em;
+}
+
+.jv-mInputInline.jv .jv-mInput-text.jv {
+  display: table-cell;
+} */
+
+// -------------------------------------------
+//  MODULE VARIATION - COMPACT (auto width)
+// -------------------------------------------
+.jv-mInputCompact.jv {
+  display: inline-block;
+}
+
+/* INITIAL TEST
+.jv-mInputCompact.jv .jv-mInput-text.jv,
+.jv-mInputCompact.jv .jv-mInput-number.jv,
+.jv-mInputCompact.jv .jv-mInput-email.jv,
+.jv-mInputCompact.jv .jv-mInput-password.jv,
+.jv-mInputCompact.jv .jv-mInput-search.jv {
+  width: auto;
+} */
+
+// ---------------------
+//  INPUT MODULE TYPES
+// ---------------------
+
+// SEARCH
+.jv-mInput-searchContainer.jv {
+} //no rules, but container is needed for correct positioning of clear search icon
+
+.jv-mInput-search.jv {
+  background-color: #fff;
+  // TODO remove following styles after JRS-14408 is fixed
+  //background-image: image-url("icontrol_icons_sprite.png");
+  //background-repeat: no-repeat;
+  //background-attachment: scroll;
+  //background-position: right -269px;
+  color: $grey-textDarker;
+  display: inline-block;
+  overflow: hidden;
+  padding-right: em(32px, 13px);
+  position: relative;
+}
+
+// TODO remove this rule after search input is fixed in multi- and single-select components
+.jv-mInput-search.jv:only-child {
+  background-image: image-url("icontrol_icons_sprite.svg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: right -89px;
+  background-size: 20px;
+}
+
+.jv-mInput-searchPlaceholder.jv {
+  // fixes issue (in multiselect) where placeholder text changes color after losing focus
+  // add this class name dynamically once input loses focus
+  // NOT IMPLEMENTED YET
+  color: $grey-textLightest;
+}
+
+.jv-mInput-search-trigger.jv {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: em(32px, 13px);
+}
+
+.jv-mInput-search-clear.jv {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: em(30px, 13px);
+  bottom: 0;
+  width: em(24px, 13px);
+}
+
+// TODO remove this rule after JRS-14408 is fixed
+.jv-mInput-search-clear-icon.jv {
+  background-color: #fff;
+  background-image: image-url("icontrol_icons_sprite.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: 6px -174px;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+// TEXT-BASED
+.jv-mInput-date.jv,
+.jv-mInput-email.jv,
+.jv-mInput-number.jv,
+.jv-mInput-password.jv,
+.jv-mInput-text.jv,
+.jv-mInput-search.jv {
+  height: em(28px, 13px);
+  width: 100%;
+}
+
+.jv-mInput-date.jv:focus,
+.jv-mInput-email.jv:focus,
+.jv-mInput-number.jv:focus,
+.jv-mInput-password.jv:focus,
+.jv-mInput-text.jv:focus,
+.jv-mInput-textarea.jv:focus,
+.jv-mInput-search.jv:focus {
+  outline-offset: -2px;
+}
+
+// text input with associated button
+.jv-mInput-action.jv {
+  display: table;
+  width: 100%;
+}
+
+.jv-mInput-action-text.jv {
+  display: table-cell;
+  padding-right: em(8px, 13px);
+  width: 100%;
+}
+
+.jv-mInput-action-button.jv {
+  display: table-cell;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.jv-mInput-action-button.jv ~ .jv-mInput-action-button.jv {
+  margin-right: em(6px, 13px);
+}
+
+// TEXTAREA
+.jv-mInput-textarea.jv {
+  height: em(70px, 13px);
+  resize: vertical;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+// DATE TIME
+.jv-mInput-date.jv {
+  width: calc(100% - 3em);
+  white-space: normal;
+}
+
+.jv-mInput-datetrigger.jv {
+  height: em(28px, 13px); // same height as input
+  width: em(28px, 13px);
+}
+
+.jv-mInput-datetrigger-icon.jv {
+  height: 100%;
+}
+
+// SELECT (NATIVE)
+.jv-mInput-select.jv {
+  // top margin ensures that a select input and its label has the same height as other inputs
+  // since the select input is shorter than other inputs, extra space is needed for this effect
+  margin-top: em(4px, 13px);
+  width: auto;
+}
+
+.jv-mInput-selectTight.jv {
+  // reduces the amount of space between the label and input to match that of other inputs.
+  // results in the input and its label not being the same height as other inputs+labels
+  margin-top: 0;
+}
+
+.jv-mInput-select-item.jv {
+}
+
+.jv-mInput-select.jv + .jv-mInput-alert.jv {
+  margin-top: em(6px, 13px);
+}
+
+.jv-mInput-selectWide.jv {
+  width: 100%;
+}
+
+// SELECTT (CUSTOM)
+.jv-mInput-selectt.jv {
+  background-color: #fff;
+  display: inline-block;
+  position: relative;
+}
+
+.jv-mInput-selectt-list.jv {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  display: inline-block;
+  line-height: em(26px, 13px);
+  height: em(28px, 13px);
+  padding-right: em(22px, 13px);
+  padding-left: em(5px, 13px);
+  position: relative;
+  min-width: 50%;
+  z-index: $zindex-element-lvl-1; // must be above jr-mInput-selectt-list to show options on click
+}
+
+.jv-mInput-selecttWide.jv,
+.jv-mInput-selecttWide.jv .jv-mInput-selectt-list.jv {
+  width: 100%;
+}
+
+.jv-mInput-selectt-list.jv::-ms-expand {
+  display: none;
+}
+
+.jv-mInput-selectt-list-item.jv {
+  padding: em(5px, 13px);
+}
+
+.jv-mInput-selectt-expander.jv {
+  border: 1px solid #cccccc;
+  padding-top: em(2px, 13px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $zindex-element-lvl-0; // must be below jr-mInput-selectt-expander to show options on click
+}
+
+// FILE UPLOAD
+.jv-mInput-file.jv {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: em(28px, 13px);
+}
+
+.jv-mInput-file-input.jv {
+  cursor: pointer;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.jv-mInput-file-trigger.jv {
+  cursor: pointer;
+  height: inherit;
+}
+
+.jv-mInput-file-name.jv {
+  background: #fff;
+  border: 1px solid #cccccc;
+  height: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+// placement options for trigger and file name
+.jv-mInput-file-trigger.jv ~ .jv-mInput-file-name.jv {
+  margin-left: em(8px, 13px);
+}
+
+.jv-mInput-file-name.jv ~ .jv-mInput-file-trigger.jv {
+  margin-left: em(8px, 13px);
+}
+
+.jv-mInput-file-name-label.jv,
+.jv-mInput-file-name-placeholder.jv {
+  line-height: em(28px, 13px);
+  overflow: hidden;
+  padding-left: em(6px, 13px);
+  padding-right: em(6px, 13px);
+  text-overflow: ellipsis;
+}
+
+.jv-mInput-file-name-label.jv {
+  display: block;
+}
+
+.jv-mInput-file-name-placeholder.jv {
+  display: none;
+}
+
+// small variation
+.jv-mInput-fileSmall.jv {
+  height: em(22px, 13px);
+}
+
+.jv-mInput-fileSmall.jv .jv-mInput-file-name-label.jv,
+.jv-mInput-fileSmall.jv .jv-mInput-file-name-placeholder.jv {
+  font-size: em(12px, 13px);
+  line-height: em(22px, 13px);
+}
+
+// TEXT, INLINE EDITABLE
+.jv-mInput-editable.jv {
+}
+
+.jv-mInput-editable-text.jv {
+  display: inline-block;
+  height: em(26px, 13px);
+  line-height: math.div(30px, 13px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.jv-mInput-editable-textBlank.jv {
+  font-style: italic;
+}
+
+.jv-mInput-editable-textArea.jv {
+  display: inline-block;
+  height: auto;
+  line-height: math.div(16px, 13px);
+  margin-top: em(7px, 13px);
+  max-width: 100%;
+  min-height: em(57px, 13px);
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.jv-mInput-editable.jv ~ .jv-mInput-text,
+.jv-mInput-editable.jv ~ .jv-mInput-textarea,
+.jv-mInput-editableEdit.jv {
+  display: none;
+}
+
+.jv-mInput-editable-textArea.jv ~ .jv-mInput-editable-indicator.jv {
+  cursor: pointer;
+  width: em(22px, 13px);
+}
+
+.jv-mInput-editable-indicator.jv {
+  background-color: inherit;
+  display: none;
+  margin-top: em(5px, 13px);
+  vertical-align: top;
+  width: em(32px, 13px);
+}
+
+.jv-mInput-editable-indicator.jv .jv-mIcon.jv {
+  float: right;
+  opacity: 0.5;
+}
+
+// RADIO AND CHECKBOXES
+// container for radio buttons and checkboxes when the number of items is more than three
+.jv-mInput-set.jv {
+  background-color: #fff;
+  border: 1px solid #d6d6d6;
+  height: em(72px, 13px);
+  overflow-y: scroll;
+  width: auto;
+}
+
+.jv-mInput-checkContainer.jv,
+.jv-mInput-radioContainer.jv {
+  margin-left: em(5px, 13px);
+  margin-top: em(4px, 13px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+.jv-mInput-check.jv,
+.jv-mInput-radio.jv {
+  margin-left: em(1px, 13px); // prevents clipping in Chrome
+  padding-bottom: em(7px, 13px);
+  position: relative;
+  white-space: nowrap;
+}
+
+.jv-mInput-check-box.jv,
+.jv-mInput-radio-button.jv,
+.jv-mInput-boolean-box.jv {
+  display: inline-block;
+  //line-height: em(20px, 13px);
+  margin-right: em(2px, 13px);
+  height: em(14px, 13px);
+  width: em(14px, 13px);
+}
+
+.jv-mInput-boolean-box.jv {
+  //margin-top: em(3px, 13px);
+}
+
+.jv-mInput-check-label.jv,
+.jv-mInput-radio-label.jv,
+.jv-mInput-boolean-label.jv {
+  color: $grey-textMedium;
+  cursor: default;
+  display: inline-block;
+  vertical-align: top;
+  line-height: math.div(17px, 13px); // unitless value
+  width: calc(100% - 3em);
+}
+
+.jv-mInput-checklabel.jv,
+.jv-mInput-radiolabel.jv {
+  width: 100%;
+}
+
+.jv-mInput-boolean-label.jv {
+  font-family: $font-family-semibold;
+  //margin-top: em(3px, 13px);
+}
+
+.jv-mInput.jv-isInvalid.jv {
+}
+
+// START all/none/invert button bar
+.jv-mItemselector.jv {
+  display: table;
+  font-size: em(12px, 13px);
+  height: em(22px, 12px);
+  position: relative;
+  table-layout: fixed;
+  text-decoration: none;
+  width: 100%;
+}
+
+.jv-mInput-buttonContainer.jv {
+  border: 1px solid #d6d6d6;
+  border-top: none;
+  position: relative;
+  width: 100%;
+}
+
+.jv-mItemselector-button.jv {
+  background-color: #fff;
+  border-right: 1px solid #d6d6d6;
+  color: $grey-textMedium;
+  cursor: pointer;
+  display: table-cell;
+  height: 100%;
+  line-height: math.div(20px, 12px); // unitless value
+  margin: 0;
+  overflow: hidden;
+  padding: 0 em(4px, 12px);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jv-mItemselector-button-icon.jv {
+  width: em(16px, 12px);
+}
+
+// IE11
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .jv-mItemselector-button-icon.jv {
+    top: 1px;
+  }
+}
+
+.jv-mItemselector-button-label.jv {
+  line-height: math.div(24px, 12px); // unitless value
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.jv-mItemselector-button.jv:last-of-type {
+  border-right: none;
+}
+
+// --------------
+//    STATES
+// --------------
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .jv-mInput-select.jv:focus,
+  .jv-mInput-selectt-list.jv:focus {
+    outline-color: #90bffc;
+    outline-style: auto;
+    outline-width: 4px;
+  }
+}
+
+@-moz-document url-prefix() {
+  .jv-mInput-select.jv:focus {
+    outline: 0;
+  }
+}
+
+// disable input controls
+.jv-mInput.jv-isDisabled.jv {
+  @include opacity(0.4);
+}
+
+.jv-mInput.jv-isDisabled.jv .jv-mInput-datetrigger.jv {
+  cursor: default;
+}
+
+.jv-mInput.jv-isDisabled.jv * {
+  cursor: default;
+}
+
+.jv-mInput-text.jv:disabled,
+.jv-mInput-textarea.jv:disabled,
+.jv-mInput-number.jv:disabled,
+.jv-mInput-email.jv:disabled,
+.jv-mInput-date.jv:disabled,
+.jv-mInput-password.jv:disabled,
+.jv-mInput-search.jv:disabled {
+  background-color: #f7f7f7;
+}
+
+.jv-mInput-text.jv-isDisabled.jv:disabled,
+.jv-mInput-textarea.jv-isDisabled.jv:disabled,
+.jv-mInput-number.jv-isDisabled.jv:disabled,
+.jv-mInput-email.jv-isDisabled.jv:disabled,
+.jv-mInput-date.jv-isDisabled.jv:disabled,
+.jv-mInput-password.jv-isDisabled.jv:disabled,
+.jv-mInput-search.jv-isDisabled.jv:disabled {
+  color: #bbbbbb;
+}
+
+// editable text hover + click
+.jv-mInput-editableStatic.jv-isHovered.jv .jv-mInput-editable-text {
+  max-width: calc(100% - 38px) !important;
+  text-overflow: clip;
+}
+
+.jv-mInput-editableStatic.jv-isHovered.jv .jv-mInput-editable-indicator.jv {
+  display: inline-block;
+}
+
+.jv-mInput-editableStatic.jv-isClicked.jv {
+  display: none;
+}
+
+.jv-mInput-editableStatic.jv-isClicked.jv ~ .jv-mInput-editableEdit {
+  display: block;
+}
+
+// hide file input placeholder text
+.jv-mInput-file-name-placeholder.jv-isHidden.jv {
+  display: none;
+}
+
+// error validation for editable text and textarea
+.jv-mInput-editableEdit.jv-isInvalid.jv .jv-mInput-text.jv,
+.jv-mInput-editableEdit.jv-isInvalid.jv .jv-mInput-textarea.jv {
+  border: 1px solid $color-errorMedium;
+  padding-right: em(30px);
+}
+
+// hide validation error message
+.jv-mInput-alert.jv-isInvisible.jv {
+  visibility: hidden;
+}
+
+// hide validation error message
+.jv-mInput-search-clear.jv-isVisible.jv {
+  display: block;
+}
+
+// file browse placeholder text
+.jv-mInput-file.jv-isEmpty.jv .jv-mInput-file-name-label.jv {
+  display: none;
+}
+
+.jv-mInput-file.jv-isEmpty.jv .jv-mInput-file-name-placeholder.jv {
+  display: block;
+  opacity: 0.3;
+}
+
+//:TODO: SMACC violation, fix it
+.jv-mSingleselect-input-placeholder.jv-isHidden.jv {
+  display: none;
+}
