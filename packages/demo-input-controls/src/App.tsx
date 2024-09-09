@@ -1,6 +1,8 @@
+import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 // This line is necessary to setting up the styles
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
+import "./App.css";
 import {
   BaseInputControlProps,
   InputControlPanelConfig,
@@ -14,11 +16,7 @@ import {
   VisualizeType,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
-import ReportPanel from "./ReportPanel";
-
-export interface AppConfig {
-  title: string;
-}
+import ReportPanel from "./report/ReportPanel.tsx";
 
 const credentials: Authentication = {
   name: "joeuser",
@@ -32,7 +30,7 @@ const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
-export default function App(props: AppConfig) {
+function App() {
   const [visualizeFactoryContainer, setVisualizeFactoryContainer] = useState(
     null as { viz: VisualizeFactory } | null,
   );
@@ -42,14 +40,12 @@ export default function App(props: AppConfig) {
   const [plugin, setPlugin] = useState<InputControls>();
   const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
   const [vReport, setVReport] = useState<any>();
-
   useEffect(() => {
     const loadVisualize = visualizejsLoader(visualizeUrl);
     loadVisualize().then((visualizeFactory: VisualizeFactory) => {
       setVisualizeFactoryContainer({ viz: visualizeFactory });
     });
   }, []);
-
   useEffect(() => {
     if (credentials && visualizeFactoryContainer) {
       new Promise<VisualizeType>((resolve, reject) => {
@@ -78,7 +74,7 @@ export default function App(props: AppConfig) {
   useEffect(() => {
     if (vContainer && vContainer.v) {
       setPlugin(new InputControls(vContainer.v));
-      var report = vContainer.v.report({
+      const report = vContainer.v.report({
         resource: singleSelectReportUri,
         container: "#report-viewer",
       });
@@ -180,3 +176,5 @@ export default function App(props: AppConfig) {
     </>
   );
 }
+
+export default App;
