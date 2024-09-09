@@ -402,7 +402,7 @@
   padding-left: em(5px, 13px);
   position: relative;
   min-width: 50%;
-  z-index: $zindex-element-lvl-1; // must be above jr-mInput-selectt-list to show options on click
+  z-index: $zindex-element-lvl-1; // must be above jv-mInput-selectt-list to show options on click
 }
 
 .jv-mInput-selecttWide.jv,
@@ -425,7 +425,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: $zindex-element-lvl-0; // must be below jr-mInput-selectt-expander to show options on click
+  z-index: $zindex-element-lvl-0; // must be below jv-mInput-selectt-expander to show options on click
 }
 
 // FILE UPLOAD

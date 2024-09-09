@@ -71,7 +71,7 @@ export const DefaultAccordion = () => {
               >
                 <Typography>Title</Typography>
               </JVAccordionSummary>
-              <JVAccordionDetails className={"jr-mAccordion-body mui"}>
+              <JVAccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.

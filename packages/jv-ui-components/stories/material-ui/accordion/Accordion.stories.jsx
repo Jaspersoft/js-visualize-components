@@ -47,23 +47,23 @@ export const DefaultAccordion = () => {
           <div className={"demoSubtitle"}>Small</div>
           <div>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionSmall mui"}
+              className={"jv-mAccordion jv-mAccordionSmall mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="title-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="title-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -71,23 +71,23 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionSmall mui"}
+              className={"jv-mAccordion jv-mAccordionSmall mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="labels-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="labels-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -95,24 +95,24 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionSmall mui"}
+              className={"jv-mAccordion jv-mAccordionSmall mui"}
               elevation={0}
               expanded={true}
               square
             >
               <AccordionSummary
                 aria-controls="axis-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="axis-header"
               >
                 <Typography>Expanded Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   An accordion is a lightweight container that may either stand
                   alone or be connected to a larger surface, such as a card.
@@ -126,40 +126,40 @@ export const DefaultAccordion = () => {
         <div className="demoSize">
           <div className={"demoSubtitle"}>Medium</div>
           <div>
-            <Accordion className={"jr-mAccordion mui"} elevation={0} square>
+            <Accordion className={"jv-mAccordion mui"} elevation={0} square>
               <AccordionSummary
                 aria-controls="title-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="title-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            <Accordion className={"jr-mAccordion mui"} elevation={0} square>
+            <Accordion className={"jv-mAccordion mui"} elevation={0} square>
               <AccordionSummary
                 aria-controls="labels-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="labels-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -167,24 +167,24 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion mui"}
+              className={"jv-mAccordion mui"}
               elevation={0}
               expanded={true}
               square
             >
               <AccordionSummary
                 aria-controls="axis-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="axis-header"
               >
                 <Typography>Expanded Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   An accordion is a lightweight container that may either stand
                   alone or be connected to a larger surface, such as a card.
@@ -199,23 +199,23 @@ export const DefaultAccordion = () => {
           <div className={"demoSubtitle"}>Large</div>
           <div>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionLarge mui"}
+              className={"jv-mAccordion jv-mAccordionLarge mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="title-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="title-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -223,23 +223,23 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionLarge mui"}
+              className={"jv-mAccordion jv-mAccordionLarge mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="labels-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="labels-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -247,24 +247,24 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionLarge mui"}
+              className={"jv-mAccordion jv-mAccordionLarge mui"}
               elevation={0}
               expanded={true}
               square
             >
               <AccordionSummary
                 aria-controls="axis-content"
-                className={"jr-mAccordion-title mui"}
+                className={"jv-mAccordion-title mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="axis-header"
               >
                 <Typography>Expanded Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   An accordion is a lightweight container that may either stand
                   alone or be connected to a larger surface, such as a card.
@@ -286,23 +286,23 @@ export const DefaultAccordion = () => {
           <div className={"demoSubtitle"}>Small Shaded</div>
           <div>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionSmall mui"}
+              className={"jv-mAccordion jv-mAccordionSmall mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="title-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="title-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -310,23 +310,23 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionSmall mui"}
+              className={"jv-mAccordion jv-mAccordionSmall mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="labels-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="labels-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -334,24 +334,24 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionSmall mui"}
+              className={"jv-mAccordion jv-mAccordionSmall mui"}
               elevation={0}
               expanded={true}
               square
             >
               <AccordionSummary
                 aria-controls="axis-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="axis-header"
               >
                 <Typography>Expanded Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   An accordion is a lightweight container that may either stand
                   alone or be connected to a larger surface, such as a card.
@@ -365,40 +365,40 @@ export const DefaultAccordion = () => {
         <div className="demoSize">
           <div className={"demoSubtitle"}>Medium Shaded</div>
           <div>
-            <Accordion className={"jr-mAccordion mui"} elevation={0} square>
+            <Accordion className={"jv-mAccordion mui"} elevation={0} square>
               <AccordionSummary
                 aria-controls="title-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="title-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            <Accordion className={"jr-mAccordion mui"} elevation={0} square>
+            <Accordion className={"jv-mAccordion mui"} elevation={0} square>
               <AccordionSummary
                 aria-controls="labels-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="labels-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -406,24 +406,24 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion mui"}
+              className={"jv-mAccordion mui"}
               elevation={0}
               expanded={true}
               square
             >
               <AccordionSummary
                 aria-controls="axis-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="axis-header"
               >
                 <Typography>Expanded Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   An accordion is a lightweight container that may either stand
                   alone or be connected to a larger surface, such as a card.
@@ -438,23 +438,23 @@ export const DefaultAccordion = () => {
           <div className={"demoSubtitle"}>Large Shaded</div>
           <div>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionLarge mui"}
+              className={"jv-mAccordion jv-mAccordionLarge mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="title-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="title-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -462,23 +462,23 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionLarge mui"}
+              className={"jv-mAccordion jv-mAccordionLarge mui"}
               elevation={0}
               square
             >
               <AccordionSummary
                 aria-controls="labels-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="labels-header"
               >
                 <Typography>Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   The content of Accordions is mounted by default even if the
                   accordion is not expanded.
@@ -486,24 +486,24 @@ export const DefaultAccordion = () => {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              className={"jr-mAccordion jr-mAccordionLarge mui"}
+              className={"jv-mAccordion jv-mAccordionLarge mui"}
               elevation={0}
               expanded={true}
               square
             >
               <AccordionSummary
                 aria-controls="axis-content"
-                className={"jr-mAccordion-title jr-mAccordion-titleShaded mui"}
+                className={"jv-mAccordion-title jv-mAccordion-titleShaded mui"}
                 classes={{
-                  content: "jr-mAccordion-title-text mui",
-                  expandIconWrapper: "jr-mAccordion-title-icon mui",
+                  content: "jv-mAccordion-title-text mui",
+                  expandIconWrapper: "jv-mAccordion-title-icon mui",
                 }}
                 expandIcon={<ChevronRightIcon />}
                 id="axis-header"
               >
                 <Typography>Expanded Accordion Title</Typography>
               </AccordionSummary>
-              <AccordionDetails className={"jr-mAccordion-body mui"}>
+              <AccordionDetails className={"jv-mAccordion-body mui"}>
                 <Typography>
                   An accordion is a lightweight container that may either stand
                   alone or be connected to a larger surface, such as a card.

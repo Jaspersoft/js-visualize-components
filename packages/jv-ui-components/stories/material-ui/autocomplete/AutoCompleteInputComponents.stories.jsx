@@ -63,7 +63,7 @@ export const Input = () => {
                 error="You can have error text for the input here."
                 helperText="You can have helper text for the input here."
                 InputLabelProps={{
-                  classes: { root: "jr-mInput-label mui" },
+                  classes: { root: "jv-mInput-label mui" },
                   disableAnimation: true,
                   shrink: true,
                 }}
@@ -89,7 +89,7 @@ export const Input = () => {
                 error="You can have error text for the input here."
                 helperText="You can have helper text for the input here."
                 InputLabelProps={{
-                  classes: { root: "jr-mInput-label mui" },
+                  classes: { root: "jv-mInput-label mui" },
                   disableAnimation: true,
                   shrink: true,
                 }}
@@ -100,7 +100,7 @@ export const Input = () => {
           <div className="demoSpacer28"></div>
 
           <div
-            className="jr-mAutocomplete jr-mAutocompleteSmall mui"
+            className="jv-mAutocomplete jv-mAutocompleteSmall mui"
             style={{ position: "relative" }}
           >
             <JVAutocomplete
@@ -113,7 +113,7 @@ export const Input = () => {
               autoHighlight
               disablePortal
               classes={{
-                popper: "jr-mDropdown",
+                popper: "jv-mDropdown",
               }}
               renderInput={(params) => (
                 <JVTextField
@@ -151,7 +151,7 @@ export const Input = () => {
                 // error="You can have error text here."
                 helperText="You can have helper text here."
                 InputLabelProps={{
-                  classes: { root: "jr-mInput-label mui" },
+                  classes: { root: "jv-mInput-label mui" },
                   disableAnimation: true,
                   shrink: true,
                 }}
@@ -176,7 +176,7 @@ export const Input = () => {
                 // error="You can have error text here."
                 helperText="You can have helper text here."
                 InputLabelProps={{
-                  classes: { root: "jr-mInput-label mui" },
+                  classes: { root: "jv-mInput-label mui" },
                   disableAnimation: true,
                   shrink: true,
                 }}
@@ -187,7 +187,7 @@ export const Input = () => {
           <div className="demoSpacer28"></div>
 
           <div
-            className="jr-mAutocomplete mui"
+            className="jv-mAutocomplete mui"
             style={{ position: "relative" }}
           >
             <JVAutocomplete
@@ -200,7 +200,7 @@ export const Input = () => {
               disablePortal
               paperComponentProps={{ elevation: 0 }}
               classes={{
-                popper: "jr-mDropdown",
+                popper: "jv-mDropdown",
               }}
               renderInput={(params) => (
                 <JVTextField
@@ -238,7 +238,7 @@ export const Input = () => {
                 // error="You can have error text here."
                 helperText="You can have helper text here."
                 InputLabelProps={{
-                  classes: { root: "jr-mInput-label mui" },
+                  classes: { root: "jv-mInput-label mui" },
                   disableAnimation: true,
                   shrink: true,
                 }}
@@ -264,7 +264,7 @@ export const Input = () => {
                 // error="You can have error text here."
                 helperText="You can have helper text here."
                 InputLabelProps={{
-                  classes: { root: "jr-mInput-label mui" },
+                  classes: { root: "jv-mInput-label mui" },
                   disableAnimation: true,
                   shrink: true,
                 }}
@@ -275,7 +275,7 @@ export const Input = () => {
           <div className="demoSpacer28"></div>
 
           <div
-            className="jr-mAutocomplete jr-mAutocompleteLarge mui"
+            className="jv-mAutocomplete jv-mAutocompleteLarge mui"
             style={{ position: "relative" }}
           >
             <JVAutocomplete
@@ -287,7 +287,7 @@ export const Input = () => {
               autoHighlight
               disablePortal
               classes={{
-                popper: "jr-mDropdown",
+                popper: "jv-mDropdown",
               }}
               renderInput={(params) => (
                 <JVTextField
@@ -367,7 +367,7 @@ export const ContainedInputWithAutocomplete = () => {
         <div className="demoSize">
           <p className={"demoSubtitle"}>Large</p>
           <JVClickAwayListener onClickAway={handleClose}>
-            <div className="jr-mAutocomplete jr-mAutocompleteLarge mui">
+            <div className="jv-mAutocomplete jv-mAutocompleteLarge mui">
               <JVTextField
                 id="outlined112"
                 ref={ref}
@@ -385,18 +385,18 @@ export const ContainedInputWithAutocomplete = () => {
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
-                className="jr-mDropdown jr-mAutocomplete-dropdown mui"
+                className="jv-mDropdown jv-mAutocomplete-dropdown mui"
                 disablePortal
               >
                 <JVAutocomplete
                   open
                   multiple
-                  className="jr-mDropdown-search jr-uMargin-02"
+                  className="jv-mDropdown-search jv-uMargin-02"
                   classes={{
                     listbox:
-                      "jr-mListbox jr-mListboxLarge jr-mListboxCheckbox mui",
-                    option: "jr-mListbox-option mui",
-                    popper: "jr-mDropdown-checklist",
+                      "jv-mListbox jv-mListboxLarge jv-mListboxCheckbox mui",
+                    option: "jv-mListbox-option mui",
+                    popper: "jv-mDropdown-checklist",
                   }}
                   style={{ width: width }}
                   value={pendingValue}
@@ -439,7 +439,7 @@ export const ContainedInputWithAutocomplete = () => {
                       size="large"
                       onChange={(e) => setSearchText(e.target.value)}
                       placeholder="Search"
-                      textFieldClassName={"jr-mInputSearch"}
+                      textFieldClassName={"jv-mInputSearch"}
                       id="search02"
                       variant="outlined"
                       value={searchText}
@@ -447,7 +447,7 @@ export const ContainedInputWithAutocomplete = () => {
                         endAdornment: (
                           <JVInputAdornment
                             position="end"
-                            className={"jr-mInputSearch-adornment mui"}
+                            className={"jv-mInputSearch-adornment mui"}
                           >
                             {searchText.length > 0 && (
                               <JVIconButton
@@ -463,7 +463,7 @@ export const ContainedInputWithAutocomplete = () => {
                         ),
                       }}
                       InputLabelProps={{
-                        classes: { root: "jr-Mui-focused" },
+                        classes: { root: "jv-Mui-focused" },
                         disableAnimation: true,
                       }}
                     />
