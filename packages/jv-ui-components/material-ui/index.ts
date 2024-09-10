@@ -80,6 +80,14 @@ export type { ColorPickerProps as JVColorPickerProps } from "./ColorPicker/Color
 export { ColorPickerSample as JVColorPickerSample } from "./ColorPicker/ColorPickerSample";
 export { ConfirmationDialog as JVConfirmationDialog } from "./Dialog/ConfirmationDialog";
 export type { ConfirmationDialogProps as JVConfirmationDialogProps } from "./Dialog/ConfirmationDialog";
+export { Dialog as JVDialog } from "./Dialog/Dialog";
+export type { DialogProps as JVDialogProps } from "./Dialog/Dialog";
+export { DialogFooter as JVDialogFooter } from "./Dialog/DialogFooter";
+export type { DialogFooterProps as JVDialogFooterProps } from "./Dialog/DialogFooter";
+export { DialogContent as JVDialogContent } from "./Dialog/DialogContent";
+export type { DialogContentProps as JVDialogContentProps } from "./Dialog/DialogContent";
+export { DialogTitle as JVDialogTitle } from "./Dialog/DialogTitle";
+export type { DialogTitleProps as JVDialogTitleProps } from "./Dialog/DialogTitle";
 export { DatePicker as JVDatePicker } from "./Date/DatePicker";
 export { DateTimePicker as JVDateTimePicker } from "./DateTime/DateTimePicker";
 export { DateTimeTextField as JVDateTimeTextField } from "./DateTimeTextField/DateTimeTextField";
@@ -170,3 +178,23 @@ export { SizeToClass as IconSizeToClass } from "./types/IconTypes";
 export type { IconSize as JVIconSize } from "./types/IconTypes";
 export { Typography as JVTypography } from "./Typography/Typography";
 export type { TypographyProps as JVTypographyProps } from "./Typography/Typography";
+
+export { RichTree as JVRichTreeView } from "./Tree/RichTree";
+export {
+  useTreeItem2 as useJVTreeItem2,
+  TreeItem2Icon as JVTreeItem2Icon,
+  TreeItem2Provider as JVTreeItem2Provider,
+  TreeItem2Content as JVTreeItem2Content,
+  TreeItem2Label as JVTreeItem2Label,
+  TreeItem2Root as JVTreeItem2Root,
+  TreeItem2IconContainer as JVTreeItem2IconContainer,
+} from "./Tree/TreeItem2";
+
+export type {
+  UseTreeItem2ParametersTypes as useJVTreeItem2ParametersTypes,
+  TreeViewBaseItemTypes as JVTreeViewBaseItemTypes,
+} from "./Tree/TreeItem2";
+
+export { TreeItem as JVTreeItem } from "./Tree/TreeItem";
+export { Box as JVBox } from "./Box/Box";
+export { TabPanels as JVTabPanels } from "./Tabs/TabPanels";
