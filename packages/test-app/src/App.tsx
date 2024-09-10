@@ -15,6 +15,7 @@ import {
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./ReportPanel";
+import TestComponent from "./TestComponent";
 
 export interface AppConfig {
   title: string;
@@ -159,6 +160,8 @@ export default function App(props: AppConfig) {
 
   return (
     <>
+      <TestComponent />
+      <TestComponent />
       <InputControlsPanel
         vObject={vContainer?.v}
         uri={reportUri}

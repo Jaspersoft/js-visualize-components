@@ -12,6 +12,7 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
+import { PanelContext } from "../controls/contexts/PanelContext";
 
 export interface BasePanelProps {
   controls?: any;
@@ -225,7 +226,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   return (
     <div className="jv-inputControlPanel">
       <JVDatePickerProvider>
-        {buildControls(props.controls)}
+        <PanelContext.Provider value={inputControls}>
+          {buildControls(props.controls)}
+        </PanelContext.Provider>
       </JVDatePickerProvider>
     </div>
   );

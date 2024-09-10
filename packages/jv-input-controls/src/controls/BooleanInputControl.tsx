@@ -8,6 +8,7 @@ import { BaseInputControlProps } from "./BaseInputControl";
 import { useChangeCallback } from "./hooks/useChangeCallback";
 import { useLiveState } from "./hooks/useLiveState";
 import { useControlClasses } from "./hooks/useControlClasses";
+import { PanelContext } from "./contexts/PanelContext";
 
 export type BoolICType = "switch" | "checkbox";
 
@@ -18,6 +19,10 @@ export interface BooleanInputControlProps extends BaseInputControlProps {
 export function BooleanInputControl(
   props: BooleanInputControlProps,
 ): React.JSX.Element {
+  const controlCtx = React.useContext(PanelContext);
+
+  console.log("controlCtx", controlCtx);
+
   const liveState = useLiveState(!!props.state?.value);
   // We don't need the required CSS class for booleans (request from Anna).
   const controlClasses = useControlClasses([], { ...props, mandatory: false });
