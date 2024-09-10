@@ -18,7 +18,7 @@ export default {
   title: "Components/Avatar/Design",
 };
 
-export const DefaultAccordion = () => {
+export const DefaultAvatar = () => {
   return (
     <>
       <h1 className={"demoType demoTypeDesign"}>Design</h1>
@@ -174,3 +174,5 @@ export const DefaultAccordion = () => {
     </>
   );
 };
+
+DefaultAvatar.storyName = "Avatar";
