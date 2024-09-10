@@ -183,7 +183,7 @@ export { RichTree as JVRichTreeView } from "./Tree/RichTree";
 export {
   useTreeItem2 as useJVTreeItem2,
   TreeItem2Icon as JVTreeItem2Icon,
-  TreeProviderNameSpace as JVTreeProviderNameSpace,
+  TreeItem2Provider as JVTreeItem2Provider,
   TreeItem2Content as JVTreeItem2Content,
   TreeItem2Label as JVTreeItem2Label,
   TreeItem2Root as JVTreeItem2Root,

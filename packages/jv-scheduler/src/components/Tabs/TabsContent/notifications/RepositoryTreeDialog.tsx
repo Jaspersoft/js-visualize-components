@@ -23,7 +23,7 @@ import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
 import { NOTIFICATIONS_TAB } from "../../../../constants/schedulerConstants";
 import { IState } from "../../../../types/scheduleType";
 
-function PaperComponent(props: typeof JVPaperProps) {
+function PaperComponent(props: JVPaperProps) {
   return (
     <Draggable
       handle="#draggable-dialog-title"

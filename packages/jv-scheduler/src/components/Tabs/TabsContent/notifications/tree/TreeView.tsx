@@ -13,7 +13,15 @@ import {
   removeRootFolderPath,
 } from "../../../../../utils/treeUtils";
 
-export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
+export interface TreeViewProps {
+  handleCurrentSelection: (folderSelected: string) => void;
+  folderSelected: string;
+}
+
+export const TreeView: React.FC<TreeViewProps> = ({
+  handleCurrentSelection,
+  folderSelected,
+}) => {
   const dispatch = useDispatch();
   const folderData = useSelector((state: IState) => state.folderData);
   const rootData = useSelector((state: IState) => state.fakeRoot);
@@ -90,7 +98,9 @@ export const TreeView = ({ handleCurrentSelection, folderSelected }: any) => {
       defaultSelectedItems={lastExapanded}
       getItemId={(item: any) => addRootFolderPath(item.uri)}
       slots={{
-        item: (customItemProps: CustomTreeItemProps) => (
+        item: (
+          customItemProps: Omit<CustomTreeItemProps, "updateLastSelectedNode">,
+        ) => (
           <TreeItem
             updateLastSelectedNode={updateLastSelectedNode}
             {...customItemProps}

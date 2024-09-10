@@ -1,7 +1,7 @@
 import React from "react";
 import { JVTypography, JVTypographyProps } from "@jaspersoft/jv-ui-components";
 
-type JVTypographyComponentType = typeof JVTypographyProps & { text: string };
+type JVTypographyComponentType = JVTypographyProps & { text: string };
 
 export const JVTypographyComponent = ({
   text,

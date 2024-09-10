@@ -19,10 +19,9 @@ export type UseTreeItem2ParametersTypes = useMuiTreeItem2Parameters;
 
 export type TreeViewBaseItemTypes = MuiTreeViewBaseItem;
 
-export namespace TreeProviderNameSpace {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  export import TreeItem2ProviderNameSpace = MuiTreeItem2Provider;
-}
+export const TreeItem2Provider: React.FC<any> = ({ ...rest }) => {
+  return <MuiTreeItem2Provider {...rest} />;
+};
 export const TreeItem2Icon = forwardRef<HTMLElement, any>(
   ({ className = "", ...rest }, ref) => {
     return (

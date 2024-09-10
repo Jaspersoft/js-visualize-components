@@ -4,7 +4,7 @@ import {
   JVTreeItem2Icon,
   JVTreeItem2IconContainer,
   JVTreeItem2Root,
-  JVTreeProviderNameSpace,
+  JVTreeItem2Provider,
   useJVTreeItem2,
   useJVTreeItem2ParametersTypes,
 } from "@jaspersoft/jv-ui-components";
@@ -17,8 +17,14 @@ function TransitionComponent(props: any) {
 }
 
 export interface CustomTreeItemProps
-  extends Omit<typeof useJVTreeItem2ParametersTypes, "rootRef">,
-    Omit<React.HTMLAttributes<HTMLLIElement>, "onFocus"> {}
+  extends Omit<useJVTreeItem2ParametersTypes, "rootRef">,
+    Omit<React.HTMLAttributes<HTMLLIElement>, "onFocus"> {
+  updateLastSelectedNode: (
+    itemId: string,
+    expanded: boolean,
+    disabled: boolean,
+  ) => void;
+}
 
 export const TreeItem = React.forwardRef(function CustomTreeItem(
   props: CustomTreeItemProps,
@@ -49,7 +55,7 @@ export const TreeItem = React.forwardRef(function CustomTreeItem(
   status.disabled = isTreeNodeDisable(item);
 
   return (
-    <JVTreeProviderNameSpace.TreeItem2ProviderNameSpace itemId={itemId}>
+    <JVTreeItem2Provider itemId={itemId}>
       <JVTreeItem2Root
         {...getRootProps(other)}
         onClick={(event: React.MouseEvent) => {
@@ -71,6 +77,6 @@ export const TreeItem = React.forwardRef(function CustomTreeItem(
         </JVTreeItem2Content>
         {children && <TransitionComponent {...getGroupTransitionProps()} />}
       </JVTreeItem2Root>
-    </JVTreeProviderNameSpace.TreeItem2ProviderNameSpace>
+    </JVTreeItem2Provider>
   );
 });
