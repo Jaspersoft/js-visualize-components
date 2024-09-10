@@ -1,22 +1,21 @@
-import "../../../.storybook/styles/storybook-jv-ui.scss";
 import {
-  Popper,
+  JVAutocomplete,
+  JVIcon,
+  JVIconButton,
+  JVTextField,
+} from "@jaspersoft/jv-ui-components";
+import {
   Checkbox,
   FormControlLabel,
   InputAdornment,
+  Paper,
+  Popper,
+  Autocomplete,
 } from "@mui/material";
-import Autocomplete from "@mui/material/Autocomplete";
 import "../css/demoPages.css";
 import "./autoCompleteInput.css";
-import React from "react";
-import { Paper } from "@mui/material";
-import {
-  JVTextField,
-  JVIcon,
-  JVAutocomplete,
-  JVIconButton,
-} from "@jaspersoft/jv-ui-components";
-import { labels, fontOptions } from "./autoCompleteUtils";
+import { useRef, useState } from "react";
+import { fontOptions, labels } from "./autoCompleteUtils";
 
 /*--------------------------------------
  *  TABLE OF CONTENTS
@@ -63,7 +62,7 @@ export const Input = () => {
           <p className={"demoSubtitle"}>Small</p>
           <Autocomplete
             /* when want to inspect selection list uncomment below parameter (open)*/
-            /*open*/
+            // open={true}
             freeSolo
             id="free-solo-demo-small1"
             disableClearable
@@ -353,12 +352,12 @@ Input.storyName = "Select List";
  * The drop-down contains a list of checkboxes */
 
 export const ContainedInputWithAutocomplete = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [pendingValue, setPendingValue] = React.useState([]);
-  const [searchText, setSearchText] = React.useState("");
-  const ref = React.useRef(null);
-  const [width, setWidth] = React.useState("auto");
-  const [title, setTitle] = React.useState("All");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [pendingValue, setPendingValue] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const ref = useRef(null);
+  const [width, setWidth] = useState("auto");
+  const [title, setTitle] = useState("All");
   const handleClick = (event) => {
     setWidth(ref.current.offsetWidth);
     setAnchorEl(event.currentTarget);

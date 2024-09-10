@@ -1,5 +1,3 @@
-import "../css/demoPages.css";
-import "./autoCompleteInput.css";
 import {
   JVAutocomplete,
   JVCheckbox,
@@ -11,6 +9,8 @@ import {
   JVPopper,
   JVTextField,
 } from "@jaspersoft/jv-ui-components";
+import "../css/demoPages.css";
+import "./autoCompleteInput.css";
 import { useRef, useState } from "react";
 import { fontOptions, labels } from "./autoCompleteUtils";
 
@@ -49,6 +49,8 @@ export const Input = () => {
         <div className="demoSize">
           <p className={"demoSubtitle"}>Small</p>
           <JVAutocomplete
+            /* when want to inspect selection list uncomment below parameter (open)*/
+            // open={true}
             freeSolo
             id="free-solo-demo-small1"
             disableClearable

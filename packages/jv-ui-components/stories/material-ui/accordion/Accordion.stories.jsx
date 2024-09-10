@@ -1,5 +1,4 @@
 // workaround for live reloading issue for yarn run styles:watch
-import "../../../.storybook/styles/storybook-jv-ui.scss";
 import "../css/demoPages.css";
 import "./accordion.css";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
