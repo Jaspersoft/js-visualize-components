@@ -130,8 +130,6 @@ class ColorPickerWithAbilityToAttach extends Component<
       // @ts-ignore
       show,
       color,
-      attachTo,
-      padding,
       onChangeComplete,
       ColorPicker,
     } = this.props;

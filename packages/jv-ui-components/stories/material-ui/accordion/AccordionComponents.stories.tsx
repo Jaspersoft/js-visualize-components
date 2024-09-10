@@ -1,4 +1,4 @@
-import "../../../.storybook/styles/storybook-jv-ui.scss";
+// import "../../../.storybook/styles/storybook-jv-ui.scss";
 import "../css/demoPages.css";
 import "./accordion.css";
 
@@ -8,7 +8,7 @@ import {
   JVAccordionFull,
   JVAccordionSummary,
 } from "@jaspersoft/jv-ui-components";
-import { Accordion, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 /*----------------------------
  *  TABLE OF CONTENTS
@@ -26,12 +26,6 @@ import { Accordion, Typography } from "@mui/material";
  * ------------------------------
  *  last modified July 22, 2022
  * ------------------------------ */
-
-// const meta: Meta<typeof JVAccordion> = {
-//   component: JVAccordion,
-//   title: "Components/Accordion/Component",
-// };
-// export default meta;
 
 export default {
   component: JVAccordion,

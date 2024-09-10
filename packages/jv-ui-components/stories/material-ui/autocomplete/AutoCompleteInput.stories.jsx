@@ -1,3 +1,4 @@
+import "../../../.storybook/styles/storybook-jv-ui.scss";
 import {
   Popper,
   Checkbox,
@@ -5,7 +6,6 @@ import {
   InputAdornment,
 } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import "../../../.storybook/styles/storybook-jv-ui.scss";
 import "../css/demoPages.css";
 import "./autoCompleteInput.css";
 import React from "react";
@@ -444,8 +444,9 @@ export const ContainedInputWithAutocomplete = () => {
                 renderTags={() => null}
                 noOptionsText="No resource"
                 renderOption={(props, option, { selected }) => {
+                  const { key, ...other } = props;
                   return (
-                    <li {...props}>
+                    <li key={key} {...other}>
                       <FormControlLabel
                         control={
                           <Checkbox
@@ -556,8 +557,9 @@ export const ContainedInputWithAutocomplete = () => {
                 renderTags={() => null}
                 noOptionsText="No resource"
                 renderOption={(props, option, { selected }) => {
+                  const { key, ...other } = props;
                   return (
-                    <li {...props}>
+                    <li key={key} {...other}>
                       <FormControlLabel
                         control={
                           <Checkbox
@@ -669,8 +671,9 @@ export const ContainedInputWithAutocomplete = () => {
                 renderTags={() => null}
                 noOptionsText="No resource"
                 renderOption={(props, option, { selected }) => {
+                  const { key, ...other } = props;
                   return (
-                    <li {...props}>
+                    <li key={key} {...other}>
                       <FormControlLabel
                         control={
                           <Checkbox

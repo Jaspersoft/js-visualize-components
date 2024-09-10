@@ -36,9 +36,7 @@
 }
 
 .jv-mBreadcrumbs-crumb.jv:not(:last-child):after {
-  background-image: image-url(
-    "../../images/disclosure_indicators_icons_sprite.svg"
-  );
+  background-image: image-url("disclosure_indicators_icons_sprite.svg");
   background-position: 4px -259px;
   background-size: 150px;
 }

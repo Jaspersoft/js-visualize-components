@@ -414,8 +414,9 @@ export const ContainedInputWithAutocomplete = () => {
                   renderTags={() => null}
                   noOptionsText="No resource"
                   renderOption={(props, option, { selected }) => {
+                    const { key, ...other } = props;
                     return (
-                      <li {...props}>
+                      <li key={key} {...other}>
                         <JVCheckbox
                           label={option.label}
                           CheckboxProps={{
