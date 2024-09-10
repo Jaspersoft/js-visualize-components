@@ -14,7 +14,7 @@
     "test": "jest",
     "build-prod": "NODE_ENV=production vite build",
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc -b && vite build",
     "serve": "vite preview",
     "clean": "rm -rf ./dist"
   },

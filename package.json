@@ -13,7 +13,7 @@
     "test": "yarn workspaces run test",
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
-    "start": "yarn workspace test-app run start",
+    "start": "yarn workspace demo-input-controls run dev",
     "start:styles:dev": "yarn workspace @jaspersoft/jv-ui-components run start:dev",
     "prepare": "husky"
   },

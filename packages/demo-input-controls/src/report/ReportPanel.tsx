@@ -16,7 +16,7 @@ export default function ReportPanel(props: ReportPanelProps) {
       resource: props.reportUri || "",
       container: "#report-viewer",
       events: {
-        reportCompleted: function (status: any) {},
+        reportCompleted: function (_status: any) {},
       },
     });
     setVizReport(report as any);

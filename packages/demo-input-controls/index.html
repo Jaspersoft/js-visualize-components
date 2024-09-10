@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Testing Application</title>
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Fonts to support Material Design -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,22 +16,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-
-    <link rel="stylesheet" href="index.css" />
-
-    <link rel="stylesheet" href="jv-ui.css" type="text/css" />
+    <title>Testing Application</title>
   </head>
   <body>
     <div id="root"></div>
-    <!-- react DOM root -->
-
-    <script src="bundle.js"></script>
-    <!-- load app -->
-
-    <script type="text/javascript">
-      new EventSource("/esbuild").addEventListener("change", () =>
-        location.reload(),
-      );
-    </script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
