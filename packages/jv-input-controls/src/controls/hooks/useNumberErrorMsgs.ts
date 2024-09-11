@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
 import { checkIfNumber, verifyLimit } from "../../utils/NumberUtils";
 import {
   BaseInputControlProps,
   getBaseInputControlProps,
 } from "../BaseInputControl";
+import { useEffectAfterInitial } from "./useEffectAfterInitial";
 
 interface UseNumberErrorMsgProps {
   textValue: string;
@@ -17,7 +18,7 @@ export const useNumberErrorMsg = ({
 }: UseNumberErrorMsgProps) => {
   const [msg, setMsg] = useState<string>("");
 
-  useEffect(() => {
+  useEffectAfterInitial(() => {
     // Determine the message based on:
     // 1. whether the field is a number or not
     // 2. whether the field is mandatory and the text value is empty

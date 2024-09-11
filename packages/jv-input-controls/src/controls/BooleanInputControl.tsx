@@ -1,13 +1,13 @@
-import * as React from "react";
 import {
-  JVSwitch,
   JVCheckbox,
   JVCheckboxGroup,
+  JVSwitch,
 } from "@jaspersoft/jv-ui-components";
+import * as React from "react";
 import { BaseInputControlProps } from "./BaseInputControl";
 import { useChangeCallback } from "./hooks/useChangeCallback";
-import { useLiveState } from "./hooks/useLiveState";
 import { useControlClasses } from "./hooks/useControlClasses";
+import { useLiveState } from "./hooks/useLiveState";
 
 export type BoolICType = "switch" | "checkbox";
 
