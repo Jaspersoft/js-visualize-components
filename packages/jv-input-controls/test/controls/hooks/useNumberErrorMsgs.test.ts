@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import { useNumberErrorMsg } from "../../../src/controls/hooks/useNumberErrorMsgs";
 
 const ALL_PROPS = {
@@ -35,86 +35,154 @@ const ALL_PROPS = {
 };
 
 describe("useNumberErrorMsg", () => {
-  it("should return an error message for invalid number input", () => {
-    const { result } = renderHook(() =>
-      useNumberErrorMsg({
-        textValue: "abc",
-        props: ALL_PROPS,
-      }),
+  it("should return an error message for invalid number input", async () => {
+    const { result, rerender } = renderHook(
+      ({ textValue }) =>
+        useNumberErrorMsg({
+          textValue,
+          props: ALL_PROPS,
+        }),
+      {
+        initialProps: { textValue: "" },
+      },
     );
-    expect(result.current).toBe("Specify a valid value for type number.");
+    act(() => {
+      rerender({ textValue: "abc" });
+    });
+    await waitFor(() => {
+      expect(result.current).toBe("Specify a valid value for type number.");
+    });
   });
 
-  it("should return an error message for mandatory field with empty input", () => {
-    const { result } = renderHook(() =>
-      useNumberErrorMsg({
-        textValue: "",
-        props: ALL_PROPS,
-      }),
+  it("should return an error message for mandatory field with empty input", async () => {
+    const { result, rerender } = renderHook(
+      ({ textValue }) =>
+        useNumberErrorMsg({
+          textValue,
+          props: ALL_PROPS,
+        }),
+      {
+        initialProps: { textValue: "75" },
+      },
     );
-    expect(result.current).toBe("Specify a valid value for type number.");
+    act(() => {
+      rerender({ textValue: "" });
+    });
+    await waitFor(() => {
+      expect(result.current).toBe("Specify a valid value for type number.");
+    });
   });
-  it("should return an error message for input not matching the required pattern", () => {
-    const customErrorMsg = "This field does not match the required pattern.";
-    const { result } = renderHook(() =>
-      useNumberErrorMsg({
-        textValue: "300",
-        props: {
-          ...ALL_PROPS,
-          dataType: {
-            ...ALL_PROPS.dataType,
-            maxValue: "500",
-            pattern: "^[1-5]$",
+  it("should return an error message for input not matching the required pattern", async () => {
+    const { result, rerender } = renderHook(
+      ({ textValue }) =>
+        useNumberErrorMsg({
+          textValue,
+          props: {
+            ...ALL_PROPS,
+            dataType: {
+              ...ALL_PROPS.dataType,
+              maxValue: "500",
+              pattern: "^[1-5]$",
+            },
           },
-        },
-      }),
+        }),
+      {
+        initialProps: { textValue: "" },
+      },
     );
-    expect(result.current).toBe(customErrorMsg);
+
+    act(() => {
+      rerender({ textValue: "300" });
+    });
+
+    await waitFor(() => {
+      const customErrorMsg = "This field does not match the required pattern.";
+      expect(result.current).toBe(customErrorMsg);
+    });
   });
 
-  it("should return an error message for input exceeding the max value", () => {
-    const { result } = renderHook(() =>
-      useNumberErrorMsg({
-        textValue: "200",
-        props: ALL_PROPS,
-      }),
+  it("should return an error message for input exceeding the max value", async () => {
+    const { result, rerender } = renderHook(
+      ({ textValue }) =>
+        useNumberErrorMsg({
+          textValue,
+          props: ALL_PROPS,
+        }),
+      {
+        initialProps: { textValue: "" },
+      },
     );
-    expect(result.current).toBe("Verify the number is lower or equal than 10.");
+    act(() => {
+      rerender({ textValue: "200" });
+    });
+    await waitFor(() => {
+      expect(result.current).toBe(
+        "Verify the number is lower or equal than 10.",
+      );
+    });
   });
 
-  it("should return an error message for input below the min value", () => {
-    const { result } = renderHook(() =>
-      useNumberErrorMsg({
-        textValue: "0",
-        props: ALL_PROPS,
-      }),
+  it("should return an error message for input below the min value", async () => {
+    const { result, rerender } = renderHook(
+      ({ textValue }) =>
+        useNumberErrorMsg({
+          textValue,
+          props: ALL_PROPS,
+        }),
+      {
+        initialProps: { textValue: "" },
+      },
     );
-    expect(result.current).toBe(
-      "Verify the number is greater or equal than 1.",
-    );
+    act(() => {
+      rerender({ textValue: "0" });
+    });
+    await waitFor(() => {
+      expect(result.current).toBe(
+        "Verify the number is greater or equal than 1.",
+      );
+    });
   });
 
-  it("should not return an error message for valid number input", () => {
-    const { result } = renderHook(() =>
-      useNumberErrorMsg({
-        textValue: "5",
-        props: ALL_PROPS,
-      }),
+  it("should not return an error message for valid number input", async () => {
+    const { result, rerender } = renderHook(
+      ({ textValue }) =>
+        useNumberErrorMsg({
+          textValue,
+          props: ALL_PROPS,
+        }),
+      {
+        initialProps: { textValue: "" },
+      },
     );
-    expect(result.current).toBe("");
+    act(() => {
+      rerender({ textValue: "5" });
+    });
+    await waitFor(() => {
+      expect(result.current).toBe("");
+    });
   });
 
-  it("should call the callback method if it is provided", () => {
+  it("should call the callback method if it is provided", async () => {
     const callback = jest.fn();
-    renderHook(() =>
-      useNumberErrorMsg({
-        textValue: "5",
-        props: {
-          ...ALL_PROPS,
-          events: { change: callback },
-        },
-      }),
+    const { rerender } = renderHook(
+      ({ textValue }) =>
+        useNumberErrorMsg({
+          textValue,
+          props: {
+            ...ALL_PROPS,
+            events: { change: callback },
+          },
+        }),
+      {
+        initialProps: { textValue: "" },
+      },
     );
-    expect(callback).toHaveBeenCalled();
+
+    act(() => {
+      rerender({ textValue: "5" });
+    });
+    await waitFor(() => {
+      expect(callback).toHaveBeenCalled();
+    });
   });
 });

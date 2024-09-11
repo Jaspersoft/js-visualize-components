@@ -1,2 +1,2 @@
-import "./i18n"
-export * from './components';
+import "./i18n";
+export * from "./components";
