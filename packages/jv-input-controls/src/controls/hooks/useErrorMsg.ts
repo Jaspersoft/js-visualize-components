@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { verifyDateLimit } from "../../utils/DateInputControlUtils";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
 import {
   BaseInputControlProps,
   getBaseInputControlProps,
 } from "../BaseInputControl";
+import { useEffectAfterInitial } from "./useEffectAfterInitial";
 
 interface UseMandatoryMsgProps {
   textValue: string;
@@ -21,7 +22,7 @@ export const useErrorMsg = ({
 }: UseMandatoryMsgProps) => {
   const [msg, setMsg] = useState<string>(defaultValue);
 
-  useEffect(() => {
+  useEffectAfterInitial(() => {
     // Determine the message based on:
     // 1. whether the field is mandatory and the text value is empty
     // 2. whether the field has a pattern that needs to be matched

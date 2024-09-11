@@ -1,5 +1,5 @@
-import { useReducer } from "react";
+import { useState } from "react";
 
-export default function ControlState(state, action) {
+export default function ControlState(state: any, action: string) {
   const [controlStructure, setControlStructure] = useState();
 }

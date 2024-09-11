@@ -1,14 +1,14 @@
-import { useEffect } from "react";
 import {
   BaseInputControlProps,
   getBaseInputControlProps,
 } from "../BaseInputControl";
+import { useEffectAfterInitial } from "./useEffectAfterInitial";
 
 export const useChangeCallback = (
   theValue: boolean,
   props: BaseInputControlProps,
 ) => {
-  useEffect(() => {
+  useEffectAfterInitial(() => {
     props?.events?.change?.(getBaseInputControlProps(props, theValue));
   }, [theValue]);
 };
