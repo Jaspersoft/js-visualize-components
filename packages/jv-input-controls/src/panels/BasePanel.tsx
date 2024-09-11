@@ -2,6 +2,7 @@ import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { JSX, useState } from "react";
 import { BaseInputControlProps } from "../controls/BaseInputControl";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
+import { PanelContext } from "../controls/contexts/PanelContext";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
@@ -12,7 +13,6 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
-import { PanelContext } from "../controls/contexts/PanelContext";
 
 export interface BasePanelProps {
   controls?: any;
