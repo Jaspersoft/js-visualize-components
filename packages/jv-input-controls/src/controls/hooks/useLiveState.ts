@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { BaseInputControlProps } from "../BaseInputControl";
 
-export function useLiveState(initialValue: any, props?: BaseInputControlProps) {
+export function useLiveState(initialValue: any) {
   /**
    * Changes the value of an input element to match the one selected
    *

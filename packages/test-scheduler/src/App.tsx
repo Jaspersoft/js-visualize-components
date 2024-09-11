@@ -1,11 +1,47 @@
-import React from 'react';
-import Scheduler from "@jaspersoft/jv-scheduler";
+import React, { useEffect, useState } from "react";
+import {
+  Authentication,
+  VisualizeFactory,
+  visualizejsLoader,
+  VisualizeType,
+} from "@jaspersoft/jv-tools";
+import { Scheduler } from "@jaspersoft/jv-scheduler";
+import schedulerUIConfig from "./jv_sheduler_config";
+
+const visualizeUrl = `${schedulerUIConfig.server}/client/visualize.js`;
+
+const credentials: Authentication = {
+  name: "superuser",
+  password: "superuser",
+};
 
 function App() {
-    debugger;
+  const [visualize, setVisualize] = useState(
+    null as { v: VisualizeType } | null,
+  );
 
-  return (
-      <>{Scheduler.renderScheduler('root')}</>
+  useEffect(() => {
+    const loadVisualize = visualizejsLoader(visualizeUrl);
+    loadVisualize().then((visualizeFactory: VisualizeFactory) => {
+      visualizeFactory(
+        {
+          auth: { ...credentials },
+        },
+        (v: VisualizeType) => {
+          setVisualize({ v });
+          console.log(v);
+        },
+        (e: any) => {
+          console.log(String(e));
+        },
+      );
+    });
+  }, []);
+
+  return visualize ? (
+    <Scheduler schedulerUIConfig={schedulerUIConfig} visualize={visualize} />
+  ) : (
+    <div>Loading...</div>
   );
 }
 
