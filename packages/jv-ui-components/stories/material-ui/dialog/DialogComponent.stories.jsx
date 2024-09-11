@@ -25,9 +25,9 @@ import "./dialog.css";
  *     3c. Delete
  *     3d. Error
  *
-  ----------------------------
-  last modified July 25, 2022
-  ---------------------------- */
+ ----------------------------
+ last modified July 25, 2022
+ ---------------------------- */
 
 export default {
   component: JVConfirmationDialog,
@@ -89,7 +89,6 @@ export const DefaultDialog = () => {
           dialogTitle="Dialog Box Title"
           DialogTitleProps={{
             id: "scroll-dialog-header",
-            disableTypography: true,
           }}
           DialogTitleTypographyProps={{
             variant: "h2",
@@ -108,6 +107,7 @@ DefaultDialog.storyName = "Default Dialog";
 
 /* ---------------------- */
 /*  2. DRAGGABLE DIALOG   */
+
 /* ---------------------- */
 function PaperComponent(props) {
   return (
@@ -164,7 +164,7 @@ export const DraggableDialog = () => {
           DialogTitleProps={{
             style: { cursor: "move" },
             id: "draggable-dialog-title",
-            disableTypography: true,
+
             className: "jv-mDialog-header mui",
           }}
           dialogTitle="Dialog Box Title"
@@ -248,9 +248,7 @@ export const ConfirmationDialog = () => {
         }
         disableEscapeKeyDown
         maxWidth="xs"
-        DialogTitleProps={{
-          disableTypography: true,
-        }}
+        DialogTitleProps={{}}
         DialogTitleTypographyProps={{
           variant: "h2",
         }}
@@ -286,9 +284,7 @@ export const ConfirmationDialog = () => {
         }
         disableEscapeKeyDown
         maxWidth="xs"
-        DialogTitleProps={{
-          disableTypography: true,
-        }}
+        DialogTitleProps={{}}
         DialogTitleTypographyProps={{
           variant: "h2",
         }}
@@ -309,9 +305,7 @@ export const ConfirmationDialog = () => {
             <ActionBtn text="No" color="secondary" />
           </>
         }
-        DialogTitleProps={{
-          disableTypography: true,
-        }}
+        DialogTitleProps={{}}
         DialogTitleTypographyProps={{
           variant: "h2",
         }}
@@ -342,9 +336,7 @@ export const ConfirmationDialog = () => {
             </Typography>
           </>
         }
-        DialogTitleProps={{
-          disableTypography: true,
-        }}
+        DialogTitleProps={{}}
         DialogTitleTypographyProps={{
           variant: "h2",
         }}
