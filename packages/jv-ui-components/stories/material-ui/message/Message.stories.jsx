@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import "../../../.storybook/styles/storybook-jasper-ui.scss";
 import "../css/demoPages.css";
 import "./message.css";
 import {
-  JVButton,
-  JVCard,
-  JVCardActions,
-  JVCardContent,
-  JVCardHeader,
-  JVIcon,
-  JVIconButton,
-  JVList,
-  JVListItem,
-  JVListItemText,
-  JVPaper,
-  JVPopover,
-  JVPopper,
-  JVTypography,
-  JVClickAwayListener,
-  JVBox,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Icon,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+  Popover,
+  Popper,
+  Typography,
+  ClickAwayListener,
+  Box,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -36,8 +35,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
  * ---------------------------- */
 
 export default {
-  title: "Components/JVMessage/Design",
-  component: JVMessage,
+  title: "Components/Message/Design",
+  component: Message,
 };
 
 /* ---------------------- */
@@ -52,16 +51,16 @@ export const Message = () => {
       <div className="demoWrapper demoMessage">
         {/* 1a. Warning message */}
         <div className="demoSize">
-          <JVCard className={"jv-mMessage jv-mMessageError mui"} elevation={0}>
-            <JVCardHeader
+          <Card className={"jv-mMessage jv-mMessageError mui"} elevation={0}>
+            <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
-                <JVIcon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui" />
+                <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui" />
               }
               action={
-                <JVIconButton aria-label="close" className={"jv-mButton mui"}>
+                <IconButton aria-label="close" className={"jv-mButton mui"}>
                   <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-error mui jv-cancel"></span>
-                </JVIconButton>
+                </IconButton>
               } /* not needed now, but we should allow this header action container to hold an optional close button */
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
@@ -69,69 +68,69 @@ export const Message = () => {
                 action: "jv-mMessage-header-action mui",
               }}
               title={
-                <JVTypography
+                <Typography
                   className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold mui"
                   variant="h3"
                 >
                   Error
-                </JVTypography>
+                </Typography>
               }
             />
-            <JVCardContent
+            <CardContent
               className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
             >
-              <JVTypography className="jv-mText mui" variant="body1">
+              <Typography className="jv-mText mui" variant="body1">
                 A network error is preventing the following fields from loading:
-              </JVTypography>
+              </Typography>
 
-              <JVList
+              <List
                 className={"jv-mList jv-mListBulleted jv-uMargin-tb-02 mui"}
                 disablePadding={true}
               >
-                <JVListItem className={"jv-mList-item mui"}>
-                  <JVListItemText
+                <ListItem className={"jv-mList-item mui"}>
+                  <ListItemText
                     className={"jv-mList-item-text mui"}
                     primary="Time zone"
                   />
-                </JVListItem>
-                <JVListItem className={"jv-mList-item mui"}>
-                  <JVListItemText
+                </ListItem>
+                <ListItem className={"jv-mList-item mui"}>
+                  <ListItemText
                     className={"jv-mList-item-text mui"}
                     primary="Formats"
                   />
-                </JVListItem>
-              </JVList>
+                </ListItem>
+              </List>
 
-              <JVTypography className="jv-mText mui" variant="body1">
+              <Typography className="jv-mText mui" variant="body1">
                 You can try reloading these fields. If the network error
                 persists, you will be unable to save this alert.
-              </JVTypography>
-              <JVButton
+              </Typography>
+              <Button
                 className="jv-mButton jv-mButtonLarge jv-mButtonError jv-uMargin-t-04 mui"
                 disableElevation
                 size="large"
                 variant="contained"
               >
                 <span className="jv-mButton-label mui">Retry</span>
-              </JVButton>
-            </JVCardContent>
-          </JVCard>
+              </Button>
+            </CardContent>
+          </Card>
 
           <div className="demoSpacer16"></div>
 
-          <JVCard
+          <Card
             className={"jv-mMessage jv-mMessageOutline jv-mMessageError mui"}
             elevation={0}
           >
-            <JVCardHeader
+            <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
-                <JVIcon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui" />
+                <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui" />
               }
               action={
-                <JVIconButton aria-label="close" className={"jv-mButton mui"}>
+                <IconButton aria-label="close" className={"jv-mButton mui"}>
                   <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-error mui jv-cancel"></span>
-                </JVIconButton>
+                </IconButton>
               } /* not needed now, but we should allow this header action container to hold an optional close button */
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
@@ -139,46 +138,43 @@ export const Message = () => {
                 action: "jv-mMessage-header-action mui",
               }}
               title={
-                <JVTypography
+                <Typography
                   className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold mui"
                   variant="h3"
                 >
                   Error
-                </JVTypography>
+                </Typography>
               }
             />
-            <JVCardContent
+            <CardContent
               className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
             >
-              <JVTypography
+              <Typography
                 className="jv-mText jv-uMargin-b-04 mui"
                 variant="body1"
               >
                 Error message with optional outline.{" "}
-              </JVTypography>
-              <JVTypography className="jv-mText mui" variant="body1">
+              </Typography>
+              <Typography className="jv-mText mui" variant="body1">
                 Use for messages that appear on light grey backgrounds to add
                 contrast.
-              </JVTypography>
-            </JVCardContent>
-          </JVCard>
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
 
         {/* 1b. Error message */}
         <div className="demoSize">
-          <JVCard
-            className={"jv-mMessage jv-mMessageWarning mui"}
-            elevation={0}
-          >
-            <JVCardHeader
+          <Card className={"jv-mMessage jv-mMessageWarning mui"} elevation={0}>
+            <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
-                <JVIcon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-warning mui" />
+                <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-warning mui" />
               }
               action={
-                <JVIconButton aria-label="close" className={"jv-mButton mui"}>
+                <IconButton aria-label="close" className={"jv-mButton mui"}>
                   <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-warning mui jv-cancel"></span>
-                </JVIconButton>
+                </IconButton>
               } /* not needed now, but we should allow this header action container to hold an optional close button */
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
@@ -186,27 +182,27 @@ export const Message = () => {
                 action: "jv-mMessage-header-action mui",
               }}
               title={
-                <JVTypography
+                <Typography
                   className="jv-mText jv-mTextTitle jv-uColor-warning jv-uTextBold mui"
                   variant="h3"
                 >
                   Warning
-                </JVTypography>
+                </Typography>
               }
             />
-            <JVCardContent
+            <CardContent
               className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
             >
-              <JVTypography
+              <Typography
                 className="jv-mText jv-uMargin-b-04 mui"
                 variant="body1"
               >
                 Look out for that thing that could happen.
-              </JVTypography>
+              </Typography>
 
-              <JVTypography className="jv-mText mui" variant="body1">
+              <Typography className="jv-mText mui" variant="body1">
                 You can continue, but things might not be quite right.
-              </JVTypography>
+              </Typography>
               {/*<Button
                         className="jv-mButton jv-mButtonLarge jv-mButtonWarning jv-uMargin-t-04 mui"
                         disableElevation
@@ -215,24 +211,24 @@ export const Message = () => {
                     >
                         <span className="jv-mButton-label mui">Continue</span>
                     </Button>*/}
-            </JVCardContent>
-          </JVCard>
+            </CardContent>
+          </Card>
 
           <div className="demoSpacer16"></div>
 
-          <JVCard
+          <Card
             className={"jv-mMessage jv-mMessageOutline jv-mMessageWarning mui"}
             elevation={0}
           >
-            <JVCardHeader
+            <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
-                <JVIcon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-warning mui" />
+                <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-warning mui" />
               }
               action={
-                <JVIconButton aria-label="close" className={"jv-mButton mui"}>
+                <IconButton aria-label="close" className={"jv-mButton mui"}>
                   <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-warning mui jv-cancel"></span>
-                </JVIconButton>
+                </IconButton>
               } /* not needed now, but we should allow this header action container to hold an optional close button */
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
@@ -240,29 +236,29 @@ export const Message = () => {
                 action: "jv-mMessage-header-action mui",
               }}
               title={
-                <JVTypography
+                <Typography
                   className="jv-mText jv-mTextTitle jv-uColor-warning jv-uTextBold mui"
                   variant="h3"
                 >
                   Warning
-                </JVTypography>
+                </Typography>
               }
             />
-            <JVCardContent
+            <CardContent
               className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
             >
-              <JVTypography
+              <Typography
                 className="jv-mText jv-uMargin-b-04 mui"
                 variant="body1"
               >
                 Warning message with optional outline.{" "}
-              </JVTypography>
-              <JVTypography className="jv-mText mui" variant="body1">
+              </Typography>
+              <Typography className="jv-mText mui" variant="body1">
                 Use for messages that appear on light grey backgrounds to add
                 contrast.
-              </JVTypography>
-            </JVCardContent>
-          </JVCard>
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </>
@@ -398,7 +394,7 @@ export const PopupMessage = () => {
           </div>
         </div>
 
-        <JVPopper
+        <Popper
           placement="left"
           open={true}
           className="jv-mPopper jv-mPopperError jv-uWidth-300px mui" /* utility width class is for demo only */
@@ -432,26 +428,23 @@ export const PopupMessage = () => {
 
           <div className={"jv-mPopper-message mui"}>
             <div className={"jv-mPopper-message-sidebar mui"}>
-              <JVIcon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-white mui" />
+              <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-white mui" />
             </div>
 
             <div className={"jv-mPopper-message-body mui"}>
-              <JVCard
+              <Card
                 className={"jv-mMessage jv-mMessageError mui"}
                 elevation={0}
               >
-                <JVCardHeader
+                <CardHeader
                   className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
                   /*avatar={
                                     <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui"/>
                                 }*/
                   action={
-                    <JVIconButton
-                      aria-label="close"
-                      className={"jv-mButton mui"}
-                    >
+                    <IconButton aria-label="close" className={"jv-mButton mui"}>
                       <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-error mui jv-cancel"></span>
-                    </JVIconButton>
+                    </IconButton>
                   } /* not needed now, but we should allow this header action container to hold an optional close button */
                   classes={{
                     avatar: "jv-mMessage-header-icon mui",
@@ -459,33 +452,33 @@ export const PopupMessage = () => {
                     action: "jv-mMessage-header-action mui",
                   }}
                   title={
-                    <JVTypography
+                    <Typography
                       className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold mui"
                       variant="h3"
                     >
                       Error
-                    </JVTypography>
+                    </Typography>
                   }
                 />
-                <JVCardContent
+                <CardContent
                   className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
                 >
-                  <JVTypography
+                  <Typography
                     className="jv-mText jv-uMargin-b-04 mui"
                     variant="body1"
                   >
                     Something didn't go as expected.
-                  </JVTypography>
+                  </Typography>
 
-                  <JVTypography className="jv-mText mui" variant="body1">
+                  <Typography className="jv-mText mui" variant="body1">
                     You can close this error message and try the operation
                     again.
-                  </JVTypography>
-                </JVCardContent>
-              </JVCard>
+                  </Typography>
+                </CardContent>
+              </Card>
             </div>
           </div>
-        </JVPopper>
+        </Popper>
       </div>
     </>
   );

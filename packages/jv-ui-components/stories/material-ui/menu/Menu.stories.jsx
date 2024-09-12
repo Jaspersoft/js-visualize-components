@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import "./menu.css";
-import "../../../.storybook/styles/storybook-jasper-ui.scss";
 import {
-  JVButton,
-  JVDivider,
-  JVIcon,
-  JVListItem,
-  JVListItemIcon,
-  JVListItemText,
-  JVMenu,
-  JVMenuItem,
-  JVMenuList,
-  JVPaper,
-  JVTypography,
+  Button,
+  Divider,
+  Icon,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  MenuList,
+  Paper,
+  Typography,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
@@ -34,8 +33,8 @@ import SendIcon from "@mui/icons-material/Send";
  * ------------------------------- */
 
 export default {
-  component: JVMenu,
-  title: "Components/JVMenu/Design",
+  component: Menu,
+  title: "Components/Menu/Design",
 };
 
 /* ----------------- */
@@ -58,7 +57,7 @@ export const BasicMenu = () => {
 
       <div className={"demoWrapper"}>
         <div>
-          <JVButton
+          <Button
             aria-controls="customized-menu"
             aria-haspopup="true"
             variant="contained"
@@ -66,8 +65,8 @@ export const BasicMenu = () => {
             onClick={handleClick}
           >
             Menu
-          </JVButton>
-          <JVMenu
+          </Button>
+          <Menu
             classes={{
               paper: "jv-mMenu mui",
               list: "jv-mMenu-list mui",
@@ -87,31 +86,31 @@ export const BasicMenu = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemText
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Organizations"
               />
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-caretRight mui" />
-              </JVListItemIcon>
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemText
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-caretRight mui" />
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Users"
               />
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemText
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Roles"
               />
-            </JVMenuItem>
-          </JVMenu>
+            </MenuItem>
+          </Menu>
         </div>
       </div>
     </>
@@ -139,7 +138,7 @@ export const MenuSelectable = () => {
 
       <div className={"demoWrapper"}>
         <div>
-          <JVButton
+          <Button
             aria-controls="customized-menu"
             aria-haspopup="true"
             variant="contained"
@@ -147,8 +146,8 @@ export const MenuSelectable = () => {
             onClick={handleClick}
           >
             Menu
-          </JVButton>
-          <JVMenu
+          </Button>
+          <Menu
             classes={{
               paper: "jv-mMenu jv-mMenuSelectable mui",
               list: "jv-mMenu-list mui",
@@ -168,8 +167,8 @@ export const MenuSelectable = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemText
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Sort ascending"
@@ -177,22 +176,22 @@ export const MenuSelectable = () => {
               {/*<ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
                                 <Icon className="jv-mIcon jv-caretRight mui"/>
                             </ListItemIcon>*/}
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemText
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Sort descending"
               />
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item Mui-selected mui"}>
-              <JVListItemText
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item Mui-selected mui"}>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Don't sort"
               />
-            </JVMenuItem>
-          </JVMenu>
+            </MenuItem>
+          </Menu>
         </div>
       </div>
     </>
@@ -220,7 +219,7 @@ export const MenuIcons = () => {
 
       <div className={"demoWrapper"}>
         <div>
-          <JVButton
+          <Button
             aria-controls="customized-menu"
             aria-haspopup="true"
             variant="contained"
@@ -228,8 +227,8 @@ export const MenuIcons = () => {
             onClick={handleClick}
           >
             Menu
-          </JVButton>
-          <JVMenu
+          </Button>
+          <Menu
             classes={{
               paper: "jv-mMenu jv-mMenuDecorated mui",
               list: "jv-mMenu-list mui",
@@ -249,42 +248,42 @@ export const MenuIcons = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-star mui" />
-              </JVListItemIcon>
-              <JVListItemText
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-star mui" />
+              </ListItemIcon>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Add to favorites"
               />
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-caretRight mui" />
-              </JVListItemIcon>
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-clock mui" />
-              </JVListItemIcon>
-              <JVListItemText
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-caretRight mui" />
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-clock mui" />
+              </ListItemIcon>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Schedule"
               />
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-filter mui" />
-              </JVListItemIcon>
-              <JVListItemText
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-filter mui" />
+              </ListItemIcon>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Filter"
               />
-            </JVMenuItem>
+            </MenuItem>
 
-            <JVDivider className={"jv-mMenu-divider mui"} />
-          </JVMenu>
+            <Divider className={"jv-mMenu-divider mui"} />
+          </Menu>
         </div>
       </div>
     </>
@@ -312,7 +311,7 @@ export const MenuIconsSelectable = () => {
 
       <div className={"demoWrapper"}>
         <div>
-          <JVButton
+          <Button
             aria-controls="customized-menu"
             aria-haspopup="true"
             variant="contained"
@@ -320,8 +319,8 @@ export const MenuIconsSelectable = () => {
             onClick={handleClick}
           >
             Menu
-          </JVButton>
-          <JVMenu
+          </Button>
+          <Menu
             classes={{
               paper: "jv-mMenu jv-mMenuDecorated jv-mMenuSelectable mui",
               list: "jv-mMenu-list mui",
@@ -341,42 +340,42 @@ export const MenuIconsSelectable = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-star mui" />
-              </JVListItemIcon>
-              <JVListItemText
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-star mui" />
+              </ListItemIcon>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Add to favorites"
               />
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-caretRight mui" />
-              </JVListItemIcon>
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item mui"}>
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-clock mui" />
-              </JVListItemIcon>
-              <JVListItemText
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-caretRight mui" />
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item mui"}>
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-clock mui" />
+              </ListItemIcon>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Schedule"
               />
-            </JVMenuItem>
-            <JVMenuItem className={"jv-mMenu-list-item Mui-selected mui"}>
-              <JVListItemIcon className={"jv-mMenu-list-item-icon mui"}>
-                <JVIcon className="jv-mIcon jv-filter mui" />
-              </JVListItemIcon>
-              <JVListItemText
+            </MenuItem>
+            <MenuItem className={"jv-mMenu-list-item Mui-selected mui"}>
+              <ListItemIcon className={"jv-mMenu-list-item-icon mui"}>
+                <Icon className="jv-mIcon jv-filter mui" />
+              </ListItemIcon>
+              <ListItemText
                 className={"jv-mMenu-list-item-text mui"}
                 classes={{ primary: "jv-mText mui" }}
                 primary="Filter"
               />
-            </JVMenuItem>
+            </MenuItem>
 
-            <JVDivider className={"jv-mMenu-divider mui"} />
-          </JVMenu>
+            <Divider className={"jv-mMenu-divider mui"} />
+          </Menu>
         </div>
       </div>
     </>
@@ -399,7 +398,7 @@ export const CustomizeMenu = () =>{
     };
     return (
         <div>
-            <JVButton
+            <Button
                 aria-controls="customized-menu"
                 aria-haspopup="true"
                 variant="contained"
@@ -407,8 +406,8 @@ export const CustomizeMenu = () =>{
                 onClick={handleClick}
             >
                 Menu
-            </JVButton>
-            <JVMenu
+            </Button>
+            <Menu
                 elevation={0}
                 anchorOrigin={{
                     vertical: 'bottom',
@@ -424,25 +423,25 @@ export const CustomizeMenu = () =>{
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <JVMenuItem>
-                    <JVListItemIcon>
+                <MenuItem>
+                    <ListItemIcon>
                         <SendIcon fontSize="small" />
-                    </JVListItemIcon>
-                    <JVListItemText primary="Sent mail" />
-                </JVMenuItem>
-                <JVMenuItem>
-                    <JVListItemIcon>
+                    </ListItemIcon>
+                    <ListItemText primary="Sent mail" />
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
                         <DraftsIcon fontSize="small" />
-                    </JVListItemIcon>
-                    <JVListItemText primary="Drafts" />
-                </JVMenuItem>
-                <JVMenuItem>
-                    <JVListItemIcon>
+                    </ListItemIcon>
+                    <ListItemText primary="Drafts" />
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
                         <InboxIcon fontSize="small" />
-                    </JVListItemIcon>
-                    <JVListItemText primary="Inbox" />
-                </JVMenuItem>
-            </JVMenu>
+                    </ListItemIcon>
+                    <ListItemText primary="Inbox" />
+                </MenuItem>
+            </Menu>
         </div>
     );
 

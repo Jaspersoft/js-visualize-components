@@ -1,5 +1,4 @@
 import React from "react";
-import "../../../.storybook/styles/storybook-jasper-ui.scss";
 import "../css/demoPages.css";
 import "./message.css";
 import {
