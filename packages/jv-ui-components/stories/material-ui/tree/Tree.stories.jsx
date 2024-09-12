@@ -1,30 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "./tree.css";
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Drawer,
-  FormControlLabel,
-  Icon,
-  IconButton,
-  InputLabel,
-  List,
-  ListItem,
-  MenuItem,
-  Switch,
-  Tabs,
-  Tab,
-  TextField,
-  Toolbar as MuiToolbar,
-  Typography,
-} from "@mui/material";
-import { AccordionFull } from "js-sdk/src/common/component/material-ui/Accordion/AccordionFull";
-import { JVSwitch } from "@jaspersoft/jv-ui-components";
-import { ContainedButton } from "../button/Button.stories";
 
 /*----------------------------
  *  TABLE OF CONTENTS

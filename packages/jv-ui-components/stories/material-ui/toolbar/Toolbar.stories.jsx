@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import "../css/demoPages.css";
-import "./toolbar.css";
+import { JVIcon, JVInputAdornment } from "@jaspersoft/jv-ui-components";
 import {
-  Toolbar as MuiToolbar,
   Divider,
   IconButton,
-  Typography,
   TextField,
+  Toolbar as MuiToolbar,
+  Typography,
 } from "@mui/material";
-import { JVInputAdornment, JVIcon } from "@jaspersoft/jv-ui-components";
+import { useState } from "react";
+import "../css/demoPages.css";
+import "./toolbar.css";
 
 /* ------------------------------
  *  TABLE OF CONTENTS

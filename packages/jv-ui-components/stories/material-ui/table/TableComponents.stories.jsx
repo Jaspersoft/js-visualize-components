@@ -1,20 +1,5 @@
-import React, { useState } from "react";
 import "../css/demoPages.css";
 import "./table.css";
-import {
-  JVPaper,
-  JVTable,
-  JVTableContainer,
-  JVTableHead,
-  JVTableBody,
-  JVTableCell,
-  JVTableRow,
-  JVTablePagination,
-  JVTableSortLabel,
-  JVCollapse,
-  JVSwitch,
-  JVIconButton,
-} from "@jaspersoft/jv-ui-components";
 
 /*----------------------------
  *  TABLE OF CONTENTS

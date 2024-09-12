@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
 import "../css/demoPages.css";
 import "./message.css";
+import { useEffect, useRef, useState } from "react";
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   Icon,
@@ -12,14 +11,9 @@ import {
   List,
   ListItem,
   ListItemText,
-  Paper,
-  Popover,
   Popper,
   Typography,
-  ClickAwayListener,
-  Box,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 /*----------------------------
  *  TABLE OF CONTENTS
@@ -33,11 +27,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
  * ----------------------------
  *  last modified Mar 19, 2024
  * ---------------------------- */
-
-export default {
-  title: "Components/Message/Design",
-  component: Message,
-};
 
 /* ---------------------- */
 /*  1. DEFAULT MESSAGE    */
@@ -264,17 +253,21 @@ export const Message = () => {
     </>
   );
 };
+export default {
+  title: "Components/Message/Design",
+  component: Message,
+};
 Message.storyName = "Default Message";
 
 /* -------------------- */
 /*  2. POPUP MESSAGE    */
 /* -------------------- */
 export const PopupMessage = () => {
-  const [arrowRef, setArrowRef] = React.useState(null);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [arrowRef, setArrowRef] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const [anchorEl1, setAnchorEl1] = React.useState(null);
-  const ref = React.useRef(null);
+  const [anchorEl1, setAnchorEl1] = useState(null);
+  const ref = useRef(null);
 
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);

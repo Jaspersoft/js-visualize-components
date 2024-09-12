@@ -1,10 +1,10 @@
-import React from "react";
-import "../css/demoPages.css";
-import "./progress.css";
 import {
   JVCircularProgress,
   JVLinearProgress,
 } from "@jaspersoft/jv-ui-components";
+import { useEffect, useState } from "react";
+import "../css/demoPages.css";
+import "./progress.css";
 
 /*----------------------------
  *  TABLE OF CONTENTS
@@ -76,9 +76,9 @@ Circular.storyName = "Spinner";
 /*  2. LINEAR     */
 /* -------------- */
 export const Linear = () => {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 100) {

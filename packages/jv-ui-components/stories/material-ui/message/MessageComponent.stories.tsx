@@ -1,15 +1,14 @@
-import React from "react";
 import "../css/demoPages.css";
 import "./message.css";
 import {
-  JVMessage,
-  JVTypography,
+  JVButton,
+  JVIcon,
+  JVIconButton,
   JVList,
   JVListItem,
   JVListItemText,
-  JVIcon,
-  JVIconButton,
-  JVButton,
+  JVMessage,
+  JVTypography,
 } from "@jaspersoft/jv-ui-components";
 
 /*----------------------------

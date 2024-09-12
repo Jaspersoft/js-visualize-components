@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../css/demoPages.css";
 import "./tabs.css";
 import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";

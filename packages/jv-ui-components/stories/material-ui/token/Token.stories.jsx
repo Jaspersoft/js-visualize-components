@@ -1,7 +1,7 @@
+import { Box, Icon, IconButton } from "@mui/material";
 import React from "react";
 import "../css/demoPages.css";
 import "./token.css";
-import { Box, Button, IconButton, Icon, Paper } from "@mui/material";
 
 /*------------------------------
  *  TABLE OF CONTENTS

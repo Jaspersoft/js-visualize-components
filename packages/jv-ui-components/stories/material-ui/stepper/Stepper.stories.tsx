@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import "./stepper.css";
+import { JVIcon } from "@jaspersoft/jv-ui-components";
 import {
   Button,
   Checkbox,
@@ -9,23 +8,24 @@ import {
   FormGroup,
   FormLabel,
   MenuItem,
-  RadioGroup,
   Radio,
-  Stepper,
-  StepLabel,
+  RadioGroup,
   Step,
-  Tabs,
+  StepLabel,
+  Stepper,
   Tab,
+  Tabs,
   TextField,
   Typography,
 } from "@mui/material";
-import { JVIcon } from "@jaspersoft/jv-ui-components";
+import { ChangeEvent, useState } from "react";
+import "./stepper.css";
 import {
-  TabProps,
   ConditionTabProps,
-  ScheduleTabProps,
   NotificationsTabProps,
   OutputTabProps,
+  ScheduleTabProps,
+  TabProps,
 } from "./stepperUtils";
 
 /*-----------------------------
@@ -259,8 +259,8 @@ export const SimpleStepper = () => {
     );
   }
 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [visitedTab, setVisitedTab] = React.useState<number[]>([]);
+  const [activeStep, setActiveStep] = useState(0);
+  const [visitedTab, setVisitedTab] = useState<number[]>([]);
   const handleStep = (step: number) => () => {
     setActiveStep((prevstep) => {
       if (!visitedTab.includes(prevstep)) {
@@ -329,7 +329,7 @@ const ConditionTab = (props: TabProps) => {
           label="Alert name (required)"
           variant="outlined"
           value={props.tabState?.name}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const obj = { name: e.target.value };
             props.tabValuesChangeFn?.(obj);
           }}
@@ -365,7 +365,7 @@ const ConditionTab = (props: TabProps) => {
               classes: { root: "jv-mInput-select mui" },
             }}
             value={props.tabState?.operator}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const obj = { operator: e.currentTarget.value };
               props.tabValuesChangeFn?.(obj);
             }}
@@ -414,7 +414,7 @@ const ConditionTab = (props: TabProps) => {
             InputProps={{
               classes: { input: "jv-mInput-text mui" },
             }}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const obj = { thresholdValue: e.currentTarget.value };
               props.tabValuesChangeFn?.(obj);
             }}
@@ -473,7 +473,7 @@ const ScheduleTab = (props: TabProps) => {
   const [radioValue, setRadioValue] = useState("start-now");
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     value: string,
   ) => {
     setRadioValue(value);
@@ -505,7 +505,7 @@ const ScheduleTab = (props: TabProps) => {
               classes: { input: "jv-mInput-text mui" },
             }}
             value={props.tabState?.recurrenceInterval}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const obj = { recurrenceInterval: e.target.value };
               props.tabValuesChangeFn?.(obj);
             }}
@@ -633,7 +633,7 @@ const NotificationTab = (props: TabProps) => {
             disableAnimation: true,
           }}
           value={props.tabState?.address}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const obj = { address: e.target.value };
             props.tabValuesChangeFn?.(obj);
           }}
@@ -704,7 +704,7 @@ const OutputTab = (props: TabProps) => {
             disableAnimation: true,
           }}
           value={props.tabState?.fileName}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const obj = { fileName: e.target.value };
             props.tabValuesChangeFn?.(obj);
           }}
@@ -931,27 +931,27 @@ const validate = (field: string | number | undefined) => {
 /* -------------------------------- */
 export const AlertStepper = () => {
   const [value, setValue] = useState(0);
-  const [conditionTabValues, setConditionTabValues] = React.useState({
+  const [conditionTabValues, setConditionTabValues] = useState({
     name: "",
     operator: "equals",
     thresholdValue: "0",
   });
 
-  const [notificationTabValues, setnotificationTabValues] = React.useState({
+  const [notificationTabValues, setnotificationTabValues] = useState({
     address: "",
   });
 
-  const [scheduleTabValues, setScheduleTabValues] = React.useState({
+  const [scheduleTabValues, setScheduleTabValues] = useState({
     recurrenceInterval: "1",
   });
 
-  const [outputTabValues, setOutputTabValues] = React.useState({
+  const [outputTabValues, setOutputTabValues] = useState({
     fileName: "testFile",
   });
 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [visitedTab, setVisitedTab] = React.useState<number[]>([]);
-  const [tabState, setTabState] = React.useState([
+  const [activeStep, setActiveStep] = useState(0);
+  const [visitedTab, setVisitedTab] = useState<number[]>([]);
+  const [tabState, setTabState] = useState([
     "incomplete",
     "",
     "incompleteDefaults",
@@ -1002,7 +1002,7 @@ export const AlertStepper = () => {
     });
   };
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: ChangeEvent<{}>, newValue: number) => {
     if (value === 0) {
       const err = validate(conditionTabValues.name);
       if (err) {

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   CircularProgress,
@@ -7,6 +6,7 @@ import {
 } from "@mui/material";
 import "../css/demoPages.css";
 import "./progress.css";
+import { useEffect, useState } from "react";
 
 /*----------------------------
  *  TABLE OF CONTENTS
@@ -116,9 +116,9 @@ Circular.storyName = "Circular Spinner";
 /*  2. LINEAR     */
 /* -------------- */
 export const Linear = () => {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 100) {

@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/demoPages.css";
 import "./table.css";
 import Table from "@mui/material/Table";

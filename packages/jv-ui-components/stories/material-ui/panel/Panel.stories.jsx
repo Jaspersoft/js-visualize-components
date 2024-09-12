@@ -1,6 +1,3 @@
-import React, { useState } from "react";
-import "../css/demoPages.css";
-import "./panel.css";
 import {
   Button,
   Card,
@@ -13,7 +10,9 @@ import {
   ListItem,
   Typography,
 } from "@mui/material";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useState } from "react";
+import "../css/demoPages.css";
+import "./panel.css";
 
 /*-----------------------------
  *  TABLE OF CONTENTS
@@ -41,8 +40,8 @@ export default {
 /*  1. LEFT DEFAULT PANEL     */
 /* -------------------------- */
 export const LeftAlign = () => {
-  const [panelOpen1, setPanelOpen1] = React.useState(true);
-  const [panelOpen2, setPanelOpen2] = React.useState(true);
+  const [panelOpen1, setPanelOpen1] = useState(true);
+  const [panelOpen2, setPanelOpen2] = useState(true);
 
   const handlePanelOpen1 = () => {
     setPanelOpen1(true);
@@ -335,8 +334,8 @@ LeftAlign.storyName = "Default Left Panel";
 /*  2. RIGHT DEFAULT PANEL     */
 /* --------------------------- */
 export const Default = () => {
-  const [panelOpen1, setPanelOpen1] = React.useState(true);
-  const [panelOpen2, setPanelOpen2] = React.useState(true);
+  const [panelOpen1, setPanelOpen1] = useState(true);
+  const [panelOpen2, setPanelOpen2] = useState(true);
 
   const handlePanelOpen1 = () => {
     setPanelOpen1(true);
@@ -673,8 +672,8 @@ Default.storyName = "Default Right Panel";
 /*  3. LEFT FLUSH PANELS     */
 /* ------------------------- */
 export const LeftPanels = () => {
-  const [panelOpen1, setPanelOpen1] = React.useState(true);
-  const [panelOpen2, setPanelOpen2] = React.useState(true);
+  const [panelOpen1, setPanelOpen1] = useState(true);
+  const [panelOpen2, setPanelOpen2] = useState(true);
 
   const handlePanelOpen1 = () => {
     setPanelOpen1(true);
@@ -856,8 +855,8 @@ LeftPanels.storyName = "Flush Left Panel";
 /*  4. RIGHT FLUSH PANELS    */
 /* ------------------------- */
 export const RightPanels = () => {
-  const [panelOpen1, setPanelOpen1] = React.useState(true);
-  const [panelOpen2, setPanelOpen2] = React.useState(true);
+  const [panelOpen1, setPanelOpen1] = useState(true);
+  const [panelOpen2, setPanelOpen2] = useState(true);
 
   const handlePanelOpen1 = () => {
     setPanelOpen1(true);
@@ -881,7 +880,7 @@ export const RightPanels = () => {
     backgroundColor: "#ffffff",
   };
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
 
   const handleChange = (_, checked) => {
     setChecked(checked);

@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import "./stepper.css";
 import {
-  JVDrawer,
   JVButton,
-  JVTypography,
-  JVTabs,
-  JVTab,
-  JVIcon,
-  JVStepper,
-  JVStep,
-  JVTextField,
-  JVMenuItem,
-  JVRadioButton,
-  JVRadioGroup,
   JVCheckbox,
   JVCheckboxGroup,
+  JVDrawer,
+  JVIcon,
+  JVSelectItem,
+  JVRadioButton,
+  JVRadioGroup,
+  JVStep,
+  JVStepper,
+  JVTab,
+  JVTabs,
+  JVTextField,
+  JVTypography,
 } from "@jaspersoft/jv-ui-components";
+import { ChangeEvent, useState } from "react";
+import "./stepper.css";
 import {
-  TabProps,
   ConditionTabProps,
-  ScheduleTabProps,
   NotificationsTabProps,
   OutputTabProps,
+  ScheduleTabProps,
+  TabProps,
 } from "./stepperUtils";
 /*----------------------------
  *  TABLE OF CONTENTS
@@ -258,8 +258,8 @@ export const SimpleStepper = () => {
     );
   }
 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [visitedTab, setVisitedTab] = React.useState<number[]>([]);
+  const [activeStep, setActiveStep] = useState(0);
+  const [visitedTab, setVisitedTab] = useState<number[]>([]);
   const handleStep = (step: number) => () => {
     setActiveStep((prevstep) => {
       if (!visitedTab.includes(prevstep)) {
@@ -329,7 +329,7 @@ const ConditionTab = (props: TabProps) => {
           id="outlined01"
           label="Alert name (required)"
           value={props.tabState?.name}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const obj = { name: e.target.value };
             props.tabValuesChangeFn?.(obj);
           }}
@@ -348,21 +348,21 @@ const ConditionTab = (props: TabProps) => {
             label="Condition (required)"
             select
             value={props.tabState?.operator}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const obj = { operator: e.currentTarget.value };
               props.tabValuesChangeFn?.(obj);
             }}
           >
-            <JVMenuItem value="equals">Equals</JVMenuItem>
-            <JVMenuItem value="not equal">Not equal to</JVMenuItem>
-            <JVMenuItem value="less than">Less than</JVMenuItem>
-            <JVMenuItem value="greater than">Greater than</JVMenuItem>
-            <JVMenuItem value="less than or equal to">
+            <JVSelectItem value="equals">Equals</JVSelectItem>
+            <JVSelectItem value="not equal">Not equal to</JVSelectItem>
+            <JVSelectItem value="less than">Less than</JVSelectItem>
+            <JVSelectItem value="greater than">Greater than</JVSelectItem>
+            <JVSelectItem value="less than or equal to">
               Less than or equal to
-            </JVMenuItem>
-            <JVMenuItem value="greater than or equal to">
+            </JVSelectItem>
+            <JVSelectItem value="greater than or equal to">
               Greater than or equal to
-            </JVMenuItem>
+            </JVSelectItem>
           </JVTextField>
         </div>
         <div className={"jv-mControl-threshold mui"}>
@@ -373,7 +373,7 @@ const ConditionTab = (props: TabProps) => {
             label="Threshold (required)"
             type="number"
             value={props.tabState?.thresholdValue}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const obj = { thresholdValue: e.currentTarget.value };
               props.tabValuesChangeFn?.(obj);
             }}
@@ -426,7 +426,7 @@ const ScheduleTab = (props: TabProps) => {
   const [radioValue, setRadioValue] = useState("start-now");
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     value: string,
   ) => {
     setRadioValue(value);
@@ -451,7 +451,7 @@ const ScheduleTab = (props: TabProps) => {
             shrink: true,
           }}
           value={props.tabState?.recurrenceInterval}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const obj = { recurrenceInterval: e.target.value };
             props.tabValuesChangeFn?.(obj);
           }}
@@ -465,10 +465,10 @@ const ScheduleTab = (props: TabProps) => {
           select
           label="Timeframe (required)"
         >
-          <JVMenuItem value="minute">Minutes</JVMenuItem>
-          <JVMenuItem value="hour">Hours</JVMenuItem>
-          <JVMenuItem value="day">Days</JVMenuItem>
-          <JVMenuItem value="week">Weeks</JVMenuItem>
+          <JVSelectItem value="minute">Minutes</JVSelectItem>
+          <JVSelectItem value="hour">Hours</JVSelectItem>
+          <JVSelectItem value="day">Days</JVSelectItem>
+          <JVSelectItem value="week">Weeks</JVSelectItem>
         </JVTextField>
       </div>
 
@@ -522,7 +522,7 @@ const NotificationTab = (props: TabProps) => {
           id="outlined-helperText01"
           label="Send alert to (required)"
           value={props.tabState?.address}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const obj = { address: e.target.value };
             props.tabValuesChangeFn?.(obj);
           }}
@@ -562,7 +562,7 @@ const OutputTab = (props: TabProps) => {
           id="outlined01"
           label="File name (required)"
           value={props.tabState?.fileName}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const obj = { fileName: e.target.value };
             props.tabValuesChangeFn?.(obj);
           }}
@@ -578,21 +578,21 @@ const OutputTab = (props: TabProps) => {
             select
             variant="outlined"
           >
-            <JVMenuItem value="pst">
+            <JVSelectItem value="pst">
               America/Los_Angeles - Pacific Standard Time
-            </JVMenuItem>
-            <JVMenuItem value="mst">
+            </JVSelectItem>
+            <JVSelectItem value="mst">
               America/Denver - Mountain Standard Time
-            </JVMenuItem>
-            <JVMenuItem value="cst">
+            </JVSelectItem>
+            <JVSelectItem value="cst">
               America/Chicago - Central Standard Time
-            </JVMenuItem>
-            <JVMenuItem value="est">
+            </JVSelectItem>
+            <JVSelectItem value="est">
               America/New York - Pacific Standard Time
-            </JVMenuItem>
-            <JVMenuItem value="gmt">
+            </JVSelectItem>
+            <JVSelectItem value="gmt">
               Europe/London - Greenwich Mean Time
-            </JVMenuItem>
+            </JVSelectItem>
           </JVTextField>
         </div>
 
@@ -632,27 +632,27 @@ const validate = (field: string | number | undefined) => {
 /* -------------------------------- */
 export const AlertStepper = () => {
   const [value, setValue] = useState(0);
-  const [conditionTabValues, setConditionTabValues] = React.useState({
+  const [conditionTabValues, setConditionTabValues] = useState({
     name: "",
     operator: "equals",
     thresholdValue: "0",
   });
 
-  const [notificationTabValues, setNotificationTabValues] = React.useState({
+  const [notificationTabValues, setNotificationTabValues] = useState({
     address: "",
   });
 
-  const [scheduleTabValues, setScheduleTabValues] = React.useState({
+  const [scheduleTabValues, setScheduleTabValues] = useState({
     recurrenceInterval: "1",
   });
 
-  const [outputTabValues, setOutputTabValues] = React.useState({
+  const [outputTabValues, setOutputTabValues] = useState({
     fileName: "testFile",
   });
 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [visitedTab, setVisitedTab] = React.useState<number[]>([]);
-  const [tabState, setTabState] = React.useState([
+  const [activeStep, setActiveStep] = useState(0);
+  const [visitedTab, setVisitedTab] = useState<number[]>([]);
+  const [tabState, setTabState] = useState([
     "incomplete",
     "",
     "incompleteDefaults",
@@ -703,7 +703,7 @@ export const AlertStepper = () => {
     });
   };
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue?: any) => {
+  const handleChange = (event: ChangeEvent<{}>, newValue?: any) => {
     if (value === 0) {
       const err = validate(conditionTabValues.name);
       if (err) {

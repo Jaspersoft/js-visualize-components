@@ -1,21 +1,14 @@
-import React, { useState } from "react";
-import "./menu.css";
 import {
   Button,
   Divider,
   Icon,
-  ListItem,
   ListItemIcon,
   ListItemText,
   Menu,
   MenuItem,
-  MenuList,
-  Paper,
-  Typography,
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import SendIcon from "@mui/icons-material/Send";
+import { useState } from "react";
+import "./menu.css";
 
 /*------------------------------
  *  TABLE OF CONTENTS
@@ -41,7 +34,7 @@ export default {
 /*  1. BASIC MENU    */
 /* ----------------- */
 export const BasicMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -122,7 +115,7 @@ BasicMenu.storyName = "Menu";
 /*  2. SELECTABLE MENU    */
 /* ---------------------- */
 export const MenuSelectable = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -203,7 +196,7 @@ MenuSelectable.storyName = "Menu - Selectable";
 /* 3. MENU WITH ICONS    */
 /* --------------------- */
 export const MenuIcons = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -295,7 +288,7 @@ MenuIcons.storyName = "Menu - Icons";
 /* 4. SELECTABLE MENU WITH ICONS    */
 /* -------------------------------- */
 export const MenuIconsSelectable = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -387,7 +380,7 @@ MenuIconsSelectable.storyName = "Menu - Selectable + Icons";
 /*  3. CUSTOMIZE MENU    */
 /* ---------------------
 export const CustomizeMenu = () =>{
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

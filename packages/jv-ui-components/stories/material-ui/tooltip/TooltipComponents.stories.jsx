@@ -1,12 +1,6 @@
-import React, { useState } from "react";
+import { Tooltip } from "@mui/material";
 import "../css/demoPages.css";
 import "./tooltip.css";
-import {
-  JVButton,
-  JVIconButton,
-  JVTypography,
-} from "@jaspersoft/jv-ui-components";
-import { Tooltip } from "@mui/material";
 
 /*------------------------------
  *  TABLE OF CONTENTS
