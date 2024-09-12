@@ -39,11 +39,9 @@ const Parameters = () => {
   const panelD: any = {
     config: { bool: { type: "switch" } },
     success: (params) => {
-      debugger;
       updateStoreWithParameters(params.parameters);
     },
     error: (error) => {
-      debugger;
       dispatch(parametersTabErrorOrLoading({ isLoaded: false, isError: true }));
       console.log("Error when rendering the Basic controls: ", error);
     },
