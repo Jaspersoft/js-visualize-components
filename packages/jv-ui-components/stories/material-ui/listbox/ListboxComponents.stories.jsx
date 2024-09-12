@@ -1,8 +1,5 @@
-import React from "react";
-import "../../../.storybook/styles/storybook-jasper-ui.scss";
 import "../css/demoPages.css";
 import "./listbox.css";
-import { Box, Paper } from "@mui/material";
 
 /*------------------------------
  *  TABLE OF CONTENTS
