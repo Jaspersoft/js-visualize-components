@@ -35,7 +35,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-a11y"),
   ],
   core: {
-    builder: "@storybook/builder-vite", // The builder enabled here.
+    builder: getAbsolutePath("@storybook/builder-vite"), // The builder enabled here.
     disableTelemetry: true,
   },
   framework: {
