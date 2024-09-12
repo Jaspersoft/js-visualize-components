@@ -3310,7 +3310,7 @@ export const inputTextField = () => {
                         className={"jv-mInput jv-mInputText jv-mInputSmall mui"}
                         helperText="You can have helper text here, and this text can wrap to multiple lines"
                         id="outlined-helperText03"
-                        label="Text with helper"
+                        label="Text input that has a long label that wraps to two lines with helper"
                         variant="outlined"
                         InputLabelProps={{
                           classes: { root: "jv-mInput-label mui" },
@@ -3691,7 +3691,7 @@ export const inputTextField = () => {
                         className={"jv-mInput jv-mInputText mui"}
                         helperText="You can have helper text here, and this text can wrap to multiple lines"
                         id="outlined-helperText03"
-                        label="Text with helper"
+                        label="Text input that has a long label that wraps to two lines with helper"
                         variant="outlined"
                         InputLabelProps={{
                           classes: { root: "jv-mInput-label mui" },
@@ -4070,7 +4070,7 @@ export const inputTextField = () => {
                         className={"jv-mInput jv-mInputText jv-mInputLarge mui"}
                         helperText="Web address must start with http or https start with http or https"
                         id="outlined-helperText01"
-                        label="Text with helper"
+                        label="Text input that has a long label that wraps to two lines with helper"
                         variant="outlined"
                         InputLabelProps={{
                           classes: { root: "jv-mInput-label mui" },

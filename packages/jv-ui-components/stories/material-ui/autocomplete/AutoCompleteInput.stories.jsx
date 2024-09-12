@@ -250,6 +250,7 @@ export const Input = () => {
           <p className="demoSubtitle">Large</p>
           <Autocomplete
             id="free-solo-demo-large1"
+            disableClearable
             freeSolo
             /* when want to inspect selection list uncomment below parameter (open)*/
             /*open*/

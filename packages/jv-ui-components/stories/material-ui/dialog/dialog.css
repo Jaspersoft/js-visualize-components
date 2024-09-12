@@ -23,3 +23,7 @@
 .jv-mDialog.demo .jv-MuiBackdrop-root {
   display: none;
 }
+
+.sb-show-main.sb-main-padded:has(.jv-mDialogConfirm.mui) {
+  overflow-y: auto !important;
+}

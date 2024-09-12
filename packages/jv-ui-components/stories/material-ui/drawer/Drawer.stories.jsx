@@ -9,7 +9,7 @@ import "./drawer.css";
 /*    02. RIGHT DRAWER             */
 /*                                 */
 /*  ------------------------------ */
-/*  last modified Mar 12 2024      */
+/*  last modified Aug 5 2024      */
 /*  ------------------------------ */
 
 export default {
@@ -29,7 +29,7 @@ export const LeftDrawer = () => {
         anchor="left"
         className={"jv-mDrawer mui"}
         classes={{ paper: "demoDrawerSide" }} /* for demo only */
-        elevation={6}
+        elevation={4}
         open={true}
       >
         <div className="jv-mDrawer-header mui">
@@ -92,7 +92,7 @@ export const RightDrawer = () => {
         anchor="right"
         className={"jv-mDrawer mui"}
         classes={{ paper: "demoDrawerSide" }} /* for demo only */
-        elevation={6}
+        elevation={4}
         open={true}
       >
         <div className="jv-mDrawer-header mui">
