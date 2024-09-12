@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
 import Schedule from "../Tabs/TabsContent/Schedule";
@@ -14,22 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { PARAMETERS_TAB } from "../../constants/schedulerConstants";
 import { IState } from "../../types/scheduleType";
 
-function CustomTabPanel(props: any) {
-  const { children, value, currentActive, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== currentActive}
-      id={`simple-tabpanel-${currentActive}`}
-      aria-labelledby={`simple-tab-${currentActive}`}
-      {...other}
-    >
-      {value === currentActive && children}
-    </div>
-  );
-}
-
 const Tabs = () => {
   const dispatch = useDispatch<any>();
   const visitedTabs = useSelector(
@@ -41,6 +25,13 @@ const Tabs = () => {
   const currentActiveTab = useSelector(
     (state: Pick<IState, "currentActiveTab">) => state.currentActiveTab,
   );
+  // const parametersTabLoading = useSelector((state: IState) => state.parametersTabLoading);
+  // const [disableTabs, setDisableTabs] = useState(!parametersTabLoading.isLoaded);
+
+  // useEffect(() => {
+  //   debugger;
+  //   setDisableTabs(!parametersTabLoading.isLoaded);
+  // }, [parametersTabLoading.isLoaded])
 
   const handleVisitedTabs = () => {
     if (!visitedTabs.includes(currentActiveTab)) {
@@ -79,6 +70,7 @@ const Tabs = () => {
                 key={item.key}
                 label={item.label}
                 value={item.value}
+                // disabled={disableTabs}
                 data-name={`schedule-${item.label}-button-tab`}
               />
             );
@@ -86,18 +78,10 @@ const Tabs = () => {
         </JVTabs>
       </div>
       <div className="jv-mDrawer-body jv-mDrawer-bodyPadded mui">
-        <CustomTabPanel value="schedule" currentActive={currentActiveTab}>
-          <Schedule />
-        </CustomTabPanel>
-        <CustomTabPanel value="parameters" currentActive={currentActiveTab}>
-          <Parameters />
-        </CustomTabPanel>
-        <CustomTabPanel value="notifications" currentActive={currentActiveTab}>
-          <Notifications />
-        </CustomTabPanel>
-        <CustomTabPanel value="output" currentActive={currentActiveTab}>
-          <Output />
-        </CustomTabPanel>
+        {currentActiveTab === "schedule" && <Schedule />}
+        {currentActiveTab === "parameters" && <Parameters />}
+        {currentActiveTab === "notifications" && <Notifications />}
+        {currentActiveTab === "output" && <Output />}
       </div>
     </>
   );

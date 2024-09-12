@@ -189,6 +189,10 @@ export interface IState extends ISchedulerInitialPluginData {
   fakeRoot?: any;
   schedulerUIConfig?: ISchedulerUIConfig;
   userTimeZones: [{ code: string; description: string }];
+  parametersTabLoading: {
+    isLoaded: boolean;
+    isError: boolean;
+  };
 }
 
 export interface IStoreData {}

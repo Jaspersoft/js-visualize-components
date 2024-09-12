@@ -217,6 +217,10 @@ export const defaultState = {
   visitedTabs: [],
   currentActiveTab: "schedule",
   visualize: undefined,
+  parametersTabLoading: {
+    isLoaded: true,
+    isError: false,
+  },
 };
 
 export const RECURRENCE_INTERVAL_DATE_TIME = 2;

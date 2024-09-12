@@ -14,6 +14,7 @@ import {
   SCHEDULE_ERROR_OCCURRED,
   SET_STEPPER_CONFIG,
   SET_VISUALIZE_DATA,
+  SET_PARAMETERS_TAB_LOADING,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -117,6 +118,11 @@ export const rootReducer = (
       return {
         ...state,
         visualize: action.payload.visualize,
+      };
+    case SET_PARAMETERS_TAB_LOADING:
+      return {
+        ...state,
+        parametersTabLoading: action.payload.parametersTabConfig,
       };
     // case SET_USER_LOCALE:
     //     return {

@@ -15,6 +15,7 @@ import {
   SET_VISIBLE_FIELDS,
   SET_STEPPER_CONFIG,
   SET_VISUALIZE_DATA,
+  SET_PARAMETERS_TAB_LOADING,
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
@@ -350,5 +351,15 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
     } finally {
       enableCreateBtn();
     }
+  };
+};
+
+export const parametersTabErrorOrLoading = (parametersTabConfig: {
+  isLoaded: boolean;
+  isError: boolean;
+}) => {
+  return {
+    type: SET_PARAMETERS_TAB_LOADING,
+    payload: { parametersTabConfig },
   };
 };
