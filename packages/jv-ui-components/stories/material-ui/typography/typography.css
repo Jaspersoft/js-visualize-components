@@ -1,0 +1,29 @@
+.demoTypography p,
+.demoTypography h1,
+.demoTypography h2,
+.demoTypography h3,
+.demoTypography h4,
+.demoTypography h5,
+.demoTypography h6 {
+  margin-bottom: 18px;
+}
+
+.demoTypography .demoSize {
+  /*  background-color: #fafafa; */
+  padding: 16px;
+  width: 250px;
+}
+
+.demoSize-description {
+  color: #444444;
+  font-size: 13px;
+  font-family: source_sans_proregular;
+  margin-bottom: 36px;
+  margin-top: -16px;
+}
+
+.demoTypographyFilter .demoSize {
+  background-color: #fafafa;
+  padding: 24px;
+  width: 100%;
+}

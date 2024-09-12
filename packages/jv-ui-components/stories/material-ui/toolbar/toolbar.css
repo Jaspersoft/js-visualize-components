@@ -1,0 +1,10 @@
+.demoWrapper.demoToolbar {
+  flex-direction: column;
+}
+
+.demoToolbarWrapper {
+  border: 1px solid #dedede;
+  display: block;
+  height: 200px;
+  margin: 0 28px;
+}

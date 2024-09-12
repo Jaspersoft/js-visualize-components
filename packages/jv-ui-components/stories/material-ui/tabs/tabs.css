@@ -1,0 +1,13 @@
+.demoWrapper.demoTab .demoSubtitle-2 {
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+
+.demoWrapper.demoTab {
+  flex-direction: column;
+}
+
+.demoWrapper.demoTab .demoSize {
+  background-color: #fafafa;
+  padding: 12px;
+}
