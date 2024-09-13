@@ -32,11 +32,6 @@ import {
  *  last modified Mar 21, 2024
  * ---------------------------- */
 
-export default {
-  title: "Components/Message/Design",
-  component: Message,
-};
-
 /* ---------------------- */
 /*  1. DEFAULT MESSAGE    */
 /* ---------------------- */
@@ -341,6 +336,11 @@ export const Message = () => {
 };
 Message.storyName = "Default Message";
 
+export default {
+  title: "Components/Message/Design",
+  component: Message,
+};
+
 /* -------------------- */
 /*  2. POPUP MESSAGE    */
 /* -------------------- */
@@ -372,96 +372,96 @@ export const PopupMessage = () => {
 
       <div className="demoWrapper demoMessagePopup">
         <div
-          className="jv-mListbox jv-uFlexfit-row-item jr"
+          className="jv-mListbox jv-uFlexfit-row-item jv"
           style={{ width: "100%", height: "360px" }}
           ref={ref}
         >
-          <div className="jv-mListbox-list jv-isInvalid jr">
-            <ul className="jv-mTree jr" role="tree" aria-label="">
+          <div className="jv-mListbox-list jv-isInvalid jv">
+            <ul className="jv-mTree jv" role="tree" aria-label="">
               <li
-                className="jv-mTree-leaf jv-mTree-leaf-1 jv-isSelected jv-isInvalid jr"
+                className="jv-mTree-leaf jv-mTree-leaf-1 jv-isSelected jv-isInvalid jv"
                 role="treeitem"
               >
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">Audit Data Source</p>
+                <p className="jv-mTree-label jv">Audit Data Source</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">ExampleVDS</p>
+                <p className="jv-mTree-label jv">ExampleVDS</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">Foodmart Data Source</p>
+                <p className="jv-mTree-label jv">Foodmart Data Source</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">Foodmart Data Source JNDI</p>
+                <p className="jv-mTree-label jv">Foodmart Data Source JNDI</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">
+                <p className="jv-mTree-label jv">
                   Jasperserver Repository SQL data source
                 </p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">JServer Jdbc Data Source</p>
+                <p className="jv-mTree-label jv">JServer Jdbc Data Source</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">JServer JNDI Data Source</p>
+                <p className="jv-mTree-label jv">JServer JNDI Data Source</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">myDS_alltypes</p>
+                <p className="jv-mTree-label jv">myDS_alltypes</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">Profile Data Source JNDI</p>
+                <p className="jv-mTree-label jv">Profile Data Source JNDI</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">
+                <p className="jv-mTree-label jv">
                   Report Monitoring Data Source
                 </p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">SugarCRM Data Source</p>
+                <p className="jv-mTree-label jv">SugarCRM Data Source</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">SugarCRM Data Source JNDI</p>
+                <p className="jv-mTree-label jv">SugarCRM Data Source JNDI</p>
               </li>
-              <li className="jv-mTree-leaf jv-mTree-leaf-1 jr" role="treeitem">
-                <div className="jv-mTree-iconContainer jr">
-                  <span className="jv-mTree-icon jv-mTree-iconDatasource jr"></span>
+              <li className="jv-mTree-leaf jv-mTree-leaf-1 jv" role="treeitem">
+                <div className="jv-mTree-iconContainer jv">
+                  <span className="jv-mTree-icon jv-mTree-iconDatasource jv"></span>
                 </div>
-                <p className="jv-mTree-label jr">
+                <p className="jv-mTree-label jv">
                   SugarCRM-Foodmart Virtual Data Source
                 </p>
               </li>

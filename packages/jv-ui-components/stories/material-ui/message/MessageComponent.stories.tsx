@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/demoPages.css";
 import "./message.css";
 import {
@@ -50,7 +49,7 @@ export const Message = () => {
               isHeaderPadded: true,
               avatar: (
                 <JVIcon
-                  className="jr-uColor-error"
+                  className="jv-uColor-error"
                   size="large"
                   icon="warningRound"
                 />
@@ -59,12 +58,12 @@ export const Message = () => {
                 <JVIconButton
                   aria-label="close"
                   icon="cancel"
-                  className="jr-uColor-error jr-mButton-iconSmaller"
+                  className="jv-uColor-error jv-mButton-iconSmaller"
                 />
               ),
               title: (
                 <JVTypography
-                  className="jr-mText jr-mTextTitle jr-uColor-error jr-uTextBold"
+                  className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold"
                   variant="h3"
                 >
                   Error
@@ -77,19 +76,19 @@ export const Message = () => {
             </JVTypography>
 
             <JVList
-              className="jr-mList jr-uMargin-tb-02"
+              className="jv-mList jv-uMargin-tb-02"
               isBulleted
               disablePadding
             >
-              <JVListItem className="jr-mList-item">
+              <JVListItem className="jv-mList-item">
                 <JVListItemText
-                  className="jr-mList-item-text"
+                  className="jv-mList-item-text"
                   primary="Time zone"
                 />
               </JVListItem>
-              <JVListItem className="jr-mList-item">
+              <JVListItem className="jv-mList-item">
                 <JVListItemText
-                  className="jr-mList-item-text"
+                  className="jv-mList-item-text"
                   primary="Formats"
                 />
               </JVListItem>
@@ -100,7 +99,7 @@ export const Message = () => {
             </JVTypography>
             <JVButton
               size="large"
-              className="jr-mButtonError jr-uMargin-t-04"
+              className="jv-mButtonError jv-uMargin-t-04"
               disableElevation
               variant="contained"
             >
@@ -135,7 +134,7 @@ export const Message = () => {
               isHeaderPadded: true,
               avatar: (
                 <JVIcon
-                  className="jr-uColor-warning"
+                  className="jv-uColor-warning"
                   size="large"
                   icon="warningRound"
                 />
@@ -144,12 +143,12 @@ export const Message = () => {
                 <JVIconButton
                   aria-label="close"
                   icon="cancel"
-                  className="jr-mButton-iconSmaller jr-uColor-warning"
+                  className="jv-mButton-iconSmaller jv-uColor-warning"
                 />
               ),
               title: (
                 <JVTypography
-                  className="jr-mText jr-mTextTitle jr-uColor-warning jr-uTextBold"
+                  className="jv-mText jv-mTextTitle jv-uColor-warning jv-uTextBold"
                   variant="h3"
                 >
                   Warning
@@ -157,7 +156,7 @@ export const Message = () => {
               ),
             }}
           >
-            <JVTypography className="jr-uMargin-b-04" variant="body1">
+            <JVTypography className="jv-uMargin-b-04" variant="body1">
               Look out for that thing that could happen.
             </JVTypography>
 
