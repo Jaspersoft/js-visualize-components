@@ -1,14 +1,15 @@
-import {
-  JVCollapsiblePanel,
-  JVFlushPanel,
-  JVIconButton,
-  JVTypography,
-} from "@jaspersoft/jv-ui-components";
-import { Snackbar } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useState, useCallback } from "react";
 import "../css/demoPages.css";
 import "./panel.css";
 import _ from "underscore";
+import {
+  JVTypography,
+  JVCollapsiblePanel,
+  JVIconButton,
+  JVSubPanel,
+  JVFlushPanel,
+} from "@jaspersoft/jv-ui-components";
+import { Snackbar } from "@mui/material";
 
 /*----------------------------
  *  TABLE OF CONTENTS

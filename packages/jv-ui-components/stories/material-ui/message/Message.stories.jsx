@@ -1,6 +1,6 @@
+import { useRef, useState, useEffect } from "react";
 import "../css/demoPages.css";
 import "./message.css";
-import { useEffect, useRef, useState } from "react";
 import {
   Button,
   Card,
@@ -19,14 +19,23 @@ import {
  *  TABLE OF CONTENTS
  *
  *  1. DEFAULT MESSAGE
- *     1a. Error
- *     1b. Warning
+ *     1a. Error Static
+ *     1b. Error, Drop Shadow
+ *     1c. Error, Outline
+ *     1d. Warning Static
+ *     1e. Warning, Drop Shadow
+ *     1f. Warning, Outline
  *
  *  2. POPUP MESSAGE
  *
  * ----------------------------
- *  last modified Mar 19, 2024
+ *  last modified Mar 21, 2024
  * ---------------------------- */
+
+export default {
+  title: "Components/Message/Design",
+  component: Message,
+};
 
 /* ---------------------- */
 /*  1. DEFAULT MESSAGE    */
@@ -38,19 +47,19 @@ export const Message = () => {
       <h1 className={"demoTitle"}>Message</h1>
 
       <div className="demoWrapper demoMessage">
-        {/* 1a. Warning message */}
+        {/* ERROR MESSAGES */}
         <div className="demoSize">
+          <p className="demoSubtitle">Error</p>
+
+          {/* 1a. Static Error message */}
+          <p className="demoSubtitle-2">Static</p>
           <Card className={"jv-mMessage jv-mMessageError mui"} elevation={0}>
             <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
                 <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui" />
               }
-              action={
-                <IconButton aria-label="close" className={"jv-mButton mui"}>
-                  <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-error mui jv-cancel"></span>
-                </IconButton>
-              } /* not needed now, but we should allow this header action container to hold an optional close button */
+              /* static messages do not have a close button */
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
                 content: "jv-mMessage-header-title mui",
@@ -95,32 +104,37 @@ export const Message = () => {
                 persists, you will be unable to save this alert.
               </Typography>
               <Button
+                classes={{ label: "jv-mButton-label mui" }}
                 className="jv-mButton jv-mButtonLarge jv-mButtonError jv-uMargin-t-04 mui"
                 disableElevation
                 size="large"
                 variant="contained"
               >
-                <span className="jv-mButton-label mui">Retry</span>
+                Retry
               </Button>
             </CardContent>
           </Card>
 
           <div className="demoSpacer16"></div>
 
-          <Card
-            className={"jv-mMessage jv-mMessageOutline jv-mMessageError mui"}
-            elevation={0}
-          >
+          {/* 1b. Error message with drop shadow */}
+          <p className="demoSubtitle-2">Shadow</p>
+          <Card className={"jv-mMessage jv-mMessageError mui"} elevation={2}>
             <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
                 <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui" />
               }
               action={
-                <IconButton aria-label="close" className={"jv-mButton mui"}>
-                  <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-error mui jv-cancel"></span>
-                </IconButton>
-              } /* not needed now, but we should allow this header action container to hold an optional close button */
+                <IconButton
+                  aria-label="close"
+                  className={"jv-mButton mui"}
+                  classes={{
+                    label:
+                      "jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-error mui jv-cancel",
+                  }}
+                ></IconButton>
+              }
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
                 content: "jv-mMessage-header-title mui",
@@ -138,33 +152,66 @@ export const Message = () => {
             <CardContent
               className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
             >
-              <Typography
-                className="jv-mText jv-uMargin-b-04 mui"
-                variant="body1"
-              >
-                Error message with optional outline.{" "}
-              </Typography>
               <Typography className="jv-mText mui" variant="body1">
-                Use for messages that appear on light grey backgrounds to add
-                contrast.
+                Use for error messages that have a close button in the upper
+                right.
               </Typography>
             </CardContent>
           </Card>
+
+          <div className="demoSpacer16"></div>
+
+          {/* 1c. Error message with outline */}
+          <p className="demoSubtitle-2">Outlined</p>
+          <div className="demoVariant">
+            <Card
+              className={"jv-mMessage jv-mMessageError mui"}
+              variant="outlined"
+            >
+              <CardHeader
+                className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
+                avatar={
+                  <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui" />
+                }
+                classes={{
+                  avatar: "jv-mMessage-header-icon mui",
+                  content: "jv-mMessage-header-title mui",
+                  action: "jv-mMessage-header-action mui",
+                }}
+                title={
+                  <Typography
+                    className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold mui"
+                    variant="h3"
+                  >
+                    Error
+                  </Typography>
+                }
+              />
+              <CardContent
+                className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
+              >
+                <Typography className="jv-mText mui" variant="body1">
+                  Use for static error messages that appear on a light grey
+                  background.
+                </Typography>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
-        {/* 1b. Error message */}
+        {/* WARNING MESSAGES */}
         <div className="demoSize">
+          <p className="demoSubtitle">Warning</p>
+
+          {/* 2a. Static Warning message */}
+          <p className="demoSubtitle-2">Static</p>
           <Card className={"jv-mMessage jv-mMessageWarning mui"} elevation={0}>
             <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
                 <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-warning mui" />
               }
-              action={
-                <IconButton aria-label="close" className={"jv-mButton mui"}>
-                  <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-warning mui jv-cancel"></span>
-                </IconButton>
-              } /* not needed now, but we should allow this header action container to hold an optional close button */
+              /* static messages do not have a close button */
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
                 content: "jv-mMessage-header-title mui",
@@ -186,39 +233,46 @@ export const Message = () => {
                 className="jv-mText jv-uMargin-b-04 mui"
                 variant="body1"
               >
-                Look out for that thing that could happen.
+                A static message does not have a close button in the upper
+                right.
               </Typography>
 
               <Typography className="jv-mText mui" variant="body1">
-                You can continue, but things might not be quite right.
+                Use a warning message to alert user to a potential non-critical
+                issue.
               </Typography>
               {/*<Button
-                        className="jv-mButton jv-mButtonLarge jv-mButtonWarning jv-uMargin-t-04 mui"
-                        disableElevation
-                        size="large"
-                        variant="contained"
-                    >
-                        <span className="jv-mButton-label mui">Continue</span>
-                    </Button>*/}
+                            classes={{ label: "jv-mButton-label mui"}}
+                            className="jv-mButton jv-mButtonLarge jv-mButtonWarning jv-uMargin-t-04 mui"
+                            disableElevation
+                            size="large"
+                            variant="contained"
+                        >
+                            Continue
+                        </Button>*/}
             </CardContent>
           </Card>
 
           <div className="demoSpacer16"></div>
 
-          <Card
-            className={"jv-mMessage jv-mMessageOutline jv-mMessageWarning mui"}
-            elevation={0}
-          >
+          {/* 2b. Warning message with drop shadow */}
+          <p className="demoSubtitle-2">Shadow</p>
+          <Card className={"jv-mMessage jv-mMessageWarning mui"} elevation={2}>
             <CardHeader
               className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
               avatar={
                 <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-warning mui" />
               }
               action={
-                <IconButton aria-label="close" className={"jv-mButton mui"}>
-                  <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-warning mui jv-cancel"></span>
-                </IconButton>
-              } /* not needed now, but we should allow this header action container to hold an optional close button */
+                <IconButton
+                  aria-label="close"
+                  className={"jv-mButton mui"}
+                  classes={{
+                    label:
+                      "jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-warning mui jv-cancel",
+                  }}
+                ></IconButton>
+              }
               classes={{
                 avatar: "jv-mMessage-header-icon mui",
                 content: "jv-mMessage-header-title mui",
@@ -236,26 +290,54 @@ export const Message = () => {
             <CardContent
               className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
             >
-              <Typography
-                className="jv-mText jv-uMargin-b-04 mui"
-                variant="body1"
-              >
-                Warning message with optional outline.{" "}
-              </Typography>
               <Typography className="jv-mText mui" variant="body1">
-                Use for messages that appear on light grey backgrounds to add
-                contrast.
+                Use for messages that have a close button in the upper right.
               </Typography>
             </CardContent>
           </Card>
+
+          <div className="demoSpacer16"></div>
+
+          {/* 1b. Error message with outline */}
+          <p className="demoSubtitle-2">Outlined</p>
+          <div className="demoVariant">
+            <Card
+              className={"jv-mMessage jv-mMessageWarning mui"}
+              variant="outlined"
+            >
+              <CardHeader
+                className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
+                avatar={
+                  <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-warning mui" />
+                }
+                classes={{
+                  avatar: "jv-mMessage-header-icon mui",
+                  content: "jv-mMessage-header-title mui",
+                  action: "jv-mMessage-header-action mui",
+                }}
+                title={
+                  <Typography
+                    className="jv-mText jv-mTextTitle jv-uColor-warning jv-uTextBold mui"
+                    variant="h3"
+                  >
+                    Warning
+                  </Typography>
+                }
+              />
+              <CardContent
+                className={"jv-mMessage-body jv-mMessage-bodyPadded mui"}
+              >
+                <Typography className="jv-mText mui" variant="body1">
+                  Use for static warning messages that appear on a light grey
+                  background.
+                </Typography>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </>
   );
-};
-export default {
-  title: "Components/Message/Design",
-  component: Message,
 };
 Message.storyName = "Default Message";
 
@@ -432,8 +514,8 @@ export const PopupMessage = () => {
                 <CardHeader
                   className={"jv-mMessage-header jv-mMessage-headerPadded mui"}
                   /*avatar={
-                                    <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui"/>
-                                }*/
+                                        <Icon className="jv-mIcon jv-mIconLarge jv-warningRound jv-uColor-error mui"/>
+                                    }*/
                   action={
                     <IconButton aria-label="close" className={"jv-mButton mui"}>
                       <span className="jv-mButton-icon jv-mButton-iconSmaller jv-mIcon jv-uColor-error mui jv-cancel"></span>

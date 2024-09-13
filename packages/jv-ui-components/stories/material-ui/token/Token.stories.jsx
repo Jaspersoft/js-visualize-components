@@ -1,7 +1,7 @@
-import { Box, Icon, IconButton } from "@mui/material";
 import React from "react";
 import "../css/demoPages.css";
 import "./token.css";
+import { Box, IconButton, Icon } from "@mui/material";
 
 /*------------------------------
  *  TABLE OF CONTENTS
@@ -12,7 +12,7 @@ import "./token.css";
  *      1c. Warning State
  *
  * -------------------------------
- *  last modified Mar 18, 2024
+ *  last modified May 9, 2024
  * ------------------------------- */
 
 export default {
@@ -49,7 +49,10 @@ export const Token = () => {
                             </IconButton>
                         </div> */}
 
-            <div className={"jv-mToken-label mui"}>Recyclable Packaging</div>
+            <div className={"jv-mToken-label mui"}>
+              Recyclable Packaging with a long label that shows overflow
+              behavior
+            </div>
             <div className={"jv-mToken-action mui"}>
               <IconButton
                 aria-label="bold"
@@ -174,16 +177,6 @@ export const Token = () => {
           {/* 1b.  Error State Token */}
           <p className="demoSubtitle-2">Error State</p>
           <Box className={"jv-mToken jv-mTokenField jv-hasError mui"}>
-            {/* Optional expand/collapse toggle button
-                        <div className={"jv-mToken-action jv-mToken-actionExpander mui"}>
-                            <IconButton
-                                aria-label="bold"
-                                className={"jv-mButton jv-mButtonSmall mui"}
-                                classes={{ label: "jv-mButton-icon jv-mIcon mui jv-caretDown"}}
-                            >
-                            </IconButton>
-                        </div>*/}
-
             <div className={"jv-mToken-label mui"}>Recyclable Packaging</div>
             <div className={"jv-mToken-action mui"}>
               <IconButton
@@ -204,16 +197,6 @@ export const Token = () => {
           </Box>
 
           <Box className={"jv-mToken jv-mTokenMeasure jv-hasError mui"}>
-            {/* Optional expand/collapse toggle button
-                        <div className={"jv-mToken-action jv-mToken-actionExpander mui"}>
-                            <IconButton
-                                aria-label="bold"
-                                className={"jv-mButton jv-mButtonSmall mui"}
-                                classes={{ label: "jv-mButton-icon jv-mIcon mui jv-caretDown"}}
-                            >
-                            </IconButton>
-                        </div>*/}
-
             <div className={"jv-mToken-label mui"}>Sales % of Total</div>
             <div className={"jv-mToken-action mui"}>
               <IconButton
@@ -417,6 +400,143 @@ export const Token = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="demoSize">
+          <div className="demoSpacer16"> </div>
+
+          {/* 1c.  Warning State Token */}
+          <p className="demoSubtitle-2">Warning State</p>
+          <Box className={"jv-mToken jv-mTokenField jv-hasWarning mui"}>
+            <div className={"jv-mToken-label mui"}>Recyclable Packaging</div>
+            <div className={"jv-mToken-action mui"}>
+              <IconButton
+                aria-label="bold"
+                className={"jv-mButton jv-mButtonSmall mui"}
+                classes={{
+                  label:
+                    "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-kebab",
+                }}
+              ></IconButton>
+            </div>
+            <div className={"jv-mToken-action mui"}>
+              <IconButton
+                aria-label="bold"
+                className={"jv-mButton jv-mButtonSmall mui"}
+                classes={{
+                  label:
+                    "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-searchClear",
+                }}
+              ></IconButton>
+            </div>
+          </Box>
+
+          <Box className={"jv-mToken jv-mTokenMeasure jv-hasWarning mui"}>
+            <div className={"jv-mToken-label mui"}>Sales % of Total</div>
+            <div className={"jv-mToken-action mui"}>
+              <IconButton
+                aria-label="bold"
+                className={"jv-mButton jv-mButtonSmall mui"}
+                classes={{
+                  label:
+                    "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-kebab",
+                }}
+              ></IconButton>
+            </div>
+            <div className={"jv-mToken-action mui"}>
+              <IconButton
+                aria-label="bold"
+                className={"jv-mButton jv-mButtonSmall mui"}
+                classes={{
+                  label:
+                    "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-searchClear",
+                }}
+              ></IconButton>
+            </div>
+          </Box>
+
+          <div className="demoSpacer16"> </div>
+
+          <div className={"jv-mTokens jv-mTokensMeasures mui"}>
+            <div className={"jv-mTokens-mover mui"}>
+              <Icon className="jv-mIcon jv-dragHandleVertical mui" />
+            </div>
+
+            <div className={"jv-mTokens-content mui"}>
+              <div className={"jv-mToken jv-mTokenMeasure jv-hasWarning  mui"}>
+                <div className={"jv-mToken-label mui"}>Store Sales</div>
+                <div className={"jv-mToken-action mui"}>
+                  <IconButton
+                    aria-label="bold"
+                    className={"jv-mButton jv-mButtonSmall mui"}
+                    classes={{
+                      label:
+                        "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-kebab",
+                    }}
+                  ></IconButton>
+                </div>
+                <div className={"jv-mToken-action mui"}>
+                  <IconButton
+                    aria-label="bold"
+                    className={"jv-mButton jv-mButtonSmall mui"}
+                    classes={{
+                      label:
+                        "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-searchClear",
+                    }}
+                  ></IconButton>
+                </div>
+              </div>
+
+              <div className={"jv-mToken jv-mTokenMeasure mui"}>
+                <div className={"jv-mToken-label mui"}>Unit Sales</div>
+                <div className={"jv-mToken-action mui"}>
+                  <IconButton
+                    aria-label="bold"
+                    className={"jv-mButton jv-mButtonSmall mui"}
+                    classes={{
+                      label:
+                        "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-kebab",
+                    }}
+                  ></IconButton>
+                </div>
+                <div className={"jv-mToken-action mui"}>
+                  <IconButton
+                    aria-label="bold"
+                    className={"jv-mButton jv-mButtonSmall mui"}
+                    classes={{
+                      label:
+                        "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-searchClear",
+                    }}
+                  ></IconButton>
+                </div>
+              </div>
+
+              <div className={"jv-mToken jv-mTokenMeasure mui"}>
+                <div className={"jv-mToken-label mui"}>Store Cost</div>
+                <div className={"jv-mToken-action mui"}>
+                  <IconButton
+                    aria-label="bold"
+                    className={"jv-mButton jv-mButtonSmall mui"}
+                    classes={{
+                      label:
+                        "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-kebab",
+                    }}
+                  ></IconButton>
+                </div>
+                <div className={"jv-mToken-action mui"}>
+                  <IconButton
+                    aria-label="bold"
+                    className={"jv-mButton jv-mButtonSmall mui"}
+                    classes={{
+                      label:
+                        "jv-mButton-icon jv-mButton-iconSmall jv-mIcon mui jv-searchClear",
+                    }}
+                  ></IconButton>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="demoSpacer16"> </div>
         </div>
       </div>
     </>

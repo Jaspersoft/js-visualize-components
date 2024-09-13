@@ -1,3 +1,6 @@
+import { useState } from "react";
+import "../css/demoPages.css";
+import "./panel.css";
 import {
   Button,
   Card,
@@ -10,9 +13,6 @@ import {
   ListItem,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
-import "../css/demoPages.css";
-import "./panel.css";
 
 /*-----------------------------
  *  TABLE OF CONTENTS
@@ -28,7 +28,7 @@ import "./panel.css";
  *  5. PANEL SECTION
  *
  * -----------------------------
- *  last modified Apr 1, 2024
+ *  last modified Aug 5, 2024
  * ----------------------------- */
 
 export default {
@@ -821,28 +821,14 @@ export const LeftPanels = () => {
                     Build Visualization
                   </Typography>
                 </div>
-
-                <div className={"jv-mPanel-body mui"}>
-                  {/* List for sections */}
-                  <List disablePadding className="jv-mPanel-sections mui">
-                    <ListItem
-                      disableGutters
-                      className="jv-mPanel-section jv-mPanel-sectionPlain mui"
-                    >
-                      <Card elevation={0} square={true}>
-                        <CardContent className="jv-mPanel-section-body mui"></CardContent>
-                      </Card>
-                    </ListItem>
-                  </List>
-                </div>
               </Drawer>
             )}
           </div>
-        </div>
 
-        {/* This is the main content */}
-        <div className={"demoAdhocPanel-canvasLeft"}>
-          <main></main>
+          {/* This is the main content */}
+          <div className={"demoAdhocPanel-canvasLeft"}>
+            <main></main>
+          </div>
         </div>
       </div>
     </>
