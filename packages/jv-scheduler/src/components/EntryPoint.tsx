@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
 import store from "./../store/store";
 import { Provider as ReduxProvider } from "react-redux";
 import SchedulerMain from "./SchedulerMain";
@@ -11,6 +12,29 @@ type IEntryPoint = {
   visualize: {};
   schedulerUIConfig: ISchedulerUIConfig;
 };
+
+export class SchedulerUiJS {
+  private viz: any;
+
+  constructor(vizjs: any) {
+    this.viz = vizjs;
+  }
+
+  renderScheduler(uri: string, container: HTMLElement, config?: any) {
+    const rootElement = container;
+    if (!rootElement) {
+      throw new Error("Root element not found");
+    } else {
+      const schedulerRoot = createRoot(rootElement);
+      schedulerRoot.render(
+        <EntryPoint
+          visualize={this.viz}
+          schedulerUIConfig={{ ...config, resourceURI: uri }}
+        />,
+      );
+    }
+  }
+}
 
 const EntryPoint = (props: IEntryPoint) => {
   const { i18n } = useTranslation();

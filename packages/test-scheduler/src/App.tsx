@@ -5,7 +5,7 @@ import {
   visualizejsLoader,
   VisualizeType,
 } from "@jaspersoft/jv-tools";
-import { Scheduler } from "@jaspersoft/jv-scheduler";
+import { Scheduler, SchedulerUiJS } from "@jaspersoft/jv-scheduler";
 import schedulerUIConfig from "./jv_sheduler_config";
 
 const visualizeUrl = `${schedulerUIConfig.server}/client/visualize.js`;
@@ -38,10 +38,36 @@ function App() {
     });
   }, []);
 
-  return visualize ? (
-    <Scheduler schedulerUIConfig={schedulerUIConfig} visualize={visualize} />
-  ) : (
-    <div>Loading...</div>
+  useEffect(() => {
+    if (visualize === undefined) {
+      return;
+    }
+    console.log(visualize);
+    const { resourceURI, ...rest } = schedulerUIConfig;
+    const schedulerElement = document.getElementById("scheduler");
+    if (schedulerElement) {
+      console.log(schedulerElement);
+      const schedulerPlugin = new SchedulerUiJS(visualize);
+      schedulerPlugin.renderScheduler(
+        resourceURI,
+        document.getElementById("scheduler") as HTMLElement,
+        rest,
+      );
+    }
+  }, [visualize]);
+
+  return (
+    <>
+      <div id="scheduler"></div>
+      {visualize ? (
+        <Scheduler
+          schedulerUIConfig={schedulerUIConfig}
+          visualize={visualize}
+        />
+      ) : (
+        <div>Loading...</div>
+      )}
+    </>
   );
 }
 
