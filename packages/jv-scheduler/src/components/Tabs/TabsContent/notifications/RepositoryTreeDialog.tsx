@@ -133,7 +133,12 @@ export const RepositoryTreeDialog = ({
     );
   };
   return (
-    <JVDialog open={open} scroll="paper" PaperComponent={PaperComponent}>
+    <JVDialog
+      className="jr-mDialogResizable"
+      open={open}
+      scroll="paper"
+      PaperComponent={PaperComponent}
+    >
       <JVDialogTitle
         dialogTitle={t("repository.dialog.title")}
         DialogTitleProps={{

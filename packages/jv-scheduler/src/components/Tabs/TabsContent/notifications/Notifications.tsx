@@ -4,6 +4,7 @@ import {
   JVRadioButton,
   JVRadioGroup,
   JVTextField,
+  JVFormError,
 } from "@jaspersoft/jv-ui-components";
 import { JVTypographyComponent } from "../../../common/CommonComponents";
 import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
@@ -233,7 +234,6 @@ const Notifications = () => {
                 label={t("notifications.uri.label")}
                 disabled={sendType !== SEND_LINK}
                 value={repoUri}
-                error={t(folderUriErr || "")}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   let newFolderUri = e.target.value;
                   newFolderUri = newFolderUri.startsWith("/")
@@ -282,7 +282,10 @@ const Notifications = () => {
                 {t("notifications.browse.button")}
               </JVButton>
             </div>
-
+            <JVFormError
+              className="jr-uMargin-l-07"
+              text={t(folderUriErr || "")}
+            />
             <JVRadioButton
               label={t("notifications.fileAsAttachment.label")}
               RadioProps={{
