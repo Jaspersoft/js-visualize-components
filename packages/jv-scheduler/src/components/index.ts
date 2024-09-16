@@ -1,3 +1,3 @@
 export { default as Scheduler, SchedulerUiJS } from "./EntryPoint";
 
-export type { ISchedulerUIConfig } from "../types/scheduleType";
+export type { SchedulerConfigProps } from "../types/scheduleType";

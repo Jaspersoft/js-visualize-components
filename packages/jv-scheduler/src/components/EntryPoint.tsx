@@ -6,11 +6,11 @@ import SchedulerMain from "./SchedulerMain";
 import { useTranslation } from "react-i18next";
 import { ConfigurationErrorHandling } from "./errorHandling/configurationErrorHandling";
 import { getSchedulerData } from "../utils/configurationUtils";
-import { ISchedulerUIConfig } from "../types/scheduleType";
+import { SchedulerConfigProps } from "../types/scheduleType";
 
-type IEntryPoint = {
+type SchedulerProps = {
   visualize: {};
-  schedulerUIConfig: ISchedulerUIConfig;
+  schedulerUIConfig: SchedulerConfigProps;
 };
 
 export class SchedulerUiJS {
@@ -36,7 +36,7 @@ export class SchedulerUiJS {
   }
 }
 
-const EntryPoint = (props: IEntryPoint) => {
+const EntryPoint = (props: SchedulerProps) => {
   const { i18n } = useTranslation();
   const [isLoadComp, setIsLoadComp] = useState(false);
   const [schedulerData, setSchedulerData] = useState<any>({});

@@ -32,7 +32,7 @@ import {
   IScheduleErrors,
   IScheduleInfo,
   ISchedulerInitialPluginData,
-  ISchedulerUIConfig,
+  SchedulerConfigProps,
   IState,
   IStepperData,
   IStoreData,
@@ -82,7 +82,7 @@ export const setPropertiesDetails = (
 };
 
 export const setSechedulerUIConfig = (
-  schedulerUIConfig: ISchedulerUIConfig,
+  schedulerUIConfig: SchedulerConfigProps,
 ) => {
   return {
     type: SET_SCHEDULER_UI_CONFIG,
@@ -251,7 +251,7 @@ export const currentTabValidator = (newTabVal: string) => {
 
 export const setInitialPluginState = (
   schedulerData: ISchedulerInitialPluginData,
-  schedulerUIConfig: ISchedulerUIConfig,
+  schedulerUIConfig: SchedulerConfigProps,
   visualize: any,
 ) => {
   return async (dispatch: any) => {

@@ -29,7 +29,7 @@ interface IScheduleVisibleConfig {
   };
 }
 
-export interface ISchedulerUIConfig {
+export interface SchedulerConfigProps {
   server: string;
   resourceURI: string;
   contextPath?: string;
@@ -55,10 +55,6 @@ interface IStepperErrorData {
   subject?: string;
   startType?: number | undefined;
   outputTimeZone?: string | undefined;
-}
-
-export interface IAddress {
-  address: string | string[];
 }
 
 export interface IStepperState extends IStepperErrorData {
@@ -187,7 +183,7 @@ export interface IState extends ISchedulerInitialPluginData {
   lastApiCalledFailed?: boolean;
   folderData?: any;
   fakeRoot?: any;
-  schedulerUIConfig?: ISchedulerUIConfig;
+  schedulerUIConfig?: SchedulerConfigProps;
   userTimeZones: [{ code: string; description: string }];
   parametersTabLoading: {
     isLoaded: boolean;
