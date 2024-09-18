@@ -18,7 +18,7 @@ import {
   SEND_LINK,
 } from "../../constants/schedulerConstants";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../types/scheduleType";
+import { IState, translationProps } from "../../types/scheduleType";
 
 interface InputDataInStepProps {
   error: string | undefined;
@@ -45,7 +45,7 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
 };
 
 export const ScheduleStepUserInput = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
 
   const label = useSelector(
       (state: IState) => state.scheduleInfo?.scheduleJobName,
@@ -119,7 +119,7 @@ export const ScheduleStepUserInput = () => {
 };
 
 export const NotificationStepUserInput = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   const mailNotificationSubject = useSelector(
       (state: IState) => state.stepperState?.subject,
     ),
@@ -187,7 +187,7 @@ export const NotificationStepUserInput = () => {
 };
 
 export const OutputStepUserInput = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   const fileName = useSelector(
       (state: IState) => state.stepperState?.baseOutputFilename,
     ),

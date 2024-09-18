@@ -11,7 +11,12 @@ import {
   setVisitedTab,
 } from "./../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
-import { PARAMETERS_TAB } from "../../constants/schedulerConstants";
+import {
+  NOTIFICATIONS_TAB,
+  OUTPUT_TAB,
+  PARAMETERS_TAB,
+  SCHEDULE_TAB,
+} from "../../constants/schedulerConstants";
 import { IState } from "../../types/scheduleType";
 
 const Tabs = () => {
@@ -78,10 +83,10 @@ const Tabs = () => {
         </JVTabs>
       </div>
       <div className="jv-mDrawer-body jv-mDrawer-bodyPadded mui">
-        {currentActiveTab === "schedule" && <Schedule />}
-        {currentActiveTab === "parameters" && <Parameters />}
-        {currentActiveTab === "notifications" && <Notifications />}
-        {currentActiveTab === "output" && <Output />}
+        {currentActiveTab === SCHEDULE_TAB && <Schedule />}
+        {currentActiveTab === PARAMETERS_TAB && <Parameters />}
+        {currentActiveTab === NOTIFICATIONS_TAB && <Notifications />}
+        {currentActiveTab === OUTPUT_TAB && <Output />}
       </div>
     </>
   );

@@ -2,9 +2,10 @@ import React from "react";
 import { FieldHeader } from "./FieldHeader";
 import { KeyValueTemplate } from "./KeyValueTemplate";
 import { useTranslation } from "react-i18next";
+import { translationProps } from "../../types/scheduleType";
 
 export const ScheduleStepDefaultMessage = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   return (
     <>
       <FieldHeader text={t("stepper.schedule.jobname.helpertext")} />
@@ -23,7 +24,7 @@ export const ScheduleStepDefaultMessage = () => {
 };
 
 export const OutputStepDefaultMessage = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   return (
     <>
       <FieldHeader text={t("stepper.output.helpertext")} />
@@ -45,7 +46,7 @@ export const OutputStepDefaultMessage = () => {
 };
 
 export const NotificationStepDefaultMessage = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   return (
     <>
       <FieldHeader text={t("stepper.notifications.recipients.helpertext")} />
@@ -57,7 +58,7 @@ export const NotificationStepDefaultMessage = () => {
 };
 
 export const ParametersStepDefaultMessage = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   return (
     <>
       <FieldHeader text={t("stepper.parameters.ic.helpertext")} />

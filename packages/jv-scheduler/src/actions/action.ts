@@ -233,22 +233,6 @@ export const getFakeRootData = () => {
   };
 };
 
-export const currentTabValidator = (newTabVal: string) => {
-  return async (dispatch: Dispatch, getState: any) => {
-    const { currentActiveTab, scheduleInfo, stepperConfiguration } = getState(),
-      currentTabValues = getStateOfCurrentActiveTab(
-        currentActiveTab,
-        scheduleInfo,
-      );
-    // handleStateChange();
-    if (stepperConfiguration.show)
-      dispatch(setStepperProperties(currentTabValues));
-    dispatch(setCurrentActiveTab(newTabVal));
-    // const currentTabErrs = await getErrorsForCurrentTab(currentActiveTab, alertCurrentStateValues);
-    // dispatch(alertValidationError(currentTabErrs));
-  };
-};
-
 export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
   schedulerUIConfig: SchedulerConfigProps,

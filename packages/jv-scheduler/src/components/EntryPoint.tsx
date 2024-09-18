@@ -4,7 +4,6 @@ import store from "./../store/store";
 import { Provider as ReduxProvider } from "react-redux";
 import SchedulerMain from "./SchedulerMain";
 import { useTranslation } from "react-i18next";
-import { ConfigurationErrorHandling } from "./errorHandling/configurationErrorHandling";
 import { getSchedulerData } from "../utils/configurationUtils";
 import { SchedulerConfigProps } from "../types/scheduleType";
 

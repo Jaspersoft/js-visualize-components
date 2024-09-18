@@ -120,11 +120,6 @@ export const rootReducer = (
         ...state,
         parametersTabLoading: action.payload.parametersTabConfig,
       };
-    // case SET_USER_LOCALE:
-    //     return {
-    //         ...state,
-    //         userLocale: action.payload.userLocale
-    //     }
     default:
       return state;
   }

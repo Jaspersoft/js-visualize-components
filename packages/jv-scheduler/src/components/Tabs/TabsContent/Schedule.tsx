@@ -16,11 +16,11 @@ import {
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../../types/scheduleType";
+import { IState, translationProps } from "../../../types/scheduleType";
 import { updateChangeToStore } from "../../../utils/schedulerUtils";
 
 const Schedule = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   const recurrenceIntervalErr = useSelector(
     (state: IState) => state.scheduleErrors.recurrenceInterval,
   );

@@ -3,10 +3,11 @@ import { JVButton } from "@jaspersoft/jv-ui-components";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { allTabValidationError, createScheduleJob } from "../../actions/action";
+import { translationProps } from "../../types/scheduleType";
 // import {IState} from "../../types/scheduleType";
 
 const SchedulerFooter = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   const [isCreateBtnDisabled, setCreateBtnDisability] = useState(false);
   const dispatch = useDispatch();
   // const parametersTabLoading = useSelector((state: IState) => state.parametersTabLoading);

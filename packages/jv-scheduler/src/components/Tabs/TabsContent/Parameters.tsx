@@ -8,9 +8,10 @@ import {
   scheduleValidationError,
   setPropertiesDetails,
 } from "../../../actions/action";
+import { translationProps } from "../../../types/scheduleType";
 
 const Parameters = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation() as translationProps;
   const dispatch = useDispatch();
   const visualize = useSelector((state: any) => state.visualize);
   const source = useSelector((state: any) => state.scheduleInfo.source);

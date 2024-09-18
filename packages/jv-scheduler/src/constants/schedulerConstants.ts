@@ -9,6 +9,9 @@ export const allTabs = [
   OUTPUT_TAB,
 ];
 
+export const SEND_LINK = "SEND";
+export const SEND_ATTACHMENT = "SEND_ATTACHMENT";
+
 export const timeFrames = [
   {
     textPlural: "Hours",
@@ -49,28 +52,6 @@ export const tabsInfo = {
     value: "notifications",
   },
 };
-export const defaultTabsToShow = [
-  {
-    key: "schedule",
-    label: "Schedule",
-    value: "schedule",
-  },
-  {
-    key: "parameters",
-    label: "Parameters",
-    value: "parameters",
-  },
-  {
-    key: "output",
-    label: "Output",
-    value: "output",
-  },
-  {
-    key: "notifications",
-    label: "Notifications",
-    value: "notifications",
-  },
-];
 
 export const stepInfo = {
   [SCHEDULE_TAB]: {
@@ -111,7 +92,7 @@ export const ScheduleDefaultState = {
     toAddresses: {
       address: [],
     },
-    resultSendType: "SEND",
+    resultSendType: SEND_LINK,
   },
   source: {
     parameters: {
@@ -153,7 +134,7 @@ export const stepperState = {
   startDate: undefined,
   baseOutputFilename: undefined,
   baseOutputFileDescription: undefined,
-  resultSendType: "SEND",
+  resultSendType: SEND_LINK,
   outputFormat: [],
   outputTimeZone: "",
 };
@@ -250,8 +231,6 @@ export const ERROR_FIELDS = {
 };
 export const OUTPUT_TIME_ZONE = "outputTimeZone";
 export const OUTPUT_FORMAT = "outputFormat";
-export const SEND_LINK = "SEND";
-export const SEND_ATTACHMENT = "SEND_ATTACHMENT";
 
 export const INCOMPLETE_STATE = "incomplete";
 export const INCOMPLETE_DEFAULT_STATE = "incompleteDefaults";

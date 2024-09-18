@@ -10,6 +10,8 @@ import {
   manadatoryHiddenField,
   typeOfFields,
   simpleTriggerState,
+  SEND_ATTACHMENT,
+  SEND_LINK,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 import { validator } from "../validations/scheduleValidators";
@@ -116,7 +118,7 @@ const validate = (propertName: string, propertyValue: string) => {
     }
     case "reportAccessType": {
       if (
-        propertyValue !== "SEND_ATTACHMENT" &&
+        propertyValue !== SEND_ATTACHMENT &&
         !checkValueOfFolderUri(propertyValue)
       ) {
         return { error: "Entered incorrect value for reportAccessType" };
@@ -136,9 +138,9 @@ const getStartTimeValue = (value: string) => {
 };
 
 const getReportAccessValue = (value: string) => {
-  const isSendAsAttachment = value === "SEND_ATTACHMENT";
+  const isSendAsAttachment = value === SEND_ATTACHMENT;
   return {
-    resultSendType: isSendAsAttachment ? "SEND_ATTACHMENT" : "SEND",
+    resultSendType: isSendAsAttachment ? SEND_ATTACHMENT : SEND_LINK,
     folderURI: isSendAsAttachment ? null : value,
   };
 };
@@ -260,7 +262,7 @@ const setDefaultValuesForFields = (
     messageText,
     subject,
     address = [],
-    resultSendType = "SEND",
+    resultSendType = SEND_LINK,
     outputFormat = ["pdf"],
     outputTimeZone = "Asia/Calcutta",
     startType = "1",
@@ -323,7 +325,7 @@ const setDefaultValuesForFields = (
       startDate,
       baseOutputFilename,
       outputDescription,
-      resultSendType: "SEND",
+      resultSendType: SEND_LINK,
       outputFormat,
       outputTimeZone,
     };

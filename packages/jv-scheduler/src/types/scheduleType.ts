@@ -229,3 +229,5 @@ export interface FakeRootDataProps {
   resourceType: string;
   permissionMask: number;
 }
+
+export type translationProps = { t: (k: string) => string };

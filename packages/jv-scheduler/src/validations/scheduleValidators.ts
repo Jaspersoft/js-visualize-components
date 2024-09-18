@@ -17,6 +17,7 @@ import {
 import {
   accessiblePermissionMask,
   ERROR_FIELDS,
+  SEND_ATTACHMENT,
 } from "../constants/schedulerConstants";
 import { checkPermissionOnResource } from "../services/schedulerServices";
 import store from "../store/store";
@@ -165,7 +166,7 @@ export const validator = (
       }
       break;
     case ERROR_FIELDS.SEND_TYPE:
-      if (propVal === "SEND_ATTACHMENT") {
+      if (propVal === SEND_ATTACHMENT) {
         return { folderURI: undefined };
       }
       break;
