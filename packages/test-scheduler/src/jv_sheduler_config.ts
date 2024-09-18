@@ -11,7 +11,7 @@ const schedulerUIConfig = {
       schedule: {
         defaultValues: {
           // name of the schedule: required in config
-          label: { showField: false },
+          label: { value: "aa cdn" },
           description: {
             value: "description test 1",
             showField: true,
