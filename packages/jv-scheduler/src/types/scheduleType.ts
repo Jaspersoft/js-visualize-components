@@ -43,6 +43,10 @@ export interface SchedulerConfigProps {
       notifications?: {};
     };
   };
+  handlers?: {
+    onSuccess?: () => void;
+    onError?: (error: any) => void;
+  };
   locale?: string;
   timezone?: string;
 }

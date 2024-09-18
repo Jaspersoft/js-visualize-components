@@ -40,12 +40,18 @@ const EntryPoint = (props: SchedulerProps) => {
   const { i18n } = useTranslation();
   const [isLoadComp, setIsLoadComp] = useState(false);
   const [schedulerData, setSchedulerData] = useState<any>({});
+  const { schedulerUIConfig, visualize } = props;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getSchedulerData(props.schedulerUIConfig);
         setSchedulerData(response);
+        if (response.error) {
+          schedulerUIConfig.handlers?.onError?.(response.error);
+        } else {
+          schedulerUIConfig.handlers?.onSuccess?.();
+        }
         setIsLoadComp(true);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -54,24 +60,21 @@ const EntryPoint = (props: SchedulerProps) => {
 
     fetchData();
   }, []);
+
   useEffect(() => {
-    i18n.changeLanguage(props.schedulerUIConfig.locale || "en");
-  }, [props.schedulerUIConfig.locale]);
+    i18n.changeLanguage(schedulerUIConfig.locale || "en");
+  }, [schedulerUIConfig.locale]);
 
   return (
     <>
-      {schedulerData.error ? (
-        <ConfigurationErrorHandling />
-      ) : (
-        isLoadComp && (
-          <ReduxProvider store={store}>
-            <SchedulerMain
-              schedulerUIConfig={props.schedulerUIConfig}
-              schedulerData={schedulerData}
-              visualize={props.visualize}
-            />
-          </ReduxProvider>
-        )
+      {!schedulerData.error && isLoadComp && (
+        <ReduxProvider store={store}>
+          <SchedulerMain
+            schedulerUIConfig={schedulerUIConfig}
+            schedulerData={schedulerData}
+            visualize={visualize}
+          />
+        </ReduxProvider>
       )}
     </>
   );

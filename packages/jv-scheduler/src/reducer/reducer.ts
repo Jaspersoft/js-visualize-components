@@ -98,10 +98,6 @@ export const rootReducer = (
         tabsConfiguration: action.payload?.tabsConfiguration,
       };
     case SET_VISIBLE_FIELDS:
-      console.log({
-        ...state.fieldsVisibility,
-        ...action.payload?.fieldsVisibility,
-      });
       return {
         ...state,
         fieldsVisibility: {

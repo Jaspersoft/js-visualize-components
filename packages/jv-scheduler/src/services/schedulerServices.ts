@@ -7,7 +7,7 @@ const getServerPath = () => {
 };
 
 const computePermissionMask = (extra: { [key: string]: any }) => {
-  var mask = 2;
+  let mask = 2;
   extra.isWritable && (mask = mask | 4);
   extra.isRemovable && (mask = mask | 16);
   extra.isAdministrable && (mask = 1);
@@ -75,7 +75,6 @@ export const checkPermissionOnResource = async (
         withCredentials: true,
         headers: {
           Accept: "application/json",
-          // OWASP_CSRFTOKEN: csrfToken,
         },
       },
     );

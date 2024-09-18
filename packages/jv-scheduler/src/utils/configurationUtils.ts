@@ -411,7 +411,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     fieldConvertedData,
   } = await checkFieldDataValidity(inputFieldsInfo);
   if (getLengthOfObject(fieldsErrs)) {
-    return { error };
+    return { error: fieldsErrs };
   }
 
   const { scheduleInfo, stepperDefaultState } = setDefaultValuesForFields(

@@ -74,5 +74,14 @@ const schedulerUIConfig = {
   },
   locale: "en",
   timezone: "UTC",
+  handlers: {
+    onSuccess: () => {
+      console.log("Success");
+    },
+    onError: (error: any) => {
+      console.log("callback ", error);
+      console.log("Error");
+    },
+  },
 };
 export default schedulerUIConfig;
