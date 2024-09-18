@@ -1,5 +1,8 @@
 import { JVMessage, JVTypography, JVIcon } from "@jaspersoft/jv-ui-components";
+import { useTranslation } from "react-i18next";
+
 export default function NotYetImplementedMessage() {
+  const { t } = useTranslation() as { t: (k: string) => string };
   return (
     <JVMessage
       type="error"
@@ -18,14 +21,12 @@ export default function NotYetImplementedMessage() {
             className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold"
             variant="h3"
           >
-            Error
+            {t("error")}
           </JVTypography>
         ),
       }}
     >
-      <JVTypography variant="body1">
-        This resource contains controls that are not yet supported.
-      </JVTypography>
+      <JVTypography variant="body1">{t("not.yet.implemented")}</JVTypography>
     </JVMessage>
   );
 }
