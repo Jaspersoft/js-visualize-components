@@ -211,7 +211,24 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     }
   };
 
+  const notImplemented = (controlMap: any) => {
+    if (controlMap?.data) {
+      return (
+        controlMap.data.filter(
+          (c: BaseInputControlProps) =>
+            c.type?.startsWith("multiSelect") ||
+            (c.slaveDependencies && c.slaveDependencies.length > 0) ||
+            (c.masterDependencies && c.masterDependencies.length > 0),
+        ).length > 0
+      );
+    }
+    return false;
+  };
+
   const buildControls = (controlMap: any) => {
+    if (notImplemented(controlMap)) {
+      return <h1>Resource contains controls not yet implemented.</h1>;
+    }
     if (controlMap?.data) {
       return controlMap.data.map(buildControl);
     }
