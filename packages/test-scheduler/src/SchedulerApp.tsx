@@ -15,7 +15,7 @@ const credentials: Authentication = {
   password: "superuser",
 };
 
-function App() {
+function SchedulerApp() {
   const [visualize, setVisualize] = useState(
     null as { v: VisualizeType } | null,
   );
@@ -71,4 +71,4 @@ function App() {
   );
 }
 
-export default App;
+export default SchedulerApp;
