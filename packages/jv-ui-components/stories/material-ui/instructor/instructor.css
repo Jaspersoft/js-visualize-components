@@ -1,0 +1,37 @@
+.demoInstructor-Row {
+  display: flex;
+  flex-direction: row;
+}
+
+.demoInstructor-Column {
+  margin: 24px;
+}
+
+.demoInstructor-Column .demoSubtitle {
+  margin-bottom: 12px;
+}
+
+.demoInstructorWrapper {
+  background-color: #fafafa;
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+  display: block;
+  height: 200px;
+  padding: 12px;
+}
+
+.demoInstructor-Column.small {
+  max-width: 400px;
+  min-width: 250px;
+  width: 25%;
+}
+
+.demoInstructor-Column.medium {
+  max-width: 600px;
+  min-width: 400px;
+}
+
+.demoInstructor-Column.large {
+  min-width: 600px;
+  width: 80%;
+}

@@ -1,0 +1,126 @@
+/* =============================================
+    BANNER RULES
+
+    Project:                JasperReports Server
+    Last modified date:     May 26, 2016
+    Last modified by:       Anna Leeg
+ * ============================================= */
+
+// -------------------
+//    MODULE BASICS
+// -------------------
+
+// base module
+.jv-mBanner.jv {
+  background-color: #3e8ddd;
+  color: #fff;
+  height: em(36px); // 3.273em | 36px / 11px
+  width: 100%;
+}
+
+// child element containers
+.jv-mBanner-wrapper {
+  height: 100%;
+}
+
+.jv-mBanner-wrapperLeft.jv {
+  float: left;
+  min-width: em(528px); // 48em | 528px / 11px
+}
+
+.jv-mBanner-wrapperRight.jv {
+  float: right;
+  min-width: em(418px); // 38em | 418px / 11px
+}
+
+// child elements
+.jv-mBanner-logo.jv {
+  background-image: image-url("logo.png");
+  background-position: 0 em(10px); // .909em | 10px / 11px
+  background-repeat: no-repeat;
+  background-size: em(176px); // 16em | 176px / 11px
+  float: left;
+  height: 3.273em; // 3.273em | 36px / 11px
+  margin-left: em(8px); // .727em | 8px / 11px
+  margin-right: em(16px); // 1.455em | 16px / 11px
+  width: em(176px); // 16em | 176px / 11px
+}
+
+.jv-mBanner-nav.jv {
+  float: left;
+  height: inherit;
+}
+
+.jv-mBanner-search.jv {
+  float: left;
+  height: 100%;
+  margin-right: em(4px); // .364em | 8px / 11px
+  margin-left: em(8px); // .727em | 8px / 11px
+  padding-top: em(4px); // .364em | 4px / 11px
+  width: auto;
+}
+
+.jv-mBanner-search.jv .jv-mInput-search.jv {
+  border: 1px solid #3e8ddd;
+}
+
+.jv-mBanner-meta.jv {
+  float: left;
+  height: 100%;
+}
+
+// --------------------------
+//  BANNER MEDIA QUERIES
+// --------------------------
+
+// shrink logo
+@media only screen and (max-width: 975px) {
+  .jv-mBanner-wrapperLeft.jv {
+    min-width: em(374px); // 34em | 374px / 11px
+  }
+
+  .jv-mBanner-logo.jv {
+    background-image: image-url("logo.png");
+    background-position: 0 0.364em;
+    background-size: 32px;
+    width: 3em;
+  }
+}
+
+// hide logo, username, and help link
+@media only screen and (max-width: 810px) {
+  .jv-mBanner-logo.jv {
+    display: none;
+  }
+
+  .jv-mBanner-meta.jv .jv-mMenu-leaf.jv:first-of-type,
+  .jv-mBanner-meta.jv .jv-mMenu-leaf.jv:nth-of-type(2) {
+    display: none;
+  }
+
+  .jv-mBanner-wrapperLeft.jv {
+    min-width: em(330px); // 30em | 330px / 11px
+  }
+
+  .jv-mBanner-wrapperRight.jv {
+    min-width: em(285px); // 25.909em | 285px / 11px
+  }
+}
+
+// hide search
+@media only screen and (max-width: 616px) {
+  .jv-mBanner-search.jv {
+    display: none;
+  }
+
+  .jv-mBanner-wrapperRight.jv {
+    min-width: em(77px); // 7em | 77px / 11px
+  }
+}
+
+// hide entire right side of banner
+@media only screen and (max-width: 300px) {
+  .jv-mBanner-wrapperRight.jv {
+    display: none;
+  }
+}

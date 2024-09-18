@@ -1,0 +1,36 @@
+.demoCalendarLayout {
+  display: inline-block;
+  flex-direction: column;
+}
+
+.demoCalendarLayout .demoSize {
+  margin-left: 24px;
+  width: 410px;
+}
+
+.demoCalendarLayout .demoSubtitle {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+/*
+.jv-mCalendar-dropdown-listbox {
+    width: 196px !important;
+}
+
+.demo.calendar {
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    margin-right: 24px;
+    padding: 12px 16px 16px 16px;
+}
+
+.demoCalendarInputs {
+    display: block;
+}
+
+.demoInput {
+    display: inline-block;
+} Taken from develop in error, Feb 2023. */

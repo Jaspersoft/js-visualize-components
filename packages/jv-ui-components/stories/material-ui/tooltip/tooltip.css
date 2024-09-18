@@ -1,0 +1,33 @@
+.demoTooltip {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.demoTooltipMultiline {
+  display: block;
+  margin: 48px;
+}
+
+.demoTooltip-item,
+.demoTooltip-itemLeft,
+.demoTooltip-itemRight,
+.demoTooltip-itemTopBottom {
+  background-color: #fafafa;
+  margin-bottom: 100px;
+  display: flex;
+}
+
+.demoTooltip-itemTopBottom {
+  justify-content: space-evenly;
+}
+
+.demoTooltip-itemLeft,
+.demoTooltip-itemRight {
+  justify-content: center;
+}
+
+.demoTooltip .jv-MuiButton-label,
+.demoTooltipMultiline .jv-MuiButton-label {
+  text-transform: none;
+}

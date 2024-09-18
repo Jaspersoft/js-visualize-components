@@ -1,0 +1,80 @@
+.demoIcon {
+  flex-direction: column;
+}
+
+.demoIcon .demoSubtitle {
+  margin-bottom: 12px;
+}
+
+/* Grid */
+.demoIcon .demoIcon-grid {
+  box-sizing: border-box;
+  font-size: 11px;
+  font-weight: normal;
+  list-style: none;
+  list-style-image: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+.demoIcon-grid-column {
+  float: left;
+  margin-bottom: 1em;
+  text-align: center;
+  width: 9.1%;
+}
+
+.demoIcon-grid-column + .demoIcon-grid-column {
+  margin-left: 1%;
+}
+
+.demoIcon-grid-column:nth-child(10n) + .demoIcon-grid-column {
+  margin-left: 0;
+}
+
+.demoIcon-icon {
+  background-color: #fafafa;
+  height: 75px;
+  padding: 24px 0 10px 0;
+  position: relative;
+}
+
+.demoIcon-icon-label {
+  color: #666666;
+  display: block;
+  font-family: source_sans_proregular, "Open Sans", Verdana;
+  font-size: 11px;
+  margin-top: 4px;
+  padding-left: 1.364em;
+  padding-right: 1.364em;
+  word-wrap: break-word;
+}
+
+/* Sizes */
+.demoSizeSmall .iconWrapper {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin: 8px;
+}
+
+.demoSizeMedium .iconWrapper {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin: 8px;
+}
+
+.demoSizeLarge .iconWrapper {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin: 8px;
+}
+
+/*
+.sb-show-main {
+    background-color: #ffffff;
+} ??? */

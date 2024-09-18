@@ -1,0 +1,10 @@
+.demoAutocomplete .demoSize {
+  margin-right: 48px;
+  margin-bottom: 48px;
+  min-height: 100px;
+  width: 250px;
+}
+
+.demoAutocomplete .demoSize .demoTitle {
+  margin-bottom: 12px;
+}
