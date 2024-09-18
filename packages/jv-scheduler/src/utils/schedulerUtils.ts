@@ -1,6 +1,8 @@
 import {
   NOTIFICATIONS_TAB,
   OUTPUT_TAB,
+  PUBLIC_FOLDER,
+  ROOT_FOLDER,
   SCHEDULE_TAB,
 } from "../constants/schedulerConstants";
 import { stateValidator } from "../validations/scheduleValidators";
@@ -128,12 +130,12 @@ export const getLengthOfObject = (obj: any) => {
 };
 
 export const getUriToCompare = (uri: string) => {
-  if (uri === "/") return "/root";
-  return uri.startsWith("/public") ? uri : `/root${uri}`;
+  if (uri === "/") return ROOT_FOLDER;
+  return uri.startsWith(PUBLIC_FOLDER) ? uri : `${ROOT_FOLDER}${uri}`;
 };
 
 const removePublicFolderFromChildren = (children: any) => {
-  return children.filter((item: any) => item.uri !== "/public");
+  return children.filter((item: any) => item.uri !== PUBLIC_FOLDER);
 };
 export const addChildrenToTreeOnLoad = (
   treeStructure: any,
@@ -162,7 +164,7 @@ export const addChildrenToTreeOnLoad = (
       if (!nodeToManipulate.children) {
         let modifiedlChildrenData;
         if (Array.isArray(childrenData)) {
-          if (uri === "/root") {
+          if (uri === ROOT_FOLDER) {
             modifiedlChildrenData =
               removePublicFolderFromChildren(childrenData);
           } else {
