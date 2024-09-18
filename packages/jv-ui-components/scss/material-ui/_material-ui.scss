@@ -65,12 +65,13 @@
       11d. Contained
       11e. Date & Time
       11f. Select
-      11g. Search
-      11h. Autocomplete
-      11i. Browse
-      11j. Switch
-      11k. Buttons
-      11l. Checkbox & Radio
+      11g. Select with Checkbox
+      11h. Search
+      11i. Autocomplete
+      11j. Browse
+      11k. Switch
+      11l. Buttons
+      11m. Checkbox & Radio
 
   12. INSTRUCTOR
 
@@ -138,7 +139,7 @@
       30h. Text
       30i. Width/Height Measurements
   -----------------------------------
-  File last modified July 26, 2024
+  File last modified Sep 16, 2024
   ----------------------------------- */
 
 /* -------------------- */
@@ -2147,11 +2148,9 @@ textarea[readonly].jv-mInput-text.mui {
 /*  ------------------- */
 /*  11f. Select Input   */
 /*  ------------------- */
-.jv-mInputSelect.mui {
-  /* Nov 2022, redundant to text input and default mui styles
+.jv-mInputSelect.mui:not(.jv-mInputText) {
   display: flex;
-  flex-direction: column;
-  margin: 0 0 12px 0; */
+  margin: 0 0 12px 0;
 }
 
 .jv-mInput-select.mui {
@@ -2194,6 +2193,11 @@ textarea[readonly].jv-mInput-text.mui {
   line-height: 1.25;
 }
 
+/* small select input */
+.jv-mInputSmall.jv-mInputSelect.mui:not(.jv-mInputText) {
+  margin-bottom: 8px;
+}
+
 .jv-mInputSmall.mui .jv-mInput-select.mui {
   font-size: 12px;
   height: 22px;
@@ -2201,18 +2205,26 @@ textarea[readonly].jv-mInput-text.mui {
   min-height: 22px;
 }
 
+/* large select input */
+.jv-mInputLarge.jv-mInputSelect.mui:not(.jv-mInputText) {
+  margin-bottom: 16px;
+}
+
 .jv-mInputLarge.mui .jv-mInput-select.mui {
   height: 28px;
   line-height: 28px;
+  margin-bottom: 16px;
   min-height: 28px;
 }
 
-.jv-mInputSelect.mui .jv-MuiInputBase-root.Mui-focused > .jv-mInput-select.mui {
-  border: 1px solid $color-tciLight;
-} /* v5 upgrade */
-
+/* error state */
 .jv-mInputSelect.mui .jv-MuiInputBase-root.Mui-error > .jv-mInput-select.mui {
   border-color: $color-errorDark;
+} /* v5 upgrade */
+
+/* focused states */
+.jv-mInputSelect.mui .jv-MuiInputBase-root.Mui-focused > .jv-mInput-select.mui {
+  border: 1px solid $color-tciLight;
 } /* v5 upgrade */
 
 .jv-mInputSelect.mui
@@ -2221,8 +2233,47 @@ textarea[readonly].jv-mInput-text.mui {
   background-color: rgba(208, 2, 27, 0.1);
 } /* v5 upgrade */
 
+/*  --------------------------  */
+/*  11g. Select with Checkbox   */
+/*  --------------------------  */
+.jv-mChecklist.mui {
+}
+
+.jv-mChecklist-item.mui {
+  border-radius: 0;
+  cursor: pointer;
+  padding: 2px 12px;
+}
+
+/* sizes */
+// default and small checklists are the same, so no small rules are needed
+.jv-mChecklistLarge.mui .jv-mChecklist-item.mui {
+  padding: 4px 12px;
+  margin: 1px 0;
+}
+
+/* states */
+.jv-mChecklist-item.Mui-selected.mui {
+  background-color: #edf4fb;
+}
+
+.jv-mChecklist-item.Mui-selected.mui:hover {
+  background-color: #e3eefa;
+}
+
+/* focused states */
+.jv-mInput-select.Mui-focused.mui {
+  border-color: #1976d2;
+  border-width: 1px;
+}
+
+.jv-mChecklist-item.Mui-selected.mui:hover,
+.jv-mChecklist-item.Mui-selected.mui.Mui-focusVisible {
+  background-color: #e3eefa;
+}
+
 /*  ------------------  */
-/*  11g. Search Input   */
+/*  11h. Search Input   */
 /*  ------------------  */
 .jv-mInputSearch.mui,
 .jv-mInputSearch.jv-mInputSmall.mui,
@@ -2319,7 +2370,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------------------  */
-/*  11h. Autocomplete Input/Control   */
+/*  11i. Autocomplete Input/Control   */
 /*  --------------------------------  */
 .jv-mAutocomplete.mui {
   display: inline-block;
@@ -2352,7 +2403,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ------------------  */
-/*  11i. Browse Input   */
+/*  11j. Browse Input   */
 /*  ------------------  */
 .jv-mInputBrowse.mui {
   display: flex;
@@ -2417,7 +2468,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ------------------  */
-/*  11j. Switch Input   */
+/*  11k. Switch Input   */
 /*  ------------------  */
 .jv-mInputInline.jv-mInputSwitch.mui > label {
   display: flex;
@@ -2578,7 +2629,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------  */
-/*  11k. Buttons Input    */
+/*  11l. Buttons Input    */
 /*  --------------------  */
 /*  used for text formatting e.g. bold, italic, underline */
 .jv-mInputButtons.jv-mInputInline.mui {
@@ -2598,7 +2649,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  -----------------------------  */
-/*  11l. Checkbox & Radio Inputs   */
+/*  11m. Checkbox & Radio Inputs   */
 /*  -----------------------------  */
 .jv-mInputCheckbox.mui {
   margin-bottom: 16px;
@@ -2801,13 +2852,15 @@ textarea[readonly].jv-mInput-text.mui {
 /* ----------------- */
 /*  14. LISTBOX      */
 /* ----------------- */
-/* Listbox was initially created as a list for checkboxes in a drop-down menu.
-   We may want to consider changing the name of this component to Checklist */
+/* Listbox for MUI was initially created as a list that contains checkboxes in a drop-down
+   menu. We may want to consider changing this component to Checklist. See Checklist in
+   section 11g that was created for Select input with Checkbox in Sep 2024. */
 
-/* Listbox has historically been a basic bordered box that can hold a list of objects or a tree */
-/* This listbox can have an optional label and search box */
-/* This version of Listbox was created in May 2023 */
 .jv-mListbox.mui {
+}
+
+.jv-mListbox-option.mui {
+  margin: 1px 0;
 }
 
 .jv-mListbox-option.mui,
@@ -2820,12 +2873,7 @@ textarea[readonly].jv-mInput-text.mui {
 .jv-mListbox-option-label.mui {
 }
 
-/*.jv-mListbox-option-label.jv-MuiButtonBase-root.mui {
-  display: flex;
-} can't find this */
-
 /* large */
-.jv-mListboxLarge.mui .jv-mListbox-option,
 .jv-mListboxLarge.mui .jv-mInput-checkbox.mui {
   margin: 3px 0;
 }
@@ -2858,11 +2906,10 @@ textarea[readonly].jv-mInput-text.mui {
   color: #ffffff;
 }
 
-/*.jv-mListbox-option.mui .jv-MuiTouchRipple-child {
-  background-color: $color-tciMedium;
-}*/
+/* Listbox has historically been a basic bordered box that can hold a list of objects
+   or a tree, and it can have an optional label and search box. This version of Listbox
+   (below) was created in May 2023, and has no conflicts with the above version */
 
-/* 2023 Listbox version, no conflicts with earlier version */
 .jv-mListbox.mui {
   font-family: $font-family-primary;
   position: relative;
@@ -4879,7 +4926,7 @@ textarea[readonly].jv-mInput-text.mui {
 } /* importants needed for v5 upgrade */
 
 .jv-mDropdown-search + .jv-mDropdown-checklist .jv-mListbox {
-  padding-top: 0;
+  padding-top: 2px; /* prevents border radius from showing when item is focused or hovered */
 }
 
 /*  --------------------- */

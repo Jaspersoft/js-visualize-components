@@ -14,10 +14,14 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  InputLabel,
+  ListItemText,
   MenuItem,
+  OutlinedInput,
   Paper,
   Radio,
   RadioGroup,
+  Select,
   Switch,
   TextField,
   Typography,
@@ -68,86 +72,91 @@ import "./inputs.css";
 /*        04b. Medium                                   */
 /*        04c. Large                                    */
 /*                                                      */
-/*    05. SELECT                                        */
+/*    05. MULTI-SELECT CHECKBOX                         */
 /*        05a. Small                                    */
-/*        05b. Small w/Helper + Error                   */
-/*        05c. Small Inline                             */
-/*        05d. Small Inline w/Helper + Error            */
-/*        05e. Medium                                   */
-/*        05f. Medium w/Helper + Error                  */
-/*        05g. Medium Inline                            */
-/*        05h. Medium Inline w/Helper + Error           */
-/*        05i. Large                                    */
-/*        05j. Large w/Helper + Error                   */
-/*        05k. Large Inline Select                      */
-/*        05l. Large Inline w/Helper + Error            */
+/*        05a. Medium                                   */
+/*        05a. Large                                    */
 /*                                                      */
-/*    06. SWITCH                                        */
-/*        06a. Small Inline, Label First                */
-/*        06b. Small Inline Disabled, Label First       */
-/*        06c. Small Inline, Label Last                 */
-/*        06d. Small Inline Disabled, Label Last        */
-/*        06e. Small No Label                           */
-/*        06f. Medium Inline, Label First               */
-/*        06g. Medium Inline Disabled, Label First      */
-/*        06h. Medium Inline, Label Last                */
-/*        06i. Medium Inline Disabled, Label Last       */
-/*        06j. Medium No Label                          */
-/*        06k. Large Inline, Label First                */
-/*        06l. Large Inline Disabled, Label First       */
-/*        06m. Large Inline, Label Last                 */
-/*        06n. Large Inline Disabled, Label Last        */
-/*        06o. Large No Label                           */
+/*    06. SELECT                                        */
+/*        06a. Small                                    */
+/*        06b. Small w/Helper + Error                   */
+/*        06c. Small Inline                             */
+/*        06d. Small Inline w/Helper + Error            */
+/*        06e. Medium                                   */
+/*        06f. Medium w/Helper + Error                  */
+/*        06g. Medium Inline                            */
+/*        06h. Medium Inline w/Helper + Error           */
+/*        06i. Large                                    */
+/*        06j. Large w/Helper + Error                   */
+/*        06k. Large Inline Select                      */
+/*        06l. Large Inline w/Helper + Error            */
 /*                                                      */
-/*    07. TEXT                                          */
-/*        07a. Small Text Variations                    */
-/*        07b. Small Search                             */
-/*        07c. Small Number Variations                  */
-/*        07d. Small Textarea Variations                */
-/*        07e. Small Error States                       */
-/*        07f. Medium Text Variations                   */
-/*        07g. Medium Search                            */
-/*        07h. Medium Number Variations                 */
-/*        07i. Medium Textarea Variations               */
-/*        07j. Medium Error States                      */
-/*        07k. Large Text Variations                    */
-/*        07l. Large Search                             */
-/*        07m. Large Number Variations                  */
-/*        07n. Large Textarea Variations                */
-/*        07o. Large Error States                       */
-/*        07p. Small Inline Text Variations             */
-/*        07q. Small Inline Number Variations           */
-/*        07r. Small Inline Textarea Variations         */
-/*        07s. Small Inline Error States                */
+/*    07. SWITCH                                        */
+/*        07a. Small Inline, Label First                */
+/*        07b. Small Inline Disabled, Label First       */
+/*        07c. Small Inline, Label Last                 */
+/*        07d. Small Inline Disabled, Label Last        */
+/*        07e. Small No Label                           */
+/*        07f. Medium Inline, Label First               */
+/*        07g. Medium Inline Disabled, Label First      */
+/*        07h. Medium Inline, Label Last                */
+/*        07i. Medium Inline Disabled, Label Last       */
+/*        07j. Medium No Label                          */
+/*        07k. Large Inline, Label First                */
+/*        07l. Large Inline Disabled, Label First       */
+/*        07m. Large Inline, Label Last                 */
+/*        07n. Large Inline Disabled, Label Last        */
+/*        07o. Large No Label                           */
 /*                                                      */
-/*    08. COLOR                                         */
-/*        08a. Small Color                              */
-/*        08b. Small Inline Color                       */
-/*        08c. Medium Color                             */
-/*        08d. Medium Inline Color                      */
-/*        08e. Large Color                              */
-/*        08f. Large Inline Color                       */
+/*    08. TEXT                                          */
+/*        08a. Small Text Variations                    */
+/*        08b. Small Search                             */
+/*        08c. Small Number Variations                  */
+/*        08d. Small Textarea Variations                */
+/*        08e. Small Error States                       */
+/*        08f. Medium Text Variations                   */
+/*        08g. Medium Search                            */
+/*        08h. Medium Number Variations                 */
+/*        08i. Medium Textarea Variations               */
+/*        08j. Medium Error States                      */
+/*        08k. Large Text Variations                    */
+/*        08l. Large Search                             */
+/*        08m. Large Number Variations                  */
+/*        08n. Large Textarea Variations                */
+/*        08o. Large Error States                       */
+/*        08p. Small Inline Text Variations             */
+/*        08q. Small Inline Number Variations           */
+/*        08r. Small Inline Textarea Variations         */
+/*        08s. Small Inline Error States                */
 /*                                                      */
-/*    09. REFRESH                                       */
+/*    09. COLOR                                         */
+/*        09a. Small Color                              */
+/*        09b. Small Inline Color                       */
+/*        09c. Medium Color                             */
+/*        09d. Medium Inline Color                      */
+/*        09e. Large Color                              */
+/*        09f. Large Inline Color                       */
 /*                                                      */
-/*    10. COMBINATIONS                                  */
-/*        10a. Small Interval                           */
-/*        10b. Small Inline Interval                    */
-/*        10c. Small Condition                          */
-/*        10d. Small Flexwidth Condition                */
-/*        10e. Small Inline Condition                   */
-/*        10f. Medium Interval                          */
-/*        10g. Medium Inline Interval                   */
-/*        10h. Medium Condition                         */
-/*        10i. Small Flexwidth Condition                */
-/*        10j. Medium Inline Condition                  */
-/*        10k. Large Interval                           */
-/*        10l. Large Inline Interval                    */
-/*        10m. Large Condition                          */
-/*        10n. Large Inline Condition                   */
+/*    10. REFRESH                                       */
+/*                                                      */
+/*    11. COMBINATIONS                                  */
+/*        11a. Small Interval                           */
+/*        11b. Small Inline Interval                    */
+/*        11c. Small Condition                          */
+/*        11d. Small Flexwidth Condition                */
+/*        11e. Small Inline Condition                   */
+/*        11f. Medium Interval                          */
+/*        11g. Medium Inline Interval                   */
+/*        11h. Medium Condition                         */
+/*        11i. Small Flexwidth Condition                */
+/*        11j. Medium Inline Condition                  */
+/*        11k. Large Interval                           */
+/*        11l. Large Inline Interval                    */
+/*        11m. Large Condition                          */
+/*        11n. Large Inline Condition                   */
 /*                                                      */
 /*  --------------------------------------------------  */
-/*   Last modified Mar 14, 2024                         */
+/*   Last modified Sep 16, 2024                         */
 /*  --------------------------------------------------  */
 
 export default {
@@ -2192,8 +2201,217 @@ export const inputRadio = () => {
 };
 inputRadio.storyName = "Radio Buttons";
 
+/* ---------------------------- */
+/*  05. MULTI-SELECT CHECKBOX   */
+/* ---------------------------- */
+export const inputSelectCheckbox = () => {
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuPropsLg = {
+    classes: { list: "jv-mChecklist jv-mChecklistLarge mui" },
+    PaperProps: {
+      elevation: 4,
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const names = [
+    "Oliver Hansen",
+    "Van Henry",
+    "April Tucker",
+    "Ralph Hubbard",
+    "Omar Alexander",
+    "Carlos Abbott",
+    "Miriam Wagner",
+    "Bradley Wilkerson",
+    "Virginia Andrews",
+    "Kelly Snyder",
+  ];
+
+  const [personName, setPersonName] = useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value,
+    );
+  };
+
+  return (
+    <>
+      <h1 className="demoType demoTypeDesign">Design</h1>
+      <h1 className="demoTitle">Input Control - Multi-Select</h1>
+
+      <div className={"demoWrapper demoInput"}>
+        {/* 05a. Small Multi-Select */}
+        <div className={"demoSize"}>
+          <p className={"demoSubtitle"}>Small</p>
+          <p className={"demoSubtitle-2"}>Checkboxes</p>
+          <FormControl className="jv-mInput jv-mInputSmall jv-mInputSelect mui">
+            <InputLabel
+              className="jv-mInput-label mui"
+              id="demo-multiple-checkbox-sm-label"
+            >
+              Name
+            </InputLabel>
+            <Select
+              // open={open}
+              labelId="demo-multiple-checkbox-sm-label"
+              id="demo-multiple-checkbox-sm"
+              className="jv-mInput-select mui"
+              multiple
+              value={personName}
+              onChange={handleChange}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={{
+                classes: { list: "jv-mChecklist jv-mChecklistSmall mui" },
+                PaperProps: {
+                  elevation: 4,
+                  style: {
+                    maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                    width: 250,
+                  },
+                },
+              }}
+            >
+              {names.map((name) => (
+                <MenuItem
+                  className="jv-mChecklist-item mui"
+                  key={name}
+                  value={name}
+                >
+                  <Checkbox
+                    className="jv-mInput-checkbox-check mui"
+                    checked={personName.indexOf(name) > -1}
+                  />
+                  <ListItemText
+                    className="jv-mInput-checkbox-label mui"
+                    primary={name}
+                  />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+
+        {/* 05b. Medium Multi-Select */}
+        <div className={"demoSize"}>
+          <p className={"demoSubtitle"}>Medium</p>
+          <p className={"demoSubtitle-2"}>Checkboxes</p>
+          <FormControl className="jv-mInput jv-mInputSelect mui">
+            <InputLabel
+              className="jv-mInput-label mui"
+              id="demo-multiple-checkbox-label"
+            >
+              Name
+            </InputLabel>
+            <Select
+              // open={open}
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              className="jv-mInput-select mui"
+              multiple
+              value={personName}
+              onChange={handleChange}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={{
+                classes: { list: "jv-mChecklist mui" },
+                PaperProps: {
+                  elevation: 4,
+                  style: {
+                    maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                    width: 250,
+                  },
+                },
+              }}
+            >
+              {names.map((name) => (
+                <MenuItem
+                  className="jv-mChecklist-item mui"
+                  key={name}
+                  value={name}
+                >
+                  <Checkbox
+                    className="jv-mInput-checkbox-check mui"
+                    checked={personName.indexOf(name) > -1}
+                  />
+                  <ListItemText
+                    className="jv-mInput-checkbox-label mui"
+                    primary={name}
+                  />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+
+        {/* 05c. Large Multi-Select */}
+        <div className={"demoSize"}>
+          <p className={"demoSubtitle"}>Large</p>
+          <p className={"demoSubtitle-2"}>Checkboxes</p>
+          <FormControl className="jv-mInput jv-mInputLarge jv-mInputSelect mui">
+            <InputLabel
+              className="jv-mInput-label mui"
+              id="demo-multiple-checkbox-lg-label"
+            >
+              Name
+            </InputLabel>
+            <Select
+              // open={open}
+              labelId="demo-multiple-checkbox-lg-label"
+              id="demo-multiple-checkbox-lg"
+              className="jv-mInput-select mui"
+              multiple
+              value={personName}
+              onChange={handleChange}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={{
+                classes: { list: "jv-mChecklist jv-mChecklistLarge mui" },
+                PaperProps: {
+                  elevation: 4,
+                  style: {
+                    maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                    width: 250,
+                  },
+                },
+              }}
+            >
+              {names.map((name) => (
+                <MenuItem
+                  className="jv-mChecklist-item mui"
+                  key={name}
+                  value={name}
+                >
+                  <Checkbox
+                    className="jv-mInput-checkbox-check mui"
+                    checked={personName.indexOf(name) > -1}
+                  />
+                  <ListItemText
+                    className="jv-mInput-checkbox-label mui"
+                    primary={name}
+                  />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+      </div>
+    </>
+  );
+};
+inputSelectCheckbox.storyName = "Multi-Select";
+
 /* -------------- */
-/*  05. SELECT    */
+/*  06. SELECT    */
 /* -------------- */
 export const inputSelect = () => {
   return (
@@ -2206,7 +2424,7 @@ export const inputSelect = () => {
             <p className={"demoSubtitle"}>Small</p>
 
             <p className={"demoSubtitle-2"}>Basic</p>
-            {/* 05a. Small Select */}
+            {/* 06a. Small Select */}
             <TextField
               className={
                 "jv-mInput jv-mInputSmall jv-mInputText jv-mInputSelect mui"
@@ -2241,7 +2459,7 @@ export const inputSelect = () => {
               </MenuItem>
             </TextField>
 
-            {/* 05b. Small Select with Helper + Error */}
+            {/* 06b. Small Select with Helper + Error */}
             <div>
               <TextField
                 className={
@@ -2297,7 +2515,7 @@ export const inputSelect = () => {
             <div className="demoSpacer12"></div>
 
             <p className={"demoSubtitle-2"}>Inline</p>
-            {/* 05c. Small Inline Select */}
+            {/* 06c. Small Inline Select */}
             <TextField
               className={
                 "jv-mInput jv-mInputSmall jv-mInputText jv-mInputSelect jv-mInputInline mui"
@@ -2332,7 +2550,7 @@ export const inputSelect = () => {
               </MenuItem>
             </TextField>
 
-            {/* 05d. Small Inline Select w/ Helper + Error */}
+            {/* 06d. Small Inline Select w/ Helper + Error */}
             <div>
               <TextField
                 className={
@@ -2391,7 +2609,7 @@ export const inputSelect = () => {
             <p className={"demoSubtitle"}>Medium</p>
 
             <p className={"demoSubtitle-2"}>Basic</p>
-            {/* 05e. Medium Select */}
+            {/* 06e. Medium Select */}
             <div>
               <TextField
                 className={"jv-mInput jv-mInputText jv-mInputSelect mui"}
@@ -2429,7 +2647,7 @@ export const inputSelect = () => {
               </TextField>
             </div>
 
-            {/* 05f. Medium Select w/Helper + Error */}
+            {/* 06f. Medium Select w/Helper + Error */}
             <div>
               <TextField
                 className={"jv-mInput jv-mInputText jv-mInputSelect mui"}
@@ -2483,7 +2701,7 @@ export const inputSelect = () => {
             <div className="demoSpacer12"></div>
 
             <p className={"demoSubtitle-2"}>Inline</p>
-            {/* 05g. Medium Inline Select */}
+            {/* 06g. Medium Inline Select */}
             <div>
               <TextField
                 className={
@@ -2523,7 +2741,7 @@ export const inputSelect = () => {
               </TextField>
             </div>
 
-            {/* 05h. Medium Inline Select w/Helper + Error  */}
+            {/* 06h. Medium Inline Select w/Helper + Error  */}
             <div>
               <TextField
                 className={
@@ -2582,7 +2800,7 @@ export const inputSelect = () => {
             <p className={"demoSubtitle"}>Large</p>
 
             <p className={"demoSubtitle-2"}>Basic</p>
-            {/* 05i. Large Select */}
+            {/* 06i. Large Select */}
             <div>
               <TextField
                 className={
@@ -2622,7 +2840,7 @@ export const inputSelect = () => {
               </TextField>
             </div>
 
-            {/* 05j. Large Select w/ Helper + Error */}
+            {/* 06j. Large Select w/ Helper + Error */}
             <div>
               <TextField
                 className={
@@ -2678,7 +2896,7 @@ export const inputSelect = () => {
             <div className="demoSpacer12"></div>
 
             <p className={"demoSubtitle-2"}>Inline</p>
-            {/* 05k. Large Inline Select */}
+            {/* 06k. Large Inline Select */}
             <div>
               <TextField
                 className={
@@ -2718,7 +2936,7 @@ export const inputSelect = () => {
               </TextField>
             </div>
 
-            {/* 05l. Large Inline Select w/Helper + Error */}
+            {/* 06l. Large Inline Select w/Helper + Error */}
             <div>
               <TextField
                 className={
@@ -2780,10 +2998,10 @@ export const inputSelect = () => {
 inputSelect.storyName = "Select";
 
 /* -------------- */
-/*  06. SWITCH    */
+/*  07. SWITCH    */
 /* -------------- */
 export const inputSwitch = () => {
-  const [state, setState] = useState({
+  const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
     checkedC: true,
@@ -2814,7 +3032,7 @@ export const inputSwitch = () => {
         <div className={"demoSize"}>
           <p className={"demoSubtitle"}>Small</p>
 
-          {/* 06a. Small Inline Switch, Label First */}
+          {/* 07a. Small Inline Switch, Label First */}
           <p className={"demoSubtitle-2"}>Inline</p>
           <div
             className={
@@ -2858,7 +3076,7 @@ export const inputSwitch = () => {
               onChange={handleChange}
             />
           </div>
-          {/* 06b. Small Inline Disabled Switch, Label First */}
+          {/* 07b. Small Inline Disabled Switch, Label First */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputInline jv-mInputSmall mui"
@@ -2880,7 +3098,7 @@ export const inputSwitch = () => {
           </div>
           <div className="demoSpacer8"></div>
 
-          {/* 06c. Small Inline Switch, Label Last */}
+          {/* 07c. Small Inline Switch, Label Last */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputInline jv-mInputSmall mui"
@@ -2924,7 +3142,7 @@ export const inputSwitch = () => {
             />
           </div>
 
-          {/* 06d. Small Inline Disabled Switch, Label Last */}
+          {/* 07d. Small Inline Disabled Switch, Label Last */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputInline jv-mInputSmall mui"
@@ -2948,7 +3166,7 @@ export const inputSwitch = () => {
           <div className="demoSpacer8"></div>
           <p className={"demoSubtitle-2"}>No Label</p>
 
-          {/* 06e. Small No Label */}
+          {/* 07e. Small No Label */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputNolabel jv-mInputSmall mui"
@@ -2977,7 +3195,7 @@ export const inputSwitch = () => {
           <p className={"demoSubtitle"}>Medium</p>
           <p className={"demoSubtitle-2"}>Inline</p>
 
-          {/* 06f. Medium Inline Switch, Label First */}
+          {/* 07f. Medium Inline Switch, Label First */}
           <div className={"jv-mInput jv-mInputSwitch jv-mInputInline mui"}>
             <FormControlLabel
               checked={state.checkedF}
@@ -3005,7 +3223,7 @@ export const inputSwitch = () => {
             />
           </div>
 
-          {/* 06g. Medium Inline Disabled Switch, Label First */}
+          {/* 07g. Medium Inline Disabled Switch, Label First */}
           <div className={"jv-mInput jv-mInputSwitch jv-mInputInline mui"}>
             <FormControlLabel
               disabled
@@ -3019,7 +3237,7 @@ export const inputSwitch = () => {
           </div>
           <div className="demoSpacer8"></div>
 
-          {/* 06h. Medium Inline Switch, Label Last */}
+          {/* 07h. Medium Inline Switch, Label Last */}
           <div className={"jv-mInput jv-mInputSwitch jv-mInputInline mui"}>
             <FormControlLabel
               checked={state.checkedH}
@@ -3047,7 +3265,7 @@ export const inputSwitch = () => {
             />
           </div>
 
-          {/* 06i. Medium Inline Disabled Switch, Label Last */}
+          {/* 07i. Medium Inline Disabled Switch, Label Last */}
           <div className={"jv-mInput jv-mInputSwitch jv-mInputInline mui"}>
             <FormControlLabel
               disabled
@@ -3062,7 +3280,7 @@ export const inputSwitch = () => {
           <div className="demoSpacer8"></div>
           <p className={"demoSubtitle-2"}>No Label</p>
 
-          {/* 06j. Medium No Label Switch */}
+          {/* 07j. Medium No Label Switch */}
           <div className={"jv-mInput jv-mInputSwitch jv-mInputNolabel mui"}>
             <FormControlLabel
               checked={state.checkedJ}
@@ -3083,7 +3301,7 @@ export const inputSwitch = () => {
           <p className={"demoSubtitle"}>Large</p>
           <p className={"demoSubtitle-2"}>Inline</p>
 
-          {/* 06k. Large Inline Switch, Label First */}
+          {/* 07k. Large Inline Switch, Label First */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputInline jv-mInputLarge mui"
@@ -3119,7 +3337,7 @@ export const inputSwitch = () => {
             />
           </div>
 
-          {/* 06l. Large Inline Disabled Switch, Label First */}
+          {/* 07l. Large Inline Disabled Switch, Label First */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputInline jv-mInputLarge mui"
@@ -3137,7 +3355,7 @@ export const inputSwitch = () => {
           </div>
           <div className="demoSpacer8"></div>
 
-          {/* 06m. Large Inline Switch, Label Last */}
+          {/* 07m. Large Inline Switch, Label Last */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputInline jv-mInputLarge mui"
@@ -3173,7 +3391,7 @@ export const inputSwitch = () => {
             />
           </div>
 
-          {/* 06n. Large Inline Disabled Switch, Label Last */}
+          {/* 07n. Large Inline Disabled Switch, Label Last */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputInline jv-mInputLarge mui"
@@ -3192,7 +3410,7 @@ export const inputSwitch = () => {
           <div className="demoSpacer8"></div>
           <p className={"demoSubtitle-2"}>No Label</p>
 
-          {/* 06o. Large No Label Switch */}
+          {/* 07o. Large No Label Switch */}
           <div
             className={
               "jv-mInput jv-mInputSwitch jv-mInputNolabel jv-mInputLarge mui"
@@ -3219,7 +3437,7 @@ export const inputSwitch = () => {
 inputSwitch.storyName = "Switch";
 
 /* -------------- */
-/*  07. TEXT      */
+/*  08. TEXT      */
 /* -------------- */
 export const inputTextField = () => {
   const [searchText, setSearchText] = useState("");
@@ -3246,7 +3464,7 @@ export const inputTextField = () => {
                 <p className={"demoSubtitle"}>Small</p>
                 <div className={"demoSizeWrapper"}>
                   {/* COLUMN 1 - SMALL TEXT */}
-                  {/* 07a. Small Text Variations */}
+                  {/* 08a. Small Text Variations */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Text</p>
                     {/* small text */}
@@ -3370,7 +3588,7 @@ export const inputTextField = () => {
                     />
                     <div className="demoSpacer14"></div>
 
-                    {/* 07b. Small Search */}
+                    {/* 08b. Small Search */}
                     {/* <FormControl className={"jv-mControlSearch mui"}>*/}
                     <p className={"demoSubtitle-2"}>Search</p>
                     <JVTextField
@@ -3412,7 +3630,7 @@ export const inputTextField = () => {
 
                     <div className="demoSpacer22"></div>
 
-                    {/* 07c. Small Number Variations */}
+                    {/* 08c. Small Number Variations */}
                     <p className={"demoSubtitle-2"}>Number</p>
                     {/* small number */}
                     <div>
@@ -3455,7 +3673,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* COLUMN 3 - SMALL TEXT  */}
-                  {/* 07d. Small Textarea Variations */}
+                  {/* 08d. Small Textarea Variations */}
                   {/* small textarea */}
                   <div className={"demoSize"}>
                     {/* textarea, constant height */}
@@ -3526,7 +3744,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* COLUMN 4 - SMALL TEXT */}
-                  {/* 07e. Small Error States */}
+                  {/* 08e. Small Error States */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Error Validation</p>
                     {/* text + helper + error */}
@@ -3627,7 +3845,7 @@ export const inputTextField = () => {
                 <p className={"demoSubtitle"}>Medium</p>
                 <div className={"demoSizeWrapper"}>
                   {/* COLUMN 1 - MEDIUM TEXT */}
-                  {/* 07f. Medium Text Variations */}
+                  {/* 08f. Medium Text Variations */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Text</p>
                     {/* medium text */}
@@ -3754,7 +3972,7 @@ export const inputTextField = () => {
                     </div>
                     <div className="demoSpacer14"></div>
 
-                    {/* 07g. Medium Search */}
+                    {/* 08g. Medium Search */}
                     <p className={"demoSubtitle-2"}>Search</p>
                     <JVTextField
                       placeholder="Search"
@@ -3793,7 +4011,7 @@ export const inputTextField = () => {
 
                     <div className="demoSpacer16"></div>
 
-                    {/* 07h. Medium Number Variations */}
+                    {/* 08h. Medium Number Variations */}
                     <p className={"demoSubtitle-2"}>Number</p>
                     {/* default number */}
                     <div>
@@ -3835,7 +4053,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* COLUMN 3 - MEDIUM TEXT  */}
-                  {/* 07i. Medium Textarea Variations */}
+                  {/* 08i. Medium Textarea Variations */}
                   {/* medium textarea */}
                   <div className={"demoSize"}>
                     {/* Text Area with constant height */}
@@ -3903,7 +4121,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* COLUMN 4 - MEDIUM TEXT  */}
-                  {/* 07j. Medium Error States */}
+                  {/* 08j. Medium Error States */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Error Validation</p>
                     {/* medium text + helper + error */}
@@ -4006,7 +4224,7 @@ export const inputTextField = () => {
 
                 <div className={"demoSizeWrapper"}>
                   {/* COLUMN 1 - LARGE TEXT */}
-                  {/* 07k. Large Text Variations */}
+                  {/* 08k. Large Text Variations */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Text</p>
                     {/* large text */}
@@ -4132,7 +4350,7 @@ export const inputTextField = () => {
                     </div>
                     <div className="demoSpacer14"></div>
 
-                    {/* 07l. Large Search */}
+                    {/* 08l. Large Search */}
                     {/*<FormControl className={"jv-mControlSearch jv-mControlLarge mui"}>*/}
                     <p className={"demoSubtitle-2"}>Search</p>
                     <JVTextField
@@ -4215,7 +4433,7 @@ export const inputTextField = () => {
 
                     <div className="demoSpacer22"></div>
 
-                    {/* 07m. Large Number Variations */}
+                    {/* 08m. Large Number Variations */}
                     <p className={"demoSubtitle-2"}>Number</p>
                     {/* large number */}
                     <div>
@@ -4258,7 +4476,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* COLUMN 3 - LARGE TEXT */}
-                  {/* 07n. Large Textarea Variations */}
+                  {/* 08n. Large Textarea Variations */}
                   {/* large textarea */}
                   <div className={"demoSize"}>
                     {/* Text Area with constant height */}
@@ -4331,7 +4549,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* COLUMN 4 - LARGE TEXT  */}
-                  {/* 07o. Large Error States */}
+                  {/* 08o. Large Error States */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Error Validation</p>
                     {/* large text + helper + error */}
@@ -4431,7 +4649,7 @@ export const inputTextField = () => {
 
                 <div className={"demoSizeWrapper"}>
                   {/* Column 1 Small Inline Text */}
-                  {/* 07p. Small Inline Text Variations */}
+                  {/* 08p. Small Inline Text Variations */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Text</p>
                     {/* small inline text */}
@@ -4540,7 +4758,7 @@ export const inputTextField = () => {
                     </div>
                     <div className="demoSpacer14"></div>
 
-                    {/* 07q. Small Inline Number Variations */}
+                    {/* 08q. Small Inline Number Variations */}
                     {/* small inline number */}
                     <p className={"demoSubtitle-2"}>Number</p>
                     <div>
@@ -4585,7 +4803,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* Column 3 - Small Inline Text */}
-                  {/* 07r. Small Inline Textarea Variations */}
+                  {/* 08r. Small Inline Textarea Variations */}
                   {/* small inline textarea */}
                   <div className={"demoSize"}>
                     {/* Text Area with constant height */}
@@ -4658,7 +4876,7 @@ export const inputTextField = () => {
                   </div>
 
                   {/* Column 4 - Small Inline Text */}
-                  {/* 07s. Small Inline Error States */}
+                  {/* 08s. Small Inline Error States */}
                   <div className={"demoSize"}>
                     <p className={"demoSubtitle-2"}>Error Validation</p>
                     {/* small inline number + error */}
@@ -4768,7 +4986,7 @@ export const inputTextField = () => {
 inputTextField.storyName = "Text Field";
 
 /* --------------- */
-/*  08. COLOR      */
+/*  09. COLOR      */
 /* --------------- */
 export const inputColor = () => {
   return (
@@ -4778,7 +4996,7 @@ export const inputColor = () => {
       <form noValidate autoComplete="off">
         <div className={"demoWrapper demoInput"}>
           <div className={"demoSize"}>
-            {/* 8a. Small Color */}
+            {/* 9a. Small Color */}
             <p className={"demoSubtitle"}>Small</p>
             <div className={"jv-mControl jv-mControlColor mui"}>
               <TextField
@@ -4955,7 +5173,7 @@ export const inputColor = () => {
             </div>
             <div className="demoSpacer28"></div>
 
-            {/* 8b. Small Inline Color */}
+            {/* 9b. Small Inline Color */}
             <p className={"demoSubtitle"}>Small Inline</p>
             <div className={"jv-mControl jv-mControlColor mui"}>
               <TextField
@@ -5171,7 +5389,7 @@ export const inputColor = () => {
           </div>
 
           <div className={"demoSize"}>
-            {/* 8c. Medium Color */}
+            {/* 9c. Medium Color */}
             <p className={"demoSubtitle"}>Medium</p>
             <div className={"jv-mControl jv-mControlColor mui"}>
               <TextField
@@ -5348,7 +5566,7 @@ export const inputColor = () => {
             </div>
             <div className="demoSpacer28"></div>
 
-            {/* 8d. Medium Inline Color */}
+            {/* 9d. Medium Inline Color */}
             <p className={"demoSubtitle"}>Medium Inline</p>
             <div className={"jv-mControl jv-mControlColor mui"}>
               <TextField
@@ -5550,7 +5768,7 @@ export const inputColor = () => {
           </div>
 
           <div className={"demoSize"}>
-            {/* 8e. Large Color */}
+            {/* 9e. Large Color */}
             <p className={"demoSubtitle"}>Large</p>
             <div className={"jv-mControl jv-mControlColor mui"}>
               <TextField
@@ -5727,7 +5945,7 @@ export const inputColor = () => {
             </div>
             <div className="demoSpacer28"></div>
 
-            {/* 8f. Large Inline Color */}
+            {/* 9f. Large Inline Color */}
             <p className={"demoSubtitle"}>Large Inline</p>
             <div className={"jv-mControl jv-mControlColor mui"}>
               <TextField
@@ -5949,7 +6167,7 @@ export const inputColor = () => {
 inputColor.storyName = "Color Picker";
 
 /* --------------- */
-/*  09. REFRESH    */
+/*  10. REFRESH    */
 /* --------------- */
 export const inputRefresh = () => {
   return (
@@ -5992,7 +6210,7 @@ export const inputRefresh = () => {
 inputRefresh.storyName = "Refresh";
 
 /* -------------------- */
-/*  10. COMBINATIONS    */
+/*  11. COMBINATIONS    */
 /* -------------------- */
 export const inputCombos = () => {
   return (
@@ -6002,7 +6220,7 @@ export const inputCombos = () => {
       <div className={"demoWrapper demoInput"}>
         <div className="demoSize demoSize300">
           <p className={"demoSubtitle"}>Small</p>
-          {/* 10a. Small Interval */}
+          {/* 11a. Small Interval */}
           <div className={"jv-mControl jv-mControlInterval mui"}>
             <div className={"jv-mControl-interval mui"}>
               <TextField
@@ -6061,7 +6279,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer12"></div>
 
-          {/* 10b. Small Inline Interval */}
+          {/* 11b. Small Inline Interval */}
           <div
             className={"jv-mControl jv-mControlInline jv-mControlInterval mui"}
           >
@@ -6123,7 +6341,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer22"></div>
 
-          {/* 10c. Small Condition */}
+          {/* 11c. Small Condition */}
           <div className={"jv-mControl jv-mControlCondition mui"}>
             <div className={"jv-mControl-operator mui"}>
               {/* Condition */}
@@ -6189,7 +6407,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer12"></div>
 
-          {/* 10d. Small Flexwidth Condition */}
+          {/* 11d. Small Flexwidth Condition */}
           <div
             className={
               "jv-mControl jv-mControlFlexwidth jv-mControlCondition mui"
@@ -6273,7 +6491,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer12"></div>
 
-          {/* 10e. Small Inline Condition */}
+          {/* 11e. Small Inline Condition */}
           <div
             className={"jv-mControl jv-mControlInline jv-mControlCondition mui"}
           >
@@ -6341,7 +6559,7 @@ export const inputCombos = () => {
 
         <div className="demoSize demoSize300">
           <p className="demoSubtitle">Default</p>
-          {/* 10f. Medium Interval */}
+          {/* 11f. Medium Interval */}
           <div className={"jv-mControl jv-mControlInterval mui"}>
             <div className={"jv-mControl-interval mui"}>
               <TextField
@@ -6398,7 +6616,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer12"></div>
 
-          {/* 10g. Medium Inline Interval */}
+          {/* 11g. Medium Inline Interval */}
           <div
             className={"jv-mControl jv-mControlInline jv-mControlInterval mui"}
           >
@@ -6456,7 +6674,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer22"></div>
 
-          {/* 10h. Medium Condition */}
+          {/* 11h. Medium Condition */}
           <div className={"jv-mControl jv-mControlCondition mui"}>
             <div className={"jv-mControl-operator mui"}>
               {/* Condition */}
@@ -6520,7 +6738,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer12"></div>
 
-          {/* 10i. Medium Flexwidth Condition */}
+          {/* 11i. Medium Flexwidth Condition */}
           <div
             className={
               "jv-mControl jv-mControlFlexwidth jv-mControlCondition mui"
@@ -6604,7 +6822,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer12"></div>
 
-          {/* 10j. Medium Inline Condition */}
+          {/* 11j. Medium Inline Condition */}
           <div
             className={"jv-mControl jv-mControlInline jv-mControlCondition mui"}
           >
@@ -6672,7 +6890,7 @@ export const inputCombos = () => {
 
         <div className="demoSize demoSize300">
           <p className={"demoSubtitle"}>Large</p>
-          {/* 10k. Large Interval */}
+          {/* 11k. Large Interval */}
           <div className={"jv-mControl jv-mControlInterval mui"}>
             <div className={"jv-mControl-interval mui"}>
               <TextField
@@ -6734,7 +6952,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer12"></div>
 
-          {/* 10l. Large Inline Interval */}
+          {/* 11l. Large Inline Interval */}
           <div
             className={"jv-mControl jv-mControlInline jv-mControlInterval mui"}
           >
@@ -6799,7 +7017,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer22"></div>
 
-          {/* 10m. Large Condition */}
+          {/* 11m. Large Condition */}
           <div className={"jv-mControl jv-mControlCondition mui"}>
             <div className={"jv-mControl-operator mui"}>
               {/* Condition */}
@@ -6894,7 +7112,7 @@ export const inputCombos = () => {
 
           <div className="demoSpacer22"></div>
 
-          {/* 10n. Large Inline Condition */}
+          {/* 11n. Large Inline Condition */}
           <div
             className={"jv-mControl jv-mControlInline jv-mControlCondition mui"}
           >
