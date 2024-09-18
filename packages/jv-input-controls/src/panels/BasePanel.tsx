@@ -1,9 +1,4 @@
-import {
-  JVMessage,
-  JVDatePickerProvider,
-  JVIcon,
-  JVTypography,
-} from "@jaspersoft/jv-ui-components";
+import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { JSX, useState } from "react";
 import { BaseInputControlProps } from "../controls/BaseInputControl";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
@@ -18,6 +13,7 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
+import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
 
 export interface BasePanelProps {
   controls?: any;
@@ -232,34 +228,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
 
   const buildControls = (controlMap: any) => {
     if (notImplemented(controlMap)) {
-      return (
-        <JVMessage
-          type="error"
-          isCardHeader
-          cardHeaderProps={{
-            isHeaderPadded: true,
-            avatar: (
-              <JVIcon
-                className="jv-uColor-error"
-                size="large"
-                icon="warningRound"
-              />
-            ),
-            title: (
-              <JVTypography
-                className="jv-mText jv-mTextTitle jv-uColor-error jv-uTextBold"
-                variant="h3"
-              >
-                Error
-              </JVTypography>
-            ),
-          }}
-        >
-          <JVTypography variant="body1">
-            This resource contains controls that are not yet supported.
-          </JVTypography>
-        </JVMessage>
-      );
+      return <NotYetImplementedMessage />;
     }
     if (controlMap?.data) {
       return controlMap.data.map(buildControl);
