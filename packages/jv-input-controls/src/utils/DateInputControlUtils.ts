@@ -1,8 +1,3 @@
-/*
- * Copyright © 2005-2024. Cloud Software Group, Inc. All rights reserved. Confidential & Proprietary.
- * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
- */
-
 import { ICDataType, ICValidationRule } from "../controls/BaseInputControl";
 import { getValueForVerificationText } from "./NumberUtils";
 import { isEmptyObject } from "./ObjectUtils";

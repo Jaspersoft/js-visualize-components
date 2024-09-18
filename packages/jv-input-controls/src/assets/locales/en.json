@@ -1,6 +1,7 @@
 {
   "translation": {
     "error": "Error",
-    "not.yet.implemented": "This resource contains controls that are not yet supported."
+    "not.yet.implemented": "This resource contains controls that are not yet supported.",
+    "error.not.matching.pattern": "This field does not match the required pattern."
   }
 }

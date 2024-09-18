@@ -1,30 +1,3 @@
-/*!
- * Copyright (C) 2005 - 2023 TIBCO Software Inc. All rights reserved.
- * http://www.jaspersoft.com.
- *
- * Unless you have purchased a commercial license agreement from Jaspersoft,
- * the following license terms apply:
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/* ====================================
-   TABLE MODULE STYLESHEET
-   Last modified date:    Feb 1, 2023
-   Last modified by:      Anna Leeg
-* ==================================== */
-
 // -----------------------------------------------
 //   TABLE OF CONTENTS
 //
@@ -228,7 +201,8 @@
 // ------------------------------------
 .jv-isClosed.jv > .jv-mTable-cell-expander-icon.jv {
   border-bottom: em(4px, 12px) solid transparent;
-  border-left: em(5px, 12px) solid $grey-textLighter; /* text variable is ok, this is icon inline with text */
+  border-left: em(5px, 12px) solid $grey-textLighter;
+  /* text variable is ok, this is icon inline with text */
   border-top: em(4px, 12px) solid transparent;
   display: inline-block;
   margin-left: em(10px, 12px);
@@ -238,7 +212,8 @@
 .jv-isOpen.jv > .jv-mTable-cell-expander-icon.jv {
   border-left: em(4px, 12px) solid transparent;
   border-right: em(4px, 12px) solid transparent;
-  border-top: em(5px, 12px) solid $grey-textLighter; /* text variable is ok, this is icon inline with text */
+  border-top: em(5px, 12px) solid $grey-textLighter;
+  /* text variable is ok, this is icon inline with text */
   display: inline-block;
   margin-left: em(8px, 12px);
   margin-top: em(11px, 12px);
@@ -492,7 +467,8 @@
   .jv-mTable-cell-titletext.jv-isOpen.jv::before {
   border-left: em(4px) solid rgba(0, 0, 0, 0);
   border-right: em(4px) solid rgba(0, 0, 0, 0);
-  border-top: em(5px) solid $color-textDark; /* text variable is ok, this is icon inline with text */
+  border-top: em(5px) solid $color-textDark;
+  /* text variable is ok, this is icon inline with text */
   content: "";
   float: left;
   margin-top: em(7px);
@@ -502,7 +478,8 @@
 .jv-mTableJoins.jv
   .jv-mTable-rowIsland.jv
   .jv-mTable-cell-titletext.jv-isClosed.jv::before {
-  border-left: em(5px) solid $color-textDark; /* text variable is ok, this is icon inline with text */
+  border-left: em(5px) solid $color-textDark;
+  /* text variable is ok, this is icon inline with text */
   border-bottom: em(4px) solid rgba(0, 0, 0, 0);
   border-top: em(4px) solid rgba(0, 0, 0, 0);
   content: "";
@@ -517,7 +494,8 @@
   .jv-mTable-cell-titletext.jv-isOpen.jv::before {
   border-left: em(4px) solid rgba(0, 0, 0, 0);
   border-right: em(4px) solid rgba(0, 0, 0, 0);
-  border-top: em(5px) solid $color-textLight; /* text variable is ok, this is icon inline with text */
+  border-top: em(5px) solid $color-textLight;
+  /* text variable is ok, this is icon inline with text */
   content: "";
   float: left;
   margin-top: em(7px);
@@ -527,7 +505,8 @@
 .jv-mTableJoins.jv
   .jv-mTable-rowTablenames.jv
   .jv-mTable-cell-titletext.jv-isClosed.jv::before {
-  border-left: em(5px) solid $color-textLight; /* text variable is ok, this is icon inline with text */
+  border-left: em(5px) solid $color-textLight;
+  /* text variable is ok, this is icon inline with text */
   border-bottom: em(4px) solid rgba(0, 0, 0, 0);
   border-top: em(4px) solid rgba(0, 0, 0, 0);
   content: "";
