@@ -2,24 +2,25 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import libCss from "vite-plugin-libcss";
+import { join, resolve } from "path";
 
 export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ["src/**/*.ts+(|x)", "**/*.mts"],
-      outputDir: "dist",
-      staticImport: true,
+      tsconfigPath: resolve(__dirname, "tsconfig.json"),
     }),
     libCss(),
   ],
+  root: join(__dirname),
   build: {
-    sourcemap: true,
     outDir: "dist",
+    sourcemap: true,
+    minify: true,
     lib: {
-      entry: "src/index.ts",
-      formats: ["es"],
-      fileName: () => "index.js",
+      entry: resolve(`${__dirname}/src`, "index.ts"),
+      name: "@jaspersoft/jv-scheduler",
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom", "i18next-http-backend", "moment"],
