@@ -29,7 +29,6 @@ function SchedulerApp() {
         },
         (v: VisualizeType) => {
           setVisualize({ v });
-          console.log(v);
         },
         (e: any) => {
           console.log(String(e));
@@ -42,11 +41,9 @@ function SchedulerApp() {
     if (visualize === undefined) {
       return;
     }
-    console.log(visualize);
     const { resourceURI, ...rest } = schedulerUIConfig;
     const schedulerElement = document.getElementById("scheduler");
     if (schedulerElement) {
-      console.log(schedulerElement);
       const schedulerPlugin = new SchedulerUiJS(visualize);
       schedulerPlugin.renderScheduler(
         resourceURI,
