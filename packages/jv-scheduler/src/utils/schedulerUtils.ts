@@ -4,7 +4,7 @@ import {
   SCHEDULE_TAB,
 } from "../constants/schedulerConstants";
 import { stateValidator } from "../validations/scheduleValidators";
-import { IScheduleInfo } from "../types/scheduleType";
+import { ScheduleInfoProps } from "../types/scheduleType";
 
 export const getStateOfCurrentActiveTab = (
   tabName: string,
@@ -86,7 +86,7 @@ export const getStateOfCurrentActiveTab = (
 };
 export const getErrorsForCurrentTab = async (
   currentActiveTab: string,
-  currentState: IScheduleInfo,
+  currentState: ScheduleInfoProps,
 ) => {
   const currentTabValues = getStateOfCurrentActiveTab(
     currentActiveTab,

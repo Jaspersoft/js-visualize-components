@@ -15,7 +15,7 @@ import {
 } from "@jaspersoft/jv-ui-components";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { IApiFailed } from "../../types/scheduleType";
+import { ApiFailedProps } from "../../types/scheduleType";
 import { getOutputFormats, getUserTimeZones } from "../../actions/action";
 
 const ErrorList = (props: { errorMsg: string }) => {
@@ -31,7 +31,7 @@ export const MessageAPIError = ({
   userOutputFormatApiFailure,
   apiErrorTitle,
   retryNetworkTitle,
-}: IApiFailed) => {
+}: ApiFailedProps) => {
   const dispatch = useDispatch<any>();
   const { t } = useTranslation();
 

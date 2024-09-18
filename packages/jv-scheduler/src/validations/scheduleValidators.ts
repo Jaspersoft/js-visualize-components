@@ -9,7 +9,11 @@ import XRegExp from "xregexp";
 // @ts-ignore
 import globalConfig from "../constants/globalConfiguration.settings";
 import moment from "moment";
-import { IStepperState, IScheduleErrors, IState } from "../types/scheduleType";
+import {
+  StepperStateProps,
+  ScheduleErrorsProps,
+  IState,
+} from "../types/scheduleType";
 import {
   accessiblePermissionMask,
   ERROR_FIELDS,
@@ -90,7 +94,7 @@ const getFolderErr = async (folderUri: string) => {
 export const validator = (
   propName: string,
   propVal: string,
-  extraParams?: Pick<IStepperState, "startType" | "outputTimeZone">,
+  extraParams?: Pick<StepperStateProps, "startType" | "outputTimeZone">,
 ) => {
   let schedulerPropError;
   switch (propName) {
@@ -182,7 +186,9 @@ export const validator = (
   return { [propName]: schedulerPropError };
 };
 
-export const stateValidator = (state: IScheduleErrors | IStepperState) => {
+export const stateValidator = (
+  state: ScheduleErrorsProps | StepperStateProps,
+) => {
   const promises: Array<any> = [];
   const extraParams: {
     startType: number | undefined;

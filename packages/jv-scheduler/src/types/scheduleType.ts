@@ -2,14 +2,14 @@ export interface ApiErrorMsg {
   apiErrorTitle?: string;
   retryNetworkTitle?: string;
 }
-export interface IApiFailed extends ApiErrorMsg {
+export interface ApiFailedProps extends ApiErrorMsg {
   userTimezoneApiFailure?: boolean;
   userOutputFormatApiFailure?: boolean;
   createScheduleApiFailure?: boolean;
   initialTreeDataLoadApiFailure?: boolean;
   treeLoadApiFailure?: boolean;
 }
-interface IScheduleHiddenConfig {
+interface ScheduleHiddenConfigProps {
   show: false;
   defaultValues: {
     label: any;
@@ -19,7 +19,7 @@ interface IScheduleHiddenConfig {
   };
 }
 
-interface IScheduleVisibleConfig {
+interface ScheduleVisibleConfigProps {
   show?: true;
   defaultValues?: {
     label?: any;
@@ -37,7 +37,7 @@ export interface SchedulerConfigProps {
     activeTab?: string;
     tabsOrder?: string[];
     tabsData?: {
-      schedule?: IScheduleVisibleConfig | IScheduleHiddenConfig;
+      schedule?: ScheduleVisibleConfigProps | ScheduleHiddenConfigProps;
       parameters?: {};
       output?: {};
       notifications?: {};
@@ -50,7 +50,7 @@ export interface SchedulerConfigProps {
   locale?: string;
   timezone?: string;
 }
-interface IStepperErrorData {
+interface StepperErrorDataProps {
   baseOutputFilename?: string;
   messageText?: string;
   name?: string;
@@ -61,7 +61,7 @@ interface IStepperErrorData {
   outputTimeZone?: string | undefined;
 }
 
-export interface IStepperState extends IStepperErrorData {
+export interface StepperStateProps extends StepperErrorDataProps {
   address?: string | string[];
   outputFormat?: string[];
   startDate?: string | null;
@@ -75,7 +75,7 @@ export interface IStepperState extends IStepperErrorData {
   scheduleJobDescription?: string;
 }
 
-export interface IScheduleErrors extends IStepperErrorData {
+export interface ScheduleErrorsProps extends StepperErrorDataProps {
   baseOutputFileDescription?: string;
   folderURI?: string;
   address?: string;
@@ -88,13 +88,13 @@ export interface IScheduleErrors extends IStepperErrorData {
   parameters?: string;
 }
 
-interface IRepositoryDestination {
+interface RepositoryDestinationProps {
   folderURI: string;
   saveToRepository: boolean;
   outputDescription?: string;
 }
 
-export interface IMailNotifications {
+export interface MailNotificationsProps {
   messageText: string;
   subject: string;
   toAddresses: {
@@ -103,28 +103,7 @@ export interface IMailNotifications {
   resultSendType: string;
 }
 
-interface IStepperErrorData {
-  baseOutputFilename?: string;
-  messageText?: string;
-  name?: string;
-  operator?: string;
-  recurrenceIntervalUnit?: string;
-  subject?: string;
-  startType?: number | undefined;
-  outputTimeZone?: string | undefined;
-}
-
-export interface IScheduleErrors extends IStepperErrorData {
-  folderURI?: string;
-  address?: string;
-  outputFormats?: string;
-  recurrenceInterval?: string;
-  outputFormat?: string;
-  startDate?: string;
-  thresholdValue?: string;
-}
-
-export interface IFieldsVisibility {
+export interface FieldsVisibilityProps {
   baseOutputFilename?: boolean;
   outputDescription?: boolean;
   outputFormat?: boolean;
@@ -141,11 +120,11 @@ export interface IFieldsVisibility {
   scheduleJobDescription?: boolean;
   scheduleJobName?: boolean;
 }
-export type ITabConfig = {
+export type TabConfigProps = {
   tabsToShow?: tabsToShow[];
   stepsToShow?: stepsToShow[];
 };
-export interface ITabsConfiguration {
+export interface TabsConfigurationProps {
   currentActiveTab?: string;
   tabsConfiguration?: {
     tabsToShow?: tabsToShow[];
@@ -164,26 +143,26 @@ type tabsToShow = {
   value: string;
 };
 
-export interface ISchedulerInitialPluginData {
+export interface SchedulerInitialPluginDataProps {
   currentActiveTab: string;
-  fieldsVisibility: IFieldsVisibility;
-  scheduleInfo: IScheduleInfo;
+  fieldsVisibility: FieldsVisibilityProps;
+  scheduleInfo: ScheduleInfoProps;
   showStepper: boolean;
-  stepperDefaultState: IStepperState;
+  stepperDefaultState: StepperStateProps;
   stepsToShow: stepsToShow[];
   tabsToShow: tabsToShow[];
 }
 
-export interface IState extends ISchedulerInitialPluginData {
-  scheduleErrors: IScheduleErrors;
+export interface IState extends SchedulerInitialPluginDataProps {
+  scheduleErrors: ScheduleErrorsProps;
   visitedTabs: string[];
   outputFormats: string[];
-  tabsConfiguration: ITabConfig;
+  tabsConfiguration: TabConfigProps;
   stepperConfiguration: {
     show: boolean;
   };
-  stepperState?: IStepperState;
-  scheduleApisFailure?: IApiFailed;
+  stepperState?: StepperStateProps;
+  scheduleApisFailure?: ApiFailedProps;
   lastApiCalledFailed?: boolean;
   folderData?: any;
   fakeRoot?: any;
@@ -195,20 +174,20 @@ export interface IState extends ISchedulerInitialPluginData {
   };
 }
 
-export interface IStoreData {}
+export interface StoreDataProps {}
 
-export interface IScheduleInfo {
+export interface ScheduleInfoProps {
   baseOutputFilename: string;
   baseOutputFileDescription: string;
   scheduleJobName: string;
   scheduleJobDescription: string;
-  mailNotification: IMailNotifications;
-  trigger: ITrigger;
+  mailNotification: MailNotificationsProps;
+  trigger: TriggerProps;
   outputTimeZone: string;
   outputFormatList: string[];
-  outputFormats: IOutputFormat;
+  outputFormats: OutputFormatProps;
   userTimeZones: [{ code: string; description: string }];
-  repositoryDestination: IRepositoryDestination;
+  repositoryDestination: RepositoryDestinationProps;
   source: {
     parameters: {
       parameterValues: { [key: string]: string[] };
@@ -216,7 +195,7 @@ export interface IScheduleInfo {
   };
 }
 
-export interface ITrigger {
+export interface TriggerProps {
   simpleTrigger: {
     timezone: string;
     occurrenceCount: number;
@@ -228,11 +207,11 @@ export interface ITrigger {
   };
 }
 
-export interface IOutputFormat {
+export interface OutputFormatProps {
   outputFormat: string[];
 }
 
-export interface IStepperData {
+export interface StepperDataProps {
   baseOutputFilename?: string;
   messageText?: string;
   name?: string;
@@ -243,18 +222,7 @@ export interface IStepperData {
   outputTimeZone?: string | undefined;
 }
 
-export interface IStepperState extends IStepperData {
-  address?: string | string[];
-  outputFormat?: string[];
-  startDate?: string | null;
-  recurrenceInterval?: number;
-  thresholdValue?: number;
-  resultSendType?: string;
-  outputTimeZone?: string;
-  folderURI?: string;
-  saveToRepository?: boolean;
-}
-export interface IFakeRootData {
+export interface FakeRootDataProps {
   id: string;
   label: any;
   uri: string;
