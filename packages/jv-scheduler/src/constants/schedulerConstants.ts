@@ -148,6 +148,7 @@ export const defaultFieldVisibility = {
   subject: true,
   messageText: true,
   label: true,
+  description: true,
   recurrenceInterval: true,
   recurrenceIntervalUnit: true,
   reportAccessType: true,

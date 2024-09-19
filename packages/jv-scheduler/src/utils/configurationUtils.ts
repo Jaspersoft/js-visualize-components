@@ -12,6 +12,7 @@ import {
   simpleTriggerState,
   SEND_ATTACHMENT,
   SEND_LINK,
+  defaultFieldVisibility,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 import { validator } from "../validations/scheduleValidators";
@@ -412,6 +413,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     fieldsVisibility,
     fieldConvertedData,
   } = await checkFieldDataValidity(inputFieldsInfo);
+
   if (getLengthOfObject(fieldsErrs)) {
     return { error: fieldsErrs };
   }
@@ -428,6 +430,6 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     tabsToShow,
     stepsToShow,
     currentActiveTab: tabsConfig[0],
-    fieldsVisibility,
+    fieldsVisibility: { ...defaultFieldVisibility, ...fieldsVisibility },
   };
 };

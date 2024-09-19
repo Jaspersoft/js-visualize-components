@@ -46,8 +46,8 @@ const Schedule = () => {
     (state: IState) => state.scheduleInfo.outputTimeZone,
   );
   const {
-    scheduleJobName: labelVisible,
-    scheduleJobDescription: descriptionVisible,
+    label: labelVisible,
+    description: descriptionVisible,
     recurrenceInterval: recurrenceIntervalVisible,
     recurrenceIntervalUnit: recurrenceIntervalUnitVisible,
     startTime: startTimeVisible,
