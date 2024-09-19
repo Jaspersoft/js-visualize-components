@@ -143,7 +143,9 @@ const Stepper = () => {
     visitedTabs,
   ]);
   useEffect(() => {
-    setIconStateOnChange(PARAMETERS_TAB, SUCCESS_STATE);
+    if (visitedTabs.includes(PARAMETERS_TAB)) {
+      setIconStateOnChange(PARAMETERS_TAB, SUCCESS_STATE);
+    }
   }, [visitedTabs]);
 
   return (

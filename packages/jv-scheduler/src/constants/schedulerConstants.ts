@@ -246,7 +246,7 @@ export const stepperSteps: { [key: string]: number } = {
 };
 
 export const tabsStateDefaultState: { [key: string]: string } = {
-  [PARAMETERS_TAB]: "",
+  [PARAMETERS_TAB]: INCOMPLETE_DEFAULT_STATE,
   [SCHEDULE_TAB]: INCOMPLETE_DEFAULT_STATE,
   [NOTIFICATIONS_TAB]: INCOMPLETE_STATE,
   [OUTPUT_TAB]: INCOMPLETE_DEFAULT_STATE,
