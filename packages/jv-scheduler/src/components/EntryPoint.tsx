@@ -12,26 +12,16 @@ type SchedulerProps = {
   schedulerUIConfig: SchedulerConfigProps;
 };
 
-export class SchedulerUiJS {
-  private viz: any;
-
-  constructor(vizjs: any) {
-    this.viz = vizjs;
-  }
-
-  renderScheduler(uri: string, container: HTMLElement, config?: any) {
-    const rootElement = container;
-    if (!rootElement) {
-      throw new Error("Root element not found");
-    } else {
-      const schedulerRoot = createRoot(rootElement);
-      schedulerRoot.render(
-        <EntryPoint
-          visualize={this.viz}
-          schedulerUIConfig={{ ...config, resourceURI: uri }}
-        />,
-      );
-    }
+export function SchedulerUiJS(container, vizjs, config) {
+  console.log(container, vizjs, config);
+  const rootElement = container;
+  if (!rootElement) {
+    throw new Error("Root element not found");
+  } else {
+    const schedulerRoot = createRoot(rootElement);
+    schedulerRoot.render(
+      <EntryPoint visualize={vizjs} schedulerUIConfig={{ ...config }} />,
+    );
   }
 }
 

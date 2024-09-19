@@ -41,14 +41,12 @@ function SchedulerApp() {
     if (visualize === undefined) {
       return;
     }
-    const { resourceURI, ...rest } = schedulerUIConfig;
     const schedulerElement = document.getElementById("scheduler");
-    if (schedulerElement) {
-      const schedulerPlugin = new SchedulerUiJS(visualize);
-      schedulerPlugin.renderScheduler(
-        resourceURI,
-        document.getElementById("scheduler") as HTMLElement,
-        rest,
+    if (schedulerElement && visualize) {
+      SchedulerUiJS(
+        schedulerElement as HTMLElement,
+        visualize,
+        schedulerUIConfig,
       );
     }
   }, [visualize]);
