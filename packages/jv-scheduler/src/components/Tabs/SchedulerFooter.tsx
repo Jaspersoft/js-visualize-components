@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { JVButton } from "@jaspersoft/jv-ui-components";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allTabValidationError, createScheduleJob } from "../../actions/action";
 import { translationProps } from "../../types/scheduleType";
-// import {IState} from "../../types/scheduleType";
+import { IState } from "../../types/scheduleType";
 
 const SchedulerFooter = () => {
   const { t } = useTranslation() as translationProps;
   const [isCreateBtnDisabled, setCreateBtnDisability] = useState(false);
+  const scheduleConfig = useSelector(
+    (state: IState) => state.schedulerUIConfig,
+  );
   const dispatch = useDispatch();
   // const parametersTabLoading = useSelector((state: IState) => state.parametersTabLoading);
   //
@@ -29,6 +32,7 @@ const SchedulerFooter = () => {
     } else {
       dispatch(createScheduleJob(enableCreateButton));
     }
+    scheduleConfig?.handlers?.events?.onScheduleBtnClick?.();
   };
   const handleCreateSchedule = () => {
     setCreateBtnDisability(true);
@@ -46,7 +50,12 @@ const SchedulerFooter = () => {
         >
           {t("create.schedule.button")}
         </JVButton>
-        <JVButton variant="contained">{t("cancel.button")}</JVButton>
+        <JVButton
+          variant="contained"
+          onClick={() => scheduleConfig?.handlers?.events?.onCancelBtnClick?.()}
+        >
+          {t("cancel.button")}
+        </JVButton>
       </div>
     </>
   );

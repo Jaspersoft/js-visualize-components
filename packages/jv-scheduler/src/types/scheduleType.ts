@@ -46,6 +46,10 @@ export interface SchedulerConfigProps {
   handlers?: {
     onSuccess?: () => void;
     onError?: (error: any) => void;
+    events?: {
+      onCancelBtnClick: () => void;
+      onScheduleBtnClick: () => void;
+    };
   };
   locale?: string;
   timezone?: string;
