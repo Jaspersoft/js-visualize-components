@@ -13,15 +13,12 @@ import {
   SEND_ATTACHMENT,
   SEND_LINK,
   defaultFieldVisibility,
+  mapFieldName,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 import { validator } from "../validations/scheduleValidators";
 import { checkPermissionOnResource } from "../services/schedulerServices";
 
-const mapFieldName: { [key: string]: string } = {
-  label: "scheduleJobName",
-  description: "scheduleJobDescription",
-};
 const isResourceWritable = (item: any) => {
   return item.permissionMask !== 0;
 };

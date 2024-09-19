@@ -286,3 +286,8 @@ export const typeOfFields: { [key: string]: string } = {
 
 export const PUBLIC_FOLDER = "/public";
 export const ROOT_FOLDER = "/root";
+
+export const mapFieldName: { [key: string]: string } = {
+  label: "scheduleJobName",
+  description: "scheduleJobDescription",
+};
