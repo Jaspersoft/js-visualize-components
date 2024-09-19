@@ -24,7 +24,6 @@ const schedulerUIConfig = {
           startTime: {
             showField: true,
             value: "2024-10-31 14:11",
-            options: ["now", "specificDateAndTime"],
           },
         },
       },
@@ -65,8 +64,7 @@ const schedulerUIConfig = {
           },
           reportAccessType: {
             showField: true,
-            value: "/public/Samples", // "SEND_ATTACHMENT" | "SEND"
-            options: ["SEND", "SEND_ATTACHMENT"],
+            value: "/public/Samples",
           },
         },
       },
@@ -81,6 +79,14 @@ const schedulerUIConfig = {
     onError: (error: any) => {
       console.log("callback ", error);
       console.log("Error");
+    },
+    events: {
+      onCancelBtnClick: () => {
+        console.log("onCancelBtnClick");
+      },
+      onScheduleBtnClick: () => {
+        console.log("onScheduleBtnClick");
+      },
     },
   },
 };
