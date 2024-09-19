@@ -82,7 +82,7 @@ export type VisualizeFactoryConfig = {
 export type VisualizeFactory = {
   (
     params: VisualizeFactoryConfig,
-    success: (v: VisualizeType) => void,
+    success: (v: VisualizeClient) => void,
     error: (err: any) => void,
   ): void;
   noConflict(): VisualizeFactory;
@@ -106,7 +106,7 @@ export type VisualizationConfig = {
   events?: any;
 };
 
-export interface VisualizeType {
+export interface VisualizeClient {
   resourcesSearch: (config: ResourcesSearch) => any;
   logout(): Deferred;
   report: (config: VisualizationConfig) => any;

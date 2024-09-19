@@ -13,7 +13,7 @@ import {
   Authentication,
   VisualizeFactory,
   visualizejsLoader,
-  VisualizeType,
+  VisualizeClient,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
@@ -35,7 +35,7 @@ function App() {
     null as { viz: VisualizeFactory } | null,
   );
   const [vContainer, setVContainer] = useState(
-    null as { v: VisualizeType } | null,
+    null as { v: VisualizeClient } | null,
   );
   const [plugin, setPlugin] = useState<InputControls>();
   const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
@@ -48,7 +48,7 @@ function App() {
   }, []);
   useEffect(() => {
     if (credentials && visualizeFactoryContainer) {
-      new Promise<VisualizeType>((resolve, reject) => {
+      new Promise<VisualizeClient>((resolve, reject) => {
         visualizeFactoryContainer.viz(
           {
             auth: {
@@ -62,7 +62,7 @@ function App() {
           reject,
         );
       })
-        .then((v: VisualizeType) => {
+        .then((v: VisualizeClient) => {
           setVContainer({ v });
         })
         .catch((e: any) => {
