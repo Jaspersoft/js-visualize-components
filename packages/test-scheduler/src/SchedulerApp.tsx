@@ -5,7 +5,11 @@ import {
   visualizejsLoader,
   VisualizeType,
 } from "@jaspersoft/jv-tools";
-import { Scheduler, SchedulerUiJS } from "@jaspersoft/jv-scheduler";
+import {
+  Scheduler,
+  SchedulerUiJS,
+  SchedulerConfig,
+} from "@jaspersoft/jv-scheduler";
 import schedulerUIConfig from "./jv_sheduler_config";
 
 const visualizeUrl = `${schedulerUIConfig.server}/client/visualize.js`;
@@ -51,6 +55,7 @@ function SchedulerApp() {
     }
   }, [visualize]);
 
+  console.log(SchedulerConfig, "SchedulerConfig");
   return (
     <>
       <div id="scheduler"></div>
