@@ -82,10 +82,10 @@ const schedulerUIConfig = {
     },
     events: {
       onCancelBtnClick: () => {
-        console.log("onCancelBtnClick");
+        console.log("Cancel button is clicked");
       },
       onScheduleBtnClick: () => {
-        console.log("onScheduleBtnClick");
+        console.log("Create schedule button is clicked");
       },
     },
   },
