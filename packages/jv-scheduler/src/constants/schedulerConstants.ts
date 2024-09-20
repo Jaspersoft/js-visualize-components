@@ -147,11 +147,12 @@ export const defaultFieldVisibility = {
   address: true,
   subject: true,
   messageText: true,
-  label: true,
-  description: true,
+  scheduleJobName: true,
+  scheduleJobDescription: true,
   recurrenceInterval: true,
   recurrenceIntervalUnit: true,
   reportAccessType: true,
+  startTime: true,
 };
 export const scheduleDefaultErrorState = {
   name: undefined,

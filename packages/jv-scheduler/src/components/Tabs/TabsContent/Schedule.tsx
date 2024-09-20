@@ -49,8 +49,8 @@ const Schedule = () => {
     (state: IState) => state.scheduleInfo.outputTimeZone,
   );
   const {
-    label: labelVisible,
-    description: descriptionVisible,
+    scheduleJobName: labelVisible,
+    scheduleJobDescription: descriptionVisible,
     recurrenceInterval: recurrenceIntervalVisible,
     recurrenceIntervalUnit: recurrenceIntervalUnitVisible,
     startTime: startTimeVisible,
@@ -180,45 +180,49 @@ const Schedule = () => {
           <JVTypographyComponent text={t("schedule.recurrence.title")} />
         ))}
       <div className="jv-mControl jv-mControlInterval jv-mControlFlexwidth mui">
-        <JVTextField
-          id="recurrenceInterval"
-          label={t("schedule.recurrence.interval")}
-          size="large"
-          className="jv-mControl-interval mui"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          textFieldClassName="jv-uWidth-140px"
-          type="number"
-          value={String(recurrenceInt)}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleIntervalChange(e.target.value)
-          }
-          onBlur={() => {
-            const convertedValue = Number(recurrenceInt);
-            setRecurrenceInterval(convertedValue);
-            updateRecurrenceToStore({ recurrenceInterval: convertedValue });
-          }}
-          error={t(recurrenceIntervalErr || "")}
-        />
-        <div className="jv-mControl-timeframe mui">
+        {recurrenceIntervalVisible && (
           <JVTextField
+            id="recurrenceInterval"
+            label={t("schedule.recurrence.interval")}
             size="large"
-            label={t("schedule.recurrence.timeframe")}
-            textFieldClassName="jv-uWidth-175px"
-            select
-            value={recurrenceUnit}
+            className="jv-mControl-interval mui"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            textFieldClassName="jv-uWidth-140px"
+            type="number"
+            value={String(recurrenceInt)}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleTimeFrameChange(e.target.value)
+              handleIntervalChange(e.target.value)
             }
-          >
-            {timeFrames.map((timeFrame) => (
-              <JVSelectItem key={timeFrame.value} value={timeFrame.value}>
-                {timeFrame.textPlural}
-              </JVSelectItem>
-            ))}
-          </JVTextField>
-        </div>
+            onBlur={() => {
+              const convertedValue = Number(recurrenceInt);
+              setRecurrenceInterval(convertedValue);
+              updateRecurrenceToStore({ recurrenceInterval: convertedValue });
+            }}
+            error={t(recurrenceIntervalErr || "")}
+          />
+        )}
+        {recurrenceIntervalUnitVisible && (
+          <div className="jv-mControl-timeframe mui">
+            <JVTextField
+              size="large"
+              label={t("schedule.recurrence.timeframe")}
+              textFieldClassName="jv-uWidth-175px"
+              select
+              value={recurrenceUnit}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleTimeFrameChange(e.target.value)
+              }
+            >
+              {timeFrames.map((timeFrame) => (
+                <JVSelectItem key={timeFrame.value} value={timeFrame.value}>
+                  {timeFrame.textPlural}
+                </JVSelectItem>
+              ))}
+            </JVTextField>
+          </div>
+        )}
       </div>
 
       {startTimeVisible && (
