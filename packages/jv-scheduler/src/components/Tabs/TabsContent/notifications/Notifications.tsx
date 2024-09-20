@@ -6,6 +6,7 @@ import {
   JVTextField,
   JVFormError,
 } from "@jaspersoft/jv-ui-components";
+import i18nScheduler from "../../../../i18n";
 import { JVTypographyComponent } from "../../../common/CommonComponents";
 import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
 import { getFakeRootData, getFolderData } from "../../../../actions/action";
@@ -17,7 +18,7 @@ import {
   SEND_LINK,
 } from "../../../../constants/schedulerConstants";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../../../types/scheduleType";
+import { IState, translationProps } from "../../../../types/scheduleType";
 import { updateChangeToStore } from "../../../../utils/schedulerUtils";
 import {
   addRootFolderPath,
@@ -25,7 +26,9 @@ import {
 } from "../../../../utils/treeUtils";
 
 const Notifications = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const stepperConfig = useSelector(
     (state: IState) => state.stepperConfiguration,
   );

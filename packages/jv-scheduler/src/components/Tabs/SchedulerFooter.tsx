@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { allTabValidationError, createScheduleJob } from "../../actions/action";
 import { translationProps } from "../../types/scheduleType";
 import { IState } from "../../types/scheduleType";
+import i18nScheduler from "../../i18n";
 
 const SchedulerFooter = () => {
-  const { t } = useTranslation() as translationProps;
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const [isCreateBtnDisabled, setCreateBtnDisability] = useState(false);
   const scheduleConfig = useSelector(
     (state: IState) => state.schedulerUIConfig,

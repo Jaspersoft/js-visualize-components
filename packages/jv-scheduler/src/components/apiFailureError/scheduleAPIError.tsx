@@ -15,8 +15,9 @@ import {
 } from "@jaspersoft/jv-ui-components";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { ApiFailedProps } from "../../types/scheduleType";
+import { ApiFailedProps, translationProps } from "../../types/scheduleType";
 import { getOutputFormats, getUserTimeZones } from "../../actions/action";
+import i18nScheduler from "../../i18n";
 
 const ErrorList = (props: { errorMsg: string }) => {
   return (
@@ -33,7 +34,9 @@ export const MessageAPIError = ({
   retryNetworkTitle,
 }: ApiFailedProps) => {
   const dispatch = useDispatch<any>();
-  const { t } = useTranslation();
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
 
   const onRetryBtnClick = () => {
     if (userTimezoneApiFailure) dispatch(getUserTimeZones());

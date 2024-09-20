@@ -93,6 +93,8 @@
     "error.file.name": "Enter a file name.",
     "error.output.format": "Select one or more formats.",
     "error.folder.uri.required": "Specify a folder.",
-    "error.report.schedule.output.folder.resourceuri.format": "The scheduled job output folder contains invalid characters."
+    "error.report.schedule.output.folder.resourceuri.format": "The scheduled job output folder contains invalid characters.",
+    "error": "Error",
+    "not.yet.implemented": "This resource contains controls that are not yet supported."
   }
 }

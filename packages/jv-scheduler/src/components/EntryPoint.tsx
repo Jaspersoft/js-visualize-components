@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import i18nScheduler from "../i18n";
 import store from "./../store/store";
 import { Provider as ReduxProvider } from "react-redux";
 import SchedulerMain from "./SchedulerMain";
 import { useTranslation } from "react-i18next";
 import { getSchedulerData } from "../utils/configurationUtils";
-import { SchedulerConfigProps } from "../types/scheduleType";
+import { SchedulerConfigProps, translationProps } from "../types/scheduleType";
 
 type SchedulerProps = {
   visualize: {};
@@ -26,7 +27,9 @@ export function SchedulerUiJS(container, vizjs, config) {
 }
 
 const EntryPoint = (props: SchedulerProps) => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const [isLoadComp, setIsLoadComp] = useState(false);
   const [schedulerData, setSchedulerData] = useState<any>({});
   const { schedulerUIConfig, visualize } = props;

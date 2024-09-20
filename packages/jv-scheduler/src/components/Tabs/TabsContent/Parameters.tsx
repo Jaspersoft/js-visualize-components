@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { InputControlsPanel } from "@jaspersoft/jv-input-controls";
+import i18nScheduler from "../../../i18n";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +12,9 @@ import {
 import { translationProps } from "../../../types/scheduleType";
 
 const Parameters = () => {
-  const { t } = useTranslation() as translationProps;
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const dispatch = useDispatch();
   const visualize = useSelector((state: any) => state.visualize);
   const source = useSelector((state: any) => state.scheduleInfo.source);

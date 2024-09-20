@@ -7,6 +7,7 @@ import {
   JVRadioButton,
   JVSelectItem,
 } from "@jaspersoft/jv-ui-components";
+import i18nScheduler from "../../../i18n";
 import {
   SCHEDULE_JOB_DESCRIPTION,
   SCHEDULE_JOB_NAME,
@@ -20,7 +21,9 @@ import { IState, translationProps } from "../../../types/scheduleType";
 import { updateChangeToStore } from "../../../utils/schedulerUtils";
 
 const Schedule = () => {
-  const { t } = useTranslation() as translationProps;
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const recurrenceIntervalErr = useSelector(
     (state: IState) => state.scheduleErrors.recurrenceInterval,
   );

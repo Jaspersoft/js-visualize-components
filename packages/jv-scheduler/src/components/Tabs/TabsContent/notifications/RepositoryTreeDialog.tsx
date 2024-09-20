@@ -21,7 +21,8 @@ import Loader from "../../../loader/Loader";
 import { useTranslation } from "react-i18next";
 import { useStoreUpdate } from "../../../../hooks/useStoreUpdate";
 import { NOTIFICATIONS_TAB } from "../../../../constants/schedulerConstants";
-import { IState } from "../../../../types/scheduleType";
+import { IState, translationProps } from "../../../../types/scheduleType";
+import i18nScheduler from "../../../../i18n";
 
 function PaperComponent(props: JVPaperProps) {
   return (
@@ -72,7 +73,9 @@ export const RepositoryTreeDialog = ({
   open: dialogOpen,
   handleDialogState,
 }: any) => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const folderData = useSelector((state: IState) => state.folderData);
   const folderRootData = useSelector((state: IState) => state.fakeRoot);
   const stepperConfig = useSelector(

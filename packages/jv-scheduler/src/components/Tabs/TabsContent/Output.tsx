@@ -17,11 +17,14 @@ import {
   OUTPUT_TIME_ZONE,
 } from "../../../constants/schedulerConstants";
 import { MessageAPIError } from "../../apiFailureError/scheduleAPIError";
-import { IState } from "../../../types/scheduleType";
+import { IState, translationProps } from "../../../types/scheduleType";
 import { updateChangeToStore } from "../../../utils/schedulerUtils";
+import i18nScheduler from "../../../i18n";
 
 const Output = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
 
   const outputFormats = useSelector((state: IState) => state.outputFormats);
   const userTimeZones = useSelector((state: IState) => state.userTimeZones);
