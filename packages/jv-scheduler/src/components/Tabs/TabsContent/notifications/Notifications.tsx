@@ -221,6 +221,7 @@ const Notifications = () => {
         )}
         {reportAccessTypeVisible && (
           <JVRadioGroup
+            FormControlProps={{ className: "jv-uWidth-100pc" }}
             title={t("notifications.radiogroup.title")}
             RadioGroupProps={{ value: sendType, onChange: handleChange }}
           >
