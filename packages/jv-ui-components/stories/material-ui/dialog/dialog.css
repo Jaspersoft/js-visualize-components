@@ -1,0 +1,29 @@
+.jv-mDialog.demo {
+  display: inline-block;
+  height: auto;
+  position: relative !important;
+  width: auto;
+}
+
+.jv-mDialog {
+  inset: 100px 0 20px 0 !important;
+}
+
+.jv-mDialogConfirm.demo,
+.jv-mDialogWarning.demo,
+.jv-mDialogDelete.demo,
+.jv-mDialogError.demo {
+  inset: 0 !important;
+}
+
+.jv-mDialog.demo .jv-MuiDialog-container {
+  height: auto;
+}
+
+.jv-mDialog.demo .jv-MuiBackdrop-root {
+  display: none;
+}
+
+.sb-show-main.sb-main-padded:has(.jv-mDialogConfirm.mui) {
+  overflow-y: auto !important;
+}

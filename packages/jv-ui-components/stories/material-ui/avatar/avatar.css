@@ -1,0 +1,12 @@
+.demoWrapper.demoAvatar {
+}
+
+.demoAvatarType {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.demoAvatarType .jv-mAvatar.mui {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}

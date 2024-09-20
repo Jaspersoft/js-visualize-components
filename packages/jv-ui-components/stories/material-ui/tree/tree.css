@@ -1,0 +1,9 @@
+/* General */
+.demoWrapper.demoTree {
+  padding-top: 0;
+}
+
+.jv-mTreeAdhoc.mui .jv-mTree-item-label-icon.mui {
+  background-image: url("images/adhoc_datatree_icons_sprite_mui.svg");
+  /* remaining rules are in _material-ui-scss */
+}

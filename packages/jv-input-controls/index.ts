@@ -1,3 +1,4 @@
+import "./src/i18n";
 // the main class:
 export { InputControls } from "./src/InputControls";
 

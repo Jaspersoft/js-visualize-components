@@ -1,0 +1,100 @@
+/* ==============================================
+    DROP ZONE MODULE
+	Last modified date:     Oct 26, 2021
+	Last modified by:       Anna Leeg
+ * ============================================== */
+
+/* DROP ZONE */
+// base drop zone, same height as standard inputs at 28px
+.jv-mDropzone.jv {
+  background-color: #fafafa;
+  border-color: #cccccc;
+  border-width: 1px;
+  border-style: dashed;
+  border-radius: 3px;
+  cursor: default;
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
+  font-weight: normal;
+  height: em(28px, 12px);
+  text-align: center;
+  width: 100%;
+}
+
+.jv-mDropzone-label.jv {
+  color: #b2b4b5;
+  font-size: em(13px, 12px);
+  display: inline-block;
+  line-height: em(26px, 13px);
+  overflow: hidden;
+  padding-left: em(16px, 13px);
+  padding-right: em(16px, 13px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.jv-mDropzone-remover.jv {
+  color: $color-tciLight;
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: em(2px, 12px);
+}
+
+// MODULE VARIATION, drop zone that fills container
+// min height of this drop zone is 34px
+.jv-mDropzoneFull.jv {
+  display: flex;
+  height: 100%;
+}
+
+.jv-mDropzoneFull.jv .jv-mDropzone-label.jv {
+  align-self: center;
+}
+
+// MODULE VARIATION, drop zone indicated by a solid bar
+.jv-mDropzoneBar.jv {
+  background-color: $color-tciLight;
+  border: none;
+  height: em(4px, 12px);
+}
+
+/* STATES */
+// active
+.jv-mDropzone.jv-isActive.jv {
+  background-color: #ebebeb;
+  border: 1px dashed $grey-textMedium;
+}
+
+.jv-mDropzone.jv-isActive.jv .jv-mDropzone-label.jv {
+  color: $grey-textMedium;
+}
+
+// drag token is over dropzone
+.jv-mDropzone.jv-isOver.jv {
+  background-color: $color-tciLight;
+  border-color: transparent;
+}
+
+.jv-mDropzone.jv-isOver.jv .jv-mDropzone-label.jv {
+  color: #ffffff;
+}
+
+// drag token has been dropped onto dropzone
+.jv-mDropzone.jv-isDropped.jv {
+  border-color: $color-tciLight;
+  border-style: solid;
+}
+
+.jv-mDropzone.jv-isDropped.jv .jv-mDropzone-label.jv {
+  color: $color-tciLight;
+  padding-right: em(22px, 12px);
+}
+
+.jv-mDropzone.jv-isDropped.jv .jv-mDropzone-remover.jv {
+  background-color: #fafafa;
+  display: block;
+  margin-left: em(24px, 12px);
+}

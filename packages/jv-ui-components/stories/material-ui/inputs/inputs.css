@@ -1,0 +1,55 @@
+.demoSize300 {
+  width: 300px !important;
+}
+
+.demoWrapper.demoInput {
+}
+
+.demoWrapper.demoInputText .demoSizeWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.demoWrapper.demoInput .demoSize {
+  background-color: #fafafa;
+  padding: 12px 16px;
+  width: 250px;
+}
+
+.demoWrapper.demoInputDateTime .demoSize {
+  background-color: #fafafa;
+  padding: 12px 16px;
+  min-width: 235px;
+  width: 235px;
+}
+
+.demoWrapper.demoInputText .demoSizeWrapper .demoSize {
+  margin-right: 48px;
+  min-width: 235px;
+  width: 235px;
+}
+
+.demoWrapper.demoInputDateTime .demoSize:last-of-type,
+.demoWrapper.demoInputText .demoSizeWrapper .demoSize:last-of-type {
+  margin-right: 0;
+}
+
+.demoWrapper.demoInputText .demoSubtitle-2 {
+  margin-top: 8px;
+}
+
+.demoGrid-text {
+  margin-bottom: 24px;
+}
+
+.demoGrid-text .jv-MuiPaper-root {
+  background-color: #fafafa;
+  padding: 16px;
+}
+
+.demoWrapper .demoSearchGlobal {
+  background-color: #062e79;
+  box-sizing: border-box;
+  height: 50px;
+  padding: 6px;
+}

@@ -1,0 +1,46 @@
+/* =============================================
+    MESSSAGE MODULE
+    Last modified date:     May 21, 2020
+    Last modified by:       Anna Leeg
+ * ============================================= */
+
+// -------------------------
+//  BASE MESSAGE MODULE
+// -------------------------
+
+@use "sass:math";
+
+.jv-mMesssage.jv,
+.jv-mInstructor.jv {
+  border: em(1px) solid #e4e4e4;
+  color: $color-textMedium;
+  display: flex;
+  font-family: $font-primary---family;
+  font-size: $font-primary---size;
+  font-weight: normal;
+  justify-content: center;
+}
+
+.jv-mMesssage-wrapper.jv,
+.jv-mInstructor-wrapper.jv {
+  align-self: center;
+  max-width: 100%;
+  padding: 2em 3em;
+  text-align: center;
+}
+
+.jv-mMesssage-title.jv,
+.jv-mInstructor-title.jv {
+  font-size: 14px;
+  line-height: math.div(20px, 14px);
+}
+
+// MODULE VARIATION, no border
+.jv-mInstructorPlain.jv {
+  border: none;
+}
+
+// MODULE VARIATION, shaded background
+.jv-mInstructorShaded.jv {
+  background-color: #f7f7f7;
+}

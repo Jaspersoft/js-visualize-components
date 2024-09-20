@@ -1,24 +1,3 @@
-/*!
- * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
- * http://www.jaspersoft.com.
- *
- * Unless you have purchased a commercial license agreement from Jaspersoft,
- * the following license terms apply:
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
 /* =============================================
     CONFIG | GLOBAL VARIABLES
     Last modified date:     Mar 19, 2024
@@ -26,115 +5,110 @@
  * ============================================= */
 
 // MEASUREMENTS ================================
-$header-height 	: 40px;
-$footer-height 	: 17px;
-
+$header-height: 40px;
+$footer-height: 17px;
 
 // COLOR ~ palette =============================
-$colorSpecial			    : red;
+$colorSpecial: red;
 
-$color-themePrimary         : #1388d8;
-$color-themePrimary--dark   : #195b8a;
-
+$color-themePrimary: #1388d8;
+$color-themePrimary--dark: #195b8a;
 
 // primary theme colors
-$color-tciDark             : #062e79;
-$color-tciMedium           : #01529a;
-$color-tciLight            : #0078bd;
+$color-tciDark: #062e79;
+$color-tciMedium: #01529a;
+$color-tciLight: #0078bd;
 
 // text
-$color-textThemePrimary    : #0078bd;
-$grey-textDarkest          : #000000;
-$grey-textDarker           : #333333;
-$grey-textDark             : #464646;
-$grey-textMedium           : #666666;
-$grey-textLight            : #707070;
-$grey-textLighter          : #888888; /* contrast not WCAG AA compliant */
-$grey-textLightest         : #999999; /* contrast not WCAG AA compliant */
-$grey-textSuperlight       : #b2b2b2; /* contrast not WCAG AA compliant */
+$color-textThemePrimary: #0078bd;
+$grey-textDarkest: #000000;
+$grey-textDarker: #333333;
+$grey-textDark: #464646;
+$grey-textMedium: #666666;
+$grey-textLight: #707070;
+$grey-textLighter: #888888; /* contrast not WCAG AA compliant */
+$grey-textLightest: #999999; /* contrast not WCAG AA compliant */
+$grey-textSuperlight: #b2b2b2; /* contrast not WCAG AA compliant */
 
 // object types
-$color-textField           : #0295bd;
-$color-textMeasure         : #5e8c08;
+$color-textField: #0295bd;
+$color-textMeasure: #5e8c08;
 
 // to deprecate
-$color-textDarkest         : #000000;
-$color-textDarker          : #333333;
-$color-textDark            : #464646;
-$color-textMedium          : #666666;
-$color-textLight           : #777777;
-$color-textLighter         : #888888;
-$color-textLightest        : #999999;
-$color-textSuperlight      : #b2b2b2;
+$color-textDarkest: #000000;
+$color-textDarker: #333333;
+$color-textDark: #464646;
+$color-textMedium: #666666;
+$color-textLight: #777777;
+$color-textLighter: #888888;
+$color-textLightest: #999999;
+$color-textSuperlight: #b2b2b2;
 
 // alert messages
-$color-infoLight         : #f4f9fd;
-$color-infoMedium        : #01529a;
-$color-infoDark          : #0078bd;
-$color-successLight      : #f3fce0;
-$color-successMedium     : #8bbc22;
-$color-successDark       : #648d0d;
-$color-attentionLight    : #ebe7ed;
-$color-attentionMedium   : #6f4165;
-$color-attentionDark     : #4f1134;
-$color-warningLighter    : #fff4ea;
-$color-warningLight      : #fff0e2;
-$color-warningMedium     : #ff6b00;
-$color-warningDark       : #e2500f;
-$color-errorLighter      : #ffedef;
-$color-errorLight        : #fde5e7;
-$color-errorMedium       : #d81e29;
-$color-errorDark         : #d0021b;
+$color-infoLight: #f4f9fd;
+$color-infoMedium: #01529a;
+$color-infoDark: #0078bd;
+$color-successLight: #f3fce0;
+$color-successMedium: #8bbc22;
+$color-successDark: #648d0d;
+$color-attentionLight: #ebe7ed;
+$color-attentionMedium: #6f4165;
+$color-attentionDark: #4f1134;
+$color-warningLighter: #fff4ea;
+$color-warningLight: #fff0e2;
+$color-warningMedium: #ff6b00;
+$color-warningDark: #e2500f;
+$color-errorLighter: #ffedef;
+$color-errorLight: #fde5e7;
+$color-errorMedium: #d81e29;
+$color-errorDark: #d0021b;
 
 // greys - borders and backgrounds
 // numbers represent % grey
-$grey-2     : #fafafa;
-$grey-3     : #f7f7f7;
-$grey-4     : #f4f4f4;
-$grey-6     : #f0f0f0;
-$grey-8     : #ebebeb;
-$grey-10    : #e4e4e4;
-$grey-13    : #dedede;
-$grey-16    : #d6d6d6;
-$grey-20    : #cccccc;
-$grey-29    : #b5b5b5;
-$grey-40    : #999999;
-$grey-60    : #666666;
+$grey-2: #fafafa;
+$grey-3: #f7f7f7;
+$grey-4: #f4f4f4;
+$grey-6: #f0f0f0;
+$grey-8: #ebebeb;
+$grey-10: #e4e4e4;
+$grey-13: #dedede;
+$grey-16: #d6d6d6;
+$grey-20: #cccccc;
+$grey-29: #b5b5b5;
+$grey-40: #999999;
+$grey-60: #666666;
 
 // attention messages, color blind
-$color-attentionLight-cb    : #f1efc7;
-$color-attentionMedium-cb   : #d8c705;
-$color-attentionDark-cb     : #898019;
+$color-attentionLight-cb: #f1efc7;
+$color-attentionMedium-cb: #d8c705;
+$color-attentionDark-cb: #898019;
 
-$paletteShade:(
-        colorSpecial:(
-                x-light 	: lighten($colorSpecial, 32%),
-                light 		: lighten($colorSpecial, 20%),
-                regular 	: $colorSpecial,
-                dark 		: darken($colorSpecial, 20%),
-                x-dark 		: darken($colorSpecial, 28%)
-        )
+$paletteShade: (
+  colorSpecial: (
+    x-light: lighten($colorSpecial, 32%),
+    light: lighten($colorSpecial, 20%),
+    regular: $colorSpecial,
+    dark: darken($colorSpecial, 20%),
+    x-dark: darken($colorSpecial, 28%),
+  ),
 );
 
-
 // z-index
-$zindex-tooltip             : 9000;
-$zindex-message             : 9000;
-$zindex-spinner             : 7000;
-$zindex-modal               : 6000;
-$zindex-dropdown            : 5500;
-$zindex-dialog              : 5000;
-$zindex-overlay             : 4000;
+$zindex-tooltip: 9000;
+$zindex-message: 9000;
+$zindex-spinner: 7000;
+$zindex-modal: 6000;
+$zindex-dropdown: 5500;
+$zindex-dialog: 5000;
+$zindex-overlay: 4000;
 
-$zindex-element-lvl-3       : 2003;
-$zindex-element-lvl-2       : 2002;
-$zindex-element-lvl-1       : 2001;
-$zindex-element-lvl-0       : 2000;
+$zindex-element-lvl-3: 2003;
+$zindex-element-lvl-2: 2002;
+$zindex-element-lvl-1: 2001;
+$zindex-element-lvl-0: 2000;
 
-$zindex-canvas              : 1000;
-
-
+$zindex-canvas: 1000;
 
 // Paths
-$image-path: 'styles/default/jv-ui/images' !default;
-$font-path: 'styles/default/jv-ui/fonts' !default;
+$image-path: "styles/default/jv-ui/images" !default;
+$font-path: "styles/default/jv-ui/fonts" !default;

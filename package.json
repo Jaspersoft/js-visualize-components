@@ -14,6 +14,7 @@
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
     "start": "yarn workspace demo-input-controls run dev",
+    "storybook": "yarn workspace @jaspersoft/jv-ui-components run storybook",
     "start:styles:dev": "yarn workspace @jaspersoft/jv-ui-components run start:dev",
     "prepare": "husky"
   },

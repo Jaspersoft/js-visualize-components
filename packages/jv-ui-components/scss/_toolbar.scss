@@ -1,0 +1,30 @@
+/* =============================================
+    TOOLBAR MODULE
+    Last modified date:     May 19, 2019
+    Last modified by:       Anna Leeg
+ * ============================================= */
+
+.jv-mToolbar.jv {
+  background-color: #ebebeb;
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
+  font-weight: normal;
+  height: em(32px, 12px);
+  padding: 0 em(6px, 12px);
+}
+
+.jv-mToolbar-divider.jv {
+  border-right: 1px solid #ccc;
+  display: inline-block;
+  height: em(24px, 12px);
+  margin: 0;
+  top: em(4px, 12px);
+  vertical-align: middle;
+  width: 1px;
+}
+
+.jv-mToolbar-toolset.jv {
+  display: inline-block;
+  height: 100%;
+  padding: 0;
+}

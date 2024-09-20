@@ -23,7 +23,13 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "i18next-http-backend", "moment"],
+      external: [
+        "react",
+        "react-dom",
+        "i18next-http-backend",
+        "moment",
+        "@jaspersoft/jv-ui-components",
+      ],
     },
   },
 });

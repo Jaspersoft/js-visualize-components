@@ -1,0 +1,181 @@
+/* =============================================
+    MENU MODULE RULES
+    Last modified date:  May 22, 2020
+    Last modified by:    Anna Leeg
+ * ============================================= */
+
+@use "sass:math";
+
+.jv-mMenu.jv {
+  font-family: $font-primary---family;
+  font-size: $font-primary---size;
+}
+
+.jv-mMenu-node.jv,
+.jv-mMenu-leaf.jv {
+  cursor: pointer;
+  position: relative;
+}
+
+// MODULE VARIATION .jv-mMenuHorizontal
+.jv-mMenuHorizontal.jv {
+  // font-weight: bold; Reinstate if we are using Open Sans
+  display: inline-block;
+  height: inherit;
+}
+
+.jv-mMenuHorizontal.jv .jv-mMenu-leaf-icon.jv {
+  margin-top: em(8px, 14px);
+  margin-right: em(-6px, 14px);
+  margin-left: em(-6px, 14px);
+}
+
+.jv-mMenuHorizontal.jv > .jv-mMenu-node.jv,
+.jv-mMenuHorizontal.jv > .jv-mMenu-leaf.jv {
+  float: left;
+  height: inherit;
+  padding-left: em(12px);
+  padding-right: em(12px);
+}
+
+.jv-mMenuHorizontal.jv > .jv-mMenu-node.jv {
+  padding-right: em(22px, 13px); // 1.692em | 22px / 13px
+}
+
+.jv-mMenuHorizontal.jv .jv-mMenu-node-label.jv,
+.jv-mMenuHorizontal.jv .jv-mMenu-leaf-label.jv {
+  display: inline-block;
+  font-size: em(13px); // 1.182em | 13px / 11px
+  line-height: math.div(36px, 13px); // 2.769 | 36px / 13px unitless value
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .jv-mMenuHorizontal.jv .jv-mMenu-node-label.jv,
+  .jv-mMenuHorizontal.jv .jv-mMenu-leaf-label.jv {
+    line-height: math.div(38px, 13px); // 2.923 | 38px / 13px unitless value
+  }
+}
+
+.jv-mMenuHorizontal.jv .jv-mMenu-node-label.jv:after {
+  border-top: 0.308em solid #fff; // .308em | 5px / 13px
+  border-right: em(3px, 13px) solid transparent; // .231em | 4px / 13px - prewritten as 4px, but should have been 3px
+  border-left: em(3px, 13px) solid transparent; // .231em | 4px / 13px - prewritten as 4px, but should have been 3px
+  content: "";
+  margin-left: em(3px, 13px); // .231em | 3px / 13px
+  position: absolute;
+  top: 50%;
+}
+
+.jv-mMenu-leaf-label-link.jv,
+.jv-mMenu-node-label-link.jv {
+  color: #fff;
+  outline: none;
+  text-decoration: none;
+}
+
+// MODULE VARIATION .jv-mMenuVertical
+.jv-mMenuVertical.jv {
+  background-color: #ffffff;
+  //border: 1px solid #e4e4e4;
+  //border-radius: em(6px);
+  display: inline-block;
+  padding-top: em(5px);
+  padding-bottom: em(5px);
+  min-width: 150px;
+
+  //temporary changes to match old menu component
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-family: Arial;
+}
+
+.jv-mMenuVertical.jv .jv-mMenu-separator.jv {
+  border-top: em(1px) solid #e4e4e4; // .091em | 1px / 11px
+  margin-top: em(5px); // .455em | 5px / 11px
+  margin-bottom: em(5px); // .455em | 5px / 11px
+}
+
+.jv-mMenuVertical.jv > .jv-mMenu-node.jv,
+.jv-mMenuVertical.jv > .jv-mMenu-leaf.jv {
+  height: auto;
+}
+
+.jv-mMenuVertical.jv > .jv-mMenu-node.jv:after {
+  border-left: em(8px) solid #333; // .727em | 8px / 11px
+  border-top: em(5px) solid transparent; // .455em | 5px / 11px
+  border-bottom: em(5px) solid transparent; // .455em | 5px / 11px
+  content: "";
+  position: absolute;
+  top: 36%;
+  right: 1em;
+}
+
+.jv-mMenuVertical.jv .jv-mMenu-node-label.jv,
+.jv-mMenuVertical.jv .jv-mMenu-leaf-label.jv {
+  background-repeat: no-repeat;
+  font-size: em(13px); // 1.182em | 13px / 11px
+  line-height: em(28px, 13px); // 2.154em | 28px / 13px
+  margin-right: em(28px, 13px); // 2.154em | 28px / 13px
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.jv-mMenuVertical.jv .jv-mMenu-node-label.jv {
+  margin-left: em(26px, 13px); // 2em | 26px / 13px
+}
+
+.jv-mMenuVertical.jv .jv-mMenu-leaf-toggle.jv {
+  display: inline-block;
+  height: em(6px, 13px); // .462em | 6px / 13px
+  margin-right: em(6px, 13px); // .462em | 6px / 13px
+  margin-left: em(11px, 13px); // .846em | 11px / 13px
+  vertical-align: middle;
+  width: em(6px, 13px); // .462em | 6px / 13px
+}
+
+// -----------------
+//  MENU STATES
+// -----------------
+// hover pseudo-classes are temporary until proper implementation can be done.
+.jv-mMenuHorizontal.jv > .jv-mMenu-node.jv-isHovered.jv,
+.jv-mMenuHorizontal.jv > .jv-mMenu-leaf.jv-isHovered.jv,
+.jv-mMenuHorizontal.jv > .jv-mMenu-node:hover.jv,
+.jv-mMenuHorizontal.jv > .jv-mMenu-leaf:hover.jv {
+  background: #195b8a;
+}
+
+.jv-mMenuVertical.jv > .jv-mMenu-node.jv-isHovered.jv,
+.jv-mMenuVertical.jv > .jv-mMenu-leaf.jv-isHovered.jv,
+    //TODO: remove `:hover` when designing new JS component
+    // required fix for JRS-10104
+.jv-mMenuVertical.jv > .jv-mMenu-leaf:hover.jv {
+  background: #195b8a;
+  color: #fff;
+}
+
+// vertical menu toggle
+.jv-mMenu-leaf-toggle.jv-isOn.jv {
+  background-color: #3e8ddd;
+  border-radius: 3px;
+  display: inline-block;
+  height: 6px;
+  margin-top: em(-3px, 13px); // -.231em | -3px / 13px
+  margin-right: em(8px, 13px); // .615em | 8px / 13px
+  margin-left: em(8px, 13px); // .615em | 8px / 13px
+  vertical-align: middle;
+  width: em(6px, 13px); // .462em | 6px / 13px
+}
+.jv-mMenu-leaf.jv-isHovered.jv .jv-mMenu-leaf-toggle.jv-isOn.jv {
+  background-color: #fff;
+}
+
+.jv-mMenuVertical.jv > .jv-mMenu-node.jv-isHovered.jv:after,
+.jv-mMenuVertical.jv > .jv-mMenu-node:hover.jv:after {
+  border-left: 0.615em solid #fff;
+}
+
+// hover styles for label links
+.jv-mMenu-leaf.jv-isHovered.jv .jv-mMenu-leaf-label-link.jv,
+.jv-mMenu-node.jv-isHovered.jv .jv-mMenu-node-label-link.jv {
+  text-decoration: underline;
+}

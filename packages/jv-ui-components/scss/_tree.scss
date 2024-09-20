@@ -1,0 +1,699 @@
+/* ========================================
+    TREE MODULE
+    Last modified date:    Sep 12, 2023
+    Last modified by:      Anna Leeg
+ * ======================================== */
+
+// -------------
+//  BASE TREE
+// -------------
+@use "sass:math";
+
+.jv-mTree.jv {
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
+  font-weight: normal;
+}
+
+.jv-mTree-group.jv {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #e4e4e4;
+  border-top: 1px solid #e4e4e4;
+  height: auto;
+  margin-top: em(4px, 12px);
+  margin-bottom: em(2px, 12px);
+}
+
+.jv-mTree-group.jv:first-of-type {
+  margin-top: 0;
+}
+
+.jv-mTree-group-expander.jv {
+  content: "";
+  float: left;
+}
+
+.jv-mTree-group-label.jv {
+  color: $grey-textDark;
+  font-size: em(13px, 12px);
+  font-weight: normal;
+  line-height: em(24px, 12px);
+  padding-right: em(12px, 12px);
+}
+
+.jv-mTree-node.jv,
+.jv-mTree-leaf.jv {
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 1px;
+  position: relative;
+}
+
+// for domain designer presentation
+.jv-mTree-leafField.jv,
+.jv-mTree-leafMeasure.jv {
+}
+
+/* MS Edge Browser CSS Hack */
+@supports (-ms-ime-align: auto) {
+  .jv-mTree-node.jv,
+  .jv-mTree-leaf.jv {
+    margin-bottom: em(1px, 12px);
+  }
+}
+
+.jv-mTree-label.jv {
+  color: $grey-textDark;
+  font-size: em(13px, 12px);
+  flex: 1 1 auto;
+  height: em(26px, 13px);
+  line-height: math.div(28px, 13px);
+  overflow: hidden;
+  padding-right: em(4px, 13px);
+  position: relative;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jv-mTree-badge.jv {
+  align-self: center;
+  flex: 0 0 auto;
+  padding-right: em(6px, 12px);
+}
+
+.jv-mTree-leaf.jv .jv-mTree-label.jv:first-child {
+  padding-left: em(6px, 12px);
+} // left padding for item when there is no icon
+
+.jv-mTree-iconContainer.jv {
+  flex: 0 0 auto;
+  height: em(26px, 12px);
+}
+
+.jv-mTree-label-icon.jv {
+  /* will be used when we implement data types */
+}
+
+.jv-mTree-icon.jv {
+  background-image: image-url("domain-tree-icons-sprite.svg");
+  background-repeat: no-repeat;
+  float: left;
+  height: em(19px, 12px);
+  width: em(22px, 12px);
+  margin: em(3px, 12px) em(4px, 12px) 0 em(2px, 12px);
+}
+
+.jv-mTree.jv > .jv-mTree-leaf-1.jv {
+  padding-left: em(2px, 12px);
+}
+
+.jv-mTree-spinner.jv {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: $color-tciLight;
+  height: em(12px, 12px);
+  margin: em(-6px, 12px) 0 0 0;
+  width: em(12px, 12px);
+}
+
+//node levels, 26px increments
+.jv-mTree-node-1.jv {
+  padding-left: 0;
+}
+.jv-mTree-node-2.jv {
+  padding-left: em(26px, 12px);
+}
+.jv-mTree-node-3.jv {
+  padding-left: em(53px, 12px);
+}
+.jv-mTree-node-4.jv {
+  padding-left: em(78px, 12px);
+}
+.jv-mTree-node-5.jv {
+  padding-left: em(104px, 12px);
+}
+.jv-mTree-node-6.jv {
+  padding-left: em(130px, 12px);
+}
+.jv-mTree-node-7.jv {
+  padding-left: em(156px, 12px);
+}
+.jv-mTree-node-8.jv {
+  padding-left: em(182px, 12px);
+}
+.jv-mTree-node-9.jv {
+  padding-left: em(208px, 12px);
+}
+.jv-mTree-node-10.jv {
+  padding-left: em(234px, 12px);
+}
+.jv-mTree-node-11.jv {
+  padding-left: em(260px, 12px);
+}
+.jv-mTree-node-12.jv {
+  padding-left: em(286px, 12px);
+}
+.jv-mTree-node-13.jv {
+  padding-left: em(312px, 12px);
+}
+.jv-mTree-node-14.jv {
+  padding-left: em(338px, 12px);
+}
+.jv-mTree-node-15.jv {
+  padding-left: em(364px, 12px);
+}
+
+//leaf levels, 26px increments
+.jv-mTree-leaf-1.jv {
+  padding-left: em(12px, 12px);
+}
+.jv-mTree-leaf-2.jv {
+  padding-left: em(38px, 12px);
+}
+.jv-mTree-leaf-3.jv {
+  padding-left: em(64px, 12px);
+}
+.jv-mTree-leaf-4.jv {
+  padding-left: em(90px, 12px);
+}
+.jv-mTree-leaf-5.jv {
+  padding-left: em(116px, 12px);
+}
+.jv-mTree-leaf-6.jv {
+  padding-left: em(142px, 12px);
+}
+.jv-mTree-leaf-7.jv {
+  padding-left: em(168px, 12px);
+}
+.jv-mTree-leaf-8.jv {
+  padding-left: em(194px, 12px);
+}
+.jv-mTree-leaf-9.jv {
+  padding-left: em(220px, 12px);
+}
+.jv-mTree-leaf-10.jv {
+  padding-left: em(246px, 12px);
+}
+.jv-mTree-leaf-11.jv {
+  padding-left: em(272px, 12px);
+}
+.jv-mTree-leaf-12.jv {
+  padding-left: em(298px, 12px);
+}
+.jv-mTree-leaf-13.jv {
+  padding-left: em(324px, 12px);
+}
+.jv-mTree-leaf-14.jv {
+  padding-left: em(350px, 12px);
+}
+.jv-mTree-leaf-15.jv {
+  padding-left: em(376px, 12px);
+}
+
+// -----------------------------------------------------------
+//  MODULE VARIATION FOR WIDER VERTICAL SPACING BETWEEN ITEMS
+// -----------------------------------------------------------
+.jv-mTreeLoose.jv {
+}
+
+.jv-mTreeLoose.jv .jv-mTree-node.jv,
+.jv-mTreeLoose.jv .jv-mTree-leaf.jv {
+  height: em(31px, 12px);
+  padding-top: em(2px, 12px);
+}
+
+// ICON POSITIONS
+// domain designer
+.jv-mTree-iconDatasource.jv {
+  background-position: 4px 3px;
+}
+
+.jv-mTree-iconSchema.jv {
+  background-position: 1px -23px;
+}
+
+.jv-mTree-iconCatalog.jv {
+  background-position: 1px -877px;
+}
+
+.jv-mTree-iconTable.jv {
+  background-position: 3px -47px;
+}
+
+.jv-mTree-iconColumn.jv {
+  background-position: 9px -70px;
+  // margin-left: em(-5px); this icon is narrow, this aligns things better
+}
+
+.jv-mTree-iconIsland.jv {
+  background-position: 2px -94px;
+}
+
+.jv-mTree-iconDerivedtables.jv {
+  background-position: 2px -120px;
+}
+
+.jv-mTree-iconDerivedtable.jv {
+  background-position: 4px -143px;
+}
+
+.jv-mTree-iconSet.jv {
+  background-position: 3px -166px;
+}
+
+.jv-mTree-iconItem.jv {
+  background-position: 8px -190px;
+}
+
+.jv-mTree-iconCalcfields.jv {
+  background-position: 3px -215px;
+}
+
+.jv-mTree-iconCalcfield.jv {
+  background-position: 7px -239px;
+}
+
+.jv-mTree-iconFilter.jv {
+  background-position: 4px -262px;
+}
+
+.jv-mTree-iconFolder.jv {
+  background-position: 3px -287px;
+}
+
+.jv-mTree-iconDomain.jv {
+  background-position: 0 -313px;
+}
+
+.jv-mTree-iconJointree.jv {
+  background-position: 2px -335px;
+}
+
+.jv-mTree-iconAttrschema.jv {
+  background-position: 1px -360px;
+}
+
+.jv-mTree-leafField.jv .jv-mTree-iconString {
+  background-position: 0 -397px;
+}
+
+.jv-mTree-leafField.jv .jv-mTree-iconNumber {
+  background-position: 0 -457px;
+}
+
+.jv-mTree-leafField.jv .jv-mTree-iconDate {
+  background-position: 3px -517px;
+}
+
+.jv-mTree-leafField.jv .jv-mTree-iconTime {
+  background-position: 2px -577px;
+}
+
+.jv-mTree-leafField.jv .jv-mTree-iconBoolean {
+  background-position: 3px -637px;
+}
+
+.jv-mTree-leafMeasure.jv .jv-mTree-iconString {
+  background-position: 0 -427px;
+}
+
+.jv-mTree-leafMeasure.jv .jv-mTree-iconNumber {
+  background-position: 0 -487px;
+}
+
+.jv-mTree-leafMeasure.jv .jv-mTree-iconDate {
+  background-position: 3px -547px;
+}
+
+.jv-mTree-leafMeasure.jv .jv-mTree-iconTime {
+  background-position: 2px -607px;
+}
+
+.jv-mTree-leafMeasure.jv .jv-mTree-iconBoolean {
+  background-position: 3px -667px;
+}
+
+.jv-mTree-iconFileDocument.jv {
+  background-position: 4px -727px;
+}
+
+.jv-mTree-iconFileBundle.jv {
+  background-position: 4px -757px;
+}
+
+.jv-mTree-iconFileSecurity.jv {
+  background-position: 4px -787px;
+}
+
+.jv-mTree-iconFileCode.jv {
+  background-position: 4px -817px;
+}
+
+.jv-mTree-iconFileImage.jv {
+  background-position: 4px -847px;
+}
+
+// ----------------
+//  TREE ADD-ONS
+// ----------------
+
+// MAPPING KEYS
+.jv-mTree-leaf-key.jv {
+  background-color: #cccccc;
+  display: none;
+  font-size: 12px;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-weight: bold;
+  line-height: math.div(27px, 12px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  width: em(28px);
+}
+
+// ALERT ICONS
+.jv-mTree-alert.jv {
+  background-color: inherit;
+  display: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  width: 2.5em; // this can remain in ems
+}
+
+.jv-mTree-alert-icon.jv {
+  color: inherit;
+  font-size: 14px; // New base font size
+  height: em(26px, 14px); // 2px taller than jv-mIconSmall
+  line-height: math.div(26px, 14px); // 2px taller than jv-mIconSmall
+}
+
+.jv-mTree-alertInfo.jv {
+  color: $color-infoMedium;
+  height: em(26px);
+  line-height: math.div(26px, 11px);
+}
+
+// ----------
+//   STATES
+// ----------
+.jv-mTree-group.jv-isExpanded.jv .jv-mTree-group-expander.jv {
+  margin-left: em(1px, 12px);
+  margin-right: em(1px, 12px);
+}
+
+.jv-mTree-group.jv-isCollapsed.jv .jv-mTree-group-expander.jv {
+  margin-left: em(1px, 12px);
+  margin-right: em(1px, 12px);
+}
+
+.jv-mTree-node.jv-isEmpty.jv .jv-mTree-expander.jv {
+  border-left: em(4px, 12px) solid transparent;
+  border-right: em(4px, 12px) solid transparent;
+  border-top: em(5px, 12px) solid transparent;
+  content: "";
+  float: left;
+  margin-top: em(11px, 12px);
+  margin-left: em(4px, 12px);
+  visibility: hidden;
+}
+
+// MAPPED (schema mapping)
+.jv-mTree-leaf.jv-isMapped.jv {
+  background-color: #f4f4f4;
+}
+
+.jv-mTree-leaf.jv-isMapped.jv .jv-mTree-label.jv {
+  color: $color-textMedium;
+  font-style: italic;
+}
+
+.jv-mTree-leaf.jv-isMapped.jv .jv-mTree-leaf-key.jv {
+  display: block;
+}
+
+.jv-mTree-leaf.jv-isMapped.jv-isSelected.jv .jv-mTree-leaf-key.jv {
+  background-color: $color-tciLight;
+  border-left: em(2px) solid #a3c4da;
+  color: #fff;
+  width: em(30px);
+}
+
+// HOVERED
+// highlight color
+.jv-mTree-node.jv-isHovered.jv,
+.jv-mTree-leaf.jv-isHovered.jv,
+.jv-mTree-node.jv:hover,
+.jv-mTree-leaf.jv:hover {
+  background-color: #fafafa;
+}
+
+.jv-mTree-leaf.jv:hover .jv-mTree-alert.jv {
+  display: block;
+}
+
+// INVALID
+// highlight color
+.jv-mTree-node.jv-isSelected.jv-isInvalid.jv,
+.jv-mTree-leaf.jv-isSelected.jv-isInvalid.jv {
+  background-color: $color-errorMedium;
+}
+
+// SELECTED
+// highlight color
+.jv-mTree-node.jv-isSelected.jv,
+.jv-mTree-leaf.jv-isSelected.jv {
+  background-color: $color-tciLight;
+}
+
+.jv-mTree-node.jv-isSelected.jv > .jv-mTree-label.jv,
+.jv-mTree-leaf.jv-isSelected.jv > .jv-mTree-label.jv {
+  color: #fff;
+}
+
+.jv-mTree-node.jv-isSelected.jv .jv-mTree-spinner.jv {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top-color: white;
+}
+
+// LOADING
+.jv-isLoading.jv .jv-mTree-icon.jv {
+  background-image: none;
+}
+
+// icon positions
+.jv-isSelected.jv .jv-mTree-iconDatasource.jv {
+  background-position: -34px 3px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconCatalog.jv {
+  background-position: -39px -877px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconSchema.jv {
+  background-position: -37px -23px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconTable.jv {
+  background-position: -35px -47px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconColumn.jv {
+  background-position: -29px -70px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconIsland.jv {
+  background-position: -36px -94px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconDerivedtables.jv {
+  background-position: -36px -120px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconDerivedtable.jv {
+  background-position: -34px -143px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconSet.jv {
+  background-position: -35px -166px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconItem.jv {
+  background-position: -30px -190px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconCalcfields.jv {
+  background-position: -35px -215px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconCalcfield.jv {
+  background-position: -31px -239px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconFilter.jv {
+  background-position: -34px -262px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconFolder.jv {
+  background-position: -35px -287px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconDomain.jv {
+  background-position: -38px -313px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconJointree.jv {
+  background-position: -36px -335px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconAttrschema.jv {
+  background-position: -37px -360px;
+}
+
+.jv-mTree-leafField.jv-isSelected.jv .jv-mTree-iconString {
+  background-position: -40px -397px;
+}
+
+.jv-mTree-leafField.jv-isSelected.jv .jv-mTree-iconNumber {
+  background-position: -40px -457px;
+}
+
+.jv-mTree-leafField.jv-isSelected.jv .jv-mTree-iconDate {
+  background-position: -37px -517px;
+}
+
+.jv-mTree-leafField.jv-isSelected.jv .jv-mTree-iconTime {
+  background-position: -38px -577px;
+}
+
+.jv-mTree-leafField.jv-isSelected.jv .jv-mTree-iconBoolean {
+  background-position: -37px -637px;
+}
+
+.jv-mTree-leafMeasure.jv-isSelected.jv .jv-mTree-iconString {
+  background-position: -40px -427px;
+}
+
+.jv-mTree-leafMeasure.jv-isSelected.jv .jv-mTree-iconNumber {
+  background-position: -40px -487px;
+}
+
+.jv-mTree-leafMeasure.jv-isSelected.jv .jv-mTree-iconDate {
+  background-position: -37px -547px;
+}
+
+.jv-mTree-leafMeasure.jv-isSelected.jv .jv-mTree-iconTime {
+  background-position: -38px -607px;
+}
+
+.jv-mTree-leafMeasure.jv-isSelected.jv .jv-mTree-iconBoolean {
+  background-position: -37px -667px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconFileDocument.jv {
+  background-position: -36px -727px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconFileBundle.jv {
+  background-position: -36px -757px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconFileSecurity.jv {
+  background-position: -36px -787px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconFileCode.jv {
+  background-position: -36px -817px;
+}
+
+.jv-isSelected.jv .jv-mTree-iconFileImage.jv {
+  background-position: -36px -847px;
+}
+
+// icon positions, broken
+.jv-isBroken.jv .jv-mTree-iconCalcfield.jv {
+  background-position: -107px -239px;
+}
+
+// icon positions, selected and invalid
+.jv-isSelected.jv-isInvalid.jv .jv-mTree-iconDatasource.jv {
+  background-position: -72px 3px;
+}
+
+.jv-isSelected.jv-isInvalid.jv .jv-mTree-iconSchema.jv {
+  background-position: -75px -23px;
+}
+
+.jv-isSelected.jv-isInvalid.jv .jv-mTree-iconTable.jv {
+  background-position: -73px -47px;
+}
+
+.jv-isSelected.jv-isInvalid.jv .jv-mTree-iconAttrschema.jv {
+  background-position: -75px -360px;
+}
+
+// open/closed disclosure triangle
+.jv-mTree-node.jv-isOpen.jv .jv-mTree-expander.jv {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid $color-tciLight;
+  content: "";
+  float: left;
+  margin-top: 11px;
+  margin-left: 4px;
+}
+
+.jv-mTree-node.jv-isClosed.jv .jv-mTree-expander.jv {
+  border-left: 5px solid $color-tciLight;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  display: inline-block;
+  float: left;
+  margin-left: 7px;
+  margin-top: 9px;
+}
+
+.jv-mTree-node.jv-isOpen.jv-isSelected.jv .jv-mTree-expander.jv {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #a5d4f0;
+  content: "";
+  float: left;
+  margin-top: 11px;
+  margin-left: 4px;
+}
+
+.jv-mTree-node.jv-isClosed.jv-isSelected.jv .jv-mTree-expander.jv {
+  border-left: 5px solid #a5d4f0;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  content: "";
+  float: left;
+  margin-top: 9px;
+  margin-left: 7px;
+}
+
+// unused for now
+.jv-mTree-node.jv > .jv-mTree.jv {
+  margin-left: em(22px, 12px);
+}
+
+.jv-mTree-nodeFolder.jv:not(.jv-mTree-hideRoot) .jv-mTree {
+  margin-left: em(22px, 12px);
+}
+
+.jv-mTree-hideRoot.jv-mTree-nodeFolder > .jv-mTree-label-wrapper {
+  display: none !important;
+}
+
+.jv-mTree-node.selected > .jv-mTree-label-wrapper {
+  background-color: $color-tciLight;
+  color: #fff;
+}
