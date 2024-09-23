@@ -31,8 +31,8 @@ describe("SingleSelectInputControl tests", () => {
     expect(mElement.length).toBe(1);
   });
 
-  it("should contain options when given options", async () => {
-    await act(async () => {
+  it("should contain options when given options", () => {
+    act(() => {
       render(
         getSingleSelect({
           state: {
@@ -45,7 +45,7 @@ describe("SingleSelectInputControl tests", () => {
     const mElement = document.querySelectorAll("div input");
     expect(mElement.length).toBe(1);
     const inputElement = screen.getByLabelText("test");
-    await act(async () => {
+    act(() => {
       userEvent.click(inputElement);
     });
     const menuElement = document.querySelectorAll("ul.MuiList-root");
@@ -53,8 +53,8 @@ describe("SingleSelectInputControl tests", () => {
     expect(menuElement.length).toBe(1);
     expect(opts.length).toBe(1);
   });
-  it("should contain two options when given two options", async () => {
-    await act(async () => {
+  it("should contain two options when given two options", () => {
+    act(() => {
       render(
         getSingleSelect({
           state: {
@@ -71,7 +71,7 @@ describe("SingleSelectInputControl tests", () => {
     const mElement = document.querySelectorAll("div input");
     expect(mElement.length).toBe(1);
     const inputElement = screen.getByLabelText("test");
-    await act(async () => {
+    act(() => {
       userEvent.click(inputElement);
     });
     const menuElement = document.querySelectorAll("ul.MuiList-root");
