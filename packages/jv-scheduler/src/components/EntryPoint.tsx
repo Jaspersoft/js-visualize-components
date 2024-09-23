@@ -14,7 +14,6 @@ type SchedulerProps = {
 };
 
 export function SchedulerUiJS(container, vizjs, config) {
-  console.log(container, vizjs, config);
   const rootElement = container;
   if (!rootElement) {
     throw new Error("Root element not found");
@@ -41,8 +40,6 @@ const EntryPoint = (props: SchedulerProps) => {
         setSchedulerData(response);
         if (response.error) {
           schedulerUIConfig.handlers?.onError?.(response.error);
-        } else {
-          schedulerUIConfig.handlers?.onSuccess?.();
         }
         setIsLoadComp(true);
       } catch (error) {
