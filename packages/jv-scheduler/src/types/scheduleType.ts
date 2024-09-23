@@ -43,13 +43,11 @@ export interface SchedulerConfigProps {
       notifications?: {};
     };
   };
-  handlers?: {
-    onSuccess?: () => void;
-    onError?: (error: any) => void;
-    events?: {
-      onCancelBtnClick: () => void;
-      onScheduleBtnClick: () => void;
-    };
+  events?: {
+    success?: () => void;
+    error?: (error: any) => void;
+    cancelBtnClick: () => void;
+    scheduleBtnClick: () => void;
   };
   locale?: string;
   timezone?: string;

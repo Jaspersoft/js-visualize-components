@@ -39,7 +39,7 @@ const EntryPoint = (props: SchedulerProps) => {
         const response = await getSchedulerData(props.schedulerUIConfig);
         setSchedulerData(response);
         if (response.error) {
-          schedulerUIConfig.handlers?.onError?.(response.error);
+          schedulerUIConfig.events?.error?.(response.error);
         }
         setIsLoadComp(true);
       } catch (error) {

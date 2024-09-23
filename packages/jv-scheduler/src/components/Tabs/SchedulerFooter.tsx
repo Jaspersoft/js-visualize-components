@@ -36,7 +36,7 @@ const SchedulerFooter = () => {
     } else {
       dispatch(createScheduleJob(enableCreateButton));
     }
-    scheduleConfig?.handlers?.events?.onScheduleBtnClick?.();
+    scheduleConfig?.events?.scheduleBtnClick?.();
   };
   const handleCreateSchedule = () => {
     setCreateBtnDisability(true);
@@ -56,7 +56,7 @@ const SchedulerFooter = () => {
         </JVButton>
         <JVButton
           variant="contained"
-          onClick={() => scheduleConfig?.handlers?.events?.onCancelBtnClick?.()}
+          onClick={() => scheduleConfig?.events?.cancelBtnClick?.()}
         >
           {t("cancel.button")}
         </JVButton>

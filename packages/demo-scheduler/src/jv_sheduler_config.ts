@@ -72,21 +72,19 @@ const schedulerUIConfig = {
   },
   locale: "en",
   timezone: "UTC",
-  handlers: {
-    onSuccess: () => {
+  events: {
+    success: () => {
       console.log("Success");
     },
-    onError: (error: any) => {
+    error: (error: any) => {
       console.log("callback ", error);
       console.log("Error");
     },
-    events: {
-      onCancelBtnClick: () => {
-        console.log("Cancel button is clicked");
-      },
-      onScheduleBtnClick: () => {
-        console.log("Create schedule button is clicked");
-      },
+    cancelBtnClick: () => {
+      console.log("Cancel button is clicked");
+    },
+    scheduleBtnClick: () => {
+      console.log("Create schedule button is clicked");
     },
   },
 };
