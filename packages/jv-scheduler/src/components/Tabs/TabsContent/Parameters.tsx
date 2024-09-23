@@ -27,7 +27,7 @@ const Parameters = () => {
   }, []);
 
   const updateStoreWithParameters = (params: any) => {
-    dispatch(parametersTabErrorOrLoading({ isLoaded: false, isError: false }));
+    dispatch(parametersTabErrorOrLoading({ isLoaded: true, isError: false }));
     dispatch(
       setPropertiesDetails({
         source: {
@@ -46,7 +46,7 @@ const Parameters = () => {
       updateStoreWithParameters(params.parameters);
     },
     error: (error) => {
-      dispatch(parametersTabErrorOrLoading({ isLoaded: false, isError: true }));
+      dispatch(parametersTabErrorOrLoading({ isLoaded: true, isError: true }));
       console.log("Error when rendering the Basic controls: ", error);
     },
     events: {

@@ -1464,6 +1464,21 @@ p[class$="-MuiTablePagination-displayedRows"] {
   font-family: $font-family-semibold;
 }
 
+/* ------------------------- */
+/*  07c. Resizable Dialog    */
+/* ------------------------- */
+.jv-mDialogResizable.mui {
+}
+
+.jv-mDialogResizable.mui .jv-mDialog-wrapper.mui {
+  height: 100%;
+  min-height: inherit;
+  min-width: inherit;
+  margin: 0;
+  max-height: inherit;
+  max-width: inherit;
+}
+
 /* ------------------- */
 /*  08. DRAWER         */
 /* ------------------- */
@@ -2927,13 +2942,14 @@ textarea[readonly].jv-mInput-text.mui {
 
 .jv-mListbox-content.mui {
   background-color: #ffffff;
-  border-color: #cccccc; /* remaining border rules controlled by variant=outline */
+  border-color: #dedede; /* remaining border rules controlled by variant=outline */
   border-radius: 2px;
-  height: auto;
-  min-height: 38px; /* not required, but is here for now; used for drop area in adhoc */
-  width: 100%;
   display: flex;
   flex-direction: column;
+  height: auto;
+  min-height: 38px; /* not required, but is here for now; used for drop area in adhoc */
+  overflow: auto;
+  width: 100%;
 } /* NEW MAY 2023 */
 
 /* States */
@@ -4172,6 +4188,46 @@ textarea[readonly].jv-mInput-text.mui {
 /*  25. TREE       */
 /* --------------- */
 .jv-mTree.mui {
+  font-size: 13px;
+}
+
+.jv-mTree-node.mui {
+  gap: 2px;
+  margin-bottom: 1px;
+  padding: 0 4px;
+}
+
+.jv-mTree-node-toggle.mui {
+}
+
+.jv-mTree-node-toggle.mui > svg {
+  //font-size: 16px;
+  font-size: 1.231em;
+  fill: #01529a;
+}
+
+.jv-mTree-node-item.mui {
+  font-size: inherit;
+  padding-top: 2px;
+}
+
+.jv-mTree-node-item-icon.mui {
+  background-image: image-url("file_type_icons_sprite.svg");
+  background-position: 2px 0;
+  background-repeat: no-repeat;
+  font-size: inherit;
+  //background-size: 18px;
+  background-size: 1.384em;
+  //height: 18px;
+  margin-right: 4px;
+  //width: 20px;
+  height: 1.538em;
+  width: 1.538em;
+}
+
+.jv-mTree-node-item-label.mui {
+  font-size: inherit;
+  line-height: 1.846;
 }
 
 .jv-mTreeAdhoc.mui {

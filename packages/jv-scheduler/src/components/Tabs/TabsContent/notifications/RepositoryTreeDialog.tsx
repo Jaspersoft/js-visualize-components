@@ -7,6 +7,7 @@ import {
   JVDialogFooter,
   JVPaper,
   JVPaperProps,
+  JVBox,
 } from "@jaspersoft/jv-ui-components";
 import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
@@ -36,26 +37,22 @@ function PaperComponent(props: JVPaperProps) {
           minWidth={300}
           minHeight={200}
           enable={{
-            top: false,
-            right: false,
-            bottom: false,
-            left: false,
-            topRight: false,
             bottomRight: true,
-            bottomLeft: false,
-            topLeft: false,
           }}
-          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+          style={{
+            bottom: "10px",
+            right: "10px",
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+          }}
           handleComponent={{
             bottomRight: (
               <div
                 style={{
-                  width: "20px",
-                  height: "20px",
-                  backgroundColor: "red",
+                  bottom: "10px",
+                  right: "10px",
                   position: "absolute",
-                  right: "5px",
-                  bottom: "0px",
                   cursor: "se-resize",
                 }}
               />
@@ -137,7 +134,7 @@ export const RepositoryTreeDialog = ({
   };
   return (
     <JVDialog
-      className="jr-mDialogResizable"
+      className="jv-mDialogResizable"
       open={open}
       scroll="paper"
       PaperComponent={PaperComponent}
@@ -152,10 +149,20 @@ export const RepositoryTreeDialog = ({
       <JVDialogContent
         DialogContentComponent={
           showTree ? (
-            <TreeView
-              folderSelected={currentSelectedFolder}
-              handleCurrentSelection={setCurrentSelectedFolder}
-            />
+            <JVBox className={"jv-mListbox jv-uHeight-100pc"}>
+              <JVPaper
+                styles={{ overflow: "auto" }}
+                variant="outlined"
+                square
+                className={"jv-mListbox-content jv-uHeight-100pc mui"}
+                elevation={0}
+              >
+                <TreeView
+                  folderSelected={currentSelectedFolder}
+                  handleCurrentSelection={setCurrentSelectedFolder}
+                />
+              </JVPaper>
+            </JVBox>
           ) : (
             <Loader />
           )

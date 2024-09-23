@@ -287,7 +287,7 @@ const Notifications = () => {
               </JVButton>
             </div>
             <JVFormError
-              className="jr-uMargin-l-07"
+              className="jv-uMargin-l-07"
               text={t(folderUriErr || "")}
             />
             <JVRadioButton

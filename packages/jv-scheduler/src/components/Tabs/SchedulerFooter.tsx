@@ -22,8 +22,7 @@ const SchedulerFooter = () => {
 
   useEffect(() => {
     const { isError, isLoaded } = parametersTabLoading;
-    console.log(isError, isLoaded);
-    if (isError || !isLoaded) {
+    if (isError || isLoaded) {
       setCreateBtnDisability(true);
     } else {
       setCreateBtnDisability(false);
