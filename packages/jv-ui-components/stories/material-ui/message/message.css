@@ -1,0 +1,14 @@
+.demoMessage .demoSize {
+  width: 330px;
+}
+
+.demoMessage .demoSize .demoVariant {
+  background-color: #fafafa;
+  padding: 16px;
+  width: 300px;
+}
+
+.demoMessagePopup {
+  margin: 74px auto;
+  width: 300px;
+}

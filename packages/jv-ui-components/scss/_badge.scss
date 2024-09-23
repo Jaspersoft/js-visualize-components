@@ -1,0 +1,78 @@
+/* =============================================
+   BADGE MODULE
+   Last modified date:     May 17, 2019
+   Last modified by:       Anna Leeg
+ * ============================================ */
+
+.jv-mBadge.jv {
+  background-color: #fff;
+  border-radius: 16px;
+  color: $color-textMedium;
+  display: inline-block;
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
+  font-weight: normal;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 8px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.jv-mBadge-label.jv {
+  font-size: 10px;
+  font-weight: bold;
+  height: 16px;
+  line-height: 16px;
+}
+
+.jv-mBadge-label.jv {
+  display: block;
+}
+
+.jv-mBadge-icon.jv {
+  color: inherit;
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+// firefox only:
+body:last-child .jv-mBadge-icon.jv {
+  vertical-align: baseline;
+}
+
+// SHAPE VARIATION
+.jv-mBadgeRound.jv {
+  padding: 0;
+  width: 16px;
+}
+
+// COLOR VARIATIONS
+.jv-mBadgeInfo.jv,
+.jv-mBadgeAttention.jv,
+.jv-mBadgeError.jv,
+.jv-mBadgeWarning.jv,
+.jv-mBadgeSuccess.jv {
+  color: #fff;
+}
+
+.jv-mBadgeInfo.jv {
+  background-color: $color-infoMedium;
+}
+
+.jv-mBadgeAttention.jv {
+  background-color: $color-attentionMedium;
+}
+
+.jv-mBadgeError.jv {
+  background-color: $color-errorMedium;
+}
+
+.jv-mBadgeWarning.jv {
+  background-color: $color-warningMedium;
+}
+
+.jv-mBadgeSuccess.jv {
+  background-color: $color-successDark;
+}

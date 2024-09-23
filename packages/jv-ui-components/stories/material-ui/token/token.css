@@ -1,0 +1,6 @@
+.demoToken {
+}
+
+.demoToken > .demoSize {
+  max-width: 250px;
+}

@@ -1,0 +1,285 @@
+/* =============================================
+    MESSAGE MODULE
+    Last modified date:     June 15, 2020
+    Last modified by:       Anna Leeg
+ * ============================================= */
+
+// -------------------------
+//  BASE MESSAGE MODULE
+// -------------------------
+.jv-mMessage.jv {
+  background-color: #f7f7f7;
+  border-color: #e4e4e4;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: em(4px, 12px);
+  display: inline-block;
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
+  font-weight: normal;
+  z-index: $zindex-message;
+}
+
+.jv-mMessage-textContainer.jv {
+  margin-left: em(46px, 12px);
+  padding: 1em;
+  text-align: left;
+}
+
+.jv-mMessage-title.jv {
+  color: $color-textDarker;
+  font-size: em(14px, 12px); // new base font size
+  font-weight: bold;
+  margin-bottom: em(6px, 12px);
+  text-align: left;
+}
+
+.jv-mMessage-title.jv:only-child {
+  margin-bottom: 0;
+}
+
+.jv-mMessage-iconContainer.jv {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: em(44px, 12px);
+  text-align: center;
+}
+
+.jv-mMessage-icon.jv {
+  color: #fff;
+  margin-left: em(-1px, 30px); // margin values are based on XLarge icon size
+  margin-top: em(2px, 30px);
+}
+
+.jv-mMessage-close.jv {
+  // values are based on small icon size
+  height: em(22px, 14px);
+  position: absolute;
+  top: em(2px, 14px);
+  right: em(2px, 14px);
+  width: em(20px, 14px);
+  z-index: $zindex-message;
+}
+
+.jv-mMessage-text.jv {
+  color: $grey-textDarker;
+  font-size: em(12px, 12px);
+  margin-top: em(12px, 12px);
+  white-space: normal;
+}
+
+.jv-mMessage-text.jv + .jv-mMessage-text.jv {
+  margin-top: em(6px, 12px);
+}
+
+// MODULE VARIATION, Info
+.jv-mMessageInfo.jv {
+  background-color: #f4f9fd;
+  border-color: $color-infoMedium;
+}
+
+.jv-mMessageInfo.jv .jv-mMessage-title.jv,
+.jv-mMessageInfo.jv .jv-mMessage-text.jv {
+  color: $color-infoDark;
+}
+
+.jv-mMessageInfo.jv .jv-mMessage-iconContainer.jv {
+  background-color: $color-infoMedium;
+}
+
+.jv-mMessageInfo.jv .jv-mMessage-close.jv {
+  color: $color-infoMedium;
+  opacity: 0.75;
+}
+
+// MODULE VARIATION, Success
+.jv-mMessageSuccess.jv {
+  background-color: $color-successLight;
+  border-color: $color-successMedium;
+}
+
+.jv-mMessageSuccess.jv .jv-mMessage-title.jv,
+.jv-mMessageSuccess.jv .jv-mMessage-text.jv {
+  color: $color-successDark;
+}
+
+.jv-mMessageSuccess.jv .jv-mMessage-iconContainer.jv {
+  background-color: $color-successMedium;
+}
+
+.jv-mMessageSuccess.jv .jv-mMessage-close.jv {
+  color: $color-successDark;
+  opacity: 0.75;
+}
+
+// MODULE VARIATION, Attention
+.jv-mMessageAttention.jv {
+  background-color: $color-attentionLight;
+  border-color: $color-attentionMedium;
+}
+
+.jv-mMessageAttention.jv .jv-mMessage-title.jv,
+.jv-mMessageAttention.jv .jv-mMessage-text.jv {
+  color: $color-attentionDark;
+}
+
+.jv-mMessageAttention.jv .jv-mMessage-iconContainer.jv {
+  background-color: $color-attentionMedium;
+}
+
+.jv-mMessageAttention.jv .jv-mMessage-close.jv {
+  color: $color-attentionMedium;
+  opacity: 0.75;
+}
+
+// MODULE VARIATION, Warning
+.jv-mMessageWarning.jv {
+  background-color: $color-warningLight;
+  border-color: $color-warningMedium;
+}
+
+.jv-mMessageWarning.jv .jv-mMessage-title.jv,
+.jv-mMessageWarning.jv .jv-mMessage-text.jv {
+  color: $color-warningDark;
+}
+
+.jv-mMessageWarning.jv .jv-mMessage-iconContainer.jv {
+  background-color: $color-warningMedium;
+}
+
+.jv-mMessageWarning.jv .jv-mMessage-close.jv {
+  color: $color-warningMedium;
+  opacity: 0.75;
+}
+
+// MODULE VARIATION, Error
+.jv-mMessageError.jv {
+  background-color: $color-errorLight;
+  border-color: $color-errorMedium;
+}
+
+.jv-mMessageError.jv .jv-mMessage-title.jv,
+.jv-mMessageError.jv .jv-mMessage-text.jv {
+  color: $color-errorDark;
+}
+
+.jv-mMessageError.jv .jv-mMessage-iconContainer.jv {
+  background-color: $color-errorMedium;
+}
+
+.jv-mMessageError.jv .jv-mMessage-close.jv {
+  color: $color-errorMedium;
+  opacity: 0.75;
+}
+
+// MODULE VARIATION, Plain (no icon)
+.jv-mMessagePlain.jv {
+}
+
+.jv-mMessagePlain.jv .jv-mMessage-iconContainer.jv {
+  display: none;
+}
+
+.jv-mMessagePlain.jv .jv-mMessage-title.jv {
+}
+
+.jv-mMessagePlain.jv .jv-mMessage-textContainer.jv {
+  margin-left: 0;
+}
+
+// MODULE VARIATION, Popover with triangle
+.jv-mMessageBottom.jv {
+}
+.jv-mMessageBottom.jv:before,
+.jv-mMessageBottomRight:before,
+.jv-mMessageBottomLeft:before {
+  border-right: em(6px) solid transparent;
+  border-left: em(6px) solid transparent;
+  //border-bottom: em(7px) solid $color-infoMedium;
+  border-bottom-width: em(7px, 12px);
+  border-bottom-style: solid;
+  border-bottom-color: inherit;
+  content: "";
+  height: 0;
+  line-height: 0;
+  margin: 0 0 0 em(-6px, 12px);
+  position: absolute;
+  top: em(-7px, 12px);
+  left: 50%;
+}
+
+.jv-mMessageTop.jv {
+}
+.jv-mMessageTop:after,
+.jv-mMessageTopRight:after,
+.jv-mMessageTopLeft:after {
+  border-right: em(6px, 12px) solid transparent;
+  border-left: em(6px, 12px) solid transparent;
+  //border-top: em(7px) solid $color-infoMedium;
+  border-top-width: em(7px, 12px);
+  border-top-style: solid;
+  border-top-color: inherit;
+  content: "";
+  height: 0;
+  line-height: 0;
+  margin: 0 0 0 em(-6px, 12px);
+  position: absolute;
+  bottom: em(-7px, 12px);
+  left: 50%;
+}
+
+.jv-mMessageTopRight:after,
+.jv-mMessageBottomRight:before {
+  left: auto;
+  right: em(22px, 12px);
+}
+
+.jv-mMessageTopLeft:after,
+.jv-mMessageBottomLeft:before {
+  left: em(22px, 12px);
+}
+
+.jv-mMessageRight.jv {
+}
+.jv-mMessageRight.jv:before {
+  border-top: em(6px, 12px) solid transparent;
+  border-bottom: em(6px, 12px) solid transparent;
+  //border-right: em(7px) solid $color-infoMedium;
+  border-right-width: em(7px, 12px);
+  border-right-style: solid;
+  border-right-color: inherit;
+  content: "";
+  height: 0;
+  line-height: 0;
+  margin: 0 em(-10px, 12px) 0 0;
+  position: absolute;
+  left: em(-7px, 12px);
+  top: 0.909em; // keep ems so it's scalable
+}
+
+.jv-mMessageLeft.jv {
+}
+.jv-mMessageLeft.jv:before {
+  border-top: em(6px, 12px) solid transparent;
+  border-bottom: em(6px, 12px) solid transparent;
+  border-left-width: em(7px, 12px);
+  border-left-style: solid;
+  border-left-color: inherit;
+  content: "";
+  height: 0;
+  line-height: 0;
+  margin: 0 em(-10px) 0 0;
+  position: absolute;
+  right: em(3px, 12px);
+  top: 0.909em; // keep ems so it's scalable
+}
+
+// ----------------
+//     STATES
+// ----------------
+
+.jv-mMessage.jv-isHidden.jv {
+  display: none;
+}

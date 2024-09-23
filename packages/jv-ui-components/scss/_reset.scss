@@ -1,24 +1,3 @@
-/*!
- * Copyright (C) 2005 - 2020 TIBCO Software Inc. All rights reserved.
- * http://www.jaspersoft.com.
- *
- * Unless you have purchased a commercial license agreement from Jaspersoft,
- * the following license terms apply:
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
 // =========================================================================================
 //  * OVERRIDE RULES
 //  *
@@ -43,19 +22,47 @@ body.jv {
 html.jv {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-
 }
 
 body.jv {
   line-height: 1;
 }
 
-a.jv, b.jv, canvas.jv, caption.jv, div.jv, em.jv, embed.jv,
-fieldset.jv, form.jv, h1.jv, h2.jv, h3.jv, h4.jv,
-h5.jv, h6.jv, i.jv, iframe.jv, img.jv, label.jv,
-legend.jv, li.jv, ol.jv, p.jv, span.jv, sub.jv,
-sup.jv, table.jv, tbody.jv, td.jv, tfoot.jv,
-th.jv, thead.jv, tr.jv, u.jv, ul.jv {
+a.jv,
+b.jv,
+canvas.jv,
+caption.jv,
+div.jv,
+em.jv,
+embed.jv,
+fieldset.jv,
+form.jv,
+h1.jv,
+h2.jv,
+h3.jv,
+h4.jv,
+h5.jv,
+h6.jv,
+i.jv,
+iframe.jv,
+img.jv,
+label.jv,
+legend.jv,
+li.jv,
+ol.jv,
+p.jv,
+span.jv,
+sub.jv,
+sup.jv,
+table.jv,
+tbody.jv,
+td.jv,
+tfoot.jv,
+th.jv,
+thead.jv,
+tr.jv,
+u.jv,
+ul.jv {
   border: 0;
   @include border-box;
   margin: 0;
@@ -87,12 +94,10 @@ table.jv {
 }
 // END RESET
 
-
 // NORMALIZE
 a.jv {
   background: transparent;
 }
-
 
 // Address various browser support for html5 elements, a ndzero them out
 article.jv,
@@ -110,11 +115,10 @@ summary.jv {
   border: 0;
   display: block;
   @include border-box;
-  font-family:inherit;
+  font-family: inherit;
   margin: 0;
   padding: 0;
 }
-
 
 // 1. Correct color not being inherited.
 //    Known issue: affects color of disabled elements.
@@ -126,8 +130,8 @@ optgroup.jv,
 select.jv,
 textarea.jv {
   color: inherit; // 1
-  font: inherit;  // 2
-  margin: 0;      // 3
+  font: inherit; // 2
+  margin: 0; // 3
 }
 
 // Address overflow set to hidden in IE 8/9/10/11, which causes extra side padding
@@ -151,8 +155,8 @@ button.jv,
 html input.jv[type="button"],     // 1
 input.jv[type="reset"],
 input.jv[type="submit"] {
-  -webkit-appearance: button;     // 2
-  cursor: pointer;                // 3
+  -webkit-appearance: button; // 2
+  cursor: pointer; // 3
 }
 
 // Re-set default cursor for disabled elements
@@ -178,7 +182,7 @@ input.jv {
 input.jv[type="checkbox"],
 input.jv[type="radio"] {
   box-sizing: border-box; // 1
-  padding: 0;             // 2
+  padding: 0; // 2
 }
 
 // Fix the cursor style for Chrome's increment/decrement buttons. For certain font-size values of
@@ -198,7 +202,6 @@ input.jv[type="number"]::-webkit-outer-spin-button {
 //     box-sizing: content-box;
 // }
 
-
 input.jv[type="search"] {
   @include border-box;
 } // added by anna
@@ -211,10 +214,15 @@ input.jv[type="search"]::-webkit-search-decoration {
 }
 
 // Remove red box shadow for invalid fields in Firefox
-:invalid {box-shadow: none;}
-:-moz-submit-invalid {box-shadow: none;}
-:-moz-ui-invalid {box-shadow:none;}
-
+:invalid {
+  box-shadow: none;
+}
+:-moz-submit-invalid {
+  box-shadow: none;
+}
+:-moz-ui-invalid {
+  box-shadow: none;
+}
 
 // Remove default vertical scrollbar in IE 8/9/10/11
 textarea.jv {

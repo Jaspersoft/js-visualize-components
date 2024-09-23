@@ -13,6 +13,7 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
+import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
 
 export interface BasePanelProps {
   controls?: any;
@@ -211,7 +212,24 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     }
   };
 
+  const notImplemented = (controlMap: any) => {
+    if (controlMap?.data) {
+      return (
+        controlMap.data.filter(
+          (c: BaseInputControlProps) =>
+            c.type?.startsWith("multiSelect") ||
+            (c.slaveDependencies && c.slaveDependencies.length > 0) ||
+            (c.masterDependencies && c.masterDependencies.length > 0),
+        ).length > 0
+      );
+    }
+    return false;
+  };
+
   const buildControls = (controlMap: any) => {
+    if (notImplemented(controlMap)) {
+      return <NotYetImplementedMessage />;
+    }
     if (controlMap?.data) {
       return controlMap.data.map(buildControl);
     }

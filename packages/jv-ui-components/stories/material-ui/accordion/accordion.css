@@ -1,0 +1,11 @@
+.demoWrapper.demoAccordion .demoSize {
+  width: 300px;
+}
+
+.demoWrapper.demoAccordion .demoSet {
+  display: flex;
+}
+
+.demoWrapper.demoAccordion .jv-MuiCollapse-container p {
+  color: #444444;
+}

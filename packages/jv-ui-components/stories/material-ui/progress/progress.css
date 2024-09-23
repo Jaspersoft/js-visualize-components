@@ -1,0 +1,42 @@
+/* Circular */
+.demoWrapper.demoSpinner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.demoWrapper.demoSpinner .demoSize {
+  background-color: #fafafa;
+  padding: 12px 12px 48px 12px;
+}
+
+.demoWrapper.demoSpinner .demoSubtitle {
+  margin-bottom: 48px;
+}
+
+/* Linear */
+.demoWrapper.demoLinear {
+  display: flex;
+  flex-direction: row;
+}
+
+.demoWrapper.demoLinear .demoSize {
+  background-color: #fafafa;
+  min-width: 200px;
+  padding: 12px 24px;
+  width: 200px;
+}
+
+.demoWrapper.demoLinear .demoCategoryTitle {
+  color: #212121;
+  font-family: source_sans_prosemibold;
+  font-size: 14px;
+  margin: 0 0 12px 0;
+}
+
+.demoWrapper.demoLinear .demoItemTitle {
+  color: #444444;
+  font-family: source_sans_proregular;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}

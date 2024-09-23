@@ -1,0 +1,48 @@
+/* General */
+.demoWrapper.demoButtons .demoSet {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+/* Icon Buttons */
+.demoWrapper.demoIconButtons {
+  flex-direction: column;
+}
+.demoWrapper.demoIconButtons .demoSize {
+  border-bottom: 1px solid #ececec;
+  max-width: 780px;
+}
+
+.demoWrapper.demoIconButtons .demoSet {
+  display: inline-flex;
+  margin-bottom: 12px;
+}
+
+.demoWrapper.demoIconButtons .demoSet-subtitle {
+  color: #555555;
+  flex: 0 1 auto;
+  font-family: source_sans_prosemibold;
+  font-size: 13px;
+  min-height: 28px;
+  margin: 4px 36px 6px 24px;
+  width: 170px;
+}
+
+.demoWrapper.demoIconButtons button {
+  margin-bottom: 16px;
+}
+
+/* Menu Buttons */
+.demoWrapper.demoMenuButtons {
+  background-color: #062e79;
+  display: block;
+  height: 40px;
+  margin: 48px 24px;
+  padding: 0;
+}
+
+/* Toolbar Buttons */
+.demoWrapper.demoToolbarButtons {
+  display: block;
+  padding: 0;
+}
