@@ -6,7 +6,7 @@ import {
   getBaseInputControlProps,
 } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
-import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 
 interface UseMandatoryMsgProps {
   textValue: string;
@@ -21,7 +21,7 @@ export const useErrorMsg = ({
   props,
   minAndMaxDate,
 }: UseMandatoryMsgProps) => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const t = i18n.t;
   const [msg, setMsg] = useState<string>(defaultValue);
 
   useEffectAfterInitial(() => {
