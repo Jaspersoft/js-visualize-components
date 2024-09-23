@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { JVButton } from "@jaspersoft/jv-ui-components";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,17 +16,19 @@ const SchedulerFooter = () => {
     (state: IState) => state.schedulerUIConfig,
   );
   const dispatch = useDispatch();
-  // const parametersTabLoading = useSelector((state: IState) => state.parametersTabLoading);
-  //
-  // useEffect(() => {
-  //   const { isError, isLoaded } = parametersTabLoading;
-  //   console.log(isError, isLoaded)
-  //   if (isError ||  !isLoaded) {
-  //     setCreateBtnDisability(true);
-  //   } else {
-  //     setCreateBtnDisability(false);
-  //   }
-  // }, [parametersTabLoading])
+  const parametersTabLoading = useSelector(
+    (state: IState) => state.parametersTabLoading,
+  );
+
+  useEffect(() => {
+    const { isError, isLoaded } = parametersTabLoading;
+    console.log(isError, isLoaded);
+    if (isError || !isLoaded) {
+      setCreateBtnDisability(true);
+    } else {
+      setCreateBtnDisability(false);
+    }
+  }, [parametersTabLoading]);
 
   const handleCreateScheduleAPI = (isError: boolean) => {
     const enableCreateButton = () => setCreateBtnDisability(false);
