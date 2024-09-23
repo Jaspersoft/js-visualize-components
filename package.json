@@ -19,6 +19,7 @@
     "start:scheduler": "yarn workspace demo-scheduler run dev",
     "storybook": "yarn workspace @jaspersoft/jv-ui-components run storybook",
     "start:styles:dev": "yarn workspace @jaspersoft/jv-ui-components run start:dev",
+    "print:dependencies": "node ./utils/list-dependencies.js",
     "prepare": "husky"
   },
   "repository": {
@@ -39,6 +40,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "glob": "^11.0.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
     "prettier": "3.3.2"
