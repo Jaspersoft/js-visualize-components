@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent } from "react";
 import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
 import Schedule from "../Tabs/TabsContent/Schedule";

@@ -151,7 +151,7 @@ export const RepositoryTreeDialog = ({
           showTree ? (
             <JVBox className={"jv-mListbox jv-uHeight-100pc"}>
               <JVPaper
-                styles={{ overflow: "auto" }}
+                style={{ overflow: "auto" }}
                 variant="outlined"
                 square
                 className={"jv-mListbox-content jv-uHeight-100pc mui"}

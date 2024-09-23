@@ -6,14 +6,18 @@ import { Provider as ReduxProvider } from "react-redux";
 import SchedulerMain from "./SchedulerMain";
 import { useTranslation } from "react-i18next";
 import { getSchedulerData } from "../utils/configurationUtils";
-import { SchedulerConfigProps, translationProps } from "../types/scheduleType";
+import { SchedulerConfigProps } from "../types/scheduleType";
 
 type SchedulerProps = {
   visualize: {};
   schedulerUIConfig: SchedulerConfigProps;
 };
 
-export function SchedulerUiJS(container, vizjs, config) {
+export function SchedulerUiJS(
+  container: HTMLElement,
+  vizjs: {},
+  config: SchedulerConfigProps,
+) {
   const rootElement = container;
   if (!rootElement) {
     throw new Error("Root element not found");
@@ -28,7 +32,7 @@ export function SchedulerUiJS(container, vizjs, config) {
 const EntryPoint = (props: SchedulerProps) => {
   const { i18n } = useTranslation(undefined, {
     i18n: i18nScheduler,
-  }) as translationProps;
+  });
   const [isLoadComp, setIsLoadComp] = useState(false);
   const [schedulerData, setSchedulerData] = useState<any>({});
   const { schedulerUIConfig, visualize } = props;
