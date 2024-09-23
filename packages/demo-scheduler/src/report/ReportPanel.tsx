@@ -11,9 +11,6 @@ export default function ReportPanel(props: ReportPanelProps) {
     props.vObject?.report({
       resource: props.resourceURI || "",
       container: "#report-viewer",
-      events: {
-        reportCompleted: function (_status: any) {},
-      },
     });
   }, []);
 
