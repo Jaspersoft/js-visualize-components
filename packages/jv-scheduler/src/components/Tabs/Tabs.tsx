@@ -34,7 +34,6 @@ const Tabs = () => {
   // const [disableTabs, setDisableTabs] = useState(!parametersTabLoading.isLoaded);
 
   // useEffect(() => {
-  //   debugger;
   //   setDisableTabs(!parametersTabLoading.isLoaded);
   // }, [parametersTabLoading.isLoaded])
 
