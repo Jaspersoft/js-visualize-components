@@ -13,7 +13,7 @@ type SchedulerProps = {
   schedulerUIConfig: SchedulerConfigProps;
 };
 
-export function SchedulerUiJS(
+export function renderScheduler(
   container: HTMLElement,
   vizjs: {},
   config: SchedulerConfigProps,

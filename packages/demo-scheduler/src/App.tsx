@@ -8,7 +8,7 @@ import {
   VisualizeType,
 } from "@jaspersoft/jv-tools";
 import {
-  // SchedulerUiJS,
+  // renderScheduler,
   SchedulerConfig,
 } from "@jaspersoft/jv-scheduler";
 import { JVButton } from "@jaspersoft/jv-ui-components";
@@ -62,7 +62,7 @@ function SchedulerApp() {
     // uncomment below code to see working of scheduler using JS API
     // const schedulerElement = document.getElementById("scheduler");
     // if (schedulerElement && visualize) {
-    //   SchedulerUiJS(
+    //   renderScheduler(
     //     schedulerElement as HTMLElement,
     //     visualize,
     //     schedulerUIConfig,
