@@ -6,6 +6,8 @@
   "workspaces": {
     "packages": [
       "packages/jv-ui-components",
+      "packages/jv-input-controls",
+      "packages/jv-scheduler",
       "packages/*"
     ]
   },
@@ -14,6 +16,7 @@
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
     "start": "yarn workspace demo-input-controls run dev",
+    "start:scheduler": "yarn workspace demo-scheduler run dev",
     "storybook": "yarn workspace @jaspersoft/jv-ui-components run storybook",
     "start:styles:dev": "yarn workspace @jaspersoft/jv-ui-components run start:dev",
     "print:dependencies": "node ./utils/list-dependencies.js",

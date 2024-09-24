@@ -1,7 +1,7 @@
 const schedulerUIConfig = {
   server: "http://localhost:8080/jasperserver-pro",
   contextPath: "/jasperserver-pro",
-  resourceURI: "/public/Samples/Reports/ProfitDetailReport",
+  resourceURI: "/public/Samples/Reports/9.CustomerDetailReport",
   stepper: {
     show: true,
   },
@@ -24,7 +24,6 @@ const schedulerUIConfig = {
           startTime: {
             showField: true,
             value: "2024-10-31 14:11",
-            options: ["now", "specificDateAndTime"],
           },
         },
       },
@@ -65,8 +64,7 @@ const schedulerUIConfig = {
           },
           reportAccessType: {
             showField: true,
-            value: "/public/Samples", // "SEND_ATTACHMENT" | "SEND"
-            options: ["SEND", "SEND_ATTACHMENT"],
+            value: "/public/Samples",
           },
         },
       },
@@ -74,5 +72,20 @@ const schedulerUIConfig = {
   },
   locale: "en",
   timezone: "UTC",
+  events: {
+    success: () => {
+      console.log("Success");
+    },
+    error: (error: any) => {
+      console.log("callback ", error);
+      console.log("Error");
+    },
+    cancelBtnClick: () => {
+      console.log("Cancel button is clicked");
+    },
+    scheduleBtnClick: () => {
+      console.log("Create schedule button is clicked");
+    },
+  },
 };
 export default schedulerUIConfig;

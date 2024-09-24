@@ -1,0 +1,78 @@
+body {
+  margin: 0 10px !important;
+  padding: 0 10px !important;
+  background-color: #f7f7f7;
+}
+
+#report-viewer {
+  padding: 5px;
+  height: 97vh;
+  width: 97vw;
+  border: lightgrey 1px solid;
+  border-radius: 8px;
+  overflow: auto;
+  background-color: #ffffff;
+}
+
+#scheduleBtn {
+  align-self: center;
+  color: #444444;
+  display: flex;
+  margin-left: 1em;
+  margin-right: 1em;
+  text-transform: none;
+}
+#header {
+  display: flex !important;
+  justify-content: space-between;
+}
+.pageHeader-title-text {
+  color: #333333;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 38px;
+  margin-right: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pageHeader-subtitle-path {
+  font-size: 16px;
+  height: 34px;
+  line-height: 32px;
+  margin-right: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pageHeader-subtitle-path-text {
+  color: #01529a;
+}
+
+.dimmer {
+  background-color: #717171;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+iframe {
+  width: 100%;
+  height: 415px;
+  z-index: 9999;
+  position: absolute;
+  top: 80px;
+}
+.jv-MuiDrawer-paperAnchorRight {
+  top: 0px !important;
+  bottom: 0px !important;
+}

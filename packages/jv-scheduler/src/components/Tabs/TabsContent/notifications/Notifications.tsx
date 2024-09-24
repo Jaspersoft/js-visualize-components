@@ -4,7 +4,9 @@ import {
   JVRadioButton,
   JVRadioGroup,
   JVTextField,
+  JVFormError,
 } from "@jaspersoft/jv-ui-components";
+import i18nScheduler from "../../../../i18n";
 import { JVTypographyComponent } from "../../../common/CommonComponents";
 import { RepositoryTreeDialog } from "./RepositoryTreeDialog";
 import { getFakeRootData, getFolderData } from "../../../../actions/action";
@@ -16,7 +18,7 @@ import {
   SEND_LINK,
 } from "../../../../constants/schedulerConstants";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../../../types/scheduleType";
+import { IState, translationProps } from "../../../../types/scheduleType";
 import { updateChangeToStore } from "../../../../utils/schedulerUtils";
 import {
   addRootFolderPath,
@@ -24,7 +26,9 @@ import {
 } from "../../../../utils/treeUtils";
 
 const Notifications = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const stepperConfig = useSelector(
     (state: IState) => state.stepperConfiguration,
   );
@@ -217,6 +221,7 @@ const Notifications = () => {
         )}
         {reportAccessTypeVisible && (
           <JVRadioGroup
+            FormControlProps={{ className: "jv-uWidth-100pc" }}
             title={t("notifications.radiogroup.title")}
             RadioGroupProps={{ value: sendType, onChange: handleChange }}
           >
@@ -233,7 +238,6 @@ const Notifications = () => {
                 label={t("notifications.uri.label")}
                 disabled={sendType !== SEND_LINK}
                 value={repoUri}
-                error={t(folderUriErr || "")}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   let newFolderUri = e.target.value;
                   newFolderUri = newFolderUri.startsWith("/")
@@ -282,7 +286,10 @@ const Notifications = () => {
                 {t("notifications.browse.button")}
               </JVButton>
             </div>
-
+            <JVFormError
+              className="jv-uMargin-l-07"
+              text={t(folderUriErr || "")}
+            />
             <JVRadioButton
               label={t("notifications.fileAsAttachment.label")}
               RadioProps={{

@@ -89,6 +89,7 @@ const Stepper = () => {
     outputFormat,
     folderURI,
     baseOutputFileDescription,
+    parameters,
   } = useSelector((state: IState) => state.scheduleErrors || {});
 
   const setIconStateOnChange = (tabName: string, tabState: string) => {
@@ -143,7 +144,12 @@ const Stepper = () => {
     visitedTabs,
   ]);
   useEffect(() => {
-    setIconStateOnChange(PARAMETERS_TAB, SUCCESS_STATE);
+    if (visitedTabs.includes(PARAMETERS_TAB)) {
+      setIconStateOnChange(
+        PARAMETERS_TAB,
+        parameters ? ERROR_STATE : SUCCESS_STATE,
+      );
+    }
   }, [visitedTabs]);
 
   return (

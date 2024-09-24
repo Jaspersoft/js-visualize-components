@@ -29,16 +29,16 @@ export const ErrorConfirmationDialog = () => {
 
   const errorMap: any = {
     createScheduleApiFailure: [
-      "You can close this error message and try to save the alert again.",
-      "A network error is preventing the alert from being saved.",
+      "You can close this error message and try to save the schedule again.",
+      "A network error is preventing the schedule from being saved.",
     ],
     initialTreeDataLoadApiFailure: [
       "You can close this error message and try to open repo dialog again.",
       "A network error is preventing the repo from being opened.",
     ],
     treeLoadApiFailure: [
-      "You can close this error message and try to open repo dialog again.",
-      "A network error is preventing the repo from being opened.",
+      "You can close this error message and try to open repository dialog again.",
+      "A network error is preventing the repository dialog from being opened.",
     ],
   };
 

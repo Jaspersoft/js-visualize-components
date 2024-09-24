@@ -7,6 +7,7 @@ import {
   JVRadioButton,
   JVSelectItem,
 } from "@jaspersoft/jv-ui-components";
+import i18nScheduler from "../../../i18n";
 import {
   SCHEDULE_JOB_DESCRIPTION,
   SCHEDULE_JOB_NAME,
@@ -16,11 +17,13 @@ import {
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useStoreUpdate } from "../../../hooks/useStoreUpdate";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../../types/scheduleType";
+import { IState, translationProps } from "../../../types/scheduleType";
 import { updateChangeToStore } from "../../../utils/schedulerUtils";
 
 const Schedule = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const recurrenceIntervalErr = useSelector(
     (state: IState) => state.scheduleErrors.recurrenceInterval,
   );
@@ -177,45 +180,49 @@ const Schedule = () => {
           <JVTypographyComponent text={t("schedule.recurrence.title")} />
         ))}
       <div className="jv-mControl jv-mControlInterval jv-mControlFlexwidth mui">
-        <JVTextField
-          id="recurrenceInterval"
-          label={t("schedule.recurrence.interval")}
-          size="large"
-          className="jv-mControl-interval mui"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          textFieldClassName="jv-uWidth-140px"
-          type="number"
-          value={String(recurrenceInt)}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleIntervalChange(e.target.value)
-          }
-          onBlur={() => {
-            const convertedValue = Number(recurrenceInt);
-            setRecurrenceInterval(convertedValue);
-            updateRecurrenceToStore({ recurrenceInterval: convertedValue });
-          }}
-          error={t(recurrenceIntervalErr || "")}
-        />
-        <div className="jv-mControl-timeframe mui">
+        {recurrenceIntervalVisible && (
           <JVTextField
+            id="recurrenceInterval"
+            label={t("schedule.recurrence.interval")}
             size="large"
-            label={t("schedule.recurrence.timeframe")}
-            textFieldClassName="jv-uWidth-175px"
-            select
-            value={recurrenceUnit}
+            className="jv-mControl-interval mui"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            textFieldClassName="jv-uWidth-140px"
+            type="number"
+            value={String(recurrenceInt)}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleTimeFrameChange(e.target.value)
+              handleIntervalChange(e.target.value)
             }
-          >
-            {timeFrames.map((timeFrame) => (
-              <JVSelectItem key={timeFrame.value} value={timeFrame.value}>
-                {timeFrame.textPlural}
-              </JVSelectItem>
-            ))}
-          </JVTextField>
-        </div>
+            onBlur={() => {
+              const convertedValue = Number(recurrenceInt);
+              setRecurrenceInterval(convertedValue);
+              updateRecurrenceToStore({ recurrenceInterval: convertedValue });
+            }}
+            error={t(recurrenceIntervalErr || "")}
+          />
+        )}
+        {recurrenceIntervalUnitVisible && (
+          <div className="jv-mControl-timeframe mui">
+            <JVTextField
+              size="large"
+              label={t("schedule.recurrence.timeframe")}
+              textFieldClassName="jv-uWidth-175px"
+              select
+              value={recurrenceUnit}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleTimeFrameChange(e.target.value)
+              }
+            >
+              {timeFrames.map((timeFrame) => (
+                <JVSelectItem key={timeFrame.value} value={timeFrame.value}>
+                  {timeFrame.textPlural}
+                </JVSelectItem>
+              ))}
+            </JVTextField>
+          </div>
+        )}
       </div>
 
       {startTimeVisible && (

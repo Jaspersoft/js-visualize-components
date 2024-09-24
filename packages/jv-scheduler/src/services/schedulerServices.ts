@@ -1,13 +1,14 @@
 import axios from "axios";
 import store from "../store/store";
 import { IState } from "../types/scheduleType";
+import { PUBLIC_FOLDER, ROOT_FOLDER } from "../constants/schedulerConstants";
 
 const getServerPath = () => {
   return (store.getState() as IState)?.schedulerUIConfig?.server;
 };
 
 const computePermissionMask = (extra: { [key: string]: any }) => {
-  var mask = 2;
+  let mask = 2;
   extra.isWritable && (mask = mask | 4);
   extra.isRemovable && (mask = mask | 16);
   extra.isAdministrable && (mask = 1);
@@ -40,11 +41,11 @@ const getFakeRootRepositoryData = (data: string) => {
     extra: { [key: string]: any };
   } = extractRootLevelDataFromHtmlResponse(data);
   const publicFolder = extractedData.children.find(
-      (item: any) => item.uri === "/public",
+      (item: any) => item.uri === PUBLIC_FOLDER,
     ),
     fakeRoot = [
       {
-        id: "/root",
+        id: ROOT_FOLDER,
         label: extractedData.label,
         uri: "/",
         resourceType: "folder",
@@ -53,9 +54,9 @@ const getFakeRootRepositoryData = (data: string) => {
     ];
   if (publicFolder) {
     fakeRoot.push({
-      id: "/public",
+      id: PUBLIC_FOLDER,
       label: publicFolder.label,
-      uri: "/public",
+      uri: PUBLIC_FOLDER,
       resourceType: "folder",
       permissionMask: computePermissionMask(publicFolder.extra),
     });
@@ -75,7 +76,6 @@ export const checkPermissionOnResource = async (
         withCredentials: true,
         headers: {
           Accept: "application/json",
-          // OWASP_CSRFTOKEN: csrfToken,
         },
       },
     );

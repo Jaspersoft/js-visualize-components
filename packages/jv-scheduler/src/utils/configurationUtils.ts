@@ -10,15 +10,15 @@ import {
   manadatoryHiddenField,
   typeOfFields,
   simpleTriggerState,
+  SEND_ATTACHMENT,
+  SEND_LINK,
+  defaultFieldVisibility,
+  mapFieldName,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 import { validator } from "../validations/scheduleValidators";
 import { checkPermissionOnResource } from "../services/schedulerServices";
 
-const mapFieldName: { [key: string]: string } = {
-  label: "scheduleJobName",
-  description: "scheduleJobDescription",
-};
 const isResourceWritable = (item: any) => {
   return item.permissionMask !== 0;
 };
@@ -116,7 +116,7 @@ const validate = (propertName: string, propertyValue: string) => {
     }
     case "reportAccessType": {
       if (
-        propertyValue !== "SEND_ATTACHMENT" &&
+        propertyValue !== SEND_ATTACHMENT &&
         !checkValueOfFolderUri(propertyValue)
       ) {
         return { error: "Entered incorrect value for reportAccessType" };
@@ -136,9 +136,9 @@ const getStartTimeValue = (value: string) => {
 };
 
 const getReportAccessValue = (value: string) => {
-  const isSendAsAttachment = value === "SEND_ATTACHMENT";
+  const isSendAsAttachment = value === SEND_ATTACHMENT;
   return {
-    resultSendType: isSendAsAttachment ? "SEND_ATTACHMENT" : "SEND",
+    resultSendType: isSendAsAttachment ? SEND_ATTACHMENT : SEND_LINK,
     folderURI: isSendAsAttachment ? null : value,
   };
 };
@@ -239,12 +239,13 @@ const checkResourceUriIsRightOrHavePermission = async (
   const response = await checkPermissionOnResource(resourceURI, server);
   if (response.permissionMask) {
     if (!isResourceWritable(response)) {
-      console.error("You don't have permission to schedule this report");
-      error.NoPermission = "You don't have permission to schedule this report";
+      console.error("You don't have permission to schedule this resource");
+      error.noPermission =
+        "You don't have permission to schedule this resource";
     }
   } else {
-    console.error("Resource URI is not correct");
-    error.UriIsNotCorrect = "Resource URI is not correct";
+    console.error("Resource URI was not found");
+    error.uriIsNotFound = "Resource URI was not found";
   }
   return error;
 };
@@ -260,7 +261,7 @@ const setDefaultValuesForFields = (
     messageText,
     subject,
     address = [],
-    resultSendType = "SEND",
+    resultSendType = SEND_LINK,
     outputFormat = ["pdf"],
     outputTimeZone = "Asia/Calcutta",
     startType = "1",
@@ -323,7 +324,7 @@ const setDefaultValuesForFields = (
       startDate,
       baseOutputFilename,
       outputDescription,
-      resultSendType: "SEND",
+      resultSendType: SEND_LINK,
       outputFormat,
       outputTimeZone,
     };
@@ -410,8 +411,9 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     fieldsVisibility,
     fieldConvertedData,
   } = await checkFieldDataValidity(inputFieldsInfo);
+
   if (getLengthOfObject(fieldsErrs)) {
-    return { error };
+    return { error: fieldsErrs };
   }
 
   const { scheduleInfo, stepperDefaultState } = setDefaultValuesForFields(
@@ -426,6 +428,6 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     tabsToShow,
     stepsToShow,
     currentActiveTab: tabsConfig[0],
-    fieldsVisibility,
+    fieldsVisibility: { ...defaultFieldVisibility, ...fieldsVisibility },
   };
 };
