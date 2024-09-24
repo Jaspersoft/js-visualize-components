@@ -1,6 +1,6 @@
 import "./src/i18n";
 // the main class:
-export { InputControls } from "./src/InputControls";
+export { InputControlsWrapper } from "./src/InputControls";
 
 // all the controls:
 export { BooleanInputControl } from "./src/controls/BooleanInputControl";
@@ -13,8 +13,8 @@ export { SingleValueNumberInputControl } from "./src/controls/SingleValueNumberI
 export { SingleValueTextInputControl } from "./src/controls/SingleValueTextInputControl";
 export { TimePickerInputControl } from "./src/controls/TimePickerInputControl";
 export { TimePickerTextFieldInputControl } from "./src/controls/TimePickerTextFieldInputControl";
-export { InputControlsPanel } from "./src/InputControls";
+export { InputControls } from "./src/InputControls";
 
 // types
 export type { BaseInputControlProps } from "./src/controls/BaseInputControl";
-export type { InputControlPanelConfig } from "./src/InputControls";
+export type { InputControlConfig } from "./src/InputControls";

@@ -1,9 +1,9 @@
-import { InputControls, InputControlsPanel } from "../src/InputControls";
+import { InputControlsWrapper, InputControls } from "../src/InputControls";
 import { render } from "@testing-library/react";
 
 describe("InputControls plugin", () => {
   it("should allow instantiation, and do so with default config settings", () => {
-    let ic = new InputControls({});
+    let ic = new InputControlsWrapper({});
     expect(ic).toBeDefined();
     expect(ic.getControls()).toEqual({});
   });
@@ -17,9 +17,7 @@ describe("InputControlsPanel component", () => {
   };
 
   const renderComponent = (v: any, uri: string) => {
-    render(
-      <InputControlsPanel vObject={v} uri={uri} handleError={mockError} />,
-    );
+    render(<InputControls vObject={v} uri={uri} handleError={mockError} />);
   };
 
   it("should instantiate and call inputControls on visualize obj", () => {

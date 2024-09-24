@@ -1,5 +1,5 @@
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
@@ -12,6 +12,7 @@ import { TextFieldICType } from "./controls/SingleValueTextInputControl";
 import { TimePickerICType } from "./controls/TimePickerInputControl";
 import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
 
 export interface InputControlUserConfig {
   bool?: {
@@ -34,10 +35,9 @@ export interface InputControlUserConfig {
   };
 }
 
-export interface InputControlPanelConfig {
+export interface InputControlConfig {
   success?: () => void;
   error?: (error: any) => void;
-  exclude?: string[];
   config?: InputControlUserConfig;
   events?: {
     change?: (
@@ -47,7 +47,7 @@ export interface InputControlPanelConfig {
   };
 }
 
-export class InputControls {
+export class InputControlsWrapper {
   private viz: any;
   protected controlStructure: object = {};
 
@@ -80,10 +80,10 @@ export class InputControls {
     return this.controlStructure;
   };
 
-  public renderControlPanel = (
+  public renderInputControls = (
     uri: string,
     container: HTMLElement,
-    icPanelDef?: InputControlPanelConfig,
+    icPanelDef?: InputControlConfig,
   ) => {
     this.fillControlStructure(
       uri,
@@ -119,20 +119,20 @@ export class InputControls {
   };
 }
 
-export interface ICPanelProps {
-  vObject: any;
+export interface InputControlProps {
+  vObject?: VisualizeClient;
   uri: string;
-  panelDef?: InputControlPanelConfig;
+  panelDef?: InputControlConfig;
   handleError?: (error: any) => void;
 }
 
-export function InputControlsPanel(props: ICPanelProps) {
+export function InputControls(props: InputControlProps) {
   const [embedControls, setEmbedControls] = useState<InputControlCollection>();
-  const [embedPlugin, setEmbedPlugin] = useState<InputControls>();
+  const [embedPlugin, setEmbedPlugin] = useState<InputControlsWrapper>();
 
   useEffect(() => {
     if (props.vObject !== undefined) {
-      let icPlugin = new InputControls(props.vObject);
+      let icPlugin = new InputControlsWrapper(props.vObject);
       setEmbedPlugin(icPlugin);
     }
   }, [props.vObject]);

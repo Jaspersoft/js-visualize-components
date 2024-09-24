@@ -5,9 +5,9 @@ import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
 import {
   BaseInputControlProps,
-  InputControlPanelConfig,
+  InputControlConfig,
+  InputControlsWrapper,
   InputControls,
-  InputControlsPanel,
 } from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
@@ -37,7 +37,7 @@ function App() {
   const [vContainer, setVContainer] = useState(
     null as { v: VisualizeClient } | null,
   );
-  const [plugin, setPlugin] = useState<InputControls>();
+  const [plugin, setPlugin] = useState<InputControlsWrapper>();
   const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
   const [vReport, setVReport] = useState<any>();
   useEffect(() => {
@@ -73,7 +73,7 @@ function App() {
 
   useEffect(() => {
     if (vContainer && vContainer.v) {
-      setPlugin(new InputControls(vContainer.v));
+      setPlugin(new InputControlsWrapper(vContainer.v));
       const report = vContainer.v.report({
         resource: singleSelectReportUri,
         container: "#report-viewer",
@@ -86,7 +86,7 @@ function App() {
     if (plugin === undefined) {
       return;
     }
-    plugin.renderControlPanel(
+    plugin.renderInputControls(
       reportUri,
       document.getElementById("basic-controls-section") as HTMLElement,
       {
@@ -115,7 +115,7 @@ function App() {
         },
       },
     );
-    plugin.renderControlPanel(
+    plugin.renderInputControls(
       singleSelectReportUri,
       document.getElementById("select-controls-section") as HTMLElement,
       {
@@ -143,7 +143,7 @@ function App() {
     }
   };
 
-  const panelD: InputControlPanelConfig = {
+  const panelD: InputControlConfig = {
     config: { bool: { type: "switch" } },
     events: {
       change: (ics: any, vs: any) => {
@@ -155,7 +155,7 @@ function App() {
 
   return (
     <>
-      <InputControlsPanel
+      <InputControls
         vObject={vContainer?.v}
         uri={reportUri}
         panelDef={panelD}
