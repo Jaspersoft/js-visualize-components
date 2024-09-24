@@ -96,7 +96,7 @@ function SchedulerApp() {
               variant="contained"
               onClick={() => setIsPanelOpen(true)}
             >
-              Scheduler
+              Schedule
             </JVButton>
           </div>
           <div
