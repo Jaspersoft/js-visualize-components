@@ -20,7 +20,9 @@ export function renderScheduler(
 ) {
   const rootElement = container;
   if (!rootElement) {
-    throw new Error("Root element not found");
+    return config.events?.error?.({
+      containerNotFound: "Root element is not found",
+    });
   } else {
     const schedulerRoot = createRoot(rootElement);
     schedulerRoot.render(

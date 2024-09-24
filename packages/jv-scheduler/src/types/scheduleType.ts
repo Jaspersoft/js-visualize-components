@@ -45,7 +45,7 @@ export interface SchedulerConfigProps {
   };
   events?: {
     success?: () => void;
-    error?: (error: any) => void;
+    error?: (error: { [key: string]: string }) => void;
     cancelBtnClick: () => void;
     scheduleBtnClick: () => void;
   };

@@ -60,8 +60,8 @@ function SchedulerApp() {
       return;
     }
     // uncomment below code to see working of scheduler using JS API
-    // const schedulerElement = document.getElementById("scheduler");
-    // if (schedulerElement && visualize) {
+    // const schedulerElement = document.getElementById("sheduler");
+    // if (visualize) {
     //   renderScheduler(
     //     schedulerElement as HTMLElement,
     //     visualize,

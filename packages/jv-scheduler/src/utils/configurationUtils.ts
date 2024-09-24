@@ -240,11 +240,11 @@ const checkResourceUriIsRightOrHavePermission = async (
   if (response.permissionMask) {
     if (!isResourceWritable(response)) {
       console.error("You don't have permission to schedule this report");
-      error.NoPermission = "You don't have permission to schedule this report";
+      error.noPermfission = "You don't have permission to schedule this report";
     }
   } else {
-    console.error("Resource URI is not correct");
-    error.UriIsNotCorrect = "Resource URI is not correct";
+    console.error("Resource URI was not found");
+    error.uriIsNotFound = "Resource URI was not found";
   }
   return error;
 };
