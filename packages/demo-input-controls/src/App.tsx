@@ -31,45 +31,36 @@ const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
 function App() {
-  const [visualizeFactoryContainer, setVisualizeFactoryContainer] = useState(
-    null as { viz: VisualizeFactory } | null,
-  );
   const [vContainer, setVContainer] = useState(
     null as { v: VisualizeClient } | null,
   );
   const [plugin, setPlugin] = useState<InputControlsWrapper>();
   const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
   const [vReport, setVReport] = useState<any>();
+
   useEffect(() => {
     const loadVisualize = visualizejsLoader(visualizeUrl);
+    console.log("Loading visualize.js...");
     loadVisualize().then((visualizeFactory: VisualizeFactory) => {
-      setVisualizeFactoryContainer({ viz: visualizeFactory });
+      // Connecting to JRS.
+      console.log("visualize.js loaded. Connecting to JRS...");
+      visualizeFactory(
+        {
+          auth: {
+            ...credentials,
+            locale: "en_US",
+          },
+        },
+        (v: VisualizeClient) => {
+          console.log("Visualize client connected.");
+          setVContainer({ v });
+        },
+        (e: any) => {
+          console.log(String(e));
+        },
+      );
     });
   }, []);
-  useEffect(() => {
-    if (credentials && visualizeFactoryContainer) {
-      new Promise<VisualizeClient>((resolve, reject) => {
-        visualizeFactoryContainer.viz(
-          {
-            auth: {
-              name: credentials.name,
-              password: credentials.password,
-              organization: credentials.organization || null,
-              locale: "en_US",
-            },
-          },
-          resolve,
-          reject,
-        );
-      })
-        .then((v: VisualizeClient) => {
-          setVContainer({ v });
-        })
-        .catch((e: any) => {
-          console.log(String(e));
-        });
-    }
-  }, [visualizeFactoryContainer]);
 
   useEffect(() => {
     if (vContainer && vContainer.v) {
