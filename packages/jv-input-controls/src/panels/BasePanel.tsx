@@ -8,6 +8,7 @@ import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextField
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
+import { MultiSelectInputControl } from "../controls/MultiSelectInputControl";
 import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
@@ -190,6 +191,15 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         />
       );
     }
+    if (control.type === "multiSelect") {
+      return (
+        <MultiSelectInputControl
+          {...theProps}
+          key={control.id}
+          validationRules={control.validationRules}
+        />
+      );
+    }
     if (control.type === "singleValueTime") {
       if (props.config?.singleValueTime?.type === "material") {
         return (
@@ -217,7 +227,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       return (
         controlMap.data.filter(
           (c: BaseInputControlProps) =>
-            c.type?.startsWith("multiSelect") ||
             (c.slaveDependencies && c.slaveDependencies.length > 0) ||
             (c.masterDependencies && c.masterDependencies.length > 0),
         ).length > 0
