@@ -103,70 +103,6 @@ export const renderInputControls2 = (
   );
 };
 
-export class InputControlsWrapper {
-  private viz: VisualizeClient;
-  protected controlStructure: object = {};
-
-  constructor(vizjs: any) {
-    this.viz = vizjs;
-  }
-
-  public fillControlStructure = (
-    uri: string,
-    callbackFn?: Function,
-    callbackErrorFn?: Function,
-  ) => {
-    this.viz.inputControls({
-      resource: uri,
-      success: (data: string) => {
-        this.controlStructure = { ...this.controlStructure, data };
-        if (callbackFn) {
-          callbackFn(this.controlStructure);
-        }
-      },
-      error: (e: object) => {
-        if (callbackErrorFn) {
-          callbackErrorFn(e);
-        }
-      },
-    });
-  };
-
-  public getControls = () => {
-    return this.controlStructure;
-  };
-
-  public renderInputControls = (
-    uri: string,
-    container: HTMLElement,
-    icPanelDef?: InputControlConfig,
-  ) => {
-    this.fillControlStructure(
-      uri,
-      (controls: InputControlCollection) => {
-        try {
-          const icRoot = createRoot(container);
-          icRoot.render(
-            <JVStylesProvider>
-              <BasePanel
-                controls={controls}
-                config={icPanelDef?.config}
-                events={icPanelDef?.events}
-              />
-            </JVStylesProvider>,
-          );
-          icPanelDef?.success && icPanelDef?.success.call(null);
-        } catch (e) {
-          icPanelDef?.error && icPanelDef?.error.call(null, e);
-        }
-      },
-      (e: any) => {
-        icPanelDef?.error && icPanelDef?.error.call(null, e);
-      },
-    );
-  };
-}
-
 export interface InputControlProps {
   vObject?: VisualizeClient;
   uri: string;
@@ -176,28 +112,23 @@ export interface InputControlProps {
 
 export function InputControls(props: InputControlProps) {
   const [embedControls, setEmbedControls] = useState<InputControlCollection>();
-  const [embedPlugin, setEmbedPlugin] = useState<InputControlsWrapper>();
 
   useEffect(() => {
     if (props.vObject !== undefined) {
-      let icPlugin = new InputControlsWrapper(props.vObject);
-      setEmbedPlugin(icPlugin);
+      fillControlStructure2(
+        props.vObject,
+        props.uri,
+        (controls: InputControlCollection) => {
+          setEmbedControls(controls);
+        },
+        props.handleError === undefined
+          ? (error: any) => {
+              console.log("Error filling controls: ", error);
+            }
+          : props.handleError,
+      );
     }
   }, [props.vObject]);
-
-  useEffect(() => {
-    embedPlugin?.fillControlStructure(
-      props.uri,
-      (controls: InputControlCollection) => {
-        setEmbedControls(controls);
-      },
-      props.handleError === undefined
-        ? (error: any) => {
-            console.log("Error filling controls: ", error);
-          }
-        : props.handleError,
-    );
-  }, [embedPlugin]);
 
   if (props.vObject === undefined) {
     return (

@@ -1,13 +1,5 @@
-import { InputControlsWrapper, InputControls } from "../src/InputControls";
+import { InputControls } from "../src/InputControls";
 import { render } from "@testing-library/react";
-
-describe("InputControls plugin", () => {
-  it("should allow instantiation, and do so with default config settings", () => {
-    let ic = new InputControlsWrapper({});
-    expect(ic).toBeDefined();
-    expect(ic.getControls()).toEqual({});
-  });
-});
 
 describe("InputControlsPanel component", () => {
   const mockError = jest.fn(),
