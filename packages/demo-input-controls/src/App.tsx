@@ -6,14 +6,14 @@ import "./App.css";
 import {
   BaseInputControlProps,
   InputControlConfig,
-  InputControlsWrapper,
   InputControls,
+  renderInputControls2,
 } from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
+  VisualizeClient,
   VisualizeFactory,
   visualizejsLoader,
-  VisualizeClient,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
@@ -34,7 +34,6 @@ function App() {
   const [vContainer, setVContainer] = useState(
     null as { v: VisualizeClient } | null,
   );
-  const [plugin, setPlugin] = useState<InputControlsWrapper>();
   const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
   const [vReport, setVReport] = useState<any>();
 
@@ -63,21 +62,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (vContainer && vContainer.v) {
-      setPlugin(new InputControlsWrapper(vContainer.v));
-      const report = vContainer.v.report({
-        resource: singleSelectReportUri,
-        container: "#report-viewer",
-      });
-      setVReport(report);
-    }
-  }, [vContainer]);
-
-  useEffect(() => {
-    if (plugin === undefined) {
+    if (!vContainer || !vContainer.v) {
       return;
     }
-    plugin.renderInputControls(
+    renderInputControls2(
+      vContainer.v,
       reportUri,
       document.getElementById("basic-controls-section") as HTMLElement,
       {
@@ -106,7 +95,9 @@ function App() {
         },
       },
     );
-    plugin.renderInputControls(
+
+    renderInputControls2(
+      vContainer.v,
       singleSelectReportUri,
       document.getElementById("select-controls-section") as HTMLElement,
       {
@@ -124,7 +115,13 @@ function App() {
         },
       },
     );
-  }, [plugin]);
+
+    const report = vContainer.v.report({
+      resource: singleSelectReportUri,
+      container: "#report-viewer",
+    });
+    setVReport(report);
+  }, [vContainer]);
 
   const onClickSubmit = () => {
     if (vContainer?.v) {

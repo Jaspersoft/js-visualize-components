@@ -2,6 +2,9 @@ import "./src/i18n";
 // the main class:
 export { InputControlsWrapper } from "./src/InputControls";
 
+// the methods:
+export { renderInputControls2 } from "./src/InputControls";
+
 // all the controls:
 export { BooleanInputControl } from "./src/controls/BooleanInputControl";
 export { DatePickerInputControl } from "./src/controls/DatePickerInputControl";

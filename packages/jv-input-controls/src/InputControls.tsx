@@ -1,7 +1,10 @@
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { InputControlCollection } from "./controls/BaseInputControl";
+import {
+  BaseInputControlProps,
+  InputControlCollection,
+} from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
 import { DatePickerICType } from "./controls/DatePickerInputControl";
 import { DateICType } from "./controls/DatePickerTextFieldInputControl";
@@ -47,8 +50,61 @@ export interface InputControlConfig {
   };
 }
 
+export const fillControlStructure2 = (
+  vObject: VisualizeClient,
+  uri: string,
+  callbackFn?: Function,
+  callbackErrorFn?: Function,
+) => {
+  vObject.inputControls({
+    resource: uri,
+    success: (data: BaseInputControlProps) => {
+      if (callbackFn) {
+        callbackFn({ data });
+      }
+    },
+    error: (e: object) => {
+      if (callbackErrorFn) {
+        callbackErrorFn(e);
+      }
+    },
+  });
+};
+
+export const renderInputControls2 = (
+  vObject: VisualizeClient,
+  uri: string,
+  container: HTMLElement,
+  icPanelDef?: InputControlConfig,
+) => {
+  fillControlStructure2(
+    vObject,
+    uri,
+    (controls: InputControlCollection) => {
+      try {
+        const icRoot = createRoot(container);
+        icRoot.render(
+          <JVStylesProvider>
+            <BasePanel
+              controls={controls}
+              config={icPanelDef?.config}
+              events={icPanelDef?.events}
+            />
+          </JVStylesProvider>,
+        );
+        icPanelDef?.success && icPanelDef?.success.call(null);
+      } catch (e) {
+        icPanelDef?.error && icPanelDef?.error.call(null, e);
+      }
+    },
+    (e: any) => {
+      icPanelDef?.error && icPanelDef?.error.call(null, e);
+    },
+  );
+};
+
 export class InputControlsWrapper {
-  private viz: any;
+  private viz: VisualizeClient;
   protected controlStructure: object = {};
 
   constructor(vizjs: any) {
@@ -108,14 +164,6 @@ export class InputControlsWrapper {
         icPanelDef?.error && icPanelDef?.error.call(null, e);
       },
     );
-  };
-
-  public makeControlsForReport = (
-    resourceUri: string,
-    container: HTMLElement,
-  ) => {
-    this.fillControlStructure(resourceUri);
-    container.innerText = JSON.stringify(this.controlStructure);
   };
 }
 
