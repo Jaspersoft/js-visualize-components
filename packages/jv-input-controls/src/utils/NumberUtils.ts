@@ -3,7 +3,7 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { ICDataType } from "../controls/BaseInputControl";
+import { InputControlDataType } from "../controls/BaseInputControl";
 
 const DECIMAL_SEPARATOR = "\\.";
 const GROUPING_SEPARATOR = ",";
@@ -60,7 +60,7 @@ export const checkIfNumber = (value: string) => {
 };
 
 export const getValueForVerificationText = (
-  dataType: ICDataType,
+  dataType: InputControlDataType,
   isVerifyingMin: boolean,
 ) => {
   if (isVerifyingMin) {
@@ -69,7 +69,10 @@ export const getValueForVerificationText = (
   return dataType?.maxValue;
 };
 
-const getVerificationText = (dataType: ICDataType, isVerifyingMin: boolean) => {
+const getVerificationText = (
+  dataType: InputControlDataType,
+  isVerifyingMin: boolean,
+) => {
   if (isVerifyingMin) {
     return dataType?.strictMin === true ? "greater" : "greater or equal";
   }
@@ -81,7 +84,7 @@ export const verifyLimit = ({
   valAsNumber,
   isVerifyingMin,
 }: {
-  dataType: ICDataType | undefined;
+  dataType: InputControlDataType | undefined;
   maxOrMinValAsNumber: number | null;
   valAsNumber: number;
   isVerifyingMin: boolean;

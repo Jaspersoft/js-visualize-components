@@ -1,6 +1,6 @@
 import { JSX } from "react";
 
-export type ICType =
+export type InputControlType =
   | string
   | "bool"
   | "singleValueText"
@@ -14,22 +14,22 @@ export type ICType =
   | "multiSelectCheckbox"
   | undefined;
 
-export interface ICOption {
+export interface InputControlOption {
   selected?: boolean;
   label?: string;
   value?: string;
 }
 
-export interface ICState {
+export interface InputControlState {
   id: string;
   uri: string;
   value: string;
   error?: string;
   totalCount?: string;
-  options?: ICOption[];
+  options?: InputControlOption[];
 }
 
-export interface ICValidationRule {
+export interface InputControlValidationRule {
   dateTimeFormatValidationRule?: {
     errorMessage: string;
     format: string;
@@ -52,7 +52,7 @@ export interface ICValidationRule {
   };
 }
 
-export type ICDataTypeType =
+export type InputControlDataTypeType =
   | string
   | "date"
   | "datetime"
@@ -61,8 +61,8 @@ export type ICDataTypeType =
   | "number"
   | undefined;
 
-export interface ICDataType {
-  type?: ICDataTypeType;
+export interface InputControlDataType {
+  type?: InputControlDataTypeType;
   pattern?: string;
   maxValue?: string;
   strictMax?: boolean;
@@ -94,15 +94,15 @@ export const getBaseInputControlProps = (
 export interface BaseInputControlProps {
   children?: JSX.Element[] | JSX.Element;
   id: string;
-  type: ICType;
+  type: InputControlType;
   label: string;
   mandatory: boolean;
   readOnly: boolean;
   visible: boolean;
   uri?: string;
-  state?: ICState;
-  validationRules?: ICValidationRule[];
-  dataType?: ICDataType;
+  state?: InputControlState;
+  validationRules?: InputControlValidationRule[];
+  dataType?: InputControlDataType;
 
   masterDependencies?: string[];
   slaveDependencies?: string[];

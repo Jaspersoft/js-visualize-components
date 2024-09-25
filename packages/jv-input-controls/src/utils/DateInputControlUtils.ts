@@ -3,7 +3,10 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { ICDataType, ICValidationRule } from "../controls/BaseInputControl";
+import {
+  InputControlDataType,
+  InputControlValidationRule,
+} from "../controls/BaseInputControl";
 import { getValueForVerificationText } from "./NumberUtils";
 import { isEmptyObject } from "./ObjectUtils";
 
@@ -40,7 +43,7 @@ const formatFullDate = (date: Date): string => {
   )}T${formatDateIfNeeded(date.getHours())}:${formatDateIfNeeded(date.getMinutes())}:${formatDateIfNeeded(date.getSeconds())}`;
 };
 
-const getMaxDateIfStrict = (dataType: ICDataType): string => {
+const getMaxDateIfStrict = (dataType: InputControlDataType): string => {
   if (!dataType.maxValue) {
     return "";
   }
@@ -63,7 +66,7 @@ const getMaxDateIfStrict = (dataType: ICDataType): string => {
   return formatFullDate(date);
 };
 
-const getMinDateIfStrict = (dataType: ICDataType): string => {
+const getMinDateIfStrict = (dataType: InputControlDataType): string => {
   if (!dataType.minValue) {
     return "";
   }
@@ -85,7 +88,7 @@ const getMinDateIfStrict = (dataType: ICDataType): string => {
 };
 
 export const getMinAndMaxSettings = (
-  dataType: ICDataType | undefined,
+  dataType: InputControlDataType | undefined,
   { minKey = "min", maxKey = "max" }: { minKey: string; maxKey: string },
 ) => {
   const minAndMaxSettings: any = {};
@@ -102,7 +105,7 @@ export const getMinAndMaxSettings = (
 };
 
 export const getDateFormatIfAny = (
-  validationRules: ICValidationRule[],
+  validationRules: InputControlValidationRule[],
   defaultFormat = "YYYY-MM-DDTHH:mm:ss",
 ): string => {
   if (!validationRules) {
@@ -118,7 +121,7 @@ export const getDateFormatIfAny = (
 };
 
 const getDateVerificationText = (
-  dataType: ICDataType,
+  dataType: InputControlDataType,
   isVerifyingMin: boolean,
 ) => {
   if (isVerifyingMin) {
@@ -133,7 +136,7 @@ export const verifyDateLimit = ({
   dateAsString,
   isVerifyingMin,
 }: {
-  dataType: ICDataType | undefined;
+  dataType: InputControlDataType | undefined;
   maxOrMinDateAsString: string | null;
   dateAsString: string;
   isVerifyingMin: boolean;

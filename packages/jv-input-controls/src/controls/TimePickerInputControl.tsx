@@ -3,7 +3,10 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
+import {
+  BaseInputControlProps,
+  InputControlValidationRule,
+} from "./BaseInputControl";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
@@ -18,7 +21,7 @@ export interface TimeICProps extends BaseInputControlProps {
 
 export const TimePickerInputControl = (props: TimeICProps) => {
   let dateFormat = getDateFormatIfAny(
-    props.validationRules as ICValidationRule[],
+    props.validationRules as InputControlValidationRule[],
     "HH:mm:ss",
   );
 
