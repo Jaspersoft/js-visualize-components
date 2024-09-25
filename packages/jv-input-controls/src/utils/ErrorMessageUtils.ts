@@ -3,7 +3,7 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { InputControlValidationRule } from "../controls/BaseInputControl";
+import { InputControlValidationRule } from "@jaspersoft/jv-tools";
 
 export const getMandatoryErrorMessage = (
   validationRules: InputControlValidationRule[] | undefined,

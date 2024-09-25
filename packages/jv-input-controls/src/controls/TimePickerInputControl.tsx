@@ -6,7 +6,7 @@ import {
 import {
   BaseInputControlProps,
   InputControlValidationRule,
-} from "./BaseInputControl";
+} from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";

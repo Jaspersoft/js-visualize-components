@@ -6,7 +6,7 @@
 import {
   InputControlDataType,
   InputControlValidationRule,
-} from "../controls/BaseInputControl";
+} from "@jaspersoft/jv-tools";
 import { getValueForVerificationText } from "./NumberUtils";
 import { isEmptyObject } from "./ObjectUtils";
 

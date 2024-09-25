@@ -1,5 +1,5 @@
 import { JVTextField } from "@jaspersoft/jv-ui-components";
-import { BaseInputControlProps } from "./BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { useNumberErrorMsg } from "./hooks/useNumberErrorMsgs";

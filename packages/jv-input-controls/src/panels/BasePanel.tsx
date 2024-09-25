@@ -1,6 +1,6 @@
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { JSX, useState } from "react";
-import { BaseInputControlProps } from "../controls/BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { PanelContext } from "../controls/contexts/PanelContext";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";

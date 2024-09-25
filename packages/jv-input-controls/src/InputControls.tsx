@@ -1,10 +1,8 @@
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import {
-  BaseInputControlProps,
-  InputControlCollection,
-} from "./controls/BaseInputControl";
+import { BaseInputControlProps, VisualizeClient } from "@jaspersoft/jv-tools";
+import { InputControlCollection } from "./controls/BaseInputControl";
 import { BoolICType } from "./controls/BooleanInputControl";
 import { DatePickerICType } from "./controls/DatePickerInputControl";
 import { DateICType } from "./controls/DatePickerTextFieldInputControl";
@@ -15,7 +13,6 @@ import { TextFieldICType } from "./controls/SingleValueTextInputControl";
 import { TimePickerICType } from "./controls/TimePickerInputControl";
 import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
-import { VisualizeClient } from "@jaspersoft/jv-tools";
 
 export interface InputControlUserConfig {
   bool?: {

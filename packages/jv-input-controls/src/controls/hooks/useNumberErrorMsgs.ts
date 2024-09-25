@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
 import { checkIfNumber, verifyLimit } from "../../utils/NumberUtils";
-import {
-  BaseInputControlProps,
-  getBaseInputControlProps,
-} from "../BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
+import { getBaseInputControlProps } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
 
 interface UseNumberErrorMsgProps {

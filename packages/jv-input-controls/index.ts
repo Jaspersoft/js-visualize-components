@@ -17,5 +17,4 @@ export { TimePickerTextFieldInputControl } from "./src/controls/TimePickerTextFi
 export { InputControls } from "./src/InputControls";
 
 // types
-export type { BaseInputControlProps } from "./src/controls/BaseInputControl";
 export type { InputControlConfig } from "./src/InputControls";

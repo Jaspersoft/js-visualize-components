@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BaseInputControlProps } from "../BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
 
 export function useControlClasses(
   initialClasses: string[],

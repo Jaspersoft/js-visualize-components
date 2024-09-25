@@ -1,6 +1,6 @@
 import { JVSelect } from "@jaspersoft/jv-ui-components";
 import React from "react";
-import { BaseInputControlProps } from "./BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";

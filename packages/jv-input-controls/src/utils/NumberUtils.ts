@@ -3,7 +3,7 @@
  * Licensed pursuant to commercial Cloud Software Group, Inc End User License Agreement.
  */
 
-import { InputControlDataType } from "../controls/BaseInputControl";
+import { InputControlDataType } from "@jaspersoft/jv-tools";
 
 const DECIMAL_SEPARATOR = "\\.";
 const GROUPING_SEPARATOR = ",";

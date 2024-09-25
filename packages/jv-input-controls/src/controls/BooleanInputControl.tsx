@@ -4,7 +4,7 @@ import {
   JVSwitch,
 } from "@jaspersoft/jv-ui-components";
 import * as React from "react";
-import { BaseInputControlProps } from "./BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
 import { useChangeCallback } from "./hooks/useChangeCallback";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";

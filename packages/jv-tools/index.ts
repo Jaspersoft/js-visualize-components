@@ -1,3 +1,6 @@
+import { BaseInputControlProps } from "./src/input-controls";
+export * from "./src/input-controls";
+
 export type Authentication = {
   url?: string;
   name?: string;
@@ -99,32 +102,10 @@ export type VisualizeGenericError = {
   parameters: { [key: string]: string }[];
 };
 
-// export interface BaseInputControlProps {
-//   id: string;
-//   type: ICType;
-//   label: string;
-//   mandatory: boolean;
-//   readOnly: boolean;
-//   visible: boolean;
-//   uri?: string;
-//   state?: ICState;
-//   validationRules?: ICValidationRule[];
-//   dataType?: ICDataType;
-//
-//   masterDependencies?: string[];
-//   slaveDependencies?: string[];
-//   events?: {
-//     change: (
-//       ic: BaseInputControlProps,
-//       validationResult?: { [key: string]: string },
-//     ) => void;
-//   };
-// }
-
 export type VisualizationConfig = {
   resource: string;
   container?: string;
-  success?: (data: any) => void; // TODO: add the BaseInputControlProps type for data.
+  success?: (data: BaseInputControlProps) => void;
   error?: (error: VisualizeGenericError) => void;
   events?: any;
 };

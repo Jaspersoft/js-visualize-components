@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { verifyDateLimit } from "../../utils/DateInputControlUtils";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
-import {
-  BaseInputControlProps,
-  getBaseInputControlProps,
-} from "../BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
+import { getBaseInputControlProps } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
 
 interface UseMandatoryMsgProps {

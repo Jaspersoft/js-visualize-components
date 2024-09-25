@@ -3,7 +3,7 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import { BaseInputControlProps } from "./BaseInputControl";
+import { BaseInputControlProps } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";

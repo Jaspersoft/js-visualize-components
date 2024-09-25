@@ -4,13 +4,13 @@ import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
 import {
-  BaseInputControlProps,
   InputControlConfig,
   InputControls,
   renderInputControls,
 } from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
+  BaseInputControlProps,
   VisualizeClient,
   VisualizeFactory,
   visualizejsLoader,
