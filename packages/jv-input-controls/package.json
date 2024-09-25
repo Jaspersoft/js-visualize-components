@@ -1,6 +1,6 @@
 {
   "name": "@jaspersoft/jv-input-controls",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
   "private": true,
   "type": "module",
@@ -54,8 +54,8 @@
     "vite-plugin-dts": "^4.1.0"
   },
   "dependencies": {
-    "@jaspersoft/jv-tools": "^1.0.0",
-    "@jaspersoft/jv-ui-components": "^1.0.0",
+    "@jaspersoft/jv-tools": "^0.1.0",
+    "@jaspersoft/jv-ui-components": "^0.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^14.1.2"

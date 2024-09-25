@@ -2,7 +2,7 @@
   "name": "demo-scheduler",
   "description": "Demo application",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -14,9 +14,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@jaspersoft/jv-tools": "^1.0.0",
-    "@jaspersoft/jv-scheduler": "1.0.0",
-    "@jaspersoft/jv-ui-components": "^1.0.0",
+    "@jaspersoft/jv-tools": "^0.1.0",
+    "@jaspersoft/jv-scheduler": "^0.1.0",
+    "@jaspersoft/jv-ui-components": "^0.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
