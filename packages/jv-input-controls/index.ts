@@ -1,7 +1,7 @@
 import "./src/i18n";
 
 // the methods:
-export { renderInputControls2 } from "./src/InputControls";
+export { renderInputControls } from "./src/InputControls";
 
 // all the controls:
 export { BooleanInputControl } from "./src/controls/BooleanInputControl";

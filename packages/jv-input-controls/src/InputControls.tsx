@@ -50,7 +50,7 @@ export interface InputControlConfig {
   };
 }
 
-export const fillControlStructure2 = (
+export const fillControlStructure = (
   vObject: VisualizeClient,
   uri: string,
   callbackFn?: Function,
@@ -71,13 +71,13 @@ export const fillControlStructure2 = (
   });
 };
 
-export const renderInputControls2 = (
+export const renderInputControls = (
   vObject: VisualizeClient,
   uri: string,
   container: HTMLElement,
   icPanelDef?: InputControlConfig,
 ) => {
-  fillControlStructure2(
+  fillControlStructure(
     vObject,
     uri,
     (controls: InputControlCollection) => {
@@ -115,7 +115,7 @@ export function InputControls(props: InputControlProps) {
 
   useEffect(() => {
     if (props.vObject !== undefined) {
-      fillControlStructure2(
+      fillControlStructure(
         props.vObject,
         props.uri,
         (controls: InputControlCollection) => {
