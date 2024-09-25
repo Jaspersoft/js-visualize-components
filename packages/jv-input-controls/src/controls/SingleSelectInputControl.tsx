@@ -19,6 +19,7 @@ export function SingleSelectInputControl(
   return (
     <JVSelect
       onChange={liveState.onChange}
+      defaultValue={""}
       label={props.label}
       id={props.id}
       key={props.id}

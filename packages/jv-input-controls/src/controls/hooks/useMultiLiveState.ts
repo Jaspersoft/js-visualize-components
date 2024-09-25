@@ -4,7 +4,6 @@ export function useMultiLiveState(initialValue: any[]) {
   const [value, setValue] = useState(initialValue);
 
   function handleChange(e: any) {
-    console.log("e", e);
     let foundElement = value.indexOf(e.target.value);
     if (foundElement > 0) {
       setValue(
