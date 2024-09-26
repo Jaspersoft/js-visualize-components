@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import { OutlinedInput } from "@mui/material";
 import { SelectItem } from "../MenuItem/SelectItem";
 import { Select } from "@mui/material";
@@ -27,13 +28,15 @@ export const MultiSelect = forwardRef((props: any, ref) => {
   };
   return (
     <FormControl className="jv-mInput jv-mInputLarge jv-mInputSelect mui">
-      <InputLabel className="jv-mInput-label mui">{label}</InputLabel>
+      <InputLabel id={label + "_label"} className="jv-mInput-label mui">
+        {label}
+      </InputLabel>
       <Select
         {...otherProps}
         renderValue={(value: any[]) => value.join(", ")}
         defaultValue={[]}
         id={id}
-        label={label}
+        labelId={label + "_label"}
         className="jv-mInput-select mui"
         multiple
         variant="outlined"
