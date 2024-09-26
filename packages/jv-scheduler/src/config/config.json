@@ -9,54 +9,46 @@
     "tabsOrder": ["schedule", "parameters", "notifications", "output"],
     "tabsData": {
       "schedule": {
-        "defaultValues": {
-          "label": { "showField": true, "value": "" },
-          "description": {
-            "value": "",
-            "showField": true
-          },
-          "recurrenceInterval": { "showField": true, "value": 1 },
-          "recurrenceIntervalUnit": {
-            "showField": true,
-            "value": "DAY"
-          },
-          "startTime": {
-            "showField": true,
-            "value": ""
-          }
+        "label": { "showField": true, "value": "" },
+        "description": {
+          "value": "",
+          "showField": true
+        },
+        "recurrenceInterval": { "showField": true, "value": 1 },
+        "recurrenceIntervalUnit": {
+          "showField": true,
+          "value": "DAY"
+        },
+        "startTime": {
+          "showField": true,
+          "value": ""
         }
       },
       "output": {
-        "defaultValues": {
-          "baseOutputFilename": {
-            "showField": true,
-            "value": ""
-          },
-          "outputDescription": {
-            "showField": true,
-            "value": ""
-          },
-          "outputFormat": { "showField": true, "value": ["pdf"] },
-          "outputTimeZone": {
-            "showField": true,
-            "value": "America/Los_Angeles"
-          }
+        "baseOutputFilename": {
+          "showField": true,
+          "value": ""
+        },
+        "outputDescription": {
+          "showField": true,
+          "value": ""
+        },
+        "outputFormat": { "showField": true, "value": ["pdf"] },
+        "outputTimeZone": {
+          "showField": true,
+          "value": "America/Los_Angeles"
         }
       },
-      "parameters": {
-        "defaultValues": {}
-      },
+      "parameters": {},
       "notifications": {
-        "defaultValues": {
-          "address": { "showField": true, "value": [] },
-          "subject": { "showField": true, "value": "" },
-          "messageText": {
-            "value": ""
-          },
-          "reportAccessType": {
-            "showField": true,
-            "value": ""
-          }
+        "address": { "showField": true, "value": [] },
+        "subject": { "showField": true, "value": "" },
+        "messageText": {
+          "value": ""
+        },
+        "reportAccessType": {
+          "showField": true,
+          "value": ""
         }
       }
     }
