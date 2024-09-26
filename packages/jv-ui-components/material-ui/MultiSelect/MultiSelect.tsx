@@ -1,6 +1,5 @@
-import { forwardRef } from "react";
-import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
-import { OutlinedInput } from "@mui/material";
+import { forwardRef, JSX } from "react";
+import { Checkbox, ListItemText, OutlinedInput } from "@mui/material";
 import { SelectItem } from "../MenuItem/SelectItem";
 import { Select } from "@mui/material";
 import { FormControl, InputLabel } from "@mui/material";
@@ -12,13 +11,14 @@ export const MultiSelect = forwardRef((props: any, ref) => {
 
   const makeOption = (opt: any): JSX.Element => {
     return (
-      <SelectItem
-        key={opt.value}
-        id={opt.value}
-        value={opt.value}
-        selected={opt.selected}
-      >
-        {opt.label}
+      <SelectItem key={opt.value} id={opt.value} value={opt.value}>
+        {/*TODO: need to verify if the 'checked' conditional is enough for all the scenarios.*/}
+        <Checkbox
+          checked={
+            value.indexOf(opt.value) > -1 || value.indexOf(opt.label) > -1
+          }
+        />
+        <ListItemText primary={opt.label} />
       </SelectItem>
     );
   };
@@ -41,16 +41,16 @@ export const MultiSelect = forwardRef((props: any, ref) => {
         multiple
         variant="outlined"
         input={<OutlinedInput label="Tag" />}
+        slotProps={{
+          elevation: 4,
+          style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+          },
+        }}
         MenuProps={{
           classes: {
             list: "jv-mChecklist jv-mChecklistLarge mui",
-          },
-          PaperProps: {
-            elevation: 4,
-            style: {
-              maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-              width: 250,
-            },
           },
         }}
       >
