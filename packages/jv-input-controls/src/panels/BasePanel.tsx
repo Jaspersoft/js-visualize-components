@@ -51,7 +51,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         },
         ctrl: BaseInputControlProps,
       ) => {
-        const prevState = acc.response[ctrl.id] || [];
+        //const prevState = acc.response[ctrl.id] || [];
         const theValidationResult = resultValidation?.[ctrl.id];
         const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
         acc.state.push(ctrlToUse);
@@ -65,10 +65,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           // this means that the validation result is empty, so we need to remove the key from the invalidResponse
           delete acc.invalidResponse[ctrlToUse.id];
         }
-        acc.response[ctrlToUse.id] =
-          ctrlToUse.type === "multiSelect"
-            ? [...prevState, ctrlToUse.state?.value]
-            : [ctrlToUse.state?.value];
+        acc.response[ctrlToUse.id] = [ctrlToUse.state?.value];
         return acc;
       },
       {
