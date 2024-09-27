@@ -1,4 +1,3 @@
-import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 // This line is necessary to setting up the styles
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
