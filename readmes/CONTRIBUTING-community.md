@@ -199,8 +199,8 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 
 Must be one of the following:
 
-- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- **ci**: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)
+- **build**: Changes that affect the build system or external dependencies (example scopes: yarn, npm)
+- **ci**: Changes to our CI configuration files and scripts (examples: Github Actions)
 - **docs**: Documentation only changes
 - **feat**: A new feature
 - **fix**: A bug fix
@@ -215,25 +215,12 @@ from commit messages).
 
 The following is the list of supported scopes:
 
-- `animations`
-- `bazel`
-- `benchpress`
 - `common`
-- `compiler`
-- `compiler-cli`
 - `core`
 - `elements`
-- `forms`
 - `http`
-- `language-service`
 - `localize`
-- `platform-browser`
-- `platform-browser-dynamic`
-- `platform-server`
-- `router`
-- `service-worker`
 - `upgrade`
-- `zone.js`
 
 There are currently a few exceptions to the "use package name" rule:
 
@@ -244,11 +231,11 @@ There are currently a few exceptions to the "use package name" rule:
 
 - `dev-infra`: used for dev-infra related changes within the directories /scripts and /tools
 
-- `docs-infra`: used for docs-app (angular.dev) related changes within the /adev directory of the repo
+- `docs-infra`: used for [docs-app](https://jaspersoft.github.io/js-visualize-components-samples/) related changes
+  within the directory of the repo
 
-- `migrations`: used for changes to the `ng update` migrations.
-
-- `devtools`: used for changes in the [browser extension](./devtools/README.md).
+- `migrations`: used for changes that migrates technology (e.g.: esbuild to vite for building and compiling the
+  project).
 
 - none/empty string: useful for `test` and `refactor` changes that are done across all packages (e.g.
   `test: add missing unit tests`) and for docs changes that are not related to a specific package (e.g.
