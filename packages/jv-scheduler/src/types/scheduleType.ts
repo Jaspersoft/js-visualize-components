@@ -24,11 +24,17 @@ export interface SchedulerConfigProps {
       notifications?: {};
     };
   };
+  stepper?: {
+    show?: boolean;
+  };
   events?: {
     success?: () => void;
     error?: (error: { [key: string]: string }) => void;
-    cancelBtnClick: () => void;
-    scheduleBtnClick: () => void;
+    cancelBtnClick?: () => void;
+    scheduleBtnClick?: (
+      isScheduleCreatedSuccessfully: boolean,
+      jobInformation: any,
+    ) => void;
   };
   locale?: string;
   timezone?: string;

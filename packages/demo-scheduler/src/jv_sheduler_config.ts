@@ -1,4 +1,6 @@
-const schedulerUIConfig = {
+import { SchedulerConfigProps } from "@jaspersoft/jv-scheduler";
+
+const schedulerUIConfig: SchedulerConfigProps = {
   server: "http://localhost:8080/jasperserver-pro",
   contextPath: "/jasperserver-pro",
   resourceURI: "/public/Samples/Reports/9.CustomerDetailReport",
@@ -10,9 +12,9 @@ const schedulerUIConfig = {
     tabsData: {
       schedule: {
         // name of the schedule: required in config
-        label: { value: "aa" },
+        label: { value: "Schedule job name" },
         description: {
-          value: "description test 1",
+          value: "Schedule job description",
           showField: true,
         },
         recurrenceInterval: { showField: true, value: 1 },
@@ -30,11 +32,11 @@ const schedulerUIConfig = {
         // outputFileName: required in config
         baseOutputFilename: {
           showField: true,
-          value: "Filename",
+          value: "ScheduleJobFilename",
         },
         outputDescription: {
           showField: true,
-          value: "File description",
+          value: "Schedule job file description",
         },
         outputFormat: { showField: true, value: ["pdf"] },
         // required
@@ -48,7 +50,7 @@ const schedulerUIConfig = {
         // required in config
         address: { showField: true, value: ["test@cloud.com"] },
         // required in config
-        subject: { showField: true, value: "Email subject" },
+        subject: { showField: true, value: "Schedule job email subject" },
         messageText: {
           // showField: true,
           value: "Email message",
@@ -73,7 +75,8 @@ const schedulerUIConfig = {
     cancelBtnClick: () => {
       console.log("Cancel button is clicked");
     },
-    scheduleBtnClick: () => {
+    scheduleBtnClick: (isScheduleCreatedSuccessfully, jobInfo) => {
+      console.log(isScheduleCreatedSuccessfully, jobInfo);
       console.log("Create schedule button is clicked");
     },
   },

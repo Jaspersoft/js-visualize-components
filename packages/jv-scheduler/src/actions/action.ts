@@ -305,7 +305,7 @@ export const allTabValidationError = (
 
 export const createScheduleJob = (enableCreateBtn: () => void) => {
   return async (dispatch: Dispatch, getState: () => IState) => {
-    const { success, error } = getState().schedulerUIConfig?.events || {};
+    const { scheduleBtnClick } = getState().schedulerUIConfig?.events || {};
     try {
       const {
         scheduleJobDescription,
@@ -317,7 +317,8 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
       const capitlizedOutputFormat = outputFormat.map((item) =>
         item.toUpperCase(),
       );
-      await createSchedule({
+
+      const jobInfo = await createSchedule({
         label: scheduleJobName,
         description: scheduleJobDescription,
         outputFormats: {
@@ -325,7 +326,7 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
         },
         ...rest,
       });
-      success?.();
+      scheduleBtnClick?.(true, jobInfo);
       dispatch(setApiFailure({ createScheduleApiFailure: false }, ""));
     } catch (err) {
       dispatch(
@@ -334,7 +335,7 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
           "createScheduleApiFailure",
         ),
       );
-      error?.({ message: "Error while creating schedule" });
+      scheduleBtnClick?.(false, err);
     } finally {
       enableCreateBtn();
     }

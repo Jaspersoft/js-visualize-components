@@ -46,13 +46,25 @@ function SchedulerApp() {
         },
       );
     });
-    schedulerUIConfig.events.cancelBtnClick = () => {
-      setIsPanelOpen(false);
-    };
-    schedulerUIConfig.events.success = () => {
-      console.log("Job created successfully");
-      setIsPanelOpen(false);
-    };
+    if (!schedulerUIConfig.events) {
+      schedulerUIConfig.events = {};
+    }
+    if (schedulerUIConfig.events) {
+      schedulerUIConfig.events.cancelBtnClick = () => {
+        console.log("cancel button is clicked");
+        setIsPanelOpen(false);
+      };
+      schedulerUIConfig.events.scheduleBtnClick = (
+        isScheduleSuccessful,
+        jobInfo,
+      ) => {
+        console.log("Schedule button clicked", isScheduleSuccessful, jobInfo);
+        if (isScheduleSuccessful) setIsPanelOpen(false);
+      };
+      schedulerUIConfig.events.success = () => {
+        console.log("Schedule panel rendered successfully");
+      };
+    }
   }, []);
 
   useEffect(() => {

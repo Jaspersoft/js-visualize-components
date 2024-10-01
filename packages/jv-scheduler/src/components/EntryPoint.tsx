@@ -46,6 +46,8 @@ const EntryPoint = (props: SchedulerProps) => {
         setSchedulerData(response);
         if (response.error) {
           schedulerUIConfig.events?.error?.(response.error);
+        } else {
+          schedulerUIConfig.events?.success?.();
         }
         setIsLoadComp(true);
       } catch (error) {

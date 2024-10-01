@@ -36,7 +36,6 @@ const SchedulerFooter = () => {
     } else {
       dispatch(createScheduleJob(enableCreateButton));
     }
-    scheduleConfig?.events?.scheduleBtnClick?.();
   };
   const handleCreateSchedule = () => {
     setCreateBtnDisability(true);
