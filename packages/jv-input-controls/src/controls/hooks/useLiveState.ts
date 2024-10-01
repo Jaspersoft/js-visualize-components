@@ -17,7 +17,8 @@ export function useLiveState(initialValue: any) {
       setValue(val);
     } else {
       const val = e.target.value;
-      setValue(val);
+      if (Array.isArray(val)) setValue([...val]);
+      else setValue(val);
     }
   }
 
