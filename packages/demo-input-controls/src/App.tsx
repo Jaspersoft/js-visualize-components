@@ -160,19 +160,38 @@ function App() {
         uri={reportUri}
         panelDef={panelD}
       />
-      <div id="basic-controls-section"></div>
-      <hr />
-      <div id="select-controls-section"></div>
-      <button id="change" type="button" onClick={onClickSubmit}>
-        Submit
-      </button>
-      <hr />
-      <ReportPanel
-        vObject={vContainer?.v}
-        reportUri={reportUri}
-        controlState={controlBuffer}
-      ></ReportPanel>
-      <div id="report-viewer"></div>
+      <div id="controls-demo-page">
+        <div className="jv-lColumns">
+          <div className="jv-lColumns-column jr-uWidth-300px">
+            <div className="jv-mPanel mui">
+              <div className="jv-mPanel-header jv-uPadding-lr-04 mui">
+                <h4 className="jr-mText jr-mPanel-header-title mui">
+                  Filter Report
+                </h4>
+              </div>
+
+              <div className="jv-mPanel-body jv-uPadding-04 mui">
+                <div id="basic-controls-section"></div>
+                <div id="select-controls-section"></div>
+              </div>
+
+              <div className="jv-mPanel-footer jv-uPadding-lr-04 mui">
+                <button id="change" type="button" onClick={onClickSubmit}>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="jv-lColumns-column jv-lColumns-columnMajor">
+            <ReportPanel
+              vObject={vContainer?.v}
+              reportUri={reportUri}
+              controlState={controlBuffer}
+            ></ReportPanel>
+            <div id="report-viewer"></div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
