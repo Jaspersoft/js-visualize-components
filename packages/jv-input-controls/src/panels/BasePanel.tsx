@@ -51,12 +51,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         },
         ctrl: BaseInputControlProps,
       ) => {
-        //const prevState = acc.response[ctrl.id] || [];
         const theValidationResult = resultValidation?.[ctrl.id];
         const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
         acc.state.push(ctrlToUse);
         if (theValidationResult !== undefined && theValidationResult !== "") {
-          // acc.invalidResponse[ctrlToUse.id] = theValidationResult;
           acc.invalidResponse = {
             ...acc.invalidResponse,
             [ctrlToUse.id]: theValidationResult,

@@ -12,7 +12,6 @@ export const MultiSelect = forwardRef((props: any, ref) => {
   const makeOption = (opt: any): JSX.Element => {
     return (
       <SelectItem key={opt.value} id={opt.value} value={opt.value}>
-        {/*TODO: need to verify if the 'checked' conditional is enough for all the scenarios.*/}
         <Checkbox
           checked={
             value.indexOf(opt.value) > -1 || value.indexOf(opt.label) > -1
