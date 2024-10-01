@@ -1,4 +1,8 @@
-import { InputControls, InputControlsPanel } from "../src/InputControls";
+import {
+  InputControlPanelConfig,
+  InputControls,
+  InputControlsPanel,
+} from "../src/InputControls";
 import { render } from "@testing-library/react";
 
 describe("InputControls plugin", () => {
@@ -10,20 +14,21 @@ describe("InputControls plugin", () => {
 });
 
 describe("InputControlsPanel component", () => {
-  const mockError = jest.fn(),
-    mockVizInputControls = jest.fn();
+  const mockVizInputControls = jest.fn();
   const mockV = {
     inputControls: mockVizInputControls,
   };
 
-  const renderComponent = (v: any, uri: string) => {
-    render(
-      <InputControlsPanel vObject={v} uri={uri} handleError={mockError} />,
-    );
+  const renderComponent = (
+    v: any,
+    uri: string,
+    panelDef: InputControlPanelConfig,
+  ) => {
+    render(<InputControlsPanel vObject={v} uri={uri} panelDef={panelDef} />);
   };
 
   it("should instantiate and call inputControls on visualize obj", () => {
-    renderComponent(mockV, "/path/to/stuff");
+    renderComponent(mockV, "/path/to/stuff", {});
     expect(mockVizInputControls).toHaveBeenCalled();
   });
 });
