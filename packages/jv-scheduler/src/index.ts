@@ -1,2 +1,11 @@
 import "./i18n";
-export * from "./components";
+import SchedulerConfig from "./config/config.json";
+
+// react and js api
+export { default as Scheduler, renderScheduler } from "./components/EntryPoint";
+
+// scheduler configuration
+export { SchedulerConfig };
+
+// types
+export type { SchedulerConfigProps } from "./types/scheduleType";

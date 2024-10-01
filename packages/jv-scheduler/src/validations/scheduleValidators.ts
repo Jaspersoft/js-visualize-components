@@ -4,10 +4,15 @@ import XRegExp from "xregexp";
 // @ts-ignore
 import globalConfig from "../constants/globalConfiguration.settings";
 import moment from "moment";
-import { IStepperState, IScheduleErrors, IState } from "../types/scheduleType";
+import {
+  StepperStateProps,
+  ScheduleErrorsProps,
+  IState,
+} from "../types/scheduleType";
 import {
   accessiblePermissionMask,
   ERROR_FIELDS,
+  SEND_ATTACHMENT,
 } from "../constants/schedulerConstants";
 import { checkPermissionOnResource } from "../services/schedulerServices";
 import store from "../store/store";
@@ -44,7 +49,7 @@ const isValidUri = (uri: string) => {
 };
 
 const isFieldEmpty = (propVal: string) => {
-  return propVal !== undefined && _.isEmpty(String(propVal).trim());
+  return !propVal || _.isEmpty(String(propVal).trim());
 };
 
 const isPastDate = (propVal: string) => {
@@ -85,7 +90,7 @@ const getFolderErr = async (folderUri: string) => {
 export const validator = (
   propName: string,
   propVal: string,
-  extraParams?: Pick<IStepperState, "startType" | "outputTimeZone">,
+  extraParams?: Pick<StepperStateProps, "startType" | "outputTimeZone">,
 ) => {
   let schedulerPropError;
   switch (propName) {
@@ -132,19 +137,19 @@ export const validator = (
     case ERROR_FIELDS.EMAIL_SUBJECT:
       if (isFieldEmpty(propVal)) {
         schedulerPropError = "error.enter.subject";
-      } else if (propVal.length > 100) {
+      } else if (propVal?.length > 100) {
         schedulerPropError = "error.subject.too.long";
       }
       break;
     case ERROR_FIELDS.MESSAGE:
-      if (propVal.length > 2000) {
+      if (propVal?.length > 2000) {
         schedulerPropError = "error.message.too.long";
       }
       break;
     case ERROR_FIELDS.FILE_NAME:
       if (isFieldEmpty(propVal)) {
         schedulerPropError = "error.file.name";
-      } else if (propVal.length > 200) {
+      } else if (propVal?.length > 200) {
         schedulerPropError = "error.file.name.too.long";
       } else if (!isValidFileName(propVal)) {
         schedulerPropError = "error.invalid.file.name";
@@ -156,7 +161,7 @@ export const validator = (
       }
       break;
     case ERROR_FIELDS.SEND_TYPE:
-      if (propVal === "SEND_ATTACHMENT") {
+      if (propVal === SEND_ATTACHMENT) {
         return { folderURI: undefined };
       }
       break;
@@ -177,7 +182,9 @@ export const validator = (
   return { [propName]: schedulerPropError };
 };
 
-export const stateValidator = (state: IScheduleErrors | IStepperState) => {
+export const stateValidator = (
+  state: ScheduleErrorsProps | StepperStateProps,
+) => {
   const promises: Array<any> = [];
   const extraParams: {
     startType: number | undefined;

@@ -33,7 +33,6 @@ export const TreeItemLabel = ({
         >
           <JVIcon icon="folder" />
         </JVBox>
-        {/*)}*/}
 
         <JVTypography variant="body2">{children}</JVTypography>
       </JVTreeItem2Label>

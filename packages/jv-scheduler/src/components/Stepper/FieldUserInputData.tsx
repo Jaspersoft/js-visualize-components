@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
+import i18nScheduler from "../../i18n";
 import moment from "moment";
 import { KeyValueTemplate } from "./KeyValueTemplate";
 import { ErrorTemplate } from "./ErrorTemplate";
@@ -13,7 +14,7 @@ import {
   SEND_LINK,
 } from "../../constants/schedulerConstants";
 import { useTranslation } from "react-i18next";
-import { IState } from "../../types/scheduleType";
+import { IState, translationProps } from "../../types/scheduleType";
 
 interface InputDataInStepProps {
   error: string | undefined;
@@ -40,7 +41,9 @@ export const InputDataInStep: FC<InputDataInStepProps> = ({
 };
 
 export const ScheduleStepUserInput = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
 
   const label = useSelector(
       (state: IState) => state.scheduleInfo?.scheduleJobName,
@@ -114,7 +117,9 @@ export const ScheduleStepUserInput = () => {
 };
 
 export const NotificationStepUserInput = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const mailNotificationSubject = useSelector(
       (state: IState) => state.stepperState?.subject,
     ),
@@ -182,7 +187,9 @@ export const NotificationStepUserInput = () => {
 };
 
 export const OutputStepUserInput = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const fileName = useSelector(
       (state: IState) => state.stepperState?.baseOutputFilename,
     ),

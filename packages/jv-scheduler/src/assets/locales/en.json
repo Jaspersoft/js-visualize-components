@@ -79,6 +79,22 @@
     "error.schedule.job.name.too.long": "The scheduled job name is too long. The maximum length is 100 characters.",
     "error.invalid.file.name": "The base output name contains invalid characters. You might have mistyped it.",
     "error.file.name.too.long": "The file name is too long. It must be 200 characters or less.",
-    "error.recurrence.must.be.integer": "The recurrence interval must be an integer greater than 0."
+    "error.recurrence.must.be.integer": "The recurrence interval must be an integer greater than 0.",
+    "error.schedule.job.name": "Enter a scheduled job name.",
+    "error.schedule.job.description": "Enter a scheduled job description.",
+    "error.recurrence": "Enter a number for the recurrence interval.",
+    "error.start.date": "Start date and time is empty or invalid.",
+    "error.past.date": "Start date and time is in the past. The start date and time must be in the future.",
+    "error.email.address": "One or more email addresses are invalid.",
+    "notifications.send.schedule.to.helper.text": "Enter one or more email addresses.",
+    "error.enter.subject": "Enter a subject.",
+    "error.subject.too.long": "The subject is too long.",
+    "error.message.too.long": "The message is too long.",
+    "error.file.name": "Enter a file name.",
+    "error.output.format": "Select one or more formats.",
+    "error.folder.uri.required": "Specify a folder.",
+    "error.report.schedule.output.folder.resourceuri.format": "The scheduled job output folder contains invalid characters.",
+    "error": "Error",
+    "not.yet.implemented": "This resource contains controls that are not yet supported."
   }
 }

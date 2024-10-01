@@ -48,9 +48,8 @@
   06. CHIP
 
   07. DIALOG
-      07a. General Dialog
+      07a. Default Dialog
       07b. Confirmation Dialog
-      07c. Drawer
 
   08. DRAWER
 
@@ -65,12 +64,13 @@
       11d. Contained
       11e. Date & Time
       11f. Select
-      11g. Search
-      11h. Autocomplete
-      11i. Browse
-      11j. Switch
-      11k. Buttons
-      11l. Checkbox & Radio
+      11g. Select with Checkbox
+      11h. Search
+      11i. Autocomplete
+      11j. Browse
+      11k. Switch
+      11l. Buttons
+      11m. Checkbox & Radio
 
   12. INSTRUCTOR
 
@@ -138,7 +138,7 @@
       30h. Text
       30i. Width/Height Measurements
   -----------------------------------
-  File last modified July 26, 2024
+  File last modified Sep 30, 2024
   ----------------------------------- */
 
 /* -------------------- */
@@ -1358,7 +1358,7 @@ p[class$="-MuiTablePagination-displayedRows"] {
 /* ----------------------- */
 /*  07. DIALOG             */
 /* ----------------------- */
-/*  07a. General Dialog    */
+/*  07a. Default Dialog    */
 /* ----------------------- */
 .jv-mDialog.mui {
 }
@@ -1461,6 +1461,21 @@ p[class$="-MuiTablePagination-displayedRows"] {
 .jv-mDialogError.mui .jv-mDialog-subtitle.mui .jv-mText.mui {
   flex: 1 1 auto;
   font-family: $font-family-semibold;
+}
+
+/* ------------------------- */
+/*  07c. Resizable Dialog    */
+/* ------------------------- */
+.jv-mDialogResizable.mui {
+}
+
+.jv-mDialogResizable.mui .jv-mDialog-wrapper.mui {
+  height: 100%;
+  min-height: inherit;
+  min-width: inherit;
+  margin: 0;
+  max-height: inherit;
+  max-width: inherit;
 }
 
 /* ------------------- */
@@ -2147,11 +2162,9 @@ textarea[readonly].jv-mInput-text.mui {
 /*  ------------------- */
 /*  11f. Select Input   */
 /*  ------------------- */
-.jv-mInputSelect.mui {
-  /* Nov 2022, redundant to text input and default mui styles
+.jv-mInputSelect.mui:not(.jv-mInputText) {
   display: flex;
-  flex-direction: column;
-  margin: 0 0 12px 0; */
+  margin: 0 0 12px 0;
 }
 
 .jv-mInput-select.mui {
@@ -2194,11 +2207,21 @@ textarea[readonly].jv-mInput-text.mui {
   line-height: 1.25;
 }
 
+/* small select input */
+.jv-mInputSmall.jv-mInputSelect.mui:not(.jv-mInputText) {
+  margin-bottom: 8px;
+}
+
 .jv-mInputSmall.mui .jv-mInput-select.mui {
   font-size: 12px;
   height: 22px;
   line-height: 22px;
   min-height: 22px;
+}
+
+/* large select input */
+.jv-mInputLarge.jv-mInputSelect.mui:not(.jv-mInputText) {
+  margin-bottom: 16px;
 }
 
 .jv-mInputLarge.mui .jv-mInput-select.mui {
@@ -2207,12 +2230,14 @@ textarea[readonly].jv-mInput-text.mui {
   min-height: 28px;
 }
 
-.jv-mInputSelect.mui .jv-MuiInputBase-root.Mui-focused > .jv-mInput-select.mui {
-  border: 1px solid $color-tciLight;
-} /* v5 upgrade */
-
+/* error state */
 .jv-mInputSelect.mui .jv-MuiInputBase-root.Mui-error > .jv-mInput-select.mui {
   border-color: $color-errorDark;
+} /* v5 upgrade */
+
+/* focused states */
+.jv-mInputSelect.mui .jv-MuiInputBase-root.Mui-focused > .jv-mInput-select.mui {
+  border: 1px solid $color-tciLight;
 } /* v5 upgrade */
 
 .jv-mInputSelect.mui
@@ -2221,8 +2246,47 @@ textarea[readonly].jv-mInput-text.mui {
   background-color: rgba(208, 2, 27, 0.1);
 } /* v5 upgrade */
 
+/*  --------------------------  */
+/*  11g. Select with Checkbox   */
+/*  --------------------------  */
+.jv-mChecklist.mui {
+}
+
+.jv-mChecklist-item.mui {
+  border-radius: 0;
+  cursor: pointer;
+  padding: 2px 12px;
+}
+
+/* sizes */
+// default and small checklists are the same, so no small rules are needed
+.jv-mChecklistLarge.mui .jv-mChecklist-item.mui {
+  padding: 4px 12px;
+  margin: 1px 0;
+}
+
+/* states */
+.jv-mChecklist-item.Mui-selected.mui {
+  background-color: #edf4fb;
+}
+
+.jv-mChecklist-item.Mui-selected.mui:hover {
+  background-color: #e3eefa;
+}
+
+/* focused states */
+.jv-mInput-select.Mui-focused.mui {
+  border-color: #1976d2;
+  border-width: 1px;
+}
+
+.jv-mChecklist-item.Mui-selected.mui:hover,
+.jv-mChecklist-item.Mui-selected.mui.Mui-focusVisible {
+  background-color: #e3eefa;
+}
+
 /*  ------------------  */
-/*  11g. Search Input   */
+/*  11h. Search Input   */
 /*  ------------------  */
 .jv-mInputSearch.mui,
 .jv-mInputSearch.jv-mInputSmall.mui,
@@ -2319,7 +2383,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------------------  */
-/*  11h. Autocomplete Input/Control   */
+/*  11i. Autocomplete Input/Control   */
 /*  --------------------------------  */
 .jv-mAutocomplete.mui {
   display: inline-block;
@@ -2352,7 +2416,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ------------------  */
-/*  11i. Browse Input   */
+/*  11j. Browse Input   */
 /*  ------------------  */
 .jv-mInputBrowse.mui {
   display: flex;
@@ -2417,7 +2481,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ------------------  */
-/*  11j. Switch Input   */
+/*  11k. Switch Input   */
 /*  ------------------  */
 .jv-mInputInline.jv-mInputSwitch.mui > label {
   display: flex;
@@ -2578,7 +2642,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------  */
-/*  11k. Buttons Input    */
+/*  11l. Buttons Input    */
 /*  --------------------  */
 /*  used for text formatting e.g. bold, italic, underline */
 .jv-mInputButtons.jv-mInputInline.mui {
@@ -2598,7 +2662,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  -----------------------------  */
-/*  11l. Checkbox & Radio Inputs   */
+/*  11m. Checkbox & Radio Inputs   */
 /*  -----------------------------  */
 .jv-mInputCheckbox.mui {
   margin-bottom: 16px;
@@ -2801,13 +2865,15 @@ textarea[readonly].jv-mInput-text.mui {
 /* ----------------- */
 /*  14. LISTBOX      */
 /* ----------------- */
-/* Listbox was initially created as a list for checkboxes in a drop-down menu.
-   We may want to consider changing the name of this component to Checklist */
+/* Listbox for MUI was initially created as a list that contains checkboxes in a drop-down
+   menu. We may want to consider changing this component to Checklist. See Checklist in
+   section 11g that was created for Select input with Checkbox in Sep 2024. */
 
-/* Listbox has historically been a basic bordered box that can hold a list of objects or a tree */
-/* This listbox can have an optional label and search box */
-/* This version of Listbox was created in May 2023 */
 .jv-mListbox.mui {
+}
+
+.jv-mListbox-option.mui {
+  margin: 1px 0;
 }
 
 .jv-mListbox-option.mui,
@@ -2820,12 +2886,7 @@ textarea[readonly].jv-mInput-text.mui {
 .jv-mListbox-option-label.mui {
 }
 
-/*.jv-mListbox-option-label.jv-MuiButtonBase-root.mui {
-  display: flex;
-} can't find this */
-
 /* large */
-.jv-mListboxLarge.mui .jv-mListbox-option,
 .jv-mListboxLarge.mui .jv-mInput-checkbox.mui {
   margin: 3px 0;
 }
@@ -2858,11 +2919,10 @@ textarea[readonly].jv-mInput-text.mui {
   color: #ffffff;
 }
 
-/*.jv-mListbox-option.mui .jv-MuiTouchRipple-child {
-  background-color: $color-tciMedium;
-}*/
+/* Listbox has historically been a basic bordered box that can hold a list of objects
+   or a tree, and it can have an optional label and search box. This version of Listbox
+   (below) was created in May 2023, and has no conflicts with the above version */
 
-/* 2023 Listbox version, no conflicts with earlier version */
 .jv-mListbox.mui {
   font-family: $font-family-primary;
   position: relative;
@@ -2881,13 +2941,14 @@ textarea[readonly].jv-mInput-text.mui {
 
 .jv-mListbox-content.mui {
   background-color: #ffffff;
-  border-color: #cccccc; /* remaining border rules controlled by variant=outline */
+  border-color: #dedede; /* remaining border rules controlled by variant=outline */
   border-radius: 2px;
-  height: auto;
-  min-height: 38px; /* not required, but is here for now; used for drop area in adhoc */
-  width: 100%;
   display: flex;
   flex-direction: column;
+  height: auto;
+  min-height: 38px; /* not required, but is here for now; used for drop area in adhoc */
+  overflow: auto;
+  width: 100%;
 } /* NEW MAY 2023 */
 
 /* States */
@@ -3737,7 +3798,7 @@ textarea[readonly].jv-mInput-text.mui {
   border-bottom-color: transparent;
 }
 
-/* attribue:value list table */
+/* attribute:value list table */
 .jv-mTableAttval.mui {
 }
 
@@ -4126,6 +4187,46 @@ textarea[readonly].jv-mInput-text.mui {
 /*  25. TREE       */
 /* --------------- */
 .jv-mTree.mui {
+  font-size: 13px;
+}
+
+.jv-mTree-node.mui {
+  gap: 2px;
+  margin-bottom: 1px;
+  padding: 0 4px;
+}
+
+.jv-mTree-node-toggle.mui {
+}
+
+.jv-mTree-node-toggle.mui > svg {
+  //font-size: 16px;
+  font-size: 1.231em;
+  fill: #01529a;
+}
+
+.jv-mTree-node-item.mui {
+  font-size: inherit;
+  padding-top: 2px;
+}
+
+.jv-mTree-node-item-icon.mui {
+  background-image: image-url("file_type_icons_sprite.svg");
+  background-position: 2px 0;
+  background-repeat: no-repeat;
+  font-size: inherit;
+  //background-size: 18px;
+  background-size: 1.384em;
+  //height: 18px;
+  margin-right: 4px;
+  //width: 20px;
+  height: 1.538em;
+  width: 1.538em;
+}
+
+.jv-mTree-node-item-label.mui {
+  font-size: inherit;
+  line-height: 1.846;
 }
 
 .jv-mTreeAdhoc.mui {
@@ -4876,10 +4977,10 @@ textarea[readonly].jv-mInput-text.mui {
   position: relative !important;
   transform: unset !important;
   width: 100% !important;
-} /* importants needed for v5 upgrade */
+} /* important needed for v5 upgrade */
 
 .jv-mDropdown-search + .jv-mDropdown-checklist .jv-mListbox {
-  padding-top: 0;
+  padding-top: 2px; /* prevents border radius from showing when item is focused or hovered */
 }
 
 /*  --------------------- */
@@ -5012,7 +5113,7 @@ textarea[readonly].jv-mInput-text.mui {
 /*  ---------------- */
 /*  28f. Layout      */
 /*  ---------------- */
-/*  Layout rules begine with jv-l instead of jv-m  */
+/*  Layout rules begin with jv-l instead of jv-m  */
 .jv-lColumns {
   align-items: stretch;
   display: flex;
@@ -5028,9 +5129,36 @@ textarea[readonly].jv-mInput-text.mui {
   flex: 0 1 auto;
 }
 
-.jv-lColumn {
-  background-color: lemonchiffon;
+/* Single column */
+.jr-lColumn {
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.jr-lColumn-body {
+  flex: 1 1 auto;
+}
+
+.jr-lColumn-header,
+.jr-lColumn-footer {
+  align-items: center;
+  display: flex;
   flex: 0 1 auto;
+  flex-direction: row;
+  min-height: 40px;
+}
+
+.jr-lColumn-header {
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+}
+
+.jr-lColumn-footer {
+  border-bottom-right-radius: inherit;
+  border-bottom-left-radius: inherit;
 }
 
 /*  ------------------ */
@@ -5132,7 +5260,7 @@ textarea[readonly].jv-mInput-text.mui {
   width: 40px;
 }
 
-.jv-mTitlbebar-subtitle.mui {
+.jv-mTitlebar-subtitle.mui {
 }
 
 /* ---------------- */
@@ -5308,28 +5436,28 @@ textarea[readonly].jv-mInput-text.mui {
 /*  ----------------- */
 .jv-uBackgroundGrey-02 {
   background-color: $grey-2 !important;
-} /* fafafa */
+} /* #fafafa */
 .jv-uBackgroundGrey-03 {
   background-color: $grey-3 !important;
-} /* f7f7f7 */
+} /* #f7f7f7 */
 .jv-uBackgroundGrey-04 {
   background-color: $grey-4 !important;
-} /* f4f4f4 */
+} /* #f4f4f4 */
 .jv-uBackgroundGrey-08 {
   background-color: $grey-8 !important;
-} /* ebebeb */
+} /* #ebebeb */
 .jv-uBackgroundGrey-10 {
   background-color: $grey-10 !important;
-} /* e4e4e4 */
+} /* #e4e4e4 */
 .jv-uBackgroundGrey-16 {
   background-color: $grey-16 !important;
-} /* d6d6d6 */
+} /* #d6d6d6 */
 .jv-uBackgroundGrey-20 {
   background-color: $grey-20 !important;
-} /* cccccc */
+} /* #cccccc */
 .jv-uBackgroundGrey-29 {
   background-color: $grey-29 !important;
-} /* b5b5b5 */
+} /* #b5b5b5 */
 
 .jv-uBackgroundErrorLight {
   background-color: $color-errorLighter !important;
@@ -5357,6 +5485,12 @@ textarea[readonly].jv-mInput-text.mui {
 }
 .jv-uOverflow-show {
   overflow: visible !important;
+}
+.jv-uFlex-major {
+  flex: 1 1 auto;
+}
+.jv-uFlex-minor {
+  flex: 0 1 auto;
 }
 
 /*  --------------------------- */

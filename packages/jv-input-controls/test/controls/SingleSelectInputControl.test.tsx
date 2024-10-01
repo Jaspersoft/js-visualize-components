@@ -48,11 +48,12 @@ describe("SingleSelectInputControl tests", () => {
     await act(async () => {
       userEvent.click(inputElement);
     });
-    const menuElement = document.querySelectorAll("ul.MuiList-root");
-    const opts = document.querySelectorAll("ul.MuiList-root li");
-    expect(menuElement.length).toBe(1);
+    const menuElement = await screen.findByRole("listbox");
+    const opts = await screen.findAllByRole("option");
+    expect(menuElement).toBeInTheDocument();
     expect(opts.length).toBe(1);
   });
+
   it("should contain two options when given two options", async () => {
     await act(async () => {
       render(
@@ -74,9 +75,9 @@ describe("SingleSelectInputControl tests", () => {
     await act(async () => {
       userEvent.click(inputElement);
     });
-    const menuElement = document.querySelectorAll("ul.MuiList-root");
-    const opts = document.querySelectorAll("ul.MuiList-root li");
-    expect(menuElement.length).toBe(1);
+    const menuElement = await screen.findByRole("listbox");
+    const opts = await screen.findAllByRole("option");
+    expect(menuElement).toBeInTheDocument();
     expect(opts.length).toBe(2);
   });
 });

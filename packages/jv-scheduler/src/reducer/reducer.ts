@@ -14,6 +14,7 @@ import {
   SCHEDULE_ERROR_OCCURRED,
   SET_STEPPER_CONFIG,
   SET_VISUALIZE_DATA,
+  SET_PARAMETERS_TAB_LOADING,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -97,10 +98,6 @@ export const rootReducer = (
         tabsConfiguration: action.payload?.tabsConfiguration,
       };
     case SET_VISIBLE_FIELDS:
-      console.log({
-        ...state.fieldsVisibility,
-        ...action.payload?.fieldsVisibility,
-      });
       return {
         ...state,
         fieldsVisibility: {
@@ -118,11 +115,11 @@ export const rootReducer = (
         ...state,
         visualize: action.payload.visualize,
       };
-    // case SET_USER_LOCALE:
-    //     return {
-    //         ...state,
-    //         userLocale: action.payload.userLocale
-    //     }
+    case SET_PARAMETERS_TAB_LOADING:
+      return {
+        ...state,
+        parametersTabLoading: action.payload.parametersTabConfig,
+      };
     default:
       return state;
   }

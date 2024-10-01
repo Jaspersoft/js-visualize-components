@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { JVButton } from "@jaspersoft/jv-ui-components";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allTabValidationError, createScheduleJob } from "../../actions/action";
+import { translationProps } from "../../types/scheduleType";
+import { IState } from "../../types/scheduleType";
+import i18nScheduler from "../../i18n";
 
 const SchedulerFooter = () => {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const [isCreateBtnDisabled, setCreateBtnDisability] = useState(false);
+  const scheduleConfig = useSelector(
+    (state: IState) => state.schedulerUIConfig,
+  );
   const dispatch = useDispatch();
+  const parametersTabLoading = useSelector(
+    (state: IState) => state.parametersTabLoading,
+  );
+
+  useEffect(() => {
+    const { isError, isLoaded } = parametersTabLoading;
+    if (isError || !isLoaded) {
+      setCreateBtnDisability(true);
+    } else {
+      setCreateBtnDisability(false);
+    }
+  }, [parametersTabLoading]);
 
   const handleCreateScheduleAPI = (isError: boolean) => {
     const enableCreateButton = () => setCreateBtnDisability(false);
@@ -16,6 +36,7 @@ const SchedulerFooter = () => {
     } else {
       dispatch(createScheduleJob(enableCreateButton));
     }
+    scheduleConfig?.events?.scheduleBtnClick?.();
   };
   const handleCreateSchedule = () => {
     setCreateBtnDisability(true);
@@ -33,7 +54,12 @@ const SchedulerFooter = () => {
         >
           {t("create.schedule.button")}
         </JVButton>
-        <JVButton variant="contained">{t("cancel.button")}</JVButton>
+        <JVButton
+          variant="contained"
+          onClick={() => scheduleConfig?.events?.cancelBtnClick?.()}
+        >
+          {t("cancel.button")}
+        </JVButton>
       </div>
     </>
   );

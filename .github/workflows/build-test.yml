@@ -2,21 +2,18 @@ name: Install and run Tests
 
 on:
   push:
-      branches: [ "main" ]
   pull_request:
-      branches: [ "main" ]
 
 jobs:
   build:
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-      strategy:
-        matrix:
-          node-version: [ 20.x ]
+    strategy:
+      matrix:
+        node-version: [20.x]
 
-      steps:
+    steps:
       - uses: actions/checkout@v4
-
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -30,7 +27,7 @@ jobs:
       - name: Build All
         run: |
           yarn workspaces run build
-        
+
       - name: Test All
         run: |
           yarn workspaces run test
