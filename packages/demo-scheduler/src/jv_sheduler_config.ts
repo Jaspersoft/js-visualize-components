@@ -10,7 +10,7 @@ const schedulerUIConfig = {
     tabsData: {
       schedule: {
         // name of the schedule: required in config
-        label: { value: "test" },
+        label: { value: "aa" },
         description: {
           value: "description test 1",
           showField: true,

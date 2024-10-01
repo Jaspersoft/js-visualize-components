@@ -320,4 +320,8 @@ export const validationMessages = {
   "error.folder.uri.required": "Folder uri should not be empty.",
   "error.report.schedule.output.folder.resourceuri.format":
     "The scheduled job output folder contains invalid characters.",
+  "error.notifications.email.empty":
+    "Email address should not be empty.Please one or more email addresses.",
+  "error.report.schedule.output.folder.notwriteable":
+    "The scheduled job output folder has restricted access.",
 };

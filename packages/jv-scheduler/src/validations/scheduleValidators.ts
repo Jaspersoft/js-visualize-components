@@ -131,7 +131,7 @@ export const validator = (
       break;
     case ERROR_FIELDS.EMAIL_ADDRESS:
       if (isFieldEmpty(propVal)) {
-        schedulerPropError = "notifications.send.schedule.to.helper.text";
+        schedulerPropError = "error.notifications.email.empty";
       } else if (!validateEmail(propName, propVal)) {
         schedulerPropError = "error.email.address";
       }
