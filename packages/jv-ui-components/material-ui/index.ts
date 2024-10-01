@@ -126,6 +126,7 @@ export { ListItemText as JVListItemText } from "./List/ListItemText";
 export { SelectItem as JVSelectItem } from "./MenuItem/SelectItem";
 export type { SelectItemProps as JVSelectItemProps } from "./MenuItem/SelectItem";
 export { Select as JVSelect } from "./Select/Select";
+export { MultiSelect as JVMultiSelect } from "./MultiSelect/MultiSelect";
 export {
   Message as JVMessage,
   TypeToClass as JVTypeToClass,
