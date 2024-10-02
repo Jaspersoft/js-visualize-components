@@ -9,7 +9,7 @@ import {
 } from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
-  BaseInputControlProps,
+  InputControlProperties,
   VisualizeClient,
   VisualizeFactory,
   visualizejsLoader,
@@ -33,7 +33,8 @@ function App() {
   const [vContainer, setVContainer] = useState(
     null as { v: VisualizeClient } | null,
   );
-  const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
+  const [controlBuffer, setControlBuffer] =
+    useState<InputControlProperties[]>();
   const [vReport, setVReport] = useState<any>();
 
   useEffect(() => {

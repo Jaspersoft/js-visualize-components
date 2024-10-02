@@ -1,13 +1,13 @@
 import { JVDateTimeTextField } from "@jaspersoft/jv-ui-components";
 import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
-import { BaseInputControlProps } from "@jaspersoft/jv-tools";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
 
 export type DateICType = "default";
 
-export interface DateTextFieldICProps extends BaseInputControlProps {
+export interface DateTextFieldICProps extends InputControlProperties {
   variant?: "standard" | "filled" | "outlined" | undefined;
   className?: string;
   disabled?: boolean;

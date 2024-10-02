@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
 import { checkIfNumber, verifyLimit } from "../../utils/NumberUtils";
-import { BaseInputControlProps } from "@jaspersoft/jv-tools";
-import { getBaseInputControlProps } from "../BaseInputControl";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
+import { getInputControlProperties } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
 
 interface UseNumberErrorMsgProps {
   textValue: string;
-  props?: BaseInputControlProps;
+  props?: InputControlProperties;
 }
 
 export const useNumberErrorMsg = ({
@@ -27,7 +27,7 @@ export const useNumberErrorMsg = ({
     let theMsg: string;
     if (isError) {
       theMsg = "Specify a valid value for type number.";
-      props?.events?.change?.(getBaseInputControlProps(props, textValue), {
+      props?.events?.change?.(getInputControlProperties(props, textValue), {
         [props.id]: theMsg,
       });
       setMsg(theMsg);
@@ -76,7 +76,7 @@ export const useNumberErrorMsg = ({
       theMsg = checkMin.helperText;
     }
     // also, we have to trigger the callback because there was an error
-    props?.events?.change?.(getBaseInputControlProps(props, textValue), {
+    props?.events?.change?.(getInputControlProperties(props, textValue), {
       [props.id]: theMsg,
     });
     setMsg(theMsg);

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { verifyDateLimit } from "../../utils/DateInputControlUtils";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
-import { BaseInputControlProps } from "@jaspersoft/jv-tools";
-import { getBaseInputControlProps } from "../BaseInputControl";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
+import { getInputControlProperties } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
 
 interface UseMandatoryMsgProps {
   textValue: string | string[];
   defaultValue?: string;
-  props?: BaseInputControlProps;
+  props?: InputControlProperties;
   minAndMaxDate?: { [key: string]: string };
 }
 
@@ -90,7 +90,7 @@ export const useErrorMsg = ({
     }
 
     // also, we have to trigger the callback because there was an error
-    props?.events?.change?.(getBaseInputControlProps(props, textValue), {
+    props?.events?.change?.(getInputControlProperties(props, textValue), {
       [props.id]: msg,
     });
   }, [textValue]);

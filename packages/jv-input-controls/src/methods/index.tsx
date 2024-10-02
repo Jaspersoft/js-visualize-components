@@ -4,7 +4,7 @@
  * in the license file that is distributed with this file.
  */
 
-import { BaseInputControlProps, VisualizeClient } from "@jaspersoft/jv-tools";
+import { InputControlProperties, VisualizeClient } from "@jaspersoft/jv-tools";
 import { InputControlCollection } from "../controls/BaseInputControl";
 import { createRoot } from "react-dom/client";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
@@ -19,7 +19,7 @@ export const fillControlStructure = (
 ) => {
   vObject.inputControls({
     resource: uri,
-    success: (data: BaseInputControlProps) => {
+    success: (data: InputControlProperties) => {
       if (callbackFn) {
         callbackFn({ data });
       }

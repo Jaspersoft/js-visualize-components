@@ -4,7 +4,7 @@ import {
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
 import {
-  BaseInputControlProps,
+  InputControlProperties,
   InputControlValidationRule,
 } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
@@ -13,7 +13,7 @@ import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
 export type DatePickerICType = "material";
 
-export interface DateICProps extends BaseInputControlProps {
+export interface DateICProps extends InputControlProperties {
   className?: string;
   views?: Array<"year" | "month" | "day">;
   disabled?: boolean;

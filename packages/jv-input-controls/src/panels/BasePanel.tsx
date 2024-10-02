@@ -1,6 +1,6 @@
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { JSX, useState } from "react";
-import { BaseInputControlProps } from "@jaspersoft/jv-tools";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { PanelContext } from "../controls/contexts/PanelContext";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
@@ -28,7 +28,7 @@ export interface BasePanelProps {
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
-  const [inputControls, setInputControls] = useState<BaseInputControlProps[]>(
+  const [inputControls, setInputControls] = useState<InputControlProperties[]>(
     props.controls?.data,
   );
   const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
@@ -39,17 +39,17 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   }>({});
 
   const buildLatestJSON = (
-    ctrlUpdated: BaseInputControlProps,
+    ctrlUpdated: InputControlProperties,
     resultValidation?: { [key: string]: string },
   ) => {
     const inputControlsUpdated = inputControls?.reduce(
       (
         acc: {
-          state: BaseInputControlProps[];
+          state: InputControlProperties[];
           response: { [key: string]: any[] };
           invalidResponse: { [key: string]: any };
         },
-        ctrl: BaseInputControlProps,
+        ctrl: InputControlProperties,
       ) => {
         const theValidationResult = resultValidation?.[ctrl.id];
         const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
@@ -221,7 +221,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     if (controlMap?.data) {
       return (
         controlMap.data.filter(
-          (c: BaseInputControlProps) =>
+          (c: InputControlProperties) =>
             (c.slaveDependencies && c.slaveDependencies.length > 0) ||
             (c.masterDependencies && c.masterDependencies.length > 0),
         ).length > 0
