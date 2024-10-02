@@ -3,6 +3,8 @@ import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
 import { JVMultiSelect } from "@jaspersoft/jv-ui-components";
 
+export type MultiSelectICType = "multiSelect";
+
 export const MultiSelectInputControl = (props: any): JSX.Element => {
   const liveState = useLiveState([]);
   const controlClasses = useControlClasses([], props);

@@ -13,6 +13,8 @@ import { TimePickerICType } from "./controls/TimePickerInputControl";
 import { TimeICType } from "./controls/TimePickerTextFieldInputControl";
 import BasePanel from "./panels/BasePanel";
 import { fillControlStructure } from "./methods";
+import { MultiSelectICType } from "./controls/MultiSelectInputControl";
+import { SingleSelectICType } from "./controls/SingleSelectInputControl";
 
 export interface InputControlUserConfig {
   bool?: {
@@ -32,6 +34,12 @@ export interface InputControlUserConfig {
   };
   singleValueTime?: {
     type: TimeICType | TimePickerICType;
+  };
+  singleSelect?: {
+    type: SingleSelectICType;
+  };
+  multiSelect?: {
+    type: MultiSelectICType;
   };
 }
 

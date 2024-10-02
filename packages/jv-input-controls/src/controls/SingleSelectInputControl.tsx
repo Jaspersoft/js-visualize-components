@@ -6,6 +6,7 @@ import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
 
 export interface SingleSelectInputControlProps extends BaseInputControlProps {}
+export type SingleSelectICType = "singleSelect";
 
 export function SingleSelectInputControl(
   props: SingleSelectInputControlProps,
