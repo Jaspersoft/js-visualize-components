@@ -1,11 +1,10 @@
-import { BaseInputControlProps } from "@jaspersoft/jv-input-controls";
-import { VisualizeType } from "@jaspersoft/jv-tools";
+import { InputControlProperties, VisualizeClient } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 
 interface ReportPanelProps {
   reportUri?: string;
-  vObject?: VisualizeType;
-  controlState?: BaseInputControlProps[];
+  vObject?: VisualizeClient;
+  controlState?: InputControlProperties[];
 }
 
 export default function ReportPanel(props: ReportPanelProps) {

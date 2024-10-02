@@ -3,14 +3,17 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import { BaseInputControlProps, ICValidationRule } from "./BaseInputControl";
+import {
+  InputControlProperties,
+  InputControlValidationRule,
+} from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
 export type DatePickerICType = "material";
 
-export interface DateICProps extends BaseInputControlProps {
+export interface DateICProps extends InputControlProperties {
   className?: string;
   views?: Array<"year" | "month" | "day">;
   disabled?: boolean;
@@ -18,7 +21,7 @@ export interface DateICProps extends BaseInputControlProps {
 
 export const DatePickerInputControl = (props: DateICProps) => {
   let dateFormat = getDateFormatIfAny(
-    props.validationRules as ICValidationRule[],
+    props.validationRules as InputControlValidationRule[],
     "YYYY-MM-DD",
   ).toUpperCase();
 

@@ -1,6 +1,6 @@
 {
   "name": "@jaspersoft/jv-scheduler",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -48,8 +48,8 @@
     "vite-plugin-ts": "^1.3.2-1"
   },
   "dependencies": {
-    "@jaspersoft/jv-input-controls": "1.0.0",
-    "@jaspersoft/jv-ui-components": "1.0.0",
+    "@jaspersoft/jv-input-controls": "^0.1.0",
+    "@jaspersoft/jv-ui-components": "^0.1.0",
     "axios": "^1.7.2",
     "moment": "^2.30.1",
     "re-resizable": "^6.9.17",

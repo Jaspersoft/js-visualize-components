@@ -1,3 +1,6 @@
+import { InputControlProperties } from "./src/input-controls";
+export * from "./src/input-controls";
+
 export type Authentication = {
   url?: string;
   name?: string;
@@ -82,7 +85,7 @@ export type VisualizeFactoryConfig = {
 export type VisualizeFactory = {
   (
     params: VisualizeFactoryConfig,
-    success: (v: VisualizeType) => void,
+    success: (v: VisualizeClient) => void,
     error: (err: any) => void,
   ): void;
   noConflict(): VisualizeFactory;
@@ -101,12 +104,13 @@ export type VisualizeGenericError = {
 
 export type VisualizationConfig = {
   resource: string;
-  container: string;
+  container?: string;
+  success?: (data: InputControlProperties) => void;
   error?: (error: VisualizeGenericError) => void;
   events?: any;
 };
 
-export interface VisualizeType {
+export interface VisualizeClient {
   resourcesSearch: (config: ResourcesSearch) => any;
   logout(): Deferred;
   report: (config: VisualizationConfig) => any;

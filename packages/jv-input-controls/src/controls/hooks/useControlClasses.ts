@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { BaseInputControlProps } from "../BaseInputControl";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 
 export function useControlClasses(
   initialClasses: string[],
-  props: BaseInputControlProps,
+  props: InputControlProperties,
 ) {
   const INVISIBLE_CLASS = "jv-uVisibility-hide";
   const MANDATORY_CLASS = "jv-mInputRequired";

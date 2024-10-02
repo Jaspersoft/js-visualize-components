@@ -1,12 +1,12 @@
 import { JVTextField } from "@jaspersoft/jv-ui-components";
-import { BaseInputControlProps } from "./BaseInputControl";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { useNumberErrorMsg } from "./hooks/useNumberErrorMsgs";
 
 export type NumberICType = "number";
 
-export interface NumberICProps extends BaseInputControlProps {
+export interface NumberICProps extends InputControlProperties {
   variant?: "standard" | "filled" | "outlined" | undefined;
   className?: string;
 }

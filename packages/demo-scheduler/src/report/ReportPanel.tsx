@@ -1,9 +1,9 @@
-import { VisualizeType } from "@jaspersoft/jv-tools";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
 import { useEffect } from "react";
 
 interface ReportPanelProps {
   resourceURI?: string;
-  vObject?: VisualizeType;
+  vObject?: VisualizeClient;
 }
 
 export default function ReportPanel(props: ReportPanelProps) {
