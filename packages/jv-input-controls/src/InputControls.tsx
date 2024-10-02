@@ -35,7 +35,7 @@ export interface InputControlUserConfig {
 }
 
 export interface InputControlPanelConfig {
-  success?: () => void;
+  success?: (controls: any) => void;
   error?: (error: any) => void;
   exclude?: string[];
   config?: InputControlUserConfig;
@@ -57,8 +57,8 @@ export class InputControls {
 
   public fillControlStructure = (
     uri: string,
-    callbackFn?: Function,
-    callbackErrorFn?: Function,
+    callbackFn?: (controls: any) => void,
+    callbackErrorFn?: (error: any) => void,
   ) => {
     this.viz.inputControls({
       resource: uri,
@@ -99,9 +99,9 @@ export class InputControls {
               />
             </JVStylesProvider>,
           );
-          icPanelDef?.success && icPanelDef?.success.call(null);
+          icPanelDef?.success && icPanelDef?.success.call(self, controls);
         } catch (e) {
-          icPanelDef?.error && icPanelDef?.error.call(null, e);
+          icPanelDef?.error && icPanelDef?.error.call(self, e);
         }
       },
       (e: any) => {
@@ -142,12 +142,11 @@ export function InputControlsPanel(props: ICPanelProps) {
       props.uri,
       (controls: InputControlCollection) => {
         setEmbedControls(controls);
+        props.panelDef?.success?.call(self, controls);
       },
-      props.handleError === undefined
-        ? (error: any) => {
-            console.log("Error filling controls: ", error);
-          }
-        : props.handleError,
+      (e: any) => {
+        props.panelDef?.error?.call(self, e);
+      },
     );
   }, [embedPlugin]);
 
