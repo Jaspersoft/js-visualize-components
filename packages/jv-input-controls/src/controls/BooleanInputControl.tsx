@@ -4,14 +4,14 @@ import {
   JVSwitch,
 } from "@jaspersoft/jv-ui-components";
 import * as React from "react";
-import { BaseInputControlProps } from "@jaspersoft/jv-tools";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useChangeCallback } from "./hooks/useChangeCallback";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 
 export type BoolICType = "switch" | "checkbox";
 
-export interface BooleanInputControlProps extends BaseInputControlProps {
+export interface BooleanInputControlProps extends InputControlProperties {
   styleType?: BoolICType;
 }
 

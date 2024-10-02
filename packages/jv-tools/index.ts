@@ -1,4 +1,4 @@
-import { BaseInputControlProps } from "./src/input-controls";
+import { InputControlProperties } from "./src/input-controls";
 export * from "./src/input-controls";
 
 export type Authentication = {
@@ -105,7 +105,7 @@ export type VisualizeGenericError = {
 export type VisualizationConfig = {
   resource: string;
   container?: string;
-  success?: (data: BaseInputControlProps) => void;
+  success?: (data: InputControlProperties) => void;
   error?: (error: VisualizeGenericError) => void;
   events?: any;
 };

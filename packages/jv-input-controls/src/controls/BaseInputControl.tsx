@@ -1,7 +1,7 @@
-import { BaseInputControlProps } from "@jaspersoft/jv-tools";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 
-export const getBaseInputControlProps = (
-  ic: BaseInputControlProps,
+export const getInputControlProperties = (
+  ic: InputControlProperties,
   updatedStateValue: any,
 ) => {
   return {
@@ -21,5 +21,5 @@ export const getBaseInputControlProps = (
 };
 
 export interface InputControlCollection {
-  inputControl: BaseInputControlProps[];
+  inputControl: InputControlProperties[];
 }

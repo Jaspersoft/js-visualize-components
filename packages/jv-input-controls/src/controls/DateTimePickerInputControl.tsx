@@ -3,14 +3,14 @@ import {
   getDateFormatIfAny,
   getMinAndMaxSettings,
 } from "../utils/DateInputControlUtils";
-import { BaseInputControlProps } from "@jaspersoft/jv-tools";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 
 export type DateTimePickerICType = "material";
 
-export interface DateTimeICProps extends BaseInputControlProps {
+export interface DateTimeICProps extends InputControlProperties {
   className?: string;
   views?: Array<"year" | "month" | "day" | "hours" | "minutes" | "seconds">;
   disabled?: boolean;

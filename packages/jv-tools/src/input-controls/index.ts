@@ -69,7 +69,7 @@ export type InputControlType =
   | "multiSelectCheckbox"
   | undefined;
 
-export interface BaseInputControlProps {
+export interface InputControlProperties {
   id: string;
   type: InputControlType;
   label: string;
@@ -85,7 +85,7 @@ export interface BaseInputControlProps {
   slaveDependencies?: string[];
   events?: {
     change: (
-      ic: BaseInputControlProps,
+      ic: InputControlProperties,
       validationResult?: { [key: string]: string },
     ) => void;
   };
