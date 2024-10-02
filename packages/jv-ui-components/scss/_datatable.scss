@@ -1,25 +1,4 @@
-/*!
- * Copyright (C) 2005 - 2023 TIBCO Software Inc. All rights reserved.
- * http://www.jaspersoft.com.
- *
- * Unless you have purchased a commercial license agreement from Jaspersoft,
- * the following license terms apply:
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/* --------------------------------------------------
+/*! --------------------------------------------------
    TABLE OF CONTENTS
 
     1. DATA TABLE
@@ -62,6 +41,7 @@
 
 .jv-mDatatable-body.jv {
 }
+
 .jv-mDatatable-row.jv {
 }
 
@@ -137,6 +117,7 @@
   line-height: 1.273em;
   padding-top: em(5px);
 }
+
 // Firefox-specific
 @-moz-document url-prefix() {
   .jv-mDatatable-cell-currency.jv,
@@ -201,10 +182,13 @@
 // class names below are used contextually in body and/or header
 .jv-mDatatable-cellRowlabel.jv {
 }
+
 .jv-mDatatable-cellField.jv {
 }
+
 .jv-mDatatable-cellMeasure.jv {
 }
+
 .jv-mDatatable-cellValue.jv {
 }
 
@@ -279,7 +263,9 @@
 
 .jv-mDatatableCrosstab.jv .jv-mDatatable-header.jv .jv-mDatatable-cell-text.jv {
   display: inline-block;
-} /* text and sort icon (below) both need inline-block to display correctly */
+}
+
+/* text and sort icon (below) both need inline-block to display correctly */
 
 .jv-mDatatableCrosstab.jv .jv-mDatatable-header.jv .jv-mDatatable-cell-sort.jv {
   display: inline-block;
@@ -342,7 +328,9 @@
   .jv-mDatatable-rowGroup.jv-mDatatable-rowEven.jv
   .jv-mDatatable-cellValue.jv:not([rowspan]) {
   background-color: #f4f4f4;
-} /* NEW Sept 2023 */
+}
+
+/* NEW Sept 2023 */
 
 .jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowMember.jv {
 }
@@ -353,8 +341,10 @@
 .jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowMemberLast.jv .jv-mDatatable-cellField.jv,
 .jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowMemberLast.jv .jv-mDatatable-cellMeasure.jv,
 .jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowGroup.jv .jv-mDatatable-cellTotal.jv:last-of-type,
-.jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowGroup.jv .jv-mDatatable-cellTotal.jv, /* New Sept 2023, for collapsed crosstab */
-.jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowMember.jv .jv-mDatatable-cellTotal.jv, //for nested crosstabs
+.jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowGroup.jv .jv-mDatatable-cellTotal.jv,
+/* New Sept 2023, for collapsed crosstab */
+.jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-rowMember.jv .jv-mDatatable-cellTotal.jv,
+//for nested crosstabs
 .jv-mDatatableCrosstab.jv .jv-mDatatable-rowValueLast.jv .jv-mDatatable-cellValue.jv {
   border-bottom: 1px solid #d4d4d4;
 }
@@ -372,10 +362,13 @@
   ).jv
   .jv-mDatatable-cellTotal.jv {
   border-bottom: 1px solid transparent;
-} /* NEW Sept 2023 */
+}
+
+/* NEW Sept 2023 */
 
 .jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-cellField.jv:last-of-type,
-.jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-cellMeasure.jv:last-of-type, //no border on inner-most cells
+.jv-mDatatableCrosstab.jv .jv-mDatatable-body.jv .jv-mDatatable-cellMeasure.jv:last-of-type,
+//no border on inner-most cells
 .jv-mDatatableCrosstab.jv .jv-mDatatable-cellValue.jv {
   border-bottom: 1px solid transparent;
 }
@@ -657,6 +650,7 @@
   0% {
     background-position: -400px;
   }
+
   100% {
     background-position: 0;
   }

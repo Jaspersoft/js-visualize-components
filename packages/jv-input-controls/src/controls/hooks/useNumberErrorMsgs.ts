@@ -6,6 +6,7 @@ import {
   getBaseInputControlProps,
 } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
+import { useTranslation } from "react-i18next";
 
 interface UseNumberErrorMsgProps {
   textValue: string;
@@ -16,8 +17,8 @@ export const useNumberErrorMsg = ({
   textValue,
   props,
 }: UseNumberErrorMsgProps) => {
+  const { t } = useTranslation() as { t: (k: string) => string };
   const [msg, setMsg] = useState<string>("");
-
   useEffectAfterInitial(() => {
     // Determine the message based on:
     // 1. whether the field is a number or not
@@ -44,10 +45,7 @@ export const useNumberErrorMsg = ({
       const regex = new RegExp(`${props.dataType.pattern}`);
       regex.lastIndex = 0;
       const isMatch = regex.test(textValue);
-      // TODO: we will need to translate this message once we add the i18n support:
-      theMsg = !isMatch
-        ? "This field does not match the required pattern."
-        : "";
+      theMsg = isMatch ? "" : t("error.not.matching.pattern");
     }
     const valAsNumber = +textValue;
     if (!theMsg.trim()) {

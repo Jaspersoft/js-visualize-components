@@ -1,8 +1,8 @@
 import { JVMessage, JVTypography, JVIcon } from "@jaspersoft/jv-ui-components";
-import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 export default function NotYetImplementedMessage() {
-  const { t } = useTranslation() as { t: (k: string) => string };
+  const t = i18n.t;
   return (
     <JVMessage
       type="error"

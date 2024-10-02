@@ -1,25 +1,4 @@
-/*!
- * Copyright (C) 2005 - 2022 TIBCO Software Inc. All rights reserved.
- * http://www.jaspersoft.com.
- *
- * Unless you have purchased a commercial license agreement from Jaspersoft,
- * the following license terms apply:
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/* =========================================
+/*! =========================================
     BUTTON MODULE STYLESHEET
 	Last modified date:     Oct 21, 2022
 	Last modified by:       Anna Leeg
@@ -251,7 +230,9 @@
 }
 
 .jv-mButtonToolPlain.jv {
-} // does not have state styling
+}
+
+// does not have state styling
 
 .jv-mButtonTool.jv > .jv-mButton-icon.jv {
   font-size: 16px; // new base font size
@@ -610,18 +591,24 @@
 .jv-mButtonError.jv:focus,
 .jv-mButtonError.jv:hover {
   background-color: $color-errorDark;
-} //broken
+}
+
+//broken
 
 .jv-mButtonError.jv[disabled]:hover,
 .jv-mButtonError.jv-isHovered[disabled].jv {
   background-color: $color-errorMedium;
-} //broken
+}
+
+//broken
 
 .jv-mButtonAttention.jv-isHovered.jv,
 .jv-mButtonAttention.jv:focus,
 .jv-mButtonAttention.jv:hover {
   background-color: $color-attentionDark;
-} //broken
+}
+
+//broken
 
 .jv-mButtonAttention.jv[disabled]:hover,
 .jv-mButtonAttention.jv-isHovered[disabled].jv {

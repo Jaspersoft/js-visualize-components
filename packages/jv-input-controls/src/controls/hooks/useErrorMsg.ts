@@ -6,6 +6,7 @@ import {
   getBaseInputControlProps,
 } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
+import i18n from "../../i18n";
 
 interface UseMandatoryMsgProps {
   textValue: string | string[];
@@ -20,6 +21,7 @@ export const useErrorMsg = ({
   props,
   minAndMaxDate,
 }: UseMandatoryMsgProps) => {
+  const t = i18n.t;
   const [msg, setMsg] = useState<string>(defaultValue);
 
   const validateTextValue = (textToValidate: string): string => {
@@ -32,10 +34,7 @@ export const useErrorMsg = ({
       const regex = new RegExp(props.dataType.pattern);
       regex.lastIndex = 0;
       const isMatch = regex.test(textToValidate);
-      // TODO: we will need to translate this message once we add the i18n support:
-      theMsg = !isMatch
-        ? "This field does not match the required pattern."
-        : "";
+      theMsg = isMatch ? "" : t("error.not.matching.pattern");
     }
     let isError = false;
     if (!theMsg.trim() && minAndMaxDate) {
