@@ -25,7 +25,7 @@ export const Select = forwardRef((props: any, ref) => {
   return (
     <TextField
       {...otherProps}
-      defaultValue={value}
+      value={value}
       id={id}
       label={label}
       select

@@ -8,6 +8,7 @@ import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextField
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
+import { MultiSelectInputControl } from "../controls/MultiSelectInputControl";
 import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
@@ -50,12 +51,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         },
         ctrl: BaseInputControlProps,
       ) => {
-        const prevState = acc.response[ctrl.id] || [];
         const theValidationResult = resultValidation?.[ctrl.id];
         const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
         acc.state.push(ctrlToUse);
         if (theValidationResult !== undefined && theValidationResult !== "") {
-          // acc.invalidResponse[ctrlToUse.id] = theValidationResult;
           acc.invalidResponse = {
             ...acc.invalidResponse,
             [ctrlToUse.id]: theValidationResult,
@@ -64,10 +63,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           // this means that the validation result is empty, so we need to remove the key from the invalidResponse
           delete acc.invalidResponse[ctrlToUse.id];
         }
-        acc.response[ctrlToUse.id] =
-          ctrlToUse.type === "multiSelect"
-            ? [...prevState, ctrlToUse.state?.value]
-            : [ctrlToUse.state?.value];
+        acc.response[ctrlToUse.id] = [ctrlToUse.state?.value];
         return acc;
       },
       {
@@ -190,6 +186,15 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         />
       );
     }
+    if (control.type === "multiSelect") {
+      return (
+        <MultiSelectInputControl
+          {...theProps}
+          key={control.id}
+          validationRules={control.validationRules}
+        />
+      );
+    }
     if (control.type === "singleValueTime") {
       if (props.config?.singleValueTime?.type === "material") {
         return (
@@ -217,7 +222,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       return (
         controlMap.data.filter(
           (c: BaseInputControlProps) =>
-            c.type?.startsWith("multiSelect") ||
             (c.slaveDependencies && c.slaveDependencies.length > 0) ||
             (c.masterDependencies && c.masterDependencies.length > 0),
         ).length > 0

@@ -36,7 +36,7 @@ export interface InputControlUserConfig {
 }
 
 export interface InputControlConfig {
-  success?: () => void;
+  success?: (controls: any) => void;
   error?: (error: any) => void;
   config?: InputControlUserConfig;
   events?: {
@@ -50,8 +50,8 @@ export interface InputControlConfig {
 export const fillControlStructure = (
   vObject: VisualizeClient,
   uri: string,
-  callbackFn?: Function,
-  callbackErrorFn?: Function,
+  callbackFn?: (controls: any) => void,
+  callbackErrorFn?: (error: any) => void,
 ) => {
   vObject.inputControls({
     resource: uri,
@@ -89,7 +89,7 @@ export const renderInputControls = (
             />
           </JVStylesProvider>,
         );
-        icPanelDef?.success && icPanelDef?.success.call(null);
+        icPanelDef?.success && icPanelDef?.success.call(self, controls);
       } catch (e) {
         icPanelDef?.error && icPanelDef?.error.call(null, e);
       }
@@ -117,12 +117,11 @@ export function InputControls(props: InputControlProps) {
         props.uri,
         (controls: InputControlCollection) => {
           setEmbedControls(controls);
+          props.panelDef?.success?.call(self, controls);
         },
-        props.handleError === undefined
-          ? (error: any) => {
-              console.log("Error filling controls: ", error);
-            }
-          : props.handleError,
+        (e: any) => {
+          props.panelDef?.error?.call(self, e);
+        },
       );
     }
   }, [props.vObject]);
