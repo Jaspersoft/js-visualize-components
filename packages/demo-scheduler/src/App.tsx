@@ -122,7 +122,7 @@ function SchedulerApp() {
           />
           {isPanelOpen && (
             <Scheduler
-              visualize={visualize}
+              visualize={visualize.v}
               schedulerUIConfig={schedulerUIConfig}
               isPanelOpen={isPanelOpen}
             />
