@@ -272,6 +272,7 @@ export const ParametersStepUserInput = () => {
           title={"Parameters"}
         />
       ) : (
+        parameters &&
         Object.keys(parameters).map((key) => {
           return (
             <KeyValueTemplate
