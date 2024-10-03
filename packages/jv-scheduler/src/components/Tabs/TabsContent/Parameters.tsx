@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { InputControlsPanel } from "@jaspersoft/jv-input-controls";
+import { InputControls } from "@jaspersoft/jv-input-controls";
 import i18nScheduler from "../../../i18n";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useTranslation } from "react-i18next";
@@ -66,7 +66,7 @@ const Parameters = () => {
   return (
     <>
       <JVTypographyComponent text={t("parameters.title")} />
-      <InputControlsPanel
+      <InputControls
         vObject={visualize.v}
         uri={resourceUri}
         panelDef={panelD}

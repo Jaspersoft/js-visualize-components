@@ -1,11 +1,12 @@
 {
   "name": "js-visualize-plugins",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Plugins for Visualize.JS",
   "workspaces": {
     "packages": [
       "packages/jv-ui-components",
+      "packages/jv-tools",
       "packages/jv-input-controls",
       "packages/jv-scheduler",
       "packages/*"

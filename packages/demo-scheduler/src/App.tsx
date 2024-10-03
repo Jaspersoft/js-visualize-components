@@ -5,7 +5,7 @@ import {
   Authentication,
   VisualizeFactory,
   visualizejsLoader,
-  VisualizeType,
+  VisualizeClient,
 } from "@jaspersoft/jv-tools";
 import {
   // renderScheduler,
@@ -26,7 +26,7 @@ const credentials: Authentication = {
 
 function SchedulerApp() {
   const [visualize, setVisualize] = useState(
-    null as { v: VisualizeType } | null,
+    null as { v: VisualizeClient } | null,
   );
 
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -38,7 +38,7 @@ function SchedulerApp() {
         {
           auth: { ...credentials },
         },
-        (v: VisualizeType) => {
+        (v: VisualizeClient) => {
           setVisualize({ v });
         },
         (e: any) => {

@@ -1,19 +1,18 @@
-import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 // This line is necessary to setting up the styles
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
 import {
-  BaseInputControlProps,
-  InputControlPanelConfig,
+  InputControlConfig,
   InputControls,
-  InputControlsPanel,
+  renderInputControls,
 } from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
+  InputControlProperties,
+  VisualizeClient,
   VisualizeFactory,
   visualizejsLoader,
-  VisualizeType,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
@@ -31,62 +30,47 @@ const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
 function App() {
-  const [visualizeFactoryContainer, setVisualizeFactoryContainer] = useState(
-    null as { viz: VisualizeFactory } | null,
-  );
   const [vContainer, setVContainer] = useState(
-    null as { v: VisualizeType } | null,
+    null as { v: VisualizeClient } | null,
   );
-  const [plugin, setPlugin] = useState<InputControls>();
-  const [controlBuffer, setControlBuffer] = useState<BaseInputControlProps[]>();
+  const [controlBuffer, setControlBuffer] =
+    useState<InputControlProperties[]>();
   const [vReport, setVReport] = useState<any>();
+
   useEffect(() => {
     const loadVisualize = visualizejsLoader(visualizeUrl);
-    loadVisualize().then((visualizeFactory: VisualizeFactory) => {
-      setVisualizeFactoryContainer({ viz: visualizeFactory });
-    });
-  }, []);
-  useEffect(() => {
-    if (credentials && visualizeFactoryContainer) {
-      new Promise<VisualizeType>((resolve, reject) => {
-        visualizeFactoryContainer.viz(
+    console.log("Loading visualize.js...");
+    loadVisualize()
+      .then((visualizeFactory: VisualizeFactory) => {
+        // Connecting to JRS.
+        console.log("visualize.js loaded. Connecting to JRS...");
+        visualizeFactory(
           {
             auth: {
-              name: credentials.name,
-              password: credentials.password,
-              organization: credentials.organization || null,
+              ...credentials,
               locale: "en_US",
             },
           },
-          resolve,
-          reject,
+          (v: VisualizeClient) => {
+            console.log("Visualize client connected.");
+            setVContainer({ v });
+          },
+          (e: any) => {
+            console.log(String(e));
+          },
         );
       })
-        .then((v: VisualizeType) => {
-          setVContainer({ v });
-        })
-        .catch((e: any) => {
-          console.log(String(e));
-        });
-    }
-  }, [visualizeFactoryContainer]);
-
-  useEffect(() => {
-    if (vContainer && vContainer.v) {
-      setPlugin(new InputControls(vContainer.v));
-      const report = vContainer.v.report({
-        resource: singleSelectReportUri,
-        container: "#report-viewer",
+      .catch((error: Error) => {
+        console.log("Error loading visualize.js: ", error);
       });
-      setVReport(report);
-    }
-  }, [vContainer]);
+  }, []);
 
   useEffect(() => {
-    if (plugin === undefined) {
+    if (!vContainer || !vContainer.v) {
       return;
     }
-    plugin.renderControlPanel(
+    renderInputControls(
+      vContainer.v,
       reportUri,
       document.getElementById("basic-controls-section") as HTMLElement,
       {
@@ -115,7 +99,9 @@ function App() {
         },
       },
     );
-    plugin.renderControlPanel(
+
+    renderInputControls(
+      vContainer.v,
       singleSelectReportUri,
       document.getElementById("select-controls-section") as HTMLElement,
       {
@@ -133,7 +119,13 @@ function App() {
         },
       },
     );
-  }, [plugin]);
+
+    const report = vContainer.v.report({
+      resource: singleSelectReportUri,
+      container: "#report-viewer",
+    });
+    setVReport(report);
+  }, [vContainer]);
 
   const onClickSubmit = () => {
     if (vContainer?.v) {
@@ -143,7 +135,7 @@ function App() {
     }
   };
 
-  const panelD: InputControlPanelConfig = {
+  const panelD: InputControlConfig = {
     config: { bool: { type: "switch" } },
     events: {
       change: (ics: any, vs: any) => {
@@ -155,24 +147,43 @@ function App() {
 
   return (
     <>
-      <InputControlsPanel
+      <InputControls
         vObject={vContainer?.v}
         uri={reportUri}
         panelDef={panelD}
       />
-      <div id="basic-controls-section"></div>
-      <hr />
-      <div id="select-controls-section"></div>
-      <button id="change" type="button" onClick={onClickSubmit}>
-        Submit
-      </button>
-      <hr />
-      <ReportPanel
-        vObject={vContainer?.v}
-        reportUri={reportUri}
-        controlState={controlBuffer}
-      ></ReportPanel>
-      <div id="report-viewer"></div>
+      <div id="controls-demo-page">
+        <div className="jv-lColumns">
+          <div className="jv-lColumns-column jr-uWidth-300px">
+            <div className="jv-mPanel mui">
+              <div className="jv-mPanel-header jv-uPadding-lr-04 mui">
+                <h4 className="jr-mText jr-mPanel-header-title mui">
+                  Filter Report
+                </h4>
+              </div>
+
+              <div className="jv-mPanel-body jv-uPadding-04 mui">
+                <div id="basic-controls-section"></div>
+                <div id="select-controls-section"></div>
+              </div>
+
+              <div className="jv-mPanel-footer jv-uPadding-lr-04 mui">
+                <button id="change" type="button" onClick={onClickSubmit}>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="jv-lColumns-column jv-lColumns-columnMajor">
+            <ReportPanel
+              vObject={vContainer?.v}
+              reportUri={reportUri}
+              controlState={controlBuffer}
+            ></ReportPanel>
+            <div id="report-viewer"></div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

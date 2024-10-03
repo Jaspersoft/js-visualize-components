@@ -1,6 +1,6 @@
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { JSX, useState } from "react";
-import { BaseInputControlProps } from "../controls/BaseInputControl";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { PanelContext } from "../controls/contexts/PanelContext";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
@@ -8,6 +8,7 @@ import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextField
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
+import { MultiSelectInputControl } from "../controls/MultiSelectInputControl";
 import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
@@ -27,7 +28,7 @@ export interface BasePanelProps {
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
-  const [inputControls, setInputControls] = useState<BaseInputControlProps[]>(
+  const [inputControls, setInputControls] = useState<InputControlProperties[]>(
     props.controls?.data,
   );
   const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
@@ -38,24 +39,22 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   }>({});
 
   const buildLatestJSON = (
-    ctrlUpdated: BaseInputControlProps,
+    ctrlUpdated: InputControlProperties,
     resultValidation?: { [key: string]: string },
   ) => {
     const inputControlsUpdated = inputControls?.reduce(
       (
         acc: {
-          state: BaseInputControlProps[];
+          state: InputControlProperties[];
           response: { [key: string]: any[] };
           invalidResponse: { [key: string]: any };
         },
-        ctrl: BaseInputControlProps,
+        ctrl: InputControlProperties,
       ) => {
-        const prevState = acc.response[ctrl.id] || [];
         const theValidationResult = resultValidation?.[ctrl.id];
         const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
         acc.state.push(ctrlToUse);
         if (theValidationResult !== undefined && theValidationResult !== "") {
-          // acc.invalidResponse[ctrlToUse.id] = theValidationResult;
           acc.invalidResponse = {
             ...acc.invalidResponse,
             [ctrlToUse.id]: theValidationResult,
@@ -64,10 +63,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           // this means that the validation result is empty, so we need to remove the key from the invalidResponse
           delete acc.invalidResponse[ctrlToUse.id];
         }
-        acc.response[ctrlToUse.id] =
-          ctrlToUse.type === "multiSelect"
-            ? [...prevState, ctrlToUse.state?.value]
-            : [ctrlToUse.state?.value];
+        acc.response[ctrlToUse.id] = [ctrlToUse.state?.value];
         return acc;
       },
       {
@@ -190,6 +186,15 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         />
       );
     }
+    if (control.type === "multiSelect") {
+      return (
+        <MultiSelectInputControl
+          {...theProps}
+          key={control.id}
+          validationRules={control.validationRules}
+        />
+      );
+    }
     if (control.type === "singleValueTime") {
       if (props.config?.singleValueTime?.type === "material") {
         return (
@@ -216,8 +221,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     if (controlMap?.data) {
       return (
         controlMap.data.filter(
-          (c: BaseInputControlProps) =>
-            c.type?.startsWith("multiSelect") ||
+          (c: InputControlProperties) =>
             (c.slaveDependencies && c.slaveDependencies.length > 0) ||
             (c.masterDependencies && c.masterDependencies.length > 0),
         ).length > 0

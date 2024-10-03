@@ -1,11 +1,12 @@
 import { JVSelect } from "@jaspersoft/jv-ui-components";
 import React from "react";
-import { BaseInputControlProps } from "./BaseInputControl";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
 
-export interface SingleSelectInputControlProps extends BaseInputControlProps {}
+export interface SingleSelectInputControlProps extends InputControlProperties {}
+export type SingleSelectICType = "singleSelect";
 
 export function SingleSelectInputControl(
   props: SingleSelectInputControlProps,
@@ -19,6 +20,7 @@ export function SingleSelectInputControl(
   return (
     <JVSelect
       onChange={liveState.onChange}
+      defaultValue={""}
       label={props.label}
       id={props.id}
       key={props.id}

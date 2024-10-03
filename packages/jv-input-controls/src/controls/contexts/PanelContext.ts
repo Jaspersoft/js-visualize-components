@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { BaseInputControlProps } from "../BaseInputControl";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 
-export const PanelContext = createContext<BaseInputControlProps[]>([]);
+export const PanelContext = createContext<InputControlProperties[]>([]);
