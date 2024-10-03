@@ -12,6 +12,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "audit:runtime": "yarn audit --groups dependencies",
     "build": "vite build",
     "build-prod": "NODE_ENV=production vite build",
     "dev": "vite",

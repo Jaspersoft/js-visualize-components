@@ -10,6 +10,7 @@
     "dist"
   ],
   "scripts": {
+    "audit:runtime": "yarn audit --groups dependencies",
     "test": "jest",
     "build": "vite build",
     "clean": "rm -rf ./dist"
