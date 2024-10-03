@@ -24,6 +24,7 @@ const credentials: Authentication = {
 };
 
 const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
+// const reportUri = "/public/Samples/Reports/RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
@@ -92,7 +93,8 @@ function App() {
           },
         },
         params: {
-          ProductFamily: ["Drink"],
+          column_boolean_1: ["false"],
+          ProductFamily: ["Drink", "Food"],
         },
         events: {
           change: (ics, validationResult) => {

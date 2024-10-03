@@ -15,6 +15,7 @@ import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
 import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
+import { getDefaultValueFromProps } from "../utils/DefaultValueUtils";
 
 export interface BasePanelProps {
   controls?: any;
@@ -88,7 +89,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     }
   };
 
-  const getControlProps = (control: any) => {
+  const getControlProps = (
+    control: any,
+    params?: { [key: string]: string[] },
+  ) => {
     return {
       id: control.id,
       label: control.label,
@@ -97,17 +101,17 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       visible: control.visible,
       mandatory: control.mandatory,
       uri: control.uri,
-      state: control.state,
+      state: {
+        ...control.state,
+        value: getDefaultValueFromProps({ ...control, params }),
+      },
       events: {
         change: buildLatestJSON,
       },
     };
   };
   const buildControl = (control: any) => {
-    const theProps = {
-      ...getControlProps(control),
-      params: { ...props.params },
-    };
+    const theProps = getControlProps(control, props.params);
     if (control.type === "bool") {
       return (
         <BooleanInputControl

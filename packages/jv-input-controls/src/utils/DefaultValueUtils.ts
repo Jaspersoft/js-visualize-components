@@ -10,6 +10,20 @@ const isSelect = (props: InputControlProperties) => {
   return props.type === "multiSelect" || props.type === "singleSelect";
 };
 
+const getFirstDefaultValueOrArray = (
+  props: InputControlProperties & {
+    params?: { [key: string]: string[] };
+  },
+): undefined | boolean | string[] => {
+  if (!props || !props.params) {
+    return undefined;
+  }
+  if (props.type === "bool") {
+    return props.params?.[props.id]?.at(0) === "true";
+  }
+  return props.params?.[props.id];
+};
+
 /**
  * Get the default value from the properties. The default value will be determined as follows:
  * 1. Check if the "params" is defined in the properties
@@ -21,16 +35,19 @@ export const getDefaultValueFromProps = (
   props: InputControlProperties & {
     params?: { [key: string]: string[] };
   },
-): string | string[] => {
+): string | boolean | string[] => {
   let defaultValue;
-  if (props.params?.[props.id]) {
-    defaultValue = props.params[props.id];
+  if (props.params?.[props.id] !== undefined) {
+    defaultValue = getFirstDefaultValueOrArray(props);
   }
-  if (!defaultValue && props.state?.value) {
-    defaultValue = props.state?.value;
+  if (defaultValue === undefined && props.state?.value !== undefined) {
+    defaultValue =
+      props.type === "bool"
+        ? props.state?.value === "true"
+        : props.state?.value;
   }
-  if (defaultValue) {
+  if (defaultValue !== undefined) {
     return defaultValue;
   }
-  return isSelect(props) ? [] : "";
+  return isSelect(props) ? [] : props.type === "bool" ? false : "";
 };
