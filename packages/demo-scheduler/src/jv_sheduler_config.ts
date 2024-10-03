@@ -1,7 +1,7 @@
 import { SchedulerConfigProps } from "@jaspersoft/jv-scheduler";
 
 const schedulerUIConfig: SchedulerConfigProps = {
-  server: "http://localhost:8080/jasperserver-pro",
+  server: "https://localhost:8443/jasperserver-pro",
   contextPath: "/jasperserver-pro",
   resourceURI: "/public/Samples/Reports/9.CustomerDetailReport",
   stepper: {
