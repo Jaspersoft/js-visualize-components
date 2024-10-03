@@ -1,23 +1,30 @@
 import { forwardRef, JSX } from "react";
-import { Checkbox, ListItemText, OutlinedInput } from "@mui/material";
+import {
+  Checkbox as MuiCheckbox,
+  FormControl as MuiFormControl,
+  FormHelperText as MuiFormHelperText,
+  InputLabel as MuiInputLabel,
+  ListItemText as MuiListItemText,
+  OutlinedInput as MuiOutlinedInput,
+  Select as MuiSelect,
+} from "@mui/material";
 import { SelectItem } from "../MenuItem/SelectItem";
-import { Select } from "@mui/material";
-import { FormControl, InputLabel } from "@mui/material";
 
 export const MultiSelect = forwardRef((props: any, ref) => {
-  const { value, selected, id, label, ...otherProps } = props;
+  const { value, selected, id, label, className, error, ...otherProps } = props;
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
+  const isError = error?.trim().length > 0;
 
   const makeOption = (opt: any): JSX.Element => {
     return (
       <SelectItem key={opt.value} id={opt.value} value={opt.value}>
-        <Checkbox
+        <MuiCheckbox
           checked={
             value.indexOf(opt.value) > -1 || value.indexOf(opt.label) > -1
           }
         />
-        <ListItemText primary={opt.label} />
+        <MuiListItemText primary={opt.label} />
       </SelectItem>
     );
   };
@@ -26,20 +33,28 @@ export const MultiSelect = forwardRef((props: any, ref) => {
     return props.state?.options?.map((opt: any) => makeOption(opt)) || [];
   };
   return (
-    <FormControl className="jv-mInput jv-mInputLarge jv-mInputSelect mui">
-      <InputLabel id={label + "_label"} className="jv-mInput-label mui">
+    <MuiFormControl
+      className="jv-mInput jv-mInputLarge jv-mInputSelect mui"
+      error={isError}
+    >
+      <MuiInputLabel
+        id={id + "_label"}
+        className="jv-mInput-label mui"
+        error={isError}
+      >
         {label}
-      </InputLabel>
-      <Select
+      </MuiInputLabel>
+      <MuiSelect
         {...otherProps}
+        error={isError}
         renderValue={(value: any[]) => value.join(", ")}
         defaultValue={[]}
         id={id}
-        labelId={label + "_label"}
-        className="jv-mInput-select mui"
+        labelId={id + "_label"}
+        className={className + " jv-mInput-select jv-mInput-text mui"}
         multiple
         variant="outlined"
-        input={<OutlinedInput label="Tag" />}
+        input={<MuiOutlinedInput label="Tag" />}
         slotProps={{
           elevation: 4,
           style: {
@@ -54,7 +69,12 @@ export const MultiSelect = forwardRef((props: any, ref) => {
         }}
       >
         {makeOptions()}
-      </Select>
-    </FormControl>
+      </MuiSelect>
+      {isError && (
+        <MuiFormHelperText className="jv-mInput-error mui">
+          {error}
+        </MuiFormHelperText>
+      )}
+    </MuiFormControl>
   );
 });
