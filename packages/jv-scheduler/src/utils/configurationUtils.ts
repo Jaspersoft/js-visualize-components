@@ -191,8 +191,12 @@ const checkFieldDataValidity = (fieldsData: any) => {
               }),
             );
           } else {
-            const fieldName: any = mapFieldName[field] || field,
-              error = validator(fieldName, fieldsData[field].value, {});
+            const fieldName: string = mapFieldName[field] || field,
+              error: { [key: string]: string | any } = validator(
+                fieldName,
+                fieldsData[field].value,
+                {},
+              );
             promises.push({
               [`${field}.invalid`]: validationMessages[error[`${fieldName}`]],
             });

@@ -293,7 +293,7 @@ export const mapFieldName: { [key: string]: string } = {
   description: "scheduleJobDescription",
 };
 
-export const validationMessages = {
+export const validationMessages: { [key: string]: string } = {
   "error.schedule.job.description.too.long":
     "The scheduled job description is too long. The maximum length is 250 characters.",
   "error.schedule.job.name.too.long":

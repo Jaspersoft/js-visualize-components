@@ -9,7 +9,7 @@ import {
   scheduleValidationError,
   setPropertiesDetails,
 } from "../../../actions/action";
-import { IState, translationProps } from "../../../types/scheduleType";
+import { translationProps } from "../../../types/scheduleType";
 
 const Parameters = () => {
   const { t } = useTranslation(undefined, {
@@ -21,9 +21,9 @@ const Parameters = () => {
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
   );
-  const parameters = useSelector(
-    (state: IState) => state.scheduleInfo.source.parameters.parameterValues,
-  );
+  // const parameters = useSelector(
+  //   (state: IState) => state.scheduleInfo.source.parameters.parameterValues,
+  // );
 
   useEffect(() => {
     dispatch(parametersTabErrorOrLoading({ isError: false, isLoaded: false }));
