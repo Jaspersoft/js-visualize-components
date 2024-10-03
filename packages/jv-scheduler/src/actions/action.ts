@@ -43,6 +43,7 @@ import {
   getStateOfCurrentActiveTab,
 } from "../utils/schedulerUtils";
 import { removeRootFolderPath } from "../utils/treeUtils";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
 
 export const setApiFailure = (
   failedApi: ApiFailedProps | undefined,
@@ -158,7 +159,7 @@ export const setStepperConfig = (stepperConfiguration: {}) => {
     payload: stepperConfiguration,
   };
 };
-export const setVisualizeObj = (visualize: any) => {
+export const setVisualizeObj = (visualize: VisualizeClient) => {
   return {
     type: SET_VISUALIZE_DATA,
     payload: { visualize },
@@ -236,7 +237,7 @@ export const getFakeRootData = () => {
 export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
   schedulerUIConfig: SchedulerConfigProps,
-  visualize: any,
+  visualize: VisualizeClient,
 ) => {
   return async (dispatch: any) => {
     const {

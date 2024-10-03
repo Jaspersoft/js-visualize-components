@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
 import { createRoot } from "react-dom/client";
 import i18nScheduler from "../i18n";
 import store from "./../store/store";
@@ -9,13 +10,13 @@ import { getSchedulerData } from "../utils/configurationUtils";
 import { SchedulerConfigProps } from "../types/scheduleType";
 
 type SchedulerProps = {
-  visualize: {};
+  visualize: VisualizeClient;
   schedulerUIConfig: SchedulerConfigProps;
 };
 
 export function renderScheduler(
   container: HTMLElement,
-  vizjs: {},
+  vizjs: VisualizeClient,
   config: SchedulerConfigProps,
 ) {
   const rootElement = container;
