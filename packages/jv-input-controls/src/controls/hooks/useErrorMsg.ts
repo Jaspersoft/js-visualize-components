@@ -79,9 +79,9 @@ export const useErrorMsg = ({
   };
 
   useEffectAfterInitial(() => {
-    const errorMessage = !Array.isArray(textValue)
-      ? validateTextValue(textValue)
-      : validateArray(textValue);
+    const errorMessage = Array.isArray(textValue)
+      ? validateArray(textValue)
+      : validateTextValue(textValue);
     const finalMsg = errorMessage?.trim().length > 0 ? errorMessage : "";
     // also, we have to trigger the callback in case there was an error
     props?.events?.change?.(getInputControlProperties(props, textValue), {
