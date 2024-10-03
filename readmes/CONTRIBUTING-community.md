@@ -11,17 +11,9 @@ As a contributor, here are the guidelines we would like you to follow:
 
 ## <a name="question"></a> Got a Question or Problem?
 
-Do not open issues for general support questions as we want to keep GitHub issues for bug reports and feature requests.
-Instead, we recommend using [Stack Overflow](https://stackoverflow.com/questions/) to ask support-related questions.
-
-Stack Overflow is a much better place to ask questions since:
-
-- there are thousands of people willing to help on Stack Overflow
-- questions and answers stay available for public viewing so your question/answer might help someone else
-- Stack Overflow's voting system assures that the best answers are prominently visible.
-
-To save your and our time, we will systematically close all issues that are requests for general support and redirect
-people to Stack Overflow.
+You could open [GitHub Issues](https://github.com/Jaspersoft/js-visualize-components/issues) for general support
+questions as well as feature requests. Users should use question labels for general support questions, a request for
+clarification, help with using a particular feature, or a general inquiry about the project.
 
 ## <a name="issue"></a> Found a Bug?
 
