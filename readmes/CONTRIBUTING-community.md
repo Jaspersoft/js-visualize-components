@@ -18,7 +18,7 @@ clarification, help with using a particular feature, or a general inquiry about 
 ## <a name="issue"></a> Found a Bug?
 
 If you find a bug in the source code, you can help us by [submitting an issue](#submit-issue) to
-our [GitHub Repository][github].
+our [GitHub Repository](https://github.com/Jaspersoft/js-visualize-components).
 Even better, you can [submit a Pull Request](#submit-pr) with a fix.
 
 ## <a name="feature"></a> Missing a Feature?
@@ -77,13 +77,10 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 6. Run the full test suite, and ensure that all tests pass.
 
 7. Commit your changes using a descriptive commit message that follows our [commit message conventions](#commit).
-   Adherence to these conventions is necessary because release notes are automatically generated from these messages.
 
    ```shell
    git commit --all
    ```
-
-   Note: the optional commit `--all` command line option will automatically "add" and "rm" edited files.
 
 8. Push your branch to GitHub:
 
