@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@jaspersoft/jv-input-controls": "^0.1.0",
+    "@jaspersoft/jv-tools": "0.1.0",
     "@jaspersoft/jv-ui-components": "^0.1.0",
     "axios": "^1.7.2",
     "moment": "^2.30.1",

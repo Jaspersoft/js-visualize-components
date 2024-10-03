@@ -9,7 +9,7 @@ import {
   scheduleValidationError,
   setPropertiesDetails,
 } from "../../../actions/action";
-import { translationProps } from "../../../types/scheduleType";
+import { IState, translationProps } from "../../../types/scheduleType";
 
 const Parameters = () => {
   const { t } = useTranslation(undefined, {
@@ -20,6 +20,9 @@ const Parameters = () => {
   const source = useSelector((state: any) => state.scheduleInfo.source);
   const resourceUri = useSelector(
     (state: any) => state.schedulerUIConfig.resourceURI,
+  );
+  const parameters = useSelector(
+    (state: IState) => state.scheduleInfo.source.parameters.parameterValues,
   );
 
   useEffect(() => {
@@ -43,7 +46,9 @@ const Parameters = () => {
   const panelD: any = {
     config: { bool: { type: "switch" } },
     success: (params: any) => {
-      updateStoreWithParameters(params.parameters);
+      updateStoreWithParameters(
+        Object.keys(parameters).length ? parameters : params.parameters,
+      );
     },
     error: (error: any) => {
       dispatch(parametersTabErrorOrLoading({ isLoaded: true, isError: true }));
@@ -67,9 +72,10 @@ const Parameters = () => {
     <>
       <JVTypographyComponent text={t("parameters.title")} />
       <InputControls
-        vObject={visualize.v}
+        vObject={visualize}
         uri={resourceUri}
         panelDef={panelD}
+        // params={parameters}
       />
     </>
   );

@@ -43,6 +43,7 @@ import {
   getStateOfCurrentActiveTab,
 } from "../utils/schedulerUtils";
 import { removeRootFolderPath } from "../utils/treeUtils";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
 
 export const setApiFailure = (
   failedApi: ApiFailedProps | undefined,
@@ -158,7 +159,7 @@ export const setStepperConfig = (stepperConfiguration: {}) => {
     payload: stepperConfiguration,
   };
 };
-export const setVisualizeObj = (visualize: any) => {
+export const setVisualizeObj = (visualize: VisualizeClient) => {
   return {
     type: SET_VISUALIZE_DATA,
     payload: { visualize },
@@ -236,7 +237,7 @@ export const getFakeRootData = () => {
 export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
   schedulerUIConfig: SchedulerConfigProps,
-  visualize: any,
+  visualize: VisualizeClient,
 ) => {
   return async (dispatch: any) => {
     const {
@@ -305,7 +306,7 @@ export const allTabValidationError = (
 
 export const createScheduleJob = (enableCreateBtn: () => void) => {
   return async (dispatch: Dispatch, getState: () => IState) => {
-    const { success, error } = getState().schedulerUIConfig?.events || {};
+    const { scheduleBtnClick } = getState().schedulerUIConfig?.events || {};
     try {
       const {
         scheduleJobDescription,
@@ -317,7 +318,8 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
       const capitlizedOutputFormat = outputFormat.map((item) =>
         item.toUpperCase(),
       );
-      await createSchedule({
+
+      const jobInfo = await createSchedule({
         label: scheduleJobName,
         description: scheduleJobDescription,
         outputFormats: {
@@ -325,7 +327,7 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
         },
         ...rest,
       });
-      success?.();
+      scheduleBtnClick?.(true, jobInfo);
       dispatch(setApiFailure({ createScheduleApiFailure: false }, ""));
     } catch (err) {
       dispatch(
@@ -334,7 +336,7 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
           "createScheduleApiFailure",
         ),
       );
-      error?.({ message: "Error while creating schedule" });
+      scheduleBtnClick?.(false, err);
     } finally {
       enableCreateBtn();
     }

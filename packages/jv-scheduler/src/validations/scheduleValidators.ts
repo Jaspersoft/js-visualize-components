@@ -107,9 +107,7 @@ export const validator = (
       }
       break;
     case ERROR_FIELDS.SCHEDULE_JOB_DESCRIPTION:
-      if (isFieldEmpty(propVal)) {
-        schedulerPropError = "error.schedule.job.description";
-      } else if (propVal.length > 250) {
+      if (propVal.length > 250) {
         schedulerPropError = "error.schedule.job.description.too.long";
       }
       break;
@@ -133,7 +131,7 @@ export const validator = (
       break;
     case ERROR_FIELDS.EMAIL_ADDRESS:
       if (isFieldEmpty(propVal)) {
-        schedulerPropError = "notifications.send.schedule.to.helper.text";
+        schedulerPropError = "error.notifications.email.empty";
       } else if (!validateEmail(propName, propVal)) {
         schedulerPropError = "error.email.address";
       }

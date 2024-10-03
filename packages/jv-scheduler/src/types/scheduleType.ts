@@ -9,25 +9,6 @@ export interface ApiFailedProps extends ApiErrorMsg {
   initialTreeDataLoadApiFailure?: boolean;
   treeLoadApiFailure?: boolean;
 }
-interface ScheduleHiddenConfigProps {
-  show: false;
-  defaultValues: {
-    label: any;
-    description?: any;
-    recurrence?: any;
-    startTime?: any;
-  };
-}
-
-interface ScheduleVisibleConfigProps {
-  show?: true;
-  defaultValues?: {
-    label?: any;
-    description?: any;
-    recurrence?: any;
-    startTime?: any;
-  };
-}
 
 export interface SchedulerConfigProps {
   server: string;
@@ -37,17 +18,23 @@ export interface SchedulerConfigProps {
     activeTab?: string;
     tabsOrder?: string[];
     tabsData?: {
-      schedule?: ScheduleVisibleConfigProps | ScheduleHiddenConfigProps;
+      schedule?: {};
       parameters?: {};
       output?: {};
       notifications?: {};
     };
   };
+  stepper?: {
+    show?: boolean;
+  };
   events?: {
     success?: () => void;
     error?: (error: { [key: string]: string }) => void;
-    cancelBtnClick: () => void;
-    scheduleBtnClick: () => void;
+    cancelBtnClick?: () => void;
+    scheduleBtnClick?: (
+      isScheduleCreatedSuccessfully: boolean,
+      jobInformation: any,
+    ) => void;
   };
   locale?: string;
   timezone?: string;
