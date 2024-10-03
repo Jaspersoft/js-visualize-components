@@ -50,6 +50,7 @@ export const renderInputControls = (
               controls={controls}
               config={icPanelDef?.config}
               events={icPanelDef?.events}
+              params={icPanelDef?.params}
             />
           </JVStylesProvider>,
         );

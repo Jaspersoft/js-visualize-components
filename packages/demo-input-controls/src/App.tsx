@@ -91,6 +91,9 @@ function App() {
             type: "default", // even if it isn't provided, this will be the default component
           },
         },
+        params: {
+          ProductFamily: ["Drink"],
+        },
         events: {
           change: (ics, validationResult) => {
             console.log("validationResult => ", validationResult);

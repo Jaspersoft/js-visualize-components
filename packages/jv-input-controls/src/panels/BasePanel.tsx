@@ -25,6 +25,7 @@ export interface BasePanelProps {
       validationResult: { [key: string]: string } | boolean,
     ) => void;
   };
+  params?: { [key: string]: string[] };
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
@@ -103,7 +104,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     };
   };
   const buildControl = (control: any) => {
-    const theProps = getControlProps(control);
+    const theProps = {
+      ...getControlProps(control),
+      params: { ...props.params },
+    };
     if (control.type === "bool") {
       return (
         <BooleanInputControl
