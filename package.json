@@ -13,6 +13,7 @@
     ]
   },
   "scripts": {
+    "audit:all": "yarn audit && yarn workspaces run audit:all",
     "audit:runtime": "yarn audit --groups dependencies && yarn workspaces run audit:runtime",
     "test": "yarn workspaces run test",
     "build": "yarn workspaces run build",
