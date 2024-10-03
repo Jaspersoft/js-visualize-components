@@ -6,6 +6,8 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
+    "audit:all": "yarn audit",
+    "audit:runtime": "yarn audit --groups dependencies",
     "clean": "rm -rf dist",
     "dev": "vite",
     "build": "tsc -b && vite build",

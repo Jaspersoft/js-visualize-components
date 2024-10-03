@@ -13,6 +13,8 @@
     ]
   },
   "scripts": {
+    "audit:all": "yarn audit && yarn workspaces run audit:all",
+    "audit:runtime": "yarn audit --groups dependencies && yarn workspaces run audit:runtime",
     "test": "yarn workspaces run test",
     "build": "yarn workspaces run build",
     "clean": "yarn workspaces run clean",
@@ -43,7 +45,7 @@
   "devDependencies": {
     "glob": "^11.0.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
+    "lint-staged": "^15.2.10",
     "prettier": "3.3.2"
   }
 }

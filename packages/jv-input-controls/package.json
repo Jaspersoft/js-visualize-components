@@ -11,6 +11,8 @@
     "dist"
   ],
   "scripts": {
+    "audit:all": "yarn audit",
+    "audit:runtime": "yarn audit --groups dependencies",
     "test": "jest",
     "build-prod": "NODE_ENV=production vite build",
     "dev": "vite",
