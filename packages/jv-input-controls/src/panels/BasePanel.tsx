@@ -63,7 +63,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           // this means that the validation result is empty, so we need to remove the key from the invalidResponse
           delete acc.invalidResponse[ctrlToUse.id];
         }
-        acc.response[ctrlToUse.id] = [ctrlToUse.state?.value];
+        acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
+          ? ctrlToUse.state?.value
+          : [ctrlToUse.state?.value];
         return acc;
       },
       {
