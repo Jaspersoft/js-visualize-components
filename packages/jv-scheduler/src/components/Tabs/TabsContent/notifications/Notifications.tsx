@@ -88,7 +88,7 @@ const Notifications = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedVal = e.target.value,
       updatedProperty = {
-        mailNotificationVal: {
+        mailNotification: {
           ...mailNotification,
           resultSendType: selectedVal,
         },
