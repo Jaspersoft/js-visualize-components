@@ -1,26 +1,39 @@
-import { ButtonProps, PropTypes } from '@mui/material';
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
 
-export const SizeToClass: {[key in Required<ButtonProps>['size']]: string} = {
-    large: 'jv-mButtonLarge',
-    small: 'jv-mButtonSmall',
-    medium: ''
-}
+import { ButtonProps, PropTypes } from "@mui/material";
 
-export type ButtonColor = PropTypes.Color | 'error' | 'warning' | 'success' | 'info';
+export const SizeToClass: { [key in Required<ButtonProps>["size"]]: string } = {
+  large: "jv-mButtonLarge",
+  small: "jv-mButtonSmall",
+  medium: "",
+};
 
-export const ColorToClass: {[key in ButtonColor]: string} = {
-    inherit: '',
-    default: '',
-    success: '',
-    info: '',
-    secondary: 'jv-mButtonSecondary',
-    primary: 'jv-mButtonPrimary',
-    error: 'jv-mButtonError',
-    warning: 'jv-mButtonWarning'
-}
+export type ButtonColor =
+  | PropTypes.Color
+  | "error"
+  | "warning"
+  | "success"
+  | "info";
 
-export const VariantToClassName: {[key in Required<ButtonProps>['variant']]: string} = {
-    contained: 'jv-MuiButton-contained',
-    text: 'jv-MuiButton-text',
-    outlined: 'jv-MuiButton-outlined'
-}
+export const ColorToClass: { [key in ButtonColor]: string } = {
+  inherit: "",
+  default: "",
+  success: "",
+  info: "",
+  secondary: "jv-mButtonSecondary",
+  primary: "jv-mButtonPrimary",
+  error: "jv-mButtonError",
+  warning: "jv-mButtonWarning",
+};
+
+export const VariantToClassName: {
+  [key in Required<ButtonProps>["variant"]]: string;
+} = {
+  contained: "jv-MuiButton-contained",
+  text: "jv-MuiButton-text",
+  outlined: "jv-MuiButton-outlined",
+};
