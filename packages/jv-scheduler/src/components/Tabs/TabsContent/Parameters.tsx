@@ -5,10 +5,7 @@
  */
 
 import React, { useEffect } from "react";
-import {
-  InputControlConfig,
-  InputControls,
-} from "@jaspersoft/jv-input-controls";
+import { InputControls } from "@jaspersoft/jv-input-controls";
 import i18nScheduler from "../../../i18n";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useTranslation } from "react-i18next";
@@ -38,7 +35,7 @@ const Parameters = () => {
   );
 
   const { success, error, events, config, ...restConfig } = parametersConfig;
-  const { change, ...restEvents } = restConfig;
+  const { change, ...restEvents } = events;
 
   useEffect(() => {
     dispatch(parametersTabErrorOrLoading({ isError: false, isLoaded: false }));
@@ -58,7 +55,6 @@ const Parameters = () => {
     );
   };
 
-  console.log(parametersConfig, "parametersConfig");
   const panelD: any = {
     success: (params: any) => {
       updateStoreWithParameters(
@@ -83,6 +79,7 @@ const Parameters = () => {
       },
       ...restEvents,
     },
+    ...restConfig,
   };
 
   return (
