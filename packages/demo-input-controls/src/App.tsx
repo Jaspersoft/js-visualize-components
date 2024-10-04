@@ -96,6 +96,7 @@ function App() {
           column_boolean_1: ["false"],
           column_string_1: ["Eduardo"],
           id_1: ["99"],
+          column_date_1: ["2009-03-02"],
           ProductFamily: ["Drink", "Food"],
         },
         events: {

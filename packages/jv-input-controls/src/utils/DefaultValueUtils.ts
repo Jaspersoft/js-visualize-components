@@ -52,3 +52,11 @@ export const getDefaultValueFromParamsAndProps = (
   }
   return isSelectInputControl(props) ? [] : props.type === "bool" ? false : "";
 };
+
+export const getTheInitialValue = (
+  initialValue: undefined | string | string[],
+) => {
+  return initialValue !== undefined && Array.isArray(initialValue)
+    ? initialValue[0]
+    : initialValue;
+};
