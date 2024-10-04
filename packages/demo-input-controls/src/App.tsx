@@ -9,7 +9,7 @@
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
 import {
-  InputControlConfig,
+  InputControlsConfig,
   InputControls,
   renderInputControls,
 } from "@jaspersoft/jv-input-controls";
@@ -153,7 +153,7 @@ function App() {
     }
   };
 
-  const panelD: InputControlConfig = {
+  const panelD: InputControlsConfig = {
     config: { bool: { type: "switch" } },
     events: {
       change: (ics: any, vs: any) => {

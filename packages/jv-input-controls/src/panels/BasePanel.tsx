@@ -19,13 +19,13 @@ import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInpu
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
-import { InputControlUserConfig } from "../InputControls";
+import { InputControlsTypeConfig } from "../InputControls";
 import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
 import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
 
 export interface BasePanelProps {
   controls?: any;
-  config?: InputControlUserConfig;
+  config?: InputControlsTypeConfig;
   events?: {
     change?: (
       ic: { [key: string]: any[] },
