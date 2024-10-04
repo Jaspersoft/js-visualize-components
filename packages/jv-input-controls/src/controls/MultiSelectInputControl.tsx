@@ -19,7 +19,7 @@ export const MultiSelectInputControl = (props: any): JSX.Element => {
       id={props.id}
       key={props.id}
       state={props.state}
-      textFieldClassName={`${controlClasses.join(" ")}`}
+      className={`${controlClasses.join(" ")}`}
       error={errorText}
     />
   );
