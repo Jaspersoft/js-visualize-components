@@ -49,7 +49,7 @@ export interface InputControlOption {
 export interface InputControlState {
   id: string;
   uri: string;
-  value?: string; // this is optional for the multi-select
+  value?: string | string[]; // this is optional for the multi-select
   error?: string;
   totalCount?: string;
   options?: InputControlOption[];

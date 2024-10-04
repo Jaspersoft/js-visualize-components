@@ -6,7 +6,7 @@
 
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 
-const isSelect = (props: InputControlProperties) => {
+const isSelectInputControl = (props: InputControlProperties) => {
   return props.type === "multiSelect" || props.type === "singleSelect";
 };
 
@@ -14,14 +14,15 @@ const getFirstDefaultValueOrArray = (
   props: InputControlProperties & {
     params?: { [key: string]: string[] };
   },
-): undefined | boolean | string[] => {
-  if (!props || !props.params) {
-    return undefined;
+): undefined | boolean | string | string[] => {
+  if (isSelectInputControl(props)) {
+    // this is the only case that returns an ARRAY!
+    return props.params?.[props.id];
   }
   if (props.type === "bool") {
     return props.params?.[props.id]?.at(0) === "true";
   }
-  return props.params?.[props.id];
+  return props.params?.[props.id]?.at(0);
 };
 
 /**
@@ -49,5 +50,5 @@ export const getDefaultValueFromProps = (
   if (defaultValue !== undefined) {
     return defaultValue;
   }
-  return isSelect(props) ? [] : props.type === "bool" ? false : "";
+  return isSelectInputControl(props) ? [] : props.type === "bool" ? false : "";
 };
