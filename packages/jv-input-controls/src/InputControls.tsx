@@ -66,7 +66,6 @@ export interface InputControlsProps {
   vObject?: VisualizeClient;
   uri: string;
   panelDef?: InputControlsConfig;
-  handleError?: (error: any) => void;
 }
 
 export function InputControls(props: InputControlsProps) {
