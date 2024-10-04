@@ -15,8 +15,13 @@ import { InputDataInStep } from "./FieldUserInputData";
 import {
   MAX_STEPPER_EMAIL_ADDRESS,
   MAX_STEPPER_OUTPUT_FORMATS,
+  RECURRENCE_INTERVAL_DATE_TIME,
+  RECURRENCE_INTERVAL_NOW,
   SEND_LINK,
+  START_TIME_FORMAT,
+  timeFrames,
 } from "../../constants/schedulerConstants";
+import moment from "moment/moment";
 
 export const ScheduleStepDefaultMessage = () => {
   const { t } = useTranslation(undefined, {
@@ -33,8 +38,25 @@ export const ScheduleStepDefaultMessage = () => {
     ),
     intervalUnit = useSelector(
       (state: IState) => state.stepperState?.recurrenceIntervalUnit,
+    ),
+    startDate = useSelector(
+      (state: IState) => state.scheduleInfo?.trigger?.simpleTrigger?.startDate,
+    ),
+    startType = useSelector(
+      (state: IState) => state.scheduleInfo?.trigger?.simpleTrigger?.startType,
     );
 
+  const time =
+      startType === RECURRENCE_INTERVAL_DATE_TIME
+        ? moment(startDate).format(START_TIME_FORMAT)
+        : startDate,
+    timeFrameValue = timeFrames.filter((item) => item.value === intervalUnit),
+    timeFrameText =
+      interval === RECURRENCE_INTERVAL_NOW
+        ? timeFrameValue[0]?.textSingular?.toLowerCase()
+        : timeFrameValue[0]?.textPlural?.toLowerCase();
+
+  console.log(startType);
   return (
     <>
       {label?.length ? (
@@ -56,12 +78,16 @@ export const ScheduleStepDefaultMessage = () => {
       <FieldHeader text={t("stepper.schedule.recurrence.helpertext")} />
       <KeyValueTemplate
         title={t("stepper.schedule.repeat.key")}
-        value={`${interval} ${intervalUnit}`}
+        value={`${interval} ${timeFrameText}`}
       />
-      <KeyValueTemplate
-        title={t("stepper.schedule.start.key")}
-        value={t("stepper.schedule.startnow.value")}
-      />
+      {startType === RECURRENCE_INTERVAL_DATE_TIME ? (
+        <InputDataInStep title={t("stepper.schedule.start.key")} value={time} />
+      ) : (
+        <KeyValueTemplate
+          title={t("stepper.schedule.start.key")}
+          value={t("stepper.schedule.startnow.value")}
+        />
+      )}
     </>
   );
 };

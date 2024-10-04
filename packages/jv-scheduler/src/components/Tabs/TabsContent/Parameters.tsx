@@ -35,7 +35,7 @@ const Parameters = () => {
   );
 
   const { success, error, events, config, ...restConfig } = parametersConfig;
-  const { change, ...restEvents } = events;
+  const { change, ...restEvents } = events || {};
 
   useEffect(() => {
     dispatch(parametersTabErrorOrLoading({ isError: false, isLoaded: false }));
