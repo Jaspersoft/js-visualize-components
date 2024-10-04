@@ -32,7 +32,7 @@ const getFirstDefaultValueOrArray = (
  * 3. If the control is a select control, return an empty array. Otherwise, return an empty string.
  * @param props
  */
-export const getDefaultValueFromProps = (
+export const getDefaultValueFromParamsAndProps = (
   props: InputControlProperties & {
     params?: { [key: string]: string[] };
   },

@@ -21,7 +21,7 @@ import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
 import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
-import { getDefaultValueFromProps } from "../utils/DefaultValueUtils";
+import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
 
 export interface BasePanelProps {
   controls?: any;
@@ -109,7 +109,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       uri: control.uri,
       state: {
         ...control.state,
-        value: getDefaultValueFromProps({ ...control, params }),
+        value: getDefaultValueFromParamsAndProps({ ...control, params }),
       },
       events: {
         change: buildLatestJSON,

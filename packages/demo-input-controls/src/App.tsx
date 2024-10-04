@@ -95,6 +95,7 @@ function App() {
         params: {
           column_boolean_1: ["false"],
           column_string_1: ["Eduardo"],
+          id_1: ["99"],
           ProductFamily: ["Drink", "Food"],
         },
         events: {
