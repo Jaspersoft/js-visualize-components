@@ -16,6 +16,7 @@ import {
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
+import { getTheInitialValue } from "../utils/DefaultValueUtils";
 
 export type DatePickerICType = "material";
 
@@ -32,7 +33,7 @@ export const DatePickerInputControl = (props: DateICProps) => {
   ).toUpperCase();
 
   const liveState = useLiveDateFormattedState({
-    initialValue: props.state?.value || "",
+    initialValue: getTheInitialValue(props.state?.value) || "",
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);

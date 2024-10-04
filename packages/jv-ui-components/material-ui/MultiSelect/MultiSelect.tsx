@@ -17,7 +17,8 @@ import {
 import { SelectItem } from "../MenuItem/SelectItem";
 
 export const MultiSelect = forwardRef((props: any, ref) => {
-  const { value, selected, id, label, className, error, ...otherProps } = props;
+  const { value, selected, id, label, className, error, state, ...otherProps } =
+    props;
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const isError = error?.trim().length > 0;
@@ -36,7 +37,7 @@ export const MultiSelect = forwardRef((props: any, ref) => {
   };
 
   const makeOptions = (): JSX.Element[] => {
-    return props.state?.options?.map((opt: any) => makeOption(opt)) || [];
+    return state?.options?.map((opt: any) => makeOption(opt)) || [];
   };
   return (
     <MuiFormControl
@@ -52,9 +53,9 @@ export const MultiSelect = forwardRef((props: any, ref) => {
       </MuiInputLabel>
       <MuiSelect
         {...otherProps}
+        value={value}
         error={isError}
         renderValue={(value: any[]) => value.join(", ")}
-        defaultValue={[]}
         id={id}
         labelId={id + "_label"}
         className={className + " jv-mInput-select jv-mInput-text mui"}

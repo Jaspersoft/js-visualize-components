@@ -123,10 +123,75 @@ describe("BasePanel", () => {
 
   test("renders SingleSelectInputControl", () => {
     const controls = {
-      data: [{ id: "8", type: "singleSelect", label: "Select Control" }],
+      data: [
+        {
+          id: "testId",
+          label: "Select Control",
+          mandatory: false,
+          readOnly: false,
+          visible: true,
+          type: "singleSelect",
+          state: {
+            id: "testId",
+            options: [{ selected: false, label: "1", value: "one" }],
+          },
+        },
+      ],
     };
     renderComponent(controls);
-    expect(screen.getByLabelText("Select Control")).toBeInTheDocument();
+    const divElement = screen.getByLabelText("Select Control");
+    expect(divElement).toBeInTheDocument();
+  });
+
+  test("renders MultiSelectInputControl", () => {
+    const controls = {
+      data: [
+        {
+          id: "ProductFamily",
+          description: "Product Family Multi-Select",
+          type: "multiSelect",
+          uri: "repo:/public/Samples/Resources/Input_Controls/ProductFamily",
+          label: "ProductFamily",
+          mandatory: true,
+          readOnly: false,
+          visible: true,
+          masterDependencies: [],
+          slaveDependencies: [],
+          validationRules: [
+            {
+              mandatoryValidationRule: {
+                errorMessage: "This field is mandatory so you must enter data.",
+              },
+            },
+          ],
+          state: {
+            uri: "/public/Samples/Resources/Input_Controls/ProductFamily",
+            id: "ProductFamily",
+            options: [
+              {
+                selected: true,
+                label: "Drink",
+                value: "Drink",
+              },
+              {
+                selected: true,
+                label: "Food",
+                value: "Food",
+              },
+              {
+                selected: true,
+                label: "Non-Consumable",
+                value: "Non-Consumable",
+              },
+            ],
+          },
+        },
+      ],
+    };
+    renderComponent(controls);
+    const inputElement = screen.getByLabelText("ProductFamily");
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toHaveTextContent("Drink, Food, Non-Consumable");
   });
 
   test("renders TimePickerInputControl", () => {

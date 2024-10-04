@@ -59,6 +59,7 @@ export interface InputControlConfig {
       validationResult: { [key: string]: string } | boolean,
     ) => void;
   };
+  params?: { [key: string]: string[] };
 }
 
 export interface InputControlProps {
@@ -108,6 +109,7 @@ export function InputControls(props: InputControlProps) {
         controls={embedControls}
         config={props.panelDef?.config}
         events={props.panelDef?.events}
+        params={props.panelDef?.params}
       ></BasePanel>
     </JVStylesProvider>
   );

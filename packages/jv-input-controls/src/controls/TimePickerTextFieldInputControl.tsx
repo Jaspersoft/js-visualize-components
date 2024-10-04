@@ -10,6 +10,7 @@ import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
+import { getTheInitialValue } from "../utils/DefaultValueUtils";
 
 export type TimeICType = "default";
 
@@ -30,7 +31,7 @@ export const TimePickerTextFieldInputControl = (
     events,
     ...remainingProps
   } = props;
-  const liveState = useLiveState(props.state?.value || "");
+  const liveState = useLiveState(getTheInitialValue(props.state?.value) || "");
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {

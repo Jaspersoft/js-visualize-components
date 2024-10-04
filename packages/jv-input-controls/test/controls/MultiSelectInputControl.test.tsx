@@ -48,6 +48,8 @@ const requiredProps = {
         value: "Non-Consumable",
       },
     ],
+    value: ["Drink", "Food", "Non-Consumable"], // this is not returned by the API, but it will be generated to
+    // reflect the state from the server
   },
 };
 
@@ -72,9 +74,17 @@ describe("MultiSelectInputControl tests", () => {
   });
 
   it("should select an option when clicked", async () => {
-    await act(async () => {
-      render(<MultiSelectInputControl {...requiredProps} />);
-    });
+    render(
+      <MultiSelectInputControl
+        {...{
+          ...requiredProps,
+          state: {
+            ...requiredProps.state,
+            value: [],
+          },
+        }}
+      />,
+    );
     const inputElement = screen.getByLabelText("ProductFamily");
     await act(async () => {
       userEvent.click(inputElement);
@@ -89,7 +99,17 @@ describe("MultiSelectInputControl tests", () => {
 
   it("should display error message when there is an error", async () => {
     await act(async () => {
-      render(<MultiSelectInputControl {...requiredProps} />);
+      render(
+        <MultiSelectInputControl
+          {...{
+            ...requiredProps,
+            state: {
+              ...requiredProps.state,
+              value: [],
+            },
+          }}
+        />,
+      );
     });
     const inputElement = screen.getByLabelText("ProductFamily");
     await act(async () => {
@@ -106,5 +126,12 @@ describe("MultiSelectInputControl tests", () => {
       "This field is mandatory so you must enter data.",
     );
     expect(errorElement).toBeInTheDocument();
+  });
+
+  it("should select all options by default", async () => {
+    render(<MultiSelectInputControl {...requiredProps} />);
+    const inputElement = screen.getByLabelText("ProductFamily");
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toHaveTextContent("Drink, Food, Non-Consumable");
   });
 });

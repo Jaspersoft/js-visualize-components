@@ -47,15 +47,15 @@ export interface InputControlValidationRule {
 }
 
 export interface InputControlOption {
-  selected?: boolean;
-  label?: string;
-  value?: string;
+  selected: boolean;
+  label: string;
+  value: string;
 }
 
 export interface InputControlState {
   id: string;
   uri: string;
-  value: string;
+  value?: string | string[]; // this is optional for the multi-select
   error?: string;
   totalCount?: string;
   options?: InputControlOption[];
