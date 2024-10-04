@@ -94,6 +94,7 @@ function App() {
         },
         params: {
           column_boolean_1: ["false"],
+          column_string_1: ["Eduardo"],
           ProductFamily: ["Drink", "Food"],
         },
         events: {
