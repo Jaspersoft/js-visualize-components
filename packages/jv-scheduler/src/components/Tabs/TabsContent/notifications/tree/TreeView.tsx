@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import React, { useEffect, useState } from "react";
 import { JVRichTreeView } from "@jaspersoft/jv-ui-components";
 import { useDispatch, useSelector } from "react-redux";

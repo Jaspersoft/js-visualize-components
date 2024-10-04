@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import i18nScheduler from "../../i18n";

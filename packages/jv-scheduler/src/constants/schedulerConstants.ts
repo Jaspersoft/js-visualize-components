@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 export const PARAMETERS_TAB = "parameters";
 export const SCHEDULE_TAB = "schedule";
 export const NOTIFICATIONS_TAB = "notifications";

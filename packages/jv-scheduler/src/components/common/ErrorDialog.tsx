@@ -1,7 +1,9 @@
 /*
- * Copyright (C) 2005 - 2023. Cloud Software Group, Inc. All Rights Reserved. Confidential & Proprietary.
- * Licensed pursuant to commercial Cloud Software Group, Inc. End User License Agreement.
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
  */
+
 import React from "react";
 
 import {

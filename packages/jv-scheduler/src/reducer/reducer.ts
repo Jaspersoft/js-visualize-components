@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import {
   SET_OUTPUT_FORMATS,
   SET_SCHEDULE_APIS_FAILURE_ERROR,
