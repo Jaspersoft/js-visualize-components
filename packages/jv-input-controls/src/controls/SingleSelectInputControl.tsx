@@ -10,14 +10,18 @@ import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
+import { getTheInitialValueForSingleSelectInputControl } from "../utils/DefaultValueUtils";
 
 export interface SingleSelectInputControlProps extends InputControlProperties {}
+
 export type SingleSelectICType = "singleSelect";
 
 export function SingleSelectInputControl(
   props: SingleSelectInputControlProps,
 ): React.JSX.Element {
-  const liveState = useLiveState("");
+  const liveState = useLiveState(
+    getTheInitialValueForSingleSelectInputControl(props.state?.value),
+  );
   const controlClasses = useControlClasses([], props);
   const errorText = useErrorMsg({
     textValue: liveState.value,
@@ -26,13 +30,12 @@ export function SingleSelectInputControl(
   return (
     <JVSelect
       onChange={liveState.onChange}
-      defaultValue={""}
       label={props.label}
       id={props.id}
       key={props.id}
       value={liveState.value}
       state={props.state}
-      textFieldClassName={`${controlClasses.join(" ")}`}
+      className={`${controlClasses.join(" ")}`}
       error={errorText}
     />
   );

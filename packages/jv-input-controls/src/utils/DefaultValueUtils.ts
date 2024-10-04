@@ -24,12 +24,34 @@ const getFirstDefaultValueOrArray = (
   }
   return props.params?.[props.id]?.at(0);
 };
+/**
+ * This method will return the values from the options that are selected. The Select InputControls works differently
+ * than the other ICs.
+ * @param props
+ */
+const getValuesFromOptions = (props: InputControlProperties): string[] => {
+  if (
+    props === undefined ||
+    props.state === undefined ||
+    props.state.options === undefined
+  ) {
+    return [];
+  }
+  return props
+    .state!.options!.filter((opt) => opt.selected)
+    .map((opt) => opt.value);
+};
 
 /**
- * Get the default value from the properties. The default value will be determined as follows:
- * 1. Check if the "params" is defined in the properties
- * 2. If the "state.value" is defined in the properties
- * 3. If the control is a select control, return an empty array. Otherwise, return an empty string.
+ * Get the default value from the properties or params. The default value will be determined as follows:
+ * 1. Check if the "params" is defined in the properties and get the values from it. If it's a Select, then it will
+ * return an array. Otherwise, it will return a string.
+ * 2. If the IC is a Select and the "state.value.options" is defined in the properties. Then, it will return the
+ * values from each option that it's property selected=true.
+ * 3. If the "state.value" is defined in the properties. Then, it will return the value from it. If it's a boolean
+ * IC, then it will return a boolean. Otherwise, it will return a string.
+ * 4. If the code reaches here, means there is no default value set for the IC. The code will set one for it: If the
+ * control is a boolean, then the default value is false. Otherwise, it is an empty string.
  * @param props
  */
 export const getDefaultValueFromParamsAndProps = (
@@ -41,6 +63,10 @@ export const getDefaultValueFromParamsAndProps = (
   if (props.params?.[props.id] !== undefined) {
     defaultValue = getFirstDefaultValueOrArray(props);
   }
+  if (defaultValue === undefined && isSelectInputControl(props)) {
+    // then we have to get the values from the options returned by the server.
+    defaultValue = getValuesFromOptions(props);
+  }
   if (defaultValue === undefined && props.state?.value !== undefined) {
     defaultValue =
       props.type === "bool"
@@ -50,7 +76,7 @@ export const getDefaultValueFromParamsAndProps = (
   if (defaultValue !== undefined) {
     return defaultValue;
   }
-  return isSelectInputControl(props) ? [] : props.type === "bool" ? false : "";
+  return props.type === "bool" ? false : "";
 };
 
 export const getTheInitialValue = (
@@ -59,4 +85,19 @@ export const getTheInitialValue = (
   return initialValue !== undefined && Array.isArray(initialValue)
     ? initialValue[0]
     : initialValue;
+};
+
+export const getTheInitialValueForSingleSelectInputControl = (
+  initialValue: undefined | string | string[],
+): string | string[] => {
+  if (initialValue === undefined) {
+    return "";
+  }
+  if (Array.isArray(initialValue)) {
+    if (initialValue.length === 0) {
+      return "";
+    }
+    return initialValue;
+  }
+  return "";
 };

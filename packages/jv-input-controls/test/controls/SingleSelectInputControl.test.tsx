@@ -17,7 +17,7 @@ const requiredProps = {
   mandatory: false,
   readOnly: false,
   visible: true,
-  type: "bool",
+  type: "singleSelect",
 };
 
 const getSingleSelect = (options?: object): JSX.Element => {

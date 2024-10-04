@@ -47,9 +47,9 @@ export interface InputControlValidationRule {
 }
 
 export interface InputControlOption {
-  selected?: boolean;
-  label?: string;
-  value?: string;
+  selected: boolean;
+  label: string;
+  value: string;
 }
 
 export interface InputControlState {

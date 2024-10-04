@@ -123,7 +123,20 @@ describe("BasePanel", () => {
 
   test("renders SingleSelectInputControl", () => {
     const controls = {
-      data: [{ id: "8", type: "singleSelect", label: "Select Control" }],
+      data: [
+        {
+          id: "testId",
+          label: "Select Control",
+          mandatory: false,
+          readOnly: false,
+          visible: true,
+          type: "singleSelect",
+          state: {
+            id: "testId",
+            options: [{ selected: false, label: "1", value: "one" }],
+          },
+        },
+      ],
     };
     renderComponent(controls);
     expect(screen.getByLabelText("Select Control")).toBeInTheDocument();
