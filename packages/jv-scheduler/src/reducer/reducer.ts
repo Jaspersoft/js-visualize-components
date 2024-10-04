@@ -21,6 +21,7 @@ import {
   SET_STEPPER_CONFIG,
   SET_VISUALIZE_DATA,
   SET_PARAMETERS_TAB_LOADING,
+  SET_PARAMETERS_TAB_CONFIG,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -126,6 +127,12 @@ export const rootReducer = (
         ...state,
         parametersTabLoading: action.payload.parametersTabConfig,
       };
+    case SET_PARAMETERS_TAB_CONFIG:
+      return {
+        ...state,
+        parametersTabConfig: action.payload.parametersTabConfig,
+      };
+
     default:
       return state;
   }

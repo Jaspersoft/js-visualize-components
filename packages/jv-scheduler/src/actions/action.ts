@@ -22,6 +22,7 @@ import {
   SET_STEPPER_CONFIG,
   SET_VISUALIZE_DATA,
   SET_PARAMETERS_TAB_LOADING,
+  SET_PARAMETERS_TAB_CONFIG,
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
@@ -51,6 +52,7 @@ import {
 } from "../utils/schedulerUtils";
 import { removeRootFolderPath } from "../utils/treeUtils";
 import { VisualizeClient } from "@jaspersoft/jv-tools";
+import { InputControlConfig } from "@jaspersoft/jv-input-controls";
 
 export const setApiFailure = (
   failedApi: ApiFailedProps | undefined,
@@ -246,6 +248,15 @@ export const getFakeRootData = () => {
   };
 };
 
+export const setParametersTabConfig = (
+  config: InputControlConfig | undefined,
+) => {
+  return {
+    type: SET_PARAMETERS_TAB_CONFIG,
+    payload: { parametersTabConfig: config },
+  };
+};
+
 export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
   schedulerUIConfig: SchedulerConfigProps,
@@ -268,6 +279,9 @@ export const setInitialPluginState = (
         currentActiveTab,
         tabsConfiguration: { tabsToShow, stepsToShow },
       }),
+    );
+    dispatch(
+      setParametersTabConfig(schedulerUIConfig.tabs?.tabsData?.parameters),
     );
     dispatch(setStepperProperties(stepperDefaultState));
     dispatch(setStepperConfig({ show: showStepper }));

@@ -190,6 +190,7 @@ export const defaultState = {
   scheduleErrors: {
     ...scheduleDefaultErrorState,
   },
+  parametersTabConfig: {},
   scheduleApisFailure: {
     userTimezoneApiFailure: false,
     userOutputFormatApiFailure: false,
