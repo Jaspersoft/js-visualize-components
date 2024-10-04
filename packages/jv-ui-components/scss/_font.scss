@@ -1,3 +1,9 @@
+/*
+* Copyright © 2024. Cloud Software Group, Inc.
+* This file is subject to the license terms contained
+* in the license file that is distributed with this file.
+*/
+
 /* =============================================
     FONT VARIABLES
     Last modified date:     Sept 27, 2023
@@ -10,9 +16,24 @@ $font___base-size: 11px;
 $font___base-line: 24px;
 
 // new variables
-$font-family-primary: source_sans_proregular, Franklin Gothic, Verdana, Arial, sans-serif;
-$font-family-semibold: source_sans_prosemibold, Franklin Gothic Medium, Verdana, Arial, sans-serif;
-$font-family-bold: source_sans_probold, Franklin Gothic Medium, Verdana, Arial, sans-serif;
+$font-family-primary:
+  source_sans_proregular,
+  Franklin Gothic,
+  Verdana,
+  Arial,
+  sans-serif;
+$font-family-semibold:
+  source_sans_prosemibold,
+  Franklin Gothic Medium,
+  Verdana,
+  Arial,
+  sans-serif;
+$font-family-bold:
+  source_sans_probold,
+  Franklin Gothic Medium,
+  Verdana,
+  Arial,
+  sans-serif;
 $font-size-primary: 12px;
 
 // original variables
@@ -26,16 +47,24 @@ $font-family-system: Verdana, Arial, Helvetica, sans-serif;
 $font-size-system: 11px;
 $font-weight-system: normal;
 
-
 // FONT ~ function | @fontface declaration
-@mixin font-face-webfonts($font, $font-family, $file-path, $font-weight, $font-style) {
+@mixin font-face-webfonts(
+  $font,
+  $font-family,
+  $file-path,
+  $font-weight,
+  $font-style
+) {
   @font-face {
     font-family: $font;
-    src: url('#{$file-path}/#{$font-family}-webfont.eot');
-    src: url('#{$file-path}/#{$font-family}-webfont.eot?#iefix') format('embedded-opentype'),
-    url('#{$file-path}/#{$font-family}-webfont.woff') format('woff'),
-    url('#{$file-path}/#{$font-family}-webfont.ttf') format('truetype'),
-    url('#{$file-path}/#{$font-family}-webfont.svg##{$font-family}') format('svg');
+    src: url("#{$file-path}/#{$font-family}-webfont.eot");
+    src:
+      url("#{$file-path}/#{$font-family}-webfont.eot?#iefix")
+        format("embedded-opentype"),
+      url("#{$file-path}/#{$font-family}-webfont.woff") format("woff"),
+      url("#{$file-path}/#{$font-family}-webfont.ttf") format("truetype"),
+      url("#{$file-path}/#{$font-family}-webfont.svg##{$font-family}")
+        format("svg");
     font-weight: $font-weight;
     font-style: $font-style;
   }
@@ -44,15 +73,15 @@ $font-weight-system: normal;
 @mixin font-face($font, $font-weight, $font-style) {
   @font-face {
     font-family: $font;
-    src:  font-url('#{$font}.woff') format('woff'),
-    font-url('#{$font}.ttf') format('ttf');
+    src:
+      font-url("#{$font}.woff") format("woff"),
+      font-url("#{$font}.ttf") format("ttf");
     font-weight: $font-weight;
     font-style: $font-style;
   }
 }
 
-
 // EM ~ function | convert Pixels to EM units
 @function em($target, $context: $font___base-size) {
-  @return round( math.div($target, $context)*1000 ) * 0.001 * 1em;
+  @return round(math.div($target, $context) * 1000) * 0.001 * 1em;
 }

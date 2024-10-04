@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { JVTimePicker } from "@jaspersoft/jv-ui-components";
 import {
   getDateFormatIfAny,
@@ -10,6 +16,7 @@ import {
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
+import { getTheInitialValue } from "../utils/DefaultValueUtils";
 
 export type TimePickerICType = "material";
 
@@ -26,7 +33,7 @@ export const TimePickerInputControl = (props: TimeICProps) => {
   );
 
   const liveState = useLiveDateFormattedState({
-    initialValue: props.state?.value || "",
+    initialValue: getTheInitialValue(props.state?.value) || "",
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);

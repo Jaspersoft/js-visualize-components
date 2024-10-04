@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { useNumberErrorMsg } from "../../../src/controls/hooks/useNumberErrorMsgs";
 

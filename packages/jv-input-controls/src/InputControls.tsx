@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import { useEffect, useState } from "react";
 import { VisualizeClient } from "@jaspersoft/jv-tools";
@@ -53,6 +59,7 @@ export interface InputControlConfig {
       validationResult: { [key: string]: string } | boolean,
     ) => void;
   };
+  params?: { [key: string]: string[] };
 }
 
 export interface InputControlProps {
@@ -102,6 +109,7 @@ export function InputControls(props: InputControlProps) {
         controls={embedControls}
         config={props.panelDef?.config}
         events={props.panelDef?.events}
+        params={props.panelDef?.params}
       ></BasePanel>
     </JVStylesProvider>
   );

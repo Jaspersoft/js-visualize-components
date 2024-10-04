@@ -24,6 +24,7 @@ const credentials: Authentication = {
 };
 
 const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
+// const reportUri = "/public/Samples/Reports/RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
@@ -90,6 +91,17 @@ function App() {
           singleValueDate: {
             type: "default", // even if it isn't provided, this will be the default component
           },
+        },
+        params: {
+          column_boolean_1: ["false"],
+          column_string_1: [
+            "This is a predefined text different than the stored in the server",
+          ],
+          id_1: ["99"],
+          column_date_1: ["2009-03-02"],
+          column_timestamp_1: ["2014-03-02T10:00:00"],
+          column_time_1: ["14:00:00"],
+          ProductFamily: ["Drink", "Food"],
         },
         events: {
           change: (ics, validationResult) => {

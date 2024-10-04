@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { JSX, useState } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
@@ -15,6 +21,7 @@ import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlUserConfig } from "../InputControls";
 import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
+import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
 
 export interface BasePanelProps {
   controls?: any;
@@ -25,6 +32,7 @@ export interface BasePanelProps {
       validationResult: { [key: string]: string } | boolean,
     ) => void;
   };
+  params?: { [key: string]: string[] };
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
@@ -63,7 +71,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           // this means that the validation result is empty, so we need to remove the key from the invalidResponse
           delete acc.invalidResponse[ctrlToUse.id];
         }
-        acc.response[ctrlToUse.id] = [ctrlToUse.state?.value];
+        acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
+          ? ctrlToUse.state?.value
+          : [ctrlToUse.state?.value];
         return acc;
       },
       {
@@ -85,7 +95,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     }
   };
 
-  const getControlProps = (control: any) => {
+  const getControlProps = (
+    control: any,
+    params?: { [key: string]: string[] },
+  ) => {
     return {
       id: control.id,
       label: control.label,
@@ -94,14 +107,17 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       visible: control.visible,
       mandatory: control.mandatory,
       uri: control.uri,
-      state: control.state,
+      state: {
+        ...control.state,
+        value: getDefaultValueFromParamsAndProps({ ...control, params }),
+      },
       events: {
         change: buildLatestJSON,
       },
     };
   };
   const buildControl = (control: any) => {
-    const theProps = getControlProps(control);
+    const theProps = getControlProps(control, props.params);
     if (control.type === "bool") {
       return (
         <BooleanInputControl

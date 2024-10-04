@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import i18nScheduler from "../../i18n";
@@ -17,7 +23,7 @@ import { useTranslation } from "react-i18next";
 import { IState, translationProps } from "../../types/scheduleType";
 
 interface InputDataInStepProps {
-  error: string | undefined;
+  error?: string | undefined;
   value: string | undefined | null | number;
   title: string;
   className?: string;
@@ -272,6 +278,7 @@ export const ParametersStepUserInput = () => {
           title={"Parameters"}
         />
       ) : (
+        parameters &&
         Object.keys(parameters).map((key) => {
           return (
             <KeyValueTemplate

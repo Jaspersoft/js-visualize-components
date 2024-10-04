@@ -1,9 +1,15 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import {
   JVCheckbox,
   JVCheckboxGroup,
   JVSwitch,
 } from "@jaspersoft/jv-ui-components";
-import * as React from "react";
+import { JSX } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useChangeCallback } from "./hooks/useChangeCallback";
 import { useControlClasses } from "./hooks/useControlClasses";
@@ -17,7 +23,7 @@ export interface BooleanInputControlProps extends InputControlProperties {
 
 export function BooleanInputControl(
   props: BooleanInputControlProps,
-): React.JSX.Element {
+): JSX.Element {
   const liveState = useLiveState(!!props.state?.value);
   // We don't need the required CSS class for booleans (request from Anna).
   const controlClasses = useControlClasses([], { ...props, mandatory: false });

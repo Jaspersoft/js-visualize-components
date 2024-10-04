@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 export const SET_USER_TIME_ZONES = "SET_USER_TIME_ZONES";
 export const SET_OUTPUT_FORMATS = "SET_OUTPUT_FORMATS";
 export const SET_SCHEDULER_UI_CONFIG = "SET_SCHEDULER_UI_CONFIG";
@@ -15,4 +21,4 @@ export const SCHEDULE_ERROR_OCCURRED = "SCHEDULE_ERROR_OCCURRED";
 export const SET_STEPPER_CONFIG = "SET_STEPPER_CONFIG";
 export const SET_VISUALIZE_DATA = "SET_VISUALIZE_DATA";
 export const SET_PARAMETERS_TAB_LOADING = "SET_PARAMETERS_TAB_LOADING";
-// export const SET_USER_LOCALE = 'SET_USER_LOCALE';
+export const SET_PARAMETERS_TAB_CONFIG = "SET_PARAMETERS_TAB_CONFIG";

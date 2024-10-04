@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { screen } from "@testing-library/dom";
 import { act, cleanup, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -11,7 +17,7 @@ const requiredProps = {
   mandatory: false,
   readOnly: false,
   visible: true,
-  type: "bool",
+  type: "singleSelect",
 };
 
 const getSingleSelect = (options?: object): JSX.Element => {

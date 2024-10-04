@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
+import { InputControlConfig } from "@jaspersoft/jv-input-controls";
+
 export interface ApiErrorMsg {
   apiErrorTitle?: string;
   retryNetworkTitle?: string;
@@ -9,25 +17,6 @@ export interface ApiFailedProps extends ApiErrorMsg {
   initialTreeDataLoadApiFailure?: boolean;
   treeLoadApiFailure?: boolean;
 }
-interface ScheduleHiddenConfigProps {
-  show: false;
-  defaultValues: {
-    label: any;
-    description?: any;
-    recurrence?: any;
-    startTime?: any;
-  };
-}
-
-interface ScheduleVisibleConfigProps {
-  show?: true;
-  defaultValues?: {
-    label?: any;
-    description?: any;
-    recurrence?: any;
-    startTime?: any;
-  };
-}
 
 export interface SchedulerConfigProps {
   server: string;
@@ -37,17 +26,23 @@ export interface SchedulerConfigProps {
     activeTab?: string;
     tabsOrder?: string[];
     tabsData?: {
-      schedule?: ScheduleVisibleConfigProps | ScheduleHiddenConfigProps;
+      schedule?: {};
       parameters?: {};
       output?: {};
       notifications?: {};
     };
   };
+  stepper?: {
+    show?: boolean;
+  };
   events?: {
     success?: () => void;
     error?: (error: { [key: string]: string }) => void;
-    cancelBtnClick: () => void;
-    scheduleBtnClick: () => void;
+    cancelBtnClick?: () => void;
+    scheduleBtnClick?: (
+      isScheduleCreatedSuccessfully: boolean,
+      jobInformation: any,
+    ) => void;
   };
   locale?: string;
   timezone?: string;
@@ -163,6 +158,7 @@ export interface IState extends SchedulerInitialPluginDataProps {
   stepperConfiguration: {
     show: boolean;
   };
+  parametersTabConfig: InputControlConfig;
   stepperState?: StepperStateProps;
   scheduleApisFailure?: ApiFailedProps;
   lastApiCalledFailed?: boolean;
@@ -233,3 +229,7 @@ export interface FakeRootDataProps {
 }
 
 export type translationProps = { t: (k: string) => string };
+
+export type ScheduleInfoPropsOptionalProps = {
+  outputTimeZone?: string;
+};

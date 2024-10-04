@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { Dispatch } from "redux";
 import {
   SET_SCHEDULE_APIS_FAILURE_ERROR,
@@ -16,6 +22,7 @@ import {
   SET_STEPPER_CONFIG,
   SET_VISUALIZE_DATA,
   SET_PARAMETERS_TAB_LOADING,
+  SET_PARAMETERS_TAB_CONFIG,
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
@@ -37,12 +44,15 @@ import {
   StepperDataProps,
   StoreDataProps,
   TabsConfigurationProps,
+  ScheduleInfoPropsOptionalProps,
 } from "../types/scheduleType";
 import {
   getErrorsForCurrentTab,
   getStateOfCurrentActiveTab,
 } from "../utils/schedulerUtils";
 import { removeRootFolderPath } from "../utils/treeUtils";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
+import { InputControlConfig } from "@jaspersoft/jv-input-controls";
 
 export const setApiFailure = (
   failedApi: ApiFailedProps | undefined,
@@ -158,7 +168,7 @@ export const setStepperConfig = (stepperConfiguration: {}) => {
     payload: stepperConfiguration,
   };
 };
-export const setVisualizeObj = (visualize: any) => {
+export const setVisualizeObj = (visualize: VisualizeClient) => {
   return {
     type: SET_VISUALIZE_DATA,
     payload: { visualize },
@@ -181,9 +191,14 @@ export const getOutputFormats = () => {
   };
 };
 
-export const getUserTimeZones = () => {
+export const getUserTimeZones = (timezone?: string) => {
   return async (dispatch: Dispatch) => {
     const timezones = await getUserTimezonesFromService();
+    dispatch(
+      setPropertiesDetails({
+        outputTimeZone: timezone ? timezone : timezones[0].code,
+      }),
+    );
     if (timezones.error) {
       dispatch(
         setApiFailure(
@@ -233,10 +248,19 @@ export const getFakeRootData = () => {
   };
 };
 
+export const setParametersTabConfig = (
+  config: InputControlConfig | undefined,
+) => {
+  return {
+    type: SET_PARAMETERS_TAB_CONFIG,
+    payload: { parametersTabConfig: config },
+  };
+};
+
 export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
   schedulerUIConfig: SchedulerConfigProps,
-  visualize: any,
+  visualize: VisualizeClient,
 ) => {
   return async (dispatch: any) => {
     const {
@@ -248,7 +272,7 @@ export const setInitialPluginState = (
       stepperDefaultState,
     } = schedulerData;
     dispatch(setSechedulerUIConfig(schedulerUIConfig));
-    dispatch(getUserTimeZones());
+    dispatch(getUserTimeZones(scheduleInfo.outputTimeZone));
     dispatch(getOutputFormats());
     dispatch(
       setTabsConfig({
@@ -256,10 +280,14 @@ export const setInitialPluginState = (
         tabsConfiguration: { tabsToShow, stepsToShow },
       }),
     );
+    dispatch(
+      setParametersTabConfig(schedulerUIConfig.tabs?.tabsData?.parameters),
+    );
     dispatch(setStepperProperties(stepperDefaultState));
     dispatch(setStepperConfig({ show: showStepper }));
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
     dispatch(setVisualizeObj(visualize));
+    delete (scheduleInfo as ScheduleInfoPropsOptionalProps).outputTimeZone;
     dispatch(setPropertiesDetails(JSON.parse(JSON.stringify(scheduleInfo))));
   };
 };
@@ -305,7 +333,7 @@ export const allTabValidationError = (
 
 export const createScheduleJob = (enableCreateBtn: () => void) => {
   return async (dispatch: Dispatch, getState: () => IState) => {
-    const { success, error } = getState().schedulerUIConfig?.events || {};
+    const { scheduleBtnClick } = getState().schedulerUIConfig?.events || {};
     try {
       const {
         scheduleJobDescription,
@@ -317,7 +345,8 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
       const capitlizedOutputFormat = outputFormat.map((item) =>
         item.toUpperCase(),
       );
-      await createSchedule({
+
+      const jobInfo = await createSchedule({
         label: scheduleJobName,
         description: scheduleJobDescription,
         outputFormats: {
@@ -325,7 +354,7 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
         },
         ...rest,
       });
-      success?.();
+      scheduleBtnClick?.(true, jobInfo);
       dispatch(setApiFailure({ createScheduleApiFailure: false }, ""));
     } catch (err) {
       dispatch(
@@ -334,7 +363,7 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
           "createScheduleApiFailure",
         ),
       );
-      error?.({ message: "Error while creating schedule" });
+      scheduleBtnClick?.(false, err);
     } finally {
       enableCreateBtn();
     }

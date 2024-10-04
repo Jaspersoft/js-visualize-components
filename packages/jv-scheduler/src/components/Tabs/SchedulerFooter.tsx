@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import React, { useEffect, useState } from "react";
 import { JVButton } from "@jaspersoft/jv-ui-components";
 import { useTranslation } from "react-i18next";
@@ -36,7 +42,6 @@ const SchedulerFooter = () => {
     } else {
       dispatch(createScheduleJob(enableCreateButton));
     }
-    scheduleConfig?.events?.scheduleBtnClick?.();
   };
   const handleCreateSchedule = () => {
     setCreateBtnDisability(true);

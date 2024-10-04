@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 export const PARAMETERS_TAB = "parameters";
 export const SCHEDULE_TAB = "schedule";
 export const NOTIFICATIONS_TAB = "notifications";
@@ -184,6 +190,7 @@ export const defaultState = {
   scheduleErrors: {
     ...scheduleDefaultErrorState,
   },
+  parametersTabConfig: {},
   scheduleApisFailure: {
     userTimezoneApiFailure: false,
     userOutputFormatApiFailure: false,
@@ -291,4 +298,37 @@ export const ROOT_FOLDER = "/root";
 export const mapFieldName: { [key: string]: string } = {
   label: "scheduleJobName",
   description: "scheduleJobDescription",
+};
+
+export const validationMessages: { [key: string]: string } = {
+  "error.schedule.job.description.too.long":
+    "The scheduled job description is too long. The maximum length is 250 characters.",
+  "error.schedule.job.name.too.long":
+    "The scheduled job name is too long. The maximum length is 100 characters.",
+  "error.invalid.file.name":
+    "The base output name contains invalid characters. You might have mistyped it.",
+  "error.file.name.too.long":
+    "The file name is too long. It must be 200 characters or less.",
+  "error.recurrence.must.be.integer":
+    "The recurrence interval must be an integer greater than 0.",
+  "error.schedule.job.name": "Scheduled job name should not be empty.",
+  "error.schedule.job.description":
+    "Scheduled job description should not be empty.",
+  "error.recurrence": "Recurrence interval should not be empty.",
+  "error.start.date": "Start date and time should not be empty or invalid.",
+  "error.past.date":
+    "Start date and time is in the past. The start date and time must be in the future.",
+  "error.email.address": "One or more email addresses are invalid.",
+  "error.enter.subject": "Subject should not be empty.",
+  "error.subject.too.long": "The subject is too long.",
+  "error.message.too.long": "The message is too long.",
+  "error.file.name": "File name should not be empty.",
+  "error.output.format": "Formats should not be empty",
+  "error.folder.uri.required": "Folder uri should not be empty.",
+  "error.report.schedule.output.folder.resourceuri.format":
+    "The scheduled job output folder contains invalid characters.",
+  "error.notifications.email.empty":
+    "Email address should not be empty.Please one or more email addresses.",
+  "error.report.schedule.output.folder.notwriteable":
+    "The scheduled job output folder has restricted access.",
 };

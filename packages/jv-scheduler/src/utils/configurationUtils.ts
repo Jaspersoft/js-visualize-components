@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import {
   stepInfo,
   tabsInfo,
@@ -14,6 +20,7 @@ import {
   SEND_LINK,
   defaultFieldVisibility,
   mapFieldName,
+  validationMessages,
 } from "../constants/schedulerConstants";
 import { getLengthOfObject, getUriParts } from "./schedulerUtils";
 import { validator } from "../validations/scheduleValidators";
@@ -24,10 +31,7 @@ const isResourceWritable = (item: any) => {
 };
 
 const checkForStringOrNumber = (element: string | number | undefined) => {
-  return (
-    typeof element === "string" ||
-    (typeof element === "number" && !isNaN(element))
-  );
+  return typeof element === "string";
 };
 
 const checkAvailabilityOfBasicConfig = (
@@ -37,13 +41,16 @@ const checkAvailabilityOfBasicConfig = (
 ) => {
   const error: { [key: string]: string } = {};
   if (!resourceURI) {
-    error.resourceUri = "resourceURI is required in the configuration";
+    error["resource.uri.missing.configuration"] =
+      "resourceURI is required in the configuration";
     console.error("resourceURI is required in the configuration");
   } else if (!server) {
-    error.server = "server is required in the configuration";
+    error["server.missing.configuration"] =
+      "server is required in the configuration";
     console.error("server is required in the configuration");
   } else if (!contextPath) {
-    error.contextPath = "contextPath is required in the configuration";
+    error["contextPath.missing.configuration"] =
+      "contextPath is required in the configuration";
     console.error("contextPath is required in the configuration");
   }
   return error;
@@ -58,7 +65,7 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
         console.error(
           "Value for label is required in the configuration when schedule tab is hidden",
         );
-        error.label =
+        error["label.missing.value.schedule.tab.hidden.configuration"] =
           "Value for label is required in the configuration when schedule tab is hidden";
       }
       break;
@@ -72,7 +79,9 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
         console.error(
           "Value for baseOutputFilename is required in the configuration when output tab is hidden",
         );
-        error.baseOutputFilename =
+        error[
+          "baseOutputFilename.hidden.missing.value.output.tab.hidden.configuration"
+        ] =
           "Value for baseOutputFilename is required in the configuration when output tab is hidden";
       }
       break;
@@ -83,16 +92,20 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
         console.error(
           "Value for address and subject is required in the configuration when notifications tab is hidden",
         );
-        error.address =
-          "Value for address is required in the configuration when notifications tab is hidden";
-        error.subject =
-          "Value for subject is required in the configuration when notifications tab is hidden";
+        if (!address)
+          error[
+            "address.hidden.missing.value.notification.tab.hidden.configuration"
+          ] =
+            "Value for address is required in the configuration when notifications tab is hidden";
+        if (!subject)
+          error["subject.hidden.missing.value.configuration"] =
+            "Value for subject is required in the configuration when notifications tab is hidden";
       } else if (Array.isArray(address) || !checkForStringOrNumber(address)) {
         console.error(
           "Value for address should be a string or number or array of strings or numbers",
         );
-        error.address =
-          "Value for address should be a string or number or array of strings or numbers";
+        error["address.not.in.proper.format"] =
+          "Value for address should be a string  or array of strings";
       }
       break;
     }
@@ -178,10 +191,21 @@ const checkFieldDataValidity = (fieldsData: any) => {
             manadatoryHiddenField.indexOf(field) > -1 &&
             !fieldsData[field].value
           ) {
-            promises.push(Promise.resolve({ [field]: `${field} is required` }));
+            promises.push(
+              Promise.resolve({
+                [`${field}.hidden.missing.value.configuration`]: `Value for ${field} is required in the configuration when ${field} is hidden`,
+              }),
+            );
           } else {
-            const fieldName: any = mapFieldName[field] || field;
-            promises.push(validator(fieldName, fieldsData[field].value, {}));
+            const fieldName: string = mapFieldName[field] || field,
+              error: { [key: string]: string | any } = validator(
+                fieldName,
+                fieldsData[field].value,
+                {},
+              );
+            promises.push({
+              [`${field}.invalid`]: validationMessages[error[`${fieldName}`]],
+            });
             fieldConvertedData[fieldName] = fieldsData[field].value;
             fieldsVisibility[fieldName] =
               fieldsData[field].showField === undefined
@@ -197,12 +221,16 @@ const checkFieldDataValidity = (fieldsData: any) => {
           manadatoryHiddenField.indexOf(field) > -1 &&
           !value
         ) {
-          promises.push(Promise.resolve({ [field]: `${field} is required` }));
+          promises.push(
+            Promise.resolve({
+              [`${field}.hidden.missing.value.configuration`]: `Value for ${field} is required in the configuration when ${field} is hidden`,
+            }),
+          );
         } else {
           const fieldValue: any = getValuesForRadio(value, field);
           if (fieldValue.error) {
-            console.error(fieldValue.error);
-            error[`${field}ValErr`] = fieldValue.error;
+            error[`${field}.invalid`] =
+              validationMessages[fieldValue.error[`${field}`]];
           } else {
             fieldConvertedData = { ...fieldConvertedData, ...fieldValue };
             fieldsVisibility[field] =
@@ -240,12 +268,12 @@ const checkResourceUriIsRightOrHavePermission = async (
   if (response.permissionMask) {
     if (!isResourceWritable(response)) {
       console.error("You don't have permission to schedule this resource");
-      error.noPermission =
+      error["resource.access.denied"] =
         "You don't have permission to schedule this resource";
     }
   } else {
     console.error("Resource URI was not found");
-    error.uriIsNotFound = "Resource URI was not found";
+    error["resource.not.found"] = "Resource URI was not found";
   }
   return error;
 };
@@ -374,10 +402,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
   // check we have data for all hidden tabs
   hiddenTabs.forEach((tab) => {
     const dataForTab = tabsData?.[tab];
-    const tabError = checkRequiredDataForHiddenTabs(
-      tab,
-      dataForTab?.defaultValues,
-    );
+    const tabError = checkRequiredDataForHiddenTabs(tab, dataForTab);
     if (getLengthOfObject(tabError)) {
       error[tab] = { ...tabError };
     }
@@ -393,10 +418,10 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     parameters = {},
   } = tabsData;
 
-  const scheduleDefaultValues = schedule.defaultValues || {},
-    outputDefaultValues = output.defaultValues || {},
-    notificationsDefaultValues = notifications.defaultValues || {},
-    parametersDefaultValues = parameters.defaultValues || {};
+  const scheduleDefaultValues = schedule || {},
+    outputDefaultValues = output || {},
+    notificationsDefaultValues = notifications || {},
+    parametersDefaultValues = parameters || {};
 
   // check whether we have all data for hidden fields
   const inputFieldsInfo = {

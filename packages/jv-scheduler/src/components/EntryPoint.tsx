@@ -1,4 +1,11 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import React, { useEffect, useState } from "react";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
 import { createRoot } from "react-dom/client";
 import i18nScheduler from "../i18n";
 import store from "./../store/store";
@@ -9,19 +16,19 @@ import { getSchedulerData } from "../utils/configurationUtils";
 import { SchedulerConfigProps } from "../types/scheduleType";
 
 type SchedulerProps = {
-  visualize: {};
+  visualize: VisualizeClient;
   schedulerUIConfig: SchedulerConfigProps;
 };
 
 export function renderScheduler(
   container: HTMLElement,
-  vizjs: {},
+  vizjs: VisualizeClient,
   config: SchedulerConfigProps,
 ) {
   const rootElement = container;
   if (!rootElement) {
     return config.events?.error?.({
-      containerNotFound: "Root element is not found",
+      "container.not.found": "Root element is not found",
     });
   } else {
     const schedulerRoot = createRoot(rootElement);
@@ -46,6 +53,8 @@ const EntryPoint = (props: SchedulerProps) => {
         setSchedulerData(response);
         if (response.error) {
           schedulerUIConfig.events?.error?.(response.error);
+        } else {
+          schedulerUIConfig.events?.success?.();
         }
         setIsLoadComp(true);
       } catch (error) {

@@ -1,6 +1,7 @@
 /*
- * Copyright (C) 2005 - 2023. Cloud Software Group, Inc. All Rights Reserved. Confidential & Proprietary.
- * Licensed pursuant to commercial Cloud Software Group, Inc. End User License Agreement.
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
  */
 
 import _ from "underscore";
@@ -107,9 +108,7 @@ export const validator = (
       }
       break;
     case ERROR_FIELDS.SCHEDULE_JOB_DESCRIPTION:
-      if (isFieldEmpty(propVal)) {
-        schedulerPropError = "error.schedule.job.description";
-      } else if (propVal.length > 250) {
+      if (propVal.length > 250) {
         schedulerPropError = "error.schedule.job.description.too.long";
       }
       break;
@@ -133,7 +132,7 @@ export const validator = (
       break;
     case ERROR_FIELDS.EMAIL_ADDRESS:
       if (isFieldEmpty(propVal)) {
-        schedulerPropError = "notifications.send.schedule.to.helper.text";
+        schedulerPropError = "error.notifications.email.empty";
       } else if (!validateEmail(propName, propVal)) {
         schedulerPropError = "error.email.address";
       }

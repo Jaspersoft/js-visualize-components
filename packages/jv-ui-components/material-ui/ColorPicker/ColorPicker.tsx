@@ -1,36 +1,53 @@
-import { forwardRef } from 'react';
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
 
-import { TextField, TextFieldProps } from '../TextField/TextField';
-import { ColorPickerSample } from './ColorPickerSample';
+import { forwardRef } from "react";
 
-export type ColorPickerProps = Omit<TextFieldProps, 'value'> & {
-    value?: string,
-    allowTransparent?: boolean,
-    onColorChange?: (color: string) => void
-}
+import { TextField, TextFieldProps } from "../TextField/TextField";
+import { ColorPickerSample } from "./ColorPickerSample";
 
-export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(({
-    InputProps = {}, value, allowTransparent, onColorChange = () => {}, className = '', ...rest
-}, ref) => {
+export type ColorPickerProps = Omit<TextFieldProps, "value"> & {
+  value?: string;
+  allowTransparent?: boolean;
+  onColorChange?: (color: string) => void;
+};
 
+export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
+  (
+    {
+      InputProps = {},
+      value,
+      allowTransparent,
+      onColorChange = () => {},
+      className = "",
+      ...rest
+    },
+    ref,
+  ) => {
     const isColorPickerDisabled = rest.disabled ?? InputProps?.readOnly;
 
     return (
-        <TextField
-            ref={ref}
-            className={`jv-mControl jv-mControlColor mui ${className}`}
-            value={value}
-            type="string"
-            InputProps={{
-                startAdornment: <ColorPickerSample
-                    color={value}
-                    onChange={onColorChange}
-                    allowTransparent={allowTransparent}
-                    disabled={isColorPickerDisabled}
-                />,
-                ...InputProps
-            }}
-            {...rest}
-        />
-    )
-})
+      <TextField
+        ref={ref}
+        className={`jv-mControl jv-mControlColor mui ${className}`}
+        value={value}
+        type="string"
+        InputProps={{
+          startAdornment: (
+            <ColorPickerSample
+              color={value}
+              onChange={onColorChange}
+              allowTransparent={allowTransparent}
+              disabled={isColorPickerDisabled}
+            />
+          ),
+          ...InputProps,
+        }}
+        {...rest}
+      />
+    );
+  },
+);

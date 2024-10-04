@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { JVDateTimePicker } from "@jaspersoft/jv-ui-components";
 import {
   getDateFormatIfAny,
@@ -7,6 +13,7 @@ import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
+import { getTheInitialValue } from "../utils/DefaultValueUtils";
 
 export type DateTimePickerICType = "material";
 
@@ -35,7 +42,7 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
     ? props.views
     : ["year", "month", "day", "hours", "minutes", "seconds"];
   const liveState = useLiveDateFormattedState({
-    initialValue: props.state?.value || "",
+    initialValue: getTheInitialValue(props.state?.value) || "",
     format: dateFormat,
   });
   const controlClasses = useControlClasses([], props);

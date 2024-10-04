@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 export type InputControlDataTypeType =
   | string
   | "date"
@@ -41,15 +47,15 @@ export interface InputControlValidationRule {
 }
 
 export interface InputControlOption {
-  selected?: boolean;
-  label?: string;
-  value?: string;
+  selected: boolean;
+  label: string;
+  value: string;
 }
 
 export interface InputControlState {
   id: string;
   uri: string;
-  value: string;
+  value?: string | string[]; // this is optional for the multi-select
   error?: string;
   totalCount?: string;
   options?: InputControlOption[];

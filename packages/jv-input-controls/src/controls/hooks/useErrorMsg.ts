@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { useState } from "react";
 import { verifyDateLimit } from "../../utils/DateInputControlUtils";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
@@ -21,6 +27,11 @@ export const useErrorMsg = ({
   const [msg, setMsg] = useState<string>(defaultValue);
 
   const validateTextValue = (textToValidate: string): string => {
+    // Determine the message based on:
+    // 1. whether the field is mandatory and the text value is empty
+    // 2. whether the field has a pattern that needs to be matched
+    // 3. whether the field meets the max date value
+    // 4. whether the field meets the min date value
     let theMsg: string =
       props?.mandatory && !textToValidate.trim()
         ? getMandatoryErrorMessage(props?.validationRules)
@@ -74,25 +85,15 @@ export const useErrorMsg = ({
   };
 
   useEffectAfterInitial(() => {
-    // Determine the message based on:
-    // 1. whether the field is mandatory and the text value is empty
-    // 2. whether the field has a pattern that needs to be matched
-    // 3. whether the field meets the max date value
-    // 4. whether the field meets the min date value
-    let errorMessage;
-
-    if (!Array.isArray(textValue)) {
-      errorMessage = validateTextValue(textValue);
-      setMsg(errorMessage);
-    } else {
-      errorMessage = validateArray(textValue);
-      setMsg(errorMessage);
-    }
-
-    // also, we have to trigger the callback because there was an error
+    const errorMessage = Array.isArray(textValue)
+      ? validateArray(textValue)
+      : validateTextValue(textValue);
+    const finalMsg = errorMessage?.trim().length > 0 ? errorMessage : "";
+    // also, we have to trigger the callback in case there was an error
     props?.events?.change?.(getInputControlProperties(props, textValue), {
-      [props.id]: msg,
+      [props.id]: finalMsg,
     });
+    setMsg(finalMsg);
   }, [textValue]);
   return msg;
 };
