@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import ChainedBackend from "i18next-chained-backend";
