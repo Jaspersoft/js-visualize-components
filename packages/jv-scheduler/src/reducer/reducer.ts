@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import {
   SET_OUTPUT_FORMATS,
   SET_SCHEDULE_APIS_FAILURE_ERROR,
@@ -15,6 +21,7 @@ import {
   SET_STEPPER_CONFIG,
   SET_VISUALIZE_DATA,
   SET_PARAMETERS_TAB_LOADING,
+  SET_PARAMETERS_TAB_CONFIG,
 } from "../constants/actionConstants";
 import { defaultState } from "../constants/schedulerConstants";
 
@@ -120,6 +127,12 @@ export const rootReducer = (
         ...state,
         parametersTabLoading: action.payload.parametersTabConfig,
       };
+    case SET_PARAMETERS_TAB_CONFIG:
+      return {
+        ...state,
+        parametersTabConfig: action.payload.parametersTabConfig,
+      };
+
     default:
       return state;
   }

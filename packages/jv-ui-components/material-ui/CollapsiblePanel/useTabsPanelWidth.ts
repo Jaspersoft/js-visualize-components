@@ -1,31 +1,43 @@
-import {
-    MutableRefObject, useLayoutEffect, useMemo, useState
-} from 'react';
-import { PanelsState } from './useCollapsiblePanelState';
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
+import { MutableRefObject, useLayoutEffect, useMemo, useState } from "react";
+import { PanelsState } from "./useCollapsiblePanelState";
 
 const getTabsPanelVisibleState = (panelsState: PanelsState) => {
-    return panelsState.reduce((acc, panel) => {
-        return panel.subPanels.reduce((acc1, subPanel) => {
-            return !subPanel.open ? true : acc1
-        }, acc)
-    }, false as boolean);
+  return panelsState.reduce((acc, panel) => {
+    return panel.subPanels.reduce((acc1, subPanel) => {
+      return !subPanel.open ? true : acc1;
+    }, acc);
+  }, false as boolean);
 };
 
 const calcTabsPanelWidth = (el: HTMLDivElement | null) => {
-    if (!el) {
-        return 0;
-    }
+  if (!el) {
+    return 0;
+  }
 
-    return el.offsetWidth;
-}
+  return el.offsetWidth;
+};
 
-export const useTabsPanelWidth = (ref: MutableRefObject<HTMLDivElement | null>, panelsState: PanelsState) => {
-    const isTabsPanelInitiallyVisible = useMemo(() => getTabsPanelVisibleState(panelsState), [panelsState]);
-    const [tabsPanelWidth, setTabsPanelWidth] = useState(calcTabsPanelWidth(ref.current));
+export const useTabsPanelWidth = (
+  ref: MutableRefObject<HTMLDivElement | null>,
+  panelsState: PanelsState,
+) => {
+  const isTabsPanelInitiallyVisible = useMemo(
+    () => getTabsPanelVisibleState(panelsState),
+    [panelsState],
+  );
+  const [tabsPanelWidth, setTabsPanelWidth] = useState(
+    calcTabsPanelWidth(ref.current),
+  );
 
-    useLayoutEffect(() => {
-        setTabsPanelWidth(calcTabsPanelWidth(ref.current))
-    }, [isTabsPanelInitiallyVisible, ref])
+  useLayoutEffect(() => {
+    setTabsPanelWidth(calcTabsPanelWidth(ref.current));
+  }, [isTabsPanelInitiallyVisible, ref]);
 
-    return tabsPanelWidth;
+  return tabsPanelWidth;
 };

@@ -21,7 +21,7 @@
         },
         "startTime": {
           "showField": true,
-          "value": ""
+          "value": "now"
         }
       },
       "output": {
@@ -36,7 +36,7 @@
         "outputFormat": { "showField": true, "value": ["pdf"] },
         "outputTimeZone": {
           "showField": true,
-          "value": "America/Los_Angeles"
+          "value": ""
         }
       },
       "parameters": {},
@@ -48,7 +48,7 @@
         },
         "reportAccessType": {
           "showField": true,
-          "value": ""
+          "value": "SEND_ATTACHMENT"
         }
       }
     }

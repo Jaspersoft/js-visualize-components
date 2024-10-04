@@ -1,59 +1,73 @@
-import { FC } from 'react';
-import { Button, List, ListItem } from '@mui/material';
-import { OnExpandCollapseClick, SubPanelDefinition } from './collapsiblePanelTypes';
-import { SetSubPanelState, SubPanelState } from './useCollapsiblePanelState';
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
+import { FC } from "react";
+import { Button, List, ListItem } from "@mui/material";
+import {
+  OnExpandCollapseClick,
+  SubPanelDefinition,
+} from "./collapsiblePanelTypes";
+import { SetSubPanelState, SubPanelState } from "./useCollapsiblePanelState";
 
 export interface TabsListProps {
-    panelIndex: number,
-    subPanels: SubPanelDefinition[],
-    subPanelsState: SubPanelState[],
-    setSubPanelState: SetSubPanelState,
-    onExpandClick: OnExpandCollapseClick
+  panelIndex: number;
+  subPanels: SubPanelDefinition[];
+  subPanelsState: SubPanelState[];
+  setSubPanelState: SetSubPanelState;
+  onExpandClick: OnExpandCollapseClick;
 }
 
 export const TabsList: FC<TabsListProps> = ({
-    subPanelsState, panelIndex, subPanels, setSubPanelState, onExpandClick
+  subPanelsState,
+  panelIndex,
+  subPanels,
+  setSubPanelState,
+  onExpandClick,
 }) => {
-    const openSubPanelLabel = 'Open sub panel';
+  const openSubPanelLabel = "Open sub panel";
 
-    const handleExpandClick = (index: number, id: string) => {
-        const result = onExpandClick({ type: 'subpanel', id })
-        if (typeof result === 'undefined' || result) {
-            setSubPanelState(panelIndex, index, true)
-        }
+  const handleExpandClick = (index: number, id: string) => {
+    const result = onExpandClick({ type: "subpanel", id });
+    if (typeof result === "undefined" || result) {
+      setSubPanelState(panelIndex, index, true);
     }
+  };
 
-    return (
-        <List
-            disablePadding
-            className="jv-mPanel-sections mui"
-            component="ul"
-        >
-            {
-                subPanels.map((subPanelDefinition, subPanelIndex) => {
-                    const subPanelState = subPanelsState[subPanelIndex];
-                    const isTabVisible = !subPanelState.open;
+  return (
+    <List disablePadding className="jv-mPanel-sections mui" component="ul">
+      {subPanels.map((subPanelDefinition, subPanelIndex) => {
+        const subPanelState = subPanelsState[subPanelIndex];
+        const isTabVisible = !subPanelState.open;
 
-                    return isTabVisible && (
-                        <ListItem
-                            disableGutters
-                            className="jv-mPanel-section mui"
-                            component="li"
-                            key={subPanelState.id}
-                            data-name={`${subPanelState.id}-tab`}
-                        >
-                            <Button
-                                data-name={`${subPanelState.id}-tab-expand`}
-                                classes={{ root: 'jv-mPanel-section-action mui' }}
-                                onClick={() => handleExpandClick(subPanelIndex, subPanelState.id)}
-                                aria-label={openSubPanelLabel}
-                            >
-                                <span className="jv-MuiButton-label jv-mButton-label mui"> {subPanelDefinition.label}</span>
-                            </Button>
-                        </ListItem>
-                    )
-                })
-            }
-        </List>
-    )
-}
+        return (
+          isTabVisible && (
+            <ListItem
+              disableGutters
+              className="jv-mPanel-section mui"
+              component="li"
+              key={subPanelState.id}
+              data-name={`${subPanelState.id}-tab`}
+            >
+              <Button
+                data-name={`${subPanelState.id}-tab-expand`}
+                classes={{ root: "jv-mPanel-section-action mui" }}
+                onClick={() =>
+                  handleExpandClick(subPanelIndex, subPanelState.id)
+                }
+                aria-label={openSubPanelLabel}
+              >
+                <span className="jv-MuiButton-label jv-mButton-label mui">
+                  {" "}
+                  {subPanelDefinition.label}
+                </span>
+              </Button>
+            </ListItem>
+          )
+        );
+      })}
+    </List>
+  );
+};

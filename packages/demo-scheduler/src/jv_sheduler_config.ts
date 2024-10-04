@@ -45,7 +45,15 @@ const schedulerUIConfig: SchedulerConfigProps = {
           value: "America/Los_Angeles",
         },
       },
-      parameters: {},
+      parameters: {
+        config: { bool: { type: "switch" } },
+        events: {
+          change: (ics: any, vs: any) => {
+            console.log("NEW ICS!! ", ics);
+            if (vs) console.log("Validations: ", vs);
+          },
+        },
+      },
       notifications: {
         // required in config
         address: { showField: true, value: ["test@cloud.com"] },
@@ -57,7 +65,7 @@ const schedulerUIConfig: SchedulerConfigProps = {
         },
         reportAccessType: {
           showField: true,
-          value: "/public/Samples",
+          value: "SEND_ATTACHMENT",
         },
       },
     },

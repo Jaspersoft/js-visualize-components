@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import React, { useEffect } from "react";
 import { InputControls } from "@jaspersoft/jv-input-controls";
 import i18nScheduler from "../../../i18n";
@@ -24,6 +30,12 @@ const Parameters = () => {
   const parameters = useSelector(
     (state: IState) => state.scheduleInfo.source.parameters.parameterValues,
   );
+  const parametersConfig = useSelector(
+    (state: IState) => state.parametersTabConfig,
+  );
+
+  const { success, error, events, config, ...restConfig } = parametersConfig;
+  const { change, ...restEvents } = events || {};
 
   useEffect(() => {
     dispatch(parametersTabErrorOrLoading({ isError: false, isLoaded: false }));
@@ -44,39 +56,36 @@ const Parameters = () => {
   };
 
   const panelD: any = {
-    config: { bool: { type: "switch" } },
     success: (params: any) => {
       updateStoreWithParameters(
         Object.keys(parameters).length ? parameters : params.parameters,
       );
+      success?.(params);
     },
     error: (error: any) => {
       dispatch(parametersTabErrorOrLoading({ isLoaded: true, isError: true }));
-      console.log("Error when rendering the Basic controls: ", error);
+      error?.(error);
     },
+    config: config,
     events: {
       change: (ics: any, vs: any) => {
-        console.log("NEW ICS!! ", ics);
-        if (vs) console.log("Validations: ", vs);
         if (vs) {
           dispatch(
             scheduleValidationError({ parameters: "error.parameters.error" }),
           );
         }
         updateStoreWithParameters(ics);
+        change?.(ics, vs);
       },
+      ...restEvents,
     },
+    ...restConfig,
   };
 
   return (
     <>
       <JVTypographyComponent text={t("parameters.title")} />
-      <InputControls
-        vObject={visualize}
-        uri={resourceUri}
-        panelDef={panelD}
-        // params={parameters}
-      />
+      <InputControls vObject={visualize} uri={resourceUri} panelDef={panelD} />
     </>
   );
 };

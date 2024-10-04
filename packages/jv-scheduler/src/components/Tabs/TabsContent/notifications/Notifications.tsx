@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import React, { ChangeEvent, useEffect, useState } from "react";
 import {
   JVButton,
@@ -82,7 +88,7 @@ const Notifications = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedVal = e.target.value,
       updatedProperty = {
-        mailNotificationVal: {
+        mailNotification: {
           ...mailNotification,
           resultSendType: selectedVal,
         },

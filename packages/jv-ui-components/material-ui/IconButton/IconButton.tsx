@@ -1,35 +1,60 @@
-import { forwardRef } from 'react';
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
+import { forwardRef } from "react";
 import {
-    IconButton as MuiIconButton, ButtonProps as MuiButtonProps, IconButtonProps as MuiIconButtonProps
-} from '@mui/material';
+  IconButton as MuiIconButton,
+  ButtonProps as MuiButtonProps,
+  IconButtonProps as MuiIconButtonProps,
+} from "@mui/material";
 import {
-    ButtonColor, ColorToClass, SizeToClass, VariantToClassName
-} from '../types/ButtonTypes';
+  ButtonColor,
+  ColorToClass,
+  SizeToClass,
+  VariantToClassName,
+} from "../types/ButtonTypes";
 
 export type IconButtonProps = MuiIconButtonProps & {
-    icon: string,
-    variant?: MuiButtonProps['variant'],
-    selected?: boolean,
-    color?: ButtonColor,
-    labelProps?: {
-        labelClasses: string
-    }
-}
+  icon: string;
+  variant?: MuiButtonProps["variant"];
+  selected?: boolean;
+  color?: ButtonColor;
+  labelProps?: {
+    labelClasses: string;
+  };
+};
 
-export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
-    labelProps = {}, color = 'secondary', className = '', size = 'medium', icon, variant = 'text', selected = false, ...rest
-}, ref) => {
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  (
+    {
+      labelProps = {},
+      color = "secondary",
+      className = "",
+      size = "medium",
+      icon,
+      variant = "text",
+      selected = false,
+      ...rest
+    },
+    ref,
+  ) => {
     const { labelClasses } = labelProps;
     const iconClassName = `jv-${icon}`;
-    const selectedClassName = selected ? 'jv-Mui-selected' : '';
+    const selectedClassName = selected ? "jv-Mui-selected" : "";
 
     return (
-        <MuiIconButton
-            ref={ref}
-            className={`jv-mButton ${ColorToClass[color]} ${SizeToClass[size]} mui ${VariantToClassName[variant]} ${selectedClassName} ${className}`}
-            {...rest}
-        >
-            <span className={`jv-mButton-icon jv-mIcon mui ${iconClassName} ${labelClasses}`} />
-        </MuiIconButton>
-    )
-})
+      <MuiIconButton
+        ref={ref}
+        className={`jv-mButton ${ColorToClass[color]} ${SizeToClass[size]} mui ${VariantToClassName[variant]} ${selectedClassName} ${className}`}
+        {...rest}
+      >
+        <span
+          className={`jv-mButton-icon jv-mIcon mui ${iconClassName} ${labelClasses}`}
+        />
+      </MuiIconButton>
+    );
+  },
+);
