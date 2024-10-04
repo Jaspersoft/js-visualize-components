@@ -23,7 +23,7 @@ import { useTranslation } from "react-i18next";
 import { IState, translationProps } from "../../types/scheduleType";
 
 interface InputDataInStepProps {
-  error: string | undefined;
+  error?: string | undefined;
   value: string | undefined | null | number;
   title: string;
   className?: string;

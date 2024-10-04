@@ -8,21 +8,55 @@ import React from "react";
 import { FieldHeader } from "./FieldHeader";
 import { KeyValueTemplate } from "./KeyValueTemplate";
 import { useTranslation } from "react-i18next";
-import { translationProps } from "../../types/scheduleType";
+import { IState, translationProps } from "../../types/scheduleType";
 import i18nScheduler from "../../i18n";
+import { useSelector } from "react-redux";
+import { InputDataInStep } from "./FieldUserInputData";
+import {
+  MAX_STEPPER_EMAIL_ADDRESS,
+  MAX_STEPPER_OUTPUT_FORMATS,
+  SEND_LINK,
+} from "../../constants/schedulerConstants";
 
 export const ScheduleStepDefaultMessage = () => {
   const { t } = useTranslation(undefined, {
     i18n: i18nScheduler,
   }) as translationProps;
+  const label = useSelector(
+      (state: IState) => state.scheduleInfo?.scheduleJobName,
+    ),
+    description = useSelector(
+      (state: IState) => state.stepperState?.scheduleJobDescription,
+    ),
+    interval = useSelector(
+      (state: IState) => state.stepperState?.recurrenceInterval,
+    ),
+    intervalUnit = useSelector(
+      (state: IState) => state.stepperState?.recurrenceIntervalUnit,
+    );
+
   return (
     <>
-      <FieldHeader text={t("stepper.schedule.jobname.helpertext")} />
-      <FieldHeader text={t("stepper.schedule.description.helpertext")} />
+      {label?.length ? (
+        <InputDataInStep
+          title={t("stepper.schedule.jobname.key")}
+          value={label}
+        />
+      ) : (
+        <FieldHeader text={t("stepper.schedule.jobname.helpertext")} />
+      )}
+      {description?.length ? (
+        <InputDataInStep
+          title={t("stepper.schedule.jobdescription.key")}
+          value={description}
+        />
+      ) : (
+        <FieldHeader text={t("stepper.schedule.description.helpertext")} />
+      )}
       <FieldHeader text={t("stepper.schedule.recurrence.helpertext")} />
       <KeyValueTemplate
         title={t("stepper.schedule.repeat.key")}
-        value="1 day"
+        value={`${interval} ${intervalUnit}`}
       />
       <KeyValueTemplate
         title={t("stepper.schedule.start.key")}
@@ -36,22 +70,66 @@ export const OutputStepDefaultMessage = () => {
   const { t } = useTranslation(undefined, {
     i18n: i18nScheduler,
   }) as translationProps;
+
+  const fileName = useSelector(
+      (state: IState) => state.stepperState?.baseOutputFilename,
+    ),
+    fileDescription = useSelector(
+      (state: IState) =>
+        state.scheduleInfo.repositoryDestination.outputDescription,
+    ),
+    formats = useSelector((state: IState) => state.stepperState?.outputFormat),
+    outputTimezone = useSelector(
+      (state: IState) => state.stepperState?.outputTimeZone,
+    ),
+    timezones = useSelector((state: IState) => state.userTimeZones);
+
+  const currentTimezone = timezones.filter(
+      (item: { code: string }) => item.code === outputTimezone,
+    ),
+    OutputTimeZone = `${currentTimezone[0]?.code} - ${currentTimezone[0]?.description}`;
+
+  let formatsToDisplay;
+  if (formats?.length) {
+    const displayFormats = formats
+      .slice(0, MAX_STEPPER_OUTPUT_FORMATS)
+      .map((item: string) => t(`output.format.${item}`))
+      .join(", ");
+
+    formatsToDisplay =
+      formats.length > MAX_STEPPER_OUTPUT_FORMATS
+        ? `${displayFormats} (+${formats.length - MAX_STEPPER_OUTPUT_FORMATS} ${t("schedule.more")})`
+        : displayFormats;
+  }
+
   return (
     <>
-      <FieldHeader text={t("stepper.output.helpertext")} />
-      <KeyValueTemplate
-        title={t("stepper.output.filename.key")}
-        value="fileName"
-      />
+      {fileName?.length ? (
+        <InputDataInStep
+          title={t("stepper.output.filename.key")}
+          value={fileName}
+          className="jv-uTextBreak"
+        />
+      ) : (
+        <FieldHeader text={t("stepper.output.helpertext")} />
+      )}
+      {fileDescription?.length ? (
+        <InputDataInStep
+          title={t("stepper.output.description.key")}
+          value={fileDescription}
+          className="jv-uTextBreak"
+        />
+      ) : (
+        <FieldHeader text={t("stepper.output.description.helpertext")} />
+      )}
       <KeyValueTemplate
         title={t("stepper.output.timezone.key")}
-        value="timeZone"
+        value={OutputTimeZone}
       />
       <KeyValueTemplate
         title={t("stepper.output.formats.key")}
-        value="format"
+        value={formatsToDisplay}
       />
-      <FieldHeader text={t("stepper.output.description.helpertext")} />
     </>
   );
 };
@@ -60,12 +138,69 @@ export const NotificationStepDefaultMessage = () => {
   const { t } = useTranslation(undefined, {
     i18n: i18nScheduler,
   }) as translationProps;
+  const mailNotificationSubject = useSelector(
+      (state: IState) => state.stepperState?.subject,
+    ),
+    mailNotificationAddresses = useSelector(
+      (state: IState) => state.stepperState?.address,
+    ),
+    resultSendType = useSelector(
+      (state: IState) => state.stepperState?.resultSendType,
+    ),
+    mailNotificationMessage = useSelector(
+      (state: IState) => state.stepperState?.messageText,
+    );
+
+  let address, reportionOptionValue;
+  if (mailNotificationAddresses) {
+    address = mailNotificationAddresses.length
+      ? mailNotificationAddresses[0]
+      : undefined;
+    if (mailNotificationAddresses.length > MAX_STEPPER_EMAIL_ADDRESS) {
+      address = `${address} (+${mailNotificationAddresses.length - MAX_STEPPER_EMAIL_ADDRESS} ${t("schedule.more")})`;
+    }
+  }
+
+  if (resultSendType) {
+    reportionOptionValue = resultSendType === SEND_LINK ? "Link" : "Attachment";
+  }
+
   return (
     <>
-      <FieldHeader text={t("stepper.notifications.recipients.helpertext")} />
-      <FieldHeader text={t("stepper.notifications.subject.helpertext")} />
-      <FieldHeader text={t("stepper.notifications.message.helpertext")} />
-      <FieldHeader text={t("stepper.notifications.access.helpertext")} />
+      {mailNotificationAddresses?.length ? (
+        <InputDataInStep
+          title={t("stepper.notifications.recipients.key")}
+          value={address}
+        />
+      ) : (
+        <FieldHeader text={t("stepper.notifications.recipients.helpertext")} />
+      )}
+      {mailNotificationSubject?.length ? (
+        <InputDataInStep
+          title={t("stepper.notifications.subject.key")}
+          value={mailNotificationSubject}
+          className="jv-uTextBreak"
+        />
+      ) : (
+        <FieldHeader text={t("stepper.notifications.subject.helpertext")} />
+      )}
+      {mailNotificationMessage?.length ? (
+        <InputDataInStep
+          title={t("stepper.notifications.message.key")}
+          value={mailNotificationMessage}
+          className=" jv-uTextBreak jv-uTextTruncate3"
+        />
+      ) : (
+        <FieldHeader text={t("stepper.notifications.message.helpertext")} />
+      )}
+      {reportionOptionValue ? (
+        <InputDataInStep
+          title={t("stepper.notifications.access.key")}
+          value={reportionOptionValue}
+        />
+      ) : (
+        <FieldHeader text={t("stepper.notifications.access.helpertext")} />
+      )}
     </>
   );
 };

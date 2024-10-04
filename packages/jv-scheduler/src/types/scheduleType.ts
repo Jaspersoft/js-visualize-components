@@ -226,3 +226,7 @@ export interface FakeRootDataProps {
 }
 
 export type translationProps = { t: (k: string) => string };
+
+export type ScheduleInfoPropsOptionalProps = {
+  outputTimeZone?: string;
+};

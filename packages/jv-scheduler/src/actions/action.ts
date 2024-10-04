@@ -43,6 +43,7 @@ import {
   StepperDataProps,
   StoreDataProps,
   TabsConfigurationProps,
+  ScheduleInfoPropsOptionalProps,
 } from "../types/scheduleType";
 import {
   getErrorsForCurrentTab,
@@ -188,9 +189,14 @@ export const getOutputFormats = () => {
   };
 };
 
-export const getUserTimeZones = () => {
+export const getUserTimeZones = (timezone?: string) => {
   return async (dispatch: Dispatch) => {
     const timezones = await getUserTimezonesFromService();
+    dispatch(
+      setPropertiesDetails({
+        outputTimeZone: timezone ? timezone : timezones[0].code,
+      }),
+    );
     if (timezones.error) {
       dispatch(
         setApiFailure(
@@ -255,7 +261,7 @@ export const setInitialPluginState = (
       stepperDefaultState,
     } = schedulerData;
     dispatch(setSechedulerUIConfig(schedulerUIConfig));
-    dispatch(getUserTimeZones());
+    dispatch(getUserTimeZones(scheduleInfo.outputTimeZone));
     dispatch(getOutputFormats());
     dispatch(
       setTabsConfig({
@@ -267,6 +273,7 @@ export const setInitialPluginState = (
     dispatch(setStepperConfig({ show: showStepper }));
     dispatch(setVisibleFields(schedulerData.fieldsVisibility));
     dispatch(setVisualizeObj(visualize));
+    delete (scheduleInfo as ScheduleInfoPropsOptionalProps).outputTimeZone;
     dispatch(setPropertiesDetails(JSON.parse(JSON.stringify(scheduleInfo))));
   };
 };
