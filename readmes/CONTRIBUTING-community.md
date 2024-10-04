@@ -12,7 +12,7 @@ As a contributor, here are the guidelines we would like you to follow:
 ## <a name="question"></a> Got a Question or Problem?
 
 You could open [GitHub Issues](https://github.com/Jaspersoft/js-visualize-components/issues) for general support
-questions as well as feature requests. Users should use question labels for general support questions, a request for
+questions as well as feature requests. Users should use `question` labels for general support questions, a request for
 clarification, help with using a particular feature, or a general inquiry about the project.
 
 ## <a name="issue"></a> Found a Bug?
@@ -172,7 +172,7 @@ the structure it must have.
   │       │             │
   │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
   │       │
-  │       └─⫸ Commit Scope: common|core|elements|http|localize|upgrade
+  │       └─⫸ Commit Scope: demo-input-controls|demo-scheduler|jv-input-controls|jv-scheduler|jv-tools|jv-ui-components
   │
   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```
@@ -199,12 +199,12 @@ from commit messages).
 
 The following is the list of supported scopes:
 
-- `common`
-- `core`
-- `elements`
-- `http`
-- `localize`
-- `upgrade`
+- `demo-input-controls`
+- `demo-scheduler`
+- `jv-input-controls`
+- `jv-scheduler`
+- `jv-tools`
+- `jv-ui-components`
 
 There are currently a few exceptions to the "use package name" rule:
 
