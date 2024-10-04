@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
+import { InputControlConfig } from "@jaspersoft/jv-input-controls";
+
 export interface ApiErrorMsg {
   apiErrorTitle?: string;
   retryNetworkTitle?: string;
@@ -150,6 +158,7 @@ export interface IState extends SchedulerInitialPluginDataProps {
   stepperConfiguration: {
     show: boolean;
   };
+  parametersTabConfig: InputControlConfig;
   stepperState?: StepperStateProps;
   scheduleApisFailure?: ApiFailedProps;
   lastApiCalledFailed?: boolean;
@@ -220,3 +229,7 @@ export interface FakeRootDataProps {
 }
 
 export type translationProps = { t: (k: string) => string };
+
+export type ScheduleInfoPropsOptionalProps = {
+  outputTimeZone?: string;
+};

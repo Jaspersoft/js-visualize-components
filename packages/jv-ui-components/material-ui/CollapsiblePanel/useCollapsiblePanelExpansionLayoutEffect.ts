@@ -1,31 +1,48 @@
-import { useLayoutEffect, useMemo } from 'react';
-import { OnResizeStopCallback } from './collapsiblePanelTypes';
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
+import { useLayoutEffect, useMemo } from "react";
+import { OnResizeStopCallback } from "./collapsiblePanelTypes";
 import {
-    getPanelSizeState,
-    isPanelExpanded, isPanelFullyExpanded, PanelsState
-} from './useCollapsiblePanelState';
+  getPanelSizeState,
+  isPanelExpanded,
+  isPanelFullyExpanded,
+  PanelsState,
+} from "./useCollapsiblePanelState";
 
 const getPanelsExpansionHash = (panelsState: PanelsState) => {
-    const result = panelsState.reduce((acc, panel, index) => {
-        const { panelsHash, allTabsOpen } = acc;
+  const result = panelsState.reduce(
+    (acc, panel, index) => {
+      const { panelsHash, allTabsOpen } = acc;
 
-        const panelExpanded = isPanelExpanded(index, panelsState);
-        const panelFullyExpanded = isPanelFullyExpanded(index, panelsState);
+      const panelExpanded = isPanelExpanded(index, panelsState);
+      const panelFullyExpanded = isPanelFullyExpanded(index, panelsState);
 
-        return {
-            panelsHash: `${panelsHash}${panelsHash ? '-' : ''}${panel.id}:${(panelExpanded ? '1' : '0')}`,
-            allTabsOpen: !panelFullyExpanded ? false : allTabsOpen
-        };
-    }, { panelsHash: '', allTabsOpen: true });
+      return {
+        panelsHash: `${panelsHash}${panelsHash ? "-" : ""}${panel.id}:${panelExpanded ? "1" : "0"}`,
+        allTabsOpen: !panelFullyExpanded ? false : allTabsOpen,
+      };
+    },
+    { panelsHash: "", allTabsOpen: true },
+  );
 
-    return `tabs:${result.allTabsOpen ? '1' : '0'}-${result.panelsHash}`
-}
+  return `tabs:${result.allTabsOpen ? "1" : "0"}-${result.panelsHash}`;
+};
 
-export const useCollapsiblePanelExpansionLayoutEffect = (onResizeStop: OnResizeStopCallback, panelsState: PanelsState) => {
-    const initialPanelsExpansionHash = useMemo(() => getPanelsExpansionHash(panelsState), [panelsState]);
+export const useCollapsiblePanelExpansionLayoutEffect = (
+  onResizeStop: OnResizeStopCallback,
+  panelsState: PanelsState,
+) => {
+  const initialPanelsExpansionHash = useMemo(
+    () => getPanelsExpansionHash(panelsState),
+    [panelsState],
+  );
 
-    useLayoutEffect(() => {
-        onResizeStop(getPanelSizeState(panelsState))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onResizeStop, initialPanelsExpansionHash])
+  useLayoutEffect(() => {
+    onResizeStop(getPanelSizeState(panelsState));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onResizeStop, initialPanelsExpansionHash]);
 };

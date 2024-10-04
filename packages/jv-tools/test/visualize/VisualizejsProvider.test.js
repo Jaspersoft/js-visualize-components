@@ -1,28 +1,42 @@
-import { visualizejsLoader } from '../../src/visualize/VisualizejsProvider'
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
 
-describe('visualizejsprovider test', () => {
-    it('should return global viz if set on window', async () => {
-        let vContainer;
-        const fakeViz = {noConflict: () => {return self}, inputControls: () => {return {}}};
-        window.visualize = fakeViz;
+import { visualizejsLoader } from "../../src/visualize/VisualizejsProvider";
 
-        const loadViz = visualizejsLoader();
-        await loadViz().then((v => {
-            vContainer = v.visualize;
-        }));
+describe("visualizejsprovider test", () => {
+  it("should return global viz if set on window", async () => {
+    let vContainer;
+    const fakeViz = {
+      noConflict: () => {
+        return self;
+      },
+      inputControls: () => {
+        return {};
+      },
+    };
+    window.visualize = fakeViz;
 
-        expect(vContainer).toBe(fakeViz);
-        expect(document.querySelectorAll('script').length).toBe(0);
-        delete window.visualize;
+    const loadViz = visualizejsLoader();
+    await loadViz().then((v) => {
+      vContainer = v.visualize;
     });
 
-    it('should add script tag when url provided', async () => {
-        const loadViz = visualizejsLoader('http://localhost/SCRIPT', 5);
-        try {
-            await loadViz();
-        } catch { }
-        expect(document.querySelectorAll('script').length).toBe(1);
-        expect(document.querySelectorAll('script')[0].src).toBe('http://localhost/SCRIPT');
-    });
+    expect(vContainer).toBe(fakeViz);
+    expect(document.querySelectorAll("script").length).toBe(0);
+    delete window.visualize;
+  });
 
+  it("should add script tag when url provided", async () => {
+    const loadViz = visualizejsLoader("http://localhost/SCRIPT", 5);
+    try {
+      await loadViz();
+    } catch {}
+    expect(document.querySelectorAll("script").length).toBe(1);
+    expect(document.querySelectorAll("script")[0].src).toBe(
+      "http://localhost/SCRIPT",
+    );
+  });
 });

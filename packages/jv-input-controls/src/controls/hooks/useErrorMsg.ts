@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { useState } from "react";
 import { verifyDateLimit } from "../../utils/DateInputControlUtils";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
@@ -79,9 +85,9 @@ export const useErrorMsg = ({
   };
 
   useEffectAfterInitial(() => {
-    const errorMessage = !Array.isArray(textValue)
-      ? validateTextValue(textValue)
-      : validateArray(textValue);
+    const errorMessage = Array.isArray(textValue)
+      ? validateArray(textValue)
+      : validateTextValue(textValue);
     const finalMsg = errorMessage?.trim().length > 0 ? errorMessage : "";
     // also, we have to trigger the callback in case there was an error
     props?.events?.change?.(getInputControlProperties(props, textValue), {

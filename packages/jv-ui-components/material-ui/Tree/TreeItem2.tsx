@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024. Cloud Software Group, Inc.
+ * This file is subject to the license terms contained
+ * in the license file that is distributed with this file.
+ */
+
 import { forwardRef } from "react";
 import { TreeItem2Icon as MuiTreeItem2Icon } from "@mui/x-tree-view/TreeItem2Icon";
 import { TreeItem2Provider as MuiTreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
