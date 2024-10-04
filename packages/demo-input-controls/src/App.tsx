@@ -94,7 +94,9 @@ function App() {
         },
         params: {
           column_boolean_1: ["false"],
-          column_string_1: ["Eduardo"],
+          column_string_1: [
+            "This is a predefined text different than the stored in the server",
+          ],
           id_1: ["99"],
           column_date_1: ["2009-03-02"],
           column_timestamp_1: ["2014-03-02T10:00:00"],
