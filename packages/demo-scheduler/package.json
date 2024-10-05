@@ -1,10 +1,10 @@
 {
   "name": "demo-scheduler",
-  "description": "Demo application",
+  "description": "Demo application for scheduler of Jaspersoft Visualize Components",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "scripts": {
     "audit:all": "yarn audit",
     "audit:runtime": "yarn audit --groups dependencies",

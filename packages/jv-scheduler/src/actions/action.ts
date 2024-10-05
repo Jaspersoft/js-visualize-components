@@ -52,7 +52,7 @@ import {
 } from "../utils/schedulerUtils";
 import { removeRootFolderPath } from "../utils/treeUtils";
 import { VisualizeClient } from "@jaspersoft/jv-tools";
-import { InputControlConfig } from "@jaspersoft/jv-input-controls";
+import { InputControlsConfig } from "@jaspersoft/jv-input-controls";
 
 export const setApiFailure = (
   failedApi: ApiFailedProps | undefined,
@@ -249,7 +249,7 @@ export const getFakeRootData = () => {
 };
 
 export const setParametersTabConfig = (
-  config: InputControlConfig | undefined,
+  config: InputControlsConfig | undefined,
 ) => {
   return {
     type: SET_PARAMETERS_TAB_CONFIG,

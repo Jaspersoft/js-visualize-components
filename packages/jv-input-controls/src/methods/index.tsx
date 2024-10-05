@@ -15,7 +15,7 @@ import { InputControlCollection } from "../controls/BaseInputControl";
 import { createRoot } from "react-dom/client";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import BasePanel from "../panels/BasePanel";
-import { InputControlConfig } from "../InputControls";
+import { InputControlsConfig } from "../InputControls";
 
 export const fillControlStructure = (
   vObject: VisualizeClient,
@@ -42,7 +42,7 @@ export const renderInputControls = (
   vObject: VisualizeClient,
   uri: string,
   container: HTMLElement,
-  icPanelDef?: InputControlConfig,
+  icPanelDef?: InputControlsConfig,
 ) => {
   fillControlStructure(
     vObject,

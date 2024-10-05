@@ -10,7 +10,7 @@
   "files": [
     "dist"
   ],
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "scripts": {
     "audit:all": "yarn audit",
     "audit:runtime": "yarn audit --groups dependencies",
@@ -21,9 +21,22 @@
     "clean": "rm -rf dist",
     "test": "jest"
   },
+  "keywords": [
+    "jaspersoft",
+    "jasperreports server",
+    "visualize.js",
+    "embed",
+    "npm",
+    "loader",
+    "tools",
+    "utilities",
+    "react",
+    "typescript",
+    "javascript"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jaspersoft/js-visualize-plugins.git",
+    "url": "git+https://github.com/Jaspersoft/js-visualize-components.git",
     "directory": "packages/jv-tools"
   },
   "devDependencies": {

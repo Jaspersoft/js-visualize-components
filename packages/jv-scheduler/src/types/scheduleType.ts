@@ -4,7 +4,7 @@
  * in the license file that is distributed with this file.
  */
 
-import { InputControlConfig } from "@jaspersoft/jv-input-controls";
+import { InputControlsConfig } from "@jaspersoft/jv-input-controls";
 
 export interface ApiErrorMsg {
   apiErrorTitle?: string;
@@ -158,7 +158,7 @@ export interface IState extends SchedulerInitialPluginDataProps {
   stepperConfiguration: {
     show: boolean;
   };
-  parametersTabConfig: InputControlConfig;
+  parametersTabConfig: InputControlsConfig;
   stepperState?: StepperStateProps;
   scheduleApisFailure?: ApiFailedProps;
   lastApiCalledFailed?: boolean;

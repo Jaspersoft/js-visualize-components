@@ -22,7 +22,7 @@ import { fillControlStructure } from "./methods";
 import { MultiSelectICType } from "./controls/MultiSelectInputControl";
 import { SingleSelectICType } from "./controls/SingleSelectInputControl";
 
-export interface InputControlUserConfig {
+export interface InputControlsTypeConfig {
   bool?: {
     type: BoolICType;
   };
@@ -49,10 +49,10 @@ export interface InputControlUserConfig {
   };
 }
 
-export interface InputControlConfig {
+export interface InputControlsConfig {
   success?: (controls: any) => void;
   error?: (error: any) => void;
-  config?: InputControlUserConfig;
+  config?: InputControlsTypeConfig;
   events?: {
     change?: (
       ic: { [key: string]: any[] },
@@ -62,14 +62,13 @@ export interface InputControlConfig {
   params?: { [key: string]: string[] };
 }
 
-export interface InputControlProps {
+export interface InputControlsProps {
   vObject?: VisualizeClient;
   uri: string;
-  panelDef?: InputControlConfig;
-  handleError?: (error: any) => void;
+  panelDef?: InputControlsConfig;
 }
 
-export function InputControls(props: InputControlProps) {
+export function InputControls(props: InputControlsProps) {
   const [embedControls, setEmbedControls] = useState<InputControlCollection>();
 
   useEffect(() => {
