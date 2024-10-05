@@ -1,9 +1,15 @@
+/*
+ *  Copyright © 2024. Cloud Software Group, Inc.
+ *  This file is subject to the license terms contained
+ *  in the license file that is distributed with this file.
+ */
+
 // This line is necessary to setting up the styles
 // refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
 import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
 import {
-  InputControlConfig,
+  InputControlsConfig,
   InputControls,
   renderInputControls,
 } from "@jaspersoft/jv-input-controls";
@@ -147,7 +153,7 @@ function App() {
     }
   };
 
-  const panelD: InputControlConfig = {
+  const panelD: InputControlsConfig = {
     config: { bool: { type: "switch" } },
     events: {
       change: (ics: any, vs: any) => {

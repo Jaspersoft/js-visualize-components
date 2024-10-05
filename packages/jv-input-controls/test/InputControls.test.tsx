@@ -4,7 +4,7 @@
  * in the license file that is distributed with this file.
  */
 
-import { InputControls, InputControlConfig } from "../src/InputControls";
+import { InputControls, InputControlsConfig } from "../src/InputControls";
 import { render } from "@testing-library/react";
 
 describe("InputControlsPanel component", () => {
@@ -16,7 +16,7 @@ describe("InputControlsPanel component", () => {
   const renderComponent = (
     v: any,
     uri: string,
-    panelDef: InputControlConfig,
+    panelDef: InputControlsConfig,
   ) => {
     render(<InputControls vObject={v} uri={uri} panelDef={panelDef} />);
   };

@@ -1,7 +1,7 @@
 {
   "name": "@jaspersoft/jv-scheduler",
   "version": "0.1.0",
-  "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
+  "description": "Component for rendering the scheduler of Jaspersoft Visualize Components",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -16,13 +16,25 @@
     "build": "vite build",
     "clean": "rm -rf ./dist"
   },
+  "keywords": [
+    "jaspersoft",
+    "jasperreports server",
+    "visualize.js",
+    "embed",
+    "scheduler",
+    "report scheduler",
+    "dashboard scheduler",
+    "job",
+    "react",
+    "typescript",
+    "javascript"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jaspersoft/js-visualize-plugins.git",
+    "url": "git+https://github.com/Jaspersoft/js-visualize-components.git",
     "directory": "packages/jv-scheduler"
   },
-  "author": "Cloud Software Group",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",

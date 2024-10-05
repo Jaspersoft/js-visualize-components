@@ -1,8 +1,8 @@
 {
-  "name": "js-visualize-plugins",
+  "name": "js-visualize-components",
   "version": "0.1.0",
   "private": true,
-  "description": "Plugins for Visualize.JS",
+  "description": "Jaspersoft Visualize Components",
   "workspaces": {
     "packages": [
       "packages/jv-ui-components",
@@ -27,18 +27,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jaspersoft/js-visualize-plugins.git"
+    "url": "git+https://github.com/Jaspersoft/js-visualize-components.git"
   },
   "keywords": [
-    "plugin",
+    "Jaspersoft",
     "visualize.js"
   ],
-  "author": "Jaspersoft",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/Jaspersoft/js-visualize-plugins/issues"
+    "url": "https://github.com/Jaspersoft/js-visualize-components/issues"
   },
-  "homepage": "https://github.com/Jaspersoft/js-visualize-plugins#readme",
+  "homepage": "https://github.com/Jaspersoft/js-visualize-components#readme",
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },

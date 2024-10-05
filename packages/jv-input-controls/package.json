@@ -1,7 +1,7 @@
 {
   "name": "@jaspersoft/jv-input-controls",
   "version": "0.1.0",
-  "description": "Component for rendering input controls for a report or adhoc view using visualize.js",
+  "description": "Component for rendering input controls for a report or ad hoc view using visualize.js",
   "private": true,
   "type": "module",
   "main": "dist/index.umd.js",
@@ -20,13 +20,23 @@
     "serve": "vite preview",
     "clean": "rm -rf ./dist"
   },
+  "keywords": [
+    "jaspersoft",
+    "jasperreports server",
+    "visualize.js",
+    "embed",
+    "input controls",
+    "filters",
+    "react",
+    "typescript",
+    "javascript"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jaspersoft/js-visualize-plugins.git",
+    "url": "git+https://github.com/Jaspersoft/js-visualize-components.git",
     "directory": "packages/jv-input-controls"
   },
-  "author": "Cloud Software Group",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
