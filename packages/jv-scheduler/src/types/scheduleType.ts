@@ -228,7 +228,7 @@ export interface FakeRootDataProps {
   permissionMask: number;
 }
 
-export type translationProps = { t: (k: string) => string };
+export type translationProps = { t: (k: string | undefined) => string };
 
 export type ScheduleInfoPropsOptionalProps = {
   outputTimeZone?: string;

@@ -82,7 +82,7 @@ function SchedulerApp() {
     // if (visualize) {
     //   renderScheduler(
     //     schedulerElement as HTMLElement,
-    //     visualize,
+    //     visualize.v,
     //     schedulerUIConfig,
     //   );
     // }

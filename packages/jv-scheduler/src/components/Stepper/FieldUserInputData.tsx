@@ -92,23 +92,23 @@ export const ScheduleStepUserInput = () => {
   return (
     <>
       <InputDataInStep
-        error={scheduleJobNameErr}
+        error={t(scheduleJobNameErr)}
         title={t("stepper.schedule.jobname.key")}
         value={label}
       />
       <InputDataInStep
-        error={scheduleJobDescriptionErr}
+        error={t(scheduleJobDescriptionErr)}
         title={t("stepper.schedule.jobdescription.key")}
         value={description}
       />
       <InputDataInStep
-        error={intervalErr}
+        error={t(intervalErr)}
         title={t("stepper.schedule.repeat.key")}
         value={`${interval} ${timeFrameText}`}
       />
       {startType === RECURRENCE_INTERVAL_DATE_TIME ? (
         <InputDataInStep
-          error={startDateErr}
+          error={t(startDateErr)}
           title={t("stepper.schedule.start.key")}
           value={time}
         />
@@ -165,26 +165,25 @@ export const NotificationStepUserInput = () => {
   return (
     <>
       <InputDataInStep
-        error={mailNotificationAddressesErr}
+        error={t(mailNotificationAddressesErr)}
         title={t("stepper.notifications.recipients.key")}
         value={address}
       />
       <InputDataInStep
-        error={mailNotificationSubjectErr}
+        error={t(mailNotificationSubjectErr)}
         title={t("stepper.notifications.subject.key")}
         value={mailNotificationSubject}
         className="jv-uTextBreak"
       />
       {mailNotificationMessage && (
         <InputDataInStep
-          error={mailNotificationMessageErr}
+          error={t(mailNotificationMessageErr)}
           title={t("stepper.notifications.message.key")}
           value={mailNotificationMessage}
           className=" jv-uTextBreak jv-uTextTruncate3"
         />
       )}
       <InputDataInStep
-        error={""}
         title={t("stepper.notifications.access.key")}
         value={reportionOptionValue}
       />
@@ -237,13 +236,12 @@ export const OutputStepUserInput = () => {
   return (
     <>
       <InputDataInStep
-        error={fileNameErr}
+        error={t(fileNameErr)}
         title={t("stepper.output.filename.key")}
         value={fileName}
         className="jv-uTextBreak"
       />
       <InputDataInStep
-        error={""}
         title={t("stepper.output.description.key")}
         value={fileDescription}
         className="jv-uTextBreak"
@@ -253,7 +251,7 @@ export const OutputStepUserInput = () => {
         value={OutputTimeZone}
       />
       <InputDataInStep
-        error={formatsErr}
+        error={t(formatsErr)}
         title={t("stepper.output.formats.key")}
         value={formatsToDisplay}
       />
@@ -262,6 +260,9 @@ export const OutputStepUserInput = () => {
 };
 
 export const ParametersStepUserInput = () => {
+  const { t } = useTranslation(undefined, {
+    i18n: i18nScheduler,
+  }) as translationProps;
   const parameters = useSelector(
     (state: IState) => state.scheduleInfo.source.parameters.parameterValues,
   );
@@ -273,7 +274,7 @@ export const ParametersStepUserInput = () => {
     <>
       {parametersErr ? (
         <InputDataInStep
-          error={parametersErr}
+          error={t(parametersErr)}
           value={""}
           title={"Parameters"}
         />
