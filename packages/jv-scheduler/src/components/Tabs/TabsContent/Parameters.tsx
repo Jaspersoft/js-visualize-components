@@ -79,6 +79,7 @@ const Parameters = () => {
       },
       ...restEvents,
     },
+    params: parameters,
     ...restConfig,
   };
 
