@@ -58,7 +58,7 @@ const Parameters = () => {
   const panelD: any = {
     success: (params: any) => {
       updateStoreWithParameters(
-        Object.keys(parameters).length ? parameters : params.parameters,
+        Object.keys(parameters).length ? parameters : params.data.parameters,
       );
       success?.(params);
     },
@@ -73,8 +73,10 @@ const Parameters = () => {
           dispatch(
             scheduleValidationError({ parameters: "error.parameters.error" }),
           );
+        } else {
+          updateStoreWithParameters(ics);
         }
-        updateStoreWithParameters(ics);
+
         change?.(ics, vs);
       },
       ...restEvents,
