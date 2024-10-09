@@ -56,7 +56,6 @@ export const ScheduleStepDefaultMessage = () => {
         ? timeFrameValue[0]?.textSingular?.toLowerCase()
         : timeFrameValue[0]?.textPlural?.toLowerCase();
 
-  console.log(startType);
   return (
     <>
       {label?.length ? (

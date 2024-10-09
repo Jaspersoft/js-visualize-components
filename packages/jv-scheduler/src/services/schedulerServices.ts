@@ -9,6 +9,7 @@ import store from "../store/store";
 import { IState } from "../types/scheduleType";
 import { PUBLIC_FOLDER, ROOT_FOLDER } from "../constants/schedulerConstants";
 
+const mobileDemoPath = "https://mobiledemo.jaspersoft.com/";
 const getServerPath = () => {
   return (store.getState() as IState)?.schedulerUIConfig?.server;
 };
@@ -187,19 +188,23 @@ export const createSchedule = async (scheduleInfo: any) => {
   let csrfToken = await getCSRFToken();
   csrfToken = csrfToken && csrfToken.split ? csrfToken.split(":")[1] : null;
 
-  return axios.put(
-    `${getServerPath()}/rest_v2/jobs`,
-    {
-      ...scheduleInfo,
-    },
-    {
-      withCredentials: true,
-      headers: {
-        Accept: "application/job+json",
-        "Content-Type": "application/job+json",
-        "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
-        OWASP_CSRFTOKEN: csrfToken,
+  if (getServerPath()?.startsWith(mobileDemoPath)) {
+    return Promise.resolve({});
+  } else {
+    return axios.put(
+      `${getServerPath()}/rest_v2/jobs`,
+      {
+        ...scheduleInfo,
       },
-    },
-  );
+      {
+        withCredentials: true,
+        headers: {
+          Accept: "application/job+json",
+          "Content-Type": "application/job+json",
+          "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
+          OWASP_CSRFTOKEN: csrfToken,
+        },
+      },
+    );
+  }
 };
