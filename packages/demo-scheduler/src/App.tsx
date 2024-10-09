@@ -23,7 +23,7 @@ import ReportPanel from "./report/ReportPanel";
 import "./App.css";
 import { Scheduler } from "./Scheduler";
 
-const visualizeUrl = `${schedulerUIConfig.server}/client/visualize.js`;
+const visualizeUrl = `${schedulerUIConfig.server}${schedulerUIConfig.contextPath}/client/visualize.js`;
 
 const credentials: Authentication = {
   name: "superuser",

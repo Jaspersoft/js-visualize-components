@@ -262,9 +262,14 @@ const checkFieldDataValidity = (fieldsData: any) => {
 const checkResourceUriIsRightOrHavePermission = async (
   resourceURI: string,
   server: string,
+  contextPath: string,
 ) => {
   let error: { [key: string]: string } = {};
-  const response = await checkPermissionOnResource(resourceURI, server);
+  const response = await checkPermissionOnResource(
+    resourceURI,
+    server,
+    contextPath,
+  );
   if (response.permissionMask) {
     if (!isResourceWritable(response)) {
       console.error("You don't have permission to schedule this resource");
@@ -379,7 +384,11 @@ export const getSchedulerData = async (scheduleConfig: any) => {
   }
 
   // check whether resourceURI is correct and has permission to view.
-  error = await checkResourceUriIsRightOrHavePermission(resourceURI, server);
+  error = await checkResourceUriIsRightOrHavePermission(
+    resourceURI,
+    server,
+    contextPath,
+  );
   if (!!getLengthOfObject(error)) {
     return { error };
   }
