@@ -3,23 +3,16 @@
  * This file is subject to the license terms contained
  * in the license file that is distributed with this file.
  */
-
+// This line is necessary to setting up the styles
+// refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
+import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
+import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import "./src/i18n";
 
-// the methods:
+// the JavaScript approach:
 export { renderInputControls } from "./src/methods";
 
-// all the controls:
-export { BooleanInputControl } from "./src/controls/BooleanInputControl";
-export { DatePickerInputControl } from "./src/controls/DatePickerInputControl";
-export { DatePickerTextFieldInputControl } from "./src/controls/DatePickerTextFieldInputControl";
-export { DateTimePickerInputControl } from "./src/controls/DateTimePickerInputControl";
-export { DateTimePickerTextFieldInputControl } from "./src/controls/DateTimePickerTextFieldInputControl";
-export { SingleSelectInputControl } from "./src/controls/SingleSelectInputControl";
-export { SingleValueNumberInputControl } from "./src/controls/SingleValueNumberInputControl";
-export { SingleValueTextInputControl } from "./src/controls/SingleValueTextInputControl";
-export { TimePickerInputControl } from "./src/controls/TimePickerInputControl";
-export { TimePickerTextFieldInputControl } from "./src/controls/TimePickerTextFieldInputControl";
+// The React Approach:
 export { InputControls } from "./src/InputControls";
 
 // types

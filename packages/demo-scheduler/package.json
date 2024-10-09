@@ -39,7 +39,7 @@
     "ts-jest": "^29.1.5",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1",
+    "vite": "^5.4.3",
     "vite-plugin-libcss": "^1.1.1"
   }
 }

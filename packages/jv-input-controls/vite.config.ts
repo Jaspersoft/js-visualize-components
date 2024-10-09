@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { join, resolve } from "path";
 import { defineConfig } from "vite";
+import libCss from "vite-plugin-libcss";
 import dts from "vite-plugin-dts";
 
 // @ts-ignore
@@ -9,6 +10,7 @@ import packageJson from "./package.json";
 export default defineConfig({
   plugins: [
     react(),
+    libCss(),
     dts({
       tsconfigPath: resolve(__dirname, "tsconfig.json"),
     }),
