@@ -3,7 +3,7 @@
  * This file is subject to the license terms contained
  * in the license file that is distributed with this file.
  */
-
+import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import "./i18n";
 import SchedulerConfig from "./config/config.json";
 
