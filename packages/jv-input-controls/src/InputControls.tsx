@@ -52,7 +52,7 @@ export interface InputControlsTypeConfig {
 export interface InputControlsConfig {
   success?: (controls: any) => void;
   error?: (error: any) => void;
-  config?: InputControlsTypeConfig;
+  typeConfig?: InputControlsTypeConfig;
   events?: {
     change?: (
       ic: { [key: string]: any[] },
@@ -106,7 +106,7 @@ export function InputControls(props: InputControlsProps) {
     <JVStylesProvider>
       <BasePanel
         controls={embedControls}
-        config={props.panelDef?.config}
+        config={props.panelDef?.typeConfig}
         events={props.panelDef?.events}
         params={props.panelDef?.params}
       ></BasePanel>

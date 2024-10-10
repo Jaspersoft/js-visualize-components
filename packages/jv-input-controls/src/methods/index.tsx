@@ -3,13 +3,6 @@
  * This file is subject to the license terms contained
  * in the license file that is distributed with this file.
  */
-
-/*
- * Copyright © 2024. Cloud Software Group, Inc.
- * This file is subject to the license terms contained
- * in the license file that is distributed with this file.
- */
-
 import { InputControlProperties, VisualizeClient } from "@jaspersoft/jv-tools";
 import { InputControlCollection } from "../controls/BaseInputControl";
 import { createRoot } from "react-dom/client";
@@ -25,7 +18,7 @@ export const fillControlStructure = (
 ) => {
   vObject.inputControls({
     resource: uri,
-    success: (data: InputControlProperties) => {
+    success: (data: InputControlProperties[]) => {
       if (callbackFn) {
         callbackFn({ data });
       }
@@ -39,13 +32,13 @@ export const fillControlStructure = (
 };
 
 export const renderInputControls = (
-  vObject: VisualizeClient,
+  v: VisualizeClient,
   uri: string,
   container: HTMLElement,
-  icPanelDef?: InputControlsConfig,
+  config?: InputControlsConfig,
 ) => {
   fillControlStructure(
-    vObject,
+    v,
     uri,
     (controls: InputControlCollection) => {
       try {
@@ -54,19 +47,19 @@ export const renderInputControls = (
           <JVStylesProvider>
             <BasePanel
               controls={controls}
-              config={icPanelDef?.config}
-              events={icPanelDef?.events}
-              params={icPanelDef?.params}
+              config={config?.typeConfig}
+              events={config?.events}
+              params={config?.params}
             />
           </JVStylesProvider>,
         );
-        icPanelDef?.success && icPanelDef?.success.call(self, controls);
+        config?.success && config?.success.call(self, controls);
       } catch (e) {
-        icPanelDef?.error && icPanelDef?.error.call(null, e);
+        config?.error && config?.error.call(null, e);
       }
     },
     (e: any) => {
-      icPanelDef?.error && icPanelDef?.error.call(null, e);
+      config?.error && config?.error.call(null, e);
     },
   );
 };

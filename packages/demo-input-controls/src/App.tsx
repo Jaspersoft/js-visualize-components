@@ -87,7 +87,7 @@ function App() {
         error: (error) => {
           console.log("Error when rendering the Basic controls: ", error);
         },
-        config: {
+        typeConfig: {
           singleValueDatetime: {
             type: "default", // even if it isn't provided, this will be the default component
           },
@@ -154,7 +154,7 @@ function App() {
   };
 
   const panelD: InputControlsConfig = {
-    config: { bool: { type: "switch" } },
+    typeConfig: { bool: { type: "switch" } },
     events: {
       change: (ics: any, vs: any) => {
         console.log("NEW ICS!! ", ics);
