@@ -89,7 +89,7 @@ const Parameters = () => {
   return (
     <>
       <JVTypographyComponent text={t("parameters.title")} />
-      <InputControls vObject={visualize} uri={resourceUri} panelDef={panelD} />
+      <InputControls v={visualize} uri={resourceUri} config={panelD} />
     </>
   );
 };

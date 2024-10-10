@@ -63,31 +63,31 @@ export interface InputControlsConfig {
 }
 
 export interface InputControlsProps {
-  vObject?: VisualizeClient;
+  v?: VisualizeClient;
   uri: string;
-  panelDef?: InputControlsConfig;
+  config?: InputControlsConfig;
 }
 
 export function InputControls(props: InputControlsProps) {
   const [embedControls, setEmbedControls] = useState<InputControlCollection>();
 
   useEffect(() => {
-    if (props.vObject !== undefined) {
+    if (props.v !== undefined) {
       fillControlStructure(
-        props.vObject,
+        props.v,
         props.uri,
         (controls: InputControlCollection) => {
           setEmbedControls(controls);
-          props.panelDef?.success?.call(self, controls);
+          props.config?.success?.call(self, controls);
         },
         (e: any) => {
-          props.panelDef?.error?.call(self, e);
+          props.config?.error?.call(self, e);
         },
       );
     }
-  }, [props.vObject]);
+  }, [props.v]);
 
-  if (props.vObject === undefined) {
+  if (props.v === undefined) {
     return (
       <>
         <h2>Loading visualize.js...</h2>
@@ -106,9 +106,9 @@ export function InputControls(props: InputControlsProps) {
     <JVStylesProvider>
       <BasePanel
         controls={embedControls}
-        config={props.panelDef?.typeConfig}
-        events={props.panelDef?.events}
-        params={props.panelDef?.params}
+        config={props.config?.typeConfig}
+        events={props.config?.events}
+        params={props.config?.params}
       ></BasePanel>
     </JVStylesProvider>
   );

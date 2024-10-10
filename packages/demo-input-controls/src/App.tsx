@@ -165,11 +165,7 @@ function App() {
 
   return (
     <>
-      <InputControls
-        vObject={vContainer?.v}
-        uri={reportUri}
-        panelDef={panelD}
-      />
+      <InputControls v={vContainer?.v} uri={reportUri} config={panelD} />
       <div id="controls-demo-page">
         <div className="jv-lColumns">
           <div className="jv-lColumns-column jr-uWidth-300px">
