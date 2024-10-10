@@ -22,7 +22,7 @@ type SchedulerProps = {
 
 export function renderScheduler(
   container: HTMLElement,
-  vizjs: VisualizeClient,
+  v: VisualizeClient,
   config: SchedulerConfigProps,
 ) {
   const rootElement = container;
@@ -33,7 +33,7 @@ export function renderScheduler(
   } else {
     const schedulerRoot = createRoot(rootElement);
     schedulerRoot.render(
-      <EntryPoint visualize={vizjs} schedulerUIConfig={{ ...config }} />,
+      <EntryPoint visualize={v} schedulerUIConfig={{ ...config }} />,
     );
   }
 }

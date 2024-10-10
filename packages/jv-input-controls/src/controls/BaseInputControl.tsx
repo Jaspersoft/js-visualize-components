@@ -27,5 +27,5 @@ export const getInputControlProperties = (
 };
 
 export interface InputControlCollection {
-  inputControl: InputControlProperties[];
+  data: InputControlProperties[];
 }

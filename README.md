@@ -27,7 +27,7 @@ yarn workspace jv-ui-components run test
 
 ## Test Application
 
-A test application is included in `packages/test-app` it can be used to view samples of the packages.
+A test application is included in `packages/demo-input-controls` it can be used to view samples of the input controls.
 To run it as a web app, run `yarn start` and follow the instructions on the console to access the page in a browser.
 
 ## Styles in Dev Mode

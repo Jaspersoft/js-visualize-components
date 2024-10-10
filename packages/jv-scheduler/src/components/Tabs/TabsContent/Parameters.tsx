@@ -5,7 +5,10 @@
  */
 
 import React, { useEffect } from "react";
-import { InputControls } from "@jaspersoft/jv-input-controls";
+import {
+  InputControls,
+  InputControlsConfig,
+} from "@jaspersoft/jv-input-controls";
 import i18nScheduler from "../../../i18n";
 import { JVTypographyComponent } from "../../common/CommonComponents";
 import { useTranslation } from "react-i18next";
@@ -34,7 +37,8 @@ const Parameters = () => {
     (state: IState) => state.parametersTabConfig,
   );
 
-  const { success, error, events, config, ...restConfig } = parametersConfig;
+  const { success, error, events, typeConfig, ...restConfig } =
+    parametersConfig;
   const { change, ...restEvents } = events || {};
 
   useEffect(() => {
@@ -55,7 +59,7 @@ const Parameters = () => {
     );
   };
 
-  const panelD: any = {
+  const panelD: InputControlsConfig = {
     success: (params: any) => {
       updateStoreWithParameters(
         Object.keys(parameters).length ? parameters : params.parameters,
@@ -66,7 +70,7 @@ const Parameters = () => {
       dispatch(parametersTabErrorOrLoading({ isLoaded: true, isError: true }));
       error?.(error);
     },
-    config: config,
+    typeConfig,
     events: {
       change: (ics: any, vs: any) => {
         if (vs) {
@@ -85,7 +89,7 @@ const Parameters = () => {
   return (
     <>
       <JVTypographyComponent text={t("parameters.title")} />
-      <InputControls vObject={visualize} uri={resourceUri} panelDef={panelD} />
+      <InputControls v={visualize} uri={resourceUri} config={panelD} />
     </>
   );
 };
