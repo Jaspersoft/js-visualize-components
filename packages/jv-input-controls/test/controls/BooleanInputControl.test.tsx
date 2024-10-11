@@ -39,9 +39,15 @@ describe("BooleanInputControl tests", () => {
     expect((switchElement[0] as any).checked).not.toBeTruthy();
   });
 
-  it("should be chekced when state.value === true", () => {
+  it("should be checked when state.value === true", () => {
     render(getBoolIC({ state: { value: "true" } }));
     const checkboxElement = document.querySelectorAll('input[type="checkbox"]');
     expect((checkboxElement[0] as any).checked).toBeTruthy();
+  });
+
+  it("should be disabled when readOnly is true", () => {
+    render(getBoolIC({ readOnly: true }));
+    const checkboxElement = document.querySelector('input[type="checkbox"]');
+    expect(checkboxElement).toHaveProperty("disabled", true);
   });
 });
