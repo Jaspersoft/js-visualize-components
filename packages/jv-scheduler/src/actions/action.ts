@@ -92,7 +92,7 @@ export const setPropertiesDetails = (
 };
 
 export const setSechedulerUIConfig = (
-  schedulerUIConfig: SchedulerConfigProps,
+  schedulerUIConfig: SchedulerConfigProps & { resourceURI: string },
 ) => {
   return {
     type: SET_SCHEDULER_UI_CONFIG,
@@ -261,6 +261,7 @@ export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
   schedulerUIConfig: SchedulerConfigProps,
   visualize: VisualizeClient,
+  uri: string,
 ) => {
   return async (dispatch: any) => {
     const {
@@ -271,7 +272,7 @@ export const setInitialPluginState = (
       showStepper,
       stepperDefaultState,
     } = schedulerData;
-    dispatch(setSechedulerUIConfig(schedulerUIConfig));
+    dispatch(setSechedulerUIConfig({ ...schedulerUIConfig, resourceURI: uri }));
     dispatch(getUserTimeZones(scheduleInfo.outputTimeZone));
     dispatch(getOutputFormats());
     dispatch(

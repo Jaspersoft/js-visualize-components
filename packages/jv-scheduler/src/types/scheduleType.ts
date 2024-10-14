@@ -20,7 +20,6 @@ export interface ApiFailedProps extends ApiErrorMsg {
 
 export interface SchedulerConfigProps {
   server: string;
-  resourceURI: string;
   contextPath?: string;
   tabs?: {
     activeTab?: string;

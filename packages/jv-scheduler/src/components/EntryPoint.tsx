@@ -15,14 +15,16 @@ import { useTranslation } from "react-i18next";
 import { getSchedulerData } from "../utils/configurationUtils";
 import { SchedulerConfigProps } from "../types/scheduleType";
 
-type SchedulerProps = {
-  visualize: VisualizeClient;
-  schedulerUIConfig: SchedulerConfigProps;
+export type SchedulerProps = {
+  v: VisualizeClient;
+  config: SchedulerConfigProps;
+  uri: string;
 };
 
 export function renderScheduler(
-  container: HTMLElement,
   v: VisualizeClient,
+  uri: string,
+  container: HTMLElement,
   config: SchedulerConfigProps,
 ) {
   const rootElement = container;
@@ -32,9 +34,7 @@ export function renderScheduler(
     });
   } else {
     const schedulerRoot = createRoot(rootElement);
-    schedulerRoot.render(
-      <EntryPoint visualize={v} schedulerUIConfig={{ ...config }} />,
-    );
+    schedulerRoot.render(<EntryPoint v={v} config={config} uri={uri} />);
   }
 }
 
@@ -44,17 +44,20 @@ const EntryPoint = (props: SchedulerProps) => {
   });
   const [isLoadComp, setIsLoadComp] = useState(false);
   const [schedulerData, setSchedulerData] = useState<any>({});
-  const { schedulerUIConfig, visualize } = props;
+  const { config, v, uri } = props;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getSchedulerData(props.schedulerUIConfig);
+        const response = await getSchedulerData({
+          ...config,
+          resourceURI: uri,
+        });
         setSchedulerData(response);
         if (response.error) {
-          schedulerUIConfig.events?.error?.(response.error);
+          config.events?.error?.(response.error);
         } else {
-          schedulerUIConfig.events?.success?.();
+          config.events?.success?.();
         }
         setIsLoadComp(true);
       } catch (error) {
@@ -66,17 +69,18 @@ const EntryPoint = (props: SchedulerProps) => {
   }, []);
 
   useEffect(() => {
-    i18n.changeLanguage(schedulerUIConfig.locale || "en");
-  }, [schedulerUIConfig.locale]);
+    i18n.changeLanguage(config.locale || "en");
+  }, [config.locale]);
 
   return (
     <>
       {!schedulerData.error && isLoadComp && (
         <ReduxProvider store={store}>
           <SchedulerMain
-            schedulerUIConfig={schedulerUIConfig}
+            schedulerUIConfig={config}
             schedulerData={schedulerData}
-            visualize={visualize}
+            visualize={v}
+            uri={uri}
           />
         </ReduxProvider>
       )}
