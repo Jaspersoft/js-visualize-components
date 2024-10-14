@@ -105,7 +105,7 @@ export type VisualizeGenericError = {
 export type VisualizationConfig = {
   resource: string;
   container?: string;
-  success?: (data: InputControlProperties) => void;
+  success?: (data: InputControlProperties[]) => void;
   error?: (error: VisualizeGenericError) => void;
   events?: any;
 };

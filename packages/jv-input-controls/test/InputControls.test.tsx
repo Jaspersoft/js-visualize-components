@@ -18,7 +18,7 @@ describe("InputControlsPanel component", () => {
     uri: string,
     panelDef: InputControlsConfig,
   ) => {
-    render(<InputControls vObject={v} uri={uri} panelDef={panelDef} />);
+    render(<InputControls v={v} uri={uri} config={panelDef} />);
   };
 
   it("should instantiate and call inputControls on visualize obj", () => {

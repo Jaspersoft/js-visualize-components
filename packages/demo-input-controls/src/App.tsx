@@ -23,10 +23,11 @@ import {
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
 
-const credentials: Authentication = {
+const myAuth: Authentication = {
   name: "joeuser",
   password: "joeuser",
   organization: "organization_1",
+  locale: "en_US",
 };
 
 const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
@@ -46,23 +47,23 @@ function App() {
 
   useEffect(() => {
     const loadVisualize = visualizejsLoader(visualizeUrl);
-    console.log("Loading visualize.js...");
+    console.log("Loading Visualize.js...");
     loadVisualize()
       .then((visualizeFactory: VisualizeFactory) => {
         // Connecting to JRS.
-        console.log("visualize.js loaded. Connecting to JRS...");
+        console.log(
+          "Visualize.js loaded. Connecting to JasperReports Server...",
+        );
         visualizeFactory(
           {
-            auth: {
-              ...credentials,
-              locale: "en_US",
-            },
+            auth: myAuth,
           },
           (v: VisualizeClient) => {
             console.log("Visualize client connected.");
             setVContainer({ v });
           },
           (e: any) => {
+            console.log("Error connecting to JasperReports Server.");
             console.log(String(e));
           },
         );
@@ -79,15 +80,15 @@ function App() {
     renderInputControls(
       vContainer.v,
       reportUri,
-      document.getElementById("basic-controls-section") as HTMLElement,
+      document.getElementById("input-controls-container") as HTMLElement,
       {
         success: () => {
-          console.log("Basic controls rendered successfully");
+          console.log("Input controls rendered successfully");
         },
         error: (error) => {
-          console.log("Error when rendering the Basic controls: ", error);
+          console.log("Error rendering input controls: ", error);
         },
-        config: {
+        typeConfig: {
           singleValueDatetime: {
             type: "default", // even if it isn't provided, this will be the default component
           },
@@ -154,7 +155,7 @@ function App() {
   };
 
   const panelD: InputControlsConfig = {
-    config: { bool: { type: "switch" } },
+    typeConfig: { bool: { type: "switch" } },
     events: {
       change: (ics: any, vs: any) => {
         console.log("NEW ICS!! ", ics);
@@ -165,11 +166,7 @@ function App() {
 
   return (
     <>
-      <InputControls
-        vObject={vContainer?.v}
-        uri={reportUri}
-        panelDef={panelD}
-      />
+      <InputControls v={vContainer?.v} uri={reportUri} config={panelD} />
       <div id="controls-demo-page">
         <div className="jv-lColumns">
           <div className="jv-lColumns-column jr-uWidth-300px">
@@ -181,7 +178,7 @@ function App() {
               </div>
 
               <div className="jv-mPanel-body jv-uPadding-04 mui">
-                <div id="basic-controls-section"></div>
+                <div id="input-controls-container"></div>
                 <div id="select-controls-section"></div>
               </div>
 

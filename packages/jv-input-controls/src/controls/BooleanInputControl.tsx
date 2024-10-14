@@ -39,6 +39,7 @@ export function BooleanInputControl(
         containerClassName={`${controlClasses.join(" ")} jv-mInputLarge`}
         inline={true}
         labelPlacement="end"
+        disabled={props.readOnly}
       />
     );
   } else {
@@ -51,6 +52,7 @@ export function BooleanInputControl(
             checked: !!liveState.value,
           }}
           className={controlClasses.join(" ")}
+          disabled={props.readOnly}
         />
       </JVCheckboxGroup>
     );
