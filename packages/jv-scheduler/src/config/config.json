@@ -1,7 +1,6 @@
 {
   "server": "",
   "contextPath": "",
-  "resourceURI": "",
   "stepper": {
     "show": true
   },

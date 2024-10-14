@@ -15,3 +15,4 @@ export { SchedulerConfig };
 
 // types
 export type { SchedulerConfigProps } from "./types/scheduleType";
+export type { SchedulerProps } from "./components/EntryPoint";

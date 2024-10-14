@@ -20,7 +20,6 @@ export interface ApiFailedProps extends ApiErrorMsg {
 
 export interface SchedulerConfigProps {
   server: string;
-  resourceURI: string;
   contextPath?: string;
   tabs?: {
     activeTab?: string;
@@ -228,7 +227,7 @@ export interface FakeRootDataProps {
   permissionMask: number;
 }
 
-export type translationProps = { t: (k: string) => string };
+export type translationProps = { t: (k: string | undefined) => string };
 
 export type ScheduleInfoPropsOptionalProps = {
   outputTimeZone?: string;

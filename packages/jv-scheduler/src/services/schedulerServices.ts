@@ -9,8 +9,9 @@ import store from "../store/store";
 import { IState } from "../types/scheduleType";
 import { PUBLIC_FOLDER, ROOT_FOLDER } from "../constants/schedulerConstants";
 
+const mobileDemoPath = "https://mobiledemo.jaspersoft.com/";
 const getServerPath = () => {
-  return (store.getState() as IState)?.schedulerUIConfig?.server;
+  return `${(store.getState() as IState)?.schedulerUIConfig?.server}${(store.getState() as IState)?.schedulerUIConfig?.contextPath}`;
 };
 
 const computePermissionMask = (extra: { [key: string]: any }) => {
@@ -73,8 +74,9 @@ const getFakeRootRepositoryData = (data: string) => {
 export const checkPermissionOnResource = async (
   resource: string,
   server?: string,
+  contextPath?: string,
 ) => {
-  const serverPath = server || getServerPath();
+  const serverPath = server ? `${server}${contextPath}` : getServerPath();
   try {
     const response = await axios.get(
       `${serverPath}/rest_v2/resources${resource}`,
@@ -187,19 +189,23 @@ export const createSchedule = async (scheduleInfo: any) => {
   let csrfToken = await getCSRFToken();
   csrfToken = csrfToken && csrfToken.split ? csrfToken.split(":")[1] : null;
 
-  return axios.put(
-    `${getServerPath()}/rest_v2/jobs`,
-    {
-      ...scheduleInfo,
-    },
-    {
-      withCredentials: true,
-      headers: {
-        Accept: "application/job+json",
-        "Content-Type": "application/job+json",
-        "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
-        OWASP_CSRFTOKEN: csrfToken,
+  if (getServerPath()?.startsWith(mobileDemoPath)) {
+    return Promise.resolve({});
+  } else {
+    return axios.put(
+      `${getServerPath()}/rest_v2/jobs`,
+      {
+        ...scheduleInfo,
       },
-    },
-  );
+      {
+        withCredentials: true,
+        headers: {
+          Accept: "application/job+json",
+          "Content-Type": "application/job+json",
+          "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
+          OWASP_CSRFTOKEN: csrfToken,
+        },
+      },
+    );
+  }
 };

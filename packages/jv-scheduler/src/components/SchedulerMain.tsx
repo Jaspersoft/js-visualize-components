@@ -20,6 +20,7 @@ const SchedulerMain = ({
   schedulerData,
   schedulerUIConfig,
   visualize,
+  uri,
 }: any) => {
   const dispatch = useDispatch();
   const stepperConfig = useSelector(
@@ -28,7 +29,7 @@ const SchedulerMain = ({
 
   useEffect(() => {
     dispatch(
-      setInitialPluginState(schedulerData, schedulerUIConfig, visualize),
+      setInitialPluginState(schedulerData, schedulerUIConfig, visualize, uri),
     );
   }, []);
 

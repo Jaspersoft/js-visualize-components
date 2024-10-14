@@ -95,6 +95,7 @@
     "error.folder.uri.required": "Specify a folder.",
     "error.report.schedule.output.folder.resourceuri.format": "The scheduled job output folder contains invalid characters.",
     "error": "Error",
-    "not.yet.implemented": "This resource contains controls that are not yet supported."
+    "not.yet.implemented": "This resource contains controls that are not yet supported.",
+    "error.report.schedule.output.folder.notwriteable": "You do not have permission to save the scheduled job output to the this folder. Select another location to save the job."
   }
 }

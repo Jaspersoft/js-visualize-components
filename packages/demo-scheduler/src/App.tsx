@@ -23,13 +23,14 @@ import ReportPanel from "./report/ReportPanel";
 import "./App.css";
 import { Scheduler } from "./Scheduler";
 
-const visualizeUrl = `${schedulerUIConfig.server}/client/visualize.js`;
+const visualizeUrl = `${schedulerUIConfig.server}${schedulerUIConfig.contextPath}/client/visualize.js`;
 
 const credentials: Authentication = {
   name: "superuser",
   password: "superuser",
 };
 
+const resourceUri = "/public/Samples/Reports/9.CustomerDetailReport";
 function SchedulerApp() {
   const [visualize, setVisualize] = useState(
     null as { v: VisualizeClient } | null,
@@ -82,7 +83,7 @@ function SchedulerApp() {
     // if (visualize) {
     //   renderScheduler(
     //     schedulerElement as HTMLElement,
-    //     visualize,
+    //     visualize.v,
     //     schedulerUIConfig,
     //   );
     // }
@@ -102,7 +103,7 @@ function SchedulerApp() {
                   Schedule For:{" "}
                 </span>
                 <span className="pageHeader-subtitle-path-text">
-                  {schedulerUIConfig.resourceURI}
+                  {resourceUri}
                 </span>
               </div>
             </h1>
@@ -122,15 +123,12 @@ function SchedulerApp() {
             className={`dimmer ${isPanelOpen ? "" : "hidden"}`}
             style={{ zIndex: 999 }}
           ></div>
-          <ReportPanel
-            vObject={visualize.v}
-            resourceURI={schedulerUIConfig.resourceURI}
-          />
+          <ReportPanel vObject={visualize.v} resourceURI={resourceUri} />
           {isPanelOpen && (
             <Scheduler
-              visualize={visualize.v}
-              schedulerUIConfig={schedulerUIConfig}
-              isPanelOpen={isPanelOpen}
+              v={visualize.v}
+              config={schedulerUIConfig}
+              uri={resourceUri}
             />
           )}
         </>
