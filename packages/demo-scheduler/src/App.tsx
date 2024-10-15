@@ -15,7 +15,7 @@ import {
 } from "@jaspersoft/jv-tools";
 import {
   // renderScheduler,
-  SchedulerConfig,
+  defaultSchedulerConfig,
 } from "@jaspersoft/jv-scheduler";
 import { JVButton } from "@jaspersoft/jv-ui-components";
 import schedulerUIConfig from "./jv_sheduler_config";
@@ -26,8 +26,10 @@ import { Scheduler } from "./Scheduler";
 const visualizeUrl = `${schedulerUIConfig.server}${schedulerUIConfig.contextPath}/client/visualize.js`;
 
 const credentials: Authentication = {
-  name: "superuser",
-  password: "superuser",
+  name: "joeuser",
+  password: "joeuser",
+  organization: "organization_1",
+  locale: "en_US",
 };
 
 const resourceUri = "/public/Samples/Reports/9.CustomerDetailReport";
@@ -82,14 +84,15 @@ function SchedulerApp() {
     // const schedulerElement = document.getElementById("sheduler");
     // if (visualize) {
     //   renderScheduler(
+    //       visualize.v,
+    //     resourceUri,
     //     schedulerElement as HTMLElement,
-    //     visualize.v,
     //     schedulerUIConfig,
     //   );
     // }
   }, [visualize]);
 
-  console.log(SchedulerConfig, "SchedulerConfig");
+  console.log("SchedulerConfig ", defaultSchedulerConfig);
   return (
     <>
       <div id="scheduler"></div>

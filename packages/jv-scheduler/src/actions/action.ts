@@ -340,6 +340,8 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
         scheduleJobDescription,
         scheduleJobName,
         outputFormats,
+        mailNotification,
+        repositoryDestination,
         ...rest
       } = getState().scheduleInfo;
       const { outputFormat } = outputFormats;
@@ -347,12 +349,19 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
         item.toUpperCase(),
       );
 
+      if (mailNotification.resultSendType === "SEND_ATTACHMENT") {
+        repositoryDestination.saveToRepository = false;
+      } else {
+        repositoryDestination.saveToRepository = true;
+      }
       const jobInfo = await createSchedule({
         label: scheduleJobName,
         description: scheduleJobDescription,
         outputFormats: {
           outputFormat: capitlizedOutputFormat,
         },
+        mailNotification,
+        repositoryDestination,
         ...rest,
       });
       scheduleBtnClick?.(true, jobInfo);
