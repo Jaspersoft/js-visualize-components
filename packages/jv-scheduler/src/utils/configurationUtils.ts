@@ -187,7 +187,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
       case "simple":
         {
           if (
-            fieldsData[field].showField === false &&
+            fieldsData[field].show === false &&
             manadatoryHiddenField.indexOf(field) > -1 &&
             !fieldsData[field].value
           ) {
@@ -208,16 +208,16 @@ const checkFieldDataValidity = (fieldsData: any) => {
             });
             fieldConvertedData[fieldName] = fieldsData[field].value;
             fieldsVisibility[fieldName] =
-              fieldsData[field].showField === undefined
+              fieldsData[field].show === undefined
                 ? true
-                : fieldsData[field].showField;
+                : fieldsData[field].show;
           }
         }
         break;
       case "radio": {
-        const { showField, value } = fieldsData[field];
+        const { show, value } = fieldsData[field];
         if (
-          showField === false &&
+          show === false &&
           manadatoryHiddenField.indexOf(field) > -1 &&
           !value
         ) {
@@ -233,8 +233,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
               validationMessages[fieldValue.error[`${field}`]];
           } else {
             fieldConvertedData = { ...fieldConvertedData, ...fieldValue };
-            fieldsVisibility[field] =
-              showField === undefined ? true : showField;
+            fieldsVisibility[field] = show === undefined ? true : show;
           }
         }
         break;
