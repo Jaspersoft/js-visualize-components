@@ -138,13 +138,17 @@ export const verifyDateLimit = ({
   isVerifyingMin,
 }: {
   dataType: InputControlDataType | undefined;
-  maxOrMinDateAsString: string | null;
+  maxOrMinDateAsString: string | null | undefined;
   dateAsString: string;
   isVerifyingMin: boolean;
 }): { helperText: string; isError: boolean } => {
   let helperText = "";
   let isError = false;
-  if (dataType === undefined || maxOrMinDateAsString === null) {
+  if (
+    dataType === undefined ||
+    maxOrMinDateAsString === null ||
+    maxOrMinDateAsString === undefined
+  ) {
     return { helperText, isError };
   }
   // verify the number is under the limits of the data type
