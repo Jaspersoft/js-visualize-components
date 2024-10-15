@@ -45,7 +45,7 @@
         "messageText": {
           "value": ""
         },
-        "reportAccessType": {
+        "resultSendType": {
           "show": true,
           "value": "SEND_ATTACHMENT"
         }

@@ -157,7 +157,7 @@ export const defaultFieldVisibility = {
   scheduleJobDescription: true,
   recurrenceInterval: true,
   recurrenceIntervalUnit: true,
-  reportAccessType: true,
+  resultSendType: true,
   startTime: true,
 };
 export const scheduleDefaultErrorState = {
@@ -288,7 +288,7 @@ export const typeOfFields: { [key: string]: string } = {
   address: "simple",
   subject: "simple",
   messageText: "simple",
-  reportAccessType: "radio",
+  resultSendType: "radio",
   folderUri: "simple",
 };
 

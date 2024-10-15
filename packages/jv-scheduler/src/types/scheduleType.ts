@@ -110,7 +110,7 @@ export interface FieldsVisibilityProps {
   label?: boolean;
   recurrenceInterval?: boolean;
   recurrenceIntervalUnit?: boolean;
-  reportAccessType?: boolean;
+  resultSendType?: boolean;
   description?: boolean;
   startTime?: boolean;
   scheduleJobDescription?: boolean;

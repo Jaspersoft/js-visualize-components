@@ -127,12 +127,12 @@ const validate = (propertName: string, propertyValue: string) => {
       }
       break;
     }
-    case "reportAccessType": {
+    case "resultSendType": {
       if (
         propertyValue !== SEND_ATTACHMENT &&
         !checkValueOfFolderUri(propertyValue)
       ) {
-        return { error: "Entered incorrect value for reportAccessType" };
+        return { error: "Entered incorrect value for resultSendType" };
       }
       break;
     }
@@ -165,8 +165,8 @@ const getValuesForRadio = (value: string, field: string) => {
       }
       return getStartTimeValue(value);
     }
-    case "reportAccessType": {
-      const { error } = validate("reportAccessType", value);
+    case "resultSendType": {
+      const { error } = validate("resultSendType", value);
       if (error) {
         return { error };
       }

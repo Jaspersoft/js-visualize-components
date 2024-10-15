@@ -64,7 +64,7 @@ const Notifications = () => {
     address: addressVisible,
     subject: subjectVisible,
     messageText: messageTextVisible,
-    reportAccessType: reportAccessTypeVisible,
+    resultSendType: reportAccessTypeVisible,
   } = useSelector((state: IState) => state.fieldsVisibility);
 
   const {

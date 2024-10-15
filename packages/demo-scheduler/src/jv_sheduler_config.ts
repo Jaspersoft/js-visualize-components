@@ -43,7 +43,7 @@ const schedulerUIConfig: SchedulerConfigProps = {
           show: true,
           value: "Schedule job file description",
         },
-        outputFormat: { show: true, value: ["pdf"] },
+        outputFormat: { show: true, value: ["pdf", "xls"] },
         // required
         outputTimeZone: {
           show: true,
@@ -68,9 +68,9 @@ const schedulerUIConfig: SchedulerConfigProps = {
           // show: true,
           value: "Email message",
         },
-        reportAccessType: {
+        resultSendType: {
           show: true,
-          value: "SEND_ATTACHMENT",
+          value: "/public",
         },
       },
     },
