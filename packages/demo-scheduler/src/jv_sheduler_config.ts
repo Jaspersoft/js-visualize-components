@@ -7,7 +7,7 @@
 import { SchedulerConfig } from "@jaspersoft/jv-scheduler";
 
 const schedulerUIConfig: SchedulerConfig = {
-  server: "https://localhost:8443",
+  server: "https://mobiledemo.jaspersoft.com",
   contextPath: "/jasperserver-pro",
   stepper: {
     show: true,
