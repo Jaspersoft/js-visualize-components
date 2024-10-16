@@ -9,9 +9,12 @@ import store from "../store/store";
 import { IState } from "../types/scheduleType";
 import { PUBLIC_FOLDER, ROOT_FOLDER } from "../constants/schedulerConstants";
 
-const mobileDemoPath = "https://mobiledemo.jaspersoft.com/";
-const getServerPath = () => {
+const getServerContextPath = () => {
   return `${(store.getState() as IState)?.schedulerUIConfig?.server}${(store.getState() as IState)?.schedulerUIConfig?.contextPath}`;
+};
+
+const getServer = () => {
+  return `${(store.getState() as IState)?.schedulerUIConfig?.server}`;
 };
 
 const computePermissionMask = (extra: { [key: string]: any }) => {
@@ -76,7 +79,9 @@ export const checkPermissionOnResource = async (
   server?: string,
   contextPath?: string,
 ) => {
-  const serverPath = server ? `${server}${contextPath}` : getServerPath();
+  const serverPath = server
+    ? `${server}${contextPath}`
+    : getServerContextPath();
   try {
     const response = await axios.get(
       `${serverPath}/rest_v2/resources${resource}`,
@@ -96,7 +101,7 @@ export const checkPermissionOnResource = async (
 export const getUserTimezonesFromService = async () => {
   try {
     const response = await axios.get(
-      `${getServerPath()}/rest_v2/settings/userTimeZones`,
+      `${getServerContextPath()}/rest_v2/settings/userTimeZones`,
       {
         headers: {
           Accept: "application/json",
@@ -112,7 +117,7 @@ export const getUserTimezonesFromService = async () => {
 export const getOutputFormatsFromService = async () => {
   try {
     const response = await axios.get(
-      `${getServerPath()}/rest_v2/settings/alertingSettings`,
+      `${getServerContextPath()}/rest_v2/settings/alertingSettings`,
       {
         headers: {
           Accept: "application/json",
@@ -125,30 +130,10 @@ export const getOutputFormatsFromService = async () => {
   }
 };
 
-export const getCSRFToken = async (server?: string) => {
-  const serverPath = server || getServerPath();
-  try {
-    // noinspection TypeScriptValidateTypes
-    const response = await axios.post(
-      `${serverPath}/JavaScriptServlet`,
-      {},
-      {
-        withCredentials: true,
-        headers: {
-          "Fetch-Csrf-Token": "1",
-        },
-      },
-    );
-    return response.data;
-  } catch (error) {
-    return { error: "Failed to fetch CSRF token" };
-  }
-};
-
 export const getRepositoryFolderData = async (folderPath: string) => {
   try {
     const response = await axios.get(
-      `${getServerPath()}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
+      `${getServerContextPath()}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
       {
         withCredentials: true,
         headers: {
@@ -171,7 +156,7 @@ function decodeHtml(html: string) {
 export const getFakeRootDataFromService = async () => {
   try {
     const response = await axios.get(
-      `${getServerPath()}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
+      `${getServerContextPath()}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
       {
         withCredentials: true,
         headers: {
@@ -186,26 +171,24 @@ export const getFakeRootDataFromService = async () => {
 };
 
 export const createSchedule = async (scheduleInfo: any) => {
-  let csrfToken = await getCSRFToken();
-  csrfToken = csrfToken && csrfToken.split ? csrfToken.split(":")[1] : null;
+  return axios.put(
+    `${getServerContextPath()}/rest_v2/jobs`,
+    {
+      ...scheduleInfo,
+    },
+    {
+      withCredentials: true,
+      headers: {
+        Accept: "application/job+json",
+        "Content-Type": "application/job+json",
+        "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
+        "X-Remote-Domain": getServer(),
+        "X-Suppress-Basic": "true",
+      },
+    },
+  );
+};
 
-  if (getServerPath()?.startsWith(mobileDemoPath)) {
-    return Promise.resolve({});
-  } else {
-    return axios.put(
-      `${getServerPath()}/rest_v2/jobs`,
-      {
-        ...scheduleInfo,
-      },
-      {
-        withCredentials: true,
-        headers: {
-          Accept: "application/job+json",
-          "Content-Type": "application/job+json",
-          "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
-          OWASP_CSRFTOKEN: csrfToken,
-        },
-      },
-    );
-  }
+export const createDummySchedule = async (scheduleInfo: any) => {
+  return Promise.resolve(scheduleInfo);
 };

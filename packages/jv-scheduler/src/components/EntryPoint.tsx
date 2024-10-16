@@ -13,11 +13,11 @@ import { Provider as ReduxProvider } from "react-redux";
 import SchedulerMain from "./SchedulerMain";
 import { useTranslation } from "react-i18next";
 import { getSchedulerData } from "../utils/configurationUtils";
-import { SchedulerConfigProps } from "../types/scheduleType";
+import { SchedulerConfig } from "../types/scheduleType";
 
 export type SchedulerProps = {
   v: VisualizeClient;
-  config: SchedulerConfigProps;
+  config: SchedulerConfig;
   uri: string;
 };
 
@@ -25,7 +25,7 @@ export function renderScheduler(
   v: VisualizeClient,
   uri: string,
   container: HTMLElement,
-  config: SchedulerConfigProps,
+  config: SchedulerConfig,
 ) {
   const rootElement = container;
   if (!rootElement) {

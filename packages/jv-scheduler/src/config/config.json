@@ -1,6 +1,7 @@
 {
   "server": "",
   "contextPath": "",
+  "dryRun": false,
   "stepper": {
     "show": true
   },
@@ -8,45 +9,45 @@
     "tabsOrder": ["schedule", "parameters", "notifications", "output"],
     "tabsData": {
       "schedule": {
-        "label": { "showField": true, "value": "" },
+        "label": { "show": true, "value": "" },
         "description": {
           "value": "",
-          "showField": true
+          "show": true
         },
-        "recurrenceInterval": { "showField": true, "value": 1 },
+        "recurrenceInterval": { "show": true, "value": 1 },
         "recurrenceIntervalUnit": {
-          "showField": true,
+          "show": true,
           "value": "DAY"
         },
         "startTime": {
-          "showField": true,
+          "show": true,
           "value": "now"
         }
       },
       "output": {
         "baseOutputFilename": {
-          "showField": true,
+          "show": true,
           "value": ""
         },
         "outputDescription": {
-          "showField": true,
+          "show": true,
           "value": ""
         },
-        "outputFormat": { "showField": true, "value": ["pdf"] },
+        "outputFormat": { "show": true, "value": ["pdf"] },
         "outputTimeZone": {
-          "showField": true,
+          "show": true,
           "value": ""
         }
       },
       "parameters": {},
       "notifications": {
-        "address": { "showField": true, "value": [] },
-        "subject": { "showField": true, "value": "" },
+        "address": { "show": true, "value": [] },
+        "subject": { "show": true, "value": "" },
         "messageText": {
           "value": ""
         },
-        "reportAccessType": {
-          "showField": true,
+        "resultSendType": {
+          "show": true,
           "value": "SEND_ATTACHMENT"
         }
       }

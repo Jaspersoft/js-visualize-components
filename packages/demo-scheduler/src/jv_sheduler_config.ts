@@ -4,10 +4,10 @@
  * in the license file that is distributed with this file.
  */
 
-import { SchedulerConfigProps } from "@jaspersoft/jv-scheduler";
+import { SchedulerConfig } from "@jaspersoft/jv-scheduler";
 
-const schedulerUIConfig: SchedulerConfigProps = {
-  server: "https://localhost:8443",
+const schedulerUIConfig: SchedulerConfig = {
+  server: "https://mobiledemo.jaspersoft.com",
   contextPath: "/jasperserver-pro",
   stepper: {
     show: true,
@@ -20,15 +20,15 @@ const schedulerUIConfig: SchedulerConfigProps = {
         label: { value: "Schedule job name" },
         description: {
           value: "Schedule job description",
-          showField: true,
+          show: true,
         },
-        recurrenceInterval: { showField: true, value: 1 },
+        recurrenceInterval: { show: true, value: 1 },
         recurrenceIntervalUnit: {
-          showField: true,
+          show: true,
           value: "HOUR",
         },
         startTime: {
-          showField: true,
+          show: true,
           value: "2024-10-31 14:11",
         },
       },
@@ -36,17 +36,21 @@ const schedulerUIConfig: SchedulerConfigProps = {
         // output file name
         // outputFileName: required in config
         baseOutputFilename: {
-          showField: true,
+          show: true,
           value: "ScheduleJobFilename",
         },
         outputDescription: {
-          showField: true,
+          show: true,
           value: "Schedule job file description",
         },
-        outputFormat: { showField: true, value: ["pdf"] },
+        outputFormat: {
+          show: true,
+          value: ["pdf", "xls"],
+          supportedValues: ["pdf", "xls"],
+        },
         // required
         outputTimeZone: {
-          showField: true,
+          show: true,
           value: "America/Los_Angeles",
         },
       },
@@ -61,16 +65,16 @@ const schedulerUIConfig: SchedulerConfigProps = {
       },
       notifications: {
         // required in config
-        address: { showField: true, value: ["test@cloud.com"] },
+        address: { show: true, value: ["test@cloud.com"] },
         // required in config
-        subject: { showField: true, value: "Schedule job email subject" },
+        subject: { show: true, value: "Schedule job email subject" },
         messageText: {
-          // showField: true,
+          // show: true,
           value: "Email message",
         },
-        reportAccessType: {
-          showField: true,
-          value: "SEND_ATTACHMENT",
+        resultSendType: {
+          show: true,
+          value: "/public",
         },
       },
     },

@@ -26,6 +26,7 @@ import {
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
+  createDummySchedule,
   createSchedule,
   getFakeRootDataFromService,
   getOutputFormatsFromService,
@@ -39,7 +40,7 @@ import {
   ScheduleErrorsProps,
   ScheduleInfoProps,
   SchedulerInitialPluginDataProps,
-  SchedulerConfigProps,
+  SchedulerConfig,
   IState,
   StepperDataProps,
   StoreDataProps,
@@ -91,8 +92,8 @@ export const setPropertiesDetails = (
   };
 };
 
-export const setSechedulerUIConfig = (
-  schedulerUIConfig: SchedulerConfigProps & { resourceURI: string },
+export const setSchedulerUIConfig = (
+  schedulerUIConfig: SchedulerConfig & { resourceURI: string },
 ) => {
   return {
     type: SET_SCHEDULER_UI_CONFIG,
@@ -259,7 +260,7 @@ export const setParametersTabConfig = (
 
 export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
-  schedulerUIConfig: SchedulerConfigProps,
+  schedulerUIConfig: SchedulerConfig,
   visualize: VisualizeClient,
   uri: string,
 ) => {
@@ -271,10 +272,15 @@ export const setInitialPluginState = (
       currentActiveTab,
       showStepper,
       stepperDefaultState,
+      fieldsSupportedValues,
     } = schedulerData;
-    dispatch(setSechedulerUIConfig({ ...schedulerUIConfig, resourceURI: uri }));
+    dispatch(setSchedulerUIConfig({ ...schedulerUIConfig, resourceURI: uri }));
     dispatch(getUserTimeZones(scheduleInfo.outputTimeZone));
-    dispatch(getOutputFormats());
+    if (fieldsSupportedValues.outputFormat) {
+      dispatch(setOutputFormats(fieldsSupportedValues.outputFormat));
+    } else {
+      dispatch(getOutputFormats());
+    }
     dispatch(
       setTabsConfig({
         currentActiveTab,
@@ -340,6 +346,8 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
         scheduleJobDescription,
         scheduleJobName,
         outputFormats,
+        mailNotification,
+        repositoryDestination,
         ...rest
       } = getState().scheduleInfo;
       const { outputFormat } = outputFormats;
@@ -347,12 +355,23 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
         item.toUpperCase(),
       );
 
-      const jobInfo = await createSchedule({
+      if (mailNotification.resultSendType === "SEND_ATTACHMENT") {
+        repositoryDestination.saveToRepository = false;
+      } else {
+        repositoryDestination.saveToRepository = true;
+      }
+
+      const createScheduleFun = getState().schedulerUIConfig?.dryRun
+        ? createDummySchedule
+        : createSchedule;
+      const jobInfo = await createScheduleFun({
         label: scheduleJobName,
         description: scheduleJobDescription,
         outputFormats: {
           outputFormat: capitlizedOutputFormat,
         },
+        mailNotification,
+        repositoryDestination,
         ...rest,
       });
       scheduleBtnClick?.(true, jobInfo);

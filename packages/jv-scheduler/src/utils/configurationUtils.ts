@@ -127,12 +127,12 @@ const validate = (propertName: string, propertyValue: string) => {
       }
       break;
     }
-    case "reportAccessType": {
+    case "resultSendType": {
       if (
         propertyValue !== SEND_ATTACHMENT &&
         !checkValueOfFolderUri(propertyValue)
       ) {
-        return { error: "Entered incorrect value for reportAccessType" };
+        return { error: "Entered incorrect value for resultSendType" };
       }
       break;
     }
@@ -165,8 +165,8 @@ const getValuesForRadio = (value: string, field: string) => {
       }
       return getStartTimeValue(value);
     }
-    case "reportAccessType": {
-      const { error } = validate("reportAccessType", value);
+    case "resultSendType": {
+      const { error } = validate("resultSendType", value);
       if (error) {
         return { error };
       }
@@ -179,7 +179,8 @@ const checkFieldDataValidity = (fieldsData: any) => {
   const promises: Array<any> = [];
   let error: { [key: string]: string } = {},
     fieldsVisibility: { [key: string]: string } = {},
-    fieldConvertedData: any = {};
+    fieldConvertedData: { [key: string]: string } = {},
+    fieldsSupportedValues: { [key: string]: string } = {};
 
   Object.keys(fieldsData).forEach((field: string) => {
     const type: string = typeOfFields[field] as string;
@@ -187,7 +188,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
       case "simple":
         {
           if (
-            fieldsData[field].showField === false &&
+            fieldsData[field].show === false &&
             manadatoryHiddenField.indexOf(field) > -1 &&
             !fieldsData[field].value
           ) {
@@ -208,16 +209,19 @@ const checkFieldDataValidity = (fieldsData: any) => {
             });
             fieldConvertedData[fieldName] = fieldsData[field].value;
             fieldsVisibility[fieldName] =
-              fieldsData[field].showField === undefined
+              fieldsData[field].show === undefined
                 ? true
-                : fieldsData[field].showField;
+                : fieldsData[field].show;
+            if (fieldsData[field]?.supportedValues)
+              fieldsSupportedValues[fieldName] =
+                fieldsData[field]?.supportedValues;
           }
         }
         break;
       case "radio": {
-        const { showField, value } = fieldsData[field];
+        const { show, value } = fieldsData[field];
         if (
-          showField === false &&
+          show === false &&
           manadatoryHiddenField.indexOf(field) > -1 &&
           !value
         ) {
@@ -233,8 +237,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
               validationMessages[fieldValue.error[`${field}`]];
           } else {
             fieldConvertedData = { ...fieldConvertedData, ...fieldValue };
-            fieldsVisibility[field] =
-              showField === undefined ? true : showField;
+            fieldsVisibility[field] = show === undefined ? true : show;
           }
         }
         break;
@@ -255,6 +258,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
       error: { ...validationPromise, ...error },
       fieldsVisibility,
       fieldConvertedData,
+      fieldsSupportedValues,
     };
   });
 };
@@ -444,6 +448,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     error: fieldsErrs,
     fieldsVisibility,
     fieldConvertedData,
+    fieldsSupportedValues,
   } = await checkFieldDataValidity(inputFieldsInfo);
 
   if (getLengthOfObject(fieldsErrs)) {
@@ -461,6 +466,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     scheduleInfo,
     tabsToShow,
     stepsToShow,
+    fieldsSupportedValues,
     currentActiveTab: tabsConfig[0],
     fieldsVisibility: { ...defaultFieldVisibility, ...fieldsVisibility },
   };

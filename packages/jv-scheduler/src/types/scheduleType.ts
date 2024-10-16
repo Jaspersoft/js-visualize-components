@@ -18,8 +18,9 @@ export interface ApiFailedProps extends ApiErrorMsg {
   treeLoadApiFailure?: boolean;
 }
 
-export interface SchedulerConfigProps {
+export interface SchedulerConfig {
   server: string;
+  dryRun?: boolean;
   contextPath?: string;
   tabs?: {
     activeTab?: string;
@@ -110,7 +111,7 @@ export interface FieldsVisibilityProps {
   label?: boolean;
   recurrenceInterval?: boolean;
   recurrenceIntervalUnit?: boolean;
-  reportAccessType?: boolean;
+  resultSendType?: boolean;
   description?: boolean;
   startTime?: boolean;
   scheduleJobDescription?: boolean;
@@ -147,6 +148,9 @@ export interface SchedulerInitialPluginDataProps {
   stepperDefaultState: StepperStateProps;
   stepsToShow: stepsToShow[];
   tabsToShow: tabsToShow[];
+  fieldsSupportedValues: {
+    outputFormat: string[];
+  };
 }
 
 export interface IState extends SchedulerInitialPluginDataProps {
@@ -163,7 +167,7 @@ export interface IState extends SchedulerInitialPluginDataProps {
   lastApiCalledFailed?: boolean;
   folderData?: any;
   fakeRoot?: any;
-  schedulerUIConfig?: SchedulerConfigProps;
+  schedulerUIConfig?: SchedulerConfig;
   userTimeZones: [{ code: string; description: string }];
   parametersTabLoading: {
     isLoaded: boolean;
