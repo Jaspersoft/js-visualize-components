@@ -14,5 +14,5 @@ export { default as Scheduler, renderScheduler } from "./components/EntryPoint";
 export { defaultSchedulerConfig };
 
 // types
-export type { SchedulerConfigProps } from "./types/scheduleType";
+export type { SchedulerConfig } from "./types/scheduleType";
 export type { SchedulerProps } from "./components/EntryPoint";

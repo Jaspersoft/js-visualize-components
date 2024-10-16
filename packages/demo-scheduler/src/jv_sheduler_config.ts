@@ -4,9 +4,9 @@
  * in the license file that is distributed with this file.
  */
 
-import { SchedulerConfigProps } from "@jaspersoft/jv-scheduler";
+import { SchedulerConfig } from "@jaspersoft/jv-scheduler";
 
-const schedulerUIConfig: SchedulerConfigProps = {
+const schedulerUIConfig: SchedulerConfig = {
   server: "https://localhost:8443",
   contextPath: "/jasperserver-pro",
   stepper: {

@@ -39,7 +39,7 @@ import {
   ScheduleErrorsProps,
   ScheduleInfoProps,
   SchedulerInitialPluginDataProps,
-  SchedulerConfigProps,
+  SchedulerConfig,
   IState,
   StepperDataProps,
   StoreDataProps,
@@ -92,7 +92,7 @@ export const setPropertiesDetails = (
 };
 
 export const setSechedulerUIConfig = (
-  schedulerUIConfig: SchedulerConfigProps & { resourceURI: string },
+  schedulerUIConfig: SchedulerConfig & { resourceURI: string },
 ) => {
   return {
     type: SET_SCHEDULER_UI_CONFIG,
@@ -259,7 +259,7 @@ export const setParametersTabConfig = (
 
 export const setInitialPluginState = (
   schedulerData: SchedulerInitialPluginDataProps,
-  schedulerUIConfig: SchedulerConfigProps,
+  schedulerUIConfig: SchedulerConfig,
   visualize: VisualizeClient,
   uri: string,
 ) => {

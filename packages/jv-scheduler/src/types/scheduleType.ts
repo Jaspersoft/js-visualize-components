@@ -18,7 +18,7 @@ export interface ApiFailedProps extends ApiErrorMsg {
   treeLoadApiFailure?: boolean;
 }
 
-export interface SchedulerConfigProps {
+export interface SchedulerConfig {
   server: string;
   contextPath?: string;
   tabs?: {
@@ -163,7 +163,7 @@ export interface IState extends SchedulerInitialPluginDataProps {
   lastApiCalledFailed?: boolean;
   folderData?: any;
   fakeRoot?: any;
-  schedulerUIConfig?: SchedulerConfigProps;
+  schedulerUIConfig?: SchedulerConfig;
   userTimeZones: [{ code: string; description: string }];
   parametersTabLoading: {
     isLoaded: boolean;
