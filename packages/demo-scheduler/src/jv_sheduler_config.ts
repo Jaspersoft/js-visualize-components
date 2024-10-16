@@ -43,7 +43,11 @@ const schedulerUIConfig: SchedulerConfig = {
           show: true,
           value: "Schedule job file description",
         },
-        outputFormat: { show: true, value: ["pdf", "xls"] },
+        outputFormat: {
+          show: true,
+          value: ["pdf", "xls"],
+          supportedValues: ["pdf", "xls"],
+        },
         // required
         outputTimeZone: {
           show: true,

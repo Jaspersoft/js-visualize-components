@@ -179,7 +179,8 @@ const checkFieldDataValidity = (fieldsData: any) => {
   const promises: Array<any> = [];
   let error: { [key: string]: string } = {},
     fieldsVisibility: { [key: string]: string } = {},
-    fieldConvertedData: any = {};
+    fieldConvertedData: { [key: string]: string } = {},
+    fieldsSupportedValues: { [key: string]: string } = {};
 
   Object.keys(fieldsData).forEach((field: string) => {
     const type: string = typeOfFields[field] as string;
@@ -211,6 +212,9 @@ const checkFieldDataValidity = (fieldsData: any) => {
               fieldsData[field].show === undefined
                 ? true
                 : fieldsData[field].show;
+            if (fieldsData[field]?.supportedValues)
+              fieldsSupportedValues[fieldName] =
+                fieldsData[field]?.supportedValues;
           }
         }
         break;
@@ -254,6 +258,7 @@ const checkFieldDataValidity = (fieldsData: any) => {
       error: { ...validationPromise, ...error },
       fieldsVisibility,
       fieldConvertedData,
+      fieldsSupportedValues,
     };
   });
 };
@@ -443,6 +448,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     error: fieldsErrs,
     fieldsVisibility,
     fieldConvertedData,
+    fieldsSupportedValues,
   } = await checkFieldDataValidity(inputFieldsInfo);
 
   if (getLengthOfObject(fieldsErrs)) {
@@ -460,6 +466,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     scheduleInfo,
     tabsToShow,
     stepsToShow,
+    fieldsSupportedValues,
     currentActiveTab: tabsConfig[0],
     fieldsVisibility: { ...defaultFieldVisibility, ...fieldsVisibility },
   };

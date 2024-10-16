@@ -271,10 +271,15 @@ export const setInitialPluginState = (
       currentActiveTab,
       showStepper,
       stepperDefaultState,
+      fieldsSupportedValues,
     } = schedulerData;
     dispatch(setSechedulerUIConfig({ ...schedulerUIConfig, resourceURI: uri }));
     dispatch(getUserTimeZones(scheduleInfo.outputTimeZone));
-    dispatch(getOutputFormats());
+    if (fieldsSupportedValues.outputFormat) {
+      dispatch(setOutputFormats(fieldsSupportedValues.outputFormat));
+    } else {
+      dispatch(getOutputFormats());
+    }
     dispatch(
       setTabsConfig({
         currentActiveTab,
