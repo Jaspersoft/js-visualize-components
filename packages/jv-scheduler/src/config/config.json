@@ -1,6 +1,7 @@
 {
   "server": "",
   "contextPath": "",
+  "dryRun": false,
   "stepper": {
     "show": true
   },

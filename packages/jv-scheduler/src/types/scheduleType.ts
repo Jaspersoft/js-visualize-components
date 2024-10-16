@@ -20,6 +20,7 @@ export interface ApiFailedProps extends ApiErrorMsg {
 
 export interface SchedulerConfig {
   server: string;
+  dryRun?: boolean;
   contextPath?: string;
   tabs?: {
     activeTab?: string;
@@ -147,6 +148,9 @@ export interface SchedulerInitialPluginDataProps {
   stepperDefaultState: StepperStateProps;
   stepsToShow: stepsToShow[];
   tabsToShow: tabsToShow[];
+  fieldsSupportedValues: {
+    outputFormat: string[];
+  };
 }
 
 export interface IState extends SchedulerInitialPluginDataProps {

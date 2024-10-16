@@ -9,7 +9,6 @@ import store from "../store/store";
 import { IState } from "../types/scheduleType";
 import { PUBLIC_FOLDER, ROOT_FOLDER } from "../constants/schedulerConstants";
 
-const mobileDemoPath = "https://mobiledemo.jaspersoft.com/";
 const getServerContextPath = () => {
   return `${(store.getState() as IState)?.schedulerUIConfig?.server}${(store.getState() as IState)?.schedulerUIConfig?.contextPath}`;
 };
@@ -172,24 +171,24 @@ export const getFakeRootDataFromService = async () => {
 };
 
 export const createSchedule = async (scheduleInfo: any) => {
-  if (getServerContextPath()?.startsWith(mobileDemoPath)) {
-    return Promise.resolve({});
-  } else {
-    return axios.put(
-      `${getServerContextPath()}/rest_v2/jobs`,
-      {
-        ...scheduleInfo,
+  return axios.put(
+    `${getServerContextPath()}/rest_v2/jobs`,
+    {
+      ...scheduleInfo,
+    },
+    {
+      withCredentials: true,
+      headers: {
+        Accept: "application/job+json",
+        "Content-Type": "application/job+json",
+        "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
+        "X-Remote-Domain": getServer(),
+        "X-Suppress-Basic": "true",
       },
-      {
-        withCredentials: true,
-        headers: {
-          Accept: "application/job+json",
-          "Content-Type": "application/job+json",
-          "x-requested-with": "XMLHttpRequest, OWASP CSRFGuard Project",
-          "X-Remote-Domain": getServer(),
-          "X-Suppress-Basic": "true",
-        },
-      },
-    );
-  }
+    },
+  );
+};
+
+export const createDummySchedule = async (scheduleInfo: any) => {
+  return Promise.resolve(scheduleInfo);
 };

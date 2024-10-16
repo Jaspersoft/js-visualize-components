@@ -26,6 +26,7 @@ import {
 } from "../constants/actionConstants";
 import { allTabs } from "../constants/schedulerConstants";
 import {
+  createDummySchedule,
   createSchedule,
   getFakeRootDataFromService,
   getOutputFormatsFromService,
@@ -91,7 +92,7 @@ export const setPropertiesDetails = (
   };
 };
 
-export const setSechedulerUIConfig = (
+export const setSchedulerUIConfig = (
   schedulerUIConfig: SchedulerConfig & { resourceURI: string },
 ) => {
   return {
@@ -273,7 +274,7 @@ export const setInitialPluginState = (
       stepperDefaultState,
       fieldsSupportedValues,
     } = schedulerData;
-    dispatch(setSechedulerUIConfig({ ...schedulerUIConfig, resourceURI: uri }));
+    dispatch(setSchedulerUIConfig({ ...schedulerUIConfig, resourceURI: uri }));
     dispatch(getUserTimeZones(scheduleInfo.outputTimeZone));
     if (fieldsSupportedValues.outputFormat) {
       dispatch(setOutputFormats(fieldsSupportedValues.outputFormat));
@@ -359,7 +360,11 @@ export const createScheduleJob = (enableCreateBtn: () => void) => {
       } else {
         repositoryDestination.saveToRepository = true;
       }
-      const jobInfo = await createSchedule({
+
+      const createScheduleFun = getState().schedulerUIConfig?.dryRun
+        ? createDummySchedule
+        : createSchedule;
+      const jobInfo = await createScheduleFun({
         label: scheduleJobName,
         description: scheduleJobDescription,
         outputFormats: {
