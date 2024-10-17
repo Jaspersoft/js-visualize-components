@@ -100,7 +100,7 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
         if (!subject)
           error["subject.hidden.missing.value.configuration"] =
             "Value for subject is required in the configuration when notifications tab is hidden";
-      } else if (Array.isArray(address) || !checkForStringOrNumber(address)) {
+      } else if (Array.isArray(address)) {
         console.error(
           "Value for address should be a string or number or array of strings or numbers",
         );
