@@ -4,7 +4,10 @@
  * in the license file that is distributed with this file.
  */
 
-import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
+import {
+  JVCircularProgress,
+  JVStylesProvider,
+} from "@jaspersoft/jv-ui-components";
 import { useEffect, useState } from "react";
 import { VisualizeClient } from "@jaspersoft/jv-tools";
 import { InputControlCollection } from "./controls/BaseInputControl";
@@ -68,6 +71,20 @@ export interface InputControlsProps {
   config?: InputControlsConfig;
 }
 
+const showLoadingSpinner = () => {
+  return (
+    <div className="jv-mSpinner jv-mSpinnerCenter mui">
+      <JVCircularProgress
+        variant="determinate"
+        size={28}
+        thickness={4}
+        value={100}
+      />
+      <JVCircularProgress variant="indeterminate" size={28} thickness={4} />
+    </div>
+  );
+};
+
 export function InputControls(props: InputControlsProps) {
   const [embedControls, setEmbedControls] = useState<InputControlCollection>();
 
@@ -87,29 +104,17 @@ export function InputControls(props: InputControlsProps) {
     }
   }, [props.v]);
 
-  if (props.v === undefined) {
-    return (
-      <>
-        <h2>Loading visualize.js...</h2>
-      </>
-    );
-  }
-  if (!embedControls) {
-    return (
-      <>
-        <h2>Fetching input controls...</h2>
-      </>
-    );
-  }
-
   return (
     <JVStylesProvider>
-      <BasePanel
-        controls={embedControls}
-        config={props.config?.typeConfig}
-        events={props.config?.events}
-        params={props.config?.params}
-      ></BasePanel>
+      {(props.v === undefined || !embedControls) && showLoadingSpinner()}
+      {props.v !== undefined && embedControls && (
+        <BasePanel
+          controls={embedControls}
+          config={props.config?.typeConfig}
+          events={props.config?.events}
+          params={props.config?.params}
+        ></BasePanel>
+      )}
     </JVStylesProvider>
   );
 }
