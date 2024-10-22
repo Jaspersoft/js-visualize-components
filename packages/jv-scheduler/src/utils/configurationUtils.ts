@@ -30,10 +30,6 @@ const isResourceWritable = (item: any) => {
   return item.permissionMask !== 0;
 };
 
-const checkForStringOrNumber = (element: string | number | undefined) => {
-  return typeof element === "string";
-};
-
 const checkAvailabilityOfBasicConfig = (
   resourceURI: string,
   server: string,
