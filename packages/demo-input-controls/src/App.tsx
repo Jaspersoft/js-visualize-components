@@ -14,11 +14,9 @@ import {
   renderInputControls,
 } from "@jaspersoft/jv-input-controls";
 import {
+  useVisualize,
   Authentication,
   InputControlProperties,
-  VisualizeClient,
-  VisualizeFactory,
-  visualizejsLoader,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
@@ -31,47 +29,16 @@ const myAuth: Authentication = {
 };
 
 const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
-// const reportUri = "/public/Samples/Reports/RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
 function App() {
-  const [vContainer, setVContainer] = useState(
-    null as { v: VisualizeClient } | null,
-  );
+  const vContainer = useVisualize(visualizeUrl, myAuth);
   const [controlBuffer, setControlBuffer] =
     useState<InputControlProperties[]>();
   const [vReport, setVReport] = useState<any>();
-
-  useEffect(() => {
-    const loadVisualize = visualizejsLoader(visualizeUrl);
-    console.log("Loading Visualize.js...");
-    loadVisualize()
-      .then((visualizeFactory: VisualizeFactory) => {
-        // Connecting to JRS.
-        console.log(
-          "Visualize.js loaded. Connecting to JasperReports Server...",
-        );
-        visualizeFactory(
-          {
-            auth: myAuth,
-          },
-          (v: VisualizeClient) => {
-            console.log("Visualize client connected.");
-            setVContainer({ v });
-          },
-          (e: any) => {
-            console.log("Error connecting to JasperReports Server.");
-            console.log(String(e));
-          },
-        );
-      })
-      .catch((error: Error) => {
-        console.log("Error loading visualize.js: ", error);
-      });
-  }, []);
 
   useEffect(() => {
     if (!vContainer || !vContainer.v) {
