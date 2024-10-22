@@ -30,10 +30,6 @@ const isResourceWritable = (item: any) => {
   return item.permissionMask !== 0;
 };
 
-const checkForStringOrNumber = (element: string | number | undefined) => {
-  return typeof element === "string";
-};
-
 const checkAvailabilityOfBasicConfig = (
   resourceURI: string,
   server: string,
@@ -87,7 +83,8 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
       break;
     }
     case NOTIFICATIONS_TAB: {
-      const { address, subject } = tabData;
+      const { address, subject } = tabData,
+        isAddressArray = Array.isArray(address);
       if (!address || !subject) {
         console.error(
           "Value for address and subject is required in the configuration when notifications tab is hidden",
@@ -100,12 +97,10 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
         if (!subject)
           error["subject.hidden.missing.value.configuration"] =
             "Value for subject is required in the configuration when notifications tab is hidden";
-      } else if (Array.isArray(address) || !checkForStringOrNumber(address)) {
-        console.error(
-          "Value for address should be a string or number or array of strings or numbers",
-        );
+      } else if (!isAddressArray || (isAddressArray && address.length === 0)) {
+        console.error("Value for address should be an array of strings");
         error["address.not.in.proper.format"] =
-          "Value for address should be a string  or array of strings";
+          "Value for address should be an array of strings";
       }
       break;
     }
