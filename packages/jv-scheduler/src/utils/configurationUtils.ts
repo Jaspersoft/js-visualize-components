@@ -39,15 +39,12 @@ const checkAvailabilityOfBasicConfig = (
   if (!resourceURI) {
     error["resource.uri.missing.configuration"] =
       "resourceURI is required in the configuration";
-    console.error("resourceURI is required in the configuration");
   } else if (!server) {
     error["server.missing.configuration"] =
       "server is required in the configuration";
-    console.error("server is required in the configuration");
   } else if (!contextPath) {
     error["contextPath.missing.configuration"] =
       "contextPath is required in the configuration";
-    console.error("contextPath is required in the configuration");
   }
   return error;
 };
@@ -58,9 +55,6 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
     case SCHEDULE_TAB: {
       const { label } = tabData;
       if (!label) {
-        console.error(
-          "Value for label is required in the configuration when schedule tab is hidden",
-        );
         error["label.missing.value.schedule.tab.hidden.configuration"] =
           "Value for label is required in the configuration when schedule tab is hidden";
       }
@@ -72,9 +66,6 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
     case OUTPUT_TAB: {
       const { baseOutputFilename } = tabData;
       if (!baseOutputFilename) {
-        console.error(
-          "Value for baseOutputFilename is required in the configuration when output tab is hidden",
-        );
         error[
           "baseOutputFilename.hidden.missing.value.output.tab.hidden.configuration"
         ] =
@@ -86,9 +77,6 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
       const { address, subject } = tabData,
         isAddressArray = Array.isArray(address);
       if (!address || !subject) {
-        console.error(
-          "Value for address and subject is required in the configuration when notifications tab is hidden",
-        );
         if (!address)
           error[
             "address.hidden.missing.value.notification.tab.hidden.configuration"
@@ -98,7 +86,6 @@ const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
           error["subject.hidden.missing.value.configuration"] =
             "Value for subject is required in the configuration when notifications tab is hidden";
       } else if (!isAddressArray || (isAddressArray && address.length === 0)) {
-        console.error("Value for address should be an array of strings");
         error["address.not.in.proper.format"] =
           "Value for address should be an array of strings";
       }
@@ -244,7 +231,6 @@ const checkFieldDataValidity = (fieldsData: any) => {
     data.forEach((item: any) => {
       Object.keys(item).forEach((key) => {
         if (item[key]) {
-          console.error(`Invalid value for ${key}`);
           validationPromise = { ...validationPromise, ...item };
         }
       });
@@ -271,12 +257,10 @@ const checkResourceUriIsRightOrHavePermission = async (
   );
   if (response.permissionMask) {
     if (!isResourceWritable(response)) {
-      console.error("You don't have permission to schedule this resource");
       error["resource.access.denied"] =
         "You don't have permission to schedule this resource";
     }
   } else {
-    console.error("Resource URI was not found");
     error["resource.not.found"] = "Resource URI was not found";
   }
   return error;
