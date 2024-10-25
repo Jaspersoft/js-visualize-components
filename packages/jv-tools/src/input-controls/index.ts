@@ -4,6 +4,8 @@
  * in the license file that is distributed with this file.
  */
 
+export { default as useVisualize } from "../visualize/hooks/useVisualize";
+
 export type InputControlDataTypeType =
   | string
   | "date"
