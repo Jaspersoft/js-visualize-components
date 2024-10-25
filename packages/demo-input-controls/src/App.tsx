@@ -4,19 +4,12 @@
  *  in the license file that is distributed with this file.
  */
 
-// This line is necessary to setting up the styles
-// refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
-import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
+import { renderInputControls } from "@jaspersoft/jv-input-controls";
 import {
-  InputControlsConfig,
-  InputControls,
-  renderInputControls,
-} from "@jaspersoft/jv-input-controls";
-import {
-  useVisualize,
   Authentication,
   InputControlProperties,
+  useVisualize,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
@@ -121,19 +114,8 @@ function App() {
     }
   };
 
-  const panelD: InputControlsConfig = {
-    typeConfig: { bool: { type: "switch" } },
-    events: {
-      change: (ics: any, vs: any) => {
-        console.log("NEW ICS!! ", ics);
-        if (vs) console.log("Validations: ", vs);
-      },
-    },
-  };
-
   return (
     <>
-      <InputControls v={vContainer?.v} uri={reportUri} config={panelD} />
       <div id="controls-demo-page">
         <div className="jv-lColumns">
           <div className="jv-lColumns-column jr-uWidth-300px">
