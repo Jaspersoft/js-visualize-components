@@ -9,4 +9,4 @@ two important pieces:
 ## Installation and Usage
 
 More information about the installation and usage can be
-found [here](http://localhost:4000/js-visualize-components-samples/pages/tools/jv-tools.html).
+found [here](https://jaspersoft.github.io/js-visualize-components-samples/pages/tools/jv-tools.html).
