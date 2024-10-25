@@ -1,6 +1,6 @@
 {
   "name": "js-visualize-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Jaspersoft Visualize Components",
   "workspaces": {
@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/Jaspersoft/js-visualize-components/issues"
   },
-  "homepage": "https://github.com/Jaspersoft/js-visualize-components#readme",
+  "homepage": "https://jaspersoft.github.io/js-visualize-components-samples",
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },
