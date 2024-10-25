@@ -3,6 +3,7 @@
   "description": "Demo application for scheduler of Jaspersoft Visualize Components",
   "version": "0.1.1",
   "type": "module",
+  "homepage": "https://jaspersoft.github.io/js-visualize-components-samples/pages/scheduler/demo.html",
   "license": "BSD-3-Clause",
   "scripts": {
     "audit:all": "yarn audit",

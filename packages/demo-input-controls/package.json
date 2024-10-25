@@ -3,6 +3,7 @@
   "description": "Demo application for input controls of Jaspersoft Visualize Components",
   "version": "0.1.1",
   "type": "module",
+  "homepage": "https://jaspersoft.github.io/js-visualize-components-samples/pages/input-controls/live-sample.html",
   "license": "BSD-3-Clause",
   "scripts": {
     "audit:all": "yarn audit",

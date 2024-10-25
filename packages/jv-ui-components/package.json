@@ -6,6 +6,7 @@
   "main": "dist/material-ui/index.umd.js",
   "module": "dist/material-ui/index.es.js",
   "types": "dist/material-ui/index.d.ts",
+  "homepage": "https://jaspersoft.github.io/js-visualize-components-samples/pages/input-controls/override-styles.html",
   "files": [
     "dist"
   ],
