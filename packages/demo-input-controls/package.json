@@ -1,7 +1,7 @@
 {
   "name": "demo-input-controls",
   "description": "Demo application for input controls of Jaspersoft Visualize Components",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "homepage": "https://jaspersoft.github.io/js-visualize-components-samples/pages/input-controls/live-sample.html",
   "license": "BSD-3-Clause",
@@ -16,9 +16,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@jaspersoft/jv-input-controls": "^0.1.1",
-    "@jaspersoft/jv-tools": "^0.1.1",
-    "@jaspersoft/jv-ui-components": "^0.1.1",
+    "@jaspersoft/jv-input-controls": "^0.1.2",
+    "@jaspersoft/jv-tools": "^0.1.2",
+    "@jaspersoft/jv-ui-components": "^0.1.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

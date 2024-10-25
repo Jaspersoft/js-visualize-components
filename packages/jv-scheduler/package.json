@@ -1,6 +1,6 @@
 {
   "name": "@jaspersoft/jv-scheduler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Component for rendering the scheduler of Jaspersoft Visualize Components",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -63,9 +63,9 @@
     "vite-plugin-ts": "^1.3.2-1"
   },
   "dependencies": {
-    "@jaspersoft/jv-input-controls": "^0.1.1",
-    "@jaspersoft/jv-tools": "0.1.1",
-    "@jaspersoft/jv-ui-components": "^0.1.1",
+    "@jaspersoft/jv-input-controls": "^0.1.2",
+    "@jaspersoft/jv-tools": "^0.1.2",
+    "@jaspersoft/jv-ui-components": "^0.1.2",
     "axios": "^1.7.2",
     "moment": "^2.30.1",
     "re-resizable": "^6.9.17",
