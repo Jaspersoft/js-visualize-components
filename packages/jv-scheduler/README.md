@@ -1,10 +1,11 @@
-# Input Controls
+# @jaspersoft/jv-scheduler
 
 ## About
-A collection of React-based components to represent input controls used to interact with reports embedded from JasperReports Server
 
+The Scheduler component allows you to render scheduler UI in your web application. The component is built on top of the
+Visualize.js API and is used to interact with JasperReport Server dashboards and reports.
 
-## Usage
-**Install**: run `yarn install` in root directory, and yarn workspaces will handle installations for this package
+## Installation and Usage
 
-**Test**: run `yarn test` to run all test suites
+More information about the installation and usage can be
+found [here](https://jaspersoft.github.io/js-visualize-components-samples/pages/scheduler/basic-usage.html).
