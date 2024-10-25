@@ -1,6 +1,6 @@
 {
   "name": "@jaspersoft/jv-scheduler",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Component for rendering the scheduler of Jaspersoft Visualize Components",
   "type": "module",
   "main": "dist/index.umd.js",
