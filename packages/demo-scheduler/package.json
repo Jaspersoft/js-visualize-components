@@ -1,7 +1,6 @@
 {
   "name": "demo-scheduler",
   "description": "Demo application for scheduler of Jaspersoft Visualize Components",
-  "private": true,
   "version": "0.1.0",
   "type": "module",
   "license": "BSD-3-Clause",
