@@ -20,5 +20,8 @@ export default defineConfig({
       name: "@jaspersoft/jv-input-controls",
       fileName: (format) => `index.${format}.js`,
     },
+    rollupOptions: {
+      external: ["react", "react/jsx-runtime"],
+    },
   },
 });

@@ -22,5 +22,8 @@ export default defineConfig({
       name: "@jaspersoft/jv-scheduler",
       fileName: (format) => `index.${format}.js`,
     },
+    rollupOptions: {
+      external: ["react", "react/jsx-runtime"],
+    },
   },
 });

@@ -21,6 +21,7 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
+      external: ["react", "react/jsx-runtime"],
       output: {
         globals: {
           "@mui/system": "MuiSystem",

@@ -108,11 +108,11 @@ describe("SingleValueNumberInputControls tests", () => {
   test("changes style based on variant prop", () => {
     const { rerender } = render(getNumberIC({ variant: "outlined" }));
     let inputElement = screen.getByRole("textbox");
-    expect(inputElement).toHaveClass("MuiOutlinedInput-input");
+    expect(inputElement).toHaveClass("jv-MuiOutlinedInput-input");
 
     rerender(getNumberIC({ variant: "filled" }));
     inputElement = screen.getByRole("textbox");
-    expect(inputElement).toHaveClass("MuiFilledInput-input");
+    expect(inputElement).toHaveClass("jv-MuiFilledInput-input");
   });
 
   // test for default size.
@@ -210,7 +210,7 @@ describe("SingleValueNumberInputControls tests", () => {
       const muiError = document.querySelector(".Mui-error");
       expect(muiError).toBeInTheDocument();
       const errorMsg = document.querySelector(
-        ".MuiFormHelperText-root.jv-mInput-error",
+        ".jv-MuiFormHelperText-root.jv-mInput-error",
       );
       expect(errorMsg).toBeInTheDocument();
     });
@@ -250,7 +250,7 @@ describe("SingleValueNumberInputControls tests", () => {
       const muiError = document.querySelector(".Mui-error");
       expect(muiError).toBeInTheDocument();
       const errorMsg = document.querySelector(
-        ".MuiFormHelperText-root.jv-mInput-error",
+        ".jv-MuiFormHelperText-root.jv-mInput-error",
       );
       expect(errorMsg).toBeInTheDocument();
     });
