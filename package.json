@@ -1,6 +1,7 @@
 {
   "name": "js-visualize-components",
   "version": "0.1.0",
+  "private": "true",
   "description": "Jaspersoft Visualize Components",
   "workspaces": {
     "packages": [
