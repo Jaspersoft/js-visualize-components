@@ -3,9 +3,6 @@ import { join, resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
-// @ts-ignore
-import packageJson from "./package.json";
-
 export default defineConfig({
   plugins: [
     react(),
@@ -24,10 +21,6 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        ...Object.keys(packageJson.dependencies || {}),
-        "react/jsx-runtime",
-      ],
       output: {
         globals: {
           "@mui/system": "MuiSystem",

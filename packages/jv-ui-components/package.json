@@ -8,7 +8,8 @@
   "types": "dist/material-ui/index.d.ts",
   "homepage": "https://jaspersoft.github.io/js-visualize-components-samples/pages/input-controls/override-styles.html",
   "files": [
-    "dist"
+    "dist",
+    "material-ui/JVMuiClassNameSetup.ts"
   ],
   "scripts": {
     "audit:all": "yarn audit",
