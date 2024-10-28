@@ -16,17 +16,9 @@ export default defineConfig({
     sourcemap: true,
     minify: true,
     lib: {
-      entry: {
-        setup: resolve(__dirname, "material-ui/JVMuiClassNameSetup.ts"),
-        main: resolve(__dirname, "material-ui/index.ts"),
-      },
       name: "@jaspersoft/jv-ui-components",
-      fileName: (format, entryName) => {
-        if (entryName === "setup") {
-          return `JVMuiClassNameSetup.${format}.js`;
-        }
-        return `index.${format}.js`;
-      },
+      entry: resolve(__dirname, "material-ui/index.ts"),
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react/jsx-runtime"],

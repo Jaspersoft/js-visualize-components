@@ -4,7 +4,7 @@
  * in the license file that is distributed with this file.
  */
 
-export * from "./JVMuiClassNameSetup";
+import "./JVMuiClassNameSetup";
 export {
   GenerateClassNameOptions as JVGenerateClassNameOptions,
   CreateMuiThemeOptions as JVCreateMuiThemeOptions,
