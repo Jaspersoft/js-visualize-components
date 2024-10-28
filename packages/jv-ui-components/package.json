@@ -18,7 +18,6 @@
     "start": "onchange -i \"scss/**/*.*\" -- run-s styles",
     "start:dev": "onchange -i \"scss/**/*.*\" -- run-s styles copy:styles",
     "copy:styles": "node scripts/copy-styles-context.js",
-    "copy:jvClassName": "node scripts/copy-jv-classname-setup.js",
     "dev": "vite",
     "build": "dotenv -c -- run-s copy:styles styles vite:build",
     "vite:build": "tsc -b && vite build",

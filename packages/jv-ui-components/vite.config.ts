@@ -16,8 +16,8 @@ export default defineConfig({
     sourcemap: true,
     minify: true,
     lib: {
-      name: "@jaspersoft/jv-ui-components",
       entry: resolve(__dirname, "material-ui/index.ts"),
+      name: "@jaspersoft/jv-ui-components",
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {

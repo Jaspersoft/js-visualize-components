@@ -3,7 +3,7 @@
  * This file is subject to the license terms contained
  * in the license file that is distributed with this file.
  */
-import "../JVMuiClassNameSetup";
+import "./JVMuiClassNameSetup";
 
 import {
   createTheme as MuiCreateTheme,
