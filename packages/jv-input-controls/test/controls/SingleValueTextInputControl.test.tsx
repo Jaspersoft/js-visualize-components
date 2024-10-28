@@ -71,11 +71,11 @@ describe("SingleValueTextInputControls tests", () => {
   test("changes style based on variant prop", () => {
     const { rerender } = render(getTextIC({ variant: "outlined" }));
     let inputElement = screen.getByRole("textbox");
-    expect(inputElement).toHaveClass("MuiOutlinedInput-input");
+    expect(inputElement).toHaveClass("jv-MuiOutlinedInput-input");
 
     rerender(getTextIC({ variant: "filled" }));
     inputElement = screen.getByRole("textbox");
-    expect(inputElement).toHaveClass("MuiFilledInput-input");
+    expect(inputElement).toHaveClass("jv-MuiFilledInput-input");
   });
 
   // test for default size.
