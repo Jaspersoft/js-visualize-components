@@ -22,11 +22,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ["react", "react/jsx-runtime"],
-      output: {
-        globals: {
-          "@mui/system": "MuiSystem",
-        },
-      },
     },
     copyPublicDir: false,
   },
