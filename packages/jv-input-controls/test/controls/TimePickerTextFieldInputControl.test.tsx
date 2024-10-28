@@ -72,7 +72,7 @@ describe("TimePickerTextFieldInputControl tests", () => {
       getTimePickerTextFieldIC({ variant: "outlined" }),
     );
     let inputElement = container.querySelector("input") as HTMLInputElement;
-    expect(inputElement).toHaveClass("jv-MuiOutlinedInput-input");
+    expect(inputElement).toHaveClass("MuiOutlinedInput-input");
   });
 
   // test for default size.
