@@ -20,7 +20,7 @@
     "copy:styles": "node scripts/copy-styles-context.js",
     "copy:jvClassName": "node scripts/copy-jv-classname-setup.js",
     "dev": "vite",
-    "build": "dotenv -c -- run-s copy:styles styles vite:build copy:jvClassName",
+    "build": "dotenv -c -- run-s copy:styles styles vite:build",
     "vite:build": "tsc -b && vite build",
     "serve": "vite preview",
     "clean": "rm -rf dist",
