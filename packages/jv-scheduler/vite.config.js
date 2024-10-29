@@ -4,9 +4,6 @@ import dts from "vite-plugin-dts";
 import libCss from "vite-plugin-libcss";
 import { join, resolve } from "path";
 
-// @ts-ignore
-import packageJson from "./package.json";
-
 export default defineConfig({
   plugins: [
     react(),
@@ -26,7 +23,7 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [...Object.keys(packageJson.dependencies || {})],
+      external: ["react", "react/jsx-runtime"],
     },
   },
 });
