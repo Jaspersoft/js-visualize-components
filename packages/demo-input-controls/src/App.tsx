@@ -21,7 +21,7 @@ const myAuth: Authentication = {
   locale: "en_US",
 };
 
-const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
+const reportUri = "/public/Samples/Reports/07g.RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
