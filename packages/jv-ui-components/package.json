@@ -1,6 +1,6 @@
 {
   "name": "@jaspersoft/jv-ui-components",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "BSD-3-Clause",
   "type": "module",
   "main": "dist/material-ui/index.umd.js",
