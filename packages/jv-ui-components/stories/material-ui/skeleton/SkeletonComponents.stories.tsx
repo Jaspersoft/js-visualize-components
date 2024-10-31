@@ -4,8 +4,7 @@
  * in the license file that is distributed with this file.
  */
 import "../css/demoPages.css";
-import { JVBox, JVSkeleton } from "../../../material-ui";
-import { Stack } from "@mui/material";
+import { JVBox, JVSkeleton, JVStack } from "../../../material-ui";
 
 export default {
   component: JVSkeleton,
@@ -21,14 +20,14 @@ export const DefaultComponent = () => {
       <div className="demoWrapper demoSkeleton">
         <div className="demoSize">
           <div className={"demoSubtitle"}>Variants</div>
-          <Stack spacing={1}>
+          <JVStack spacing={1}>
             {/* For variant="text", adjust the height via font-size */}
             <JVSkeleton variant="text" sx={{ fontSize: "1rem" }} />
             {/* For other variants, adjust the size with `width` and `height` */}
             <JVSkeleton variant="circular" width={40} height={40} />
             <JVSkeleton variant="rectangular" width={210} height={60} />
             <JVSkeleton variant="rounded" width={210} height={60} />
-          </Stack>
+          </JVStack>
         </div>
 
         <div className="demoSize">
