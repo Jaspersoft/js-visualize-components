@@ -11,7 +11,7 @@ export default {
   title: "Components/Skeleton/Component",
 };
 
-export const DefaultComponent = () => {
+export const DefaultSkeleton = () => {
   return (
     <>
       <h1 className={"demoType demoTypeDesign"}>Design</h1>
@@ -62,4 +62,4 @@ export const DefaultComponent = () => {
     </>
   );
 };
-DefaultComponent.storyName = "Skeleton";
+DefaultSkeleton.storyName = "Skeleton";
