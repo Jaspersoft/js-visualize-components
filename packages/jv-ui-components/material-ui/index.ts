@@ -150,6 +150,7 @@ export { RadioButton as JVRadioButton } from "./Radio/RadioButton";
 export type { RadioProps as JVRadioProps } from "./Radio/RadioButton";
 export { RadioGroup as JVRadioGroup } from "./Radio/RadioGroup";
 export type { RadioButtonGroupProps as JVRadioButtonGroupProps } from "./Radio/RadioGroup";
+export { Skeleton as JVSkeleton } from "./Skeleton/Skeleton";
 export { Step as JVStep } from "./Stepper/Step";
 export type { StepComponentProps as JVStepComponentProps } from "./Stepper/Step";
 export { Stepper as JVStepper } from "./Stepper/Stepper";
