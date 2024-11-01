@@ -21,8 +21,7 @@ const myAuth: Authentication = {
   locale: "en_US",
 };
 
-const reportUri =
-  "/public/Samples/FreshDelivery_Demo/Shipping_Optimizer___Units_and_Price_per_Pallet";
+const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
