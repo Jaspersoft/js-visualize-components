@@ -13,8 +13,8 @@ import {
   ListItemText as MuiListItemText,
   OutlinedInput as MuiOutlinedInput,
   Select as MuiSelect,
+  MenuItem as MuiMenuItem,
 } from "@mui/material";
-import { SelectItem } from "../MenuItem/SelectItem";
 
 export const MultiSelect = forwardRef((props: any, ref) => {
   const { value, selected, id, label, className, error, state, ...otherProps } =
@@ -25,14 +25,23 @@ export const MultiSelect = forwardRef((props: any, ref) => {
 
   const makeOption = (opt: any): JSX.Element => {
     return (
-      <SelectItem key={opt.value} id={opt.value} value={opt.value}>
+      <MuiMenuItem
+        key={opt.value}
+        id={opt.value}
+        value={opt.value}
+        className="jv-mChecklist-item mui"
+      >
         <MuiCheckbox
           checked={
             value.indexOf(opt.value) > -1 || value.indexOf(opt.label) > -1
           }
+          className="jv-mInput-checkbox-check mui"
         />
-        <MuiListItemText primary={opt.label} />
-      </SelectItem>
+        <MuiListItemText
+          className="jv-mInput-checkbox-label mui"
+          primary={opt.label}
+        />
+      </MuiMenuItem>
     );
   };
 
@@ -58,20 +67,20 @@ export const MultiSelect = forwardRef((props: any, ref) => {
         renderValue={(value: any[]) => value.join(", ")}
         id={id}
         labelId={id + "_label"}
-        className={className + " jv-mInput-select jv-mInput-text mui"}
+        className={className + " jv-mInput-select mui"}
         multiple
         variant="outlined"
         input={<MuiOutlinedInput label="Tag" />}
-        slotProps={{
-          elevation: 4,
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-          },
-        }}
         MenuProps={{
           classes: {
             list: "jv-mChecklist jv-mChecklistLarge mui",
+          },
+          PaperProps: {
+            elevation: 4,
+            style: {
+              maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+              width: 250,
+            },
           },
         }}
       >
