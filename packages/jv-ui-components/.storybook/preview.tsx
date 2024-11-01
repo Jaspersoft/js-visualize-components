@@ -1,6 +1,5 @@
-import "@jaspersoft/jv-ui-components/material-ui/styles/JVMuiClassNameSetup";
 import "./styles/storybook-jv-ui.scss";
-import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
+import { JVStylesProvider } from "../material-ui";
 import type { Preview } from "@storybook/react";
 
 const preview: Preview = {

@@ -1,4 +1,4 @@
-import { JVIcon } from "@jaspersoft/jv-ui-components";
+import { JVIcon } from "../../../material-ui";
 import {
   Button,
   Checkbox,

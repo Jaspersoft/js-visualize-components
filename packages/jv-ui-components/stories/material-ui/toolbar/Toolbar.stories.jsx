@@ -1,4 +1,4 @@
-import { JVIcon, JVInputAdornment } from "@jaspersoft/jv-ui-components";
+import { JVIcon, JVInputAdornment } from "../../../material-ui";
 import {
   Divider,
   IconButton,

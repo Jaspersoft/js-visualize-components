@@ -9,7 +9,7 @@ import {
   JVTypography,
   JVInputAdornment,
   JVIcon,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 
 /* ------------------------------
  *  TABLE OF CONTENTS

@@ -1,9 +1,5 @@
 import "../inputs/inputs.css";
-import {
-  JVDivider,
-  JVIconButton,
-  JVTextField,
-} from "@jaspersoft/jv-ui-components";
+import { JVDivider, JVIconButton, JVTextField } from "../../../material-ui";
 
 /*----------------------------
  *  TABLE OF CONTENTS

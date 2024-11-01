@@ -3,7 +3,7 @@ import {
   JVIcon,
   JVIconButton,
   JVTextField,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import {
   Checkbox,
   FormControlLabel,

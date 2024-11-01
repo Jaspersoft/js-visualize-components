@@ -1,6 +1,6 @@
 import React from "react";
 import "./typography.css";
-import { JVTypography, JVLink } from "@jaspersoft/jv-ui-components";
+import { JVTypography, JVLink } from "../../../material-ui";
 
 /*------------------------------
  *  TABLE OF CONTENTS

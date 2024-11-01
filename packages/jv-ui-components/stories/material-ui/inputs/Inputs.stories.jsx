@@ -1,8 +1,4 @@
-import {
-  JVIcon,
-  JVIconButton,
-  JVTextField,
-} from "@jaspersoft/jv-ui-components";
+import { JVIcon, JVIconButton, JVTextField } from "../../../material-ui";
 import {
   Button,
   Checkbox,
@@ -3001,7 +2997,7 @@ inputSelect.storyName = "Select";
 /*  07. SWITCH    */
 /* -------------- */
 export const inputSwitch = () => {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     checkedA: true,
     checkedB: true,
     checkedC: true,
