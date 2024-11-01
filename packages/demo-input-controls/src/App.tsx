@@ -44,6 +44,7 @@ function App() {
       {
         success: () => {
           console.log("Input controls rendered successfully");
+          console.log("Forked repo. Testing CLA.");
         },
         error: (error) => {
           console.log("Error rendering input controls: ", error);
