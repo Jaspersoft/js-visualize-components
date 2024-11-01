@@ -44,6 +44,6 @@ yarn start:styles:dev
 
 ## Contributing
 
-It is recommended any new developer take a good look at [CONTRIBUTING.md](./readmes/CONTRIBUTING.md)
+It is recommended for any new developer take a good look at [CONTRIBUTING.md](./readmes/CONTRIBUTING.md)
 and [CONTRIBUTING-community.md](./readmes/CONTRIBUTING-community.md) for more information on how to
 work with new features for this project.
