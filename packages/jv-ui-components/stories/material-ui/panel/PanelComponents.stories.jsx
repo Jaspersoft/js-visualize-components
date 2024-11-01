@@ -8,7 +8,7 @@ import {
   JVIconButton,
   JVSubPanel,
   JVFlushPanel,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import { Snackbar } from "@mui/material";
 
 /*----------------------------

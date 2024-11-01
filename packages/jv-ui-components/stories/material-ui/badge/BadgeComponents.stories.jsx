@@ -1,6 +1,6 @@
 import "../css/demoPages.css";
 import "./badge.css";
-import { JVBadge, JVTypography } from "@jaspersoft/jv-ui-components";
+import { JVBadge, JVTypography } from "../../../material-ui";
 import MailIcon from "@mui/icons-material/Mail";
 
 /*------------------------------

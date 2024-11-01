@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../css/demoPages.css";
 import "./tabs.css";
-import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
+import { JVTabs, JVTab } from "../../../material-ui";
 
 /*------------------------------
  *  TABLE OF CONTENTS

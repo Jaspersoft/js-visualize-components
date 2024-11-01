@@ -5,7 +5,7 @@ import {
   JVPaper,
   JVTextField,
   JVTypography,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import { DialogContentText, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
