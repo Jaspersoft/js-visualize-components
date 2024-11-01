@@ -1,5 +1,5 @@
 import "./icon.css";
-import { JVIcon } from "@jaspersoft/jv-ui-components";
+import { JVIcon } from "../../../material-ui";
 
 /*----------------------------
  *  TABLE OF CONTENTS

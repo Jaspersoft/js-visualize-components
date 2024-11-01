@@ -7,7 +7,7 @@ import {
   JVAccordionDetails,
   JVAccordionFull,
   JVAccordionSummary,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import { Typography } from "@mui/material";
 
 /*----------------------------

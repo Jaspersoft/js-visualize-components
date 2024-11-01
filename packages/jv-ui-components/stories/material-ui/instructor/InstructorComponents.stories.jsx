@@ -1,6 +1,6 @@
 import "../inputs/inputs.css";
 import "./instructor.css";
-import { JVInstructor, JVTextField } from "@jaspersoft/jv-ui-components";
+import { JVInstructor, JVTextField } from "../../../material-ui";
 
 /*----------------------------
  *  TABLE OF CONTENTS

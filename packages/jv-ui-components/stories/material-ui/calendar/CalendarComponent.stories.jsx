@@ -9,11 +9,12 @@ import {
   JVSelectItem,
   JVTextField,
   JVTypography,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import { useRef, useState } from "react";
 import "../css/demoPages.css";
 import "./calendar.css";
-
+import "../css/demoPages.css";
+import "./calendar.css";
 /*----------------------------
  *  TABLE OF CONTENTS
  *

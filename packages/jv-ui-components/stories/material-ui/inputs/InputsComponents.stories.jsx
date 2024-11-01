@@ -15,7 +15,7 @@ import {
   JVSwitch,
   JVTextField,
   JVTypography,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 // this grid component is used for proper alignment of all variations of input in storybook. That's why directly imported from the
 // material-ui.
 import { Grid } from "@mui/material";

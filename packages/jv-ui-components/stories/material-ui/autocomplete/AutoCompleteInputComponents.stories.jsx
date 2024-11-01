@@ -8,7 +8,7 @@ import {
   JVPaper,
   JVPopper,
   JVTextField,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import "../css/demoPages.css";
 import "./autoCompleteInput.css";
 import { useRef, useState } from "react";

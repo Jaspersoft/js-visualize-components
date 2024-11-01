@@ -2,7 +2,7 @@ import {
   JVButtonGroup,
   JVIconButton,
   JVLabeledButtonGroup,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import "./buttonGroup.css";
 
 /*----------------------------------
