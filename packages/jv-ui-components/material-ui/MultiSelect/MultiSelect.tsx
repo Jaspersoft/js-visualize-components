@@ -6,15 +6,14 @@
 
 import { forwardRef, JSX } from "react";
 import {
-  Checkbox as MuiCheckbox,
   FormControl as MuiFormControl,
   FormHelperText as MuiFormHelperText,
   InputLabel as MuiInputLabel,
-  ListItemText as MuiListItemText,
   OutlinedInput as MuiOutlinedInput,
   Select as MuiSelect,
   MenuItem as MuiMenuItem,
 } from "@mui/material";
+import { Checkbox } from "../Checkbox/Checkbox";
 
 export const MultiSelect = forwardRef((props: any, ref) => {
   const { value, selected, id, label, className, error, state, ...otherProps } =
@@ -31,15 +30,12 @@ export const MultiSelect = forwardRef((props: any, ref) => {
         value={opt.value}
         className="jv-mChecklist-item mui"
       >
-        <MuiCheckbox
+        <Checkbox
           checked={
             value.indexOf(opt.value) > -1 || value.indexOf(opt.label) > -1
           }
           className="jv-mInput-checkbox-check mui"
-        />
-        <MuiListItemText
-          className="jv-mInput-checkbox-label mui"
-          primary={opt.label}
+          label={opt.label}
         />
       </MuiMenuItem>
     );
