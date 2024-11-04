@@ -75,7 +75,7 @@ export const MultiSelect = forwardRef((props: any, ref) => {
           classes: {
             list: "jv-mChecklist jv-mChecklistLarge mui",
           },
-          PaperProps: {
+          slotProps: {
             elevation: 4,
             style: {
               maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
