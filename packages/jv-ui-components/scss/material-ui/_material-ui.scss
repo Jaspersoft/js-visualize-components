@@ -1794,8 +1794,13 @@ p[class$="-MuiTablePagination-displayedRows"] {
   font-family: $font-family-primary;
   font-size: 13px;
   letter-spacing: normal; /* v5.0 upgrade */
+  line-height: 18px;
   max-width: unset;
-  min-height: 22px;
+  white-space: normal;
+  overflow: hidden;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  text-overflow: clip;
 }
 
 .jv-mInputRequired.mui .jv-mInput-label.mui:after {
@@ -2671,6 +2676,8 @@ textarea[readonly].jv-mInput-text.mui {
 /*  11m. Checkbox & Radio Inputs   */
 /*  -----------------------------  */
 .jv-mInputCheckbox.mui {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 16px;
 }
 
