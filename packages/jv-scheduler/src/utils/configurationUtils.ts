@@ -376,7 +376,7 @@ export const getSchedulerData = async (scheduleConfig: any) => {
     return { error };
   }
 
-  const tabsConfig = tabsOrder.length > 0 ? tabsOrder : tabsDefaultOrder;
+  const tabsConfig = tabsOrder?.length > 0 ? tabsOrder : tabsDefaultOrder;
   const stepsToShow: any[] = [],
     tabsToShow: any[] = [];
   type TabKeys = "parameters" | "schedule" | "output" | "notifications";
