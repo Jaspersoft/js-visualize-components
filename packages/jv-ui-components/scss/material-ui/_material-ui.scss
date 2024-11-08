@@ -94,57 +94,61 @@
 
   19. PROGRESS
 
-  20. STEPPER
+  20. SKELETON
+      20a. Bar Chart
+      20b. Table
 
-  21. TABLE
+  21. STEPPER
 
-  22. TABS
+  22. TABLE
 
-  23. TOOLBAR
+  23. TABS
 
-  24. TOOLTIP
+  24. TOOLBAR
 
-  25. TREE
+  25. TOOLTIP
 
-  26. TYPOGRAPHY
-      26a. Body & Titles
-      26b. Links
-      26c. Messages
-      26d. Filter Statement
+  26. TREE
 
-  27. CONTROL
-      27a. Color
-      27b. Condition & Interval
-      27c. Pagination (JRWS)
-      27d. Range
-      27e. Refresh
-      27f. Zoom (JRWS)
+  27. TYPOGRAPHY
+      27a. Body & Titles
+      27b. Links
+      27c. Messages
+      27d. Filter Statement
 
-  28. JASPERSOFT SPECIFIC COMPONENTS
-      28a. Calendar
-      28b. Dropdown
-      28c. Drop Area
-      28d. Filterbar
-      28e. Form
-      28f. Layout
-      28g. Tag
-      28h. Titlebar
-      28i. Token
+  28. CONTROL
+      28a. Color
+      28b. Condition & Interval
+      28c. Pagination (JRWS)
+      28d. Range
+      28e. Refresh
+      28f. Zoom (JRWS)
 
-  29. SAAS OVERRIDES
+  29. JASPERSOFT SPECIFIC COMPONENTS
+      29a. Calendar
+      29b. Dropdown
+      29c. Drop Area
+      29d. Filterbar
+      29e. Form
+      29f. Layout
+      29g. Tag
+      29h. Titlebar
+      29i. Token
 
-  30. UTILITY
-      30a. Alignment
-      30b. Backgrounds
-      30c. Borders
-      30d. Containers
-      30e. Display/Visibility
-      30f. Margins
-      30g. Padding
-      30h. Text
-      30i. Width/Height Measurements
+  30. SAAS OVERRIDES
+
+  31. UTILITY
+      31a. Alignment
+      31b. Backgrounds
+      31c. Borders
+      31d. Containers
+      31e. Display/Visibility
+      31f. Margins
+      31g. Padding
+      31h. Text
+      31i. Width/Height Measurements
   -----------------------------------
-  File last modified Sep 30, 2024
+  File last modified Nov 7, 2024
   ----------------------------------- */
 
 /* -------------------- */
@@ -3746,8 +3750,215 @@ textarea[readonly].jv-mInput-text.mui {
   background-color: #c14343;
 }
 
+/* ------------------ */
+/*  20. SKELETON      */
+/* ------------------ */
+.jv-mSkeleton.mui {
+  box-sizing: border-box;
+}
+
+/* --------------------------- */
+/*  20a. Bar Chart Skeleton    */
+/* --------------------------- */
+.jv-mSkeletonChart.mui {
+  position: relative;
+}
+
+.jv-mSkeleton-bars.mui {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+}
+
+.jv-mSkeleton-bars-bar.mui {
+  bottom: 1px;
+  position: absolute;
+  width: 10%;
+}
+
+.jv-mSkeleton-bars-bar.mui:nth-of-type(1) {
+  height: 28%;
+  left: 5%;
+}
+.jv-mSkeleton-bars-bar.mui:nth-of-type(2) {
+  height: 55%;
+  left: 25%;
+}
+.jv-mSkeleton-bars-bar.mui:nth-of-type(3) {
+  height: 45%;
+  left: 45%;
+}
+.jv-mSkeleton-bars-bar.mui:nth-of-type(4) {
+  height: 70%;
+  left: 65%;
+}
+.jv-mSkeleton-bars-bar.mui:nth-of-type(5) {
+  height: 88%;
+  left: 85%;
+}
+
+.jv-mSkeleton-background.mui {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+}
+
+.jv-mSkeleton-background.mui > .jv-mSkeleton-bars-bar.mui {
+  background-color: #ffffff;
+}
+
+.jv-mSkeleton-grid.mui {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.jv-mSkeleton-grid-line.mui {
+  background-color: transparent;
+  border-bottom: 1px solid #d6d6d6;
+  box-sizing: border-box;
+  height: 20%;
+  width: 100%;
+}
+
+.jv-mSkeleton-grid-line.mui:nth-of-type(1) {
+  border-top: 1px solid #d6d6d6;
+}
+
+/* ------------------------- */
+/*  20b. Table Skeleton      */
+/* ------------------------- */
+.jv-mSkeletonTable.mui {
+  border: 1px solid silver;
+  border-collapse: collapse;
+  display: table;
+  max-width: unset;
+  width: 100%;
+}
+
+/* rows */
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-row.mui,
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-row.mui {
+  display: table-row;
+  visibility: visible;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-row.mui {
+  background-color: #e4e4e4;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-row.mui:nth-child(odd) {
+  background-color: #f4f4f4;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-row.mui:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* cells */
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell.mui,
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell.mui {
+  border-bottom: 1px solid #d6d6d6;
+  border-right: 1px solid #d6d6d6;
+  display: table-cell;
+  height: auto;
+  padding: 2px 8px;
+  visibility: visible;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell.mui {
+  background-color: inherit;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell.mui:nth-child(1),
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell.mui:nth-child(2),
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell.mui:nth-child(3),
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell.mui:nth-child(1),
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell.mui:nth-child(2),
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell.mui:nth-child(3) {
+  text-align: left;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell.mui:nth-child(4),
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell.mui:nth-child(5),
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell.mui:nth-child(4),
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell.mui:nth-child(5) {
+  text-align: right;
+}
+
+/* cell content */
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell-content.mui,
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell-content.mui {
+  border-radius: 2px;
+  display: inline-block;
+  height: 8px;
+  visibility: visible;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-header-cell-content.mui {
+  background-color: #a9a9a9;
+}
+
+.jv-mSkeletonTable.mui .jv-mSkeleton-body-cell-content.mui {
+  background-color: #cccccc;
+}
+
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-header-cell.mui:nth-child(1)
+  .jv-mSkeleton-header-cell-content.mui {
+  width: 85%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-header-cell.mui:nth-child(2)
+  .jv-mSkeleton-header-cell-content.mui {
+  width: 40%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-header-cell.mui:nth-child(3)
+  .jv-mSkeleton-header-cell-content.mui {
+  width: 60%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-header-cell.mui:nth-child(4)
+  .jv-mSkeleton-header-cell-content.mui {
+  width: 60%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-header-cell.mui:nth-child(5)
+  .jv-mSkeleton-header-cell-content.mui {
+  width: 70%;
+}
+
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-body-cell.mui:nth-child(1)
+  .jv-mSkeleton-body-cell-content.mui {
+  width: 52%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-body-cell.mui:nth-child(2)
+  .jv-mSkeleton-body-cell-content.mui {
+  width: 70%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-body-cell.mui:nth-child(3)
+  .jv-mSkeleton-body-cell-content.mui {
+  width: 40%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-body-cell.mui:nth-child(4)
+  .jv-mSkeleton-body-cell-content.mui {
+  width: 86%;
+}
+.jv-mSkeletonTable.mui
+  .jv-mSkeleton-body-cell.mui:nth-child(5)
+  .jv-mSkeleton-body-cell-content.mui {
+  width: 30%;
+}
+
 /* ----------------- */
-/*  20. STEPPER      */
+/*  21. STEPPER      */
 /* ----------------- */
 .jv-mStepper.mui {
   background-color: transparent;
@@ -3762,7 +3973,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ----------------- */
-/*  21. TABLE        */
+/*  22. TABLE        */
 /* ----------------- */
 .jv-mTable.mui {
   color: #444444;
@@ -3921,7 +4132,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ----------------- */
-/*  22. TABS         */
+/*  23. TABS         */
 /* ----------------- */
 .jv-mTabs.mui {
 }
@@ -4051,7 +4262,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ----------------- */
-/*  23. TOOLBAR      */
+/*  24. TOOLBAR      */
 /* ----------------- */
 .jv-mToolbar.mui {
   box-sizing: border-box;
@@ -4137,7 +4348,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ------------------ */
-/*  24. TOOLTIP       */
+/*  25. TOOLTIP       */
 /* ------------------ */
 .jv-mTooltip.mui {
   background-color: #ffffff;
@@ -4197,7 +4408,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* --------------- */
-/*  25. TREE       */
+/*  26. TREE       */
 /* --------------- */
 .jv-mTree.mui {
   font-size: 13px;
@@ -4329,9 +4540,9 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* --------------------- */
-/*  26. TYPOGRAPHY       */
+/*  27. TYPOGRAPHY       */
 /* --------------------- */
-/*  26a. Body & Titles   */
+/*  27a. Body & Titles   */
 /*  -------------------- */
 /* body text */
 .jv-mText.mui {
@@ -4420,7 +4631,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ----------------- */
-/*  26b. Links       */
+/*  27b. Links       */
 /*  ---------------- */
 .jv-mLink.mui:link,
 .jv-mLink.mui:visited,
@@ -4451,7 +4662,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ---------------- */
-/*  26c. Message    */
+/*  27c. Message    */
 /*  --------------- */
 .jv-mTextMessage.mui {
   align-items: flex-start;
@@ -4483,7 +4694,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ----------------------- */
-/*  26d. Filter Statement  */
+/*  27d. Filter Statement  */
 /*  ---------------------- */
 .jv-mTextFilter.mui {
   font-size: 18px;
@@ -4511,7 +4722,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ---------------- */
-/*  27. CONTROL     */
+/*  28. CONTROL     */
 /* ---------------- */
 .jv-mControl.mui {
 }
@@ -4523,7 +4734,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ---------------- */
-/*  27a. Color      */
+/*  28a. Color      */
 /*  --------------  */
 .jv-mControl.mui {
 }
@@ -4679,7 +4890,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ------------------------------ */
-/*  27b. Condition & Interval     */
+/*  28b. Condition & Interval     */
 /*  ----------------------------- */
 .jv-mControlCondition.mui,
 .jv-mControlInterval.mui {
@@ -4770,7 +4981,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ------------------- */
-/*  27c. Pagination    */
+/*  28c. Pagination    */
 /*  -----------------  */
 /* used in JRWS viewer */
 .jv-mControlPagination.mui {
@@ -4790,7 +5001,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* --------------- */
-/*  27d. Range     */
+/*  28d. Range     */
 /*  -------------  */
 .jv-mControlRange.mui {
 }
@@ -4833,7 +5044,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ----------------------  */
-/*  27e. Refresh Control    */
+/*  28e. Refresh Control    */
 /*  ----------------------  */
 .jv-mControlRefresh.mui {
   align-items: center;
@@ -4853,7 +5064,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* --------------- */
-/*  27f. Zoom      */
+/*  28f. Zoom      */
 /*  -------------  */
 /* used in JRWS viewer */
 .jv-mControlZoom.mui {
@@ -4873,9 +5084,9 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* --------------------------- */
-/*  28. JASPERSOFT-SPECIFIC    */
+/*  29. JASPERSOFT-SPECIFIC    */
 /*  -------------------------- */
-/*  28a. Calendar              */
+/*  29a. Calendar              */
 /*  -------------------------- */
 /*  NOTES:
     • Doesn't use Material-UI component, so no .mui classname
@@ -4973,7 +5184,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------- */
-/*  28b. Dropdown         */
+/*  29b. Dropdown         */
 /*  --------------------- */
 /*  Doesn't use Material-UI component, so no .mui classname */
 .jv-mDropdown {
@@ -4997,7 +5208,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------- */
-/*  28c. Drop Area        */
+/*  29c. Drop Area        */
 /*  --------------------- */
 .jv-mDroparea.mui {
   background-color: transparent;
@@ -5083,7 +5294,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------- */
-/*  28d. Filterbar        */
+/*  29d. Filterbar        */
 /*  --------------------- */
 /*  Doesn't use Material-UI component, so no .mui classname */
 .jv-mFilterbar {
@@ -5115,7 +5326,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ---------------- */
-/*  28e. Form        */
+/*  29e. Form        */
 /*  ---------------- */
 .jv-mForm {
 }
@@ -5124,7 +5335,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ---------------- */
-/*  28f. Layout      */
+/*  29f. Layout      */
 /*  ---------------- */
 /*  Layout rules begin with jv-l instead of jv-m  */
 .jv-lColumns {
@@ -5175,7 +5386,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ------------------ */
-/*  28g. Tag           */
+/*  29g. Tag           */
 /*  ------------------ */
 .jv-mTag {
   display: flex;
@@ -5209,7 +5420,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ------------------ */
-/*  28h. Titlebar      */
+/*  29h. Titlebar      */
 /*  ------------------ */
 /* Titlebar uses the paper component as the parent container */
 .jv-mTitlebar.mui {
@@ -5277,7 +5488,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ---------------- */
-/*  28i. TOKEN       */
+/*  29i. TOKEN       */
 /* ---------------- */
 /* Group of tokens  */
 .jv-mTokens.mui {
@@ -5416,16 +5627,16 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /* ----------------------- */
-/*  29. SAAS OVERRIDES     */
+/*  31. SAAS OVERRIDES     */
 /*  ---------------------- */
 .jv-mDrawer.quotaPanelDrawer.mui .jv-MuiDrawer-paperAnchorRight {
   top: 100px;
 }
 
 /* ------------------ */
-/*  30. UTILITY       */
+/*  31. UTILITY       */
 /*  ----------------- */
-/*  30a. Alignment    */
+/*  31a. Alignment    */
 /*  ----------------- */
 .jv-uAlignLeft {
   float: left !important;
@@ -5445,7 +5656,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ----------------- */
-/*  30b. Background   */
+/*  31b. Background   */
 /*  ----------------- */
 .jv-uBackgroundGrey-02 {
   background-color: $grey-2 !important;
@@ -5480,7 +5691,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ----------------- */
-/*  30c. Borders      */
+/*  31c. Borders      */
 /*  ----------------- */
 /*  numbers represent % grey */
 .jv-uBorderGrey-08 {
@@ -5488,7 +5699,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  ----------------- */
-/*  30d. Containers   */
+/*  31d. Containers   */
 /*  ----------------- */
 .jv-uOverflow-auto {
   overflow: auto !important;
@@ -5507,7 +5718,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------------------- */
-/*  30e. Display / Visibility   */
+/*  31e. Display / Visibility   */
 /*  --------------------------- */
 .jv-uDisplay-hide {
   display: none !important;
@@ -5526,7 +5737,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------- */
-/*  30f. Margins    */
+/*  31f. Margins    */
 /*  --------------- */
 /* As a general rule, measurements throughout JRS are made
    in multiples of 4px. For margin rules, the number on the
@@ -5867,7 +6078,7 @@ textarea[readonly].jv-mInput-text.mui {
 }
 
 /*  --------------- */
-/*  30g. Padding    */
+/*  31g. Padding    */
 /*  --------------- */
 /* As a general rule, measurements throughout JRS are made
    in multiples of 4px. For padding rules, the number on the

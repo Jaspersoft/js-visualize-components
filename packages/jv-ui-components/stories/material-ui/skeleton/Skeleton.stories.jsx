@@ -6,59 +6,724 @@
 import "../css/demoPages.css";
 import { Skeleton, Stack, Box } from "@mui/material";
 
+/*-----------------------------
+ *  TABLE OF CONTENTS
+ *
+ *  1. CHART SKELETON
+ *
+ *  2. TABLE SKELETON
+ *
+ * -----------------------------
+ *  last modified Nov 7, 2024
+ * ----------------------------- */
+
 export default {
   component: Skeleton,
   title: "Components/Skeleton/Design",
 };
 
-export const DefaultSkeleton = () => {
+/* ---------------------- */
+/*  1. CHART SKELETON     */
+/* ---------------------- */
+export const SkeletonChart = () => {
   return (
     <>
       <h1 className={"demoType demoTypeDesign"}>Design</h1>
-      <h1 className={"demoTitle"}>Skeleton</h1>
+      <h1 className={"demoTitle"}>Skeleton - Chart</h1>
 
       <div className="demoWrapper demoSkeleton">
         <div className="demoSize">
-          <div className={"demoSubtitle"}>Variants</div>
-          <Stack spacing={1}>
-            {/* For variant="text", adjust the height via font-size */}
-            <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-            {/* For other variants, adjust the size with `width` and `height` */}
-            <Skeleton variant="circular" width={40} height={40} />
-            <Skeleton variant="rectangular" width={210} height={60} />
-            <Skeleton variant="rounded" width={210} height={60} />
-          </Stack>
-        </div>
-        <div className="demoSize">
-          <div className={"demoSubtitle"}>Animations</div>
-          <Box sx={{ width: 300 }}>
-            <Skeleton />
-            <Skeleton animation="wave" />
-            <Skeleton animation={false} />
-          </Box>
-        </div>
-        <div className="demoSize">
-          <div className={"demoSubtitle"}>Color</div>
+          {/* set desired dimensions on jv-mSkeleton */}
           <Box
-            sx={{
-              bgcolor: "#121212",
-              p: 8,
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
+            className="jv-mSkeleton jv-mSkeletonChart mui"
+            sx={{ height: 400, width: 800 }}
           >
-            <Skeleton
-              sx={{ bgcolor: "grey.900" }}
-              variant="rectangular"
-              width={210}
-              height={118}
-            />
+            <Box className="jv-mSkeleton-bars mui">
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+              />
+            </Box>
+
+            <Box className="jv-mSkeleton-background mui">
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+                animation={false}
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+                animation={false}
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+                animation={false}
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+                animation={false}
+              />
+              <Skeleton
+                className="jv-mSkeleton-bars-bar mui"
+                variant="rectangular"
+                animation={false}
+              />
+            </Box>
+
+            <Box className="jv-mSkeleton-grid mui">
+              <Skeleton
+                className="jv-mSkeleton-grid-line mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-grid-line mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-grid-line mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-grid-line mui"
+                variant="rectangular"
+              />
+              <Skeleton
+                className="jv-mSkeleton-grid-line mui"
+                variant="rectangular"
+              />
+            </Box>
           </Box>
         </div>
       </div>
     </>
   );
 };
+SkeletonChart.storyName = "Skeleton - Chart";
 
-DefaultSkeleton.storyName = "Skeleton";
+/* ---------------------- */
+/*  2. TABLE SKELETON     */
+/* ---------------------- */
+export const SkeletonTable = () => {
+  return (
+    <>
+      <h1 className={"demoType demoTypeDesign"}>Design</h1>
+      <h1 className={"demoTitle"}>Skeleton - Table</h1>
+
+      <div className="demoWrapper demoSkeleton">
+        <div className="demoSize">
+          <Box sx={{ width: 800 }}>
+            {/* table skeleton must go inside a container that has an defined width */}
+            <Skeleton
+              className="jv-mSkeleton jv-mSkeletonTable mui"
+              component="table"
+              variant="rectangular"
+            >
+              <Skeleton
+                className="jv-mSkeleton-header-row mui"
+                component="tr"
+                variant="rectangular"
+              >
+                <Skeleton
+                  className="jv-mSkeleton-header-cell mui"
+                  component="th"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-header-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-header-cell mui"
+                  component="th"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-header-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-header-cell mui"
+                  component="th"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-header-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-header-cell mui"
+                  component="th"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-header-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-header-cell mui"
+                  component="th"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-header-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+
+              {/* YOU CAN ADD AS MANY ROWS TO THE BODY AS YOU WANT */}
+              {/* odd rows have animation=false */}
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+                animation={false}
+              >
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+              >
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+
+              {/* odd rows have animation=false */}
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+                animation={false}
+              >
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+              >
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+
+              {/* odd rows have animation=false */}
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+                animation={false}
+              >
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+              >
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+
+              {/* odd rows have animation=false */}
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+                animation={false}
+              >
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  animation={false}
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+              <Skeleton
+                className="jv-mSkeleton-body-row mui"
+                component="tr"
+                variant="rectangular"
+              >
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+                <Skeleton
+                  className="jv-mSkeleton-body-cell mui"
+                  component="td"
+                  variant="rectangular"
+                >
+                  <Skeleton
+                    className="jv-mSkeleton-body-cell-content mui"
+                    component="span"
+                    variant="rectangular"
+                  />
+                </Skeleton>
+              </Skeleton>
+            </Skeleton>
+          </Box>
+        </div>
+      </div>
+    </>
+  );
+};
+SkeletonTable.storyName = "Skeleton - Table";
