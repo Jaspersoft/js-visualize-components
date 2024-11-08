@@ -5,7 +5,6 @@
  */
 
 import React, { ChangeEvent } from "react";
-import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import { JVTabs, JVTab } from "@jaspersoft/jv-ui-components";
 import Schedule from "../Tabs/TabsContent/Schedule";
 import Parameters from "../Tabs/TabsContent/Parameters";
@@ -15,7 +14,7 @@ import {
   currentTabValidationError,
   setCurrentActiveTab,
   setVisitedTab,
-} from "./../../actions/action";
+} from "../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 import {
   NOTIFICATIONS_TAB,
