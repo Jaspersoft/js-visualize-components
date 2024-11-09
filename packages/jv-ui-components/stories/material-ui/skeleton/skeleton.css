@@ -1,4 +1,6 @@
 .demoWrapper.demoSkeleton .demoSize {
-  height: 300px;
-  width: 600px;
+}
+
+.demoWrapper.demoSkeleton .demoSubtitle {
+  margin-bottom: 12px;
 }

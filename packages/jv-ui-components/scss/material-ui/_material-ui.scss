@@ -148,7 +148,7 @@
       31h. Text
       31i. Width/Height Measurements
   -----------------------------------
-  File last modified Nov 7, 2024
+  File last modified Nov 8, 2024
   ----------------------------------- */
 
 /* -------------------- */
@@ -3955,6 +3955,86 @@ textarea[readonly].jv-mInput-text.mui {
   .jv-mSkeleton-body-cell.mui:nth-child(5)
   .jv-mSkeleton-body-cell-content.mui {
   width: 30%;
+}
+
+/* ----------------------- */
+/*  20c. Input Skeleton    */
+/* ----------------------- */
+/* general */
+.jv-mSkeletonInput.mui {
+  position: relative;
+}
+
+.jv-mSkeleton-label.mui {
+  border-radius: 2px;
+  line-height: 22px;
+  margin: 4px 0;
+  width: 50%;
+}
+
+/* text input */
+.jv-mSkeletonTextinput.mui {
+}
+
+.jv-mSkeletonTextinput.mui .jv-mSkeleton-input.mui {
+  border-radius: 2px;
+  height: 28px;
+  margin: 4px 0;
+}
+
+/* textarea input */
+.jv-mSkeletonTextarea.mui {
+}
+
+.jv-mSkeletonTextarea.mui .jv-mSkeleton-input.mui {
+  border-radius: 2px;
+  height: 60px;
+  margin: 4px 0;
+}
+
+/* checkbox/radio/switch inputs */
+.jv-mSkeletonCheckboxes.mui {
+}
+.jv-mSkeletonRadios.mui {
+}
+
+.jv-mSkeletonCheckboxes.mui > .jv-mSkeleton-label.mui,
+.jv-mSkeletonRadios.mui > .jv-mSkeleton-label.mui {
+  width: 30%;
+}
+
+.jv-mSkeletonCheckbox.mui,
+.jv-mSkeletonRadio.mui,
+.jv-mSkeletonSwitch.mui {
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 22px;
+  justify-content: flex-end;
+  margin: 4px 0;
+}
+
+.jv-mSkeletonCheckbox.mui .jv-mSkeleton-label.mui,
+.jv-mSkeletonRadio.mui .jv-mSkeleton-label.mui,
+.jv-mSkeletonSwitch.mui .jv-mSkeleton-label.mui {
+  margin-left: 12px;
+}
+
+.jv-mSkeletonCheckbox.mui .jv-mSkeleton-input.mui,
+.jv-mSkeletonRadio.mui .jv-mSkeleton-input.mui {
+  border-radius: 2px;
+  height: 16px;
+  width: 16px;
+  margin: 0;
+}
+
+.jv-mSkeletonRadio.mui .jv-mSkeleton-input.mui {
+  border-radius: 50%;
+}
+
+.jv-mSkeletonSwitch.mui .jv-mSkeleton-input.mui {
+  border-radius: 18px;
+  width: 36px;
 }
 
 /* ----------------- */
