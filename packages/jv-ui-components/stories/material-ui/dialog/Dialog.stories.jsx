@@ -1,7 +1,9 @@
 import "../css/demoPages.css";
 import "./dialog.css";
 import {
+  Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -12,9 +14,24 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { Resizable } from "re-resizable";
 import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
-
+import {
+  TreeItem2Content,
+  TreeItem2IconContainer,
+  TreeItem2Label,
+  TreeItem2Root,
+} from "@mui/x-tree-view/TreeItem2";
+import { unstable_useTreeItem2 as useTreeItem2 } from "@mui/x-tree-view/useTreeItem2";
+import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
+import { TreeItem2Icon } from "@mui/x-tree-view/TreeItem2Icon";
+import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
+import { treeData, disableTreeData } from "./dialogUtils";
+import { Collapse as JVCollapse } from "../../../material-ui/Collapse/Collapse";
+import { Box as JVBox } from "../../../material-ui/Box/Box";
+import { Icon as JVIcon } from "../../../material-ui/Icon/Icon";
+import { Typography as JVTypography } from "../../../material-ui/Typography/Typography";
 /*----------------------------
  *  TABLE OF CONTENTS
  *
@@ -461,3 +478,530 @@ export const ConfirmationDialog = () => {
   );
 };
 ConfirmationDialog.storyName = "Confirmation Dialog";
+
+/* ----------------------- */
+/*  03. RESIZABLE DIALOG   */
+/* ----------------------- */
+
+function PaperComponentForDraggableResizable(props) {
+  return (
+    <Draggable
+      handle="#resizable-dialog-title"
+      cancel={'[class*="jr-MuiDialogContent-root"]'}
+    >
+      <Resizable
+        defaultSize={{ width: 600, height: 400 }}
+        minWidth={300}
+        minHeight={200}
+        enable={{ bottomRight: true }}
+        style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        handleComponent={{
+          bottomRight: (
+            <div
+              style={{
+                bottom: "10px",
+                right: "10px",
+                position: "absolute",
+                cursor: "se-resize",
+              }}
+            />
+          ),
+        }}
+      >
+        <Paper {...props} />
+      </Resizable>
+    </Draggable>
+  );
+}
+export const ResizableDialog = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <h1 className={"demoType demoTypeDesign"}>Design</h1>
+      <h1 className={"demoTitle"}>Dialog - Resizable</h1>
+
+      <div>
+        <Dialog
+          classes={{ paper: "jr-mDialog-wrapper mui" }}
+          className="jr-mDialog jr-mDialogResizable mui"
+          open={true}
+          onClose={handleClose}
+          PaperComponent={PaperComponentForDraggableResizable}
+          PaperProps={{
+            elevation: 4,
+          }}
+          aria-labelledby="draggable-dialog-title"
+        >
+          <DialogTitle
+            style={{ cursor: "move" }}
+            id="draggable-dialog-title"
+            className="jr-mDialog-header mui"
+          >
+            <Typography className="jr-mDialog-header-title mui" variant="h2">
+              Dialog Box Title
+            </Typography>
+          </DialogTitle>
+
+          <DialogContent
+            className="jr-mDialog-body jr-mDialog-bodyPadded mui"
+            dividers={true}
+          >
+            {/* Removed DialogContentText parent element to TextField here, as it was unnecessary */}
+            <TextField
+              className={"jr-mInput jr-mInputText jr-mInputLarge mui"}
+              id="outlined01"
+              label="Name"
+              variant="outlined"
+              InputLabelProps={{
+                classes: { root: "jr-mInput-label jr-Mui-focused mui" },
+                disableAnimation: true,
+              }}
+              InputProps={{
+                classes: { input: "jr-mInput-text mui" },
+              }}
+            />
+          </DialogContent>
+
+          <DialogActions className="jr-mDialog-footer mui">
+            <Button
+              className="jr-mButton jr-mButtonPrimary mui"
+              disableElevation
+              size="large"
+              variant="contained"
+            >
+              <span className="jr-mButton-label mui">OK</span>
+            </Button>
+            <Button
+              className="jr-mButton jr-mButtonSecondary mui"
+              disableElevation
+              size="large"
+              variant="contained"
+            >
+              <span className="jr-mButton-label mui">Cancel</span>
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    </>
+  );
+};
+ResizableDialog.storyName = "Resizable Dialog";
+
+/* ---------------------------------- */
+/*  05. REPOSITORY DIALOG WITH TREE   */
+/* ---------------------------------- */
+export const RepositoryDialog = () => {
+  function TransitionComponent(props) {
+    return <JVCollapse {...props} />;
+  }
+
+  const CustomLabel = ({ expandable, children, ...other }) => {
+    return (
+      <>
+        <TreeItem2Label
+          {...other}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <JVBox color="inherit" sx={{ mr: 1, fontSize: "1.2rem" }}>
+            <JVIcon icon="folder" />
+          </JVBox>
+
+          <JVTypography variant="body2">{children}</JVTypography>
+        </TreeItem2Label>
+      </>
+    );
+  };
+
+  const CustomTreeItem = (props) => {
+    const { id, itemId, label, disabled, children, ...other } = props;
+
+    const {
+      getRootProps,
+      getContentProps,
+      getIconContainerProps,
+      getLabelProps,
+      getGroupTransitionProps,
+      status,
+    } = useTreeItem2({ id, itemId, children, label, disabled });
+    status.expandable = true;
+    return (
+      <TreeItem2Provider itemId={itemId}>
+        <TreeItem2Root {...getRootProps(other)}>
+          <TreeItem2Content {...getContentProps()}>
+            {/*rendering expand collapse icon*/}
+            <TreeItem2IconContainer {...getIconContainerProps()}>
+              <TreeItem2Icon status={status} />
+            </TreeItem2IconContainer>
+            <CustomLabel
+              {...getLabelProps({
+                expandable: true,
+                disable: status.disabled,
+              })}
+            />
+          </TreeItem2Content>
+          {children && <TransitionComponent {...getGroupTransitionProps()} />}
+        </TreeItem2Root>
+      </TreeItem2Provider>
+    );
+  };
+
+  const RichTree = () => {
+    return (
+      <RichTreeView
+        items={treeData}
+        getItemLabel={(item) => {
+          return item.label;
+        }}
+        //expandedItems={["/public"]}
+        // isItemDisabled={(item) => isItemDisable(item)}
+        defaultSelectedItems={"/public/samples"}
+        getItemId={(item) =>
+          item.uri.startsWith("/public")
+            ? item.uri
+            : item.uri === "/"
+              ? "/root"
+              : `/root${item.uri}`
+        }
+        slots={{ item: CustomTreeItem }}
+      />
+    );
+  };
+
+  return (
+    <>
+      <h1 className={"demoType demoTypeDesign"}>Design</h1>
+      <h1 className={"demoTitle"}>Dialog - Repository Tree</h1>
+
+      <Dialog
+        classes={{ paper: "jv-mDialog-wrapper mui" }}
+        className="jv-mDialog jv-mDialogResizable mui"
+        open={true}
+        // onClose={handleClose}
+        PaperComponent={PaperComponentForDraggableResizable}
+        PaperProps={{
+          elevation: 4,
+        }}
+        scroll="paper"
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle
+          style={{ cursor: "move" }}
+          id="draggable-dialog-title"
+          className="jv-mDialog-header mui"
+        >
+          <Typography className="jv-mDialog-header-title mui" variant="h2">
+            Repository Content
+          </Typography>
+        </DialogTitle>
+
+        <DialogContent
+          className="jv-mDialog-body jv-mDialog-bodyPadded mui"
+          dividers={true}
+        >
+          <Box className={"jv-mListbox jv-uHeight-100pc mui"}>
+            <Paper
+              variant="outlined"
+              square
+              className={"jv-mListbox-content jv-uHeight-100pc mui"}
+              elevation={0}
+            >
+              <RichTree />
+            </Paper>
+          </Box>
+        </DialogContent>
+
+        <DialogActions className="jv-mDialog-footer mui">
+          <Button
+            className="jv-mButton jv-mButtonPrimary mui"
+            disableElevation
+            size="large"
+            variant="contained"
+          >
+            <span className="jv-mButton-label mui">OK</span>
+          </Button>
+          <Button
+            className="jv-mButton jv-mButtonSecondary mui"
+            disableElevation
+            size="large"
+            variant="contained"
+          >
+            <span className="jv-mButton-label mui">Cancel</span>
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+RepositoryDialog.storyName = "Repository Dialog - Tree";
+
+/* -------------------------------------------- */
+/*  06. REPOSITORY DIALOG WITH DISABLED TREE    */
+/* -------------------------------------------- */
+export const DisabledRepositoryDialog = () => {
+  const [lastExapanded, setLastExpandedNode] = useState("");
+  const [disableNode, setDisableNode] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [expandedItems, setExpandedItems] = useState(["/public"]);
+
+  useEffect(() => {
+    if (isExpanded && lastExapanded.length) {
+      setExpandedItems([...expandedItems, lastExapanded]);
+    } else {
+      setExpandedItems(expandedItems.filter((item) => item !== lastExapanded));
+    }
+  }, [lastExapanded, isExpanded]);
+
+  const isTreeNodeDisable = (item) => {
+    return !(item.permissionMask == 1 || item.permissionMask & 4);
+  };
+
+  function TransitionComponent(props) {
+    return <JVCollapse {...props} />;
+  }
+
+  const CustomLabel = ({ expandable, children, ...other }) => {
+    return (
+      <>
+        <TreeItem2Label
+          {...other}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <JVBox color="inherit" sx={{ mr: 1, fontSize: "1.2rem" }}>
+            <JVIcon icon="folder" />
+          </JVBox>
+
+          <JVTypography variant="body2">{children}</JVTypography>
+        </TreeItem2Label>
+      </>
+    );
+  };
+
+  const CustomTreeItem = (props) => {
+    const { id, itemId, label, disabled, children, ...other } = props;
+
+    const {
+      getRootProps,
+      getContentProps,
+      getIconContainerProps,
+      getLabelProps,
+      getGroupTransitionProps,
+      status,
+      publicAPI,
+    } = useTreeItem2({ id, itemId, children, label, disabled });
+    const item = publicAPI.getItem(itemId);
+    status.expandable = true;
+    status.disabled = isTreeNodeDisable(item);
+    return (
+      <TreeItem2Provider itemId={itemId}>
+        <TreeItem2Root
+          {...getRootProps(other)}
+          onClick={(event) => {
+            event.stopPropagation();
+            setLastExpandedNode(itemId);
+            setDisableNode(status.disabled);
+            setIsExpanded(!status.expanded);
+          }}
+        >
+          <TreeItem2Content {...getContentProps()}>
+            {/*rendering expand collapse icon*/}
+            <TreeItem2IconContainer {...getIconContainerProps()}>
+              <TreeItem2Icon status={status} />
+            </TreeItem2IconContainer>
+            <CustomLabel
+              {...getLabelProps({
+                expandable: true,
+                disable: status.disabled,
+              })}
+            />
+          </TreeItem2Content>
+          {children && <TransitionComponent {...getGroupTransitionProps()} />}
+        </TreeItem2Root>
+      </TreeItem2Provider>
+    );
+  };
+
+  const RichTree = () => {
+    return (
+      <RichTreeView
+        items={disableTreeData}
+        getItemLabel={(item) => {
+          return item.label;
+        }}
+        expandedItems={expandedItems}
+        defaultSelectedItems={"/public"}
+        getItemId={(item) =>
+          item.uri.startsWith("/public")
+            ? item.uri
+            : item.uri === "/"
+              ? "/root"
+              : `/root${item.uri}`
+        }
+        slots={{ item: CustomTreeItem }}
+      />
+    );
+  };
+
+  return (
+    <>
+      <h1 className={"demoType demoTypeDesign"}>Design</h1>
+      <h1 className={"demoTitle"}>Dialog - Repository Tree Disabled</h1>
+
+      {/* TODO: This dialog box needs a height for the tree container to work properly */}
+      <Dialog
+        classes={{ paper: "jv-mDialog-wrapper mui" }}
+        className="jv-mDialog mui"
+        open={true}
+        // onClose={handleClose}
+        PaperComponent={PaperComponentForDraggableResizable}
+        PaperProps={{
+          elevation: 4,
+        }}
+        scroll="paper"
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle
+          style={{ cursor: "move" }}
+          id="draggable-dialog-title"
+          className="jv-mDialog-header mui"
+        >
+          <Typography className="jv-mDialog-header-title mui" variant="h2">
+            Repository Content
+          </Typography>
+        </DialogTitle>
+
+        <DialogContent
+          className="jv-mDialog-body jv-mDialog-bodyPadded mui"
+          dividers={true}
+        >
+          <Box className={"jv-mListbox jv-uHeight-100pc mui"}>
+            <Paper
+              variant="outlined"
+              square
+              className={"jv-mListbox-content jv-uHeight-100pc mui"}
+              elevation={0}
+            >
+              <RichTree />
+            </Paper>
+          </Box>
+        </DialogContent>
+
+        <DialogActions className="jv-mDialog-footer mui">
+          <Button
+            className="jv-mButton jv-mButtonPrimary mui"
+            disableElevation
+            size="large"
+            variant="contained"
+          >
+            <span className="jv-mButton-label mui">OK</span>
+          </Button>
+          <Button
+            className="jv-mButton jv-mButtonSecondary mui"
+            disableElevation
+            size="large"
+            variant="contained"
+          >
+            <span className="jv-mButton-label mui">Cancel</span>
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+DisabledRepositoryDialog.storyName = "Repository Dialog - Disabled Tree";
+
+/* ----------------------------------------------- */
+/*  07. REPOSITORY DIALOG WITH LOADING SPINNER     */
+/* ----------------------------------------------- */
+export const RepositoryDialogWithLoader = () => {
+  const Loader = () => {
+    return (
+      /*            <TableBody>
+                        <TableRow>
+                            <TableCell colSpan={3} align="center">*/
+      <div className="jv-mSpinner jv-mSpinnerCenter mui">
+        <CircularProgress
+          variant="determinate"
+          size={28}
+          thickness={4}
+          value={100}
+        />
+        <CircularProgress variant="indeterminate" size={28} thickness={4} />
+      </div>
+      /*                    </TableCell>
+                        </TableRow>
+                    </TableBody>*/
+    );
+  };
+
+  return (
+    <>
+      <h1 className={"demoType demoTypeDesign"}>Design</h1>
+      <h1 className={"demoTitle"}>Dialog - Repository Loading</h1>
+
+      <Dialog
+        classes={{ paper: "jv-mDialog-wrapper mui" }}
+        className="jv-mDialog mui"
+        open={true}
+        // onClose={handleClose}
+        PaperComponent={PaperComponentForDraggableResizable}
+        PaperProps={{
+          elevation: 4,
+        }}
+        scroll="paper"
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle
+          style={{ cursor: "move" }}
+          id="draggable-dialog-title"
+          className="jv-mDialog-header mui"
+        >
+          <Typography className="jv-mDialog-header-title mui" variant="h2">
+            Repository Content
+          </Typography>
+        </DialogTitle>
+
+        <DialogContent
+          className="jv-mDialog-body jv-mDialog-bodyPadded mui"
+          dividers={true}
+        >
+          <Loader />
+        </DialogContent>
+
+        <DialogActions className="jv-mDialog-footer mui">
+          <Button
+            className="jv-mButton jv-mButtonPrimary mui"
+            disableElevation
+            size="large"
+            variant="contained"
+          >
+            <span className="jv-mButton-label mui">OK</span>
+          </Button>
+          <Button
+            className="jv-mButton jv-mButtonSecondary mui"
+            disableElevation
+            size="large"
+            variant="contained"
+          >
+            <span className="jv-mButton-label mui">Cancel</span>
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+RepositoryDialogWithLoader.storyName = "Repository Dialog - Tree Loading";

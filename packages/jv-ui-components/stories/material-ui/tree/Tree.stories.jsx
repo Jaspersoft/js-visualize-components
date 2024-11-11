@@ -1,5 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./tree.css";
+import {
+  TreeItem2Content,
+  TreeItem2IconContainer,
+  TreeItem2Label,
+  TreeItem2Root,
+} from "@mui/x-tree-view/TreeItem2";
+import { unstable_useTreeItem2 as useTreeItem2 } from "@mui/x-tree-view/useTreeItem2";
+import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
+import { TreeItem2Icon } from "@mui/x-tree-view/TreeItem2Icon";
+import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
+import { Collapse as JVCollapse } from "../../../material-ui/Collapse/Collapse";
+import { Typography as JVTypography } from "../../../material-ui/Typography/Typography";
+import { Box as JVBox } from "../../../material-ui/Box/Box";
+import { Icon as JVIcon } from "../../../material-ui/Icon/Icon";
 
 /*----------------------------
  *  TABLE OF CONTENTS
@@ -1935,3 +1949,596 @@ export const treeAdhoc = () => (
   </>
 );
 treeAdhoc.storyName = "Tree - Ad Hoc";
+
+/* ------------------ */
+/*  04. RICH TREE     */
+/* ------------------ */
+export const richTree = () => {
+  const treeData = [
+    {
+      id: "/root",
+      label: "root",
+      uri: "/",
+      resourceType: "folder",
+      permissionMask: 1,
+      children: [
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-20T14:42:14",
+          updateDate: "2024-06-20T14:42:14",
+          label: "AI_ML",
+          description: "",
+          uri: "/AI_ML",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:02",
+          updateDate: "2023-12-01T23:17:20",
+          label: "Organizations",
+          description: "Organizations",
+          uri: "/organizations",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Temp",
+          description: "Temp",
+          uri: "/temp",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:16:21",
+          label: "Themes",
+          uri: "/themes",
+          resourceType: "folder",
+          children: [
+            {
+              version: 0,
+              permissionMask: 2,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:16:23",
+              label: "default",
+              uri: "/themes/default",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 1,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:17:06",
+              label: "easy_access",
+              uri: "/themes/easy_access",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 1,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:17:07",
+              label: "jasper_dark",
+              uri: "/themes/jasper_dark",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 1,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:17:13",
+              label: "pods_summer",
+              uri: "/themes/pods_summer",
+              resourceType: "folder",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "/public",
+      label: "Public",
+      uri: "/public",
+      resourceType: "folder",
+      permissionMask: 1,
+      children: [
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Ad Hoc Components",
+          description: "Ad Hoc Components",
+          uri: "/public/adhoc",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:50",
+          label: "Audit",
+          description: "Audit Components",
+          uri: "/public/audit",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-07-23T12:23:42",
+          updateDate: "2024-07-23T12:23:42",
+          label: "Beluga",
+          description: "",
+          uri: "/public/Beluga",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:18:04",
+          label: "Completed Schedules",
+          description: "Completed Schedules Components",
+          uri: "/public/Completed_Schedules",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Dashboards",
+          uri: "/public/Dashboards",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2012-09-06T18:41:43",
+          label: "Diagnostic",
+          description: "",
+          uri: "/public/diagnostic",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:18:11",
+          label: "Monitoring",
+          description: "Monitoring Components",
+          uri: "/public/monitoring",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:23:16",
+          updateDate: "2012-10-15T21:47:29",
+          label: "Samples",
+          description: "Samples",
+          uri: "/public/Samples",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Templates",
+          uri: "/public/templates",
+          resourceType: "folder",
+        },
+      ],
+    },
+  ];
+
+  function TransitionComponent(props) {
+    return <JVCollapse {...props} />;
+  }
+
+  const CustomLabel = ({ expandable, children, ...other }) => {
+    return (
+      <>
+        <TreeItem2Label
+          {...other}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <JVBox color="inherit" sx={{ mr: 1, fontSize: "1.2rem" }}>
+            <JVIcon icon="folder" />
+          </JVBox>
+
+          <JVTypography variant="body2">{children}</JVTypography>
+        </TreeItem2Label>
+      </>
+    );
+  };
+
+  const CustomTreeItem = (props) => {
+    const { id, itemId, label, disabled, children, ...other } = props;
+
+    const {
+      getRootProps,
+      getContentProps,
+      getIconContainerProps,
+      getLabelProps,
+      getGroupTransitionProps,
+      status,
+    } = useTreeItem2({ id, itemId, children, label, disabled });
+    status.expandable = true;
+    return (
+      <TreeItem2Provider itemId={itemId}>
+        <TreeItem2Root {...getRootProps(other)}>
+          <TreeItem2Content {...getContentProps()}>
+            {/*rendering expand collapse icon*/}
+            <TreeItem2IconContainer {...getIconContainerProps()}>
+              <TreeItem2Icon status={status} />
+            </TreeItem2IconContainer>
+            <CustomLabel
+              {...getLabelProps({
+                expandable: true,
+                disable: status.disabled,
+              })}
+            />
+          </TreeItem2Content>
+          {children && <TransitionComponent {...getGroupTransitionProps()} />}
+        </TreeItem2Root>
+      </TreeItem2Provider>
+    );
+  };
+
+  return (
+    <RichTreeView
+      items={treeData}
+      getItemLabel={(item) => {
+        return item.label;
+      }}
+      //expandedItems={["/public"]}
+      // isItemDisabled={(item) => isItemDisable(item)}
+      defaultSelectedItems={"/public/samples"}
+      getItemId={(item) =>
+        item.uri.startsWith("/public")
+          ? item.uri
+          : item.uri === "/"
+            ? "/root"
+            : `/root${item.uri}`
+      }
+      slots={{ item: CustomTreeItem }}
+    />
+  );
+};
+richTree.storyName = "Rich Tree";
+
+export const richTreeDisabled = () => {
+  const treeData = [
+    {
+      id: "/root",
+      label: "root",
+      uri: "/",
+      resourceType: "folder",
+      permissionMask: 2,
+      children: [
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-20T14:42:14",
+          updateDate: "2024-06-20T14:42:14",
+          label: "AI_ML",
+          description: "",
+          uri: "/AI_ML",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:02",
+          updateDate: "2023-12-01T23:17:20",
+          label: "Organizations",
+          description: "Organizations",
+          uri: "/organizations",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Temp",
+          description: "Temp",
+          uri: "/temp",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:16:21",
+          label: "Themes",
+          uri: "/themes",
+          resourceType: "folder",
+          children: [
+            {
+              version: 0,
+              permissionMask: 2,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:16:23",
+              label: "default",
+              uri: "/themes/default",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 2,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:17:06",
+              label: "easy_access",
+              uri: "/themes/easy_access",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 2,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:17:07",
+              label: "jasper_dark",
+              uri: "/themes/jasper_dark",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 2,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:17:13",
+              label: "pods_summer",
+              uri: "/themes/pods_summer",
+              resourceType: "folder",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "/public",
+      label: "Public",
+      uri: "/public",
+      resourceType: "folder",
+      permissionMask: 2,
+      children: [
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Ad Hoc Components",
+          description: "Ad Hoc Components",
+          uri: "/public/adhoc",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 1,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:50",
+          label: "Audit",
+          description: "Audit Components",
+          uri: "/public/audit",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-07-23T12:23:42",
+          updateDate: "2024-07-23T12:23:42",
+          label: "Beluga",
+          description: "",
+          uri: "/public/Beluga",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:18:04",
+          label: "Completed Schedules",
+          description: "Completed Schedules Components",
+          uri: "/public/Completed_Schedules",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Dashboards",
+          uri: "/public/Dashboards",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 30,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2012-09-06T18:41:43",
+          label: "Diagnostic",
+          description: "",
+          uri: "/public/diagnostic",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:18:11",
+          label: "Monitoring",
+          description: "Monitoring Components",
+          uri: "/public/monitoring",
+          resourceType: "folder",
+        },
+        {
+          version: 0,
+          permissionMask: 30,
+          creationDate: "2024-06-18T15:23:16",
+          updateDate: "2012-10-15T21:47:29",
+          label: "Samples",
+          description: "Samples",
+          uri: "/public/Samples",
+          resourceType: "folder",
+          children: [
+            {
+              version: 0,
+              permissionMask: 2,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:18:11",
+              label: "Test1",
+              description: "Monitoring Components",
+              uri: "/public/Samples/test1",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 30,
+              creationDate: "2024-06-18T15:23:16",
+              updateDate: "2012-10-15T21:47:29",
+              label: "Test2",
+              description: "Samples",
+              uri: "/public/Samples/test2",
+              resourceType: "folder",
+            },
+            {
+              version: 0,
+              permissionMask: 2,
+              creationDate: "2024-06-18T15:22:03",
+              updateDate: "2023-12-01T23:17:25",
+              label: "Test3",
+              uri: "/public/Samples/test3",
+              resourceType: "folder",
+            },
+          ],
+        },
+        {
+          version: 0,
+          permissionMask: 2,
+          creationDate: "2024-06-18T15:22:03",
+          updateDate: "2023-12-01T23:17:25",
+          label: "Templates",
+          uri: "/public/templates",
+          resourceType: "folder",
+        },
+      ],
+    },
+  ];
+
+  const [lastExapanded, setLastExpandedNode] = useState("");
+  const [disableNode, setDisableNode] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [expandedItems, setExpandedItems] = useState(["/public"]);
+
+  useEffect(() => {
+    if (isExpanded && lastExapanded.length) {
+      setExpandedItems([...expandedItems, lastExapanded]);
+    } else {
+      setExpandedItems(expandedItems.filter((item) => item !== lastExapanded));
+    }
+  }, [lastExapanded, isExpanded]);
+
+  const isTreeNodeDisable = (item) => {
+    return !(item.permissionMask == 1 || item.permissionMask & 4);
+  };
+
+  function TransitionComponent(props) {
+    return <JVCollapse {...props} />;
+  }
+
+  const CustomLabel = ({ expandable, children, ...other }) => {
+    return (
+      <>
+        <TreeItem2Label
+          {...other}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <JVBox color="inherit" sx={{ mr: 1, fontSize: "1.2rem" }}>
+            <JVIcon icon="folder" />
+          </JVBox>
+
+          <JVTypography variant="body2">{children}</JVTypography>
+        </TreeItem2Label>
+      </>
+    );
+  };
+
+  const CustomTreeItem = (props) => {
+    const { id, itemId, label, disabled, children, ...other } = props;
+
+    const {
+      getRootProps,
+      getContentProps,
+      getIconContainerProps,
+      getLabelProps,
+      getGroupTransitionProps,
+      status,
+      publicAPI,
+    } = useTreeItem2({ id, itemId, children, label, disabled });
+    const item = publicAPI.getItem(itemId);
+    status.expandable = true;
+    status.disabled = isTreeNodeDisable(item);
+    return (
+      <TreeItem2Provider itemId={itemId}>
+        <TreeItem2Root
+          {...getRootProps(other)}
+          onClick={(event) => {
+            event.stopPropagation();
+            setLastExpandedNode(itemId);
+            setDisableNode(status.disabled);
+            setIsExpanded(!status.expanded);
+          }}
+        >
+          <TreeItem2Content {...getContentProps()}>
+            {/*rendering expand collapse icon*/}
+            <TreeItem2IconContainer {...getIconContainerProps()}>
+              <TreeItem2Icon status={status} />
+            </TreeItem2IconContainer>
+            <CustomLabel
+              {...getLabelProps({
+                expandable: true,
+                disable: status.disabled,
+              })}
+            />
+          </TreeItem2Content>
+          {children && <TransitionComponent {...getGroupTransitionProps()} />}
+        </TreeItem2Root>
+      </TreeItem2Provider>
+    );
+  };
+
+  return (
+    <RichTreeView
+      items={treeData}
+      getItemLabel={(item) => {
+        return item.label;
+      }}
+      expandedItems={expandedItems}
+      defaultSelectedItems={"/public"}
+      getItemId={(item) =>
+        item.uri.startsWith("/public")
+          ? item.uri
+          : item.uri === "/"
+            ? "/root"
+            : `/root${item.uri}`
+      }
+      slots={{ item: CustomTreeItem }}
+    />
+  );
+};
+richTreeDisabled.storyName = "Rich Tree Disabled";
