@@ -30,8 +30,178 @@ export default {
   title: "Components/Tree/Design",
 };
 
+/* ------------------------ */
+/*  01. RICH FOLDER TREE    */
+/* ------------------------ */
+export const richTreeWorking = () => (
+  <>
+    <h1 className={"demoType demoTypeDesign"}>Design</h1>
+    <h1 className={"demoTitle"}>Tree - Rich Folder Tree</h1>
+
+    <div className={"demoWrapper demoTree"}>
+      <div className={"demoWrapperSection"}>
+        {/* Entire Tree */}
+        <ul
+          role="tree"
+          aria-multiselectable="false"
+          className="jv-mTree mui MuiRichTreeView-root css-fc66vf-MuiRichTreeView-root"
+        >
+          {/* Node + Children */}
+          <li role="treeitem" className="css-1uhp40g-MuiTreeItem2-root">
+            {/* Individual Node */}
+            <div className="jv-mTree-node mui css-p85nl6-MuiTreeItem2-content">
+              {/* caret */}
+              <div className="jv-mTree-node-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer">
+                <svg
+                  className="jv-MuiSvgIcon-root jv-MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  data-testid="TreeViewCollapseIconIcon"
+                >
+                  <path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                </svg>
+              </div>
+
+              {/* folder icon and name */}
+              <div className="jv-mTree-node-item mui css-1q9fvbo-MuiTreeItem2-label">
+                {/* folder icon */}
+                <div className="jv-mTree-node-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+
+                {/* folder name */}
+                <p className="jv-mTree-node-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                  root
+                </p>
+              </div>
+            </div>
+
+            {/* Individual Node's Children */}
+            <ul
+              className="jv-MuiCollapse-root jv-MuiCollapse-vertical jv-MuiCollapse-entered css-pwcg7p-MuiCollapse-root"
+              role="group"
+            >
+              <div className="jv-MuiCollapse-wrapper jv-MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper">
+                <div className="jv-MuiCollapse-wrapperInner jv-MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner">
+                  {/* Node + Children */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    {/* Individual Node */}
+                    <div className="jv-mTree-node mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-node-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer">
+                        <svg
+                          className="jv-MuiSvgIcon-root jv-MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                          focusable="false"
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          data-testid="TreeViewExpandIconIcon"
+                        >
+                          <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                        </svg>
+                      </div>
+
+                      {/* folder icon and name */}
+                      <div className="jv-mTree-node-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        {/* folder icon */}
+                        <div className="jv-mTree-node-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+
+                        {/* folder name */}
+                        <p className="jv-mTree-node-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Organizations
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  {/* Node + Children */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    {/* Individual Node */}
+                    <div className="jv-mTree-node mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-node-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer">
+                        <svg
+                          className="jv-MuiSvgIcon-root jv-MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                          focusable="false"
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          data-testid="TreeViewExpandIconIcon"
+                        >
+                          <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                        </svg>
+                      </div>
+
+                      {/* folder icon and name */}
+                      <div className="jv-mTree-node-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        {/* folder icon */}
+                        <div className="jv-mTree-node-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+
+                        {/* folder name */}
+                        <p className="jv-mTree-node-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Temp
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  {/* Node + Children */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    {/* Individual Node */}
+                    <div className="jv-mTree-node mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-node-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer">
+                        <svg
+                          className="jv-MuiSvgIcon-root jv-MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                          focusable="false"
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          data-testid="TreeViewExpandIconIcon"
+                        >
+                          <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                        </svg>
+                      </div>
+
+                      {/* folder icon and name */}
+                      <div className="jv-mTree-node-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        {/* folder icon */}
+                        <div className="jv-mTree-node-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+
+                        {/* folder name */}
+                        <p className="jv-mTree-node-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Themes
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </>
+);
+richTreeWorking.storyName = "Tree - Rich Folder Tree";
+
 /* ------------------ */
-/*  1. FOLDER TREE    */
+/*  2. FOLDER TREE    */
 /* ------------------ */
 export const treeFolders = () => (
   <>
