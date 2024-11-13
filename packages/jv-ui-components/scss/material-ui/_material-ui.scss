@@ -144,7 +144,7 @@
       30h. Text
       30i. Width/Height Measurements
   -----------------------------------
-  File last modified Sep 30, 2024
+  File last modified Nov 13, 2024
   ----------------------------------- */
 
 /* -------------------- */
@@ -4200,6 +4200,13 @@ textarea[readonly].jv-mInput-text.mui {
   gap: 2px;
   margin-bottom: 1px;
   padding: 0 4px;
+  /* rules below are temporary */
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
 }
 
 .jv-mTree-node-toggle.mui {
@@ -4214,6 +4221,13 @@ textarea[readonly].jv-mInput-text.mui {
 .jv-mTree-node-item.mui {
   font-size: inherit;
   padding-top: 2px;
+  /* rules below are temporary */
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .jv-mTree-node-item-icon.mui {
