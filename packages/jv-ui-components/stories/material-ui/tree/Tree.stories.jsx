@@ -406,11 +406,15 @@ export const richTree = () => {
             alignItems: "center",
           }}
         >
-          <JVBox color="inherit" sx={{ mr: 1, fontSize: "1.2rem" }}>
-            <JVIcon icon="folder" />
-          </JVBox>
+          <JVBox
+            className="jv-mTree-node-item-icon"
+            color="inherit"
+            sx={{ mr: 1, fontSize: "1.2rem" }}
+          />
 
-          <JVTypography variant="body2">{children}</JVTypography>
+          <JVTypography className="jv-mTree-node-item-label" variant="body2">
+            {children}
+          </JVTypography>
         </TreeItem2Label>
       </>
     );
@@ -431,9 +435,12 @@ export const richTree = () => {
     return (
       <TreeItem2Provider itemId={itemId}>
         <TreeItem2Root {...getRootProps(other)}>
-          <TreeItem2Content {...getContentProps()}>
+          <TreeItem2Content className="jv-mTree-node" {...getContentProps()}>
             {/*rendering expand collapse icon*/}
-            <TreeItem2IconContainer {...getIconContainerProps()}>
+            <TreeItem2IconContainer
+              className={"jv-mTree-node-toggle mui"}
+              {...getIconContainerProps()}
+            >
               <TreeItem2Icon status={status} />
             </TreeItem2IconContainer>
             <CustomLabel
@@ -455,6 +462,7 @@ export const richTree = () => {
       getItemLabel={(item) => {
         return item.label;
       }}
+      className="jv-mTree mui"
       //expandedItems={["/public"]}
       // isItemDisabled={(item) => isItemDisable(item)}
       defaultSelectedItems={"/public/samples"}
@@ -723,11 +731,15 @@ export const richTreeDisabled = () => {
             alignItems: "center",
           }}
         >
-          <JVBox color="inherit" sx={{ mr: 1, fontSize: "1.2rem" }}>
-            <JVIcon icon="folder" />
-          </JVBox>
+          <JVBox
+            className="jv-mTree-node-item-icon"
+            color="inherit"
+            sx={{ mr: 1, fontSize: "1.2rem" }}
+          ></JVBox>
 
-          <JVTypography variant="body2">{children}</JVTypography>
+          <JVTypography className="jv-mTree-node-item-label" variant="body2">
+            {children}
+          </JVTypography>
         </TreeItem2Label>
       </>
     );
@@ -759,9 +771,12 @@ export const richTreeDisabled = () => {
             setIsExpanded(!status.expanded);
           }}
         >
-          <TreeItem2Content {...getContentProps()}>
+          <TreeItem2Content className="jv-mTree-node" {...getContentProps()}>
             {/*rendering expand collapse icon*/}
-            <TreeItem2IconContainer {...getIconContainerProps()}>
+            <TreeItem2IconContainer
+              className={"jv-mTree-node-toggle mui"}
+              {...getIconContainerProps()}
+            >
               <TreeItem2Icon status={status} />
             </TreeItem2IconContainer>
             <CustomLabel
@@ -783,6 +798,7 @@ export const richTreeDisabled = () => {
       getItemLabel={(item) => {
         return item.label;
       }}
+      className="jv-mTree mui"
       expandedItems={expandedItems}
       defaultSelectedItems={"/public"}
       getItemId={(item) =>
