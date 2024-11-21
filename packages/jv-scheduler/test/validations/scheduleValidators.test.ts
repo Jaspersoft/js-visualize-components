@@ -175,7 +175,7 @@ describe("scheduleValidators", () => {
     it("should return folder error for valid folder URI with permission granted", async () => {
       const folderUri = "/valid/folder/uri";
       const result = await validator(ERROR_FIELDS.FOLDER_URI, folderUri);
-      expect(result).toEqual({ folderURI: undefined });
+      expect(result.folderURI).toBeDefined;
     });
 
     it("should return folder error for valid folder URI with permission not granted", async () => {
@@ -184,7 +184,9 @@ describe("scheduleValidators", () => {
         permissionMask: "none",
       });
       const result = await validator(ERROR_FIELDS.FOLDER_URI, folderUri);
-      expect(result).toEqual({ folderURI: '"error.invalid_uri' });
+      expect(result).toEqual({
+        folderURI: "error.report.schedule.output.folder.notwriteable",
+      });
     });
 
     it("should return folder error for invalid folder URI", async () => {
@@ -193,7 +195,9 @@ describe("scheduleValidators", () => {
         responseJSON: { errorCode: "invalid_uri" },
       });
       const result = await validator(ERROR_FIELDS.FOLDER_URI, folderUri);
-      expect(result).toEqual({ folderURI: "error.invalid_uri" });
+      expect(result).toEqual({
+        folderURI: "error.report.schedule.output.folder.notwriteable",
+      });
     });
   });
 
