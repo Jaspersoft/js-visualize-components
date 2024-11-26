@@ -102,9 +102,46 @@ export type VisualizeGenericError = {
   parameters: { [key: string]: string }[];
 };
 
+export type DefaultJiveUi = {
+  enabled?: boolean;
+  floatingTableHeadersEnabled?: boolean;
+  floatingCrosstabHeadersEnabled?: boolean;
+};
+
+export type LinkOptions = {
+  beforeRender?: (links: any) => {};
+  events?: object;
+};
+
+export type ChartOpts = {
+  animation?: boolean;
+  zoom?: false | "x" | "y" | "xy";
+};
+
 export type VisualizationConfig = {
   resource: string;
   container?: string;
+  params?: object;
+  pages?: string | number | object;
+  scale?: number | "container" | "width" | "height";
+  defaultJiveUi?: DefaultJiveUi;
+  isolateDom?: boolean;
+  linkOptions?: LinkOptions;
+  ignorePagination?: boolean;
+  reportContainerWidth?: number;
+  configuration?: string | undefined;
+  reportLocale?: string;
+  reportTimeZone?: string;
+  autoresize?: boolean;
+  centerReport?: boolean;
+  useReportZoom?: boolean;
+  modalDialogs?: boolean;
+  chart?: ChartOpts;
+  loadingOverlay?: boolean;
+  scrollToTop?: boolean;
+  showAdhocChartTitle?: boolean;
+  markupType?: string;
+  extendedSearch?: boolean;
   success?: (data: InputControlProperties[]) => void;
   error?: (error: VisualizeGenericError) => void;
   events?: any;
