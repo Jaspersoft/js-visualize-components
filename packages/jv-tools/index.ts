@@ -147,6 +147,21 @@ export type VisualizationConfig = {
   events?: any;
 };
 
+export type DashboardReport = {
+  chart?: ChartOpts;
+  loadingOverlay?: boolean;
+};
+
+export type DashboardProperties = {
+  server?: string;
+  resource: string;
+  container?: object | string;
+  linkOptions?: LinkOptions;
+  params?: object;
+  report?: DashboardReport;
+  events?: any;
+};
+
 export interface VisualizeClient {
   resourcesSearch: (config: ResourcesSearch) => any;
   logout(): Deferred;
