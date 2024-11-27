@@ -156,7 +156,7 @@ export const richTreeWorking = () => (
                     </div>
                   </li>
 
-                  {/* Node + Children */}
+                  {/* Leaf, Data Source */}
                   <li
                     role="treeitem"
                     tabindex="0"
@@ -164,29 +164,278 @@ export const richTreeWorking = () => (
                     className="css-1uhp40g-MuiTreeItem2-root"
                     aria-selected="false"
                   >
-                    {/* Individual Node */}
-                    <div className="jv-mTree-node mui css-gorqh7-MuiTreeItem2-content">
-                      {/* caret */}
-                      <div className="jv-mTree-node-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer">
-                        <svg
-                          className="jv-MuiSvgIcon-root jv-MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                          focusable="false"
-                          aria-hidden="true"
-                          viewBox="0 0 24 24"
-                          data-testid="TreeViewExpandIconIcon"
-                        >
-                          <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
-                        </svg>
-                      </div>
-
-                      {/* folder icon and name */}
-                      <div className="jv-mTree-node-item mui css-1q9fvbo-MuiTreeItem2-label">
+                    <div className="jv-mTree-leaf jv-mTree-leafDatasource mui css-gorqh7-MuiTreeItem2-content">
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
                         {/* folder icon */}
-                        <div className="jv-mTree-node-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
-
-                        {/* folder name */}
-                        <p className="jv-mTree-node-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
-                          Themes
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Data Source
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Domain */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafDomain mui css-gorqh7-MuiTreeItem2-content">
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Domain
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Ad Hoc View */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafAdhoc mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Ad Hoc View
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Report */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafReport mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Report
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Report Option */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafSubreport mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Report Option
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Dashboard */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafDashboard mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Dashboard
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, OLAP */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafOlap mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          OLAP
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Topic */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafTopic mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Topic
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Domain Topic */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafDomaintopic mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Domain Topic
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, File */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafFile mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          File
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Bundle */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafBundle mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Bundle
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Security */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafSecurity mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Security
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Code */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafCode mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Code
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Image */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafImage mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Image
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {/* Leaf, Undefined */}
+                  <li
+                    role="treeitem"
+                    tabindex="0"
+                    aria-expanded="true"
+                    className="css-1uhp40g-MuiTreeItem2-root"
+                    aria-selected="false"
+                  >
+                    <div className="jv-mTree-leaf jv-mTree-leafUndefined mui css-gorqh7-MuiTreeItem2-content">
+                      {/* caret */}
+                      <div className="jv-mTree-leaf-toggle mui css-19d0qwr-MuiTreeItem2-iconContainer"></div>
+                      <div className="jv-mTree-leaf-item mui css-1q9fvbo-MuiTreeItem2-label">
+                        <div className="jv-mTree-leaf-item-icon mui undefined  mui jv-jv-MuiBox-root css-5v4oby"></div>
+                        <p className="jv-mTree-leaf-item-label jv-mText mui jv-MuiTypography-root jv-MuiTypography-body1  css-e784if-MuiTypography-root">
+                          Undefined leaf type
                         </p>
                       </div>
                     </div>
@@ -401,6 +650,7 @@ export const richTree = () => {
       <>
         <TreeItem2Label
           {...other}
+          className="jv-mTree-node-item mui" /* Note to Ankita: className added by Anna */
           sx={{
             display: "flex",
             alignItems: "center",
@@ -412,7 +662,9 @@ export const richTree = () => {
             sx={{ mr: 1, fontSize: "1.2rem" }}
           />
 
-          <JVTypography className="jv-mTree-node-item-label" variant="body2">
+          <JVTypography className="jv-mTree-node-item-label">
+            {" "}
+            {/* Note to Ankita: variant="body2" removed by Anna */}
             {children}
           </JVTypography>
         </TreeItem2Label>
@@ -435,7 +687,12 @@ export const richTree = () => {
     return (
       <TreeItem2Provider itemId={itemId}>
         <TreeItem2Root {...getRootProps(other)}>
-          <TreeItem2Content className="jv-mTree-node" {...getContentProps()}>
+          <TreeItem2Content
+            className="jv-mTree-node mui"
+            {...getContentProps()}
+          >
+            {" "}
+            {/* Note to Ankita: className "mui" added by Anna */}
             {/*rendering expand collapse icon*/}
             <TreeItem2IconContainer
               className={"jv-mTree-node-toggle mui"}

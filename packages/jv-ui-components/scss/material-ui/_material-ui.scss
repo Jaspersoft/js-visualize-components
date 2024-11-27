@@ -144,7 +144,7 @@
       30h. Text
       30i. Width/Height Measurements
   -----------------------------------
-  File last modified Nov 13, 2024
+  File last modified Nov 27, 2024
   ----------------------------------- */
 
 /* -------------------- */
@@ -4189,14 +4189,19 @@ textarea[readonly].jv-mInput-text.mui {
   width: 10px;
 }
 
-/* --------------- */
-/*  25. TREE       */
-/* --------------- */
+/* --------------------- */
+/*  25. TREE             */
+/* --------------------- */
+/*  25a. Default Tree    */
+/* --------------------- */
+/* default tree uses folder and file type icons */
 .jv-mTree.mui {
   font-size: 13px;
 }
 
-.jv-mTree-node.mui {
+.jv-mTree-node.mui,
+.jv-mTree-leaf.mui {
+  border-radius: 2px;
   gap: 2px;
   margin-bottom: 1px;
   padding: 0 4px;
@@ -4218,7 +4223,8 @@ textarea[readonly].jv-mInput-text.mui {
   fill: #01529a;
 }
 
-.jv-mTree-node-item.mui {
+.jv-mTree-node-item.mui,
+.jv-mTree-leaf-item.mui {
   font-size: inherit;
   padding-top: 2px;
   /* rules below are temporary */
@@ -4230,9 +4236,10 @@ textarea[readonly].jv-mInput-text.mui {
   align-items: center;
 }
 
-.jv-mTree-node-item-icon.mui {
+.jv-mTree-node-item-icon.mui,
+.jv-mTree-leaf-item-icon.mui {
   background-image: image-url("file_type_icons_sprite.svg");
-  background-position: 2px 0;
+  background-position: 1px 1px;
   background-repeat: no-repeat;
   font-size: inherit;
   //background-size: 18px;
@@ -4244,95 +4251,107 @@ textarea[readonly].jv-mInput-text.mui {
   width: 1.538em;
 }
 
-.jv-mTree-node-item-label.mui {
+.jv-mTree-node-item-label.mui,
+.jv-mTree-leaf-item-label.mui {
+  color: #444444;
   font-size: inherit;
   line-height: 1.846;
-}
-
-.jv-mTreeAdhoc.mui {
-}
-
-.jv-mTreeOutline.mui {
-}
-
-.jv-mTreeRepository.mui {
-}
-
-.jv-mTree-item.mui {
-}
-
-.jv-mTree-item-label.mui {
-  color: #444444;
-  overflow: hidden;
-}
-
-.jv-mTree-item-label-text.mui {
-  line-height: 25px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-icon.mui {
-  /*background-image: url("images/adhoc_datatree_icons_sprite_mui.svg"); not sure how to reference this*/
-  background-repeat: no-repeat;
-  background-size: 18px; /* original image width is 20px */
-  height: 18px;
-  margin-right: 4px;
-  width: 20px;
-  /*background-color: pink;*/
+.jv-mTree-leafUndefined.mui .jv-mTree-leaf-item-icon.mui {
+  background-image: none;
+  display: none;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconSet.mui {
-  background-position: 1px -1px;
+.jv-mTree-leafDatasource.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 1px -31px;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconStringfield.mui {
-  background-position: 1px -29px;
+.jv-mTree-leafDomain.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 1px -63px;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconStringmeasure.mui {
-  background-position: 1px -57px;
+.jv-mTree-leafAdhoc.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 1px -95px;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconNumberfield.mui {
-  background-position: 1px -86px;
+.jv-mTree-leafReport.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 1px -128px;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconNumbermeasure.mui {
-  background-position: 1px -115px;
+.jv-mTree-leafSubreport.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 1px -160px;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconCalcfield.mui {
-  background-position: 1px -144px;
+.jv-mTree-leafDashboard.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 1px -192px;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconCalcmeasure.mui {
-  background-position: 1px -173px;
+.jv-mTree-leafOlap.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -262px;
+  background-size: 1.6em;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconDatefield.mui {
-  background-position: 1px -202px;
+.jv-mTree-leafTopic.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -300px;
+  background-size: 1.6em;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconDatemeasure.mui {
-  background-position: 1px -231px;
+.jv-mTree-leafDomaintopic.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -338px;
+  background-size: 1.6em;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconTimefield.mui {
-  background-position: 1px -260px;
+.jv-mTree-leafFile.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -376px;
+  background-size: 1.6em;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconTimemeasure.mui {
-  background-position: 1px -289px;
+.jv-mTree-leafBundle.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -413px;
+  background-size: 1.6em;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconBooleanfield.mui {
-  background-position: 1px -317px;
+.jv-mTree-leafSecurity.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -451px;
+  background-size: 1.6em;
 }
 
-.jv-mTreeAdhoc.mui .jv-mTree-item-label-iconBooleanmeasure.mui {
-  background-position: 1px -346px;
+.jv-mTree-leafCode.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -488px;
+  background-size: 1.6em;
+}
+
+.jv-mTree-leafImage.mui .jv-mTree-leaf-item-icon.mui {
+  background-position: 0 -525px;
+  background-size: 1.6em;
+}
+
+/* States */
+.jv-mTree-node.mui:hover,
+.jv-mTree-leaf.mui:hover {
+  background-color: #efefef;
+}
+
+li[aria-selected="true"] > .jv-mTree-node.mui,
+li[aria-selected="true"] > .jv-mTree-leaf.mui {
+  background-color: #0078bd;
+}
+
+li[aria-selected="true"] > .jv-mTree-node.mui .jv-mTree-node-item-icon.mui,
+li[aria-selected="true"] > .jv-mTree-leaf.mui .jv-mTree-leaf-item-icon.mui {
+  background-image: image-url("file_type_icons_sprite_selected.svg");
+}
+
+li[aria-selected="true"] > .jv-mTree-node.mui .jv-mTree-node-toggle.mui > svg {
+  fill: #ffffff;
+}
+li[aria-selected="true"] > .jv-mTree-node.mui .jv-mTree-node-item-label.mui,
+li[aria-selected="true"] > .jv-mTree-leaf.mui .jv-mTree-leaf-item-label.mui {
+  color: #ffffff;
 }
 
 /* --------------------- */
