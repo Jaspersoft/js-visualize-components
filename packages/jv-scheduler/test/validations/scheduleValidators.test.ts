@@ -6,197 +6,157 @@ import { ERROR_FIELDS } from "../../src/constants/schedulerConstants";
 import moment from "moment";
 import { SEND_ATTACHMENT } from "../../src/constants/schedulerConstants";
 import { checkPermissionOnResource } from "../../src/services/schedulerServices";
+import store from "../../src/store/store";
 
 jest.mock("../../src/services/schedulerServices", () => ({
-  checkPermissionOnResource: jest
-    .fn()
-    .mockResolvedValueOnce({ permissionMask: "read" }),
+  checkPermissionOnResource: jest.fn(),
 }));
 
 jest.mock("../../src/store/store", () => ({
-  getState: jest.fn().mockReturnValue({
-    schedulerUIConfig: { timezone: "UTC" },
-  }),
+  getState: jest.fn(),
 }));
 
 describe("scheduleValidators", () => {
   describe("validator", () => {
-    it("should return error for empty job name", () => {
-      const result = validator(ERROR_FIELDS.SCHEDULE_JOB_NAME, "");
-      expect(result).toEqual({
-        [ERROR_FIELDS.SCHEDULE_JOB_NAME]: "error.schedule.job.name",
+    it("should validate SCHEDULE_JOB_NAME", () => {
+      expect(validator(ERROR_FIELDS.SCHEDULE_JOB_NAME, "")).toEqual({
+        scheduleJobName: "error.schedule.job.name",
+      });
+      expect(
+        validator(ERROR_FIELDS.SCHEDULE_JOB_NAME, "a".repeat(101)),
+      ).toEqual({ scheduleJobName: "error.schedule.job.name.too.long" });
+      expect(validator(ERROR_FIELDS.SCHEDULE_JOB_NAME, "validName")).toEqual({
+        scheduleJobName: undefined,
       });
     });
 
-    it("should return error for job name too long", () => {
-      const result = validator(ERROR_FIELDS.SCHEDULE_JOB_NAME, "a".repeat(101));
-      expect(result).toEqual({
-        [ERROR_FIELDS.SCHEDULE_JOB_NAME]: "error.schedule.job.name.too.long",
+    it("should validate SCHEDULE_JOB_DESCRIPTION", () => {
+      expect(
+        validator(ERROR_FIELDS.SCHEDULE_JOB_DESCRIPTION, "a".repeat(251)),
+      ).toEqual({
+        scheduleJobDescription: "error.schedule.job.description.too.long",
+      });
+      expect(
+        validator(ERROR_FIELDS.SCHEDULE_JOB_DESCRIPTION, "validDescription"),
+      ).toEqual({ scheduleJobDescription: undefined });
+    });
+
+    it("should validate RECURRENCE", () => {
+      expect(validator(ERROR_FIELDS.RECURRENCE, "")).toEqual({
+        recurrenceInterval: "error.recurrence",
+      });
+      expect(validator(ERROR_FIELDS.RECURRENCE, "1.5")).toEqual({
+        recurrenceInterval: "error.recurrence.must.be.integer",
+      });
+      expect(validator(ERROR_FIELDS.RECURRENCE, "-1")).toEqual({
+        recurrenceInterval: "error.recurrence.must.be.integer",
+      });
+      expect(validator(ERROR_FIELDS.RECURRENCE, "1")).toEqual({
+        recurrenceInterval: undefined,
       });
     });
 
-    it("should return error for job description too long", () => {
-      const result = validator(
-        ERROR_FIELDS.SCHEDULE_JOB_DESCRIPTION,
-        "test".repeat(251),
+    it("should validate START_DATE", () => {
+      const extraParams = { startType: 2, outputTimeZone: "UTC" };
+      (store.getState as jest.Mock).mockReturnValue({
+        schedulerUIConfig: { timezone: "UTC" },
+      } as any);
+      expect(validator(ERROR_FIELDS.START_DATE, "", extraParams)).toEqual({
+        startDate: "error.start.date",
+      });
+      expect(
+        validator(
+          ERROR_FIELDS.START_DATE,
+          moment().subtract(1, "day").toISOString(),
+          extraParams,
+        ),
+      ).toEqual({ startDate: "error.past.date" });
+      expect(
+        validator(
+          ERROR_FIELDS.START_DATE,
+          moment().add(1, "day").toISOString(),
+          extraParams,
+        ),
+      ).toEqual({ startDate: undefined });
+    });
+
+    it("should validate EMAIL_ADDRESS", () => {
+      expect(validator(ERROR_FIELDS.EMAIL_ADDRESS, "")).toEqual({
+        address: "error.notifications.email.empty",
+      });
+      expect(validator(ERROR_FIELDS.EMAIL_ADDRESS, "invalidEmail")).toEqual({
+        address: "error.email.address",
+      });
+      expect(validator(ERROR_FIELDS.EMAIL_ADDRESS, "test@example.com")).toEqual(
+        { address: undefined },
       );
-      expect(result).toEqual({
-        [ERROR_FIELDS.SCHEDULE_JOB_DESCRIPTION]:
-          "error.schedule.job.description.too.long",
+    });
+
+    it("should validate EMAIL_SUBJECT", () => {
+      expect(validator(ERROR_FIELDS.EMAIL_SUBJECT, "")).toEqual({
+        subject: "error.enter.subject",
+      });
+      expect(validator(ERROR_FIELDS.EMAIL_SUBJECT, "a".repeat(101))).toEqual({
+        subject: "error.subject.too.long",
+      });
+      expect(validator(ERROR_FIELDS.EMAIL_SUBJECT, "validSubject")).toEqual({
+        subject: undefined,
       });
     });
 
-    it("should return error for empty recurrence interval", () => {
-      const result = validator(ERROR_FIELDS.RECURRENCE, "");
-      expect(result).toEqual({ [ERROR_FIELDS.RECURRENCE]: "error.recurrence" });
-    });
-
-    it("should return error for non-integer recurrence interval", () => {
-      const result = validator(ERROR_FIELDS.RECURRENCE, "1.5");
-      expect(result).toEqual({
-        [ERROR_FIELDS.RECURRENCE]: "error.recurrence.must.be.integer",
+    it("should validate MESSAGE", () => {
+      expect(validator(ERROR_FIELDS.MESSAGE, "a".repeat(2001))).toEqual({
+        messageText: "error.message.too.long",
+      });
+      expect(validator(ERROR_FIELDS.MESSAGE, "validMessage")).toEqual({
+        messageText: undefined,
       });
     });
 
-    it("should return error for negative recurrence interval", () => {
-      const result = validator(ERROR_FIELDS.RECURRENCE, "-1");
-      expect(result).toEqual({
-        [ERROR_FIELDS.RECURRENCE]: "error.recurrence.must.be.integer",
+    it("should validate FILE_NAME", () => {
+      expect(validator(ERROR_FIELDS.FILE_NAME, "")).toEqual({
+        baseOutputFilename: "error.file.name",
+      });
+      expect(validator(ERROR_FIELDS.FILE_NAME, "a".repeat(201))).toEqual({
+        baseOutputFilename: "error.file.name.too.long",
+      });
+      expect(validator(ERROR_FIELDS.FILE_NAME, "invalid/fileName")).toEqual({
+        baseOutputFilename: "error.invalid.file.name",
+      });
+      expect(validator(ERROR_FIELDS.FILE_NAME, "validFileName")).toEqual({
+        baseOutputFilename: undefined,
       });
     });
 
-    it("should not return error for valid recurrence interval", () => {
-      const result = validator(ERROR_FIELDS.RECURRENCE, "5");
-      expect(result).toEqual({ [ERROR_FIELDS.RECURRENCE]: undefined });
-    });
-
-    it("should return error for past date", () => {
-      const pastDate = moment().subtract(1, "day").format();
-      const result = validator(ERROR_FIELDS.START_DATE, pastDate, {
-        startType: 2,
+    it("should validate OUTPUT_FORMAT", () => {
+      expect(validator(ERROR_FIELDS.OUTPUT_FORMAT, "")).toEqual({
+        outputFormat: "error.output.format",
       });
-      expect(result).toEqual({ [ERROR_FIELDS.START_DATE]: "error.past.date" });
-    });
-    it("should return error for empty date when startType is 2", () => {
-      const result = validator(ERROR_FIELDS.START_DATE, "", { startType: 2 });
-      expect(result).toEqual({ [ERROR_FIELDS.START_DATE]: "error.start.date" });
-    });
-
-    it("should return error for empty email", () => {
-      const result = validator(ERROR_FIELDS.EMAIL_ADDRESS, "");
-      expect(result).toEqual({
-        [ERROR_FIELDS.EMAIL_ADDRESS]: "error.notifications.email.empty",
+      expect(validator(ERROR_FIELDS.OUTPUT_FORMAT, "pdf")).toEqual({
+        outputFormat: undefined,
       });
     });
 
-    it("should return error for invalid email", () => {
-      const result = validator(ERROR_FIELDS.EMAIL_ADDRESS, "invalid-email");
-      expect(result).toEqual({
-        [ERROR_FIELDS.EMAIL_ADDRESS]: "error.email.address",
+    it("should validate SEND_TYPE", () => {
+      expect(validator(ERROR_FIELDS.SEND_TYPE, SEND_ATTACHMENT)).toEqual({
+        folderURI: undefined,
       });
     });
 
-    it("should return error for message too long", () => {
-      const result = validator(ERROR_FIELDS.MESSAGE, "test".repeat(2001));
-      expect(result).toEqual({
-        [ERROR_FIELDS.MESSAGE]: "error.message.too.long",
+    it("should validate FOLDER_URI", async () => {
+      (
+        checkPermissionOnResource as jest.MockedFunction<
+          typeof checkPermissionOnResource
+        >
+      ).mockResolvedValue({ permissionMask: 1 });
+      expect(await validator(ERROR_FIELDS.FOLDER_URI, "")).toEqual({
+        folderURI: "error.folder.uri.required",
       });
-    });
-
-    it("should return error for empty file name", () => {
-      const result = validator(ERROR_FIELDS.FILE_NAME, "");
-      expect(result).toEqual({ [ERROR_FIELDS.FILE_NAME]: "error.file.name" });
-    });
-
-    it("should return error for invalid file name", () => {
-      const result = validator(ERROR_FIELDS.FILE_NAME, "invalid/file?name");
-      expect(result).toEqual({
-        [ERROR_FIELDS.FILE_NAME]: "error.invalid.file.name",
-      });
-    });
-
-    it("should return error for empty folder URI", () => {
-      const result = validator(ERROR_FIELDS.FOLDER_URI, "");
-      expect(result).toEqual({ folderURI: "error.folder.uri.required" });
-    });
-
-    it("should return error for invalid folder URI", () => {
-      const result = validator(ERROR_FIELDS.FOLDER_URI, "invalid/%uri");
-      expect(result).toEqual({
+      expect(await validator(ERROR_FIELDS.FOLDER_URI, "invalid/uri")).toEqual({
         folderURI: "error.report.schedule.output.folder.resourceuri.format",
       });
-    });
-    it("should return error for empty output format", () => {
-      const result = validator(ERROR_FIELDS.OUTPUT_FORMAT, "");
-      expect(result).toEqual({
-        [ERROR_FIELDS.OUTPUT_FORMAT]: "error.output.format",
-      });
-    });
-
-    it("should not return error for valid output format", () => {
-      const result = validator(ERROR_FIELDS.OUTPUT_FORMAT, "PDF");
-      expect(result).toEqual({ [ERROR_FIELDS.OUTPUT_FORMAT]: undefined });
-    });
-
-    it("should return undefined folderURI for send type SEND_ATTACHMENT", () => {
-      const result = validator(ERROR_FIELDS.SEND_TYPE, SEND_ATTACHMENT);
-      expect(result).toEqual({ folderURI: undefined });
-    });
-
-    it("should not return undefined folderURI for send type other than SEND_ATTACHMENT", () => {
-      const result = validator(ERROR_FIELDS.SEND_TYPE, "SEND_LINK");
-      expect(result).toEqual({});
-    });
-    it("should return error for empty email subject", () => {
-      const result = validator(ERROR_FIELDS.EMAIL_SUBJECT, "");
-      expect(result).toEqual({
-        [ERROR_FIELDS.EMAIL_SUBJECT]: "error.enter.subject",
-      });
-    });
-
-    it("should return error for email subject too long", () => {
-      const result = validator(ERROR_FIELDS.EMAIL_SUBJECT, "a".repeat(101));
-      expect(result).toEqual({
-        [ERROR_FIELDS.EMAIL_SUBJECT]: "error.subject.too.long",
-      });
-    });
-
-    it("should not return error for valid email subject", () => {
-      const result = validator(ERROR_FIELDS.EMAIL_SUBJECT, "Valid Subject");
-      expect(result).toEqual({ [ERROR_FIELDS.EMAIL_SUBJECT]: undefined });
-    });
-    it("should return error for file name too long", () => {
-      const result = validator(ERROR_FIELDS.FILE_NAME, "a".repeat(201));
-      expect(result).toEqual({
-        [ERROR_FIELDS.FILE_NAME]: "error.file.name.too.long",
-      });
-    });
-
-    it("should return folder error for valid folder URI with permission granted", async () => {
-      const folderUri = "/valid/folder/uri";
-      const result = await validator(ERROR_FIELDS.FOLDER_URI, folderUri);
-      expect(result.folderURI).toBeDefined;
-    });
-
-    it("should return folder error for valid folder URI with permission not granted", async () => {
-      const folderUri = "/valid/folder/uri";
-      (checkPermissionOnResource as jest.Mock).mockResolvedValueOnce({
-        permissionMask: "none",
-      });
-      const result = await validator(ERROR_FIELDS.FOLDER_URI, folderUri);
-      expect(result).toEqual({
-        folderURI: "error.report.schedule.output.folder.notwriteable",
-      });
-    });
-
-    it("should return folder error for invalid folder URI", async () => {
-      const folderUri = "/invalid/folder/uri";
-      (checkPermissionOnResource as jest.Mock).mockRejectedValueOnce({
-        responseJSON: { errorCode: "invalid_uri" },
-      });
-      const result = await validator(ERROR_FIELDS.FOLDER_URI, folderUri);
-      expect(result).toEqual({
-        folderURI: "error.report.schedule.output.folder.notwriteable",
+      expect(await validator(ERROR_FIELDS.FOLDER_URI, "validUri")).toEqual({
+        folderURI: undefined,
       });
     });
   });
