@@ -162,6 +162,26 @@ export type DashboardProperties = {
   events?: any;
 };
 
+export type AdhocView = {
+  resource: string;
+  server?: string;
+  container?: object | string;
+  autoresize?: boolean;
+  canvas?: any;
+  linkOptions?: LinkOptions;
+  loadingOverlay?: boolean;
+  visualizationChooser?: { enabled?: boolean };
+  showTitle?: boolean;
+  allowDrilldown?: boolean;
+  designerMode?: boolean;
+  params?: any;
+  events?: any;
+};
+
+export type AdhocViewDataset = {
+  params?: { offset?: any; pageSize?: any };
+};
+
 export interface VisualizeClient {
   resourcesSearch: (config: ResourcesSearch) => any;
   logout(): Deferred;
