@@ -97,4 +97,5 @@ export interface InputControlProperties {
       validationResult?: { [key: string]: string },
     ) => void;
   };
+  parameters?: { [key: string]: string[] };
 }

@@ -9,6 +9,7 @@ import { createRoot } from "react-dom/client";
 import { JVStylesProvider } from "@jaspersoft/jv-ui-components";
 import BasePanel from "../panels/BasePanel";
 import { InputControlsConfig } from "../InputControls";
+import { InputControlsProvider } from "../reducer/InputControlsReducer";
 
 export const fillControlStructure = (
   vObject: VisualizeClient,
@@ -45,12 +46,14 @@ export const renderInputControls = (
         const icRoot = createRoot(container);
         icRoot.render(
           <JVStylesProvider>
-            <BasePanel
-              controls={controls}
-              config={config?.typeConfig}
-              events={config?.events}
-              params={config?.params}
-            />
+            <InputControlsProvider initialState={controls?.data}>
+              <BasePanel
+                controls={controls}
+                config={config?.typeConfig}
+                events={config?.events}
+                params={config?.params}
+              />
+            </InputControlsProvider>
           </JVStylesProvider>,
         );
         config?.success && config?.success.call(self, controls);

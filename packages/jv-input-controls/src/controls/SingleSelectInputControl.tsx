@@ -5,7 +5,7 @@
  */
 
 import { JVSelect } from "@jaspersoft/jv-ui-components";
-import React from "react";
+import { JSX } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
@@ -18,7 +18,7 @@ export type SingleSelectICType = "singleSelect";
 
 export function SingleSelectInputControl(
   props: SingleSelectInputControlProps,
-): React.JSX.Element {
+): JSX.Element {
   const liveState = useLiveState(
     getTheInitialValueForSingleSelectInputControl(props.state?.value),
   );

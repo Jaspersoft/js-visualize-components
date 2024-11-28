@@ -5,10 +5,9 @@
  */
 
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
-import { JSX, useState } from "react";
+import { JSX, useContext, useState } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
-import { PanelContext } from "../controls/contexts/PanelContext";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
@@ -20,8 +19,8 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlsTypeConfig } from "../InputControls";
-import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
 import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
+import { InputControlsContext } from "../reducer/InputControlsReducer";
 
 export interface BasePanelProps {
   controls?: any;
@@ -36,9 +35,8 @@ export interface BasePanelProps {
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
-  const [inputControls, setInputControls] = useState<InputControlProperties[]>(
-    props.controls?.data,
-  );
+  const { state: inputControlsState, dispatch: dispatchInputControls } =
+    useContext(InputControlsContext);
   const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
     {},
   );
@@ -50,7 +48,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     ctrlUpdated: InputControlProperties,
     resultValidation?: { [key: string]: string },
   ) => {
-    const inputControlsUpdated = inputControls?.reduce(
+    const inputControlsUpdated = inputControlsState?.reduce(
       (
         acc: {
           state: InputControlProperties[];
@@ -82,8 +80,11 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         invalidResponse: { ...validationResultState },
       },
     );
-    if (inputControls) {
-      setInputControls(inputControlsUpdated.state);
+    if (inputControlsState) {
+      dispatchInputControls({
+        type: "[INPUT_CONTROLS] SET_DATA",
+        payload: inputControlsUpdated.state,
+      });
       setValidResponse(inputControlsUpdated.response);
       setValidationResultState(inputControlsUpdated.invalidResponse);
       const isError =
@@ -233,23 +234,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     }
   };
 
-  const notImplemented = (controlMap: any) => {
-    if (controlMap?.data) {
-      return (
-        controlMap.data.filter(
-          (c: InputControlProperties) =>
-            (c.slaveDependencies && c.slaveDependencies.length > 0) ||
-            (c.masterDependencies && c.masterDependencies.length > 0),
-        ).length > 0
-      );
-    }
-    return false;
-  };
-
   const buildControls = (controlMap: any) => {
-    if (notImplemented(controlMap)) {
-      return <NotYetImplementedMessage />;
-    }
     if (controlMap?.data) {
       return controlMap.data.map(buildControl);
     }
@@ -264,9 +249,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   return (
     <div className="jv-inputControlPanel">
       <JVDatePickerProvider>
-        <PanelContext.Provider value={inputControls}>
-          {buildControls(props.controls)}
-        </PanelContext.Provider>
+        {buildControls(props.controls)}
       </JVDatePickerProvider>
     </div>
   );
