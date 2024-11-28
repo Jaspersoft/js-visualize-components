@@ -5,7 +5,7 @@
  */
 
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
-import { JSX, useContext, useState } from "react";
+import { JSX, useContext } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
@@ -20,7 +20,10 @@ import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlsTypeConfig } from "../InputControls";
 import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
-import { InputControlsContext } from "../reducer/InputControlsReducer";
+import {
+  INPUT_CONTROLS_ACTIONS,
+  InputControlsContext,
+} from "../reducer/InputControlsReducer";
 
 export interface BasePanelProps {
   controls?: any;
@@ -35,65 +38,21 @@ export interface BasePanelProps {
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
-  const { state: inputControlsState, dispatch: dispatchInputControls } =
-    useContext(InputControlsContext);
-  const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
-    {},
-  );
-  const [validationResultState, setValidationResultState] = useState<{
-    [key: string]: string;
-  }>({});
+  const { dispatch } = useContext(InputControlsContext);
 
   const buildLatestJSON = (
     ctrlUpdated: InputControlProperties,
     resultValidation?: { [key: string]: string },
   ) => {
-    const inputControlsUpdated = inputControlsState?.reduce(
-      (
-        acc: {
-          state: InputControlProperties[];
-          response: { [key: string]: any[] };
-          invalidResponse: { [key: string]: any };
-        },
-        ctrl: InputControlProperties,
-      ) => {
-        const theValidationResult = resultValidation?.[ctrl.id];
-        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
-        acc.state.push(ctrlToUse);
-        if (theValidationResult !== undefined && theValidationResult !== "") {
-          acc.invalidResponse = {
-            ...acc.invalidResponse,
-            [ctrlToUse.id]: theValidationResult,
-          };
-        } else if (theValidationResult === "") {
-          // this means that the validation result is empty, so we need to remove the key from the invalidResponse
-          delete acc.invalidResponse[ctrlToUse.id];
-        }
-        acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
-          ? ctrlToUse.state?.value
-          : [ctrlToUse.state?.value];
-        return acc;
+    // Here, we can trigger the CALL to the server to get the new data in case it's a cascading input control
+    dispatch({
+      type: INPUT_CONTROLS_ACTIONS.UPDATE_DATA,
+      payload: {
+        ctrlUpdated,
+        resultValidation,
+        props,
       },
-      {
-        state: [],
-        response: { ...validResponse },
-        invalidResponse: { ...validationResultState },
-      },
-    );
-    if (inputControlsState) {
-      dispatchInputControls({
-        type: "[INPUT_CONTROLS] SET_DATA",
-        payload: inputControlsUpdated.state,
-      });
-      setValidResponse(inputControlsUpdated.response);
-      setValidationResultState(inputControlsUpdated.invalidResponse);
-      const isError =
-        Object.keys(inputControlsUpdated.invalidResponse).length > 0;
-      props.events?.change?.(
-        inputControlsUpdated.response,
-        isError ? inputControlsUpdated.invalidResponse : false,
-      );
-    }
+    });
   };
 
   const getControlProps = (
