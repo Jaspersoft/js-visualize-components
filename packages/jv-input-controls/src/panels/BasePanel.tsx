@@ -40,21 +40,6 @@ export interface BasePanelProps {
 export default function BasePanel(props: BasePanelProps): JSX.Element {
   const { dispatch } = useContext(InputControlsContext);
 
-  const buildLatestJSON = (
-    ctrlUpdated: InputControlProperties,
-    resultValidation?: { [key: string]: string },
-  ) => {
-    // Here, we can trigger the CALL to the server to get the new data in case it's a cascading input control
-    dispatch({
-      type: INPUT_CONTROLS_ACTIONS.UPDATE_DATA,
-      payload: {
-        ctrlUpdated,
-        resultValidation,
-        props,
-      },
-    });
-  };
-
   const getControlProps = (
     control: any,
     params?: { [key: string]: string[] },
@@ -72,7 +57,21 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         value: getDefaultValueFromParamsAndProps({ ...control, params }),
       },
       events: {
-        change: buildLatestJSON,
+        change: (
+          ctrlUpdated: InputControlProperties,
+          resultValidation?: { [key: string]: string },
+        ) => {
+          // TODO: Here, we can trigger the CALL to the server to get the new data in case it's a cascading input
+          // control
+          dispatch({
+            type: INPUT_CONTROLS_ACTIONS.UPDATE_DATA,
+            payload: {
+              ctrlUpdated,
+              resultValidation,
+              props,
+            },
+          });
+        },
       },
     };
   };
