@@ -21,9 +21,6 @@ const inputControlsReducer = (
   action: { type: string; payload: any },
 ) => {
   const { type, payload } = action;
-  // console.log("inputControlsReducer - STATE", state);
-  // console.log("inputControlsReducer - action", action);
-  // console.log("----------------------");
   switch (type) {
     case INPUT_CONTROLS_ACTIONS.SET_DATA:
       return {
@@ -43,7 +40,6 @@ const inputControlsReducer = (
           const theValidationResult = payload.resultValidation?.[ctrl.id];
           const ctrlToUse =
             ctrl.id !== payload.ctrlUpdated.id ? ctrl : payload.ctrlUpdated;
-          acc.state.push(ctrlToUse);
           if (theValidationResult !== undefined && theValidationResult !== "") {
             acc.invalidResponse = {
               ...acc.invalidResponse,
@@ -53,6 +49,22 @@ const inputControlsReducer = (
             // this means that the validation result is empty, so we need to remove the key from the invalidResponse
             delete acc.invalidResponse[ctrlToUse.id];
           }
+          if (ctrlToUse.state?.options !== undefined) {
+            // we also have to update the options of the current control if needed.
+            ctrlToUse.state = {
+              ...ctrlToUse.state,
+              options: ctrlToUse.state.options.map(
+                (opt: { selected: boolean; value: string; label: string }) => {
+                  return {
+                    ...opt,
+                    selected: ctrlToUse.state?.value.includes(opt.value),
+                  };
+                },
+              ),
+            };
+          }
+          acc.state.push(ctrlToUse);
+
           acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
             ? ctrlToUse.state?.value
             : [ctrlToUse.state?.value];
@@ -135,7 +147,6 @@ export const InputControlsProvider = ({
     initialState,
     createInitialState,
   );
-  // console.log("InputControlsProvider - STATE", state);
   return (
     <InputControlsContext.Provider value={{ state, dispatch }}>
       {children}
