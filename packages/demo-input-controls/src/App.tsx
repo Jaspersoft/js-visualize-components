@@ -4,21 +4,12 @@
  *  in the license file that is distributed with this file.
  */
 
-// This line is necessary to setting up the styles
-// refer to: https://v5.mui.com/material-ui/experimental-api/classname-generator/
-import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import "./App.css";
-import {
-  InputControlsConfig,
-  InputControls,
-  renderInputControls,
-} from "@jaspersoft/jv-input-controls";
+import { renderInputControls } from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
   InputControlProperties,
-  VisualizeClient,
-  VisualizeFactory,
-  visualizejsLoader,
+  useVisualize,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
@@ -30,48 +21,17 @@ const myAuth: Authentication = {
   locale: "en_US",
 };
 
-const reportUri = "/public/viz/Adhoc/Ad_Hoc_View_All_filters_Report";
-// const reportUri = "/public/Samples/Reports/RevenueDetailReport";
+const reportUri = "/public/Samples/Reports/07g.RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
 function App() {
-  const [vContainer, setVContainer] = useState(
-    null as { v: VisualizeClient } | null,
-  );
+  const vContainer = useVisualize(visualizeUrl, myAuth);
   const [controlBuffer, setControlBuffer] =
     useState<InputControlProperties[]>();
   const [vReport, setVReport] = useState<any>();
-
-  useEffect(() => {
-    const loadVisualize = visualizejsLoader(visualizeUrl);
-    console.log("Loading Visualize.js...");
-    loadVisualize()
-      .then((visualizeFactory: VisualizeFactory) => {
-        // Connecting to JRS.
-        console.log(
-          "Visualize.js loaded. Connecting to JasperReports Server...",
-        );
-        visualizeFactory(
-          {
-            auth: myAuth,
-          },
-          (v: VisualizeClient) => {
-            console.log("Visualize client connected.");
-            setVContainer({ v });
-          },
-          (e: any) => {
-            console.log("Error connecting to JasperReports Server.");
-            console.log(String(e));
-          },
-        );
-      })
-      .catch((error: Error) => {
-        console.log("Error loading visualize.js: ", error);
-      });
-  }, []);
 
   useEffect(() => {
     if (!vContainer || !vContainer.v) {
@@ -154,19 +114,8 @@ function App() {
     }
   };
 
-  const panelD: InputControlsConfig = {
-    typeConfig: { bool: { type: "switch" } },
-    events: {
-      change: (ics: any, vs: any) => {
-        console.log("NEW ICS!! ", ics);
-        if (vs) console.log("Validations: ", vs);
-      },
-    },
-  };
-
   return (
     <>
-      <InputControls v={vContainer?.v} uri={reportUri} config={panelD} />
       <div id="controls-demo-page">
         <div className="jv-lColumns">
           <div className="jv-lColumns-column jr-uWidth-300px">

@@ -1,7 +1,4 @@
-import {
-  JVCircularProgress,
-  JVLinearProgress,
-} from "@jaspersoft/jv-ui-components";
+import { JVCircularProgress, JVLinearProgress } from "../../../material-ui";
 import { useEffect, useState } from "react";
 import "../css/demoPages.css";
 import "./progress.css";

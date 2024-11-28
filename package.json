@@ -1,6 +1,6 @@
 {
   "name": "js-visualize-components",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "private": true,
   "description": "Jaspersoft Visualize Components",
   "workspaces": {
@@ -23,7 +23,8 @@
     "storybook": "yarn workspace @jaspersoft/jv-ui-components run storybook",
     "start:styles:dev": "yarn workspace @jaspersoft/jv-ui-components run start:dev",
     "print:dependencies": "node ./utils/list-dependencies.js",
-    "prepare": "husky"
+    "prepare": "husky",
+    "version": "yarn workspace @jaspersoft/jv-ui-components version --new-version $npm_package_version --no-git-tag-version && yarn workspace @jaspersoft/jv-tools version --new-version $npm_package_version --no-git-tag-version && yarn workspace @jaspersoft/jv-input-controls version --new-version $npm_package_version --no-git-tag-version && yarn workspace @jaspersoft/jv-scheduler version --new-version $npm_package_version --no-git-tag-version && yarn workspace demo-input-controls version --new-version $npm_package_version --no-git-tag-version && yarn workspace demo-scheduler version --new-version $npm_package_version --no-git-tag-version"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/Jaspersoft/js-visualize-components/issues"
   },
-  "homepage": "https://github.com/Jaspersoft/js-visualize-components#readme",
+  "homepage": "https://jaspersoft.github.io/js-visualize-components-samples",
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },

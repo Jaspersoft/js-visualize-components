@@ -3,7 +3,7 @@ import {
   JVPopper,
   JVSelectItem,
   JVTextField,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import {
   Button,
   List,

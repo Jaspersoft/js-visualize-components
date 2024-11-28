@@ -1,10 +1,11 @@
-# Input Controls
+# @jaspersoft/input-controls
 
 ## About
-A collection of React-based components to represent input controls used to interact with reports embedded from JasperReports Server
 
+The Input Controls component allows you to render input controls in your web application. The component is built on top
+of the Visualize.js API and is used to interact with JasperReport Server reports and visualizations.
 
-## Usage
-**Install**: run `yarn install` in root directory, and yarn workspaces will handle installations for this package
+## Installation and Usage
 
-**Test**: run `yarn test` to run all test suites
+More information about the installation and usage can be
+found [here](https://jaspersoft.github.io/js-visualize-components-samples/pages/input-controls/basic-usage.html).

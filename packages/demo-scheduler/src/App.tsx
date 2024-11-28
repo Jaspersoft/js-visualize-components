@@ -6,7 +6,6 @@
 
 import { useEffect, useState } from "react";
 import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
-import "@jaspersoft/jv-ui-components/material-ui/JVMuiClassNameSetup";
 import {
   Authentication,
   VisualizeFactory,
@@ -32,7 +31,7 @@ const credentials: Authentication = {
   locale: "en_US",
 };
 
-const resourceUri = "/public/Samples/Reports/9.CustomerDetailReport";
+const resourceUri = "/public/Samples/Reports/07g.RevenueDetailReport";
 function SchedulerApp() {
   const [visualize, setVisualize] = useState(
     null as { v: VisualizeClient } | null,

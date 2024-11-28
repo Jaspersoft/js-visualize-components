@@ -13,7 +13,7 @@ import {
   JVTabs,
   JVTextField,
   JVTypography,
-} from "@jaspersoft/jv-ui-components";
+} from "../../../material-ui";
 import { ChangeEvent, useState } from "react";
 import "./stepper.css";
 import {

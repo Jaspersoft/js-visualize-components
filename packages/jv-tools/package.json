@@ -1,12 +1,12 @@
 {
   "name": "@jaspersoft/jv-tools",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "description": "Tools for working with JasperReports Server's Visualize.js",
-  "private": true,
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://jaspersoft.github.io/js-visualize-components-samples/pages/tools/jv-tools.html",
   "files": [
     "dist"
   ],
@@ -47,5 +47,7 @@
     "vite": "^5.4.3",
     "vite-plugin-dts": "^4.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^18.3.1"
+  }
 }

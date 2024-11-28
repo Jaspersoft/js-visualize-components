@@ -4,7 +4,6 @@
  * in the license file that is distributed with this file.
  */
 
-export * from "./JVMuiClassNameSetup";
 export {
   GenerateClassNameOptions as JVGenerateClassNameOptions,
   CreateMuiThemeOptions as JVCreateMuiThemeOptions,
@@ -151,6 +150,8 @@ export { RadioButton as JVRadioButton } from "./Radio/RadioButton";
 export type { RadioProps as JVRadioProps } from "./Radio/RadioButton";
 export { RadioGroup as JVRadioGroup } from "./Radio/RadioGroup";
 export type { RadioButtonGroupProps as JVRadioButtonGroupProps } from "./Radio/RadioGroup";
+export { Skeleton as JVSkeleton } from "./Skeleton/Skeleton";
+export { Stack as JVStack } from "./Stack/Stack";
 export { Step as JVStep } from "./Stepper/Step";
 export type { StepComponentProps as JVStepComponentProps } from "./Stepper/Step";
 export { Stepper as JVStepper } from "./Stepper/Stepper";

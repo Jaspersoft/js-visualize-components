@@ -1,4 +1,4 @@
-import { JVButton, JVDrawer, JVTypography } from "@jaspersoft/jv-ui-components";
+import { JVButton, JVDrawer, JVTypography } from "../../../material-ui";
 /*  ------------------------------  */
 /*    Table of Contents             */
 /*                                  */
