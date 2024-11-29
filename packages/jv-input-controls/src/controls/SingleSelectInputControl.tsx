@@ -5,12 +5,13 @@
  */
 
 import { JVSelect } from "@jaspersoft/jv-ui-components";
-import { JSX } from "react";
+import { JSX, useContext, useEffect, useState } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
 import { getTheInitialValueForSingleSelectInputControl } from "../utils/DefaultValueUtils";
+import { InputControlsContext } from "../reducer/InputControlsReducer";
 
 export interface SingleSelectInputControlProps extends InputControlProperties {}
 
@@ -19,9 +20,37 @@ export type SingleSelectICType = "singleSelect";
 export function SingleSelectInputControl(
   props: SingleSelectInputControlProps,
 ): JSX.Element {
+  // new variables due to the reducer state:
+  const { state } = useContext(InputControlsContext);
+  const [localOptions, setLocalOptions] = useState(props.state?.options);
+  const valueFromState = state.validResponse[props.id];
+  const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
+  // live state:
   const liveState = useLiveState(
     getTheInitialValueForSingleSelectInputControl(props.state?.value),
   );
+  useEffect(() => {
+    if (
+      icFromState.state !== undefined &&
+      icFromState.state!.options !== undefined
+    ) {
+      setLocalOptions(icFromState.state!.options);
+    }
+  }, [icFromState]);
+  useEffect(() => {
+    if (props.id === "Product_Name") {
+      console.log("props.id: ", props.id, ", valueFromState: ", valueFromState);
+      console.log("liveState.value: ", liveState.value);
+      console.log("----------");
+      debugger;
+    }
+    if (
+      valueFromState !== undefined &&
+      JSON.stringify(valueFromState) !== JSON.stringify(liveState.value)
+    ) {
+      liveState.setValue(valueFromState);
+    }
+  }, [valueFromState, liveState.value]);
   const controlClasses = useControlClasses([], props);
   const errorText = useErrorMsg({
     textValue: liveState.value,
@@ -34,7 +63,7 @@ export function SingleSelectInputControl(
       id={props.id}
       key={props.id}
       value={liveState.value}
-      state={props.state}
+      state={{ options: localOptions }}
       className={`${controlClasses.join(" ")}`}
       error={errorText}
     />

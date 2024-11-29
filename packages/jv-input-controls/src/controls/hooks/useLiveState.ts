@@ -30,6 +30,7 @@ export function useLiveState(initialValue: any) {
 
   const liveStateProps = {
     value: value,
+    setValue: setValue,
     onChange: handleChange,
   };
 

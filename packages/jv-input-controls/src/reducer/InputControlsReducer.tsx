@@ -4,12 +4,44 @@
  * in the license file that is distributed with this file.
  */
 
-import { InputControlProperties } from "@jaspersoft/jv-tools";
+import {
+  InputControlOption,
+  InputControlProperties,
+} from "@jaspersoft/jv-tools";
 import { createContext, useReducer } from "react";
 
 export const INPUT_CONTROLS_ACTIONS = {
   SET_DATA: "[INPUT_CONTROLS] SET_DATA",
   UPDATE_DATA: "[INPUT_CONTROLS] UPDATE_DATA",
+  UPDATE_SLAVE_DEPENDENCIES: "[INPUT_CONTROLS] UPDATE_SLAVE_DEPENDENCIES",
+};
+
+const emitCallbackToUser = (
+  icsUpdated: {
+    inputControls: InputControlProperties[];
+    validResponse: { [key: string]: any[] };
+    validationResultState: { [key: string]: string };
+  },
+  payload: {
+    props: {
+      events: {
+        change: (
+          arg0: { [key: string]: any[] },
+          arg1: { [key: string]: string } | false,
+        ) => void;
+      };
+    };
+    ctrlUpdated: InputControlProperties;
+  },
+  emitCallbackToUser = true,
+) => {
+  if (emitCallbackToUser) {
+    const isError = Object.keys(icsUpdated.validationResultState).length > 0;
+    payload.props.events?.change?.(
+      icsUpdated.validResponse,
+      isError ? icsUpdated.validationResultState : false,
+    );
+  }
 };
 
 const inputControlsReducer = (
@@ -19,15 +51,20 @@ const inputControlsReducer = (
     validationResultState: { [key: string]: string };
   },
   action: { type: string; payload: any },
-) => {
+): {
+  inputControls: InputControlProperties[];
+  validResponse: { [key: string]: any[] };
+  validationResultState: { [key: string]: string };
+} => {
   const { type, payload } = action;
   switch (type) {
-    case INPUT_CONTROLS_ACTIONS.SET_DATA:
+    case INPUT_CONTROLS_ACTIONS.SET_DATA: {
       return {
         ...state,
         ...payload,
       };
-    case INPUT_CONTROLS_ACTIONS.UPDATE_DATA:
+    }
+    case INPUT_CONTROLS_ACTIONS.UPDATE_DATA: {
       const icsUpdated = state.inputControls.reduce(
         (
           acc: {
@@ -77,18 +114,64 @@ const inputControlsReducer = (
         },
       );
 
-      const isError = Object.keys(icsUpdated.invalidResponse).length > 0;
-      payload.props.events?.change?.(
-        icsUpdated.response,
-        isError ? icsUpdated.invalidResponse : false,
-      );
-
-      return {
+      const stateUpdated = {
         ...state,
         inputControls: [...icsUpdated.state],
         validResponse: { ...icsUpdated.response },
         validationResultState: { ...icsUpdated.invalidResponse },
       };
+      emitCallbackToUser(
+        stateUpdated,
+        payload,
+        payload.ctrlUpdated.slaveDependencies === undefined ||
+          payload.ctrlUpdated.slaveDependencies.length === 0,
+      );
+
+      return stateUpdated;
+    }
+    case INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES: {
+      // Create a Map from the payload array
+      const payloadMap: Map<string, InputControlOption[]> = new Map(
+        payload.inputControlState.map(
+          (item: {
+            id: string;
+            options: InputControlOption[];
+            uri: string;
+          }) => [item.id, item.options],
+        ),
+      );
+      // Iterate over the state array and update the options property
+      const theNewValidResponse = JSON.parse(
+        JSON.stringify(state.validResponse),
+      );
+      const icsUpdated = state.inputControls.map(
+        (item: InputControlProperties) => {
+          if (!payloadMap.has(item.id)) {
+            return item;
+          }
+          const newValueForIc = payloadMap
+            .get(item.id)!
+            .filter((opt) => opt.selected)
+            .map((opt) => opt.value);
+          theNewValidResponse[item.id] = newValueForIc;
+          return {
+            ...item,
+            state: {
+              ...item.state,
+              options: payloadMap.get(item.id)! as InputControlOption[],
+              value: newValueForIc,
+            },
+          } as InputControlProperties;
+        },
+      );
+      const theNewState = {
+        ...state,
+        inputControls: [...icsUpdated],
+        validResponse: { ...theNewValidResponse },
+      };
+      emitCallbackToUser(theNewState, payload);
+      return theNewState;
+    }
     default:
       return state;
   }

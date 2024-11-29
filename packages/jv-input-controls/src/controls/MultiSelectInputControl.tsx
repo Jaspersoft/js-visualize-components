@@ -15,7 +15,7 @@ export type MultiSelectICType = "multiSelect";
 export const MultiSelectInputControl = (
   props: InputControlProperties,
 ): JSX.Element => {
-  const liveState = useLiveState(props.state?.value);
+  const { setValue, ...liveState } = useLiveState(props.state?.value);
   const controlClasses = useControlClasses([], props);
   const errorText = useErrorMsg({
     textValue: liveState.value,
