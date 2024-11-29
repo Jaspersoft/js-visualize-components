@@ -4,9 +4,26 @@ import {
   visualizejsLoader,
   VisualizeFactory,
   Authentication,
+  useVisualizeConfig,
 } from "../../..";
+import { VisualizeGenericError } from "../../../index";
 
-const useVisualize = (uri: string, auth?: Authentication) => {
+const logOrTriggerError = (
+  config: useVisualizeConfig | undefined,
+  error: Error | VisualizeGenericError,
+) => {
+  if (config?.errorCallback) {
+    config?.errorCallback(error);
+  } else {
+    console.error(String(error));
+  }
+};
+
+const useVisualize = (
+  uri: string,
+  auth: Authentication,
+  config?: useVisualizeConfig,
+) => {
   const [vContainer, setVContainer] = useState<{ v: VisualizeClient } | null>(
     null,
   );
@@ -21,14 +38,12 @@ const useVisualize = (uri: string, auth?: Authentication) => {
           (v: VisualizeClient) => {
             setVContainer({ v });
           },
-          (e: any) => {
-            console.error(String(e));
-          },
+          (e: Error | VisualizeGenericError) => logOrTriggerError(config, e),
         );
       })
-      .catch((error: Error) => {
-        console.error("Error loading visualize.js: ", error);
-      });
+      .catch((error: Error | VisualizeGenericError) =>
+        logOrTriggerError(config, error),
+      );
   }, [uri]);
 
   return vContainer;

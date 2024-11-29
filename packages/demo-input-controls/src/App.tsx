@@ -10,12 +10,13 @@ import {
   Authentication,
   InputControlProperties,
   useVisualize,
+  VisualizeGenericError,
 } from "@jaspersoft/jv-tools";
 import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
 
 const myAuth: Authentication = {
-  name: "joeuser",
+  name: "joeuser2",
   password: "joeuser",
   organization: "organization_1",
   locale: "en_US",
@@ -27,8 +28,12 @@ const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
+const errorCallback = (errorCaught: Error | VisualizeGenericError) => {
+  console.log("check the error! ", errorCaught);
+};
+
 function App() {
-  const vContainer = useVisualize(visualizeUrl, myAuth);
+  const vContainer = useVisualize(visualizeUrl, myAuth, { errorCallback });
   const [controlBuffer, setControlBuffer] =
     useState<InputControlProperties[]>();
   const [vReport, setVReport] = useState<any>();
