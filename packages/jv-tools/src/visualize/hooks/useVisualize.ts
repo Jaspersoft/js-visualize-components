@@ -5,12 +5,12 @@ import {
   VisualizeFactory,
   Authentication,
   useVisualizeConfig,
+  VisualizeGenericError,
 } from "../../..";
-import { VisualizeGenericError } from "../../../index";
 
 const logOrTriggerError = (
   config: useVisualizeConfig | undefined,
-  error: Error | VisualizeGenericError,
+  error: Error | VisualizeGenericError | string,
 ) => {
   if (config?.errorCallback) {
     config?.errorCallback(error);
@@ -38,10 +38,11 @@ const useVisualize = (
           (v: VisualizeClient) => {
             setVContainer({ v });
           },
-          (e: Error | VisualizeGenericError) => logOrTriggerError(config, e),
+          (e: Error | VisualizeGenericError | string) =>
+            logOrTriggerError(config, e),
         );
       })
-      .catch((error: Error | VisualizeGenericError) =>
+      .catch((error: Error | VisualizeGenericError | string) =>
         logOrTriggerError(config, error),
       );
   }, [uri]);

@@ -4,8 +4,8 @@
  * in the license file that is distributed with this file.
  */
 
-import { VisualizeGenericError } from "../../../index";
+import { VisualizeGenericError } from "../../..";
 
 export interface useVisualizeConfig {
-  errorCallback: (error: Error | VisualizeGenericError) => void;
+  errorCallback: (error: Error | VisualizeGenericError | string) => void;
 }

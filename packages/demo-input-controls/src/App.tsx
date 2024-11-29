@@ -28,7 +28,7 @@ const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 const visualizeUrl =
   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
-const errorCallback = (errorCaught: Error | VisualizeGenericError) => {
+const errorCallback = (errorCaught: Error | VisualizeGenericError | string) => {
   console.log("check the error! ", errorCaught);
 };
 
