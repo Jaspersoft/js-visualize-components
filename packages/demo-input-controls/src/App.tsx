@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import ReportPanel from "./report/ReportPanel.tsx";
 
 const myAuth: Authentication = {
-  name: "joeuser2",
+  name: "joeuser",
   password: "joeuser",
   organization: "organization_1",
   locale: "en_US",
