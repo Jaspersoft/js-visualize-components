@@ -1,5 +1,6 @@
 import { InputControlProperties } from "./src/input-controls";
 export * from "./src/input-controls";
+export type { useVisualizeConfig } from "./src/visualize/hooks/useVisualize.types";
 
 export type Authentication = {
   url?: string;
