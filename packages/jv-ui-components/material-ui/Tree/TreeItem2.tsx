@@ -44,7 +44,7 @@ export const TreeItem2Content = forwardRef<HTMLElement, any>(
       <>
         <MuiTreeItem2Content
           ref={ref}
-          className={`${className}  mui`}
+          className={`jv-mTree-node ${className}  mui`}
           {...rest}
         />
       </>
@@ -58,7 +58,7 @@ export const TreeItem2IconContainer = forwardRef<HTMLElement, any>(
       <>
         <MuiTreeItem2IconContainer
           ref={ref}
-          className={`${className}  mui`}
+          className={`jv-mTree-node-toggle ${className}  mui`}
           {...rest}
         />
       </>
@@ -72,7 +72,7 @@ export const TreeItem2Label = forwardRef<HTMLElement, any>(
       <>
         <MuiTreeItem2Label
           ref={ref}
-          className={`${className}  mui`}
+          className={`jv-mTree-node-item ${className}  mui`}
           {...rest}
         />
       </>

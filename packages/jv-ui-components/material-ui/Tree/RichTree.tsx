@@ -11,7 +11,11 @@ export const RichTree = forwardRef<HTMLUListElement, any>(
   ({ className = "", ...rest }, ref) => {
     return (
       <>
-        <RichTreeView ref={ref} className={`${className}  mui`} {...rest} />
+        <RichTreeView
+          ref={ref}
+          className={`jv-mTree ${className}  mui`}
+          {...rest}
+        />
       </>
     );
   },
