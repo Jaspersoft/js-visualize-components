@@ -25,6 +25,9 @@ export const useErrorMsg = ({
   minAndMaxDate,
 }: UseMandatoryMsgProps) => {
   const [msg, setMsg] = useState<string>(defaultValue);
+  const [theTextValue, setTheTextValue] = useState<string | string[]>(
+    textValue,
+  );
 
   const validateTextValue = (textToValidate: string): string => {
     // Determine the message based on:
@@ -85,15 +88,24 @@ export const useErrorMsg = ({
   };
 
   useEffectAfterInitial(() => {
-    const errorMessage = Array.isArray(textValue)
-      ? validateArray(textValue)
-      : validateTextValue(textValue);
-    const finalMsg = errorMessage?.trim().length > 0 ? errorMessage : "";
-    // also, we have to trigger the callback in case there was an error
-    props?.events?.change?.(getInputControlProperties(props, textValue), {
-      [props.id]: finalMsg,
-    });
-    setMsg(finalMsg);
+    const isArray = Array.isArray(textValue);
+    if (
+      (isArray &&
+        (textValue[0] === "" ||
+          JSON.stringify(textValue) !== JSON.stringify(theTextValue))) ||
+      (!isArray && (textValue === "" || textValue !== theTextValue))
+    ) {
+      setTheTextValue(textValue);
+      const errorMessage = isArray
+        ? validateArray(textValue)
+        : validateTextValue(textValue);
+      const finalMsg = errorMessage?.trim().length > 0 ? errorMessage : "";
+      // also, we have to trigger the callback in case there was an error
+      props?.events?.change?.(getInputControlProperties(props, textValue), {
+        [props.id]: finalMsg,
+      });
+      setMsg(finalMsg);
+    }
   }, [textValue]);
   return msg;
 };

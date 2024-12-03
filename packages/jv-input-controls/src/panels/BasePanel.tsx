@@ -345,7 +345,39 @@ const SAMPLE_IC_UPDATED_RESPONSE = {
 };
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
-  const { dispatch } = useContext(InputControlsContext);
+  const { state, dispatch } = useContext(InputControlsContext);
+
+  const handleCascadingRequest = (ctrlUpdated: InputControlProperties) => {
+    dispatch({
+      type: INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID,
+      payload: {
+        initiatingCascadingIcId: ctrlUpdated.id,
+      },
+    });
+
+    console.log("triggering a new CALL from: ", ctrlUpdated.id);
+    // TODO: We should trigger the CALL to the server to get the new data in case it's a cascading input control
+    fetch("https://jsonplaceholder.typicode.com/users/1")
+      .then(() => {
+        dispatch({
+          type: INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES,
+          payload: {
+            ...SAMPLE_IC_UPDATED_RESPONSE,
+            ctrlUpdated,
+            props,
+          },
+        });
+      })
+      .catch((error) => console.error("error: ", error));
+    // .finally(() =>
+    //   dispatch({
+    //     type: INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID,
+    //     payload: {
+    //       initiatingCascadingIcId: "",
+    //     },
+    //   })
+    // )
+  };
 
   const getControlProps = (
     control: any,
@@ -378,24 +410,20 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
               props,
             },
           });
-          if (
-            ctrlUpdated.slaveDependencies !== undefined &&
-            ctrlUpdated.slaveDependencies.length > 0
-          ) {
-            console.log("triggering a new CALL from: ", ctrlUpdated.id);
-            // TODO: We should trigger the CALL to the server to get the new data in case it's a cascading input control
-            fetch("https://jsonplaceholder.typicode.com/users/1")
-              .then(() =>
-                dispatch({
-                  type: INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES,
-                  payload: {
-                    ...SAMPLE_IC_UPDATED_RESPONSE,
-                    ctrlUpdated,
-                    props,
-                  },
-                }),
-              )
-              .catch((error) => console.error("error: ", error));
+          const slaveDependenciesOfInitialCascadingIC =
+            state.inputControls.find((ic) => {
+              return ic.id === state.initiatingCascadingIcId;
+            });
+          const isSlaveDep =
+            slaveDependenciesOfInitialCascadingIC?.slaveDependencies?.includes(
+              ctrlUpdated.id,
+            );
+          if (state.initiatingCascadingIcId !== ctrlUpdated.id && !isSlaveDep) {
+            // (state.initiatingCascadingIcId !== ctrlUpdated.id) ||
+            //   (ctrlUpdated.slaveDependencies !== undefined &&
+            //     ctrlUpdated.slaveDependencies.length > 0 &&
+            //     state.initiatingCascadingIcId === "")
+            handleCascadingRequest(ctrlUpdated);
           }
         },
       },

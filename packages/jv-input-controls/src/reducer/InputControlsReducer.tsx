@@ -14,14 +14,12 @@ export const INPUT_CONTROLS_ACTIONS = {
   SET_DATA: "[INPUT_CONTROLS] SET_DATA",
   UPDATE_DATA: "[INPUT_CONTROLS] UPDATE_DATA",
   UPDATE_SLAVE_DEPENDENCIES: "[INPUT_CONTROLS] UPDATE_SLAVE_DEPENDENCIES",
+  SET_INITIATING_CASCADING_IC_ID:
+    "[INPUT_CONTROLS] SET_INITIATING_CASCADING_IC_ID",
 };
 
 const emitCallbackToUser = (
-  icsUpdated: {
-    inputControls: InputControlProperties[];
-    validResponse: { [key: string]: any[] };
-    validationResultState: { [key: string]: string };
-  },
+  icsUpdated: InputControlsState,
   payload: {
     props: {
       events: {
@@ -44,18 +42,17 @@ const emitCallbackToUser = (
   }
 };
 
-const inputControlsReducer = (
-  state: {
-    inputControls: InputControlProperties[];
-    validResponse: { [key: string]: any[] };
-    validationResultState: { [key: string]: string };
-  },
-  action: { type: string; payload: any },
-): {
+export interface InputControlsState {
   inputControls: InputControlProperties[];
   validResponse: { [key: string]: any[] };
   validationResultState: { [key: string]: string };
-} => {
+  initiatingCascadingIcId?: string;
+}
+
+const inputControlsReducer = (
+  state: InputControlsState,
+  action: { type: string; payload: any },
+): InputControlsState => {
   const { type, payload } = action;
   switch (type) {
     case INPUT_CONTROLS_ACTIONS.SET_DATA: {
@@ -129,6 +126,12 @@ const inputControlsReducer = (
 
       return stateUpdated;
     }
+    case INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID: {
+      return {
+        ...state,
+        initiatingCascadingIcId: payload.initiatingCascadingIcId,
+      };
+    }
     case INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES: {
       // Create a Map from the payload array
       const payloadMap: Map<string, InputControlOption[]> = new Map(
@@ -178,22 +181,21 @@ const inputControlsReducer = (
 };
 
 export const InputControlsContext = createContext<{
-  state: {
-    inputControls: InputControlProperties[];
-    validResponse: { [key: string]: any[] };
-    validationResultState: { [key: string]: string };
-  };
+  state: InputControlsState;
   dispatch: any;
 }>({
   state: {
     inputControls: [],
     validResponse: {},
     validationResultState: {},
+    initiatingCascadingIcId: "",
   },
   dispatch: () => {},
 });
 
-const createInitialState = (initialState: InputControlProperties[]) => {
+const createInitialState = (
+  initialState: InputControlProperties[],
+): InputControlsState => {
   const fixedInitialState = initialState.map((icProps) => {
     if (
       icProps.state?.value !== undefined ||
@@ -215,6 +217,7 @@ const createInitialState = (initialState: InputControlProperties[]) => {
     inputControls: fixedInitialState,
     validResponse: {},
     validationResultState: {},
+    initiatingCascadingIcId: "",
   };
 };
 

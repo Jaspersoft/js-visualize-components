@@ -23,21 +23,29 @@ export function SingleSelectInputControl(
   // new variables due to the reducer state:
   const { state } = useContext(InputControlsContext);
   const [localOptions, setLocalOptions] = useState(props.state?.options);
-  const valueFromState = state.validResponse[props.id];
-  const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
   // live state:
   const liveState = useLiveState(
     getTheInitialValueForSingleSelectInputControl(props.state?.value),
   );
+  const errorText = useErrorMsg({
+    textValue: liveState.value,
+    props,
+  });
   useEffect(() => {
+    const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
     if (
-      icFromState.state !== undefined &&
-      icFromState.state!.options !== undefined
+      (icFromState.state !== undefined &&
+        icFromState.state!.options !== undefined &&
+        localOptions !== undefined &&
+        JSON.stringify(icFromState.state!.options) !==
+          JSON.stringify(localOptions)) ||
+      localOptions !== undefined
     ) {
       setLocalOptions(icFromState.state!.options);
     }
-  }, [icFromState]);
+  }, [state.inputControls]);
   useEffect(() => {
+    const valueFromState = state.validResponse[props.id];
     if (props.id === "Product_Name") {
       console.log("props.id: ", props.id, ", valueFromState: ", valueFromState);
       console.log("liveState.value: ", liveState.value);
@@ -50,12 +58,8 @@ export function SingleSelectInputControl(
     ) {
       liveState.setValue(valueFromState);
     }
-  }, [valueFromState, liveState.value]);
+  }, [state.validResponse, liveState.value]);
   const controlClasses = useControlClasses([], props);
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
-  });
   return (
     <JVSelect
       onChange={liveState.onChange}
