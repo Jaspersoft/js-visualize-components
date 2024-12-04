@@ -88,6 +88,7 @@ export interface InputControlProperties {
   state?: InputControlState;
   validationRules?: InputControlValidationRule[];
   dataType?: InputControlDataType;
+  isLoading?: boolean;
 
   masterDependencies?: string[];
   slaveDependencies?: string[];

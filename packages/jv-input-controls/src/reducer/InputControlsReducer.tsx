@@ -127,8 +127,27 @@ const inputControlsReducer = (
       return stateUpdated;
     }
     case INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID: {
+      let masterIcId = payload.initiatingCascadingIcId;
+      let isLoading = true;
+      if (masterIcId === "") {
+        masterIcId = state.initiatingCascadingIcId;
+        isLoading = false;
+      }
+      const newICs = state.inputControls.map((ic) => {
+        if (!ic.masterDependencies) {
+          return ic;
+        }
+        if (ic.masterDependencies.includes(masterIcId)) {
+          return {
+            ...ic,
+            isLoading,
+          };
+        }
+        return ic;
+      });
       return {
         ...state,
+        inputControls: [...newICs],
         initiatingCascadingIcId: payload.initiatingCascadingIcId,
       };
     }

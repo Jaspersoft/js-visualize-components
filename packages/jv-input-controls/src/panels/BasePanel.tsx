@@ -368,15 +368,15 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           },
         });
       })
-      .catch((error) => console.error("error: ", error));
-    // .finally(() =>
-    //   dispatch({
-    //     type: INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID,
-    //     payload: {
-    //       initiatingCascadingIcId: "",
-    //     },
-    //   })
-    // )
+      .catch((error) => console.error("error: ", error))
+      .finally(() =>
+        dispatch({
+          type: INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID,
+          payload: {
+            initiatingCascadingIcId: "",
+          },
+        }),
+      );
   };
 
   const getControlProps = (
@@ -393,6 +393,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       uri: control.uri,
       state: {
         ...control.state,
+        // TODO: I have to move this to the state: getDefaultValueFromParamsAndProps
         value: getDefaultValueFromParamsAndProps({ ...control, params }),
       },
       masterDependencies: control.masterDependencies,
@@ -430,6 +431,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     };
   };
   const buildControl = (control: any) => {
+    // TODO: need to use the values from the state instead of the values from the controls!
     const theProps = getControlProps(control, props.params);
     if (control.type === "bool") {
       return (

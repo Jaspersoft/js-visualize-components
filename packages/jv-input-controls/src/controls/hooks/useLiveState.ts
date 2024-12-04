@@ -6,7 +6,7 @@
 
 import { useState } from "react";
 
-export function useLiveState(initialValue: any) {
+export function useLiveState(initialValue: any, callback?: any) {
   /**
    * Changes the value of an input element to match the one selected
    *
@@ -25,6 +25,9 @@ export function useLiveState(initialValue: any) {
       const val = e.target.value;
       if (Array.isArray(val)) setValue([...val]);
       else setValue(val);
+    }
+    if (callback) {
+      callback(value);
     }
   }
 

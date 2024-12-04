@@ -6,12 +6,15 @@
 
 import { JVSelect } from "@jaspersoft/jv-ui-components";
 import { JSX, useContext, useEffect, useState } from "react";
-import { InputControlProperties } from "@jaspersoft/jv-tools";
+import {
+  InputControlOption,
+  InputControlProperties,
+} from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useErrorMsg } from "./hooks/useErrorMsg";
+// import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
-import { getTheInitialValueForSingleSelectInputControl } from "../utils/DefaultValueUtils";
 import { InputControlsContext } from "../reducer/InputControlsReducer";
+import { getInputControlProperties } from "./BaseInputControl";
 
 export interface SingleSelectInputControlProps extends InputControlProperties {}
 
@@ -22,45 +25,62 @@ export function SingleSelectInputControl(
 ): JSX.Element {
   // new variables due to the reducer state:
   const { state } = useContext(InputControlsContext);
-  const [localOptions, setLocalOptions] = useState(props.state?.options);
+  const [localOptions, setLocalOptions] = useState<InputControlOption[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   // live state:
-  const liveState = useLiveState(
-    getTheInitialValueForSingleSelectInputControl(props.state?.value),
-  );
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
+  // TODO: need to move the getTheInitialValueForSingleSelectInputControl to initialize the value on the state, not
+  //  here.
+  // const liveState = useLiveState(
+  //   getTheInitialValueForSingleSelectInputControl(props.state?.value),
+  // );
+  const liveState = useLiveState("", (newValue: string | string[]) => {
+    props?.events?.change?.(getInputControlProperties(props, newValue), {
+      [props.id]: "",
+    });
   });
+  // TODO: need to restore the errorText by triggering it on the callback of useLiveState, not here as a new custom
+  //  hook.
+  // const errorText = useErrorMsg({
+  //   textValue: liveState.value,
+  //   props,
+  // });
   useEffect(() => {
     const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
+    // TODO: need to improve the way how we set the IsLoading variable. This variable is also living on the state.
+    if (icFromState.isLoading === true) {
+      setIsLoading(true);
+    }
     if (
-      (icFromState.state !== undefined &&
-        icFromState.state!.options !== undefined &&
-        localOptions !== undefined &&
-        JSON.stringify(icFromState.state!.options) !==
-          JSON.stringify(localOptions)) ||
-      localOptions !== undefined
+      icFromState.state !== undefined &&
+      icFromState.state!.options !== undefined &&
+      JSON.stringify(icFromState.state!.options) !==
+        JSON.stringify(localOptions)
     ) {
-      setLocalOptions(icFromState.state!.options);
+      setLocalOptions(icFromState.state!.options!);
     }
   }, [state.inputControls]);
   useEffect(() => {
-    const valueFromState = state.validResponse[props.id];
-    if (props.id === "Product_Name") {
-      console.log("props.id: ", props.id, ", valueFromState: ", valueFromState);
-      console.log("liveState.value: ", liveState.value);
-      console.log("----------");
-      debugger;
+    if (localOptions === undefined) {
+      return;
     }
+    // TODO: this logic need to be improved
+    const selectedOne = localOptions.find(({ selected }) => selected);
+    const theValue = Array.isArray(liveState.value)
+      ? liveState.value.at(0)
+      : liveState.value;
     if (
-      valueFromState !== undefined &&
-      JSON.stringify(valueFromState) !== JSON.stringify(liveState.value)
+      localOptions.length > 0 &&
+      !localOptions.some((option) => option.value === theValue)
     ) {
-      liveState.setValue(valueFromState);
+      liveState.setValue([selectedOne!.value]);
     }
-  }, [state.validResponse, liveState.value]);
+    setIsLoading(false);
+  }, [localOptions]);
   const controlClasses = useControlClasses([], props);
-  return (
+  // error={errorText}
+  return isLoading ? (
+    <>"Loading..."</>
+  ) : (
     <JVSelect
       onChange={liveState.onChange}
       label={props.label}
@@ -69,7 +89,6 @@ export function SingleSelectInputControl(
       value={liveState.value}
       state={{ options: localOptions }}
       className={`${controlClasses.join(" ")}`}
-      error={errorText}
     />
   );
 }
