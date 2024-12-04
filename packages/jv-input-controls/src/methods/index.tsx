@@ -46,13 +46,12 @@ export const renderInputControls = (
         const icRoot = createRoot(container);
         icRoot.render(
           <JVStylesProvider>
-            <InputControlsProvider initialState={controls?.data}>
-              <BasePanel
-                controls={controls}
-                config={config?.typeConfig}
-                events={config?.events}
-                params={config?.params}
-              />
+            <InputControlsProvider
+              initialState={controls?.data}
+              overwriteParams={config?.params}
+              events={config?.events}
+            >
+              <BasePanel config={config?.typeConfig} />
             </InputControlsProvider>
           </JVStylesProvider>,
         );

@@ -109,13 +109,12 @@ export function InputControls(props: InputControlsProps) {
     <JVStylesProvider>
       {(props.v === undefined || !embedControls) && showLoadingSpinner()}
       {props.v !== undefined && embedControls && (
-        <InputControlsProvider initialState={embedControls.data}>
-          <BasePanel
-            controls={embedControls}
-            config={props.config?.typeConfig}
-            events={props.config?.events}
-            params={props.config?.params}
-          />
+        <InputControlsProvider
+          initialState={embedControls.data}
+          overwriteParams={props.config?.params}
+          events={props.config?.events}
+        >
+          <BasePanel config={props.config?.typeConfig} />
         </InputControlsProvider>
       )}
     </JVStylesProvider>

@@ -16,7 +16,9 @@ import { useLiveState } from "./hooks/useLiveState";
 import { InputControlsContext } from "../reducer/InputControlsReducer";
 import { getInputControlProperties } from "./BaseInputControl";
 
-export interface SingleSelectInputControlProps extends InputControlProperties {}
+export interface SingleSelectInputControlProps extends InputControlProperties {
+  handleIcChange: any;
+}
 
 export type SingleSelectICType = "singleSelect";
 
@@ -34,7 +36,7 @@ export function SingleSelectInputControl(
   //   getTheInitialValueForSingleSelectInputControl(props.state?.value),
   // );
   const liveState = useLiveState("", (newValue: string | string[]) => {
-    props?.events?.change?.(getInputControlProperties(props, newValue), {
+    props.handleIcChange(getInputControlProperties(props, newValue), {
       [props.id]: "",
     });
   });

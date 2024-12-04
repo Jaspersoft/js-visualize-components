@@ -18,16 +18,17 @@ export function useLiveState(initialValue: any, callback?: any) {
   const [value, setValue] = useState(initialValue);
 
   function handleChange(e: any) {
+    let newValue;
     if (e.target.type === "checkbox") {
-      const val = e.target.checked;
-      setValue(val);
+      newValue = e.target.checked;
+      setValue(newValue);
     } else {
-      const val = e.target.value;
-      if (Array.isArray(val)) setValue([...val]);
-      else setValue(val);
+      newValue = e.target.value;
+      if (Array.isArray(newValue)) setValue([...newValue]);
+      else setValue(newValue);
     }
     if (callback) {
-      callback(value);
+      callback(newValue);
     }
   }
 

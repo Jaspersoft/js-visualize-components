@@ -9,6 +9,7 @@ import {
   InputControlProperties,
 } from "@jaspersoft/jv-tools";
 import { createContext, useReducer } from "react";
+import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
 
 export const INPUT_CONTROLS_ACTIONS = {
   SET_DATA: "[INPUT_CONTROLS] SET_DATA",
@@ -21,21 +22,16 @@ export const INPUT_CONTROLS_ACTIONS = {
 const emitCallbackToUser = (
   icsUpdated: InputControlsState,
   payload: {
-    props: {
-      events: {
-        change: (
-          arg0: { [key: string]: any[] },
-          arg1: { [key: string]: string } | false,
-        ) => void;
-      };
-    };
     ctrlUpdated: InputControlProperties;
   },
   emitCallbackToUser = true,
 ) => {
   if (emitCallbackToUser) {
     const isError = Object.keys(icsUpdated.validationResultState).length > 0;
-    payload.props.events?.change?.(
+    const cInputControl = icsUpdated.inputControls.find(
+      ({ id }) => id === payload.ctrlUpdated.id,
+    );
+    cInputControl!.events?.change?.(
       icsUpdated.validResponse,
       isError ? icsUpdated.validationResultState : false,
     );
@@ -97,7 +93,7 @@ const inputControlsReducer = (
               ),
             };
           }
-          acc.state.push(ctrlToUse);
+          acc.state.push({ ...ctrl, ...ctrlToUse });
 
           acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
             ? ctrlToUse.state?.value
@@ -214,25 +210,28 @@ export const InputControlsContext = createContext<{
 
 const createInitialState = (
   initialState: InputControlProperties[],
+  params: { [key: string]: string[] },
+  events?: {
+    change?: (
+      ic: { [key: string]: any[] },
+      validationResult: { [key: string]: string } | boolean,
+    ) => void;
+  },
 ): InputControlsState => {
-  const fixedInitialState = initialState.map((icProps) => {
-    if (
-      icProps.state?.value !== undefined ||
-      icProps.state?.options === undefined
-    ) {
-      return icProps;
-    }
-    return {
-      ...icProps,
-      state: {
-        ...icProps.state,
-        value: icProps.state.options
-          .filter((opt) => opt.selected)
-          .map((opt) => opt.value),
-      },
-    };
-  });
+  const fixedInitialState = initialState.map(
+    (icProps: InputControlProperties) => {
+      return {
+        ...icProps,
+        events,
+        state: {
+          ...icProps.state!,
+          value: getDefaultValueFromParamsAndProps({ ...icProps, params }),
+        },
+      };
+    },
+  );
   return {
+    // @ts-ignore
     inputControls: fixedInitialState,
     validResponse: {},
     validationResultState: {},
@@ -243,14 +242,21 @@ const createInitialState = (
 export const InputControlsProvider = ({
   children,
   initialState,
+  overwriteParams,
+  events,
 }: {
   children: JSX.Element;
   initialState: InputControlProperties[];
+  overwriteParams?: { [key: string]: string[] };
+  events?: {
+    change?: (
+      ic: { [key: string]: any[] },
+      validationResult: { [key: string]: string } | boolean,
+    ) => void;
+  };
 }) => {
-  const [state, dispatch] = useReducer(
-    inputControlsReducer,
-    initialState,
-    createInitialState,
+  const [state, dispatch] = useReducer(inputControlsReducer, initialState, () =>
+    createInitialState(initialState, overwriteParams || {}, events),
   );
   return (
     <InputControlsContext.Provider value={{ state, dispatch }}>

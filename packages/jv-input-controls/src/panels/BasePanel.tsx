@@ -5,7 +5,7 @@
  */
 
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
-import { JSX, useContext } from "react";
+import { JSX, ReactElement, useContext } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
@@ -19,22 +19,13 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlsTypeConfig } from "../InputControls";
-import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
 import {
   INPUT_CONTROLS_ACTIONS,
   InputControlsContext,
 } from "../reducer/InputControlsReducer";
 
 export interface BasePanelProps {
-  controls?: any;
   config?: InputControlsTypeConfig;
-  events?: {
-    change?: (
-      ic: { [key: string]: any[] },
-      validationResult: { [key: string]: string } | boolean,
-    ) => void;
-  };
-  params?: { [key: string]: string[] };
 }
 
 const SAMPLE_IC_UPDATED_RESPONSE = {
@@ -364,7 +355,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           payload: {
             ...SAMPLE_IC_UPDATED_RESPONSE,
             ctrlUpdated,
-            props,
           },
         });
       })
@@ -379,60 +369,33 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       );
   };
 
-  const getControlProps = (
-    control: any,
-    params?: { [key: string]: string[] },
+  const handleIcChange = (
+    ctrlUpdated: InputControlProperties,
+    resultValidation?: { [key: string]: string },
   ) => {
-    return {
-      id: control.id,
-      label: control.label,
-      type: control.type,
-      readOnly: control.readOnly,
-      visible: control.visible,
-      mandatory: control.mandatory,
-      uri: control.uri,
-      state: {
-        ...control.state,
-        // TODO: I have to move this to the state: getDefaultValueFromParamsAndProps
-        value: getDefaultValueFromParamsAndProps({ ...control, params }),
+    dispatch({
+      type: INPUT_CONTROLS_ACTIONS.UPDATE_DATA,
+      payload: {
+        ctrlUpdated,
+        resultValidation,
       },
-      masterDependencies: control.masterDependencies,
-      slaveDependencies: control.slaveDependencies,
-      events: {
-        change: (
-          ctrlUpdated: InputControlProperties,
-          resultValidation?: { [key: string]: string },
-        ) => {
-          dispatch({
-            type: INPUT_CONTROLS_ACTIONS.UPDATE_DATA,
-            payload: {
-              ctrlUpdated,
-              resultValidation,
-              props,
-            },
-          });
-          const slaveDependenciesOfInitialCascadingIC =
-            state.inputControls.find((ic) => {
-              return ic.id === state.initiatingCascadingIcId;
-            });
-          const isSlaveDep =
-            slaveDependenciesOfInitialCascadingIC?.slaveDependencies?.includes(
-              ctrlUpdated.id,
-            );
-          if (state.initiatingCascadingIcId !== ctrlUpdated.id && !isSlaveDep) {
-            // (state.initiatingCascadingIcId !== ctrlUpdated.id) ||
-            //   (ctrlUpdated.slaveDependencies !== undefined &&
-            //     ctrlUpdated.slaveDependencies.length > 0 &&
-            //     state.initiatingCascadingIcId === "")
-            handleCascadingRequest(ctrlUpdated);
-          }
-        },
+    });
+    const slaveDependenciesOfInitialCascadingIC = state.inputControls.find(
+      (ic) => {
+        return ic.id === state.initiatingCascadingIcId;
       },
-    };
+    );
+    const isSlaveDep =
+      slaveDependenciesOfInitialCascadingIC?.slaveDependencies?.includes(
+        ctrlUpdated.id,
+      );
+    if (state.initiatingCascadingIcId !== ctrlUpdated.id && !isSlaveDep) {
+      handleCascadingRequest(ctrlUpdated);
+    }
   };
+
   const buildControl = (control: any) => {
-    // TODO: need to use the values from the state instead of the values from the controls!
-    const theProps = getControlProps(control, props.params);
+    const theProps = control;
     if (control.type === "bool") {
       return (
         <BooleanInputControl
@@ -512,6 +475,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       return (
         <SingleSelectInputControl
           {...theProps}
+          handleIcChange={handleIcChange}
           key={control.id}
           validationRules={control.validationRules}
         />
@@ -548,22 +512,21 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     }
   };
 
-  const buildControls = (controlMap: any) => {
-    if (controlMap?.data) {
-      return controlMap.data.map(buildControl);
+  const buildControls = () => {
+    if (state.inputControls) {
+      return state.inputControls.map(buildControl);
     }
-    if (controlMap) {
-      return (
-        <span className="control-map-text">{JSON.stringify(controlMap)}</span>
-      );
-    }
-    return <></>;
+    return (
+      <span className="control-map-text">
+        {JSON.stringify(state.inputControls)}
+      </span>
+    );
   };
 
   return (
     <div className="jv-inputControlPanel">
       <JVDatePickerProvider>
-        {buildControls(props.controls)}
+        {buildControls() as ReactElement[]}
       </JVDatePickerProvider>
     </div>
   );
