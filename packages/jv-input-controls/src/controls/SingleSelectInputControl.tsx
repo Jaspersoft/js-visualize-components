@@ -11,7 +11,6 @@ import {
   InputControlProperties,
 } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
-// import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
 import { InputControlsContext } from "../reducer/InputControlsReducer";
 import { getInputControlProperties } from "./BaseInputControl";

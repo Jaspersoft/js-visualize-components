@@ -136,9 +136,10 @@ export const validateValueAgainstICValidationRules = (
         });
     finalMsg = errorMessage?.trim().length > 0 ? errorMessage : "";
     // also, we have to trigger the callback in case there was an error
-    props?.events?.change?.(getInputControlProperties(props, newTextValue), {
-      [props.id]: finalMsg,
-    });
+    props?.slaveDependencies?.length === 0 &&
+      props?.events?.change?.(getInputControlProperties(props, newTextValue), {
+        [props.id]: finalMsg,
+      });
   }
   return {
     newValue: newTextValue,

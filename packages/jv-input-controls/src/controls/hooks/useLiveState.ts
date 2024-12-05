@@ -34,7 +34,7 @@ export function useLiveState(initialValue: any, callback?: any) {
 
   const liveStateProps = {
     value: value,
-    setValue: setValue,
+    setValue,
     onChange: handleChange,
   };
 
