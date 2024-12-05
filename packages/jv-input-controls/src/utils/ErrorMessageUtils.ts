@@ -36,7 +36,7 @@ export const validateTextValue = ({
   textToValidate: string;
   validationRules: InputControlValidationRule[];
   mandatory: boolean;
-  defaultValue: string;
+  defaultValue: string | string[];
   minAndMaxDate?: { [key: string]: string };
   dataType: InputControlDataType;
 }): string => {
@@ -48,7 +48,9 @@ export const validateTextValue = ({
   let theMsg: string =
     mandatory && !textToValidate.trim()
       ? getMandatoryErrorMessage(validationRules)
-      : defaultValue;
+      : Array.isArray(defaultValue)
+        ? defaultValue[0]
+        : defaultValue;
   if (!theMsg.trim() && dataType?.pattern) {
     // we have to evaluate the dataType and check if there is no pattern defined that we need to verify.
     const regex = new RegExp(dataType.pattern);
@@ -107,7 +109,7 @@ export const validateValueAgainstICValidationRules = (
   newTextValue: string | string[],
   currentTextValue: string | string[],
   props?: InputControlProperties,
-  defaultValue?: string,
+  defaultValue?: string | string[],
   minAndMaxDate?: { [p: string]: string },
 ) => {
   const isArray = Array.isArray(newTextValue);

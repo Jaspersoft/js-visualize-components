@@ -31,18 +31,39 @@ export interface BasePanelProps {
 const SAMPLE_IC_UPDATED_RESPONSE = {
   inputControlState: [
     {
+      uri: "/public/Samples/Resources/Input_Controls/Product_Department",
+      id: "Product_Department",
+      options: [
+        {
+          selected: true,
+          label: "Alcoholic Beverages",
+          value: "Alcoholic Beverages",
+        },
+        {
+          selected: false,
+          label: "Beverages",
+          value: "Beverages",
+        },
+        {
+          selected: false,
+          label: "Dairy",
+          value: "Dairy",
+        },
+        {
+          selected: false,
+          label: "All",
+          value: "All",
+        },
+      ],
+    },
+    {
       uri: "/public/Samples/Resources/Input_Controls/Product_Category",
       id: "Product_Category",
       options: [
         {
           selected: true,
-          label: "Meat",
-          value: "Meat",
-        },
-        {
-          selected: false,
-          label: "Side Dishes",
-          value: "Side Dishes",
+          label: "Beer and Wine",
+          value: "Beer and Wine",
         },
         {
           selected: false,
@@ -57,278 +78,203 @@ const SAMPLE_IC_UPDATED_RESPONSE = {
       options: [
         {
           selected: true,
-          label: "American Beef Bologna",
-          value: "American Beef Bologna",
+          label: "Good Chablis Wine",
+          value: "Good Chablis Wine",
         },
         {
           selected: false,
-          label: "American Chicken Hot Dogs",
-          value: "American Chicken Hot Dogs",
+          label: "Good Chardonnay",
+          value: "Good Chardonnay",
         },
         {
           selected: false,
-          label: "American Corned Beef",
-          value: "American Corned Beef",
+          label: "Good Chardonnay Wine",
+          value: "Good Chardonnay Wine",
         },
         {
           selected: false,
-          label: "American Foot-Long Hot Dogs",
-          value: "American Foot-Long Hot Dogs",
+          label: "Good Imported Beer",
+          value: "Good Imported Beer",
         },
         {
           selected: false,
-          label: "American Low Fat Bologna",
-          value: "American Low Fat Bologna",
+          label: "Good Light Beer",
+          value: "Good Light Beer",
         },
         {
           selected: false,
-          label: "American Pimento Loaf",
-          value: "American Pimento Loaf",
+          label: "Good Light Wine",
+          value: "Good Light Wine",
         },
         {
           selected: false,
-          label: "American Roasted Chicken",
-          value: "American Roasted Chicken",
+          label: "Good Merlot Wine",
+          value: "Good Merlot Wine",
         },
         {
           selected: false,
-          label: "American Sliced Chicken",
-          value: "American Sliced Chicken",
+          label: "Good White Zinfandel Wine",
+          value: "Good White Zinfandel Wine",
         },
         {
           selected: false,
-          label: "American Sliced Ham",
-          value: "American Sliced Ham",
+          label: "Pearl Chablis Wine",
+          value: "Pearl Chablis Wine",
         },
         {
           selected: false,
-          label: "American Sliced Turkey",
-          value: "American Sliced Turkey",
+          label: "Pearl Chardonnay",
+          value: "Pearl Chardonnay",
         },
         {
           selected: false,
-          label: "American Turkey Hot Dogs",
-          value: "American Turkey Hot Dogs",
+          label: "Pearl Chardonnay Wine",
+          value: "Pearl Chardonnay Wine",
         },
         {
           selected: false,
-          label: "Cutting Edge Beef Bologna",
-          value: "Cutting Edge Beef Bologna",
+          label: "Pearl Imported Beer",
+          value: "Pearl Imported Beer",
         },
         {
           selected: false,
-          label: "Cutting Edge Chicken Hot Dogs",
-          value: "Cutting Edge Chicken Hot Dogs",
+          label: "Pearl Light Beer",
+          value: "Pearl Light Beer",
         },
         {
           selected: false,
-          label: "Cutting Edge Corned Beef",
-          value: "Cutting Edge Corned Beef",
+          label: "Pearl Light Wine",
+          value: "Pearl Light Wine",
         },
         {
           selected: false,
-          label: "Cutting Edge Foot-Long Hot Dogs",
-          value: "Cutting Edge Foot-Long Hot Dogs",
+          label: "Pearl Merlot Wine",
+          value: "Pearl Merlot Wine",
         },
         {
           selected: false,
-          label: "Cutting Edge Low Fat Bologna",
-          value: "Cutting Edge Low Fat Bologna",
+          label: "Pearl White Zinfandel Wine",
+          value: "Pearl White Zinfandel Wine",
         },
         {
           selected: false,
-          label: "Cutting Edge Pimento Loaf",
-          value: "Cutting Edge Pimento Loaf",
+          label: "Portsmouth Chablis Wine",
+          value: "Portsmouth Chablis Wine",
         },
         {
           selected: false,
-          label: "Cutting Edge Roasted Chicken",
-          value: "Cutting Edge Roasted Chicken",
+          label: "Portsmouth Chardonnay",
+          value: "Portsmouth Chardonnay",
         },
         {
           selected: false,
-          label: "Cutting Edge Sliced Chicken",
-          value: "Cutting Edge Sliced Chicken",
+          label: "Portsmouth Chardonnay Wine",
+          value: "Portsmouth Chardonnay Wine",
         },
         {
           selected: false,
-          label: "Cutting Edge Sliced Ham",
-          value: "Cutting Edge Sliced Ham",
+          label: "Portsmouth Imported Beer",
+          value: "Portsmouth Imported Beer",
         },
         {
           selected: false,
-          label: "Cutting Edge Sliced Turkey",
-          value: "Cutting Edge Sliced Turkey",
+          label: "Portsmouth Light Beer",
+          value: "Portsmouth Light Beer",
         },
         {
           selected: false,
-          label: "Cutting Edge Turkey Hot Dogs",
-          value: "Cutting Edge Turkey Hot Dogs",
+          label: "Portsmouth Light Wine",
+          value: "Portsmouth Light Wine",
         },
         {
           selected: false,
-          label: "Lake Beef Bologna",
-          value: "Lake Beef Bologna",
+          label: "Portsmouth Merlot Wine",
+          value: "Portsmouth Merlot Wine",
         },
         {
           selected: false,
-          label: "Lake Chicken Hot Dogs",
-          value: "Lake Chicken Hot Dogs",
+          label: "Portsmouth White Zinfandel Wine",
+          value: "Portsmouth White Zinfandel Wine",
         },
         {
           selected: false,
-          label: "Lake Corned Beef",
-          value: "Lake Corned Beef",
+          label: "Top Measure Chablis Wine",
+          value: "Top Measure Chablis Wine",
         },
         {
           selected: false,
-          label: "Lake Foot-Long Hot Dogs",
-          value: "Lake Foot-Long Hot Dogs",
+          label: "Top Measure Chardonnay",
+          value: "Top Measure Chardonnay",
         },
         {
           selected: false,
-          label: "Lake Low Fat Bologna",
-          value: "Lake Low Fat Bologna",
+          label: "Top Measure Chardonnay Wine",
+          value: "Top Measure Chardonnay Wine",
         },
         {
           selected: false,
-          label: "Lake Pimento Loaf",
-          value: "Lake Pimento Loaf",
+          label: "Top Measure Imported Beer",
+          value: "Top Measure Imported Beer",
         },
         {
           selected: false,
-          label: "Lake Roasted Chicken",
-          value: "Lake Roasted Chicken",
+          label: "Top Measure Light Beer",
+          value: "Top Measure Light Beer",
         },
         {
           selected: false,
-          label: "Lake Sliced Chicken",
-          value: "Lake Sliced Chicken",
+          label: "Top Measure Light Wine",
+          value: "Top Measure Light Wine",
         },
         {
           selected: false,
-          label: "Lake Sliced Ham",
-          value: "Lake Sliced Ham",
+          label: "Top Measure Merlot Wine",
+          value: "Top Measure Merlot Wine",
         },
         {
           selected: false,
-          label: "Lake Sliced Turkey",
-          value: "Lake Sliced Turkey",
+          label: "Top Measure White Zinfandel Wine",
+          value: "Top Measure White Zinfandel Wine",
         },
         {
           selected: false,
-          label: "Lake Turkey Hot Dogs",
-          value: "Lake Turkey Hot Dogs",
+          label: "Walrus Chablis Wine",
+          value: "Walrus Chablis Wine",
         },
         {
           selected: false,
-          label: "Moms Beef Bologna",
-          value: "Moms Beef Bologna",
+          label: "Walrus Chardonnay",
+          value: "Walrus Chardonnay",
         },
         {
           selected: false,
-          label: "Moms Chicken Hot Dogs",
-          value: "Moms Chicken Hot Dogs",
+          label: "Walrus Chardonnay Wine",
+          value: "Walrus Chardonnay Wine",
         },
         {
           selected: false,
-          label: "Moms Corned Beef",
-          value: "Moms Corned Beef",
+          label: "Walrus Imported Beer",
+          value: "Walrus Imported Beer",
         },
         {
           selected: false,
-          label: "Moms Foot-Long Hot Dogs",
-          value: "Moms Foot-Long Hot Dogs",
+          label: "Walrus Light Beer",
+          value: "Walrus Light Beer",
         },
         {
           selected: false,
-          label: "Moms Low Fat Bologna",
-          value: "Moms Low Fat Bologna",
+          label: "Walrus Light Wine",
+          value: "Walrus Light Wine",
         },
         {
           selected: false,
-          label: "Moms Pimento Loaf",
-          value: "Moms Pimento Loaf",
+          label: "Walrus Merlot Wine",
+          value: "Walrus Merlot Wine",
         },
         {
           selected: false,
-          label: "Moms Roasted Chicken",
-          value: "Moms Roasted Chicken",
-        },
-        {
-          selected: false,
-          label: "Moms Sliced Chicken",
-          value: "Moms Sliced Chicken",
-        },
-        {
-          selected: false,
-          label: "Moms Sliced Ham",
-          value: "Moms Sliced Ham",
-        },
-        {
-          selected: false,
-          label: "Moms Sliced Turkey",
-          value: "Moms Sliced Turkey",
-        },
-        {
-          selected: false,
-          label: "Moms Turkey Hot Dogs",
-          value: "Moms Turkey Hot Dogs",
-        },
-        {
-          selected: false,
-          label: "Red Spade Beef Bologna",
-          value: "Red Spade Beef Bologna",
-        },
-        {
-          selected: false,
-          label: "Red Spade Chicken Hot Dogs",
-          value: "Red Spade Chicken Hot Dogs",
-        },
-        {
-          selected: false,
-          label: "Red Spade Corned Beef",
-          value: "Red Spade Corned Beef",
-        },
-        {
-          selected: false,
-          label: "Red Spade Foot-Long Hot Dogs",
-          value: "Red Spade Foot-Long Hot Dogs",
-        },
-        {
-          selected: false,
-          label: "Red Spade Low Fat Bologna",
-          value: "Red Spade Low Fat Bologna",
-        },
-        {
-          selected: false,
-          label: "Red Spade Pimento Loaf",
-          value: "Red Spade Pimento Loaf",
-        },
-        {
-          selected: false,
-          label: "Red Spade Roasted Chicken",
-          value: "Red Spade Roasted Chicken",
-        },
-        {
-          selected: false,
-          label: "Red Spade Sliced Chicken",
-          value: "Red Spade Sliced Chicken",
-        },
-        {
-          selected: false,
-          label: "Red Spade Sliced Ham",
-          value: "Red Spade Sliced Ham",
-        },
-        {
-          selected: false,
-          label: "Red Spade Sliced Turkey",
-          value: "Red Spade Sliced Turkey",
-        },
-        {
-          selected: false,
-          label: "Red Spade Turkey Hot Dogs",
-          value: "Red Spade Turkey Hot Dogs",
+          label: "Walrus White Zinfandel Wine",
+          value: "Walrus White Zinfandel Wine",
         },
       ],
     },
@@ -346,7 +292,6 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       },
     });
 
-    console.log("triggering a new CALL from: ", ctrlUpdated.id);
     // TODO: We should trigger the CALL to the server to get the new data in case it's a cascading input control
     fetch("https://jsonplaceholder.typicode.com/users/1")
       .then(() => {
@@ -487,6 +432,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           {...theProps}
           key={control.id}
           validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
