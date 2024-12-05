@@ -15,6 +15,7 @@ import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { InputControlsContext } from "../reducer/InputControlsReducer";
 import { getInputControlProperties } from "./BaseInputControl";
+import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
 
 export interface SingleSelectInputControlProps extends InputControlProperties {
   handleIcChange: any;
@@ -29,23 +30,21 @@ export function SingleSelectInputControl(
   const { state } = useContext(InputControlsContext);
   const [localOptions, setLocalOptions] = useState<InputControlOption[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorText, setErrorText] = useState<string>("");
   // live state:
-  // TODO: need to move the getTheInitialValueForSingleSelectInputControl to initialize the value on the state, not
-  //  here.
-  // const liveState = useLiveState(
-  //   getTheInitialValueForSingleSelectInputControl(props.state?.value),
-  // );
   const liveState = useLiveState("", (newValue: string | string[]) => {
+    const { errorMsg } = validateValueAgainstICValidationRules(
+      newValue,
+      liveState.value,
+      props,
+      "",
+      {},
+    );
+    setErrorText(errorMsg);
     props.handleIcChange(getInputControlProperties(props, newValue), {
-      [props.id]: "",
+      [props.id]: errorMsg,
     });
   });
-  // TODO: need to restore the errorText by triggering it on the callback of useLiveState, not here as a new custom
-  //  hook.
-  // const errorText = useErrorMsg({
-  //   textValue: liveState.value,
-  //   props,
-  // });
   useEffect(() => {
     const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
     // TODO: need to improve the way how we set the IsLoading variable. This variable is also living on the state.
@@ -79,7 +78,6 @@ export function SingleSelectInputControl(
     setIsLoading(false);
   }, [localOptions]);
   const controlClasses = useControlClasses([], props);
-  // error={errorText}
   return isLoading ? (
     <>"Loading..."</>
   ) : (
@@ -91,6 +89,7 @@ export function SingleSelectInputControl(
       value={liveState.value}
       state={{ options: localOptions }}
       className={`${controlClasses.join(" ")}`}
+      error={errorText}
     />
   );
 }
