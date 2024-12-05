@@ -6,7 +6,7 @@
 
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
-import { JVMultiSelect } from "@jaspersoft/jv-ui-components";
+import { JVMultiSelect, JVSkeleton } from "@jaspersoft/jv-ui-components";
 import {
   InputControlOption,
   InputControlProperties,
@@ -79,7 +79,7 @@ export const MultiSelectInputControl = (
   }, [localOptions]);
   const controlClasses = useControlClasses([], props);
   return isLoading ? (
-    <>"Loading..."</>
+    <JVSkeleton animation="wave" />
   ) : (
     <JVMultiSelect
       onChange={liveState.onChange}

@@ -4,7 +4,7 @@
  * in the license file that is distributed with this file.
  */
 
-import { JVSelect } from "@jaspersoft/jv-ui-components";
+import { JVSelect, JVSkeleton } from "@jaspersoft/jv-ui-components";
 import { JSX, useContext, useEffect, useState } from "react";
 import {
   InputControlOption,
@@ -78,7 +78,7 @@ export function SingleSelectInputControl(
   }, [localOptions]);
   const controlClasses = useControlClasses([], props);
   return isLoading ? (
-    <>"Loading..."</>
+    <JVSkeleton animation="wave" />
   ) : (
     <JVSelect
       onChange={liveState.onChange}
