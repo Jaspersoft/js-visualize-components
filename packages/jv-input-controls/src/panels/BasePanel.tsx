@@ -286,9 +286,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
 
   const handleCascadingRequest = (ctrlUpdated: InputControlProperties) => {
     dispatch({
-      type: INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID,
+      type: INPUT_CONTROLS_ACTIONS.SET_INITIATOR_ID_CASCADING_IC,
       payload: {
-        initiatingCascadingIcId: ctrlUpdated.id,
+        initiatorIdCascadingIc: ctrlUpdated.id,
       },
     });
 
@@ -306,9 +306,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       .catch((error) => console.error("error: ", error))
       .finally(() =>
         dispatch({
-          type: INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID,
+          type: INPUT_CONTROLS_ACTIONS.SET_INITIATOR_ID_CASCADING_IC,
           payload: {
-            initiatingCascadingIcId: "",
+            initiatorIdCascadingIc: "",
           },
         }),
       );
@@ -334,11 +334,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
   };
 
   const buildControl = (control: any) => {
-    const theProps = control;
     if (control.type === "bool") {
       return (
         <BooleanInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           styleType={props.config?.bool?.type}
         />
@@ -351,7 +350,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       }
       return (
         <SingleValueTextInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           type={inputTypeText}
           dataType={control.dataType}
@@ -362,7 +361,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     if (control.type === "singleValueNumber") {
       return (
         <SingleValueNumberInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
@@ -374,7 +373,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       if (props?.config?.singleValueDate?.type === "material") {
         return (
           <DatePickerInputControl
-            {...theProps}
+            {...control}
             key={control.id}
             dataType={control.dataType}
             validationRules={control.validationRules}
@@ -383,7 +382,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       }
       return (
         <DatePickerTextFieldInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
@@ -394,7 +393,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       if (props.config?.singleValueDatetime?.type === "material") {
         return (
           <DateTimePickerInputControl
-            {...theProps}
+            {...control}
             key={control.id}
             dataType={control.dataType}
             validationRules={control.validationRules}
@@ -403,7 +402,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       }
       return (
         <DateTimePickerTextFieldInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
@@ -413,7 +412,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     if (control.type === "singleSelect") {
       return (
         <SingleSelectInputControl
-          {...theProps}
+          {...control}
           handleIcChange={handleIcChange}
           key={control.id}
           validationRules={control.validationRules}
@@ -423,7 +422,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     if (control.type === "multiSelect") {
       return (
         <MultiSelectInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           validationRules={control.validationRules}
           handleIcChange={handleIcChange}
@@ -434,7 +433,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       if (props.config?.singleValueTime?.type === "material") {
         return (
           <TimePickerInputControl
-            {...theProps}
+            {...control}
             key={control.id}
             dataType={control.dataType}
             validationRules={control.validationRules}
@@ -443,7 +442,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       }
       return (
         <TimePickerTextFieldInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}

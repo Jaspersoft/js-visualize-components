@@ -12,11 +12,10 @@ import { createContext, useReducer } from "react";
 import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
 
 export const INPUT_CONTROLS_ACTIONS = {
-  SET_DATA: "[INPUT_CONTROLS] SET_DATA",
   UPDATE_DATA: "[INPUT_CONTROLS] UPDATE_DATA",
   UPDATE_SLAVE_DEPENDENCIES: "[INPUT_CONTROLS] UPDATE_SLAVE_DEPENDENCIES",
-  SET_INITIATING_CASCADING_IC_ID:
-    "[INPUT_CONTROLS] SET_INITIATING_CASCADING_IC_ID",
+  SET_INITIATOR_ID_CASCADING_IC:
+    "[INPUT_CONTROLS] SET_INITIATOR_ID_CASCADING_IC",
 };
 
 const emitCallbackToUser = (
@@ -39,7 +38,7 @@ export interface InputControlsState {
   inputControls: InputControlProperties[];
   validResponse: { [key: string]: any[] };
   validationResultState: { [key: string]: string };
-  initiatingCascadingIcId?: string;
+  initiatorIdCascadingIc?: string;
 }
 
 const inputControlsReducer = (
@@ -48,12 +47,6 @@ const inputControlsReducer = (
 ): InputControlsState => {
   const { type, payload } = action;
   switch (type) {
-    case INPUT_CONTROLS_ACTIONS.SET_DATA: {
-      return {
-        ...state,
-        ...payload,
-      };
-    }
     case INPUT_CONTROLS_ACTIONS.UPDATE_DATA: {
       const icsUpdated = state.inputControls.reduce(
         (
@@ -119,11 +112,11 @@ const inputControlsReducer = (
 
       return stateUpdated;
     }
-    case INPUT_CONTROLS_ACTIONS.SET_INITIATING_CASCADING_IC_ID: {
-      let masterIcId = payload.initiatingCascadingIcId;
+    case INPUT_CONTROLS_ACTIONS.SET_INITIATOR_ID_CASCADING_IC: {
+      let masterIcId = payload.initiatorIdCascadingIc;
       let isLoading = true;
       if (masterIcId === "") {
-        masterIcId = state.initiatingCascadingIcId;
+        masterIcId = state.initiatorIdCascadingIc;
         isLoading = false;
       }
       const newICs = state.inputControls.map((ic) => {
@@ -141,7 +134,7 @@ const inputControlsReducer = (
       return {
         ...state,
         inputControls: [...newICs],
-        initiatingCascadingIcId: payload.initiatingCascadingIcId,
+        initiatorIdCascadingIc: payload.initiatorIdCascadingIc,
       };
     }
     case INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES: {
@@ -200,7 +193,7 @@ export const InputControlsContext = createContext<{
     inputControls: [],
     validResponse: {},
     validationResultState: {},
-    initiatingCascadingIcId: "",
+    initiatorIdCascadingIc: "",
   },
   dispatch: () => {},
 });
@@ -232,7 +225,7 @@ const createInitialState = (
     inputControls: fixedInitialState,
     validResponse: {},
     validationResultState: {},
-    initiatingCascadingIcId: "",
+    initiatorIdCascadingIc: "",
   };
 };
 
