@@ -325,16 +325,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         resultValidation,
       },
     });
-    const slaveDependenciesOfInitialCascadingIC = state.inputControls.find(
-      (ic) => {
-        return ic.id === state.initiatingCascadingIcId;
-      },
-    );
-    const isSlaveDep =
-      slaveDependenciesOfInitialCascadingIC?.slaveDependencies?.includes(
-        ctrlUpdated.id,
-      );
-    if (state.initiatingCascadingIcId !== ctrlUpdated.id && !isSlaveDep) {
+    if (
+      ctrlUpdated.slaveDependencies &&
+      ctrlUpdated.slaveDependencies.length > 0
+    ) {
       handleCascadingRequest(ctrlUpdated);
     }
   };

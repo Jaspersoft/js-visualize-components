@@ -24,18 +24,15 @@ const emitCallbackToUser = (
   payload: {
     ctrlUpdated: InputControlProperties;
   },
-  emitCallbackToUser = true,
 ) => {
-  if (emitCallbackToUser) {
-    const isError = Object.keys(icsUpdated.validationResultState).length > 0;
-    const cInputControl = icsUpdated.inputControls.find(
-      ({ id }) => id === payload.ctrlUpdated.id,
-    );
-    cInputControl!.events?.change?.(
-      icsUpdated.validResponse,
-      isError ? icsUpdated.validationResultState : false,
-    );
-  }
+  const isError = Object.keys(icsUpdated.validationResultState).length > 0;
+  const cInputControl = icsUpdated.inputControls.find(
+    ({ id }) => id === payload.ctrlUpdated.id,
+  );
+  cInputControl!.events?.change?.(
+    icsUpdated.validResponse,
+    isError ? icsUpdated.validationResultState : false,
+  );
 };
 
 export interface InputControlsState {
@@ -113,12 +110,12 @@ const inputControlsReducer = (
         validResponse: { ...icsUpdated.response },
         validationResultState: { ...icsUpdated.invalidResponse },
       };
-      emitCallbackToUser(
-        stateUpdated,
-        payload,
+      if (
         payload.ctrlUpdated.slaveDependencies === undefined ||
-          payload.ctrlUpdated.slaveDependencies.length === 0,
-      );
+        payload.ctrlUpdated.slaveDependencies.length === 0
+      ) {
+        emitCallbackToUser(stateUpdated, payload);
+      }
 
       return stateUpdated;
     }
