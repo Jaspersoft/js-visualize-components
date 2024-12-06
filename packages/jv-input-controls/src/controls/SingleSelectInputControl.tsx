@@ -13,6 +13,7 @@ import { InputControlsContext } from "../reducer/InputControlsReducer";
 import { getInputControlProperties } from "./BaseInputControl";
 import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
 import { useCascadingOptions } from "./hooks/useCascadingOptions";
+import { generateValueBasedOnOptions } from "../utils/ValueBasedOnOptionsUtils";
 
 export interface SingleSelectInputControlProps extends InputControlProperties {
   handleIcChange: any;
@@ -45,21 +46,17 @@ export function SingleSelectInputControl(
     currentIcID: props.id,
   });
   useEffect(() => {
-    if (options === undefined) {
+    const basedOnOptions = generateValueBasedOnOptions(
+      options,
+      liveState.value,
+    );
+    if (basedOnOptions === null) {
       return;
     }
-    // TODO: this logic need to be improved
-    const selectedOne = options.find(({ selected }) => selected);
-    const theValue = Array.isArray(liveState.value)
-      ? liveState.value.at(0)
-      : liveState.value;
-    if (
-      options.length > 0 &&
-      !options.some((option) => option.value === theValue)
-    ) {
-      liveState.setValue([selectedOne!.value]);
+    if (basedOnOptions.valueUpdated !== null) {
+      liveState.setValue(basedOnOptions.valueUpdated);
     }
-    setIsLoading(false);
+    setIsLoading(basedOnOptions.isSelectLoading);
   }, [options]);
   const controlClasses = useControlClasses([], props);
   return isLoading ? (

@@ -7,15 +7,13 @@
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { JVMultiSelect, JVSkeleton } from "@jaspersoft/jv-ui-components";
-import {
-  InputControlOption,
-  InputControlProperties,
-} from "@jaspersoft/jv-tools";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useContext, useEffect, useState } from "react";
 import { InputControlsContext } from "../reducer/InputControlsReducer";
 import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
 import { getInputControlProperties } from "./BaseInputControl";
 import { useCascadingOptions } from "./hooks/useCascadingOptions";
+import { generateValueBasedOnOptions } from "../utils/ValueBasedOnOptionsUtils";
 
 export type MultiSelectICType = "multiSelect";
 
@@ -49,21 +47,17 @@ export const MultiSelectInputControl = (
     currentIcID: props.id,
   });
   useEffect(() => {
-    if (options === undefined) {
+    const basedOnOptions = generateValueBasedOnOptions(
+      options,
+      liveState.value,
+    );
+    if (basedOnOptions === null) {
       return;
     }
-    // TODO: this logic need to be improved
-    const selectedOne: InputControlOption[] = options.filter(
-      ({ selected }) => selected,
-    );
-    const theValue: string[] = liveState.value;
-    if (
-      options.length > 0 &&
-      !options.some((option) => theValue.includes(option.value))
-    ) {
-      liveState.setValue(selectedOne.map(({ value }) => value));
+    if (basedOnOptions.valueUpdated !== null) {
+      liveState.setValue(basedOnOptions.valueUpdated);
     }
-    setIsLoading(false);
+    setIsLoading(basedOnOptions.isSelectLoading);
   }, [options]);
   const controlClasses = useControlClasses([], props);
   return isLoading ? (
