@@ -7,9 +7,8 @@
 import React from "react";
 import {
   JVBox,
-  JVIcon,
-  JVTreeItem2Label,
   JVTypography,
+  JVTreeItem2Label,
 } from "@jaspersoft/jv-ui-components";
 
 interface CustomLabelProps {
@@ -33,14 +32,14 @@ export const TreeItemLabel = ({
         }}
       >
         <JVBox
-          className="labelIcon"
+          className="jv-mTree-node-item-icon"
           color="inherit"
           sx={{ mr: 1, fontSize: "1.2rem" }}
-        >
-          <JVIcon icon="folder" />
-        </JVBox>
+        ></JVBox>
 
-        <JVTypography>{children}</JVTypography>
+        <JVTypography className="jv-mTree-node-item-label" variant="body2">
+          {children}
+        </JVTypography>
       </JVTreeItem2Label>
     </>
   );
