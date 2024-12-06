@@ -6,7 +6,7 @@
 
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 
-const isSelectInputControl = (props: InputControlProperties) => {
+export const isSelectInputControl = (props: InputControlProperties) => {
   return props.type === "multiSelect" || props.type === "singleSelect";
 };
 
