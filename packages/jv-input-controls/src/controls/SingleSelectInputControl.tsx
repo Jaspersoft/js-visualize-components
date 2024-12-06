@@ -6,15 +6,13 @@
 
 import { JVSelect, JVSkeleton } from "@jaspersoft/jv-ui-components";
 import { JSX, useContext, useEffect, useState } from "react";
-import {
-  InputControlOption,
-  InputControlProperties,
-} from "@jaspersoft/jv-tools";
+import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
 import { InputControlsContext } from "../reducer/InputControlsReducer";
 import { getInputControlProperties } from "./BaseInputControl";
 import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
+import { useCascadingOptions } from "./hooks/useCascadingOptions";
 
 export interface SingleSelectInputControlProps extends InputControlProperties {
   handleIcChange: any;
@@ -27,8 +25,6 @@ export function SingleSelectInputControl(
 ): JSX.Element {
   // new variables due to the reducer state:
   const { state } = useContext(InputControlsContext);
-  const [localOptions, setLocalOptions] = useState<InputControlOption[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
   // live state:
   const liveState = useLiveState("", (newValue: string | string[]) => {
@@ -44,38 +40,27 @@ export function SingleSelectInputControl(
       [props.id]: errorMsg,
     });
   });
+  const { options, isLoading, setIsLoading } = useCascadingOptions({
+    inputControls: state.inputControls,
+    currentIcID: props.id,
+  });
   useEffect(() => {
-    const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
-    // TODO: need to improve the way how we set the IsLoading variable. This variable is also living on the state.
-    if (icFromState.isLoading === true) {
-      setIsLoading(true);
-    }
-    if (
-      icFromState.state !== undefined &&
-      icFromState.state!.options !== undefined &&
-      JSON.stringify(icFromState.state!.options) !==
-        JSON.stringify(localOptions)
-    ) {
-      setLocalOptions(icFromState.state!.options!);
-    }
-  }, [state.inputControls]);
-  useEffect(() => {
-    if (localOptions === undefined) {
+    if (options === undefined) {
       return;
     }
     // TODO: this logic need to be improved
-    const selectedOne = localOptions.find(({ selected }) => selected);
+    const selectedOne = options.find(({ selected }) => selected);
     const theValue = Array.isArray(liveState.value)
       ? liveState.value.at(0)
       : liveState.value;
     if (
-      localOptions.length > 0 &&
-      !localOptions.some((option) => option.value === theValue)
+      options.length > 0 &&
+      !options.some((option) => option.value === theValue)
     ) {
       liveState.setValue([selectedOne!.value]);
     }
     setIsLoading(false);
-  }, [localOptions]);
+  }, [options]);
   const controlClasses = useControlClasses([], props);
   return isLoading ? (
     <JVSkeleton animation="wave" />
@@ -86,7 +71,7 @@ export function SingleSelectInputControl(
       id={props.id}
       key={props.id}
       value={liveState.value}
-      state={{ options: localOptions }}
+      state={{ options }}
       className={`${controlClasses.join(" ")}`}
       error={errorText}
     />

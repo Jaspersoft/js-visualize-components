@@ -15,6 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import { InputControlsContext } from "../reducer/InputControlsReducer";
 import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
 import { getInputControlProperties } from "./BaseInputControl";
+import { useCascadingOptions } from "./hooks/useCascadingOptions";
 
 export type MultiSelectICType = "multiSelect";
 
@@ -27,8 +28,6 @@ export const MultiSelectInputControl = (
 ): JSX.Element => {
   // new variables due to the reducer state:
   const { state } = useContext(InputControlsContext);
-  const [localOptions, setLocalOptions] = useState<InputControlOption[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
 
   // live state:
@@ -45,38 +44,27 @@ export const MultiSelectInputControl = (
       [props.id]: errorMsg,
     });
   });
+  const { options, isLoading, setIsLoading } = useCascadingOptions({
+    inputControls: state.inputControls,
+    currentIcID: props.id,
+  });
   useEffect(() => {
-    const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
-    // TODO: need to improve the way how we set the IsLoading variable. This variable is also living on the state.
-    if (icFromState.isLoading === true) {
-      setIsLoading(true);
-    }
-    if (
-      icFromState.state !== undefined &&
-      icFromState.state!.options !== undefined &&
-      JSON.stringify(icFromState.state!.options) !==
-        JSON.stringify(localOptions)
-    ) {
-      setLocalOptions(icFromState.state!.options!);
-    }
-  }, [state.inputControls]);
-  useEffect(() => {
-    if (localOptions === undefined) {
+    if (options === undefined) {
       return;
     }
     // TODO: this logic need to be improved
-    const selectedOne: InputControlOption[] = localOptions.filter(
+    const selectedOne: InputControlOption[] = options.filter(
       ({ selected }) => selected,
     );
     const theValue: string[] = liveState.value;
     if (
-      localOptions.length > 0 &&
-      !localOptions.some((option) => theValue.includes(option.value))
+      options.length > 0 &&
+      !options.some((option) => theValue.includes(option.value))
     ) {
       liveState.setValue(selectedOne.map(({ value }) => value));
     }
     setIsLoading(false);
-  }, [localOptions]);
+  }, [options]);
   const controlClasses = useControlClasses([], props);
   return isLoading ? (
     <JVSkeleton animation="wave" />
@@ -87,7 +75,7 @@ export const MultiSelectInputControl = (
       id={props.id}
       key={props.id}
       value={liveState.value}
-      state={{ options: localOptions }}
+      state={{ options }}
       className={`${controlClasses.join(" ")}`}
       error={errorText}
     />
