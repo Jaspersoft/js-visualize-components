@@ -38,12 +38,8 @@ import {
  *      4e. Medium Contained
  *      4f. Large Contained
  *
- *   5. MENU BUTTONS
- *
- *   6. TOOLBAR BUTTONS
- *
  * --------------------------------------------------------------
- *  last modified Mar 13, 2024
+ *  last modified Dec 6, 2024
  * -------------------------------------------------------------- */
 
 export default {
@@ -888,102 +884,3 @@ export const CombinationButton = () => (
   </>
 );
 CombinationButton.storyName = "Combination Button";
-
-/* -----------------------
- *   5. MENU BUTTONS
- * ----------------------- */
-export const menuButton = () => (
-  <>
-    <h1 className={"demoType demoTypeComponent"}>Component</h1>
-    <h1 className={"demoTitle"}>Button – Menu</h1>
-
-    <div className="demoWrapper demoMenuButtons">
-      <Grid
-        container
-        className="jv-uHeight-100pc"
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Grid item className="jv-uHeight-100pc">
-          <JVIconButton
-            aria-label="home"
-            className={"jv-mButtonMenu"}
-            icon={"home"}
-          />
-          <JVButton className="jv-mButtonMenu">Library</JVButton>
-          <JVButton className="jv-mButtonMenu jv-mButtonDropdown">
-            View
-          </JVButton>
-        </Grid>
-        <Grid item className="jv-uHeight-100pc">
-          <JVButton className="jv-mButtonMenu jv-mButtonDropdown">
-            Learning Resources
-          </JVButton>
-          <JVButton
-            labelProps={{ labelClasses: "jv-uTextExtraBold" }}
-            className="jv-mButtonMenu jv-mButtonDropdown"
-          >
-            Username
-          </JVButton>
-        </Grid>
-      </Grid>
-    </div>
-  </>
-);
-
-/* -----------------------
- *   6. TOOLBAR BUTTONS
- * ----------------------- */
-export const ToolbarButtons = () => (
-  <>
-    <h1 className={"demoType demoTypeComponent"}>Component</h1>
-    <h1 className={"demoTitle"}>Button – Toolbar</h1>
-
-    <div className="demoWrapper demoToolbarButtons">
-      <JVToolbar
-        className="jv-mToolbarPadded jv-mToolbarShaded"
-        disableGutters={true}
-      >
-        <div className="jv-mToolbar-toolset mui">
-          <JVIconButton
-            aria-label="bold"
-            className={"jv-mButtonToolbar jv-mButtonDropdown"}
-            icon={"save"}
-          />
-
-          <JVDivider
-            orientation="vertical"
-            component="div"
-            classes={{ root: "jv-mToolbar-divider mui" }}
-          />
-
-          <JVIconButton
-            aria-label="bold"
-            className={"jv-mButtonToolbar"}
-            icon={"undo"}
-          />
-
-          <JVIconButton
-            aria-label="bold"
-            className={"jv-mButtonToolbar"}
-            icon={"undoAll"}
-          />
-
-          <JVIconButton
-            aria-label="bold"
-            className={"jv-mButtonToolbar"}
-            icon={"redo"}
-          />
-
-          <JVDivider
-            orientation="vertical"
-            component="div"
-            classes={{ root: "jv-mToolbar-divider mui" }}
-          />
-        </div>
-      </JVToolbar>
-    </div>
-  </>
-);
-ToolbarButtons.storyName = "Toolbar Button";

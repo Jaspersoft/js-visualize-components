@@ -43,12 +43,8 @@ import {
  *      4e. Medium Contained
  *      4f. Large Contained
  *
- *   5. MENU BUTTONS
- *
- *   6. TOOLBAR BUTTONS
- *
  * --------------------------------------------------------------
- *  File last modified Mar 8, 2024
+ *  File last modified Dec 6, 2024
  * -------------------------------------------------------------- */
 
 export default {
@@ -2083,120 +2079,6 @@ export const combinationButton = () => (
           </Button>
         </div>
       </div>
-    </div>
-  </>
-);
-
-/* -----------------------
- *   5. MENU BUTTONS
- * ----------------------- */
-export const menuButton = () => (
-  <>
-    <h1 className={"demoType demoTypeDesign"}>Design</h1>
-    <h1 className={"demoTitle"}>Button – Menu</h1>
-
-    <div className="demoWrapper demoMenuButtons">
-      <Grid
-        container
-        className="jv-uHeight-100pc"
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Grid item className="jv-uHeight-100pc">
-          <IconButton
-            aria-label="home"
-            className="jv-mButton jv-mButtonMenu mui"
-            size="medium"
-          >
-            <span className="jv-mButton-icon jv-mIcon mui jv-home"></span>
-          </IconButton>
-          <Button className="jv-mButton jv-mButtonMenu mui" size="medium">
-            <span className="jv-mButton-label mui">Library</span>
-          </Button>
-          <Button
-            className="jv-mButton jv-mButtonMenu jv-mButtonDropdown mui"
-            size="medium"
-          >
-            <span className="jv-mButton-label mui">View</span>
-          </Button>
-        </Grid>
-        <Grid item className="jv-uHeight-100pc">
-          <Button
-            className="jv-mButton jv-mButtonMenu jv-mButtonDropdown mui"
-            size="medium"
-          >
-            <span className="jv-mButton-label mui">Learning Resources</span>
-          </Button>
-          <Button
-            className="jv-mButton jv-mButtonMenu jv-mButtonDropdown mui"
-            size="medium"
-          >
-            <span className="jv-mButton-label jv-uTextExtraBold mui">
-              Username
-            </span>
-          </Button>
-        </Grid>
-      </Grid>
-    </div>
-  </>
-);
-
-/* -----------------------
- *   6. TOOLBAR BUTTONS
- * ----------------------- */
-export const toolbarButton = () => (
-  <>
-    <h1 className={"demoType demoTypeDesign"}>Design</h1>
-    <h1 className={"demoTitle"}>Button – Toolbar</h1>
-
-    <div className="demoWrapper demoToolbarButtons">
-      <MuiToolbar
-        className="jv-mToolbar jv-mToolbarPadded jv-mToolbarShaded mui"
-        disableGutters={true}
-      >
-        <div className="jv-mToolbar-toolset mui">
-          <IconButton
-            aria-label="bold"
-            className={"jv-mButton jv-mButtonToolbar jv-mButtonDropdown mui"}
-          >
-            <span className="jv-mButton-icon jv-mIcon mui jv-save"></span>
-          </IconButton>
-
-          <Divider
-            orientation="vertical"
-            component="div"
-            classes={{ root: "jv-mToolbar-divider mui" }}
-          />
-
-          <IconButton
-            aria-label="undo"
-            className={"jv-mButton jv-mButtonToolbar mui"}
-          >
-            <span className="jv-mButton-icon jv-mIcon mui jv-undo"></span>
-          </IconButton>
-
-          <IconButton
-            aria-label="bold"
-            className={"jv-mButton jv-mButtonToolbar mui"}
-          >
-            <span className="jv-mButton-icon jv-mIcon mui jv-undoAll"></span>
-          </IconButton>
-
-          <IconButton
-            aria-label="bold"
-            className={"jv-mButton jv-mButtonToolbar mui"}
-          >
-            <span className="jv-mButton-icon jv-mIcon mui jv-redo"></span>
-          </IconButton>
-
-          <Divider
-            orientation="vertical"
-            component="div"
-            classes={{ root: "jv-mToolbar-divider mui" }}
-          />
-        </div>
-      </MuiToolbar>
     </div>
   </>
 );

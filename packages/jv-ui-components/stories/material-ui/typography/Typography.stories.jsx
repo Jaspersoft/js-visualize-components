@@ -16,10 +16,8 @@ import { Typography, Link, Icon } from "@mui/material";
  *
  *   3. MESSAGE
  *
- *   4. FILTER STATEMENT
- *
 /* -------------------------------
- *  last modified Feb 12, 2024
+ *  last modified Dec 6, 2024
  * ------------------------------- */
 
 export default {
@@ -27,15 +25,15 @@ export default {
   title: "Components/Typography/Design",
 };
 
+/* -----------------
+ *  1. GENERAL
+ * ----------------- */
 export const General = () => {
   return (
     <>
       <h1 className={"demoType demoTypeDesign"}>Design</h1>
       <h1 className={"demoTitle"}>Typography</h1>
 
-      {/* --------------------------
-                 1. HEADER / TITLE TEXT
-                -------------------------- */}
       <div className={"demoWrapper demoTypography"}>
         {/* 1a. Header text (for h1-h6 elements) */}
         <div className="demoSize">
@@ -122,15 +120,15 @@ export const General = () => {
   );
 };
 
+/* -----------------
+ *  2. LINK TEXT
+ * ----------------- */
 export const TextLink = () => {
   return (
     <>
       <h1 className={"demoType demoTypeDesign"}>Design</h1>
       <h1 className={"demoTitle"}>Typography - Link Text</h1>
 
-      {/* ----------------
-                 2. LINK TEXT
-                ---------------- */}
       <div className={"demoWrapper demoTypography"}>
         {/* 2a. Small text */}
         <div className="demoSize">
@@ -215,15 +213,15 @@ export const TextLink = () => {
 };
 TextLink.storyName = "Link";
 
+/* -----------------
+ *  3. MESSAGE
+ * ----------------- */
 export const Message = () => {
   return (
     <>
       <h1 className={"demoType demoTypeDesign"}>Design</h1>
       <h1 className={"demoTitle"}>Typography - Message Text</h1>
 
-      {/* --------------
-                 3. MESSAGE
-                -------------- */}
       <div className={"demoWrapper demoTypography"}>
         <div className="demoSize">
           <div className={"demoSubtitle"}>Small Body Text (12px)</div>
@@ -360,31 +358,3 @@ export const Message = () => {
   );
 };
 Message.storyName = "Message";
-
-export const FilterStatement = () => {
-  return (
-    <>
-      <h1 className={"demoType demoTypeDesign"}>Design</h1>
-      <h1 className={"demoTitle"}>Typography - Filter Statement</h1>
-
-      {/* ---------------------------
-                 4. FILTER STATEMENT TEXT
-                --------------------------- */}
-      <div className={"demoWrapper demoTypographyFilter"}>
-        {/* 2a. Small text */}
-        <div className="demoSize">
-          {/*<div className={"demoSubtitle"}>Xxxxx</div>*/}
-          <Typography className="jv-mText jv-mTextFilter mui">
-            <span className="jv-mText-descriptor mui">Executions for all</span>
-            <span className="jv-mText-value mui">scheduled dashboards</span>
-            <span className="jv-mText-descriptor mui">that were</span>
-            <span className="jv-mText-value mui">completed</span>
-            <span className="jv-mText-descriptor mui">within the</span>
-            <span className="jv-mText-value mui">last 3 days</span>
-          </Typography>
-        </div>
-      </div>
-    </>
-  );
-};
-FilterStatement.storyName = "Filter Statement";
