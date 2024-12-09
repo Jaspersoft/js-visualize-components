@@ -4,7 +4,33 @@
  * in the license file that is distributed with this file.
  */
 
+/* ------------------- */
+/*  FONT DEFINITION    */
+/* ------------------- */
+@font-face {
+  font-family: "source_sans_proregular";
+  src:
+    url("/assets/fonts/sourcesanspro-regular-webfont.woff2") format("woff2"),
+    url("assets/fonts/sourcesanspro-regular-webfont.woff") format("woff"),
+    url("assets/fonts/sourcesanspro-regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "source_sans_prosemibold";
+  src:
+    url("assets/fonts/sourcesanspro-semibold-webfont.woff2") format("woff2"),
+    url("assets/fonts/sourcesanspro-semibold-webfont.woff") format("woff"),
+    url("assets/fonts/sourcesanspro-semibold.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* --------------- */
+/*  PAGE STYLES    */
+/* --------------- */
 body {
+  font-family: source_sans_proregular, "Helvetica Neue", Arial, sans-serif;
   margin: 0 10px !important;
   padding: 0 10px !important;
   background-color: #f7f7f7;
