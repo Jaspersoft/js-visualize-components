@@ -1,6 +1,6 @@
 {
   "name": "@jaspersoft/jv-tools",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Tools for working with JasperReports Server's Visualize.js",
   "type": "module",
   "main": "dist/index.umd.js",
