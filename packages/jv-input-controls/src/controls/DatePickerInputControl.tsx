@@ -14,9 +14,11 @@ import {
   InputControlValidationRule,
 } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 import { getTheInitialValue } from "../utils/DefaultValueUtils";
+import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
+import { useState } from "react";
+import { getInputControlProperties } from "./BaseInputControl";
 
 export type DatePickerICType = "material";
 
@@ -32,24 +34,34 @@ export const DatePickerInputControl = (props: DateICProps) => {
     "YYYY-MM-DD",
   ).toUpperCase();
 
-  const liveState = useLiveDateFormattedState({
-    initialValue: getTheInitialValue(props.state?.value) || "",
-    format: dateFormat,
-  });
-  const controlClasses = useControlClasses([], props);
+  const [errorText, setErrorText] = useState<string>("");
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
     minKey: "minDate",
     maxKey: "maxDate",
   });
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
-    minAndMaxDate: minAndMaxSettings,
+  const liveState = useLiveDateFormattedState({
+    initialValue: getTheInitialValue(props.state?.value) || "",
+    format: dateFormat,
+    callback: (newValue) => {
+      const { errorMsg } = validateValueAgainstICValidationRules(
+        newValue,
+        liveState.value,
+        props,
+        "",
+        minAndMaxSettings,
+      );
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
   });
-  const { events, ...remainingProps } = props;
+  const controlClasses = useControlClasses([], props);
   return (
     <JVDatePicker
-      {...{ ...remainingProps, ...minAndMaxSettings }}
+      id={props.id}
+      label={props.label}
+      {...{ ...minAndMaxSettings }}
       onChange={liveState.onChange}
       value={liveState.value}
       className={`${controlClasses.join(" ")} ${props.className || ""}`}

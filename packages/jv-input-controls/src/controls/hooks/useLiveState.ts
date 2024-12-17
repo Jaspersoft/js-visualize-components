@@ -27,9 +27,7 @@ export function useLiveState(initialValue: any, callback?: any) {
       if (Array.isArray(newValue)) setValue([...newValue]);
       else setValue(newValue);
     }
-    if (callback) {
-      callback(newValue);
-    }
+    callback?.(newValue);
   }
 
   const liveStateProps = {
