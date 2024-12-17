@@ -15,9 +15,7 @@ import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtil
 import { useCascadingOptions } from "./hooks/useCascadingOptions";
 import { generateValueBasedOnOptions } from "../utils/ValueBasedOnOptionsUtils";
 
-export interface SingleSelectInputControlProps extends InputControlProperties {
-  handleIcChange: any;
-}
+export interface SingleSelectInputControlProps extends InputControlProperties {}
 
 export type SingleSelectICType = "singleSelect";
 
@@ -37,7 +35,7 @@ export function SingleSelectInputControl(
       {},
     );
     setErrorText(errorMsg);
-    props.handleIcChange(getInputControlProperties(props, newValue), {
+    props.handleIcChange!(getInputControlProperties(props, newValue), {
       [props.id]: errorMsg,
     });
   });

@@ -77,7 +77,7 @@ export type InputControlType =
   | "multiSelectCheckbox"
   | undefined;
 
-export interface InputControlProperties {
+export interface CommonInputControlProperties {
   id: string;
   type: InputControlType;
   label: string;
@@ -89,9 +89,11 @@ export interface InputControlProperties {
   validationRules?: InputControlValidationRule[];
   dataType?: InputControlDataType;
   isLoading?: boolean;
-
   masterDependencies?: string[];
   slaveDependencies?: string[];
+}
+
+export interface InputControlProperties extends CommonInputControlProperties {
   events?: {
     change: (
       ic: { [key: string]: any[] } | InputControlProperties, // TODO: remove InputControlProperties
@@ -99,4 +101,8 @@ export interface InputControlProperties {
     ) => void;
   };
   parameters?: { [key: string]: string[] };
+  handleIcChange?: (
+    ctrlUpdated: CommonInputControlProperties,
+    resultValidation?: { [key: string]: string },
+  ) => void;
 }

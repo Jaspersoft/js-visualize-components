@@ -8,21 +8,14 @@ import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { JSX, ReactElement, useContext } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
-import { DatePickerInputControl } from "../controls/DatePickerInputControl";
-import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
-import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
-import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
 import { MultiSelectInputControl } from "../controls/MultiSelectInputControl";
-import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
-import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
-import { TimePickerInputControl } from "../controls/TimePickerInputControl";
-import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
 import { InputControlsTypeConfig } from "../InputControls";
 import {
   INPUT_CONTROLS_ACTIONS,
   InputControlsContext,
 } from "../reducer/InputControlsReducer";
+import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
 
 export interface BasePanelProps {
   config?: InputControlsTypeConfig;
@@ -340,75 +333,72 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
           {...control}
           key={control.id}
           styleType={props.config?.bool?.type}
+          handleIcChange={handleIcChange}
         />
       );
     }
     if (control.type === "singleValueText") {
-      let inputTypeText = props.config?.singleValueText?.type || "text";
-      if (inputTypeText === "textField") {
-        inputTypeText = "text";
-      }
       return (
         <SingleValueTextInputControl
           {...control}
           key={control.id}
-          type={inputTypeText}
           dataType={control.dataType}
           validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
-    if (control.type === "singleValueNumber") {
-      return (
-        <SingleValueNumberInputControl
-          {...control}
-          key={control.id}
-          dataType={control.dataType}
-          validationRules={control.validationRules}
-        />
-      );
-    }
+    // if (control.type === "singleValueNumber") {
+    //   return (
+    //     <SingleValueNumberInputControl
+    //       {...control}
+    //       key={control.id}
+    //       dataType={control.dataType}
+    //       validationRules={control.validationRules}
+    //     />
+    //   );
+    // }
 
-    if (control.type === "singleValueDate") {
-      if (props?.config?.singleValueDate?.type === "material") {
-        return (
-          <DatePickerInputControl
-            {...control}
-            key={control.id}
-            dataType={control.dataType}
-            validationRules={control.validationRules}
-          />
-        );
-      }
-      return (
-        <DatePickerTextFieldInputControl
-          {...control}
-          key={control.id}
-          dataType={control.dataType}
-          validationRules={control.validationRules}
-        />
-      );
-    }
-    if (control.type === "singleValueDatetime") {
-      if (props.config?.singleValueDatetime?.type === "material") {
-        return (
-          <DateTimePickerInputControl
-            {...control}
-            key={control.id}
-            dataType={control.dataType}
-            validationRules={control.validationRules}
-          />
-        );
-      }
-      return (
-        <DateTimePickerTextFieldInputControl
-          {...control}
-          key={control.id}
-          dataType={control.dataType}
-          validationRules={control.validationRules}
-        />
-      );
-    }
+    // if (control.type === "singleValueDate") {
+    //   if (props?.config?.singleValueDate?.type === "material") {
+    //     return (
+    //       <DatePickerInputControl
+    //         {...control}
+    //         key={control.id}
+    //         dataType={control.dataType}
+    //         validationRules={control.validationRules}
+    //       />
+    //     );
+    //   }
+    //   return (
+    //     <DatePickerTextFieldInputControl
+    //       {...control}
+    //       key={control.id}
+    //       dataType={control.dataType}
+    //       validationRules={control.validationRules}
+    //     />
+    //   );
+    // }
+    // if (control.type === "singleValueDatetime") {
+    //   if (props.config?.singleValueDatetime?.type === "material") {
+    //     return (
+    //       <DateTimePickerInputControl
+    //         {...control}
+    //         key={control.id}
+    //         dataType={control.dataType}
+    //         validationRules={control.validationRules}
+    //       />
+    //     );
+    //   }
+    //   return (
+    //     <DateTimePickerTextFieldInputControl
+    //       {...control}
+    //       key={control.id}
+    //       dataType={control.dataType}
+    //       validationRules={control.validationRules}
+    //     />
+    //   );
+    // }
     if (control.type === "singleSelect") {
       return (
         <SingleSelectInputControl
@@ -429,26 +419,26 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         />
       );
     }
-    if (control.type === "singleValueTime") {
-      if (props.config?.singleValueTime?.type === "material") {
-        return (
-          <TimePickerInputControl
-            {...control}
-            key={control.id}
-            dataType={control.dataType}
-            validationRules={control.validationRules}
-          />
-        );
-      }
-      return (
-        <TimePickerTextFieldInputControl
-          {...control}
-          key={control.id}
-          dataType={control.dataType}
-          validationRules={control.validationRules}
-        />
-      );
-    }
+    // if (control.type === "singleValueTime") {
+    //   if (props.config?.singleValueTime?.type === "material") {
+    //     return (
+    //       <TimePickerInputControl
+    //         {...control}
+    //         key={control.id}
+    //         dataType={control.dataType}
+    //         validationRules={control.validationRules}
+    //       />
+    //     );
+    //   }
+    //   return (
+    //     <TimePickerTextFieldInputControl
+    //       {...control}
+    //       key={control.id}
+    //       dataType={control.dataType}
+    //       validationRules={control.validationRules}
+    //     />
+    //   );
+    // }
   };
 
   const buildControls = () => {

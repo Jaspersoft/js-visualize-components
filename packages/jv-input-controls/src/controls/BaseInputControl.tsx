@@ -4,12 +4,15 @@
  * in the license file that is distributed with this file.
  */
 
-import { InputControlProperties } from "@jaspersoft/jv-tools";
+import {
+  CommonInputControlProperties,
+  InputControlProperties,
+} from "@jaspersoft/jv-tools";
 
 export const getInputControlProperties = (
   ic: InputControlProperties,
   updatedStateValue: any,
-) => {
+): CommonInputControlProperties => {
   return {
     id: ic.id,
     type: ic.type,

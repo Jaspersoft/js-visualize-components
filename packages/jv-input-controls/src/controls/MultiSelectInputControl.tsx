@@ -17,9 +17,7 @@ import { generateValueBasedOnOptions } from "../utils/ValueBasedOnOptionsUtils";
 
 export type MultiSelectICType = "multiSelect";
 
-export interface MultiSelectInputControlProps extends InputControlProperties {
-  handleIcChange: any;
-}
+export interface MultiSelectInputControlProps extends InputControlProperties {}
 
 export const MultiSelectInputControl = (
   props: MultiSelectInputControlProps,
@@ -38,7 +36,7 @@ export const MultiSelectInputControl = (
       {},
     );
     setErrorText(errorMsg);
-    props.handleIcChange(getInputControlProperties(props, newValue), {
+    props.handleIcChange!(getInputControlProperties(props, newValue), {
       [props.id]: errorMsg,
     });
   });

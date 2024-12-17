@@ -10,8 +10,6 @@ import {
   InputControlValidationRule,
 } from "@jaspersoft/jv-tools";
 import { verifyDateLimit } from "./DateInputControlUtils";
-import { getInputControlProperties } from "../controls/BaseInputControl";
-import { isSelectInputControl } from "./DefaultValueUtils";
 
 export const getMandatoryErrorMessage = (
   validationRules: InputControlValidationRule[] | undefined,
@@ -136,13 +134,6 @@ export const validateValueAgainstICValidationRules = (
           dataType: props?.dataType || {},
         });
     finalMsg = errorMessage?.trim().length > 0 ? errorMessage : "";
-    // also, we have to trigger the callback in case there was an error
-    // TODO: once all other input controls are updated, we should remove this next line.
-    props &&
-      !isSelectInputControl(props) &&
-      props?.events?.change?.(getInputControlProperties(props, newTextValue), {
-        [props.id]: finalMsg,
-      });
   }
   return {
     newValue: newTextValue,
