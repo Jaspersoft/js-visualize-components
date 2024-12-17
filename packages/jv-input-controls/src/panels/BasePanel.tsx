@@ -16,6 +16,7 @@ import {
   InputControlsContext,
 } from "../reducer/InputControlsReducer";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
+import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 
 export interface BasePanelProps {
   config?: InputControlsTypeConfig;
@@ -348,16 +349,17 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         />
       );
     }
-    // if (control.type === "singleValueNumber") {
-    //   return (
-    //     <SingleValueNumberInputControl
-    //       {...control}
-    //       key={control.id}
-    //       dataType={control.dataType}
-    //       validationRules={control.validationRules}
-    //     />
-    //   );
-    // }
+    if (control.type === "singleValueNumber") {
+      return (
+        <SingleValueNumberInputControl
+          {...control}
+          key={control.id}
+          dataType={control.dataType}
+          validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
+        />
+      );
+    }
 
     // if (control.type === "singleValueDate") {
     //   if (props?.config?.singleValueDate?.type === "material") {

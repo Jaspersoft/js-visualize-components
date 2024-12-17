@@ -6,15 +6,13 @@
 
 import { useState } from "react";
 import { getMandatoryErrorMessage } from "../../utils/ErrorMessageUtils";
-import { checkIfNumber, verifyLimit } from "../../utils/NumberUtils";
-import { InputControlProperties } from "@jaspersoft/jv-tools";
+import {
+  checkIfNumber,
+  UseNumberErrorMsgProps,
+  verifyLimit,
+} from "../../utils/NumberUtils";
 import { getInputControlProperties } from "../BaseInputControl";
 import { useEffectAfterInitial } from "./useEffectAfterInitial";
-
-interface UseNumberErrorMsgProps {
-  textValue: string;
-  props?: InputControlProperties;
-}
 
 export const useNumberErrorMsg = ({
   textValue,
