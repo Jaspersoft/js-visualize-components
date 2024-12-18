@@ -68,7 +68,7 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
   const controlClasses = useControlClasses([], props);
   return (
     <JVDateTimePicker
-      {...{ ...minAndMaxSettings }}
+      {...minAndMaxSettings}
       id={props.id}
       label={props.label}
       onChange={liveState.onChange}
