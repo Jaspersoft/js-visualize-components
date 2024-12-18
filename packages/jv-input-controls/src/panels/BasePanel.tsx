@@ -19,6 +19,8 @@ import { SingleValueTextInputControl } from "../controls/SingleValueTextInputCon
 import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
 import { DatePickerInputControl } from "../controls/DatePickerInputControl";
 import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
+import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
+import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 
 export interface BasePanelProps {
   config?: InputControlsTypeConfig;
@@ -381,26 +383,24 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
         />
       );
     }
-    // if (control.type === "singleValueDatetime") {
-    //   if (props.config?.singleValueDatetime?.type === "material") {
-    //     return (
-    //       <DateTimePickerInputControl
-    //         {...control}
-    //         key={control.id}
-    //         dataType={control.dataType}
-    //         validationRules={control.validationRules}
-    //       />
-    //     );
-    //   }
-    //   return (
-    //     <DateTimePickerTextFieldInputControl
-    //       {...control}
-    //       key={control.id}
-    //       dataType={control.dataType}
-    //       validationRules={control.validationRules}
-    //     />
-    //   );
-    // }
+    if (control.type === "singleValueDatetime") {
+      if (props.config?.singleValueDatetime?.type === "material") {
+        return (
+          <DateTimePickerInputControl
+            {...control}
+            key={control.id}
+            handleIcChange={handleIcChange}
+          />
+        );
+      }
+      return (
+        <DateTimePickerTextFieldInputControl
+          {...control}
+          key={control.id}
+          handleIcChange={handleIcChange}
+        />
+      );
+    }
     if (control.type === "singleSelect") {
       return (
         <SingleSelectInputControl
