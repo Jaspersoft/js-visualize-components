@@ -13,7 +13,8 @@
   "scripts": {
     "audit:all": "yarn audit",
     "audit:runtime": "yarn audit --groups dependencies",
-    "test": "jest",
+    "test": "jest -- action.test.ts",
+    "coverage": "jest --coverage -- action.test.ts",
     "build": "vite build",
     "clean": "rm -rf ./dist"
   },
@@ -44,6 +45,7 @@
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.6",
     "@types/react": "^18.0.15",
+    "@types/redux-mock-store": "^1.5.0",
     "@types/xregexp": "^4.4.0",
     "@vitejs/plugin-react": "^4.3.1",
     "i18next": "^23.11.5",
@@ -54,6 +56,7 @@
     "jest-css-modules-transform": "^4.4.2",
     "jest-environment-jsdom": "^29.7.0",
     "path": "^0.12.7",
+    "redux-mock-store": "^1.5.5",
     "ts-jest": "^29.1.5",
     "ts-node": "^10.9.2",
     "typescript": "^4.7.4",

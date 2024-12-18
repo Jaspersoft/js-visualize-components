@@ -5,10 +5,7 @@ const conf: Config = {
   watchPathIgnorePatterns: ["node_modules", "dist", "coverage", "build"],
   testEnvironment: "jsdom",
   transform: {
-    "^.+\\.([tj]s|[tj]sx)$": "ts-jest",
-  },
-  moduleNameMapper: {
-    "\\.(css|less)$": "<rootDir>/styleMock.js",
+    "^.+\\.tsx?$": "ts-jest",
   },
 };
 

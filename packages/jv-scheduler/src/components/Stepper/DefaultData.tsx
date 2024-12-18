@@ -109,7 +109,7 @@ export const OutputStepDefaultMessage = () => {
     ),
     timezones = useSelector((state: IState) => state.userTimeZones);
 
-  const currentTimezone = timezones.filter(
+  const currentTimezone = timezones?.filter(
       (item: { code: string }) => item.code === outputTimezone,
     ),
     OutputTimeZone = `${currentTimezone[0]?.code} - ${currentTimezone[0]?.description}`;

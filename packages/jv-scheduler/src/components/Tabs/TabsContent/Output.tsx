@@ -22,7 +22,7 @@ import {
   OUTPUT_TAB,
   OUTPUT_TIME_ZONE,
 } from "../../../constants/schedulerConstants";
-import { MessageAPIError } from "../../apiFailureError/scheduleAPIError";
+import { MessageAPIError } from "../../apiFailureError/MessageAPIError";
 import { IState, translationProps } from "../../../types/scheduleType";
 import { updateChangeToStore } from "../../../utils/schedulerUtils";
 import i18nScheduler from "../../../i18n";
