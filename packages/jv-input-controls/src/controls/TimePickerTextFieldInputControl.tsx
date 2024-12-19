@@ -60,6 +60,7 @@ export const TimePickerTextFieldInputControl = (
     <JVDateTimeTextField
       id={props.id}
       label={props.label}
+      disabled={!!props.disabled}
       type="time"
       className={`${props.className || ""}`}
       textFieldClassName={`jv-mInputTime ${controlClasses.join(" ")}`}
