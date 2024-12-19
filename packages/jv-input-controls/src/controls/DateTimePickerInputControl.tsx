@@ -71,6 +71,8 @@ export const DateTimePickerInputControl = (props: DateTimeICProps) => {
       {...minAndMaxSettings}
       id={props.id}
       label={props.label}
+      readOnly={props.readOnly}
+      disabled={!!props.disabled}
       onChange={liveState.onChange}
       value={liveState.value}
       views={views}

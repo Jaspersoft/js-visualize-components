@@ -5,12 +5,15 @@
  */
 
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import * as React from "react";
-import { DateTimePickerInputControl } from "../../src/controls/DateTimePickerInputControl";
+import {
+  DateTimeICProps,
+  DateTimePickerInputControl,
+} from "../../src/controls/DateTimePickerInputControl";
 
-const requiredProps = {
+const requiredProps: DateTimeICProps = {
   id: "column_timestamp_1",
   label: "column_timestamp",
   mandatory: false,
@@ -22,6 +25,8 @@ const requiredProps = {
     id: "column_timestamp_1",
     value: "2014-09-12T15:46:18",
   },
+  validationRules: [],
+  handleIcChange: jest.fn(),
 };
 
 const getDateTimePickerIC = (options?: any): React.JSX.Element => {
@@ -105,5 +110,69 @@ describe("DateTimePickerInputControl tests", () => {
     rerender(getDateTimePickerIC({}));
     inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement).not.toHaveAttribute("disabled");
+  });
+
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
+      getDateTimePickerIC({
+        handleIcChange,
+        state: {
+          value: "2014-09-12T15:46:18",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "2014-09-13T15:46:18";
+    fireEvent.change(inputElement, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", () => {
+    render(
+      getDateTimePickerIC({
+        validationRules: [
+          {
+            dateTimeFormatValidationRule: {
+              errorMessage: "Specify a valid date/time value.",
+              format: "yyyy-MM-dd'T'HH:mm:ss",
+            },
+          },
+        ],
+        dataType: {
+          type: "datetime",
+          maxValue: "2024-12-31T00:00:00",
+          strictMax: true,
+          strictMin: false,
+        },
+        state: {
+          ...requiredProps.state,
+          value: "2014-09-12T15:46:18",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    fireEvent.change(inputElement, {
+      target: { value: "12/31/2024 12:00:00 PM" },
+    });
+    const errorElement = screen.getByText(
+      "Verify the date is before 2024-12-31T00:00:00.",
+    );
+    expect(errorElement).toBeVisible();
   });
 });
