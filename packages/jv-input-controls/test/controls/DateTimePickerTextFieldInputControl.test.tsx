@@ -30,7 +30,7 @@ const requiredProps: DateTimeTextFieldICProps = {
   handleIcChange: jest.fn(),
 };
 
-const getDateTimePickerTextFieldIC = (options?: object): JSX.Element => {
+const getDateTimePickerTextFieldIC = (options?: any): JSX.Element => {
   return (
     <DateTimePickerTextFieldInputControl
       {...{ ...requiredProps, ...options }}
