@@ -65,6 +65,7 @@ export const DatePickerTextFieldInputControl = (
     <JVDateTimeTextField
       id={props.id}
       label={props.label}
+      disabled={!!props.disabled}
       type="date"
       variant={props.variant || "outlined"}
       className={`${props.className || ""}`}
