@@ -60,6 +60,10 @@ export const TimePickerInputControl = (props: TimeICProps) => {
   return (
     <JVTimePicker
       {...minAndMaxSettings}
+      id={props.id}
+      label={props.label}
+      readOnly={props.readOnly}
+      disabled={!!props.disabled}
       views={views}
       onChange={liveState.onChange}
       value={liveState.value}
