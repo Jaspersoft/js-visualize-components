@@ -61,6 +61,8 @@ export const DatePickerInputControl = (props: DateICProps) => {
     <JVDatePicker
       id={props.id}
       label={props.label}
+      readOnly={props.readOnly}
+      disabled={!!props.disabled}
       {...{ ...minAndMaxSettings }}
       onChange={liveState.onChange}
       value={liveState.value}

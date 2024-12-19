@@ -6,12 +6,14 @@
 
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { fireEvent, render, screen } from "@testing-library/react";
-
 import "@testing-library/jest-dom";
-import * as React from "react";
-import { DatePickerInputControl } from "../../src/controls/DatePickerInputControl";
+import { JSX } from "react";
+import {
+  DateICProps,
+  DatePickerInputControl,
+} from "../../src/controls/DatePickerInputControl";
 
-const requiredProps = {
+const requiredProps: DateICProps = {
   id: "column_date_1",
   label: "column_date",
   mandatory: false,
@@ -23,9 +25,11 @@ const requiredProps = {
     id: "column_date_1",
     value: "2009-09-12",
   },
+  validationRules: [],
+  handleIcChange: jest.fn(),
 };
 
-const getDatePickerIC = (options?: any): React.JSX.Element => {
+const getDatePickerIC = (options?: any): JSX.Element => {
   const mergedProps = { ...requiredProps, ...options };
   return (
     <JVDatePickerProvider>
@@ -127,5 +131,67 @@ describe("DatePickerInputControl tests", () => {
     rerender(getDatePickerIC({}));
     inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement).not.toHaveAttribute("disabled");
+  });
+
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
+      getDatePickerIC({
+        handleIcChange,
+        state: {
+          value: "04/17/2022",
+        },
+      }),
+    );
+    const datePicker = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "04/18/2022";
+    fireEvent.change(datePicker, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", () => {
+    render(
+      getDatePickerIC({
+        validationRules: [
+          {
+            dateTimeFormatValidationRule: {
+              errorMessage: "Specify a valid date value.",
+              format: "yyyy-MM-dd",
+            },
+          },
+        ],
+        dataType: {
+          type: "date",
+          strictMax: false,
+          minValue: "2024-12-01",
+          strictMin: true,
+        },
+        state: {
+          ...requiredProps.state,
+          value: "12/03/2024",
+        },
+      }),
+    );
+    const datePicker = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    fireEvent.change(datePicker, { target: { value: "12/01/2024" } });
+    const errorElement = screen.getByText(
+      "Verify the date is after 2024-12-01.",
+    );
+    expect(errorElement).toBeVisible();
   });
 });
