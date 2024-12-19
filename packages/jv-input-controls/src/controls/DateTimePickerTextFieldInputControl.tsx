@@ -60,6 +60,7 @@ export const DateTimePickerTextFieldInputControl = (
     <JVDateTimeTextField
       id={props.id}
       label={props.label}
+      disabled={!!props.disabled}
       type="datetime-local"
       className={`${props.className || ""}`}
       textFieldClassName={`jv-mInputDatetime ${controlClasses.join(" ")}`}

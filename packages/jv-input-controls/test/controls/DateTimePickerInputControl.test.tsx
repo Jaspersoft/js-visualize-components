@@ -7,7 +7,7 @@
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import * as React from "react";
+import { JSX } from "react";
 import {
   DateTimeICProps,
   DateTimePickerInputControl,
@@ -29,7 +29,7 @@ const requiredProps: DateTimeICProps = {
   handleIcChange: jest.fn(),
 };
 
-const getDateTimePickerIC = (options?: any): React.JSX.Element => {
+const getDateTimePickerIC = (options?: any): JSX.Element => {
   const mergedProps = { ...requiredProps, ...options };
   return (
     <JVDatePickerProvider>
