@@ -38,7 +38,7 @@ export const renderInputControls = (
   container: HTMLElement,
   config?: InputControlsConfig,
 ) => {
-  console.log("v.server: ", v);
+  console.log("v.server: ", v.server);
   fillControlStructure(
     v,
     uri,

@@ -23,6 +23,7 @@ import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerT
 import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
+import { getParamsForICCascadingReq } from "../utils/StringUtils";
 
 export interface BasePanelProps {
   config?: InputControlsTypeConfig;
@@ -33,8 +34,45 @@ export interface BasePanelProps {
 export default function BasePanel(props: BasePanelProps): JSX.Element {
   const { state, dispatch } = useContext(InputControlsContext);
 
-  const controlsPathForResource = (resourceUri: string) => {
-    return props.server + "/rest_v2/reports" + resourceUri + "/inputControls";
+  const formatValueForIc = (ic: InputControlProperties) => {
+    if (Array.isArray(ic.state!.value!)) {
+      return ic.state!.value!.map((value) => value.toString());
+    } else {
+      return [ic.state!.value!.toString()];
+    }
+  };
+  const controlsPathForResource = (
+    ic: InputControlProperties,
+  ): { url: string; options: RequestInit } => {
+    const slaveStr = getParamsForICCascadingReq(ic.slaveDependencies!);
+    const url =
+      props.server +
+      "/rest_v2/reports" +
+      ic.uri!.slice("repo:".length) +
+      "/inputControls/" +
+      slaveStr +
+      "/values?freshData=false&includeTotalCount=true";
+    let slaveDepBody: { [x: string]: string[] } = {};
+    for (const slaveDep of ic.slaveDependencies!) {
+      const icFromState = state.inputControls.find(({ id }) => {
+        return id === slaveDep;
+      });
+      slaveDepBody[slaveDep] = formatValueForIc(icFromState!);
+    }
+    const reqBody = {
+      ...slaveDepBody,
+      [ic.id]: [...formatValueForIc(ic)],
+    };
+    return {
+      url,
+      options: {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqBody),
+      },
+    };
   };
 
   const handleCascadingRequest = (ctrlUpdated: InputControlProperties) => {
@@ -45,8 +83,9 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       },
     });
 
-    // TODO: We should trigger the CALL to the server to get the new data in case it's a cascading input control
-    fetch(controlsPathForResource(props.uri))
+    // TODO: We should fix the CORS issue
+    const { url, options } = controlsPathForResource(ctrlUpdated);
+    fetch(url, options)
       .then((response) => {
         dispatch({
           type: INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES,

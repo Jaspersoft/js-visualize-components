@@ -26,15 +26,23 @@ const reportUri = "/public/Samples/Reports/16g.InteractiveSalesReport";
 // const reportUri = "/public/Samples/Reports/07g.RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
-const visualizeUrl =
-  "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
+// const visualizeUrl =
+//   "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
 
 const errorCallback = (errorCaught: Error | VisualizeGenericError | string) => {
   console.log("check the error! ", errorCaught);
 };
 
 function App() {
-  const vContainer = useVisualize(visualizeUrl, myAuth, { errorCallback });
+  // const vContainer = useVisualize(visualizeUrl, myAuth, { errorCallback });
+  const vContainer = useVisualize(
+    {
+      server: "https://mobiledemo.jaspersoft.com",
+      contextPath: "/jasperserver-pro",
+    },
+    myAuth,
+    { errorCallback },
+  );
   const [controlBuffer, setControlBuffer] =
     useState<InputControlProperties[]>();
   const [vReport, setVReport] = useState<any>();
