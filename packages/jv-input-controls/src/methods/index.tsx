@@ -38,6 +38,7 @@ export const renderInputControls = (
   container: HTMLElement,
   config?: InputControlsConfig,
 ) => {
+  console.log("v.server: ", v);
   fillControlStructure(
     v,
     uri,
@@ -51,7 +52,11 @@ export const renderInputControls = (
               overwriteParams={config?.params}
               events={config?.events}
             >
-              <BasePanel config={config?.typeConfig} />
+              <BasePanel
+                server={v.server || ""}
+                uri={uri}
+                config={config?.typeConfig}
+              />
             </InputControlsProvider>
           </JVStylesProvider>,
         );

@@ -22,7 +22,8 @@ const myAuth: Authentication = {
   locale: "en_US",
 };
 
-const reportUri = "/public/Samples/Reports/07g.RevenueDetailReport";
+const reportUri = "/public/Samples/Reports/16g.InteractiveSalesReport";
+// const reportUri = "/public/Samples/Reports/07g.RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
 
 const visualizeUrl =

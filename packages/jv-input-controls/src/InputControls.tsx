@@ -114,7 +114,11 @@ export function InputControls(props: InputControlsProps) {
           overwriteParams={props.config?.params}
           events={props.config?.events}
         >
-          <BasePanel config={props.config?.typeConfig} />
+          <BasePanel
+            uri={props.uri}
+            server={props.v.server || ""}
+            config={props.config?.typeConfig}
+          />
         </InputControlsProvider>
       )}
     </JVStylesProvider>

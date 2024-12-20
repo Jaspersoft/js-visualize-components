@@ -190,6 +190,7 @@ export interface VisualizeClient {
   adhocView: (config: VisualizationConfig) => any;
   dashboard: (config: VisualizationConfig) => any;
   inputControls: (config: VisualizationConfig) => any;
+  server?: string;
 }
 
 export { visualizejsLoader } from "./src/visualize/VisualizejsProvider";
