@@ -84,6 +84,7 @@ export interface CommonInputControlProperties {
   mandatory: boolean;
   readOnly: boolean;
   visible: boolean;
+  description?: string;
   uri?: string;
   state?: InputControlState;
   validationRules?: InputControlValidationRule[];
