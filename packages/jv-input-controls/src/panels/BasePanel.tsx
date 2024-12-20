@@ -48,7 +48,7 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     const url =
       props.server +
       "/rest_v2/reports" +
-      ic.uri!.slice("repo:".length) +
+      props.uri +
       "/inputControls/" +
       slaveStr +
       "/values?freshData=false&includeTotalCount=true";

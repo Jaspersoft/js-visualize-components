@@ -28,7 +28,10 @@ describe("BasePanel", () => {
     cleanup();
     render(
       <MockInputControlsProvider>
-        <BasePanel />
+        <BasePanel
+          server="https://mobiledemo.jaspersoft.com"
+          uri="/public/Samples/Reports/16g.InteractiveSalesReport"
+        />
       </MockInputControlsProvider>,
     );
   });
