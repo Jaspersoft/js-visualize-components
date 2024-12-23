@@ -25,20 +25,24 @@ export function SingleSelectInputControl(
   // new variables due to the reducer state:
   const { state } = useContext(InputControlsContext);
   const [errorText, setErrorText] = useState<string>("");
+  const initialValue = props.state?.value || "";
   // live state:
-  const liveState = useLiveState("", (newValue: string | string[]) => {
-    const { errorMsg } = validateValueAgainstICValidationRules(
-      newValue,
-      liveState.value,
-      props,
-      "",
-      {},
-    );
-    setErrorText(errorMsg);
-    props.handleIcChange!(getInputControlProperties(props, newValue), {
-      [props.id]: errorMsg,
-    });
-  });
+  const liveState = useLiveState(
+    initialValue,
+    (newValue: string | string[]) => {
+      const { errorMsg } = validateValueAgainstICValidationRules(
+        newValue,
+        liveState.value,
+        props,
+        "",
+        {},
+      );
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
+  );
   const { options, isLoading, setIsLoading } = useCascadingOptions(
     state.inputControls,
     props.id,
@@ -48,7 +52,11 @@ export function SingleSelectInputControl(
       options,
       liveState.value,
     );
+    const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
     if (basedOnOptions === null) {
+      if (icFromState.isLoading === false) {
+        setIsLoading(false);
+      }
       return;
     }
     if (basedOnOptions.valueUpdated !== null) {

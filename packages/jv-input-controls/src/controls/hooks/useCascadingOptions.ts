@@ -24,10 +24,15 @@ export const useCascadingOptions = (
     }
     if (
       icFromState.state !== undefined &&
-      icFromState.state.options !== undefined &&
-      JSON.stringify(icFromState.state.options) !== JSON.stringify(options)
+      icFromState.state.options !== undefined
     ) {
-      setOptions(icFromState.state.options);
+      if (
+        JSON.stringify(icFromState.state.options) !== JSON.stringify(options)
+      ) {
+        setOptions(icFromState.state.options);
+      } else if (icFromState.isLoading === false) {
+        setIsLoading(false);
+      }
     }
   }, [inputControls]);
 
