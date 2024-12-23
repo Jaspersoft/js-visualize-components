@@ -19,7 +19,7 @@ export const generateValueBasedOnOptions = (
   );
   const theValue: string[] = Array.isArray(value) ? value : [value];
   if (
-    options.length > 0 &&
+    options.length >= 0 && // TODO check initial loading.
     !options.some((option) => theValue.includes(option.value))
   ) {
     valueUpdated = selectedOnes.map(({ value }) => value);

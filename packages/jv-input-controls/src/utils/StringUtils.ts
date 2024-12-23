@@ -4,9 +4,9 @@
  * in the license file that is distributed with this file.
  */
 
-export const getParamsForICCascadingReq = (slaveDependencies: string[]) => {
-  return slaveDependencies.reduce((accum, current) => {
-    accum += current + ";";
-    return accum;
+export const getParamsForICCascadingReq = (dependencies: string[]) => {
+  return dependencies.reduce((accum, current, cIndex) => {
+    const endOfString = cIndex === dependencies.length - 1 ? "" : ";";
+    return accum + current + endOfString;
   }, "");
 };

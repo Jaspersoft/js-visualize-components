@@ -39,10 +39,10 @@ export function SingleSelectInputControl(
       [props.id]: errorMsg,
     });
   });
-  const { options, isLoading, setIsLoading } = useCascadingOptions({
-    inputControls: state.inputControls,
-    currentIcID: props.id,
-  });
+  const { options, isLoading, setIsLoading } = useCascadingOptions(
+    state.inputControls,
+    props.id,
+  );
   useEffect(() => {
     const basedOnOptions = generateValueBasedOnOptions(
       options,

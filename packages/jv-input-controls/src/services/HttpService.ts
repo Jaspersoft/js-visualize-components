@@ -14,6 +14,20 @@ const formatValueForIc = (ic: InputControlProperties) => {
   }
 };
 
+const extractDependenciesValues = (
+  dependencies: string[],
+  inputControls: InputControlProperties[],
+) => {
+  let dependenciesBody: { [x: string]: string[] } = {};
+  for (const slaveDep of dependencies) {
+    const icFromState = inputControls.find(({ id }) => {
+      return id === slaveDep;
+    });
+    dependenciesBody[slaveDep] = formatValueForIc(icFromState!);
+  }
+  return dependenciesBody;
+};
+
 const getICCascadingOptionsForRequest = (
   inputControls: InputControlProperties[],
   icUpdated: InputControlProperties,
@@ -28,15 +42,9 @@ const getICCascadingOptionsForRequest = (
     "/inputControls/" +
     slaveStr +
     "/values?freshData=false&includeTotalCount=true";
-  let slaveDepBody: { [x: string]: string[] } = {};
-  for (const slaveDep of icUpdated.slaveDependencies!) {
-    const icFromState = inputControls.find(({ id }) => {
-      return id === slaveDep;
-    });
-    slaveDepBody[slaveDep] = formatValueForIc(icFromState!);
-  }
   const reqBody = {
-    ...slaveDepBody,
+    ...extractDependenciesValues(icUpdated.masterDependencies!, inputControls),
+    ...extractDependenciesValues(icUpdated.slaveDependencies!, inputControls),
     [icUpdated.id]: [...formatValueForIc(icUpdated)],
   };
   return {
