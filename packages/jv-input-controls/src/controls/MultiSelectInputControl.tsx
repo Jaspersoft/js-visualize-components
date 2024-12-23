@@ -53,11 +53,7 @@ export const MultiSelectInputControl = (
       options,
       liveState.value,
     );
-    const icFromState = state.inputControls.find(({ id }) => id === props.id)!;
     if (basedOnOptions === null) {
-      if (icFromState.isLoading === false) {
-        setIsLoading(false);
-      }
       return;
     }
     if (basedOnOptions.valueUpdated !== null) {
