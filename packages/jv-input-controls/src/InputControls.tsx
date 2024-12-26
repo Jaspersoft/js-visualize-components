@@ -115,8 +115,8 @@ export function InputControls(props: InputControlsProps) {
           events={props.config?.events}
         >
           <BasePanel
-            uri={props.uri}
             server={props.v.server || ""}
+            uri={props.uri}
             config={props.config?.typeConfig}
           />
         </InputControlsProvider>

@@ -97,7 +97,7 @@ export interface CommonInputControlProperties {
 export interface InputControlProperties extends CommonInputControlProperties {
   events?: {
     change: (
-      ic: { [key: string]: any[] } | InputControlProperties, // TODO: remove InputControlProperties
+      ic: { [key: string]: CommonInputControlProperties[] },
       validationResult?: { [key: string]: string } | boolean,
     ) => void;
   };
