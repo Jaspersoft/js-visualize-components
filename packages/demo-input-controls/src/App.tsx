@@ -72,10 +72,11 @@ const errorCallback = (errorCaught: Error | VisualizeGenericError | string) => {
 function App() {
   const vContainer = useVisualize(
     {
-      server: "https://mobiledemo.jaspersoft.com",
-      contextPath: "/jasperserver-pro",
+      server: "https://mobiledemo.jaspersoft.com/jasperserver-pro",
+      visualizePath:
+        "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js",
+      auth: myAuth,
     },
-    myAuth,
     { errorCallback },
   );
   const [controlBuffer, setControlBuffer] =

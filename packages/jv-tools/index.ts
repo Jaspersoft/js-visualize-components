@@ -2,11 +2,6 @@ import { InputControlProperties } from "./src/input-controls";
 export * from "./src/input-controls";
 export type { useVisualizeConfig } from "./src/visualize/hooks/useVisualize.types";
 
-export type VisualizeUriConfig = {
-  server: string;
-  contextPath: string;
-};
-
 export type Authentication = {
   url?: string;
   name?: string;
@@ -85,12 +80,16 @@ export type ResourcesSearch = {
 };
 
 export type VisualizeFactoryConfig = {
+  visualizePath: string; // path to visualize.js script.
+  publicPath?: string; // if publicPath is not set, viz.js doesn't know where to load the chunks when Viz.js is
+  // located on a CDN.
+  server: string; // path to JRS.
   auth: Authentication;
 };
 
 export type VisualizeFactory = {
   (
-    params: VisualizeFactoryConfig,
+    params: Omit<VisualizeFactoryConfig, "visualizePath">,
     success: (v: VisualizeClient) => void,
     error: (err: any) => void,
   ): void;
