@@ -25,7 +25,7 @@ export function SingleSelectInputControl(
   // new variables due to the reducer state:
   const { state } = useContext(InputControlsContext);
   const [errorText, setErrorText] = useState<string>("");
-  const initialValue = props.state?.value || "";
+  const initialValue = "";
   // live state:
   const liveState = useLiveState(
     initialValue,
