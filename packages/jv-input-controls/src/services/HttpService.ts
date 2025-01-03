@@ -4,7 +4,6 @@
  * in the license file that is distributed with this file.
  */
 import { InputControlProperties } from "@jaspersoft/jv-tools";
-import { getParamsForICCascadingReq } from "../utils/StringUtils";
 
 const formatValueForIc = (ic: InputControlProperties) => {
   if (Array.isArray(ic.state!.value!)) {
@@ -34,7 +33,7 @@ const getICCascadingOptionsForRequest = (
   server: string,
   uri: string,
 ): { url: string; options: RequestInit } => {
-  const slaveStr = getParamsForICCascadingReq(icUpdated.slaveDependencies!);
+  const slaveStr = icUpdated.slaveDependencies!.join(";");
   const url =
     server +
     "/rest_v2/reports" +
