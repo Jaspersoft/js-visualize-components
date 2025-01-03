@@ -41,6 +41,144 @@ export interface InputControlsState {
   initiatorIdCascadingIc?: string;
 }
 
+const updateDataForICs = (
+  state: InputControlsState,
+  payload: any,
+): InputControlsState => {
+  const icsUpdated = state.inputControls.reduce(
+    (
+      acc: {
+        state: InputControlProperties[];
+        response: { [key: string]: any[] };
+        invalidResponse: { [key: string]: any };
+      },
+      ctrl: InputControlProperties,
+    ) => {
+      const theValidationResult = payload.resultValidation?.[ctrl.id];
+      const ctrlToUse =
+        ctrl.id !== payload.ctrlUpdated.id ? ctrl : payload.ctrlUpdated;
+      if (theValidationResult !== undefined && theValidationResult !== "") {
+        acc.invalidResponse = {
+          ...acc.invalidResponse,
+          [ctrlToUse.id]: theValidationResult,
+        };
+      } else if (theValidationResult === "") {
+        // this means that the validation result is empty, so we need to remove the key from the invalidResponse
+        delete acc.invalidResponse[ctrlToUse.id];
+      }
+      if (ctrlToUse.state?.options !== undefined) {
+        // we also have to update the options of the current control if needed.
+        ctrlToUse.state = {
+          ...ctrlToUse.state,
+          options: ctrlToUse.state.options.map(
+            (opt: { selected: boolean; value: string; label: string }) => {
+              return {
+                ...opt,
+                selected: ctrlToUse.state?.value.includes(opt.value),
+              };
+            },
+          ),
+        };
+      }
+      acc.state.push({ ...ctrl, ...ctrlToUse });
+
+      acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
+        ? ctrlToUse.state?.value
+        : [ctrlToUse.state?.value];
+      return acc;
+    },
+    {
+      state: [],
+      response: { ...state.validResponse },
+      invalidResponse: { ...state.validationResultState },
+    },
+  );
+
+  const stateUpdated = {
+    ...state,
+    inputControls: [...icsUpdated.state],
+    validResponse: { ...icsUpdated.response },
+    validationResultState: { ...icsUpdated.invalidResponse },
+  };
+  if (
+    payload.ctrlUpdated.slaveDependencies === undefined ||
+    payload.ctrlUpdated.slaveDependencies.length === 0
+  ) {
+    emitCallbackToUser(stateUpdated, payload);
+  }
+  return stateUpdated;
+};
+const setInitiatorIDCascadingIC = (
+  state: InputControlsState,
+  payload: { initiatorIdCascadingIc: string },
+): InputControlsState => {
+  let masterIcId = payload.initiatorIdCascadingIc;
+  let isLoading = true;
+  if (masterIcId === "") {
+    // If this happens, reset the state
+    masterIcId = state.initiatorIdCascadingIc!;
+    isLoading = false;
+  }
+  const newICs = state.inputControls.map((ic) => {
+    if (!ic.masterDependencies) {
+      return ic;
+    }
+    if (ic.masterDependencies.includes(masterIcId)) {
+      return {
+        ...ic,
+        isLoading,
+      };
+    }
+    return ic;
+  });
+  return {
+    ...state,
+    inputControls: [...newICs],
+    initiatorIdCascadingIc: payload.initiatorIdCascadingIc,
+  };
+};
+const updateSlaveDependencies = (
+  state: InputControlsState,
+  payload: {
+    inputControlState: [
+      { id: string; options: InputControlOption[]; uri: string },
+    ];
+    ctrlUpdated: InputControlProperties;
+  },
+): InputControlsState => {
+  // Create a Map from the payload array
+  const payloadMap: Map<string, InputControlOption[]> = new Map(
+    payload.inputControlState.map((item) => [item.id, item.options]),
+  );
+  // Iterate over the state array and update the options property
+  const theNewValidResponse = JSON.parse(JSON.stringify(state.validResponse));
+  const icsUpdated = state.inputControls.map((item: InputControlProperties) => {
+    if (!payloadMap.has(item.id)) {
+      return item;
+    }
+    const newValueForIc = payloadMap
+      .get(item.id)!
+      .filter((opt) => opt.selected)
+      .map((opt) => opt.value);
+    theNewValidResponse[item.id] = newValueForIc;
+    return {
+      ...item,
+      state: {
+        ...item.state,
+        options: payloadMap.get(item.id)! as InputControlOption[],
+        value: newValueForIc,
+      },
+    } as InputControlProperties;
+  });
+  const theNewState = {
+    ...state,
+    inputControls: [...icsUpdated],
+    validResponse: { ...theNewValidResponse },
+  };
+  emitCallbackToUser(theNewState, payload);
+  return theNewState;
+};
+
 const inputControlsReducer = (
   state: InputControlsState,
   action: { type: string; payload: any },
@@ -48,137 +186,13 @@ const inputControlsReducer = (
   const { type, payload } = action;
   switch (type) {
     case INPUT_CONTROLS_ACTIONS.UPDATE_DATA: {
-      const icsUpdated = state.inputControls.reduce(
-        (
-          acc: {
-            state: InputControlProperties[];
-            response: { [key: string]: any[] };
-            invalidResponse: { [key: string]: any };
-          },
-          ctrl: InputControlProperties,
-        ) => {
-          const theValidationResult = payload.resultValidation?.[ctrl.id];
-          const ctrlToUse =
-            ctrl.id !== payload.ctrlUpdated.id ? ctrl : payload.ctrlUpdated;
-          if (theValidationResult !== undefined && theValidationResult !== "") {
-            acc.invalidResponse = {
-              ...acc.invalidResponse,
-              [ctrlToUse.id]: theValidationResult,
-            };
-          } else if (theValidationResult === "") {
-            // this means that the validation result is empty, so we need to remove the key from the invalidResponse
-            delete acc.invalidResponse[ctrlToUse.id];
-          }
-          if (ctrlToUse.state?.options !== undefined) {
-            // we also have to update the options of the current control if needed.
-            ctrlToUse.state = {
-              ...ctrlToUse.state,
-              options: ctrlToUse.state.options.map(
-                (opt: { selected: boolean; value: string; label: string }) => {
-                  return {
-                    ...opt,
-                    selected: ctrlToUse.state?.value.includes(opt.value),
-                  };
-                },
-              ),
-            };
-          }
-          acc.state.push({ ...ctrl, ...ctrlToUse });
-
-          acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
-            ? ctrlToUse.state?.value
-            : [ctrlToUse.state?.value];
-          return acc;
-        },
-        {
-          state: [],
-          response: { ...state.validResponse },
-          invalidResponse: { ...state.validationResultState },
-        },
-      );
-
-      const stateUpdated = {
-        ...state,
-        inputControls: [...icsUpdated.state],
-        validResponse: { ...icsUpdated.response },
-        validationResultState: { ...icsUpdated.invalidResponse },
-      };
-      if (
-        payload.ctrlUpdated.slaveDependencies === undefined ||
-        payload.ctrlUpdated.slaveDependencies.length === 0
-      ) {
-        emitCallbackToUser(stateUpdated, payload);
-      }
-
-      return stateUpdated;
+      return updateDataForICs(state, payload);
     }
     case INPUT_CONTROLS_ACTIONS.SET_INITIATOR_ID_CASCADING_IC: {
-      let masterIcId = payload.initiatorIdCascadingIc;
-      let isLoading = true;
-      if (masterIcId === "") {
-        masterIcId = state.initiatorIdCascadingIc;
-        isLoading = false;
-      }
-      const newICs = state.inputControls.map((ic) => {
-        if (!ic.masterDependencies) {
-          return ic;
-        }
-        if (ic.masterDependencies.includes(masterIcId)) {
-          return {
-            ...ic,
-            isLoading,
-          };
-        }
-        return ic;
-      });
-      return {
-        ...state,
-        inputControls: [...newICs],
-        initiatorIdCascadingIc: payload.initiatorIdCascadingIc,
-      };
+      return setInitiatorIDCascadingIC(state, payload);
     }
     case INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES: {
-      // Create a Map from the payload array
-      const payloadMap: Map<string, InputControlOption[]> = new Map(
-        payload.inputControlState.map(
-          (item: {
-            id: string;
-            options: InputControlOption[];
-            uri: string;
-          }) => [item.id, item.options],
-        ),
-      );
-      // Iterate over the state array and update the options property
-      const theNewValidResponse = JSON.parse(
-        JSON.stringify(state.validResponse),
-      );
-      const icsUpdated = state.inputControls.map(
-        (item: InputControlProperties) => {
-          if (!payloadMap.has(item.id)) {
-            return item;
-          }
-          const newValueForIc = payloadMap
-            .get(item.id)!
-            .filter((opt) => opt.selected)
-            .map((opt) => opt.value);
-          theNewValidResponse[item.id] = newValueForIc;
-          return {
-            ...item,
-            state: {
-              ...item.state,
-              options: payloadMap.get(item.id)! as InputControlOption[],
-              value: newValueForIc,
-            },
-          } as InputControlProperties;
-        },
-      );
-      const theNewState = {
-        ...state,
-        inputControls: [...icsUpdated],
-        validResponse: { ...theNewValidResponse },
-      };
-      emitCallbackToUser(theNewState, payload);
-      return theNewState;
+      return updateSlaveDependencies(state, payload);
     }
     default:
       return state;
