@@ -80,12 +80,16 @@ export type ResourcesSearch = {
 };
 
 export type VisualizeFactoryConfig = {
+  visualizePath: string; // path to visualize.js script.
+  publicPath?: string; // if publicPath is not set, viz.js doesn't know where to load the chunks when Viz.js is
+  // located on a CDN.
+  server: string; // path to JRS.
   auth: Authentication;
 };
 
 export type VisualizeFactory = {
   (
-    params: VisualizeFactoryConfig,
+    params: Omit<VisualizeFactoryConfig, "visualizePath">,
     success: (v: VisualizeClient) => void,
     error: (err: any) => void,
   ): void;
@@ -190,6 +194,7 @@ export interface VisualizeClient {
   adhocView: (config: VisualizationConfig) => any;
   dashboard: (config: VisualizationConfig) => any;
   inputControls: (config: VisualizationConfig) => any;
+  server?: string;
 }
 
 export { visualizejsLoader } from "./src/visualize/VisualizejsProvider";

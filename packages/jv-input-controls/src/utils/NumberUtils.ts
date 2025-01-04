@@ -4,7 +4,10 @@
  * in the license file that is distributed with this file.
  */
 
-import { InputControlDataType } from "@jaspersoft/jv-tools";
+import {
+  InputControlDataType,
+  InputControlProperties,
+} from "@jaspersoft/jv-tools";
 
 const DECIMAL_SEPARATOR = "\\.";
 const GROUPING_SEPARATOR = ",";
@@ -119,3 +122,8 @@ export const verifyLimit = ({
   isError = true;
   return { helperText, isError };
 };
+
+export interface UseNumberErrorMsgProps {
+  textValue: string;
+  props?: InputControlProperties;
+}

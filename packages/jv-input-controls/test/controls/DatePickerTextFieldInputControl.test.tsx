@@ -8,10 +8,13 @@ import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/Inpu
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSX } from "react";
 import "@testing-library/jest-dom";
-import { DatePickerTextFieldInputControl } from "../../src/controls/DatePickerTextFieldInputControl";
+import {
+  DatePickerTextFieldInputControl,
+  DateTextFieldICProps,
+} from "../../src/controls/DatePickerTextFieldInputControl";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
-const requiredProps = {
+const requiredProps: DateTextFieldICProps = {
   id: "column_date_1",
   label: "column_date",
   mandatory: false,
@@ -23,9 +26,10 @@ const requiredProps = {
     id: "column_date_1",
     value: "2009-09-12",
   },
+  handleIcChange: jest.fn(),
 };
 
-const getDatePickerTextFieldIC = (options?: object): JSX.Element => {
+const getDatePickerTextFieldIC = (options?: any): JSX.Element => {
   return (
     <DatePickerTextFieldInputControl {...{ ...requiredProps, ...options }} />
   );
@@ -63,11 +67,13 @@ describe("DatePickerTextFieldInputControl tests", () => {
 
   // Test for onChange event
   test("updates value on change", () => {
-    const { container } = render(getDatePickerTextFieldIC({}));
-    const inputElement = container.querySelector("input") as HTMLInputElement;
+    render(getDatePickerTextFieldIC({}));
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
     const newValue = "2024-07-17";
     fireEvent.change(inputElement, { target: { value: newValue } });
-    expect(inputElement.value).toBe(newValue);
+    expect(screen.getByDisplayValue(newValue)).toBeVisible();
   });
 
   // Test for variant prop
@@ -133,18 +139,40 @@ describe("DatePickerTextFieldInputControl tests", () => {
     expect(divElement).toHaveClass(HIDDEN_CLASS_NAME);
   });
 
-  // Test for mandatory field
-  test("verify the field shows error when mandatory prop is set", () => {
-    const CSS_ERROR_CLASS = "jv-mInputRequired";
-    const { container } = render(
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
       getDatePickerTextFieldIC({
-        mandatory: true,
+        handleIcChange,
+        state: {
+          ...requiredProps.state,
+          value: "04/17/2022",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "04/18/2022";
+    fireEvent.change(inputElement, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", () => {
+    render(
+      getDatePickerTextFieldIC({
         validationRules: [
-          {
-            mandatoryValidationRule: {
-              errorMessage: "This field is mandatory so you must enter data.",
-            },
-          },
           {
             dateTimeFormatValidationRule: {
               errorMessage: "Specify a valid date value.",
@@ -152,24 +180,25 @@ describe("DatePickerTextFieldInputControl tests", () => {
             },
           },
         ],
-        state: {
-          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_date_1",
-          id: "column_date_1",
-          value: "",
-          error: "This field is mandatory so you must enter data.",
-        },
         dataType: {
           type: "date",
-          maxValue: "2024-07-26",
-          strictMax: true,
-          minValue: "2024-07-16",
+          strictMax: false,
+          minValue: "2024-12-01",
           strictMin: true,
+        },
+        state: {
+          ...requiredProps.state,
+          value: "12/03/2024",
         },
       }),
     );
-    let wrapperDiv = container.querySelector(
-      `div.${CSS_ERROR_CLASS}`,
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
     ) as HTMLInputElement;
-    expect(wrapperDiv).toBeInTheDocument();
+    fireEvent.change(inputElement, { target: { value: "12/01/2024" } });
+    const errorElement = screen.getByText(
+      "Verify the date is after 2024-12-01.",
+    );
+    expect(errorElement).toBeVisible();
   });
 });

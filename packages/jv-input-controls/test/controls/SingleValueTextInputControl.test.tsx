@@ -4,14 +4,16 @@
  * in the license file that is distributed with this file.
  */
 
-import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { SingleValueTextInputControl } from "../../src/controls/SingleValueTextInputControl";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import * as React from "react";
+import { JSX } from "react";
+import {
+  SingleValueTextInputControl,
+  TextFieldICProps,
+} from "../../src/controls/SingleValueTextInputControl";
 
-const LARGE_CSS_CLASS = SizeToClass.large;
-const requiredProps = {
+const LARGE_CSS_CLASS = "jv-mInputLarge";
+const requiredProps: TextFieldICProps = {
   id: "column_string_1",
   label: "column_string_1",
   mandatory: false,
@@ -23,9 +25,11 @@ const requiredProps = {
     id: "column_string_1",
     value: "ddd",
   },
+  validationRules: [],
+  handleIcChange: jest.fn(),
 };
 
-const getTextIC = (options?: object): React.JSX.Element => {
+const getTextIC = (options?: object): JSX.Element => {
   return <SingleValueTextInputControl {...{ ...requiredProps, ...options }} />;
 };
 
@@ -141,5 +145,64 @@ describe("SingleValueTextInputControls tests", () => {
       `div.${CSS_ERROR_CLASS}`,
     ) as HTMLInputElement;
     expect(wrapperDiv).toBeInTheDocument();
+  });
+
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
+      getTextIC({
+        handleIcChange,
+        state: {
+          value: "hello",
+        },
+      }),
+    );
+    const inputElement = screen.getByRole("textbox") as HTMLInputElement;
+    const newValue = "New Value";
+    fireEvent.change(inputElement, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", async () => {
+    render(
+      getTextIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "text",
+          strictMax: false,
+          strictMin: false,
+        },
+        state: {
+          value: "abc",
+        },
+      }),
+    );
+    const inputElement = screen.getByRole("textbox") as HTMLInputElement;
+    fireEvent.change(inputElement, { target: { value: "" } });
+
+    await waitFor(() => {
+      const errorElement = screen.getByText(
+        "This field is mandatory so you must enter data.",
+      );
+      expect(errorElement).toBeVisible();
+    });
   });
 });

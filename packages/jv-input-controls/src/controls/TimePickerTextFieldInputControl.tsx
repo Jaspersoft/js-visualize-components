@@ -8,9 +8,11 @@ import { JVDateTimeTextField } from "@jaspersoft/jv-ui-components";
 import { getMinAndMaxSettings } from "../utils/DateInputControlUtils";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
 import { getTheInitialValue } from "../utils/DefaultValueUtils";
+import { useState } from "react";
+import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
+import { getInputControlProperties } from "./BaseInputControl";
 
 export type TimeICType = "default";
 
@@ -22,37 +24,43 @@ export interface TimeTextFieldICProps extends InputControlProperties {
 export const TimePickerTextFieldInputControl = (
   props: TimeTextFieldICProps,
 ) => {
-  const {
-    readOnly,
-    mandatory,
-    visible,
-    dataType,
-    validationRules,
-    events,
-    ...remainingProps
-  } = props;
-  const liveState = useLiveState(getTheInitialValue(props.state?.value) || "");
+  const { readOnly, dataType } = props;
+  const [errorText, setErrorText] = useState<string>("");
+  const minAndMaxSettings = getMinAndMaxSettings(dataType, {
+    minKey: "min",
+    maxKey: "max",
+  });
+  const liveState = useLiveState(
+    getTheInitialValue(props.state?.value) || "",
+    (newValue: string) => {
+      const { errorMsg } = validateValueAgainstICValidationRules(
+        newValue,
+        liveState.value,
+        props,
+        "",
+        minAndMaxSettings,
+      );
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
+  );
   const controlClasses = useControlClasses([], props);
   const inputProps: any = {};
   if (readOnly) {
     inputProps.readOnly = true;
   }
-  const minAndMaxSettings = getMinAndMaxSettings(dataType, {
-    minKey: "min",
-    maxKey: "max",
-  });
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
-    minAndMaxDate: minAndMaxSettings,
-  });
   const theInputProps = {
     ...inputProps,
-    ...liveState,
+    value: liveState.value,
+    onChange: liveState.onChange,
   };
   return (
     <JVDateTimeTextField
-      {...remainingProps}
+      id={props.id}
+      label={props.label}
+      disabled={!!props.disabled}
       type="time"
       className={`${props.className || ""}`}
       textFieldClassName={`jv-mInputTime ${controlClasses.join(" ")}`}

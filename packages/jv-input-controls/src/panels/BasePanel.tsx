@@ -5,150 +5,128 @@
  */
 
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
-import { JSX, useState } from "react";
+import { JSX, ReactElement, useContext } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { BooleanInputControl } from "../controls/BooleanInputControl";
-import { PanelContext } from "../controls/contexts/PanelContext";
-import { DatePickerInputControl } from "../controls/DatePickerInputControl";
-import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
-import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
-import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
 import { SingleSelectInputControl } from "../controls/SingleSelectInputControl";
 import { MultiSelectInputControl } from "../controls/MultiSelectInputControl";
-import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
+import { InputControlsTypeConfig } from "../InputControls";
+import {
+  INPUT_CONTROLS_ACTIONS,
+  InputControlsContext,
+} from "../reducer/InputControlsReducer";
 import { SingleValueTextInputControl } from "../controls/SingleValueTextInputControl";
+import { SingleValueNumberInputControl } from "../controls/SingleValueNumberInputControl";
+import { DatePickerInputControl } from "../controls/DatePickerInputControl";
+import { DatePickerTextFieldInputControl } from "../controls/DatePickerTextFieldInputControl";
+import { DateTimePickerTextFieldInputControl } from "../controls/DateTimePickerTextFieldInputControl";
+import { DateTimePickerInputControl } from "../controls/DateTimePickerInputControl";
 import { TimePickerInputControl } from "../controls/TimePickerInputControl";
 import { TimePickerTextFieldInputControl } from "../controls/TimePickerTextFieldInputControl";
-import { InputControlsTypeConfig } from "../InputControls";
-import NotYetImplementedMessage from "../components/NotYetImplementedMessage";
-import { getDefaultValueFromParamsAndProps } from "../utils/DefaultValueUtils";
+import { fetchCascadingICs } from "../services/HttpService";
 
 export interface BasePanelProps {
-  controls?: any;
   config?: InputControlsTypeConfig;
-  events?: {
-    change?: (
-      ic: { [key: string]: any[] },
-      validationResult: { [key: string]: string } | boolean,
-    ) => void;
-  };
-  params?: { [key: string]: string[] };
+  server: string;
+  uri: string;
 }
 
 export default function BasePanel(props: BasePanelProps): JSX.Element {
-  const [inputControls, setInputControls] = useState<InputControlProperties[]>(
-    props.controls?.data,
-  );
-  const [validResponse, setValidResponse] = useState<{ [key: string]: any[] }>(
-    {},
-  );
-  const [validationResultState, setValidationResultState] = useState<{
-    [key: string]: string;
-  }>({});
+  const { state, dispatch } = useContext(InputControlsContext);
 
-  const buildLatestJSON = (
+  const handleCascadingRequest = (ctrlUpdated: InputControlProperties) => {
+    dispatch({
+      type: INPUT_CONTROLS_ACTIONS.SET_INITIATOR_ID_CASCADING_IC,
+      payload: {
+        initiatorIdCascadingIc: ctrlUpdated.id,
+      },
+    });
+
+    fetchCascadingICs({
+      inputControls: state.inputControls,
+      icUpdated: ctrlUpdated,
+      server: props.server,
+      uri: props.uri,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Request response for cascading input controls was not ok",
+          );
+        }
+        return response.json();
+      })
+      .then((response) => {
+        dispatch({
+          type: INPUT_CONTROLS_ACTIONS.UPDATE_SLAVE_DEPENDENCIES,
+          payload: {
+            ...response,
+            ctrlUpdated,
+          },
+        });
+      })
+      .catch((error) =>
+        console.error("Error while fetching cascading input controls: ", error),
+      )
+      .finally(() =>
+        dispatch({
+          type: INPUT_CONTROLS_ACTIONS.SET_INITIATOR_ID_CASCADING_IC,
+          payload: {
+            initiatorIdCascadingIc: "",
+          },
+        }),
+      );
+  };
+
+  const handleIcChange = (
     ctrlUpdated: InputControlProperties,
     resultValidation?: { [key: string]: string },
   ) => {
-    const inputControlsUpdated = inputControls?.reduce(
-      (
-        acc: {
-          state: InputControlProperties[];
-          response: { [key: string]: any[] };
-          invalidResponse: { [key: string]: any };
-        },
-        ctrl: InputControlProperties,
-      ) => {
-        const theValidationResult = resultValidation?.[ctrl.id];
-        const ctrlToUse = ctrl.id !== ctrlUpdated.id ? ctrl : ctrlUpdated;
-        acc.state.push(ctrlToUse);
-        if (theValidationResult !== undefined && theValidationResult !== "") {
-          acc.invalidResponse = {
-            ...acc.invalidResponse,
-            [ctrlToUse.id]: theValidationResult,
-          };
-        } else if (theValidationResult === "") {
-          // this means that the validation result is empty, so we need to remove the key from the invalidResponse
-          delete acc.invalidResponse[ctrlToUse.id];
-        }
-        acc.response[ctrlToUse.id] = Array.isArray(ctrlToUse.state?.value)
-          ? ctrlToUse.state?.value
-          : [ctrlToUse.state?.value];
-        return acc;
+    dispatch({
+      type: INPUT_CONTROLS_ACTIONS.UPDATE_DATA,
+      payload: {
+        ctrlUpdated,
+        resultValidation,
       },
-      {
-        state: [],
-        response: { ...validResponse },
-        invalidResponse: { ...validationResultState },
-      },
-    );
-    if (inputControls) {
-      setInputControls(inputControlsUpdated.state);
-      setValidResponse(inputControlsUpdated.response);
-      setValidationResultState(inputControlsUpdated.invalidResponse);
-      const isError =
-        Object.keys(inputControlsUpdated.invalidResponse).length > 0;
-      props.events?.change?.(
-        inputControlsUpdated.response,
-        isError ? inputControlsUpdated.invalidResponse : false,
-      );
+    });
+    if (
+      ctrlUpdated.slaveDependencies &&
+      ctrlUpdated.slaveDependencies.length > 0
+    ) {
+      handleCascadingRequest(ctrlUpdated);
     }
   };
 
-  const getControlProps = (
-    control: any,
-    params?: { [key: string]: string[] },
-  ) => {
-    return {
-      id: control.id,
-      label: control.label,
-      type: control.type,
-      readOnly: control.readOnly,
-      visible: control.visible,
-      mandatory: control.mandatory,
-      uri: control.uri,
-      state: {
-        ...control.state,
-        value: getDefaultValueFromParamsAndProps({ ...control, params }),
-      },
-      events: {
-        change: buildLatestJSON,
-      },
-    };
-  };
   const buildControl = (control: any) => {
-    const theProps = getControlProps(control, props.params);
     if (control.type === "bool") {
       return (
         <BooleanInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           styleType={props.config?.bool?.type}
+          handleIcChange={handleIcChange}
         />
       );
     }
     if (control.type === "singleValueText") {
-      let inputTypeText = props.config?.singleValueText?.type || "text";
-      if (inputTypeText === "textField") {
-        inputTypeText = "text";
-      }
       return (
         <SingleValueTextInputControl
-          {...theProps}
+          {...control}
           key={control.id}
-          type={inputTypeText}
           dataType={control.dataType}
           validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
     if (control.type === "singleValueNumber") {
       return (
         <SingleValueNumberInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           dataType={control.dataType}
           validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
@@ -157,19 +135,17 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       if (props?.config?.singleValueDate?.type === "material") {
         return (
           <DatePickerInputControl
-            {...theProps}
+            {...control}
             key={control.id}
-            dataType={control.dataType}
-            validationRules={control.validationRules}
+            handleIcChange={handleIcChange}
           />
         );
       }
       return (
         <DatePickerTextFieldInputControl
-          {...theProps}
+          {...control}
           key={control.id}
-          dataType={control.dataType}
-          validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
@@ -177,26 +153,25 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       if (props.config?.singleValueDatetime?.type === "material") {
         return (
           <DateTimePickerInputControl
-            {...theProps}
+            {...control}
             key={control.id}
-            dataType={control.dataType}
-            validationRules={control.validationRules}
+            handleIcChange={handleIcChange}
           />
         );
       }
       return (
         <DateTimePickerTextFieldInputControl
-          {...theProps}
+          {...control}
           key={control.id}
-          dataType={control.dataType}
-          validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
     if (control.type === "singleSelect") {
       return (
         <SingleSelectInputControl
-          {...theProps}
+          {...control}
+          handleIcChange={handleIcChange}
           key={control.id}
           validationRules={control.validationRules}
         />
@@ -205,9 +180,10 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
     if (control.type === "multiSelect") {
       return (
         <MultiSelectInputControl
-          {...theProps}
+          {...control}
           key={control.id}
           validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
@@ -215,58 +191,37 @@ export default function BasePanel(props: BasePanelProps): JSX.Element {
       if (props.config?.singleValueTime?.type === "material") {
         return (
           <TimePickerInputControl
-            {...theProps}
+            {...control}
             key={control.id}
-            dataType={control.dataType}
-            validationRules={control.validationRules}
+            handleIcChange={handleIcChange}
           />
         );
       }
       return (
         <TimePickerTextFieldInputControl
-          {...theProps}
+          {...control}
           key={control.id}
-          dataType={control.dataType}
-          validationRules={control.validationRules}
+          handleIcChange={handleIcChange}
         />
       );
     }
   };
 
-  const notImplemented = (controlMap: any) => {
-    if (controlMap?.data) {
-      return (
-        controlMap.data.filter(
-          (c: InputControlProperties) =>
-            (c.slaveDependencies && c.slaveDependencies.length > 0) ||
-            (c.masterDependencies && c.masterDependencies.length > 0),
-        ).length > 0
-      );
+  const buildControls = () => {
+    if (state.inputControls) {
+      return state.inputControls.map(buildControl);
     }
-    return false;
-  };
-
-  const buildControls = (controlMap: any) => {
-    if (notImplemented(controlMap)) {
-      return <NotYetImplementedMessage />;
-    }
-    if (controlMap?.data) {
-      return controlMap.data.map(buildControl);
-    }
-    if (controlMap) {
-      return (
-        <span className="control-map-text">{JSON.stringify(controlMap)}</span>
-      );
-    }
-    return <></>;
+    return (
+      <span className="control-map-text">
+        {JSON.stringify(state.inputControls)}
+      </span>
+    );
   };
 
   return (
     <div className="jv-inputControlPanel">
       <JVDatePickerProvider>
-        <PanelContext.Provider value={inputControls}>
-          {buildControls(props.controls)}
-        </PanelContext.Provider>
+        {buildControls() as ReactElement[]}
       </JVDatePickerProvider>
     </div>
   );

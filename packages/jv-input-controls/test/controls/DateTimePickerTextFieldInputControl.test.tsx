@@ -7,11 +7,14 @@
 import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSX } from "react";
-import { DateTimePickerTextFieldInputControl } from "../../src/controls/DateTimePickerTextFieldInputControl";
+import {
+  DateTimePickerTextFieldInputControl,
+  DateTimeTextFieldICProps,
+} from "../../src/controls/DateTimePickerTextFieldInputControl";
 import "@testing-library/jest-dom";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
-const requiredProps = {
+const requiredProps: DateTimeTextFieldICProps = {
   id: "column_timestamp_1",
   label: "column_timestamp",
   mandatory: false,
@@ -23,9 +26,11 @@ const requiredProps = {
     id: "column_timestamp_1",
     value: "2014-09-12T15:46:18",
   },
+  validationRules: [],
+  handleIcChange: jest.fn(),
 };
 
-const getDateTimePickerTextFieldIC = (options?: object): JSX.Element => {
+const getDateTimePickerTextFieldIC = (options?: any): JSX.Element => {
   return (
     <DateTimePickerTextFieldInputControl
       {...{ ...requiredProps, ...options }}
@@ -135,18 +140,39 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
     expect(divElement).toHaveClass(HIDDEN_CLASS_NAME);
   });
 
-  // Test for mandatory field
-  test("verify the field shows error when mandatory prop is set", () => {
-    const CSS_ERROR_CLASS = "jv-mInputRequired";
-    const { container } = render(
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
       getDateTimePickerTextFieldIC({
-        mandatory: true,
+        handleIcChange,
+        state: {
+          value: "2014-09-12T15:46:18",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "2024-07-15T15:46:18.000";
+    fireEvent.change(inputElement, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", () => {
+    render(
+      getDateTimePickerTextFieldIC({
         validationRules: [
-          {
-            mandatoryValidationRule: {
-              errorMessage: "This field is mandatory so you must enter data.",
-            },
-          },
           {
             dateTimeFormatValidationRule: {
               errorMessage: "Specify a valid date/time value.",
@@ -154,24 +180,27 @@ describe("DateTimePickerTextFieldInputControl tests", () => {
             },
           },
         ],
-        state: {
-          uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_timestamp_1",
-          id: "column_timestamp_1",
-          value: "",
-          error: "This field is mandatory so you must enter data.",
-        },
         dataType: {
           type: "datetime",
-          maxValue: "2024-07-25T06:17:36",
+          maxValue: "2024-12-31T00:00:00",
           strictMax: true,
-          minValue: "2024-07-17T02:07:17",
-          strictMin: true,
+          strictMin: false,
+        },
+        state: {
+          ...requiredProps.state,
+          value: "2024-07-15T15:46:18",
         },
       }),
     );
-    let wrapperDiv = container.querySelector(
-      `div.${CSS_ERROR_CLASS}`,
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
     ) as HTMLInputElement;
-    expect(wrapperDiv).toBeInTheDocument();
+    fireEvent.change(inputElement, {
+      target: { value: "12/31/2024 12:00:00 PM" },
+    });
+    const errorElement = screen.getByText(
+      "Verify the date is before 2024-12-31T00:00:00.",
+    );
+    expect(errorElement).toBeVisible();
   });
 });
