@@ -4,7 +4,7 @@
  * in the license file that is distributed with this file.
  */
 
-import * as React from "react";
+import { JSX } from "react";
 import { BooleanInputControl } from "../../src/controls/BooleanInputControl";
 import { cleanup, render } from "@testing-library/react";
 
@@ -17,7 +17,7 @@ const requiredProps = {
   type: "bool",
 };
 
-const getBoolIC = (options?: object): React.JSX.Element => {
+const getBoolIC = (options?: object): JSX.Element => {
   return <BooleanInputControl {...{ ...requiredProps, ...options }} />;
 };
 

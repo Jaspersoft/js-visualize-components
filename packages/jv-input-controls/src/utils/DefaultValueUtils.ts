@@ -6,7 +6,7 @@
 
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 
-const isSelectInputControl = (props: InputControlProperties) => {
+export const isSelectInputControl = (props: InputControlProperties) => {
   return props.type === "multiSelect" || props.type === "singleSelect";
 };
 
@@ -80,11 +80,11 @@ export const getDefaultValueFromParamsAndProps = (
 };
 
 export const getTheInitialValue = (
-  initialValue: undefined | string | string[],
+  initialValue: undefined | string | string[] | boolean,
 ) => {
   return initialValue !== undefined && Array.isArray(initialValue)
-    ? initialValue[0]
-    : initialValue;
+    ? String(initialValue[0])
+    : String(initialValue);
 };
 
 export const getTheInitialValueForSingleSelectInputControl = (

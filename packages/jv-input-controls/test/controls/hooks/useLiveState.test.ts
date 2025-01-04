@@ -12,9 +12,9 @@ describe("useLiveState hook tests", () => {
     const { result } = renderHook(() => useLiveState(42));
     expect(result.current.value).toBe(42);
   });
-  it("should return 2 fields", () => {
+  it("should return 3 fields", () => {
     const { result } = renderHook(() => useLiveState(0));
-    expect(Object.keys(result.current).length).toBe(2);
+    expect(Object.keys(result.current).length).toBe(3);
   });
   it("should return expected fields: value, onChange", () => {
     const { result } = renderHook(() => useLiveState(0));
@@ -36,33 +36,19 @@ describe("useLiveState hook tests", () => {
     });
     expect(result.current.value).toBe(true);
   });
-  // it("should call the callback method if it is provided", () => {
-  //   const callback = jest.fn();
-  //   // help me fix the next line
-  //   const { result } = renderHook(() =>
-  //     useLiveState(0, {
-  //       events: { change: callback },
-  //       id: "column_time_1",
-  //       label: "column_time",
-  //       mandatory: false,
-  //       readOnly: false,
-  //       visible: true,
-  //       type: "singleValueTime",
-  //       state: {
-  //         uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
-  //         id: "column_time_1",
-  //         value: "23:44:21",
-  //       },
-  //     }),
-  //   );
-  //   act(() => {
-  //     result.current.onChange({
-  //       target: {
-  //         type: "text",
-  //         value: 42,
-  //       },
-  //     });
-  //   });
-  //   expect(callback).toHaveBeenCalled();
-  // });
+  it("should call the CALLBACK with the new value", () => {
+    const callback = jest.fn();
+    const { result } = renderHook(() => useLiveState("initial text", callback));
+    const newValue = "my name is Eduardo";
+    act(() => {
+      result.current.onChange({
+        target: {
+          type: "text",
+          value: newValue,
+        },
+      });
+    });
+
+    expect(callback).toHaveBeenCalledWith(newValue);
+  });
 });

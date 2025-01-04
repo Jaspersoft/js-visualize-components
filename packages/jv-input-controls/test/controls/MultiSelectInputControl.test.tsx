@@ -6,11 +6,20 @@
 
 import { screen } from "@testing-library/dom";
 import { act, cleanup, render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { MultiSelectInputControl } from "../../src/controls/MultiSelectInputControl";
+import {
+  MultiSelectInputControl,
+  MultiSelectInputControlProps,
+} from "../../src/controls/MultiSelectInputControl";
 import "@testing-library/jest-dom";
+import {
+  InputControlsContext,
+  InputControlsState,
+} from "../../src/reducer/InputControlsReducer";
+import { FC } from "react";
+import userEvent from "@testing-library/user-event";
 
-const requiredProps = {
+const mockDispatch = jest.fn();
+const requiredProps: MultiSelectInputControlProps = {
   id: "ProductFamily",
   description: "Product Family Multi-Select",
   type: "multiSelect",
@@ -33,24 +42,91 @@ const requiredProps = {
     id: "ProductFamily",
     options: [
       {
-        selected: true,
+        selected: false,
         label: "Drink",
         value: "Drink",
       },
       {
-        selected: true,
+        selected: false,
         label: "Food",
         value: "Food",
       },
       {
-        selected: true,
+        selected: false,
         label: "Non-Consumable",
         value: "Non-Consumable",
       },
     ],
-    value: ["Drink", "Food", "Non-Consumable"], // this is not returned by the API, but it will be generated to
+    value: [], // this is not returned by the API, but it will be generated to
     // reflect the state from the server
   },
+  handleIcChange: jest.fn(),
+};
+const mockState: InputControlsState = {
+  inputControls: [
+    {
+      id: "ProductFamily",
+      description: "",
+      type: "multiSelect",
+      uri: "repo:/public/Samples/Resources/Input_Controls/Product_Family",
+      label: "Product Family",
+      mandatory: true,
+      readOnly: false,
+      visible: true,
+      masterDependencies: [],
+      slaveDependencies: [],
+      validationRules: [
+        {
+          mandatoryValidationRule: {
+            errorMessage: "This field is mandatory so you must enter data.",
+          },
+        },
+      ],
+      state: {
+        uri: "/public/Samples/Resources/Input_Controls/Product_Family",
+        id: "ProductFamily",
+        options: [
+          {
+            selected: false,
+            label: "Drink",
+            value: "Drink",
+          },
+          {
+            selected: false,
+            label: "Non-Consumable",
+            value: "Non-Consumable",
+          },
+          {
+            selected: false,
+            label: "Food",
+            value: "Food",
+          },
+        ],
+        value: [], // this is not returned by the API, but it will be generated to
+      },
+    },
+  ],
+  validResponse: {},
+  validationResultState: {},
+  initiatorIdCascadingIc: "",
+};
+
+const MockInputControlsProvider: FC<any> = ({ children }) => {
+  return (
+    <InputControlsContext.Provider
+      value={{ state: mockState, dispatch: mockDispatch }}
+    >
+      {children}
+    </InputControlsContext.Provider>
+  );
+};
+
+const getMultiSelect = (options?: object) => {
+  return (
+    <MockInputControlsProvider>
+      <MultiSelectInputControl {...{ ...requiredProps, ...options }} />
+    </MockInputControlsProvider>
+  );
 };
 
 describe("MultiSelectInputControl tests", () => {
@@ -58,13 +134,13 @@ describe("MultiSelectInputControl tests", () => {
     cleanup();
   });
   it("should render the MultiSelectInputControl component", () => {
-    render(<MultiSelectInputControl {...requiredProps} />);
+    render(getMultiSelect());
     const labelElement = screen.getByText("ProductFamily");
     expect(labelElement).toBeInTheDocument();
   });
 
   it("should display options when clicked", async () => {
-    render(<MultiSelectInputControl {...requiredProps} />);
+    render(getMultiSelect());
     const inputElement = screen.getByLabelText("ProductFamily");
     await act(async () => {
       userEvent.click(inputElement);
@@ -74,17 +150,7 @@ describe("MultiSelectInputControl tests", () => {
   });
 
   it("should select an option when clicked", async () => {
-    render(
-      <MultiSelectInputControl
-        {...{
-          ...requiredProps,
-          state: {
-            ...requiredProps.state,
-            value: [],
-          },
-        }}
-      />,
-    );
+    render(getMultiSelect());
     const inputElement = screen.getByLabelText("ProductFamily");
     await act(async () => {
       userEvent.click(inputElement);
@@ -99,17 +165,7 @@ describe("MultiSelectInputControl tests", () => {
 
   it("should display error message when there is an error", async () => {
     await act(async () => {
-      render(
-        <MultiSelectInputControl
-          {...{
-            ...requiredProps,
-            state: {
-              ...requiredProps.state,
-              value: [],
-            },
-          }}
-        />,
-      );
+      render(getMultiSelect());
     });
     const inputElement = screen.getByLabelText("ProductFamily");
     await act(async () => {
@@ -128,10 +184,31 @@ describe("MultiSelectInputControl tests", () => {
     expect(errorElement).toBeInTheDocument();
   });
 
-  it("should select all options by default", async () => {
-    render(<MultiSelectInputControl {...requiredProps} />);
+  it("calls handleIcChange with correct parameters on value change", async () => {
+    const handleIcChange = jest.fn();
+    await act(async () => {
+      render(getMultiSelect({ handleIcChange }));
+    });
+
     const inputElement = screen.getByLabelText("ProductFamily");
-    expect(inputElement).toBeInTheDocument();
-    expect(inputElement).toHaveTextContent("Drink, Food, Non-Consumable");
+    await act(async () => {
+      userEvent.click(inputElement);
+    });
+    const optionElement = await screen.findByText("Drink");
+    await act(async () => {
+      await userEvent.click(optionElement);
+    });
+
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
   });
 });

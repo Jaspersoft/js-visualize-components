@@ -24,6 +24,7 @@ import BasePanel from "./panels/BasePanel";
 import { fillControlStructure } from "./methods";
 import { MultiSelectICType } from "./controls/MultiSelectInputControl";
 import { SingleSelectICType } from "./controls/SingleSelectInputControl";
+import { InputControlsProvider } from "./reducer/InputControlsReducer";
 
 export interface InputControlsTypeConfig {
   bool?: {
@@ -108,12 +109,17 @@ export function InputControls(props: InputControlsProps) {
     <JVStylesProvider>
       {(props.v === undefined || !embedControls) && showLoadingSpinner()}
       {props.v !== undefined && embedControls && (
-        <BasePanel
-          controls={embedControls}
-          config={props.config?.typeConfig}
+        <InputControlsProvider
+          initialState={embedControls.data}
+          overwriteParams={props.config?.params}
           events={props.config?.events}
-          params={props.config?.params}
-        ></BasePanel>
+        >
+          <BasePanel
+            server={props.v.server || ""}
+            uri={props.uri}
+            config={props.config?.typeConfig}
+          />
+        </InputControlsProvider>
       )}
     </JVStylesProvider>
   );

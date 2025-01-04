@@ -57,7 +57,7 @@ export interface InputControlOption {
 export interface InputControlState {
   id: string;
   uri: string;
-  value?: string | string[]; // this is optional for the multi-select
+  value?: string | string[] | boolean; // this is optional for the multi-select
   error?: string;
   totalCount?: string;
   options?: InputControlOption[];
@@ -77,24 +77,33 @@ export type InputControlType =
   | "multiSelectCheckbox"
   | undefined;
 
-export interface InputControlProperties {
+export interface CommonInputControlProperties {
   id: string;
   type: InputControlType;
   label: string;
   mandatory: boolean;
   readOnly: boolean;
   visible: boolean;
+  description?: string;
   uri?: string;
   state?: InputControlState;
   validationRules?: InputControlValidationRule[];
   dataType?: InputControlDataType;
-
+  isLoading?: boolean;
   masterDependencies?: string[];
   slaveDependencies?: string[];
+}
+
+export interface InputControlProperties extends CommonInputControlProperties {
   events?: {
     change: (
-      ic: InputControlProperties,
-      validationResult?: { [key: string]: string },
+      ic: { [key: string]: CommonInputControlProperties[] },
+      validationResult?: { [key: string]: string } | boolean,
     ) => void;
   };
+  parameters?: { [key: string]: string[] };
+  handleIcChange?: (
+    ctrlUpdated: CommonInputControlProperties,
+    resultValidation?: { [key: string]: string },
+  ) => void;
 }
