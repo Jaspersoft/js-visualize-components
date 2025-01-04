@@ -188,6 +188,7 @@ const withAbilityToAttach = (
   };
 };
 
+// @ts-ignore
 const AttachableColorPicker = withAbilityToAttach(SketchPicker, document);
 
 export { withAbilityToAttach, AttachableColorPicker };

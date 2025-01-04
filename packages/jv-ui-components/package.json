@@ -47,7 +47,7 @@
     "@mui/styled-engine": "5.15.14",
     "@mui/system": "5.15.12",
     "@mui/utils": "5.15.7",
-    "@mui/x-date-pickers": "^7.6.2",
+    "@mui/x-date-pickers": "7.6.2",
     "@mui/x-tree-view": "7.6.2",
     "css-vendor": "2.0.8",
     "dayjs": "^1.11.11",

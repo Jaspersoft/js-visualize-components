@@ -87,6 +87,7 @@ export const ColorPickerSample: FC<ColorSampleProps> = ({
   };
 
   return (
+    // @ts-ignore
     <>
       <div
         ref={attachToRef}
@@ -101,6 +102,7 @@ export const ColorPickerSample: FC<ColorSampleProps> = ({
           className={`jv-mControl-launcher-swatch mui ${getSwatchLightClass(color)}`}
         />
       </div>
+      {/* @ts-ignore */}
       {createPortal(colorPicker, colorPickerContainer)}
     </>
   );
