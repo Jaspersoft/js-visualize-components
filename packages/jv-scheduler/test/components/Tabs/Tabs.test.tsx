@@ -86,7 +86,6 @@ describe("Tabs component", () => {
   });
   test("handles tab change and sets visited tab", () => {
     render(<Tabs />);
-    screen.logTestingPlaygroundURL();
     fireEvent.click(
       screen.getByRole("tab", {
         name: /output/i,

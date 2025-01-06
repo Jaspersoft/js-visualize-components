@@ -36,7 +36,17 @@ const CommonIcon = ({
 };
 
 export const StepIcon = (props: any) => {
-  const { icon, ...rest } = props;
+  const {
+      icon,
+      error: errorProp,
+      active: activeProp,
+      completed: completedProp,
+      ...rest
+    } = props,
+    error = errorProp ? "true" : undefined,
+    active = activeProp ? "true" : undefined,
+    completed = completedProp ? "true" : undefined;
+
   return (
     <div>
       {icon === SUCCESS_STATE && (
@@ -44,6 +54,9 @@ export const StepIcon = (props: any) => {
           icon="checkmarkRound"
           className="jv-uColor-success"
           dataName=""
+          active={active}
+          completed={completed}
+          error={error}
           {...rest}
         />
       )}
@@ -52,6 +65,9 @@ export const StepIcon = (props: any) => {
           icon="warningRound"
           className="jv-uColor-error"
           dataName=""
+          active={active}
+          completed={completed}
+          error={error}
           {...rest}
         />
       )}
@@ -60,6 +76,9 @@ export const StepIcon = (props: any) => {
           icon="checkmarkRound"
           className="jv-uColor-incomplete"
           dataName=""
+          active={active}
+          completed={completed}
+          error={error}
           {...rest}
         />
       )}
@@ -68,6 +87,9 @@ export const StepIcon = (props: any) => {
           icon="circleSolid"
           className="jv-uColor-incomplete"
           dataName=""
+          active={active}
+          completed={completed}
+          error={error}
           {...rest}
         />
       )}

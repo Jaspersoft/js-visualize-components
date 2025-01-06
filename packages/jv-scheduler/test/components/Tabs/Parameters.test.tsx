@@ -110,7 +110,6 @@ describe("Parameters component", () => {
 
   test("renders Parameters component with JVTypographyComponent and InputControls", () => {
     render(<Parameters />);
-    screen.logTestingPlaygroundURL();
     expect(screen.getByText("JVTypographyComponent")).toBeInTheDocument();
     expect(screen.getByText("InputControls")).toBeInTheDocument();
   });

@@ -87,7 +87,6 @@ describe("Stepper component", () => {
 
   it("renders JVStepper with correct props", () => {
     render(<Stepper />);
-    screen.logTestingPlaygroundURL();
     expect(screen.getByText("Schedule")).toBeInTheDocument();
     expect(screen.getByText("Output")).toBeInTheDocument();
     expect(screen.getByText("Notifications")).toBeInTheDocument();
