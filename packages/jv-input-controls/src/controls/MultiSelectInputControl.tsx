@@ -5,29 +5,73 @@
  */
 
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
-import { JVMultiSelect } from "@jaspersoft/jv-ui-components";
+import { JVMultiSelect, JVSkeleton } from "@jaspersoft/jv-ui-components";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
+import { useContext, useEffect, useState } from "react";
+import { InputControlsContext } from "../reducer/InputControlsReducer";
+import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
+import { getInputControlProperties } from "./BaseInputControl";
+import { useCascadingOptions } from "./hooks/useCascadingOptions";
+import { generateValueBasedOnOptions } from "../utils/ValueBasedOnOptionsUtils";
 
 export type MultiSelectICType = "multiSelect";
 
+export interface MultiSelectInputControlProps extends InputControlProperties {}
+
 export const MultiSelectInputControl = (
-  props: InputControlProperties,
+  props: MultiSelectInputControlProps,
 ): JSX.Element => {
-  const liveState = useLiveState(props.state?.value);
+  // new variables due to the reducer state:
+  const { state } = useContext(InputControlsContext);
+  const [errorText, setErrorText] = useState<string>("");
+  const initialValue = [""];
+
+  // live state:
+  const liveState = useLiveState(
+    initialValue,
+    (newValue: string | string[]) => {
+      const { errorMsg } = validateValueAgainstICValidationRules(
+        newValue,
+        liveState.value,
+        props,
+        [""],
+        {},
+      );
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
+  );
+  const { options, isLoading, setIsLoading } = useCascadingOptions(
+    state.inputControls,
+    props.id,
+  );
+  useEffect(() => {
+    const basedOnOptions = generateValueBasedOnOptions(
+      options,
+      liveState.value,
+    );
+    if (basedOnOptions === null) {
+      return;
+    }
+    if (basedOnOptions.valueUpdated !== null) {
+      liveState.setValue(basedOnOptions.valueUpdated);
+    }
+    setIsLoading(basedOnOptions.isSelectLoading);
+  }, [options]);
   const controlClasses = useControlClasses([], props);
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
-  });
-  return (
+  return isLoading ? (
+    <JVSkeleton animation="wave" />
+  ) : (
     <JVMultiSelect
-      {...liveState}
+      onChange={liveState.onChange}
       label={props.label}
       id={props.id}
       key={props.id}
-      state={props.state}
+      value={liveState.value}
+      state={{ options }}
       className={`${controlClasses.join(" ")}`}
       error={errorText}
     />

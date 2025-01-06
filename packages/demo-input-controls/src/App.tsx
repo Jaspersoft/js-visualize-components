@@ -5,7 +5,10 @@
  */
 
 import "./App.css";
-import { renderInputControls } from "@jaspersoft/jv-input-controls";
+import {
+  InputControlsConfig,
+  renderInputControls,
+} from "@jaspersoft/jv-input-controls";
 import {
   Authentication,
   InputControlProperties,
@@ -22,18 +25,60 @@ const myAuth: Authentication = {
   locale: "en_US",
 };
 
-const reportUri = "/public/Samples/Reports/07g.RevenueDetailReport";
+const reportUri = "/public/Samples/Reports/16g.InteractiveSalesReport";
+// const reportUri = "/public/Samples/Reports/07g.RevenueDetailReport";
 const singleSelectReportUri = "/public/Samples/Reports/9g.CustomerDetailReport";
-
-const visualizeUrl =
-  "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js";
+const globalConfigForIcs: InputControlsConfig = {
+  success: () => {
+    console.log("Input controls rendered successfully");
+  },
+  error: (error) => {
+    console.log("Error rendering input controls: ", error);
+  },
+  typeConfig: {
+    singleValueDatetime: {
+      type: "default", // even if it isn't provided, this will be the default component
+    },
+    singleValueTime: {
+      type: "default", // even if it isn't provided, this will be the default component
+    },
+    singleValueDate: {
+      type: "default", // even if it isn't provided, this will be the default component
+    },
+  },
+  params: {
+    column_boolean_1: ["false"],
+    column_string_1: [
+      "This is a predefined text different than the stored in the server",
+    ],
+    id_1: ["99"],
+    column_date_1: ["2009-03-02"],
+    column_timestamp_1: ["2014-03-02T10:00:00"],
+    column_time_1: ["14:00:00"],
+    ProductFamily: ["Drink", "Food"],
+  },
+  events: {
+    change: (ics, validationResult) => {
+      console.log("validationResult => ", validationResult);
+      console.log("ics => ", ics);
+    },
+  },
+};
 
 const errorCallback = (errorCaught: Error | VisualizeGenericError | string) => {
   console.log("check the error! ", errorCaught);
 };
 
 function App() {
-  const vContainer = useVisualize(visualizeUrl, myAuth, { errorCallback });
+  const vContainer = useVisualize(
+    {
+      server: "https://mobiledemo.jaspersoft.com/jasperserver-pro",
+      visualizePath:
+        "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js",
+      auth: myAuth,
+    },
+    { errorCallback },
+  );
   const [controlBuffer, setControlBuffer] =
     useState<InputControlProperties[]>();
   const [vReport, setVReport] = useState<any>();
@@ -46,42 +91,7 @@ function App() {
       vContainer.v,
       reportUri,
       document.getElementById("input-controls-container") as HTMLElement,
-      {
-        success: () => {
-          console.log("Input controls rendered successfully");
-        },
-        error: (error) => {
-          console.log("Error rendering input controls: ", error);
-        },
-        typeConfig: {
-          singleValueDatetime: {
-            type: "default", // even if it isn't provided, this will be the default component
-          },
-          singleValueTime: {
-            type: "default", // even if it isn't provided, this will be the default component
-          },
-          singleValueDate: {
-            type: "default", // even if it isn't provided, this will be the default component
-          },
-        },
-        params: {
-          column_boolean_1: ["false"],
-          column_string_1: [
-            "This is a predefined text different than the stored in the server",
-          ],
-          id_1: ["99"],
-          column_date_1: ["2009-03-02"],
-          column_timestamp_1: ["2014-03-02T10:00:00"],
-          column_time_1: ["14:00:00"],
-          ProductFamily: ["Drink", "Food"],
-        },
-        events: {
-          change: (ics, validationResult) => {
-            console.log("validationResult => ", validationResult);
-            console.log("ics => ", ics);
-          },
-        },
-      },
+      globalConfigForIcs,
     );
 
     renderInputControls(

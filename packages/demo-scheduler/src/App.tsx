@@ -22,7 +22,8 @@ import ReportPanel from "./report/ReportPanel";
 import "./App.css";
 import { Scheduler } from "./Scheduler";
 
-const visualizeUrl = `${schedulerUIConfig.server}${schedulerUIConfig.contextPath}/client/visualize.js`;
+const serverUrl = `${schedulerUIConfig.server}${schedulerUIConfig.contextPath}`;
+const visualizeUrl = `${serverUrl}/client/visualize.js`;
 
 const credentials: Authentication = {
   name: "joeuser",
@@ -44,6 +45,7 @@ function SchedulerApp() {
     loadVisualize().then((visualizeFactory: VisualizeFactory) => {
       visualizeFactory(
         {
+          server: serverUrl,
           auth: { ...credentials },
         },
         (v: VisualizeClient) => {

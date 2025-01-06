@@ -4,14 +4,16 @@
  * in the license file that is distributed with this file.
  */
 
-import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { JSX } from "react";
-import { SingleValueNumberInputControl } from "../../src/controls/SingleValueNumberInputControl";
 import "@testing-library/jest-dom";
+import { JSX } from "react";
+import {
+  SingleValueNumberInputControl,
+  NumberICProps,
+} from "../../src/controls/SingleValueNumberInputControl";
 
-const LARGE_CSS_CLASS = SizeToClass.large;
-const requiredProps = {
+const LARGE_CSS_CLASS = "jv-mInputLarge";
+const requiredProps: NumberICProps = {
   id: "column_float_1",
   label: "column_float",
   mandatory: false,
@@ -21,21 +23,22 @@ const requiredProps = {
   state: {
     uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_float_1",
     id: "column_float_1",
-    value: "0.33",
+    value: "1234.56",
   },
+  validationRules: [],
+  handleIcChange: jest.fn(),
 };
 
-const getNumberIC = (options?: object): JSX.Element => {
-  return (
-    <SingleValueNumberInputControl {...{ ...requiredProps, ...options }} />
-  );
+const getNumberIC = (options?: any): JSX.Element => {
+  const mergedProps = { ...requiredProps, ...options };
+  return <SingleValueNumberInputControl {...mergedProps} />;
 };
 
-describe("SingleValueNumberInputControls tests", () => {
-  test("SingleValueNumberInputControls is rendered correctly", () => {
+describe("SingleValueNumberInputControl tests", () => {
+  test("SingleValueNumberInputControl is rendered correctly", () => {
     render(getNumberIC());
-    const buttonElement = screen.getByRole("textbox");
-    expect(buttonElement).toBeInTheDocument();
+    const inputElement = screen.getByRole("textbox");
+    expect(inputElement).toBeInTheDocument();
   });
 
   // Test for label prop
@@ -48,13 +51,9 @@ describe("SingleValueNumberInputControls tests", () => {
 
   // Test for value prop
   test("uses value as the initial input value", () => {
-    const defaultValue = "1,786";
+    const defaultValue = "1234.56";
     render(
-      getNumberIC({
-        state: {
-          value: defaultValue,
-        },
-      }),
+      getNumberIC({ state: { ...requiredProps.state, value: defaultValue } }),
     );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe(defaultValue);
@@ -99,7 +98,7 @@ describe("SingleValueNumberInputControls tests", () => {
   test("updates value on change", () => {
     const { getByRole } = render(getNumberIC({}));
     const inputElement = getByRole("textbox") as HTMLInputElement;
-    const newValue = "3,926";
+    const newValue = "3926";
     fireEvent.change(inputElement, { target: { value: newValue } });
     expect(inputElement.value).toBe(newValue);
   });
@@ -293,6 +292,68 @@ describe("SingleValueNumberInputControls tests", () => {
         ".MuiFormHelperText-root.jv-mInput-error",
       );
       expect(errorMsg).not.toBeInTheDocument();
+    });
+  });
+
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
+      getNumberIC({
+        handleIcChange,
+        state: {
+          value: "1234.56",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "5678.90";
+    fireEvent.change(inputElement, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", async () => {
+    render(
+      getNumberIC({
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+        ],
+        dataType: {
+          type: "number",
+          maxValue: "10",
+          strictMax: true,
+          minValue: "5",
+          strictMin: true,
+        },
+        state: {
+          value: "6",
+        },
+      }),
+    );
+    const inputElement = screen.getByRole("textbox") as HTMLInputElement;
+    fireEvent.change(inputElement, { target: { value: "500" } });
+
+    await waitFor(() => {
+      const errorElement = screen.getByText(
+        "Verify the number is lower than 10.",
+      );
+      expect(errorElement).toBeVisible();
     });
   });
 });

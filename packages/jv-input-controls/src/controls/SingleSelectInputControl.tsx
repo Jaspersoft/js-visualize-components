@@ -4,13 +4,16 @@
  * in the license file that is distributed with this file.
  */
 
-import { JVSelect } from "@jaspersoft/jv-ui-components";
-import React from "react";
+import { JVSelect, JVSkeleton } from "@jaspersoft/jv-ui-components";
+import { JSX, useContext, useEffect, useState } from "react";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveState } from "./hooks/useLiveState";
-import { getTheInitialValueForSingleSelectInputControl } from "../utils/DefaultValueUtils";
+import { InputControlsContext } from "../reducer/InputControlsReducer";
+import { getInputControlProperties } from "./BaseInputControl";
+import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
+import { useCascadingOptions } from "./hooks/useCascadingOptions";
+import { generateValueBasedOnOptions } from "../utils/ValueBasedOnOptionsUtils";
 
 export interface SingleSelectInputControlProps extends InputControlProperties {}
 
@@ -18,23 +21,56 @@ export type SingleSelectICType = "singleSelect";
 
 export function SingleSelectInputControl(
   props: SingleSelectInputControlProps,
-): React.JSX.Element {
+): JSX.Element {
+  // new variables due to the reducer state:
+  const { state } = useContext(InputControlsContext);
+  const [errorText, setErrorText] = useState<string>("");
+  const initialValue = "";
+  // live state:
   const liveState = useLiveState(
-    getTheInitialValueForSingleSelectInputControl(props.state?.value),
+    initialValue,
+    (newValue: string | string[]) => {
+      const { errorMsg } = validateValueAgainstICValidationRules(
+        newValue,
+        liveState.value,
+        props,
+        "",
+        {},
+      );
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
   );
+  const { options, isLoading, setIsLoading } = useCascadingOptions(
+    state.inputControls,
+    props.id,
+  );
+  useEffect(() => {
+    const basedOnOptions = generateValueBasedOnOptions(
+      options,
+      liveState.value,
+    );
+    if (basedOnOptions === null) {
+      return;
+    }
+    if (basedOnOptions.valueUpdated !== null) {
+      liveState.setValue(basedOnOptions.valueUpdated);
+    }
+    setIsLoading(basedOnOptions.isSelectLoading);
+  }, [options]);
   const controlClasses = useControlClasses([], props);
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
-  });
-  return (
+  return isLoading ? (
+    <JVSkeleton animation="wave" />
+  ) : (
     <JVSelect
       onChange={liveState.onChange}
       label={props.label}
       id={props.id}
       key={props.id}
       value={liveState.value}
-      state={props.state}
+      state={{ options }}
       className={`${controlClasses.join(" ")}`}
       error={errorText}
     />

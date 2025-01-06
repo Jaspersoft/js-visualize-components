@@ -5,12 +5,15 @@
  */
 
 import { JVDatePickerProvider } from "@jaspersoft/jv-ui-components";
-import { render, screen } from "@testing-library/react";
-import { JSX } from "react";
-import { TimePickerInputControl } from "../../src/controls/TimePickerInputControl";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { JSX } from "react";
+import {
+  TimePickerInputControl,
+  TimeICProps,
+} from "../../src/controls/TimePickerInputControl";
 
-const requiredProps = {
+const requiredProps: TimeICProps = {
   id: "column_time_1",
   label: "column_time",
   mandatory: false,
@@ -20,8 +23,10 @@ const requiredProps = {
   state: {
     uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
     id: "column_time_1",
-    value: "23:44:21",
+    value: "15:46:18",
   },
+  validationRules: [],
+  handleIcChange: jest.fn(),
 };
 
 const getTimePickerIC = (options?: any): JSX.Element => {
@@ -35,9 +40,11 @@ const getTimePickerIC = (options?: any): JSX.Element => {
 
 describe("TimePickerInputControl tests", () => {
   test("TimePickerInputControl is rendered correctly", () => {
-    render(getTimePickerIC({ state: { value: "15:46:18" } }));
-    const datePickerElement = screen.getByRole("textbox");
-    expect(datePickerElement).toBeInTheDocument();
+    render(
+      getTimePickerIC({ state: { ...requiredProps.state, value: "10:46:18" } }),
+    );
+    const timePickerElement = screen.getByRole("textbox");
+    expect(timePickerElement).toBeInTheDocument();
   });
 
   test("displays the label when provided", () => {
@@ -65,6 +72,21 @@ describe("TimePickerInputControl tests", () => {
     );
     const inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement.value).toBe("03:46:18PM");
+  });
+
+  test("uses value as the initial input value", () => {
+    const defaultValue = "15:46:18";
+    render(getTimePickerIC({ state: { value: defaultValue } }));
+    const inputElement = screen.getByRole("textbox") as HTMLInputElement;
+    expect(inputElement.value).toBe(defaultValue);
+  });
+
+  test("updates value on change", () => {
+    render(getTimePickerIC({ state: { value: "15:46:18" } }));
+    const timePicker = screen.getByRole("textbox") as HTMLInputElement;
+    const newValue = "16:46:18";
+    fireEvent.change(timePicker, { target: { value: newValue } });
+    expect(screen.getByDisplayValue(newValue)).toBeVisible();
   });
 
   test("check the component is read-only", () => {
@@ -105,5 +127,72 @@ describe("TimePickerInputControl tests", () => {
     rerender(getTimePickerIC({}));
     inputElement = screen.getByRole("textbox") as HTMLInputElement;
     expect(inputElement).not.toHaveAttribute("disabled");
+  });
+
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
+      getTimePickerIC({
+        handleIcChange,
+        state: {
+          value: "15:46:18",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "16:46:18";
+    fireEvent.change(inputElement, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", () => {
+    render(
+      getTimePickerIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+          {
+            dateTimeFormatValidationRule: {
+              errorMessage: "Specify a valid time value.",
+              format: "HH:mm:ss",
+            },
+          },
+        ],
+        dataType: {
+          type: "time",
+          maxValue: "19:15:00",
+          strictMax: true,
+          minValue: "07:00:00",
+          strictMin: true,
+        },
+        state: {
+          ...requiredProps.state,
+          value: "15:46:18",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    fireEvent.change(inputElement, { target: { value: "06:30:00" } });
+    const errorElement = screen.getByText("Verify the time is after 07:00:00.");
+    expect(errorElement).toBeVisible();
   });
 });

@@ -7,11 +7,14 @@
 import { SizeToClass } from "@jaspersoft/jv-ui-components/material-ui/types/InputTypes";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSX } from "react";
+import {
+  TimePickerTextFieldInputControl,
+  TimeTextFieldICProps,
+} from "../../src/controls/TimePickerTextFieldInputControl";
 import "@testing-library/jest-dom";
-import { TimePickerTextFieldInputControl } from "../../src/controls/TimePickerTextFieldInputControl";
 
 const LARGE_CSS_CLASS = SizeToClass.large;
-const requiredProps = {
+const requiredProps: TimeTextFieldICProps = {
   id: "column_time_1",
   label: "column_time",
   mandatory: false,
@@ -21,8 +24,10 @@ const requiredProps = {
   state: {
     uri: "/public/Visualize/Adhoc/Ad_Hoc_View_All_filters_files/column_time_1",
     id: "column_time_1",
-    value: "23:44:21",
+    value: "15:46:18",
   },
+  validationRules: [],
+  handleIcChange: jest.fn(),
 };
 
 const getTimePickerTextFieldIC = (options?: object): JSX.Element => {
@@ -167,5 +172,74 @@ describe("TimePickerTextFieldInputControl tests", () => {
       `div.${CSS_ERROR_CLASS}`,
     ) as HTMLInputElement;
     expect(wrapperDiv).toBeInTheDocument();
+  });
+
+  // New test scenarios
+  test("calls handleIcChange with correct parameters on value change", () => {
+    const handleIcChange = jest.fn();
+    render(
+      getTimePickerTextFieldIC({
+        handleIcChange,
+        state: {
+          value: "15:46:18",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    const newValue = "16:46:18";
+    fireEvent.change(inputElement, { target: { value: newValue } });
+    expect(handleIcChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: requiredProps.id,
+        label: requiredProps.label,
+        mandatory: requiredProps.mandatory,
+        readOnly: requiredProps.readOnly,
+        visible: requiredProps.visible,
+        type: requiredProps.type,
+      }),
+      { [requiredProps.id]: "" },
+    );
+  });
+
+  test("displays error message when validation fails", () => {
+    render(
+      getTimePickerTextFieldIC({
+        mandatory: true,
+        validationRules: [
+          {
+            mandatoryValidationRule: {
+              errorMessage: "This field is mandatory so you must enter data.",
+            },
+          },
+          {
+            dateTimeFormatValidationRule: {
+              errorMessage: "Specify a valid time value.",
+              format: "HH:mm:ss",
+            },
+          },
+        ],
+        dataType: {
+          type: "time",
+          maxValue: "19:15:00",
+          strictMax: true,
+          minValue: "07:00:00",
+          strictMin: true,
+        },
+        state: {
+          ...requiredProps.state,
+          value: "15:46:18",
+        },
+      }),
+    );
+    const inputElement = screen.queryByLabelText(
+      requiredProps.label,
+    ) as HTMLInputElement;
+    fireEvent.change(inputElement, { target: { value: "19:25:36" } });
+    const errorElement = screen.getByText(
+      "Verify the time is before 19:15:00.",
+    );
+    expect(errorElement).toBeVisible();
   });
 });

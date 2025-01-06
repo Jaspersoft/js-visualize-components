@@ -8,7 +8,9 @@ import { JVTextField } from "@jaspersoft/jv-ui-components";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
 import { useLiveState } from "./hooks/useLiveState";
-import { useNumberErrorMsg } from "./hooks/useNumberErrorMsgs";
+import { useState } from "react";
+import { validateNumberValue } from "../utils/ErrorMessageUtils";
+import { getInputControlProperties } from "./BaseInputControl";
 
 export type NumberICType = "number";
 
@@ -25,17 +27,21 @@ export interface NumberICProps extends InputControlProperties {
  * @constructor
  */
 export const SingleValueNumberInputControl = (props: NumberICProps) => {
-  const {
-    className,
-    mandatory,
-    readOnly,
-    visible,
-    dataType,
-    validationRules,
-    events,
-    ...remainingProps
-  } = props;
-  const liveState = useLiveState(props.state?.value || "");
+  const { className, readOnly } = props;
+  const [errorText, setErrorText] = useState<string>("");
+  const liveState = useLiveState(
+    props.state?.value || "",
+    (newValue: string) => {
+      const errorMsg = validateNumberValue({
+        textValue: newValue,
+        props,
+      });
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
+  );
 
   const controlClasses = useControlClasses([], props);
   // inputProps is needed to handle readOnly by TextField from MUI natively:
@@ -43,14 +49,15 @@ export const SingleValueNumberInputControl = (props: NumberICProps) => {
   if (readOnly) {
     inputProps.readOnly = true;
   }
-  const theInputProps = { ...inputProps, ...liveState };
-  const errorText = useNumberErrorMsg({
-    textValue: liveState.value,
-    props,
-  });
+  const theInputProps = {
+    ...inputProps,
+    value: liveState.value,
+    onChange: liveState.onChange,
+  };
   return (
     <JVTextField
-      {...remainingProps}
+      id={props.id}
+      label={props.label}
       variant={props.variant || "outlined"}
       className={`${className || ""}`}
       textFieldClassName={`${controlClasses.join(" ")}`}

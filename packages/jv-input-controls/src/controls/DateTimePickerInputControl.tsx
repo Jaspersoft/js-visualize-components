@@ -11,9 +11,11 @@ import {
 } from "../utils/DateInputControlUtils";
 import { InputControlProperties } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 import { getTheInitialValue } from "../utils/DefaultValueUtils";
+import { useState } from "react";
+import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
+import { getInputControlProperties } from "./BaseInputControl";
 
 export type DateTimePickerICType = "material";
 
@@ -31,34 +33,46 @@ const formatToDayJS = (str: string) => {
 };
 
 export const DateTimePickerInputControl = (props: DateTimeICProps) => {
-  let dateFormat = "YYYY-MM-DDTHH:mm:ss",
-    views: string[] = [];
+  let dateFormat = "YYYY-MM-DDTHH:mm:ss";
   if (props.validationRules !== undefined) {
     const formatStored = getDateFormatIfAny(props.validationRules);
     dateFormat = removeSingleQuotes(formatStored);
     dateFormat = formatToDayJS(dateFormat);
   }
-  views = props.views
+  const views: string[] = props.views
     ? props.views
     : ["year", "month", "day", "hours", "minutes", "seconds"];
-  const liveState = useLiveDateFormattedState({
-    initialValue: getTheInitialValue(props.state?.value) || "",
-    format: dateFormat,
-  });
-  const controlClasses = useControlClasses([], props);
+  const [errorText, setErrorText] = useState<string>("");
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
     minKey: "minDateTime",
     maxKey: "maxDateTime",
   });
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
-    minAndMaxDate: minAndMaxSettings,
+
+  const liveState = useLiveDateFormattedState({
+    initialValue: getTheInitialValue(props.state?.value) || "",
+    format: dateFormat,
+    callback: (newValue) => {
+      const { errorMsg } = validateValueAgainstICValidationRules(
+        newValue,
+        liveState.value,
+        props,
+        "",
+        minAndMaxSettings,
+      );
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
   });
-  const { events, ...remainingProps } = props;
+  const controlClasses = useControlClasses([], props);
   return (
     <JVDateTimePicker
-      {...{ ...remainingProps, ...minAndMaxSettings }}
+      {...minAndMaxSettings}
+      id={props.id}
+      label={props.label}
+      readOnly={props.readOnly}
+      disabled={!!props.disabled}
       onChange={liveState.onChange}
       value={liveState.value}
       views={views}

@@ -14,9 +14,11 @@ import {
   InputControlValidationRule,
 } from "@jaspersoft/jv-tools";
 import { useControlClasses } from "./hooks/useControlClasses";
-import { useErrorMsg } from "./hooks/useErrorMsg";
 import { useLiveDateFormattedState } from "./hooks/useLiveDateFormattedState";
 import { getTheInitialValue } from "../utils/DefaultValueUtils";
+import { useState } from "react";
+import { validateValueAgainstICValidationRules } from "../utils/ErrorMessageUtils";
+import { getInputControlProperties } from "./BaseInputControl";
 
 export type TimePickerICType = "material";
 
@@ -31,26 +33,37 @@ export const TimePickerInputControl = (props: TimeICProps) => {
     props.validationRules as InputControlValidationRule[],
     "HH:mm:ss",
   );
-
-  const liveState = useLiveDateFormattedState({
-    initialValue: getTheInitialValue(props.state?.value) || "",
-    format: dateFormat,
-  });
-  const controlClasses = useControlClasses([], props);
-  const views = props.views || ["hours", "minutes", "seconds"];
+  const [errorText, setErrorText] = useState<string>("");
   const minAndMaxSettings = getMinAndMaxSettings(props.dataType, {
     minKey: "minTime",
     maxKey: "maxTime",
   });
-  const errorText = useErrorMsg({
-    textValue: liveState.value,
-    props,
-    minAndMaxDate: minAndMaxSettings,
+  const liveState = useLiveDateFormattedState({
+    initialValue: getTheInitialValue(props.state?.value) || "",
+    format: dateFormat,
+    callback: (newValue) => {
+      const { errorMsg } = validateValueAgainstICValidationRules(
+        newValue,
+        liveState.value,
+        props,
+        "",
+        minAndMaxSettings,
+      );
+      setErrorText(errorMsg);
+      props.handleIcChange!(getInputControlProperties(props, newValue), {
+        [props.id]: errorMsg,
+      });
+    },
   });
-  const { events, ...remainingProps } = props;
+  const controlClasses = useControlClasses([], props);
+  const views = props.views || ["hours", "minutes", "seconds"];
   return (
     <JVTimePicker
-      {...{ ...remainingProps, ...minAndMaxSettings }}
+      {...minAndMaxSettings}
+      id={props.id}
+      label={props.label}
+      readOnly={props.readOnly}
+      disabled={!!props.disabled}
       views={views}
       onChange={liveState.onChange}
       value={liveState.value}
