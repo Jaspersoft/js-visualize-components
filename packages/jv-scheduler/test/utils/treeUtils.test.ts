@@ -88,7 +88,6 @@ describe("treeUtils", () => {
         childrenDataOfTreeNodes,
         pathWhereChildrensToBeAdded,
       );
-      console.log(result, "result");
       expect(result[0].children).toEqual([{ uri: `${ROOT_FOLDER}/child` }]);
     });
 

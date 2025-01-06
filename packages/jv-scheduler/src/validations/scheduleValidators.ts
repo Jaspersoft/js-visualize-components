@@ -48,9 +48,7 @@ const isValidFileName = (fileName: string) => {
 };
 
 const isValidUri = (uri: string) => {
-  console.log("valid url enter1");
   if (!uri) return false;
-  console.log("valid url enter2");
   if (uri.indexOf("${") >= 0) return true;
   const re = new RegExp(globalConfig.resourceIdNotSupportedSymbols, "g");
   return !re.test(uri.replace(/\//g, "")); // exclude / from testing value
@@ -175,7 +173,6 @@ export const validator = (
       if (!propVal?.length) {
         return { folderURI: "error.folder.uri.required" };
       }
-      console.log("validUrl", isValidUri(propVal));
       if (!isValidUri(propVal)) {
         return {
           folderURI: "error.report.schedule.output.folder.resourceuri.format",
