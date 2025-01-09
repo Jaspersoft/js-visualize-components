@@ -8,9 +8,8 @@ import { useEffect, useState } from "react";
 import "@jaspersoft/jv-ui-components/dist/jv-ui.css";
 import {
   Authentication,
-  VisualizeFactory,
-  visualizejsLoader,
-  VisualizeClient,
+  useVisualize,
+  VisualizeGenericError,
 } from "@jaspersoft/jv-tools";
 import {
   // renderScheduler,
@@ -22,8 +21,9 @@ import ReportPanel from "./report/ReportPanel";
 import "./App.css";
 import { Scheduler } from "./Scheduler";
 
-const serverUrl = `${schedulerUIConfig.server}${schedulerUIConfig.contextPath}`;
-const visualizeUrl = `${serverUrl}/client/visualize.js`;
+const errorCallback = (errorCaught: Error | VisualizeGenericError | string) => {
+  console.log("check the error! ", errorCaught);
+};
 
 const credentials: Authentication = {
   name: "joeuser",
@@ -34,28 +34,33 @@ const credentials: Authentication = {
 
 const resourceUri = "/public/Samples/Reports/07g.RevenueDetailReport";
 function SchedulerApp() {
-  const [visualize, setVisualize] = useState(
-    null as { v: VisualizeClient } | null,
+  const vContainer = useVisualize(
+    {
+      server: "https://mobiledemo.jaspersoft.com/jasperserver-pro",
+      visualizePath:
+        "https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js",
+      auth: credentials,
+    },
+    { errorCallback },
   );
 
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   useEffect(() => {
-    const loadVisualize = visualizejsLoader(visualizeUrl);
-    loadVisualize().then((visualizeFactory: VisualizeFactory) => {
-      visualizeFactory(
-        {
-          server: serverUrl,
-          auth: { ...credentials },
-        },
-        (v: VisualizeClient) => {
-          setVisualize({ v });
-        },
-        (e: any) => {
-          console.log(String(e));
-        },
-      );
-    });
+    if (vContainer?.v === undefined) {
+      return;
+    }
+    // uncomment below code to see working of scheduler using JS API
+    // const schedulerElement = document.getElementById("sheduler");
+    // if (visualize) {
+    //   renderScheduler(
+    //       visualize.v,
+    //     resourceUri,
+    //     schedulerElement as HTMLElement,
+    //     schedulerUIConfig,
+    //   );
+    // }
+
     if (!schedulerUIConfig.events) {
       schedulerUIConfig.events = {};
     }
@@ -75,29 +80,13 @@ function SchedulerApp() {
         console.log("Schedule panel rendered successfully");
       };
     }
-  }, []);
-
-  useEffect(() => {
-    if (visualize === undefined) {
-      return;
-    }
-    // uncomment below code to see working of scheduler using JS API
-    // const schedulerElement = document.getElementById("sheduler");
-    // if (visualize) {
-    //   renderScheduler(
-    //       visualize.v,
-    //     resourceUri,
-    //     schedulerElement as HTMLElement,
-    //     schedulerUIConfig,
-    //   );
-    // }
-  }, [visualize]);
+  }, [vContainer]);
 
   console.log("SchedulerConfig ", defaultSchedulerConfig);
   return (
     <>
       <div id="scheduler"></div>
-      {visualize ? (
+      {vContainer?.v ? (
         <>
           <div id="header">
             <h1 className="flexItem pageHeader-title-text">
@@ -127,10 +116,10 @@ function SchedulerApp() {
             className={`dimmer ${isPanelOpen ? "" : "hidden"}`}
             style={{ zIndex: 999 }}
           ></div>
-          <ReportPanel vObject={visualize.v} resourceURI={resourceUri} />
+          <ReportPanel vObject={vContainer?.v} resourceURI={resourceUri} />
           {isPanelOpen && (
             <Scheduler
-              v={visualize.v}
+              v={vContainer?.v}
               config={schedulerUIConfig}
               uri={resourceUri}
             />
