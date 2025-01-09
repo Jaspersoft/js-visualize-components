@@ -9,10 +9,6 @@ import store from "../store/store";
 import { IState } from "../types/scheduleType";
 import { PUBLIC_FOLDER, ROOT_FOLDER } from "../constants/schedulerConstants";
 
-const getServerContextPath = () => {
-  return `${(store.getState() as IState)?.schedulerUIConfig?.server}${(store.getState() as IState)?.schedulerUIConfig?.contextPath}`;
-};
-
 const getServer = () => {
   return `${(store.getState() as IState)?.schedulerUIConfig?.server}`;
 };
@@ -77,14 +73,10 @@ const getFakeRootRepositoryData = (data: string) => {
 export const checkPermissionOnResource = async (
   resource: string,
   server?: string,
-  contextPath?: string,
 ) => {
-  const serverPath = server
-    ? `${server}${contextPath}`
-    : getServerContextPath();
   try {
     const response = await axios.get(
-      `${serverPath}/rest_v2/resources${resource}`,
+      `${server ? server : getServer()}/rest_v2/resources${resource}`,
       {
         withCredentials: true,
         headers: {
@@ -101,7 +93,7 @@ export const checkPermissionOnResource = async (
 export const getUserTimezonesFromService = async () => {
   try {
     const response = await axios.get(
-      `${getServerContextPath()}/rest_v2/settings/userTimeZones`,
+      `${getServer()}/rest_v2/settings/userTimeZones`,
       {
         headers: {
           Accept: "application/json",
@@ -117,7 +109,7 @@ export const getUserTimezonesFromService = async () => {
 export const getOutputFormatsFromService = async () => {
   try {
     const response = await axios.get(
-      `${getServerContextPath()}/rest_v2/settings/alertingSettings`,
+      `${getServer()}/rest_v2/settings/alertingSettings`,
       {
         headers: {
           Accept: "application/json",
@@ -133,7 +125,7 @@ export const getOutputFormatsFromService = async () => {
 export const getRepositoryFolderData = async (folderPath: string) => {
   try {
     const response = await axios.get(
-      `${getServerContextPath()}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
+      `${getServer()}/rest_v2/api/resources?folderUri=${encodeURIComponent(folderPath)}&recursive=false&type=folder&offset=0&limit=5000&forceTotalCount=true&forceFullPage=true`,
       {
         withCredentials: true,
         headers: {
@@ -156,7 +148,7 @@ function decodeHtml(html: string) {
 export const getFakeRootDataFromService = async () => {
   try {
     const response = await axios.get(
-      `${getServerContextPath()}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
+      `${getServer()}/flow.html?_flowId=searchFlow&method=getNode&provider=repositoryExplorerTreeFoldersProvider&uri=/&depth=1`,
       {
         withCredentials: true,
         headers: {
@@ -172,7 +164,7 @@ export const getFakeRootDataFromService = async () => {
 
 export const createSchedule = async (scheduleInfo: any) => {
   return axios.put(
-    `${getServerContextPath()}/rest_v2/jobs`,
+    `${getServer()}/rest_v2/jobs`,
     {
       ...scheduleInfo,
     },
