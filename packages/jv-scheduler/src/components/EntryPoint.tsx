@@ -78,7 +78,7 @@ const EntryPoint = (props: SchedulerProps) => {
       {!schedulerData.error && isLoadComp && (
         <ReduxProvider store={store}>
           <SchedulerMain
-            schedulerUIConfig={{ ...config, server: v.server }}
+            schedulerUIConfig={config}
             schedulerData={schedulerData}
             visualize={v}
             uri={uri}

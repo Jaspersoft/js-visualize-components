@@ -10,7 +10,7 @@ import { IState } from "../types/scheduleType";
 import { PUBLIC_FOLDER, ROOT_FOLDER } from "../constants/schedulerConstants";
 
 const getServer = () => {
-  return `${(store.getState() as IState)?.schedulerUIConfig?.server}`;
+  return `${(store.getState() as IState)?.visualize.server}`;
 };
 
 const computePermissionMask = (extra: { [key: string]: any }) => {
@@ -90,10 +90,10 @@ export const checkPermissionOnResource = async (
   }
 };
 
-export const getUserTimezonesFromService = async () => {
+export const getUserTimezonesFromService = async (server?: string) => {
   try {
     const response = await axios.get(
-      `${getServer()}/rest_v2/settings/userTimeZones`,
+      `${server ? server : getServer()}/rest_v2/settings/userTimeZones`,
       {
         headers: {
           Accept: "application/json",
@@ -106,10 +106,10 @@ export const getUserTimezonesFromService = async () => {
   }
 };
 
-export const getOutputFormatsFromService = async () => {
+export const getOutputFormatsFromService = async (server?: string) => {
   try {
     const response = await axios.get(
-      `${getServer()}/rest_v2/settings/alertingSettings`,
+      `${server ? server : getServer()}/rest_v2/settings/alertingSettings`,
       {
         headers: {
           Accept: "application/json",

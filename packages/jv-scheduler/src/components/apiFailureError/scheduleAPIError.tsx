@@ -40,7 +40,7 @@ export const MessageAPIError = ({
   }) as translationProps;
 
   const onRetryBtnClick = () => {
-    if (userTimezoneApiFailure) dispatch(getUserTimeZones());
+    if (userTimezoneApiFailure) dispatch(getUserTimeZones(undefined));
     if (userOutputFormatApiFailure) dispatch(getOutputFormats());
   };
 

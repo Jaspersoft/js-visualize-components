@@ -175,9 +175,9 @@ export const setVisualizeObj = (visualize: VisualizeClient) => {
     payload: { visualize },
   };
 };
-export const getOutputFormats = () => {
+export const getOutputFormats = (server?: string) => {
   return async (dispatch: Dispatch) => {
-    const outputFormats = await getOutputFormatsFromService();
+    const outputFormats = await getOutputFormatsFromService(server);
     if (outputFormats.error) {
       dispatch(
         setApiFailure(
@@ -192,9 +192,12 @@ export const getOutputFormats = () => {
   };
 };
 
-export const getUserTimeZones = (timezone?: string) => {
+export const getUserTimeZones = (
+  timezone: string | undefined,
+  server?: string,
+) => {
   return async (dispatch: Dispatch) => {
-    const timezones = await getUserTimezonesFromService();
+    const timezones = await getUserTimezonesFromService(server);
     dispatch(
       setPropertiesDetails({
         outputTimeZone: timezone ? timezone : timezones[0].code,
@@ -275,11 +278,11 @@ export const setInitialPluginState = (
       fieldsSupportedValues,
     } = schedulerData;
     dispatch(setSchedulerUIConfig({ ...schedulerUIConfig, resourceURI: uri }));
-    dispatch(getUserTimeZones(scheduleInfo.outputTimeZone));
+    dispatch(getUserTimeZones(scheduleInfo.outputTimeZone, visualize.server));
     if (fieldsSupportedValues.outputFormat) {
       dispatch(setOutputFormats(fieldsSupportedValues.outputFormat));
     } else {
-      dispatch(getOutputFormats());
+      dispatch(getOutputFormats(visualize.server));
     }
     dispatch(
       setTabsConfig({
