@@ -51,6 +51,7 @@ const EntryPoint = (props: SchedulerProps) => {
       try {
         const response = await getSchedulerData({
           ...config,
+          server: v.server,
           resourceURI: uri,
         });
         setSchedulerData(response);

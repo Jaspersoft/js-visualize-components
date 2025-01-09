@@ -5,6 +5,7 @@
  */
 
 import { InputControlsConfig } from "@jaspersoft/jv-input-controls";
+import { VisualizeClient } from "@jaspersoft/jv-tools";
 
 export interface ApiErrorMsg {
   apiErrorTitle?: string;
@@ -19,9 +20,7 @@ export interface ApiFailedProps extends ApiErrorMsg {
 }
 
 export interface SchedulerConfig {
-  server: string;
   dryRun?: boolean;
-  contextPath?: string;
   tabs?: {
     activeTab?: string;
     tabsOrder?: string[];
@@ -173,6 +172,7 @@ export interface IState extends SchedulerInitialPluginDataProps {
     isLoaded: boolean;
     isError: boolean;
   };
+  visualize: VisualizeClient;
 }
 
 export interface StoreDataProps {}

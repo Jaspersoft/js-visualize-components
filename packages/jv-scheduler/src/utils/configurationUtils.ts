@@ -33,7 +33,6 @@ const isResourceWritable = (item: any) => {
 const checkAvailabilityOfBasicConfig = (
   resourceURI: string,
   server: string,
-  contextPath: string,
 ) => {
   const error: { [key: string]: string } = {};
   if (!resourceURI) {
@@ -42,9 +41,6 @@ const checkAvailabilityOfBasicConfig = (
   } else if (!server) {
     error["server.missing.configuration"] =
       "server is required in the configuration";
-  } else if (!contextPath) {
-    error["contextPath.missing.configuration"] =
-      "contextPath is required in the configuration";
   }
   return error;
 };
@@ -247,14 +243,9 @@ const checkFieldDataValidity = (fieldsData: any) => {
 const checkResourceUriIsRightOrHavePermission = async (
   resourceURI: string,
   server: string,
-  contextPath: string,
 ) => {
   let error: { [key: string]: string } = {};
-  const response = await checkPermissionOnResource(
-    resourceURI,
-    server,
-    contextPath,
-  );
+  const response = await checkPermissionOnResource(resourceURI, server);
   if (response.permissionMask) {
     if (!isResourceWritable(response)) {
       error["resource.access.denied"] =
@@ -352,26 +343,20 @@ const setDefaultValuesForFields = (
 };
 
 export const getSchedulerData = async (scheduleConfig: any) => {
-  const { resourceURI, tabs, contextPath, server, stepper } =
-    scheduleConfig || {};
+  const { resourceURI, tabs, server, stepper } = scheduleConfig || {};
   const { tabsData = {}, tabsOrder } = tabs || {};
 
   // check resourceURI, server, contextPath are provided by user
   let error: { [key: string]: any } = checkAvailabilityOfBasicConfig(
     resourceURI,
     server,
-    contextPath,
   );
   if (!!getLengthOfObject(error)) {
     return { error };
   }
 
   // check whether resourceURI is correct and has permission to view.
-  error = await checkResourceUriIsRightOrHavePermission(
-    resourceURI,
-    server,
-    contextPath,
-  );
+  error = await checkResourceUriIsRightOrHavePermission(resourceURI, server);
   if (!!getLengthOfObject(error)) {
     return { error };
   }
