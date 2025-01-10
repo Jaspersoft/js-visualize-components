@@ -1,7 +1,7 @@
 {
   "name": "demo-scheduler",
   "description": "Demo application for scheduler of Jaspersoft Visualize Components",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "homepage": "https://jaspersoft.github.io/js-visualize-components-samples/pages/scheduler/demo.html",
   "license": "BSD-3-Clause",
@@ -16,9 +16,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@jaspersoft/jv-scheduler": "^0.1.9",
-    "@jaspersoft/jv-tools": "^0.1.9",
-    "@jaspersoft/jv-ui-components": "^0.1.9",
+    "@jaspersoft/jv-scheduler": "^0.1.10",
+    "@jaspersoft/jv-tools": "^0.1.10",
+    "@jaspersoft/jv-ui-components": "^0.1.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
