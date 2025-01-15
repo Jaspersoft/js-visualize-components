@@ -5,13 +5,18 @@
  */
 
 import { forwardRef } from "react";
-import { RichTreeView } from "@mui/x-tree-view/RichTreeView";
+import { RichTreeView } from "@mui/x-tree-view";
 
 export const RichTree = forwardRef<HTMLUListElement, any>(
   ({ className = "", ...rest }, ref) => {
     return (
       <>
-        <RichTreeView ref={ref} className={`${className}  mui`} {...rest} />
+        <RichTreeView
+          items={rest.items || []}
+          ref={ref}
+          className={`${className}  mui`}
+          {...rest}
+        />
       </>
     );
   },

@@ -36,20 +36,20 @@ const checkAvailabilityOfBasicConfig = (
   contextPath: string,
 ) => {
   const error: { [key: string]: string } = {};
-  if (!resourceURI) {
+  if (!resourceURI || resourceURI.length === 0) {
     error["resource.uri.missing.configuration"] =
       "resourceURI is required in the configuration";
-  } else if (!server) {
+  } else if (!server || server.length === 0) {
     error["server.missing.configuration"] =
       "server is required in the configuration";
-  } else if (!contextPath) {
+  } else if (!contextPath || contextPath.length === 0) {
     error["contextPath.missing.configuration"] =
       "contextPath is required in the configuration";
   }
   return error;
 };
 
-const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any) => {
+const checkRequiredDataForHiddenTabs = (tabName: string, tabData: any = {}) => {
   const error: { [key: string]: string } = {};
   switch (tabName) {
     case SCHEDULE_TAB: {
